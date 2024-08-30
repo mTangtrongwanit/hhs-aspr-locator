@@ -1,0 +1,45 @@
+name: Deploy PR preview to GitHub Pages
+
+on:
+  # Runs on pull request creation/update
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+# Allow write access to gh-pages branch and pull requests
+permissions:
+  contents: write
+  pull-requests: write
+
+# Allow a single concurrent deployment
+concurrency:
+  group: preview-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Deploy to gh-pages branch
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+        env:
+          BASE_PATH: ${{ github.event.repository.name }}/pr-preview/pr-${{ github.event.pull_request.number }}
+
+      - name: Deploy to GitHub Pages
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          action: deploy
+          source-dir: /dist
