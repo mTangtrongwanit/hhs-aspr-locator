@@ -1,6 +1,3 @@
-# artisanal-react
-strong opinions from lillie and tim, soon to be enforced by drones in the intermountain delivery center
-
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
