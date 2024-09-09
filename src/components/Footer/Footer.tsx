@@ -47,7 +47,7 @@ const Footer = () => {
   // #endregion ---------------- Event Handlers --------------------------------
 
   // #region ----------------------- Render ------------------------------------
-  return <></>;
+  return <footer className="dev-placeholder">Footer</footer>;
   // #endregion -------------------- Render ------------------------------------
 };
 export default Footer;

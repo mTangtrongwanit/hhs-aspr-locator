@@ -22,7 +22,7 @@ import Locations from "@/routes/Locations";
 // #region ------------------------ Resources ----------------------------------
 import "@/styles/index.css";
 import Header from "@/components/Header";
-import Footer from "@/components/Header";
+import Footer from "@/components/Footer";
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 // #region ======================== CONSTANTS ==================================
@@ -38,7 +38,7 @@ const StyledAppLayout = styled.section`
     "header"
     "content"
     "footer"; */
-  grid-template-rows: auto minmax(0px, 1fr) auto;
+  grid-template-rows: auto auto minmax(0px, 1fr) auto;
   // --- Decorative ---
   /* background-color: var(--app-green); */
   background-color: var(--app-bg);
@@ -50,9 +50,9 @@ const router = createBrowserRouter(
       path: "/",
       element: (
         <StyledAppLayout>
-          <Header />
-          <Landing />
-          <Footer />
+        <Header></Header>
+        <Landing></Landing>
+        <Footer></Footer>
         </StyledAppLayout>
       ),
     },

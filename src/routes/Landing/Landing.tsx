@@ -47,7 +47,7 @@ const Landing = () => {
   // #endregion ---------------- Event Handlers --------------------------------
 
   // #region ----------------------- Render ------------------------------------
-  return <></>;
+  return <div className="dev-placeholder">Landing UI</div>;
   // #endregion -------------------- Render ------------------------------------
 };
 export default Landing;
