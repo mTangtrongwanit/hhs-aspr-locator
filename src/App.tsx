@@ -50,9 +50,9 @@ const router = createBrowserRouter(
       path: "/",
       element: (
         <StyledAppLayout>
-        <Header></Header>
-        <Landing></Landing>
-        <Footer></Footer>
+          <Header></Header>
+          <Landing></Landing>
+          <Footer></Footer>
         </StyledAppLayout>
       ),
     },

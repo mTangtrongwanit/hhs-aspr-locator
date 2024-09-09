@@ -9,8 +9,8 @@
 /* #region ========================= IMPORTS ===================================*/
 /* #region ---------------------- 3rd-Party Styles -----------------------------*/
 @import "@arcgis/core/assets/esri/themes/light/main.css";
-@import '@trussworks/react-uswds/lib/uswds.css';
-@import '@trussworks/react-uswds/lib/index.css';
+@import "@trussworks/react-uswds/lib/uswds.css";
+@import "@trussworks/react-uswds/lib/index.css";
 /* #endregion ------------------- 3rd-Party Styles -----------------------------*/
 
 /* #region ---------------------- Custom Styles --------------------------------*/
@@ -24,43 +24,43 @@
 *,
 *::after,
 *:not([class^="esri-icon-"], [class*=" esri-icon-"])::before {
-    /* --- Sizing / Box-Model ---
+  /* --- Sizing / Box-Model ---
     Note: not setting outline to 0 because browser defaults for focus rings are 
     important for accessibility
     */
-    margin: 0;
-    padding: 0;
-    border: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
 
-    /*Include margin, padding, border in calculation of width & height*/
-    box-sizing: border-box;
+  /*Include margin, padding, border in calculation of width & height*/
+  box-sizing: border-box;
 
-    /* --- Decorative - Typography --- */
-    text-align: left;
-    font-weight: 400;
-    font-style: normal;
+  /* --- Decorative - Typography --- */
+  text-align: left;
+  font-weight: 400;
+  font-style: normal;
 }
 
 html,
 body,
 #root {
-    /* --- Sizing / Box-Model --- 
+  /* --- Sizing / Box-Model --- 
     Need to define width, height in units (not %) on highest-level elements 
     so that all other elements can inherit sizes & use percentages
     */
 
-    width: 100vw;
-    /* --vh: see ./style-utils */
-    height: calc(var(--vh, 1vh) * 100);
+  width: 100vw;
+  /* --vh: see ./style-utils */
+  height: calc(var(--vh, 1vh) * 100);
 
-    /* --- Decorative - Typography ---
+  /* --- Decorative - Typography ---
     Properties to prevent unnecessary tracking, render sharp text
     */
 
-    font-feature-settings: "kern";
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility !important;
+  font-feature-settings: "kern";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility !important;
 }
 
 /* #endregion --------------------- CSS Reset ----------------------------------*/
@@ -71,36 +71,35 @@ Use for testing layouts, like so:
 <div className="dev-placeholder" style={{ gridArea: 'map' }}>map</div>
 */
 .dev-placeholder {
-    /* --- Sizing / Box-Model --- */
-    height: 100%;
-    width: 100%;
+  /* --- Sizing / Box-Model --- */
+  height: 100%;
+  width: 100%;
 
-    /* --- Decorative --- */
-    background-color: #c6c6c6;
+  /* --- Decorative --- */
+  background-color: #c6c6c6;
 
-    /* --- Layout - Center label --- */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  /* --- Layout - Center label --- */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /*
 Accessibility - Use to hide headings, descriptive text, etc. for SR users
  */
 .visually-hidden:not(:focus):not(:active) {
-    border: 0;
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }
 
 /* #endregion ------------------- Utility Classes ------------------------------*/
-
 
 /* #endregion =================== EXPORTED RULES ===============================*/

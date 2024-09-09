@@ -3,36 +3,36 @@ Utility variables for sizing & layouts
 */
 /* #region ====================== EXPORTED RULES ===============================*/
 :root {
-    /* Typography */
-    --text--1: 0.9rem;
-    --text-0: 1rem;
-    --text-1: 1.1rem;
-    --text-2: 1.2rem;
-    --text-3: 1.4rem;
-    --text-4: 1.8rem;
-    --text-5: 2.6rem;
+  /* Typography */
+  --text--1: 0.9rem;
+  --text-0: 1rem;
+  --text-1: 1.1rem;
+  --text-2: 1.2rem;
+  --text-3: 1.4rem;
+  --text-4: 1.8rem;
+  --text-5: 2.6rem;
 
-    /* Layout sizing and spacing vars */
-    --unit: 1rem; /*base unit of measurement in the app. used a lot for padding, gap, etc.*/
-    --border: 4px; /*width*/
-    --radius: 4px;
+  /* Layout sizing and spacing vars */
+  --unit: 1rem; /*base unit of measurement in the app. used a lot for padding, gap, etc.*/
+  --border: 4px; /*width*/
+  --radius: 4px;
 }
 
 /* See style-utils for breakpoints */
 @media screen and (max-width: 475px) {
-    :root {
-        --text--1: 0.8rem;
-        --text-0: 0.85rem;
-        --text-1: 0.9rem;
-        --text-2: 1rem;
-        --text-3: 1.1rem;
-        --text-4: 1.2rem;
-        --text-5: 1.4rem;
+  :root {
+    --text--1: 0.8rem;
+    --text-0: 0.85rem;
+    --text-1: 0.9rem;
+    --text-2: 1rem;
+    --text-3: 1.1rem;
+    --text-4: 1.2rem;
+    --text-5: 1.4rem;
 
-        --unit: 0.75rem;
-        --border: 2px;
-        --radius: 2px;
-    }
+    --unit: 0.75rem;
+    --border: 2px;
+    --radius: 2px;
+  }
 }
 
 /* #endregion =================== EXPORTED RULES ===============================*/

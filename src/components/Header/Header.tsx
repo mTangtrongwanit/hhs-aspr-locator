@@ -9,7 +9,7 @@
 // #endregion ------------------------ React -----------------------------------
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
-import { GovBanner } from '@trussworks/react-uswds';
+import { GovBanner } from "@trussworks/react-uswds";
 
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
@@ -58,8 +58,9 @@ const HeaderComponent = () => {
         /> */}
         <GovBanner></GovBanner>
       </aside>
-      <div className='dev-placeholder'>Header</div>
-    </>);
+      <div className="dev-placeholder">Header</div>
+    </>
+  );
   // #endregion -------------------- Render ------------------------------------
 };
 export default HeaderComponent;
