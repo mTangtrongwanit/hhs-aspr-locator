@@ -30,14 +30,14 @@ const StyledAppLayout = styled.section`
   // --- Sizing / Box-Model ---
   width: inherit;
   height: inherit;
-  padding: 1rem;
+  /* padding: 1rem; */
   // --- Layout ---
   display: grid;
   gap: 1rem;
-  grid-template-areas:
+  /* grid-template-areas:
     "header"
     "content"
-    "footer";
+    "footer"; */
   grid-template-rows: auto minmax(0px, 1fr) auto;
   // --- Decorative ---
   /* background-color: var(--app-green); */
@@ -50,9 +50,9 @@ const router = createBrowserRouter(
       path: "/",
       element: (
         <StyledAppLayout>
-          <Header ></Header>
+          <Header />
           <Landing />
-          <Footer></Footer>
+          <Footer />
         </StyledAppLayout>
       ),
     },
@@ -60,10 +60,10 @@ const router = createBrowserRouter(
       path: "/locations",
       element: (
         <StyledAppLayout>
-        <Header ></Header>
-        <Locations />
-        <Footer></Footer>
-      </StyledAppLayout>
+          <Header />
+          <Locations />
+          <Footer />
+        </StyledAppLayout>
       ),
     },
   ],

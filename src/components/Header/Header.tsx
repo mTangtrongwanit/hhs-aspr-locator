@@ -9,6 +9,8 @@
 // #endregion ------------------------ React -----------------------------------
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
+import { GovBanner } from '@trussworks/react-uswds';
+
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -23,7 +25,7 @@
 // #endregion ===================== CONSTANTS ==================================
 
 // #region =================== EXPORTED COMPONENT ==============================
-const Header = () => {
+const HeaderComponent = () => {
   // #region ------------------ Hooks (Resources) ------------------------------
 
   // #endregion --------------- Hooks (Resources) ------------------------------
@@ -47,8 +49,18 @@ const Header = () => {
   // #endregion ---------------- Event Handlers --------------------------------
 
   // #region ----------------------- Render ------------------------------------
-  return <></>;
+  return (
+    <>
+      <aside>
+        {/* TODO: connect when i18n is in */}
+        {/* <GovBanner
+          language={i18n.resolvedLanguage === 'es' ? 'spanish' : undefined}
+        /> */}
+        <GovBanner></GovBanner>
+      </aside>
+      <div className='dev-placeholder'>Header</div>
+    </>);
   // #endregion -------------------- Render ------------------------------------
 };
-export default Header;
+export default HeaderComponent;
 // #endregion ================ EXPORTED COMPONENT ==============================

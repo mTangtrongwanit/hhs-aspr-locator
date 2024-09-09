@@ -9,6 +9,8 @@
 /* #region ========================= IMPORTS ===================================*/
 /* #region ---------------------- 3rd-Party Styles -----------------------------*/
 @import "@arcgis/core/assets/esri/themes/light/main.css";
+@import '@trussworks/react-uswds/lib/uswds.css';
+@import '@trussworks/react-uswds/lib/index.css';
 /* #endregion ------------------- 3rd-Party Styles -----------------------------*/
 
 /* #region ---------------------- Custom Styles --------------------------------*/
