@@ -12,21 +12,58 @@ import { setAssetPath } from "@esri/calcite-components/dist/components";
 // #region -------------- Custom Components / Utilities ------------------------
 import { setVH } from "./utils";
 import { AppContextProvider } from "./contexts/AppContext";
+import styled from "styled-components";
 
+/*Routes*/
+import Landing from "@/routes/Landing";
+import Locations from "@/routes/Locations";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
 import "@/styles/index.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Header";
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 // #region ======================== CONSTANTS ==================================
+const StyledAppLayout = styled.section`
+  // --- Sizing / Box-Model ---
+  width: inherit;
+  height: inherit;
+  padding: 1rem;
+  // --- Layout ---
+  display: grid;
+  gap: 1rem;
+  grid-template-areas:
+    "header"
+    "content"
+    "footer";
+  grid-template-rows: auto minmax(0px, 1fr) auto;
+  // --- Decorative ---
+  /* background-color: var(--app-green); */
+  background-color: var(--app-bg);
+`;
 
 const router = createBrowserRouter(
   [
     {
       path: "/",
       element: (
-        <div className="dev-placeholder" style={{ }}>App</div>
+        <StyledAppLayout>
+          <Header ></Header>
+          <Landing />
+          <Footer></Footer>
+        </StyledAppLayout>
+      ),
+    },
+    {
+      path: "/locations",
+      element: (
+        <StyledAppLayout>
+        <Header ></Header>
+        <Locations />
+        <Footer></Footer>
+      </StyledAppLayout>
       ),
     },
   ],
