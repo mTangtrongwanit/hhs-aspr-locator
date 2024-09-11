@@ -53,6 +53,10 @@ function App() {
   // TODO: Need to tie this to a button, etc.  
   // i18n.changeLanguage(lng);
 
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+  }
+
   const count = 3;
 
   // #region ------------------ Hooks (Resources) ------------------------------
@@ -71,13 +75,15 @@ function App() {
   // #region ----------------------- Render ------------------------------------
   return (
     <AppContextProvider>
+      <RouterProvider router={router} />
       <p>{t('title', { name: 'John' })}</p>
           <p>{t('description.part1')}</p>
           <p>{t('description.part2')}</p>
           <Trans i18nKey="userMessagesUnread" count={count}>
             You have {{ count }} unread message.
           </Trans>
-      <RouterProvider router={router} />
+          <div><button onClick={() => changeLanguage('en')}>English</button></div>
+          <div><button onClick={() => changeLanguage('zh')}>Chinese (Simplified)</button></div>
     </AppContextProvider>
   );
   // #endregion -------------------- Render ------------------------------------
