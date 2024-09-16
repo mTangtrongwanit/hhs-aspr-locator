@@ -17,6 +17,10 @@ import { StyledLandingContent, StyledSearchContainer, StyledContextRow } from ".
 
 // #region ------------------------ Resources ----------------------------------
 // import { type Props } from "./Landing.types";
+
+// import where needed to bring in i18n translation
+import '@/utils/i18n';
+import { useTranslation } from 'react-i18next';
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 
@@ -26,7 +30,7 @@ import { StyledLandingContent, StyledSearchContainer, StyledContextRow } from ".
 // #region =================== EXPORTED COMPONENT ==============================
 const Landing = () => {
   // #region ------------------ Hooks (Resources) ------------------------------
-
+  const { t } = useTranslation();
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region -------------------- Hooks (State) --------------------------------
@@ -50,20 +54,20 @@ const Landing = () => {
   // #region ----------------------- Render ------------------------------------
   return (<StyledLandingContent>
     <StyledSearchContainer>
-      <h2>&str Find COVID-19 and Flu Medications</h2>
-      <p>&str This locator displays...</p>
+      <h2>{t('Landing.Search Container Heading')}</h2>
+      <p>{t('Landing.Search Container Description')}</p>
       <div>
         <div className="dev-placeholder">Location Search Placeholder</div>
         <div className="dev-placeholder">Illness Select Placeholder</div>
       </div>
-      <button>&str TODO: Link</button>
+      <button>{t('Landing.View Locations Button Label')}</button>
     </StyledSearchContainer>
     <div className="dev-placeholder" style={{ gridArea: 'image' }}>Image placeholder, hide from SR</div>
     <StyledContextRow>
-      <h2 className="visually-hidden">&str Contextual Information</h2>
-      <p>&str Locations participating in the U.S. Government&nbsp;
+      <h2 className="visually-hidden">{t('Landing.Context Container Screenreader Heading')}</h2>
+      {/* <p>&str Locations participating in the U.S. Government&nbsp;
         <a href="/todo">Patient Assistance Program</a>       ...
-      </p>
+      </p> */}
       <div className="dev-placeholder">Accordion placeholder</div>
       </StyledContextRow>
   </StyledLandingContent>);
