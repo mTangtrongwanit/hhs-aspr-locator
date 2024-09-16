@@ -35,7 +35,7 @@ import styled from "styled-components";
 // #region -------------- Molecules (Internal Layouts) -------------------------
 export const StyledSearchContainer = styled.section`
 // --- Sizing / Box-Model ---
-padding: var(--unit);
+padding: calc(var(--unit) * 2);
 padding-inline-start: var(--footer-offset);
 // --- Position ---
 grid-area: search-container;
@@ -86,7 +86,7 @@ export const StyledContextRow = styled.section`
     // --- Local Variables ---
 // --- Sizing / Box-Model ---
 width: 100%;
-padding: var(--unit) var(--footer-offset);
+padding: calc(var(--unit) * 2) var(--footer-offset);
 // --- Position ---
 grid-area: context-row;
 // --- Layout ---

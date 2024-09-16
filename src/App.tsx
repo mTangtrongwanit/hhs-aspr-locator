@@ -38,7 +38,6 @@ const StyledAppLayout = styled.section`
   /* padding: 1rem; */
   // --- Layout ---
   display: grid;
-  gap: 1rem;
   /* grid-template-areas:
     "header"
     "content"
