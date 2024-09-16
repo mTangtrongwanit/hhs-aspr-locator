@@ -34,95 +34,94 @@ import styled from "styled-components";
 
 // #region -------------- Molecules (Internal Layouts) -------------------------
 export const StyledSearchContainer = styled.section`
-// --- Sizing / Box-Model ---
-padding: calc(var(--unit) * 2);
-padding-inline-start: var(--footer-offset);
-// --- Position ---
-grid-area: search-container;
-// --- Layout ---
-display: flex;
-flex-direction: column;
-gap: var(--unit);
-// --- Decorative ---
-color: #fff;
-background-color: var(--brand);
-// --- States ---
-// --- Children ---
-h2 {
+  // --- Sizing / Box-Model ---
+  padding: calc(var(--unit) * 2);
+  padding-inline-start: var(--footer-offset);
+  // --- Position ---
+  grid-area: search-container;
+  // --- Layout ---
+  display: flex;
+  flex-direction: column;
+  gap: var(--unit);
+  // --- Decorative ---
+  color: #fff;
+  background-color: var(--brand);
+  // --- States ---
+  // --- Children ---
+  h2 {
     // --- Decorative ---
     font-size: var(--text-5);
     font-weight: 700;
-}
+  }
 
-p + div {
+  p + div {
     display: flex;
     gap: inherit;
-}
+  }
 
-button {
-// --- Sizing / Box-Model ---
-width: min-content;
-padding: calc(var(--unit) / 2) calc(var(--unit)); //vert horz
-// --- Position ---
-// --- Layout ---
-// --- Decorative ---
-white-space: nowrap;
-background: var(--accent);
-color: #fff;
-border-radius: var(--radius);
-border: var(--border) solid #fff;
-font-weight: bold;
-// --- States ---
+  button {
+    // --- Sizing / Box-Model ---
+    width: min-content;
+    padding: calc(var(--unit) / 2) calc(var(--unit)); //vert horz
+    // --- Position ---
+    // --- Layout ---
+    // --- Decorative ---
+    white-space: nowrap;
+    background: var(--accent);
+    color: #fff;
+    border-radius: var(--radius);
+    border: var(--border) solid #fff;
+    font-weight: bold;
+    // --- States ---
 
-&:hover {
-    background: var(--brand);
-}
-// --- Children ---
-}
-
+    &:hover {
+      background: var(--brand);
+    }
+    // --- Children ---
+  }
 `;
 
 export const StyledContextRow = styled.section`
-    // --- Local Variables ---
-// --- Sizing / Box-Model ---
-width: 100%;
-padding: calc(var(--unit) * 2) var(--footer-offset);
-// --- Position ---
-grid-area: context-row;
-// --- Layout ---
-display: flex;
-flex-direction: column;
-gap: var(--unit);
-// --- Decorative ---
-background-color: #fff;
-color: var(--text);
-// --- States ---
-// --- Children ---
-p a {
+  // --- Local Variables ---
+  // --- Sizing / Box-Model ---
+  width: 100%;
+  padding: calc(var(--unit) * 2) var(--footer-offset);
+  // --- Position ---
+  grid-area: context-row;
+  // --- Layout ---
+  display: flex;
+  flex-direction: column;
+  gap: var(--unit);
+  // --- Decorative ---
+  background-color: #fff;
+  color: var(--text);
+  // --- States ---
+  // --- Children ---
+  p a {
     color: var(--brand);
     font-weight: 700;
-}
+  }
 `;
 // #endregion ----------- Molecules (Internal Layouts) -------------------------
 
 // #region --------------- Parent Component + Variants -------------------------
 export const StyledLandingContent = styled.section`
-    // --- Local Variables ---
-// --- Sizing / Box-Model ---
-width: 100%;
-height: 100%;
-// --- Position ---
-// --- Layout ---
-display: grid;
-grid-template-areas: 
-"search-container image"
-"context-row context-row";
-grid-template-columns: 2fr 1fr;
-grid-template-rows: auto minmax(0, 1fr);
-// --- Decorative ---
-// --- States ---
-// --- Children ---
-`
+  // --- Local Variables ---
+  // --- Sizing / Box-Model ---
+  width: 100%;
+  height: 100%;
+  // --- Position ---
+  // --- Layout ---
+  display: grid;
+  grid-template-areas:
+    "search-container image"
+    "context-row context-row";
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto minmax(0, 1fr);
+  // --- Decorative ---
+  // --- States ---
+  // --- Children ---
+`;
 
 // #endregion ------------ Parent Component + Variants -------------------------
 // #endregion ================ EXPORTED COMPONENTS =============================

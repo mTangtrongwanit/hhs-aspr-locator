@@ -25,8 +25,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 // import where needed to bring in i18n translation
-import './utils/i18n';
-import { useTranslation, Trans } from 'react-i18next';
+import "./utils/i18n";
+import { useTranslation, Trans } from "react-i18next";
 
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
@@ -78,7 +78,6 @@ const router = createBrowserRouter(
 // #endregion ===================== CONSTANTS ==================================
 // #region =================== EXPORTED COMPONENT ==============================
 function App() {
-
   // define and use the 't' function for translating content.
   // 'i18n' to get the i18n instance in order to change the language
   const { t, i18n } = useTranslation();
@@ -86,12 +85,12 @@ function App() {
   // Can change language here
   // TODO: will need to tie this to a dropdown selector
   // const lng = 'es';
-  // TODO: Need to tie this to a button, etc.  
+  // TODO: Need to tie this to a button, etc.
   // i18n.changeLanguage(lng);
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
-  }
+  };
 
   const count = 3;
 
@@ -112,14 +111,20 @@ function App() {
   return (
     <AppContextProvider>
       <RouterProvider router={router} />
-      <p>{t('title', { name: 'John' })}</p>
-          <p>{t('description.part1')}</p>
-          <p>{t('description.part2')}</p>
-          <Trans i18nKey="userMessagesUnread" count={count}>
-            You have {{ count }} unread message.
-          </Trans>
-          <div><button onClick={() => changeLanguage('en')}>English</button></div>
-          <div><button onClick={() => changeLanguage('zh')}>Chinese (Simplified)</button></div>
+      <p>{t("title", { name: "John" })}</p>
+      <p>{t("description.part1")}</p>
+      <p>{t("description.part2")}</p>
+      <Trans i18nKey="userMessagesUnread" count={count}>
+        You have {{ count }} unread message.
+      </Trans>
+      <div>
+        <button onClick={() => changeLanguage("en")}>English</button>
+      </div>
+      <div>
+        <button onClick={() => changeLanguage("zh")}>
+          Chinese (Simplified)
+        </button>
+      </div>
     </AppContextProvider>
   );
   // #endregion -------------------- Render ------------------------------------

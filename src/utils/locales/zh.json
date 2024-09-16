@@ -1,9 +1,9 @@
 {
-    "title": "欢迎 {{name}}",
-    "description": {
-      "part1": "这是一个简单的例子。",
-      "part2": "某物"
-    },
-    "userMessagesUnread_one": "您有 {{count}} 条未读消息。",
-    "userMessagesUnread_other": "您有 {{count}} 条未读消息。"
-  }
+  "title": "欢迎 {{name}}",
+  "description": {
+    "part1": "这是一个简单的例子。",
+    "part2": "某物"
+  },
+  "userMessagesUnread_one": "您有 {{count}} 条未读消息。",
+  "userMessagesUnread_other": "您有 {{count}} 条未读消息。"
+}

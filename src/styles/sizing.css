@@ -16,7 +16,7 @@ Utility variables for sizing & layouts
   --unit: 1rem; /*base unit of measurement in the app. used a lot for padding, gap, etc.*/
   --border: 2px; /*width*/
   --radius: 4px;
-  --footer-offset: 4rem; 
+  --footer-offset: 4rem;
 }
 
 /* See style-utils for breakpoints */

@@ -59,7 +59,7 @@ body,
   /* --- Decorative - Typography ---
     Properties to prevent unnecessary tracking, render sharp text
     */
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-feature-settings: "kern";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
