@@ -34,11 +34,11 @@ import styled from "styled-components";
 
 // #region -------------- Molecules (Internal Layouts) -------------------------
 export const StyledSearchContainer = styled.section`
-    // --- Local Variables ---
 // --- Sizing / Box-Model ---
 padding: var(--unit);
 padding-inline-start: var(--footer-offset);
 // --- Position ---
+grid-area: search-container;
 // --- Layout ---
 display: flex;
 flex-direction: column;

@@ -58,6 +58,10 @@ const Landing = () => {
       </div>
       <button>TODO: Link</button>
     </StyledSearchContainer>
+    <div className="dev-placeholder" style={{ gridArea: 'image' }}>Image placeholder</div>
+    <StyledContextRow>
+      
+    </StyledContextRow>
   </StyledLandingContent>);
   // #endregion -------------------- Render ------------------------------------
 };
