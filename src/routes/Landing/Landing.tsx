@@ -50,18 +50,22 @@ const Landing = () => {
   // #region ----------------------- Render ------------------------------------
   return (<StyledLandingContent>
     <StyledSearchContainer>
-      <h2>Find COVID-19 and Flu Medications</h2>
-      <p>This locator displays...</p>
+      <h2>&str Find COVID-19 and Flu Medications</h2>
+      <p>&str This locator displays...</p>
       <div>
         <div className="dev-placeholder">Location Search Placeholder</div>
         <div className="dev-placeholder">Illness Select Placeholder</div>
       </div>
-      <button>TODO: Link</button>
+      <button>&str TODO: Link</button>
     </StyledSearchContainer>
-    <div className="dev-placeholder" style={{ gridArea: 'image' }}>Image placeholder</div>
+    <div className="dev-placeholder" style={{ gridArea: 'image' }}>Image placeholder, hide from SR</div>
     <StyledContextRow>
-      
-    </StyledContextRow>
+      <h2 className="visually-hidden">&str Contextual Information</h2>
+      <p>&str Locations participating in the U.S. Government&nbsp;
+        <a href="/todo">Patient Assistance Program</a>       ...
+      </p>
+      <div className="dev-placeholder">Accordion placeholder</div>
+      </StyledContextRow>
   </StyledLandingContent>);
   // #endregion -------------------- Render ------------------------------------
 };

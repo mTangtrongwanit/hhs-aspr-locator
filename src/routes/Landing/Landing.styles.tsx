@@ -85,11 +85,23 @@ font-weight: bold;
 export const StyledContextRow = styled.section`
     // --- Local Variables ---
 // --- Sizing / Box-Model ---
+width: 100%;
+padding: var(--unit) var(--footer-offset);
 // --- Position ---
+grid-area: context-row;
 // --- Layout ---
+display: flex;
+flex-direction: column;
+gap: var(--unit);
 // --- Decorative ---
+background-color: #fff;
+color: var(--text);
 // --- States ---
 // --- Children ---
+p a {
+    color: var(--brand);
+    font-weight: 700;
+}
 `;
 // #endregion ----------- Molecules (Internal Layouts) -------------------------
 
