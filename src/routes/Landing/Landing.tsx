@@ -12,6 +12,7 @@
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
+import { StyledLandingContent, StyledSearchContainer, StyledContextRow } from "./Landing.styles";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
@@ -47,7 +48,17 @@ const Landing = () => {
   // #endregion ---------------- Event Handlers --------------------------------
 
   // #region ----------------------- Render ------------------------------------
-  return <div className="dev-placeholder">Landing UI</div>;
+  return (<StyledLandingContent>
+    <StyledSearchContainer>
+      <h2>Find COVID-19 and Flu Medications</h2>
+      <p>This locator displays...</p>
+      <div>
+        <div className="dev-placeholder">Location Search Placeholder</div>
+        <div className="dev-placeholder">Illness Select Placeholder</div>
+      </div>
+      <button>TODO: Link</button>
+    </StyledSearchContainer>
+  </StyledLandingContent>);
   // #endregion -------------------- Render ------------------------------------
 };
 export default Landing;

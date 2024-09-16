@@ -10,12 +10,13 @@ Utility variables for sizing & layouts
   --text-2: 1.2rem;
   --text-3: 1.4rem;
   --text-4: 1.8rem;
-  --text-5: 2.6rem;
+  --text-5: 2rem;
 
   /* Layout sizing and spacing vars */
   --unit: 1rem; /*base unit of measurement in the app. used a lot for padding, gap, etc.*/
-  --border: 4px; /*width*/
+  --border: 2px; /*width*/
   --radius: 4px;
+  --footer-offset: 4rem; 
 }
 
 /* See style-utils for breakpoints */
