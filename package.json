@@ -1,5 +1,5 @@
 {
-  "name": "artisanal-react",
+  "name": "aspr-locator",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -13,8 +13,10 @@
     "@arcgis/core": "^4.29.10",
     "@esri/calcite-components-react": "^2.11.1",
     "echarts": "^5.5.1",
+    "i18next": "^23.15.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-i18next": "^15.0.1",
     "react-router-dom": "^6.26.1",
     "styled-components": "^6.1.11",
     "@trussworks/react-uswds": "^6.1.0"
