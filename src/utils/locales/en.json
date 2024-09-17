@@ -5,5 +5,35 @@
     "part2": "something"
   },
   "userMessagesUnread_one": "You have {{count}} unread message.",
-  "userMessagesUnread_other": "You have {{count}} unread messages."
+  "userMessagesUnread_other": "You have {{count}} unread messages.",
+  "Header": {
+    "Logo Alt Text": "Administration for Strategic Preparedness and Response",
+    "Title": "Covid-19 and Flu Treatments Locator",
+    "Title Alt Text": "Covid 19 and Flu Treatments Locator"
+  },
+  "Footer": {
+    "Home Link": "Home",
+    "Contact Us Link": "Contact Us",
+    "ASPR Archive Link": "ASPR Archive",
+    "Accessibility Link": "Accessibility",
+    "Privacy Policies Link": "Privacy Policies",
+    "Disclaimer Link": "Disclaimer",
+    "HHS Viewers & Players Link": "HHS Viewers & Players",
+    "HHS Plain Language Link": "HHS Plain Language",
+    "FOIA Link": "FOIA",
+    "Vulnerability Disclosure Policy Link": "Vulnerability Disclosure Policy"
+  },
+  "Landing": {
+    "Search Container Heading": "Find COVID-19 and Flu Medications",
+    "Search Container Description": "This locator displays pharmacies, clinics, and other locations with  safe and effective COVID-19 and Flu medications. These medications require a  prescription from a healthcare provider.",
+    "View Locations Button Label": "View Locations",
+    "Context Container Screenreader Heading": "Contextual Information",
+    "Assistance Program Description": "i18n Todo - not sure how to effectively break this up into paragraph text vs links",
+    "Accordion Item 1": {
+      "Heading": "Frequently Asked Questions"
+    },
+    "Accordion Item 2": {
+      "Heading": "Disclaimer"
+    }
+  }
 }

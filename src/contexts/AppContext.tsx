@@ -1,6 +1,6 @@
 // #region ========================= IMPORTS ===================================
 // #region ---------------------- React ---------------------------------
-import { createContext, useContext} from "react";
+import { createContext, useContext } from "react";
 // #endregion ------------------- React ---------------------------------
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
@@ -8,10 +8,7 @@ import { createContext, useContext} from "react";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region ------------------------ Resources ----------------------------------
-import {
-  AppContextType,
-  AppContextProps
-} from "./AppContext.types.tsx";
+import { AppContextType, AppContextProps } from "./AppContext.types.tsx";
 
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
@@ -21,16 +18,7 @@ import {
 export const AppContext = createContext<AppContextType | null>(null);
 
 export const AppContextProvider = ({ children }: AppContextProps) => {
-
-
-  return (
-    <AppContext.Provider
-      value={{
-      }}
-    >
-      {children}
-    </AppContext.Provider>
-  );
+  return <AppContext.Provider value={{}}>{children}</AppContext.Provider>;
 };
 
 // eslint-disable-next-line react-refresh/only-export-components
