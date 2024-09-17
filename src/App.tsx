@@ -121,6 +121,11 @@ function App() {
         <button onClick={() => changeLanguage("en")}>English</button>
       </div>
       <div>
+        <button onClick={() => changeLanguage("es")}>
+          Spanish
+        </button>
+      </div>
+      <div>
         <button onClick={() => changeLanguage("zh")}>
           Chinese (Simplified)
         </button>
