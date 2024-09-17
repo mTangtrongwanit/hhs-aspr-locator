@@ -5,5 +5,35 @@
     "part2": "某物"
   },
   "userMessagesUnread_one": "您有 {{count}} 条未读消息。",
-  "userMessagesUnread_other": "您有 {{count}} 条未读消息。"
+  "userMessagesUnread_other": "您有 {{count}} 条未读消息。",
+  "Header": {
+    "Logo Alt Text": "战略准备和响应管理",
+    "Title": "COVID-19 和流感治疗定位器",
+    "Title Alt Text": "COVID 19 和流感治疗定位器"
+  },
+  "Footer": {
+    "Home Link": "家",
+    "Contact Us Link": "联系我们",
+    "ASPR Archive Link": "ASPR 档案",
+    "Accessibility Link": "无障碍",
+    "Privacy Policies Link": "隐私政策",
+    "Disclaimer Link": "免责声明",
+    "HHS Viewers & Players Link": "HHS 观众和玩家",
+    "HHS Plain Language Link": "HHS 通俗易懂的语言",
+    "FOIA Link": "FOIA",
+    "Vulnerability Disclosure Policy Link": "漏洞披露政策"
+  },
+  "Landing": {
+    "Search Container Heading": "查找 COVID-19 和流感药物",
+    "Search Container Description": "该定位器显示药房、诊所和其他提供安全有效的 COVID-19 和流感药物的地点。这些药物需要医疗保健提供者的处方。",
+    "View Locations Button Label": "查看地点",
+    "Context Container Screenreader Heading": "上下文信息",
+    "Assistance Program Description": "i18n Todo - 不知道如何有效地将其分解为段落文本与链接",
+    "Accordion Item 1": {
+      "Heading": "常见问题解答"
+    },
+    "Accordion Item 2": {
+      "Heading": "免责声明"
+    }
+  }
 }

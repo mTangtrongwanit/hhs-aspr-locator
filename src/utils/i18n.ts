@@ -7,7 +7,7 @@ import es_translation from "./locales/es.json";
 import zh_translation from "./locales/zh.json";
 
 i18next.use(initReactI18next).init({
-  lng: "es", // define default language here
+  lng: "en", // define default language here
   debug: false, // provides console debug messages if true
   resources: {
     en: {

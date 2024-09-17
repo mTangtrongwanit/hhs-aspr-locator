@@ -5,5 +5,35 @@
     "part2": "algo"
   },
   "userMessagesUnread_one": "Tienes {{count}} mensaje no leído.",
-  "userMessagesUnread_other": "Tienes {{count}} mensaje no leído."
+  "userMessagesUnread_other": "Tienes {{count}} mensaje no leído.",
+  "Header": {
+    "Logo Alt Text": "Administración para la preparación y respuesta estratégica",
+    "Title": "Localizador de tratamientos para el COVID-19 y la gripe",
+    "Title Alt Text": "Localizador de tratamientos para el COVID-19 y la gripe"
+  },
+  "Footer": {
+    "Home Link": "Hogar",
+    "Contact Us Link": "Contacta con nosotras",
+    "ASPR Archive Link": "ASPR Archivo",
+    "Accessibility Link": "Accesibilidad",
+    "Privacy Policies Link": "Políticas de privacidad",
+    "Disclaimer Link": "Descargo de responsabilidad",
+    "HHS Viewers & Players Link": "HHS Espectadoras y jugadoras",
+    "HHS Plain Language Link": "HHS Lenguaje sencillo",
+    "FOIA Link": "FOIA",
+    "Vulnerability Disclosure Policy Link": "Política de divulgación de vulnerabilidades"
+  },
+  "Landing": {
+    "Search Container Heading": "Encuentre medicamentos para el COVID-19 y la gripe",
+    "Search Container Description": "Este localizador muestra farmacias, clínicas y otros lugares con medicamentos seguros y eficaces para el COVID-19 y la gripe. Estos medicamentos requieren receta médica de un proveedor de atención médica.",
+    "View Locations Button Label": "Ver ubicaciones",
+    "Context Container Screenreader Heading": "Información contextual",
+    "Assistance Program Description": "i18n Todo - No estoy seguro de cómo dividir esto de manera efectiva en texto de párrafo y enlaces",
+    "Accordion Item 1": {
+      "Heading": "Preguntas frecuentes"
+    },
+    "Accordion Item 2": {
+      "Heading": "Descargo de responsabilidad"
+    }
+  }
 }
