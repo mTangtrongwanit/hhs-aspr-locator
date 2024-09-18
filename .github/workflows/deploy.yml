@@ -3,15 +3,16 @@ name: Deploy app to GitHub Pages
 on:
   # Runs on pushes targeting the main branch
   push:
-    branches:
-      - main
+    branches: ['main']
 
   # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+  # workflow_dispatch:
 
 # Allow write access to gh-pages branch
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
 # Allow a single concurrent deployment
 concurrency:
@@ -21,27 +22,28 @@ concurrency:
 jobs:
   # Deploy to gh-pages branch
   deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
-
       - name: Install dependencies
         run: npm ci
-
       - name: Build
         run: npm run build
-        env:
-          BASE_PATH: ${{ github.event.repository.name }}
-
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          clean-exclude: "pr-preview"
-          folder: /dist
-          force: false
+          # Upload dist folder
+          path: './dist'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
