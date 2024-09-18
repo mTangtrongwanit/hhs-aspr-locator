@@ -21,9 +21,6 @@ concurrency:
 jobs:
   # Deploy to gh-pages branch
   deploy:
-    defaults:
-      run:
-        working-directory: atlas
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
