@@ -84,20 +84,14 @@ h2 {
     font-size: var(--text-3);
     color: var(--brand);
 }
-
-
 `;
 
-/**
- * Grid layouts and sticky/fixed positioning don't work nicely. We can use grid-area to give this element
- * correct position and width, but not height.
- */
 
 
 export const StyledMapContainer = styled.section`
 // --- Local Variables ---
 // --- Sizing / Box-Model ---
-/* height: 400px; */
+width: 100%;
 height: calc((var(--vh) * 100));
 // --- Position ---
 position: sticky;

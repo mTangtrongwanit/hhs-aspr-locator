@@ -35,5 +35,11 @@
     "Accordion Item 2": {
       "Heading": "Disclaimer"
     }
+  },
+  "Locations": {
+    "Search Container Screenreader Heading": "Search for Locations",
+    "Results Screenreader Heading": "Results",
+    "List Heading": "{{count}} Sites",
+    "Map Screenreader Heading": "Map of Sites"
   }
 }

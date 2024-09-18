@@ -17,7 +17,7 @@ import { StyledLocationsContent, StyledListContainer, StyledMapContainer, Styled
 
 // #region ------------------------ Resources ----------------------------------
 // import { type Props } from "./Landing.types";
-import { useTranslation } from "react-i18next";
+import { useTranslation, Trans } from "react-i18next";
 import useResizeObserver from '@react-hook/resize-observer';
 import { useAppContext } from "@/contexts/AppContext";
 
@@ -85,11 +85,15 @@ const Locations = () => {
         <div className="dev-placeholder">Medication Select Placeholder</div>
       </StyledSearchContainer>
       <div id="locs">
+      <h2 className="visually-hidden">
+              {t("Locations.Results Screenreader Heading")}
+            </h2>
         <StyledListContainer>
           <div>
-            <h2>
-              {t("Locations.List Heading")}
-            </h2>
+            <h3>
+            <Trans i18nKey="Locations.List Heading" count={0}>
+      </Trans>
+            </h3>
             <div className="dev-placeholder">Filter Placeholder</div>
             <div className="dev-placeholder">Sort Placeholder</div>
           </div>
@@ -98,9 +102,9 @@ const Locations = () => {
           </div>
         </StyledListContainer>
         <StyledMapContainer style={{ '--remainder': `${totalHeight}px` } as React.CSSProperties}>
-          <h2 className="visually-hidden">
+          <h3 className="visually-hidden">
             {t("Locations.Map Screenreader Heading")}
-          </h2>
+          </h3>
           <div className="dev-placeholder" >
         Map Placeholder
       </div>
