@@ -35,5 +35,11 @@
     "Accordion Item 2": {
       "Heading": "Descargo de responsabilidad"
     }
+  },
+  "Locations": {
+    "Search Container Screenreader Heading": "Busca ubicaciones",
+    "Results Screenreader Heading": "Resultos",
+    "List Heading": "{{count}} Ubicaciones",
+    "Map Screenreader Heading": "Mapa de ubicaciones"
   }
 }

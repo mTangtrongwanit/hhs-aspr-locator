@@ -1,21 +1,26 @@
 /**
- * _TemplateComponent_
- *
- * _TemplateComponent_ component implementation.
+ * Locations Page
  */
 
 // #region ========================= IMPORTS ===================================
 // #region --------------------------- React -----------------------------------
+import { useRef, useState, useEffect } from "react";
+
 // #endregion ------------------------ React -----------------------------------
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
+import { StyledLocationsContent, StyledListContainer, StyledMapContainer, StyledSearchContainer } from "./Locations.styles";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
 // import { type Props } from "./Landing.types";
+import { useTranslation, Trans } from "react-i18next";
+import useResizeObserver from '@react-hook/resize-observer';
+import { useAppContext } from "@/contexts/AppContext";
+
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 
@@ -23,18 +28,40 @@
 // #endregion ===================== CONSTANTS ==================================
 
 // #region =================== EXPORTED COMPONENT ==============================
-const Landing = () => {
+const Locations = () => {
   // #region ------------------ Hooks (Resources) ------------------------------
+  const { t } = useTranslation();
+  const { bannerHeight, headerHeight } = useAppContext();
+
+  const searchContRef = useRef<HTMLBaseElement>(null);
+
 
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region -------------------- Hooks (State) --------------------------------
+  const [searchContHeight, setSearchContHeight] = useState<number>(0);
+  const [totalHeight, setTotalHeight] = useState<number>(0);
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
   // #endregion -------------- Hooks (Memoization) -----------------------------
 
   // #region -------------------- Hooks (Other) --------------------------------
+
+  //get initial size
+  useEffect(() => {
+    if (searchContRef.current !== null) {
+      setSearchContHeight(searchContRef.current.clientHeight);
+    }
+  }, [])
+
+  //get size when element updates
+  useResizeObserver(searchContRef.current, (entry) => setSearchContHeight(entry.contentRect.height));
+
+  useEffect(() => {
+    //console.log("banner " + bannerHeight + " header " + headerHeight + " search " + searchContHeight);
+    setTotalHeight(bannerHeight + headerHeight + searchContHeight);
+  }, [bannerHeight, headerHeight, searchContHeight])
   // #endregion ----------------- Hooks (Other) --------------------------------
 
   // #region --------- Short-Circuit (Empty/Invalid State) ---------------------
@@ -47,8 +74,46 @@ const Landing = () => {
   // #endregion ---------------- Event Handlers --------------------------------
 
   // #region ----------------------- Render ------------------------------------
-  return <></>;
+  return (
+    <StyledLocationsContent>
+      <StyledSearchContainer ref={searchContRef}>
+        <h2 className="visually-hidden">
+          {t("Locations.Search Container Screenreader Heading")}
+        </h2>
+        <div className="dev-placeholder">Location Search Placeholder</div>
+        <div className="dev-placeholder">Illness Select Placeholder</div>
+        <div className="dev-placeholder">Medication Select Placeholder</div>
+      </StyledSearchContainer>
+      <div id="locs">
+      <h2 className="visually-hidden">
+              {t("Locations.Results Screenreader Heading")}
+            </h2>
+        <StyledListContainer>
+          <div>
+            <h3>
+            <Trans i18nKey="Locations.List Heading" count={0}>
+      </Trans>
+            </h3>
+            <div className="dev-placeholder">Filter Placeholder</div>
+            <div className="dev-placeholder">Sort Placeholder</div>
+          </div>
+          <div className="dev-placeholder" style={{ height: "1500px" }}>
+            List Placeholder
+          </div>
+        </StyledListContainer>
+        <StyledMapContainer style={{ '--remainder': `${totalHeight}px` } as React.CSSProperties}>
+          <h3 className="visually-hidden">
+            {t("Locations.Map Screenreader Heading")}
+          </h3>
+          <div className="dev-placeholder" >
+        Map Placeholder
+      </div>
+        </StyledMapContainer>
+      </div>
+
+    </StyledLocationsContent>
+  );
   // #endregion -------------------- Render ------------------------------------
 };
-export default Landing;
+export default Locations;
 // #endregion ================ EXPORTED COMPONENT ==============================

@@ -35,5 +35,11 @@
     "Accordion Item 2": {
       "Heading": "免责声明"
     }
+  },
+  "Locations": {
+    "Search Container Screenreader Heading": "todo: zh str",
+    "Results Screenreader Heading": "todo: zh str",
+    "List Heading": "{{count}} todo: zh str",
+    "Map Screenreader Heading": "todo: zh str"
   }
 }

@@ -42,7 +42,7 @@ const StyledAppLayout = styled.section`
     "header"
     "content"
     "footer"; */
-  grid-template-rows: auto auto minmax(0px, 1fr) auto;
+  grid-template-rows: auto auto minmax(1fr, auto) auto;
   // --- Decorative ---
   /* background-color: var(--app-green); */
   background-color: var(--app-bg);

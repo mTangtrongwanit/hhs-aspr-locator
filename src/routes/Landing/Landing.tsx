@@ -1,9 +1,7 @@
 /**
- * _TemplateComponent_
- *
- * _TemplateComponent_ component implementation.
+ * Landing Page
  */
-
+ 
 // #region ========================= IMPORTS ===================================
 // #region --------------------------- React -----------------------------------
 import { Link } from "react-router-dom";

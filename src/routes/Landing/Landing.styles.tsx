@@ -109,7 +109,7 @@ export const StyledLandingContent = styled.section`
   // --- Local Variables ---
   // --- Sizing / Box-Model ---
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   // --- Position ---
   // --- Layout ---
   display: grid;
