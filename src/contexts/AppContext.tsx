@@ -1,6 +1,7 @@
 // #region ========================= IMPORTS ===================================
 // #region ---------------------- React ---------------------------------
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
+
 // #endregion ------------------- React ---------------------------------
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
@@ -17,8 +18,20 @@ import { AppContextType, AppContextProps } from "./AppContext.types.tsx";
 
 export const AppContext = createContext<AppContextType | null>(null);
 
+
 export const AppContextProvider = ({ children }: AppContextProps) => {
-  return <AppContext.Provider value={{}}>{children}</AppContext.Provider>;
+  /**
+   * Refs for tracking heights of elements to properly size Map
+   */
+  const [bannerHeight, setBannerHeight] = useState<number>(0);
+  const [headerHeight, setHeaderHeight] = useState<number>(0);
+
+  return <AppContext.Provider value={{
+    bannerHeight: bannerHeight,
+    setBannerHeight: setBannerHeight,
+    headerHeight: headerHeight,
+    setHeaderHeight: setHeaderHeight
+  }}>{children}</AppContext.Provider>;
 };
 
 // eslint-disable-next-line react-refresh/only-export-components

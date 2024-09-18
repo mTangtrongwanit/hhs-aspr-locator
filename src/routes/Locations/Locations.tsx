@@ -4,6 +4,8 @@
 
 // #region ========================= IMPORTS ===================================
 // #region --------------------------- React -----------------------------------
+import { useRef, useState, useEffect } from "react";
+
 // #endregion ------------------------ React -----------------------------------
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
@@ -16,6 +18,8 @@ import { StyledLocationsContent, StyledListContainer, StyledMapContainer, Styled
 // #region ------------------------ Resources ----------------------------------
 // import { type Props } from "./Landing.types";
 import { useTranslation } from "react-i18next";
+import useResizeObserver from '@react-hook/resize-observer';
+import { useAppContext } from "@/contexts/AppContext";
 
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
@@ -27,16 +31,37 @@ import { useTranslation } from "react-i18next";
 const Locations = () => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const { t } = useTranslation();
+  const { bannerHeight, headerHeight } = useAppContext();
+
+  const searchContRef = useRef<HTMLBaseElement>(null);
+
 
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region -------------------- Hooks (State) --------------------------------
+  const [searchContHeight, setSearchContHeight] = useState<number>(0);
+  const [totalHeight, setTotalHeight] = useState<number>(0);
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
   // #endregion -------------- Hooks (Memoization) -----------------------------
 
   // #region -------------------- Hooks (Other) --------------------------------
+
+  //get initial size
+  useEffect(() => {
+    if (searchContRef.current !== null) {
+      setSearchContHeight(searchContRef.current.clientHeight);
+    }
+  }, [])
+
+  //get size when element updates
+  useResizeObserver(searchContRef.current, (entry) => setSearchContHeight(entry.contentRect.height));
+
+  useEffect(() => {
+    //console.log("banner " + bannerHeight + " header " + headerHeight + " search " + searchContHeight);
+    setTotalHeight(bannerHeight + headerHeight + searchContHeight);
+  }, [bannerHeight, headerHeight, searchContHeight])
   // #endregion ----------------- Hooks (Other) --------------------------------
 
   // #region --------- Short-Circuit (Empty/Invalid State) ---------------------
@@ -51,7 +76,7 @@ const Locations = () => {
   // #region ----------------------- Render ------------------------------------
   return (
     <StyledLocationsContent>
-      <StyledSearchContainer>
+      <StyledSearchContainer ref={searchContRef}>
         <h2 className="visually-hidden">
           {t("Locations.Search Container Screenreader Heading")}
         </h2>
@@ -59,26 +84,29 @@ const Locations = () => {
         <div className="dev-placeholder">Illness Select Placeholder</div>
         <div className="dev-placeholder">Medication Select Placeholder</div>
       </StyledSearchContainer>
-      <StyledListContainer>
-        <div>
-          <h2>
-            {t("Locations.List Heading")}
+      <div id="locs">
+        <StyledListContainer>
+          <div>
+            <h2>
+              {t("Locations.List Heading")}
+            </h2>
+            <div className="dev-placeholder">Filter Placeholder</div>
+            <div className="dev-placeholder">Sort Placeholder</div>
+          </div>
+          <div className="dev-placeholder" style={{ height: "1500px" }}>
+            List Placeholder
+          </div>
+        </StyledListContainer>
+        <StyledMapContainer style={{ '--remainder': `${totalHeight}px` } as React.CSSProperties}>
+          <h2 className="visually-hidden">
+            {t("Locations.Map Screenreader Heading")}
           </h2>
-          <div className="dev-placeholder">Filter Placeholder</div>
-          <div className="dev-placeholder">Sort Placeholder</div>
-        </div>
-        <div className="dev-placeholder" style={{ height: "1500px" }}>
-        List Placeholder
-      </div>
-      </StyledListContainer>
-      <StyledMapContainer>
-      <h2 className="visually-hidden">
-          {t("Locations.Map Screenreader Heading")}
-        </h2>
-        <div className="dev-placeholder">
+          <div className="dev-placeholder" >
         Map Placeholder
       </div>
-      </StyledMapContainer>
+        </StyledMapContainer>
+      </div>
+
     </StyledLocationsContent>
   );
   // #endregion -------------------- Render ------------------------------------

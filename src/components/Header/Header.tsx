@@ -6,18 +6,21 @@
 
 // #region ========================= IMPORTS ===================================
 // #region --------------------------- React -----------------------------------
+import { useRef, useEffect } from "react";
+
 // #endregion ------------------------ React -----------------------------------
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
 import { GovBanner } from "@trussworks/react-uswds";
-
+import useResizeObserver from '@react-hook/resize-observer';
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
-// import { type Props } from "./Header.types";
+import { useAppContext } from "@/contexts/AppContext";
+
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 
@@ -26,7 +29,13 @@ import { GovBanner } from "@trussworks/react-uswds";
 
 // #region =================== EXPORTED COMPONENT ==============================
 const HeaderComponent = () => {
+  const { setBannerHeight, setHeaderHeight } = useAppContext();
   // #region ------------------ Hooks (Resources) ------------------------------
+  const bannerRef = useRef<HTMLBaseElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+
+  useResizeObserver(bannerRef.current, (entry) => setBannerHeight(entry.contentRect.height));
+  useResizeObserver(headerRef.current, (entry) => setHeaderHeight(entry.contentRect.height));
 
   // #endregion --------------- Hooks (Resources) ------------------------------
 
@@ -37,6 +46,14 @@ const HeaderComponent = () => {
   // #endregion -------------- Hooks (Memoization) -----------------------------
 
   // #region -------------------- Hooks (Other) --------------------------------
+  useEffect(() => {
+    if (bannerRef.current !== null) {
+      setBannerHeight(bannerRef.current.clientHeight);
+    }
+    if (headerRef.current !== null) {
+      setHeaderHeight(headerRef.current.clientHeight);
+    }
+  }, [])
   // #endregion ----------------- Hooks (Other) --------------------------------
 
   // #region --------- Short-Circuit (Empty/Invalid State) ---------------------
@@ -51,14 +68,14 @@ const HeaderComponent = () => {
   // #region ----------------------- Render ------------------------------------
   return (
     <>
-      <aside>
+      <aside ref={bannerRef}>
         {/* TODO: connect when i18n is in */}
         {/* <GovBanner
           language={i18n.resolvedLanguage === 'es' ? 'spanish' : undefined}
         /> */}
-        <GovBanner></GovBanner>
+        <GovBanner ></GovBanner>
       </aside>
-      <div className="dev-placeholder">Header</div>
+      <div ref={headerRef} className="dev-placeholder">Header</div>
     </>
   );
   // #endregion -------------------- Render ------------------------------------
