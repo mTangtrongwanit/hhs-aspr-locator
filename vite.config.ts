@@ -13,7 +13,7 @@ export default defineConfig({
       include: "**/*.svg",
     }),
   ],
-  base: `/${asprPackage.homepage}/`,
+  // base: `/${asprPackage.homepage}/`,
   resolve: {
     alias: {
       // Resolve the ~ alias to the src/ directory
