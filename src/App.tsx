@@ -24,6 +24,8 @@ import "@/styles/index.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
+import CheckboxElement from "./components/CheckboxElement";
+
 // import where needed to bring in i18n translation
 import "./utils/i18n";
 import { useTranslation, Trans } from "react-i18next";
@@ -117,6 +119,9 @@ function App() {
       <Trans i18nKey="userMessagesUnread" count={count}>
         You have {{ count }} unread message.
       </Trans>
+      <div>
+        <CheckboxElement>Testing</CheckboxElement>
+      </div>
       <div>
         <button onClick={() => changeLanguage("en")}>English</button>
       </div>
