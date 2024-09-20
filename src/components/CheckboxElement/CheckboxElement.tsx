@@ -70,8 +70,8 @@ const CheckboxElement: React.FC<Props> = ({
   // #region ----------------------- Render ------------------------------------
   // For the checkbox, the "id" can be used to target the element
   // "value" can be used to contain a generic value or something like the medication name for a disease
-  return <Checkbox.Root className='tempCheckbox' id={id} value={value} checked={isChecked} onCheckedChange={handleCheckedToggle}>
-    <Checkbox.Indicator>
+  return <Checkbox.Root id={id} value={value} checked={isChecked} onCheckedChange={handleCheckedToggle}>
+    <Checkbox.Indicator className='tempCheckbox'>
       {isChecked === true && <CheckIcon />}
     </Checkbox.Indicator>
     <label className="checkboxLabel"> - Testing label: {name}</label>

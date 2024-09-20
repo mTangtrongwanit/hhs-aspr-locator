@@ -24,11 +24,14 @@ import "@/styles/index.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
+// Checkbox Components
 import CheckboxElement from "./components/CheckboxElement";
+import CheckboxGroup from "./components/CheckboxGroup";
 
 // import where needed to bring in i18n translation
 import "./utils/i18n";
 import { useTranslation, Trans } from "react-i18next";
+
 
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
@@ -113,6 +116,9 @@ function App() {
   return (
     <AppContextProvider>
       <RouterProvider router={router} />
+      <div>
+        <CheckboxGroup></CheckboxGroup>
+      </div>
       <p>{t("title", { name: "John" })}</p>
       <p>{t("description.part1")}</p>
       <p>{t("description.part2")}</p>
@@ -120,7 +126,7 @@ function App() {
         You have {{ count }} unread message.
       </Trans>
       <div>
-        <CheckboxElement>Testing</CheckboxElement>
+        <CheckboxElement id="test" value="test1" name="test2">Testing</CheckboxElement>
       </div>
       <div>
         <button onClick={() => changeLanguage("en")}>English</button>
