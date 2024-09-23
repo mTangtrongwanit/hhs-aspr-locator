@@ -13,6 +13,8 @@ import { useRef, useState, useEffect } from "react";
 
 // #region -------------- Custom Components / Utilities ------------------------
 import { StyledLocationsContent, StyledListContainer, StyledMapContainer, StyledSearchContainer } from "./Locations.styles";
+import Card from "@/components/Card";
+import { ServiceProvider } from "@/components/Card";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
@@ -35,6 +37,16 @@ const Locations = () => {
 
   const searchContRef = useRef<HTMLBaseElement>(null);
 
+  const cardPlaceholder: ServiceProvider = {
+    key: 0,
+    name: "Location Name",
+    address: "Location Address",
+    hours: "N/A",
+    phone: "Phone",
+    email: "N/A",
+    website: "N/A",
+    distance: 0
+  }
 
   // #endregion --------------- Hooks (Resources) ------------------------------
 
@@ -97,6 +109,7 @@ const Locations = () => {
             <div className="dev-placeholder">Filter Placeholder</div>
             <div className="dev-placeholder">Sort Placeholder</div>
           </div>
+          <Card serviceProvider={cardPlaceholder} selected = {false}></Card>
           <div className="dev-placeholder" style={{ height: "1500px" }}>
             List Placeholder
           </div>

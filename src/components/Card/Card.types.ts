@@ -4,6 +4,10 @@
  * Card component types.
  */
 
+/**
+ * TODO: Copied from ACF
+ */
+
 // #region ========================= IMPORTS ===================================
 // #region ------------ 3rd-Party Components / Libraries -----------------------
 import type Point from '@arcgis/core/geometry/Point';
@@ -25,8 +29,8 @@ export interface ServiceProvider {
   phone: string;
   email: string;
   website: string;
-  services: Record<string, string[]>;
+  // services: Record<string, string[]>;
   distance: number;
-  location: Point;
+  // location: Point;
 }
 // #endregion ================== EXPORTED TYPES ================================
