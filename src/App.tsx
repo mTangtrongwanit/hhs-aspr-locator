@@ -24,6 +24,8 @@ import "@/styles/index.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
+import LanguageDropdown from "./components/LanguageDropdown";
+
 // import where needed to bring in i18n translation
 import "./utils/i18n";
 import { useTranslation, Trans } from "react-i18next";
@@ -117,6 +119,9 @@ function App() {
       <Trans i18nKey="userMessagesUnread" count={count}>
         You have {{ count }} unread message.
       </Trans>
+      <div>
+        <LanguageDropdown label='placeholder label'></LanguageDropdown>
+      </div>
       <div>
         <button onClick={() => changeLanguage("en")}>English</button>
       </div>
