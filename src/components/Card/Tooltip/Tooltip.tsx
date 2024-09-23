@@ -14,7 +14,7 @@ import {
   StyledTooltip,
   StyledTriggerButton,
 } from "./Tooltip.styles";
-import { useConfiguration } from "@/contexts/ConfigurationContext";
+// import { useConfiguration } from "@/contexts/ConfigurationContext";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
@@ -23,35 +23,26 @@ import { type Props } from "./Tooltip.types";
 // #endregion ====================== IMPORTS ===================================
 
 // #region =================== EXPORTED COMPONENT ==============================
-const Tooltip = ({ category, children }: Props) => {
+const Tooltip = ({ icon, children }: Props) => {
   // #region ------------------ Hooks (Resources) ------------------------------
   /** Application configuration */
-  const config = useConfiguration();
+  // const config = useConfiguration();
   const { t } = useTranslation();
 
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region ----------------------- Render ------------------------------------
-  const categoryIcon = config.categories.find(
-    ({ key }) => key === category,
-  )?.icon;
+  // const categoryIcon = config.categories.find(
+  //   ({ key }) => key === category,
+  // )?.icon;
   return (
     <StyledTooltip.Provider>
       <StyledTooltip.Root>
         <StyledTooltip.Trigger asChild>
           <StyledTriggerButton
-            aria-label={t(
-              "Service Provider Card.Selected Category List Label",
-              {
-                category: t(`Category Names.${category}`),
-              },
-            )}
+            aria-label="TODO"
           >
-            {categoryIcon && (
-              <StyledIcon
-                dangerouslySetInnerHTML={{ __html: categoryIcon }}
-              ></StyledIcon>
-            )}
+              <StyledIcon>{icon}</StyledIcon>
           </StyledTriggerButton>
         </StyledTooltip.Trigger>
         <StyledTooltip.Content className="TooltipContent" sideOffset={5}>

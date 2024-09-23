@@ -46,10 +46,14 @@ const Locations = () => {
     key: 0,
     name: "Location Name",
     address: "Location Address",
-    hours: "N/A",
+    homeDelivery: true,
+    usgProcured: true,
+    icatt: true,
+    patientAssistance: true,
+    tamifluOnly: true,
+    pediatric: true,
+    isHRSA: true,
     phone: "Phone",
-    email: "N/A",
-    website: "N/A",
     distance: 0,
   };
 

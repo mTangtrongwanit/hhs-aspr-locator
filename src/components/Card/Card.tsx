@@ -14,13 +14,9 @@ import {
   StyledCard,
   StyledCardTitle,
   StyledIconField,
-  StyledLabel,
   StyledOutlinedLink,
-  StyledOfferingSpan,
   StyledRow,
   StyledTitleRow,
-  StyledLabelRow,
-  StyledTooltipContainer,
 } from "./Card.styles";
 import Tooltip from "./Tooltip";
 // #endregion ----------- Custom Components / Utilities ------------------------
@@ -48,88 +44,88 @@ const Card = ({ selected, serviceProvider }: Props) => {
 
   // #region ----------------------- Render ------------------------------------
   return (
-    // (TH) TODO: Add 'selected' class when selected
     <StyledCard $selected={selected}>
       <StyledTitleRow>
         <StyledCardTitle className="bold">
           {serviceProvider.name}
         </StyledCardTitle>
-        <p className="smallText">Distance</p>
+        {serviceProvider.distance &&
+          <p className="smallText">{`Distance: ${serviceProvider.distance} miles`}</p>
+        }
       </StyledTitleRow>
       <address>
-        {serviceProvider.address && (
-          <StyledIconField className="addr">
-            <PinIcon></PinIcon>{" "}
-            <p className="smallText">{serviceProvider.address}</p>
-          </StyledIconField>
-        )}
-        <StyledRow as="ul">
-          {/* {serviceProvider.address && (
-            <li>
-              <StyledOutlinedLink
-                href={`https://www.google.com/maps/dir//${encodeURIComponent(
-                  serviceProvider.address,
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${t(
-                  'Service Provider Card.Directions Link Label',
-                )} ${serviceProvider.name}`}
-              >
-                
-                <span>{t('Service Provider Card.Directions Link Label')}</span>
-              </StyledOutlinedLink>
-            </li>
-          )} */}
-
-          {serviceProvider.phone && (
-            <li>
-              <StyledIconField>
-                <PhoneIcon></PhoneIcon>
-                <StyledOutlinedLink href={`tel:${serviceProvider.phone}`}>
-                  <span>{serviceProvider.phone}</span>
-                </StyledOutlinedLink>
-              </StyledIconField>
-            </li>
-          )}
-        </StyledRow>
+        <StyledIconField className="addr">
+          <PinIcon></PinIcon>{" "}
+          <p className="smallText">{serviceProvider.address}</p>
+        </StyledIconField>
+        <StyledIconField className="addr">
+          <PhoneIcon></PhoneIcon>
+          <a href={`tel:${serviceProvider.phone}`}>
+            {serviceProvider.phone}
+          </a>
+        </StyledIconField>
       </address>
 
       {/* TODO: Tooltips for these icons */}
       {/* TODO: Alt text for these icons */}
 
       <StyledRow>
-        <HomeDeliveryIcon></HomeDeliveryIcon>
-        <UsgProcuredIcon></UsgProcuredIcon>
-        <IcattIcon></IcattIcon>
-        <PatientAssistIcon></PatientAssistIcon>
-        <NoGenericIcon></NoGenericIcon>
-        <PediatricIcon></PediatricIcon>
-        {/* <StyledTooltipContainer>
-            {Object.entries(serviceProvider.services).map(
-              ([categoryKey, subcategoryKeys]) =>
-                categoryKey !== category &&
-                subcategoryKeys.length > 0 && (
-                  <Tooltip category={categoryKey} key={categoryKey}>
-                    <p>
-                      TODO: Tooltip Name
-                    </p>
-                  </Tooltip>
-                ),
-            )}
-          </StyledTooltipContainer> */}
+        {serviceProvider.homeDelivery &&
+          <Tooltip icon={<HomeDeliveryIcon />}>
+            <p>Home Delivery</p>
+          </Tooltip>
+        }
+        {serviceProvider.usgProcured &&
+          <Tooltip icon={<UsgProcuredIcon />}>
+            <p>USG-procured product</p>
+          </Tooltip>
+        }
+        {serviceProvider.icatt &&
+          <Tooltip icon={<IcattIcon />}>
+            <p>ICATT</p>
+          </Tooltip>
+        }
+        {serviceProvider.patientAssistance &&
+          <Tooltip icon={<PatientAssistIcon />}>
+            <p>Patient Assistance</p>
+          </Tooltip>
+        }
+        {serviceProvider.tamifluOnly &&
+          <Tooltip icon={<NoGenericIcon />}>
+            <p>"Tamiflu" brand name only (no generic oseltamivir available)</p>
+          </Tooltip>
+        }
+        {serviceProvider.pediatric &&
+          <Tooltip icon={<PediatricIcon />}>
+            <p>Pediatric oseltamivir suspension</p>
+          </Tooltip>
+        }
       </StyledRow>
       <p>
         Rx or telehealth&nbsp;
-        <a>additional information</a>
+        <a href="TODO">additional information</a>
       </p>
-      <p className="ital">
-        Health Resources and Services Administration (HRSA) supported Health
-        Center
-      </p>
+      {serviceProvider.isHRSA &&
+        <p className="ital">
+          Health Resources and Services Administration (HRSA) supported Health
+          Center
+        </p>
+      }
       <StyledRow>
         <button>Share Location</button>
-        <button>Open in Maps</button>
+        {serviceProvider.address && (
+          <StyledOutlinedLink
+            href={`https://www.google.com/maps/dir//${encodeURIComponent(
+              serviceProvider.address,
+            )}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Directions to Location`}
+          >
+
+            <span>Open in Maps</span>
+          </StyledOutlinedLink>
+        )}
       </StyledRow>
     </StyledCard>
   );

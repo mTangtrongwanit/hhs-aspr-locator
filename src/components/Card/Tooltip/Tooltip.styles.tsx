@@ -27,9 +27,7 @@ export const StyledIcon = styled.div`
   }
 `;
 
-export const StyledTooltip = {
-  ...Tooltip,
-};
+export const StyledTooltip = Tooltip;
 
 export const StyledTriggerButton = styled.button`
   // --- Sizing / Box-Model ---

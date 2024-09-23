@@ -9,7 +9,7 @@
 import styled from "styled-components";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 // #region -------------- Custom Components / Utilities ------------------------
-import { Breakpoints } from "@/styles/breakpoints";
+import { Breakpoints } from "@/utils/style-utils";
 // #endregion ----------- Custom Components / Utilities ------------------------
 // #endregion ====================== IMPORTS ===================================
 
@@ -49,7 +49,7 @@ export const StyledOfferingSpan = styled.span`
 
 export const StyledOutlinedLink = styled.a`
   // --- Sizing / Box-Model ---
-  padding: calc(var(--unit) / 2) 0;
+  padding: calc(var(--unit) / 2);
 
   // --- Layout ---
   display: flex;
@@ -58,6 +58,8 @@ export const StyledOutlinedLink = styled.a`
 
   // --- Decorative ---
   color: var(--text);
+  text-decoration: none;
+  border: var(--border) solid var(--brand);
 
   span {
     font-weight: 600;
@@ -155,7 +157,7 @@ export const StyledCard = styled.div<{
     position: relative;
     z-index: 3;
     // --- Decorative ---
-    color: var(--ui-vibrant-dark);
+    color: var(--text);
     background-color: white;
     box-shadow:
       hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
