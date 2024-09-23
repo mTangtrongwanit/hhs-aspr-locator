@@ -12,13 +12,20 @@ import { useRef, useState, useEffect } from "react";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
-import { StyledLocationsContent, StyledListContainer, StyledMapContainer, StyledSearchContainer } from "./Locations.styles";
+import {
+  StyledLocationsContent,
+  StyledListContainer,
+  StyledMapContainer,
+  StyledSearchContainer,
+} from "./Locations.styles";
+import Card from "@/components/Card";
+import { ServiceProvider } from "@/components/Card";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
 // import { type Props } from "./Landing.types";
 import { useTranslation, Trans } from "react-i18next";
-import useResizeObserver from '@react-hook/resize-observer';
+import useResizeObserver from "@react-hook/resize-observer";
 import { useAppContext } from "@/contexts/AppContext";
 
 // #endregion --------------------- Resources ----------------------------------
@@ -35,6 +42,20 @@ const Locations = () => {
 
   const searchContRef = useRef<HTMLBaseElement>(null);
 
+  const cardPlaceholder: ServiceProvider = {
+    key: 0,
+    name: "Location Name",
+    address: "Location Address",
+    homeDelivery: true,
+    usgProcured: true,
+    icatt: true,
+    patientAssistance: true,
+    tamifluOnly: true,
+    pediatric: true,
+    isHRSA: true,
+    phone: "Phone",
+    distance: 0,
+  };
 
   // #endregion --------------- Hooks (Resources) ------------------------------
 
@@ -53,15 +74,17 @@ const Locations = () => {
     if (searchContRef.current !== null) {
       setSearchContHeight(searchContRef.current.clientHeight);
     }
-  }, [])
+  }, []);
 
   //get size when element updates
-  useResizeObserver(searchContRef.current, (entry) => setSearchContHeight(entry.contentRect.height));
+  useResizeObserver(searchContRef.current, (entry) =>
+    setSearchContHeight(entry.contentRect.height),
+  );
 
   useEffect(() => {
     //console.log("banner " + bannerHeight + " header " + headerHeight + " search " + searchContHeight);
     setTotalHeight(bannerHeight + headerHeight + searchContHeight);
-  }, [bannerHeight, headerHeight, searchContHeight])
+  }, [bannerHeight, headerHeight, searchContHeight]);
   // #endregion ----------------- Hooks (Other) --------------------------------
 
   // #region --------- Short-Circuit (Empty/Invalid State) ---------------------
@@ -85,32 +108,33 @@ const Locations = () => {
         <div className="dev-placeholder">Medication Select Placeholder</div>
       </StyledSearchContainer>
       <div id="locs">
-      <h2 className="visually-hidden">
-              {t("Locations.Results Screenreader Heading")}
-            </h2>
+        <h2 className="visually-hidden">
+          {t("Locations.Results Screenreader Heading")}
+        </h2>
         <StyledListContainer>
           <div>
             <h3>
-            <Trans i18nKey="Locations.List Heading" count={0}>
-      </Trans>
+              <Trans i18nKey="Locations.List Heading" count={0}></Trans>
             </h3>
             <div className="dev-placeholder">Filter Placeholder</div>
             <div className="dev-placeholder">Sort Placeholder</div>
           </div>
-          <div className="dev-placeholder" style={{ height: "1500px" }}>
-            List Placeholder
-          </div>
+          <Card serviceProvider={cardPlaceholder} selected={false}></Card>
+          <Card serviceProvider={cardPlaceholder} selected={false}></Card>
+          <Card serviceProvider={cardPlaceholder} selected={false}></Card>
+          <Card serviceProvider={cardPlaceholder} selected={false}></Card>
+          <Card serviceProvider={cardPlaceholder} selected={false}></Card>
+          <Card serviceProvider={cardPlaceholder} selected={false}></Card>
         </StyledListContainer>
-        <StyledMapContainer style={{ '--remainder': `${totalHeight}px` } as React.CSSProperties}>
+        <StyledMapContainer
+          style={{ "--remainder": `${totalHeight}px` } as React.CSSProperties}
+        >
           <h3 className="visually-hidden">
             {t("Locations.Map Screenreader Heading")}
           </h3>
-          <div className="dev-placeholder" >
-        Map Placeholder
-      </div>
+          <div className="dev-placeholder">Map Placeholder</div>
         </StyledMapContainer>
       </div>
-
     </StyledLocationsContent>
   );
   // #endregion -------------------- Render ------------------------------------

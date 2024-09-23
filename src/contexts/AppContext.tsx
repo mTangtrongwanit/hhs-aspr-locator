@@ -18,7 +18,6 @@ import { AppContextType, AppContextProps } from "./AppContext.types.tsx";
 
 export const AppContext = createContext<AppContextType | null>(null);
 
-
 export const AppContextProvider = ({ children }: AppContextProps) => {
   /**
    * Refs for tracking heights of elements to properly size Map
@@ -26,12 +25,18 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   const [bannerHeight, setBannerHeight] = useState<number>(0);
   const [headerHeight, setHeaderHeight] = useState<number>(0);
 
-  return <AppContext.Provider value={{
-    bannerHeight: bannerHeight,
-    setBannerHeight: setBannerHeight,
-    headerHeight: headerHeight,
-    setHeaderHeight: setHeaderHeight
-  }}>{children}</AppContext.Provider>;
+  return (
+    <AppContext.Provider
+      value={{
+        bannerHeight: bannerHeight,
+        setBannerHeight: setBannerHeight,
+        headerHeight: headerHeight,
+        setHeaderHeight: setHeaderHeight,
+      }}
+    >
+      {children}
+    </AppContext.Provider>
+  );
 };
 
 // eslint-disable-next-line react-refresh/only-export-components
