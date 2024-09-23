@@ -103,9 +103,7 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
   width: 1px;
 }
 
-/* #endregion ------------------- Utility Classes ------------------------------*/
-
-/* Checkbox Components */
+/*****Checkbox Group CSS********/
 
 .tempCheckbox{
   cursor: pointer;
@@ -164,8 +162,9 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
   box-shadow: 0 0 0 2px var(--violet-7);
 }
 
+/*****End Checkbox Group CSS********/
 
-/*end region ------- Checkbox Components*/
+/* #endregion ------------------- Utility Classes ------------------------------*/
 
 
 /* #endregion =================== EXPORTED RULES ===============================*/
