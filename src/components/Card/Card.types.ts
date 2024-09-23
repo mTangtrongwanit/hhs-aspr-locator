@@ -16,21 +16,24 @@ import type Point from "@arcgis/core/geometry/Point";
 
 // #region ===================== EXPORTED TYPES ================================
 export interface Props {
-  category?: string;
   selected?: boolean;
   serviceProvider: ServiceProvider;
 }
 
 export interface ServiceProvider {
-  key: number;
+  key: number; //OID
   name: string;
   address: string;
-  hours: string;
   phone: string;
-  email: string;
-  website: string;
-  // services: Record<string, string[]>;
-  distance: number;
-  // location: Point;
+  distance?: number;
+  homeDelivery?: boolean;
+  usgProcured?: boolean;
+  icatt?: boolean;
+  patientAssistance?: boolean;
+  tamifluOnly?: boolean;
+  pediatric?: boolean;
+  isHRSA?: boolean;
+  //TODO: Set this prop to optional for testing, but it should be required.
+  location?: Point; 
 }
 // #endregion ================== EXPORTED TYPES ================================

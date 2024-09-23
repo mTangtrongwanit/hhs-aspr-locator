@@ -6,7 +6,7 @@
 
 // #region ===================== EXPORTED TYPES ================================
 export interface Props {
-  category: string;
-  children?: React.ReactNode;
+  children: React.ReactNode;
+  icon: React.ReactNode;
 }
 // #endregion ================== EXPORTED TYPES ================================
