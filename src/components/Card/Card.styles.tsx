@@ -6,10 +6,10 @@
 
 // #region ========================= IMPORTS ===================================
 // #region ------------ 3rd-Party Components / Libraries -----------------------
-import styled from 'styled-components';
+import styled from "styled-components";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 // #region -------------- Custom Components / Utilities ------------------------
-import { Breakpoints } from '@/styles/breakpoints';
+import { Breakpoints } from "@/styles/breakpoints";
 // #endregion ----------- Custom Components / Utilities ------------------------
 // #endregion ====================== IMPORTS ===================================
 
@@ -43,7 +43,7 @@ export const StyledOfferingSpan = styled.span`
   // --- States ---
   // * Adds comma and space after all but the last
   &:not(:last-of-type)::after {
-    content: ', ';
+    content: ", ";
   }
 `;
 

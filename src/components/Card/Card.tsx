@@ -6,7 +6,7 @@
 
 // #region ========================= IMPORTS ===================================
 // #region ------------ 3rd-Party Components / Libraries -----------------------
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -21,31 +21,26 @@ import {
   StyledTitleRow,
   StyledLabelRow,
   StyledTooltipContainer,
-} from './Card.styles';
-import Tooltip from './Tooltip';
+} from "./Card.styles";
+import Tooltip from "./Tooltip";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
-import { type Props } from './Card.types';
-import PinIcon from '@/assets/icons/pin.svg';
-import PhoneIcon from '@/assets/icons/phone.svg';
-import HomeDeliveryIcon from '@/assets/icons/home-delivery.svg';
-import IcattIcon from '@/assets/icons/icatt.svg';
-import NoGenericIcon from '@/assets/icons/no-generic.svg';
-import PatientAssistIcon from '@/assets/icons/patient-assist.svg';
-import PediatricIcon from '@/assets/icons/pediatric.svg';
-import UsgProcuredIcon from '@/assets/icons/usg-procured.svg';
-
-
-
-
-
+import { type Props } from "./Card.types";
+import PinIcon from "@/assets/icons/pin.svg";
+import PhoneIcon from "@/assets/icons/phone.svg";
+import HomeDeliveryIcon from "@/assets/icons/home-delivery.svg";
+import IcattIcon from "@/assets/icons/icatt.svg";
+import NoGenericIcon from "@/assets/icons/no-generic.svg";
+import PatientAssistIcon from "@/assets/icons/patient-assist.svg";
+import PediatricIcon from "@/assets/icons/pediatric.svg";
+import UsgProcuredIcon from "@/assets/icons/usg-procured.svg";
 
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 
 // #region =================== EXPORTED COMPONENT ==============================
-const Card = ({  selected, serviceProvider }: Props) => {
+const Card = ({ selected, serviceProvider }: Props) => {
   // #region ------------------ Hooks (Resources) ------------------------------
   /** Internationalization translation function */
   const { t } = useTranslation();
@@ -59,13 +54,12 @@ const Card = ({  selected, serviceProvider }: Props) => {
         <StyledCardTitle className="bold">
           {serviceProvider.name}
         </StyledCardTitle>
-            <p className="smallText">Distance</p>
+        <p className="smallText">Distance</p>
       </StyledTitleRow>
       <address>
         {serviceProvider.address && (
           <StyledIconField className="addr">
-            <PinIcon></PinIcon>
-            {' '}
+            <PinIcon></PinIcon>{" "}
             <p className="smallText">{serviceProvider.address}</p>
           </StyledIconField>
         )}
@@ -91,13 +85,11 @@ const Card = ({  selected, serviceProvider }: Props) => {
           {serviceProvider.phone && (
             <li>
               <StyledIconField>
-              <PhoneIcon></PhoneIcon>
-              <StyledOutlinedLink href={`tel:${serviceProvider.phone}`}>
-                
-                <span>{serviceProvider.phone}</span>
-              </StyledOutlinedLink>
+                <PhoneIcon></PhoneIcon>
+                <StyledOutlinedLink href={`tel:${serviceProvider.phone}`}>
+                  <span>{serviceProvider.phone}</span>
+                </StyledOutlinedLink>
               </StyledIconField>
-
             </li>
           )}
         </StyledRow>
@@ -106,14 +98,14 @@ const Card = ({  selected, serviceProvider }: Props) => {
       {/* TODO: Tooltips for these icons */}
       {/* TODO: Alt text for these icons */}
 
-        <StyledRow>
-          <HomeDeliveryIcon></HomeDeliveryIcon>
-          <UsgProcuredIcon></UsgProcuredIcon>
-          <IcattIcon></IcattIcon>
-          <PatientAssistIcon></PatientAssistIcon>
-          <NoGenericIcon></NoGenericIcon>
-          <PediatricIcon></PediatricIcon>
-          {/* <StyledTooltipContainer>
+      <StyledRow>
+        <HomeDeliveryIcon></HomeDeliveryIcon>
+        <UsgProcuredIcon></UsgProcuredIcon>
+        <IcattIcon></IcattIcon>
+        <PatientAssistIcon></PatientAssistIcon>
+        <NoGenericIcon></NoGenericIcon>
+        <PediatricIcon></PediatricIcon>
+        {/* <StyledTooltipContainer>
             {Object.entries(serviceProvider.services).map(
               ([categoryKey, subcategoryKeys]) =>
                 categoryKey !== category &&
@@ -126,16 +118,19 @@ const Card = ({  selected, serviceProvider }: Props) => {
                 ),
             )}
           </StyledTooltipContainer> */}
-        </StyledRow>
-        <p>
-          Rx or telehealth&nbsp;
-          <a>additional information</a>
-        </p>
-        <p className="ital">Health Resources and Services Administration (HRSA) supported Health Center</p>
-        <StyledRow>
-          <button>Share Location</button>
-          <button>Open in Maps</button>
-        </StyledRow>
+      </StyledRow>
+      <p>
+        Rx or telehealth&nbsp;
+        <a>additional information</a>
+      </p>
+      <p className="ital">
+        Health Resources and Services Administration (HRSA) supported Health
+        Center
+      </p>
+      <StyledRow>
+        <button>Share Location</button>
+        <button>Open in Maps</button>
+      </StyledRow>
     </StyledCard>
   );
   // #endregion -------------------- Render ------------------------------------

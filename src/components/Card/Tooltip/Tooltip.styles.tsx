@@ -6,8 +6,8 @@
 
 // #region ========================= IMPORTS ===================================
 // #region ------------ 3rd-Party Components / Libraries -----------------------
-import * as Tooltip from '@radix-ui/react-tooltip';
-import styled from 'styled-components';
+import * as Tooltip from "@radix-ui/react-tooltip";
+import styled from "styled-components";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 // #endregion ====================== IMPORTS ===================================
 

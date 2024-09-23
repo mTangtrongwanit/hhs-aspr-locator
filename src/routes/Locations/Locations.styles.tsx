@@ -34,37 +34,37 @@ import styled from "styled-components";
 
 // #region -------------- Molecules (Internal Layouts) -------------------------
 export const StyledSearchContainer = styled.section`
-    // --- Local Variables ---
-// --- Sizing / Box-Model ---
-width: 100%;
-height: min-content;
-padding: var(--unit) calc(var(--unit) * 2) ;
-// --- Position ---
-position: relative; //for box-shadow visibility
-// --- Layout ---
-display: flex;
-gap: var(--unit);
-// --- Decorative ---
-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.04);
-// --- States ---
-// --- Children ---
+  // --- Local Variables ---
+  // --- Sizing / Box-Model ---
+  width: 100%;
+  height: min-content;
+  padding: var(--unit) calc(var(--unit) * 2);
+  // --- Position ---
+  position: relative; //for box-shadow visibility
+  // --- Layout ---
+  display: flex;
+  gap: var(--unit);
+  // --- Decorative ---
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.04);
+  // --- States ---
+  // --- Children ---
 `;
 
 export const StyledListContainer = styled.section`
-// --- Local Variables ---
-// --- Sizing / Box-Model ---
-padding: calc(var(--unit) * 2) ;
-height: fit-content;
-// --- Position ---
-// --- Layout ---
-display: flex;
-flex-direction: column;
-gap: var(--unit);
-// --- Decorative ---
-background: var(--light);
-// --- States ---
-// --- Children ---
-div:first-child {
+  // --- Local Variables ---
+  // --- Sizing / Box-Model ---
+  padding: calc(var(--unit) * 2);
+  height: fit-content;
+  // --- Position ---
+  // --- Layout ---
+  display: flex;
+  flex-direction: column;
+  gap: var(--unit);
+  // --- Decorative ---
+  background: var(--light);
+  // --- States ---
+  // --- Children ---
+  div:first-child {
     // --- Layout ---
     padding-top: var(--unit);
     position: sticky;
@@ -77,29 +77,27 @@ div:first-child {
     /* background: var(--light); */
 
     .dev-placeholder {
-    width: min-content;
-}
-}
-h2 {
+      width: min-content;
+    }
+  }
+  h2 {
     font-size: var(--text-3);
     color: var(--brand);
-}
+  }
 `;
 
-
-
 export const StyledMapContainer = styled.section`
-// --- Local Variables ---
-// --- Sizing / Box-Model ---
-width: 100%;
-height: calc((var(--vh) * 100));
-// --- Position ---
-position: sticky;
-top: 0;
-// --- Layout ---
-// --- Decorative ---
-// --- States ---
-// --- Children ---
+  // --- Local Variables ---
+  // --- Sizing / Box-Model ---
+  width: 100%;
+  height: calc((var(--vh) * 100));
+  // --- Position ---
+  position: sticky;
+  top: 0;
+  // --- Layout ---
+  // --- Decorative ---
+  // --- States ---
+  // --- Children ---
 `;
 // #endregion ----------- Molecules (Internal Layouts) -------------------------
 

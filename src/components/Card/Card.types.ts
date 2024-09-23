@@ -10,7 +10,7 @@
 
 // #region ========================= IMPORTS ===================================
 // #region ------------ 3rd-Party Components / Libraries -----------------------
-import type Point from '@arcgis/core/geometry/Point';
+import type Point from "@arcgis/core/geometry/Point";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 // #endregion ====================== IMPORTS ===================================
 

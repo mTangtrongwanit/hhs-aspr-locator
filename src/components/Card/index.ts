@@ -1,2 +1,2 @@
-export { default } from './Card';
-export { type ServiceProvider } from './Card.types';
+export { default } from "./Card";
+export { type ServiceProvider } from "./Card.types";

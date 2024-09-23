@@ -6,19 +6,19 @@
 
 // #region ========================= IMPORTS ===================================
 // #region ------------ 3rd-Party Components / Libraries -----------------------
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 // #region -------------- Custom Components / Utilities ------------------------
 import {
   StyledIcon,
   StyledTooltip,
   StyledTriggerButton,
-} from './Tooltip.styles';
-import { useConfiguration } from '@/contexts/ConfigurationContext';
+} from "./Tooltip.styles";
+import { useConfiguration } from "@/contexts/ConfigurationContext";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
-import { type Props } from './Tooltip.types';
+import { type Props } from "./Tooltip.types";
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 
@@ -32,15 +32,16 @@ const Tooltip = ({ category, children }: Props) => {
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region ----------------------- Render ------------------------------------
-  const categoryIcon = config.categories.find(({ key }) => key === category)
-    ?.icon;
+  const categoryIcon = config.categories.find(
+    ({ key }) => key === category,
+  )?.icon;
   return (
     <StyledTooltip.Provider>
       <StyledTooltip.Root>
         <StyledTooltip.Trigger asChild>
           <StyledTriggerButton
             aria-label={t(
-              'Service Provider Card.Selected Category List Label',
+              "Service Provider Card.Selected Category List Label",
               {
                 category: t(`Category Names.${category}`),
               },
