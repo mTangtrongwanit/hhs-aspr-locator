@@ -110,9 +110,12 @@ const Locations = () => {
             <div className="dev-placeholder">Sort Placeholder</div>
           </div>
           <Card serviceProvider={cardPlaceholder} selected = {false}></Card>
-          <div className="dev-placeholder" style={{ height: "1500px" }}>
-            List Placeholder
-          </div>
+          <Card serviceProvider={cardPlaceholder} selected = {false}></Card>
+          <Card serviceProvider={cardPlaceholder} selected = {false}></Card>
+          <Card serviceProvider={cardPlaceholder} selected = {false}></Card>
+          <Card serviceProvider={cardPlaceholder} selected = {false}></Card>
+          <Card serviceProvider={cardPlaceholder} selected = {false}></Card>
+
         </StyledListContainer>
         <StyledMapContainer style={{ '--remainder': `${totalHeight}px` } as React.CSSProperties}>
           <h3 className="visually-hidden">
