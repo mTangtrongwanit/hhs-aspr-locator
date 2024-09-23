@@ -18,20 +18,19 @@ import { Breakpoints } from '@/styles/breakpoints';
 export const StyledCardTitle = styled.h3`
   // --- Decorative ---
   font-size: var(--text-1);
-  color: var(--ui-vibrant-dark);
-  font-family: 'Merriweather';
+  color: var(--text);
 `;
 
 export const StyledLabel = styled.span`
   // --- Sizing / Box-Model ---
-  margin-inline-end: calc(var(--default-spacing) / 2);
+  margin-inline-end: calc(var(--unit) / 2);
 
   // --- Position ---
   display: inline;
 
   // --- Decorative ---
   font-size: var(--text-0);
-  color: var(--ui-mono-dark);
+  color: var(--text);
   font-style: italic;
 `;
 
@@ -39,7 +38,7 @@ export const StyledOfferingSpan = styled.span`
   // --- Decorative ---
   font-weight: 400;
   font-size: var(--text-0);
-  color: var(--ui-mono-med);
+  color: var(--text);
 
   // --- States ---
   // * Adds comma and space after all but the last
@@ -50,15 +49,15 @@ export const StyledOfferingSpan = styled.span`
 
 export const StyledOutlinedLink = styled.a`
   // --- Sizing / Box-Model ---
-  padding: calc(var(--default-spacing) / 2) 0;
+  padding: calc(var(--unit) / 2) 0;
 
   // --- Layout ---
   display: flex;
-  gap: calc(var(--default-spacing) / 2);
+  gap: calc(var(--unit) / 2);
   align-items: center;
 
   // --- Decorative ---
-  color: var(--ui-vibrant-dark);
+  color: var(--text);
 
   span {
     font-weight: 600;
@@ -70,43 +69,44 @@ export const StyledOutlinedLink = styled.a`
 export const StyledTitleRow = styled.div`
   // --- Layout ---
   display: flex;
-  gap: var(--default-spacing);
+  gap: var(--unit);
   justify-content: space-between;
 `;
 export const StyledIconField = styled.div`
   // --- Layout ---
   display: flex;
-  gap: calc(var(--default-spacing) / 2);
+  gap: calc(var(--unit) / 2);
   align-items: center;
-  color: var(--ui-vibrant-dark);
+  color: var(--text);
 `;
 
 export const StyledTooltipContainer = styled.div`
   // --- Layout ---
   display: flex;
-  gap: var(--default-spacing);
+  gap: var(--unit);
   flex-wrap: wrap;
   row-gap: 4px;
 `;
 export const StyledRow = styled.div`
   // --- Layout ---
   display: flex;
-  gap: var(--default-spacing);
+  gap: var(--unit);
   flex-wrap: wrap;
   row-gap: 4px;
 
   // --- Decorative ---
-  color: var(--ui-mono-med);
+  color: var(--text);
+  background: #fff;
 `;
 
 export const StyledLabelRow = styled.div`
   // --- Layout ---
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: var(--default-spacing);
+  gap: var(--unit);
 
   // --- Decorative ---
-  color: var(--ui-mono-med);
+  color: var(--text);
 `;
 // #endregion ----------- Molecules (Internal Layouts) -------------------------
 
@@ -119,8 +119,8 @@ export const StyledCard = styled.div<{
   min-width: var(--min-card-width);
   max-width: var(--max-card-width);
   width: 100%; //prevent align-items: center from shrinking children
-  padding: var(--default-spacing);
-  border-radius: var(--default-border);
+  padding: var(--unit);
+  border-radius: var(--border);
 
   // --- Position ---
   position: relative;
@@ -129,12 +129,12 @@ export const StyledCard = styled.div<{
   // --- Layout ---
   display: flex;
   flex-direction: column;
-  gap: calc(var(--default-spacing) / 2);
+  gap: calc(var(--unit) / 2);
 
   // --- Decorative ---
-  border: var(--default-border) solid
+  border: var(border) solid
     ${(props) => `var(--${props.$category}-med, var(--ui-pale-light))`};
-  color: var(--ui-vibrant-dark);
+  color: var(--text);
   background-color: #fff;
 
   // --- States ---
@@ -148,7 +148,7 @@ export const StyledCard = styled.div<{
   .TooltipContent {
     // --- Sizing / Box-Model ---
     border-radius: 4px;
-    padding: calc(var(--default-spacing) / 2);
+    padding: calc(var(--unit) / 2);
     max-width: 12rem;
 
     // --- Position ---

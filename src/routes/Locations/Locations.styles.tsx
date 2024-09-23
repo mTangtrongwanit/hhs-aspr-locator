@@ -74,7 +74,7 @@ div:first-child {
     flex-wrap: wrap;
     gap: var(--unit);
 
-    background: var(--light);
+    /* background: var(--light); */
 
     .dev-placeholder {
     width: min-content;

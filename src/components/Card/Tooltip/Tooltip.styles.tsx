@@ -33,7 +33,7 @@ export const StyledTooltip = {
 
 export const StyledTriggerButton = styled.button`
   // --- Sizing / Box-Model ---
-  padding: calc(var(--default-spacing) / 4) calc(var(--default-spacing) / 3);
+  padding: calc(var(--unit) / 4) calc(var(--unit) / 3);
 
   // --- Decorative ---
   border-radius: var(--default-border);
