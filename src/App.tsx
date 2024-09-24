@@ -31,18 +31,24 @@ const StyledAppLayout = styled.section`
   // --- Sizing / Box-Model ---
   width: inherit;
   height: inherit;
+  overflow-y: hidden;
   /* padding: 1rem; */
   // --- Layout ---
   display: grid;
-  /* grid-template-areas:
-    "header"
-    "content"
-    "footer"; */
-  grid-template-rows: auto auto minmax(1fr, auto) auto;
+
+    grid-template-rows: min-content min-content minmax(0, 1fr) auto;
+
   // --- Decorative ---
-  /* background-color: var(--app-green); */
   background-color: var(--app-bg);
 `;
+
+const StyledLocsLayout = styled(StyledAppLayout)`
+/* height: fit-content; */
+height: inherit;
+overflow-y: auto;
+grid-template-rows: min-content min-content;
+
+`
 
 const router = createBrowserRouter(
   [
@@ -59,11 +65,11 @@ const router = createBrowserRouter(
     {
       path: "/locations",
       element: (
-        <StyledAppLayout>
+        <StyledLocsLayout>
           <Header />
           <Locations />
           <Footer />
-        </StyledAppLayout>
+        </StyledLocsLayout>
       ),
     },
   ],

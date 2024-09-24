@@ -9,7 +9,7 @@
 // #endregion ------------------------ React -----------------------------------
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
-// import styled from "styled-components";
+import styled from "styled-components";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -36,5 +36,25 @@
 // #endregion ----------- Molecules (Internal Layouts) -------------------------
 
 // #region --------------- Parent Component + Variants -------------------------
+export const StyledHeader = styled.header`
+    height: min-content;
+    padding: var(--unit);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+        margin: 0;
+        font-weight: 700;
+        color: var(--brand);
+        font-size: var(--text-3);
+    }
+
+    & .dev-placeholder {
+        width: 12rem;
+    }
+`;
+
 // #endregion ------------ Parent Component + Variants -------------------------
 // #endregion ================ EXPORTED COMPONENTS =============================

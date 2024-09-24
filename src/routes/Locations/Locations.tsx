@@ -112,7 +112,7 @@ const Locations = () => {
           {t("Locations.Results Screenreader Heading")}
         </h2>
         <StyledListContainer>
-          <div>
+          <div id="list-title">
             <h3>
               <Trans i18nKey="Locations.List Heading" count={0}></Trans>
             </h3>

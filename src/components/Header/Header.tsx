@@ -18,6 +18,7 @@ import { useTranslation } from "react-i18next";
 
 // #region -------------- Custom Components / Utilities ------------------------
 import LanguageDropdown from "@/components/LanguageDropdown";
+import { StyledHeader } from "./Header.styles";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
@@ -81,9 +82,12 @@ const HeaderComponent = () => {
           language={i18n.resolvedLanguage === 'es' ? 'spanish' : undefined}
         />
       </aside>
-      <div ref={headerRef} className="dev-placeholder">
-        <LanguageDropdown></LanguageDropdown>
+      <StyledHeader ref={headerRef} >
+      <div className="dev-placeholder"> Logo
       </div>
+      <h1>Covid-19 and Flu Treatments Locator</h1>
+      <LanguageDropdown></LanguageDropdown>
+      </StyledHeader>
     </>
   );
   // #endregion -------------------- Render ------------------------------------
