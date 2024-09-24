@@ -13,9 +13,11 @@ import { useRef, useEffect } from "react";
 // #region ------------ 3rd-Party Components / Libraries -----------------------
 import { GovBanner } from "@trussworks/react-uswds";
 import useResizeObserver from "@react-hook/resize-observer";
+import { useTranslation } from "react-i18next";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
+import LanguageDropdown from "@/components/LanguageDropdown";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
@@ -29,6 +31,8 @@ import { useAppContext } from "@/contexts/AppContext";
 
 // #region =================== EXPORTED COMPONENT ==============================
 const HeaderComponent = () => {
+  const { i18n } = useTranslation();
+
   const { setBannerHeight, setHeaderHeight } = useAppContext();
   // #region ------------------ Hooks (Resources) ------------------------------
   const bannerRef = useRef<HTMLBaseElement>(null);
@@ -73,14 +77,13 @@ const HeaderComponent = () => {
   return (
     <>
       <aside ref={bannerRef}>
-        {/* TODO: connect when i18n is in */}
-        {/* <GovBanner
+        <GovBanner
           language={i18n.resolvedLanguage === 'es' ? 'spanish' : undefined}
-        /> */}
-        <GovBanner></GovBanner>
+        />
       </aside>
       <div ref={headerRef} className="dev-placeholder">
         Header
+        <LanguageDropdown></LanguageDropdown>
       </div>
     </>
   );

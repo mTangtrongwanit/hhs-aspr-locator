@@ -5,7 +5,7 @@
  */
 
 // #region ========================= IMPORTS ===================================
-// #region --------------------------- React -----------------------------------
+// #region --------------------------- React -----------------------------------import { useState } from 'react';
 import { useState } from 'react';
 // #endregion ------------------------ React -----------------------------------
 
@@ -15,7 +15,7 @@ import {
   CheckIcon,
   ChevronDownIcon,
 } from '@radix-ui/react-icons';
-
+import { useTranslation } from "react-i18next";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -23,7 +23,6 @@ import { StyledDropdownSelect } from './LanguageDropdown.styles';
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
-import { type Props } from "./LanguageDropdown.types";
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 
@@ -31,9 +30,9 @@ import { type Props } from "./LanguageDropdown.types";
 // #endregion ===================== CONSTANTS ==================================
 
 // #region =================== EXPORTED COMPONENT ==============================
-const LanguageDropdown = (props: Props) => {
+const LanguageDropdown = () => {
 
-  // Could make this into a more generic component later
+  // TODO later: Move to config
   const itemArray = [
     {
       label: 'English',
@@ -50,11 +49,11 @@ const LanguageDropdown = (props: Props) => {
   ]
 
   // #region ------------------ Hooks (Resources) ------------------------------
-
+  const { i18n } = useTranslation();
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region -------------------- Hooks (State) --------------------------------
-  const [selectedLanguage, setSelectedLanguage] = useState('en');
+  const [selectedLanguage, setSelectedLanguage] = useState('English');
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
@@ -70,10 +69,10 @@ const LanguageDropdown = (props: Props) => {
   // #endregion ------------- Supporting Functions -----------------------------
 
   // #region ------------------- Event Handlers --------------------------------
-  // Can be used to update the state with the user's selected language using the i18n
-  // library
-  const handleLanguageChange = (lang: string) => {
-    setSelectedLanguage(lang);
+
+  const handleLanguageChange = (lang: { label: string, value: string }) => {
+    i18n.changeLanguage(lang.value);
+    setSelectedLanguage(lang.label);
   }
   // #endregion ---------------- Event Handlers --------------------------------
 
@@ -81,19 +80,19 @@ const LanguageDropdown = (props: Props) => {
   return <StyledDropdownSelect>
     <DropdownMenu.Root>
       <DropdownMenu.Trigger className="DropDownButton">
-          Illness/Language: {props.label} <ChevronDownIcon />
+        {selectedLanguage} <ChevronDownIcon />
       </DropdownMenu.Trigger>
       <DropdownMenu.Content className="DropdownMenuContent" sideOffset={5}>
-        { itemArray.map((item) => (
-          <DropdownMenu.Item className="DropDownItem" key={item.value} onClick={() => handleLanguageChange(item.value)}>
-            {selectedLanguage === item.value && <CheckIcon /> }
+        {itemArray.map((item) => (
+          <DropdownMenu.Item className="DropDownItem" key={item.value} onClick={() => handleLanguageChange(item)}>
+            {i18n.language === item.value && <CheckIcon />}
             {item.label}
           </DropdownMenu.Item>
         ))}
-        
+
         <DropdownMenu.Arrow className="DropdownMenuArrow" />
       </DropdownMenu.Content>
-  </DropdownMenu.Root>;
+    </DropdownMenu.Root>;
   </StyledDropdownSelect>
   // #endregion -------------------- Render ------------------------------------
 };
