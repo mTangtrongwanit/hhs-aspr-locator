@@ -15,7 +15,7 @@
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
-import { type Props } from "./_TemplateComponent_.types";
+// import { type Props } from "./_TemplateComponent_.types";
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 
@@ -23,7 +23,7 @@ import { type Props } from "./_TemplateComponent_.types";
 // #endregion ===================== CONSTANTS ==================================
 
 // #region =================== EXPORTED COMPONENT ==============================
-const _TemplateComponent_ = (props: Props) => {
+const _TemplateComponent_ = () => {
   // #region ------------------ Hooks (Resources) ------------------------------
 
   // #endregion --------------- Hooks (Resources) ------------------------------
