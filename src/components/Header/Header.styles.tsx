@@ -43,17 +43,21 @@ export const StyledHeader = styled.header`
     display: flex;
     justify-content: space-between;
     align-items: center;
+`;
 
-    h1 {
-        margin: 0;
-        font-weight: 700;
-        color: var(--brand);
-        font-size: var(--text-3);
-    }
+export const StyledHeaderLogo = styled.img`
+    max-inline-size: 100%;
+    block-size: auto;
+    object-fit: contain;
+    height: 32px;
+    width: auto;
+`;
 
-    & .dev-placeholder {
-        width: 12rem;
-    }
+export const StyledAppTitle = styled.h1`
+    margin: 0;
+    font-size: var(--text-3);
+    font-weight: 700;
+    color: var(--brand);
 `;
 
 // #endregion ------------ Parent Component + Variants -------------------------
