@@ -6,7 +6,7 @@
 
 // #region ========================= IMPORTS ===================================
 // #region ------------ 3rd-Party Components / Libraries -----------------------
-import { useTranslation } from "react-i18next";
+// import { useTranslation } from "react-i18next";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -39,30 +39,28 @@ import UsgProcuredIcon from "@/assets/icons/usg-procured.svg";
 const Card = ({ selected, serviceProvider }: Props) => {
   // #region ------------------ Hooks (Resources) ------------------------------
   /** Internationalization translation function */
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region ----------------------- Render ------------------------------------
   return (
     <StyledCard $selected={selected}>
       <StyledTitleRow>
-        <StyledCardTitle className="bold">
+        <StyledCardTitle className='bold'>
           {serviceProvider.name}
         </StyledCardTitle>
-        {serviceProvider.distance &&
-          <p className="smallText">{`Distance: ${serviceProvider.distance} miles`}</p>
-        }
+        {serviceProvider.distance && (
+          <p className='smallText'>{`Distance: ${serviceProvider.distance} miles`}</p>
+        )}
       </StyledTitleRow>
       <address>
-        <StyledIconField className="addr">
+        <StyledIconField className='addr'>
           <PinIcon></PinIcon>{" "}
-          <p className="smallText">{serviceProvider.address}</p>
+          <p className='smallText'>{serviceProvider.address}</p>
         </StyledIconField>
-        <StyledIconField className="addr">
+        <StyledIconField className='addr'>
           <PhoneIcon></PhoneIcon>
-          <a href={`tel:${serviceProvider.phone}`}>
-            {serviceProvider.phone}
-          </a>
+          <a href={`tel:${serviceProvider.phone}`}>{serviceProvider.phone}</a>
         </StyledIconField>
       </address>
 
@@ -70,59 +68,58 @@ const Card = ({ selected, serviceProvider }: Props) => {
       {/* TODO: Alt text for these icons */}
 
       <StyledRow>
-        {serviceProvider.homeDelivery &&
+        {serviceProvider.homeDelivery && (
           <Tooltip icon={<HomeDeliveryIcon />}>
             <p>Home Delivery</p>
           </Tooltip>
-        }
-        {serviceProvider.usgProcured &&
+        )}
+        {serviceProvider.usgProcured && (
           <Tooltip icon={<UsgProcuredIcon />}>
             <p>USG-procured product</p>
           </Tooltip>
-        }
-        {serviceProvider.icatt &&
+        )}
+        {serviceProvider.icatt && (
           <Tooltip icon={<IcattIcon />}>
             <p>ICATT</p>
           </Tooltip>
-        }
-        {serviceProvider.patientAssistance &&
+        )}
+        {serviceProvider.patientAssistance && (
           <Tooltip icon={<PatientAssistIcon />}>
             <p>Patient Assistance</p>
           </Tooltip>
-        }
-        {serviceProvider.tamifluOnly &&
+        )}
+        {serviceProvider.tamifluOnly && (
           <Tooltip icon={<NoGenericIcon />}>
             <p>"Tamiflu" brand name only (no generic oseltamivir available)</p>
           </Tooltip>
-        }
-        {serviceProvider.pediatric &&
+        )}
+        {serviceProvider.pediatric && (
           <Tooltip icon={<PediatricIcon />}>
             <p>Pediatric oseltamivir suspension</p>
           </Tooltip>
-        }
+        )}
       </StyledRow>
       <p>
         Rx or telehealth&nbsp;
-        <a href="TODO">additional information</a>
+        <a href='TODO'>additional information</a>
       </p>
-      {serviceProvider.isHRSA &&
-        <p className="ital">
+      {serviceProvider.isHRSA && (
+        <p className='ital'>
           Health Resources and Services Administration (HRSA) supported Health
           Center
         </p>
-      }
+      )}
       <StyledRow>
         <button>Share Location</button>
         {serviceProvider.address && (
           <StyledOutlinedLink
             href={`https://www.google.com/maps/dir//${encodeURIComponent(
-              serviceProvider.address,
+              serviceProvider.address
             )}`}
-            target="_blank"
-            rel="noopener noreferrer"
+            target='_blank'
+            rel='noopener noreferrer'
             aria-label={`Directions to Location`}
           >
-
             <span>Open in Maps</span>
           </StyledOutlinedLink>
         )}

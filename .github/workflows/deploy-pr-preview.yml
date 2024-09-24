@@ -42,4 +42,4 @@ jobs:
         uses: rossjrw/pr-preview-action@v1
         with:
           action: deploy
-          source-dir: /dist
+          source-dir: ./dist
