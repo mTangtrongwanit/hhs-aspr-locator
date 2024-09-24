@@ -82,7 +82,6 @@ const HeaderComponent = () => {
         />
       </aside>
       <div ref={headerRef} className="dev-placeholder">
-        Header
         <LanguageDropdown></LanguageDropdown>
       </div>
     </>

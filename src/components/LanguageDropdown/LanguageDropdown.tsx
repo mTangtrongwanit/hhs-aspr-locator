@@ -84,15 +84,15 @@ const LanguageDropdown = () => {
       </DropdownMenu.Trigger>
       <DropdownMenu.Content className="DropdownMenuContent" sideOffset={5}>
         {itemArray.map((item) => (
-          <DropdownMenu.Item className="DropDownItem" key={item.value} onClick={() => handleLanguageChange(item)}>
-            {i18n.language === item.value && <CheckIcon />}
+          <DropdownMenu.Item style={{"--selected": `${i18n.language === item.value ? 'var(--brand)' : ''}`} as React.CSSProperties} className="DropDownItem" key={item.value} onClick={() => handleLanguageChange(item)}>
+            {i18n.language === item.value ? <CheckIcon fontSize={"var(--text-2)"}/> : <span className="placeholder">&nbsp;</span>}
             {item.label}
           </DropdownMenu.Item>
         ))}
 
         <DropdownMenu.Arrow className="DropdownMenuArrow" />
       </DropdownMenu.Content>
-    </DropdownMenu.Root>;
+    </DropdownMenu.Root>
   </StyledDropdownSelect>
   // #endregion -------------------- Render ------------------------------------
 };

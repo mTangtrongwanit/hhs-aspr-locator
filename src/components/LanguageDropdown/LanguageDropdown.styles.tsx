@@ -29,11 +29,27 @@ import styled from "styled-components";
 // --- States ---
 // --- Children ---
 
-// CSS styling for the language dropdown
+
+
+// #region -------------------------- Atoms ------------------------------------
+// #endregion ----------------------- Atoms ------------------------------------
+
+// #region -------------- Molecules (Internal Layouts) -------------------------
+// #endregion ----------- Molecules (Internal Layouts) -------------------------
+
+// #region --------------- Parent Component + Variants -------------------------
 export const StyledDropdownSelect = styled.section`
+  min-width: 8rem;
+
   .DropDownButton{
     position: relative;
-    left: 30%;
+    
+    width: inherit;
+    min-width: inherit;
+
+    display: flex;
+    justify-content: space-between;
+    gap: 4px;
     
     cursor: pointer;
     background: #155197;
@@ -41,11 +57,10 @@ export const StyledDropdownSelect = styled.section`
     color: white;
     padding: 5px;
     height: 30px;
-    width: 350px;
   }
   
   .DropdownMenuContent{
-    min-width: 220px;
+    min-width: inherit;
     background-color: white;
     border-radius: 6px;
     padding: 5px;
@@ -60,20 +75,27 @@ export const StyledDropdownSelect = styled.section`
   }
   
   .DropDownItem {
-    padding-left: 25px;
-    font-size: 12px;
+    font-size: var(--text--1);
     line-height: 25px;
     
     cursor: pointer;
+
+    display: flex;
+    gap: 4px;
+    align-items: center;
+
+    color: var(--selected, var(--text));
+
+    svg {
+      width: 20px;
+      height: 20px;
+      aspect-ratio: 1;
+    }
+
+    .placeholder {
+      width: 20px;
+    }
   }
 `;
-
-// #region -------------------------- Atoms ------------------------------------
-// #endregion ----------------------- Atoms ------------------------------------
-
-// #region -------------- Molecules (Internal Layouts) -------------------------
-// #endregion ----------- Molecules (Internal Layouts) -------------------------
-
-// #region --------------- Parent Component + Variants -------------------------
 // #endregion ------------ Parent Component + Variants -------------------------
 // #endregion ================ EXPORTED COMPONENTS =============================
