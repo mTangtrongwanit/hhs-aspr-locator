@@ -6,7 +6,7 @@
 
 // #region ========================= IMPORTS ===================================
 // #region ------------ 3rd-Party Components / Libraries -----------------------
-import { useTranslation } from "react-i18next";
+// import { useTranslation } from "react-i18next";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 // #region -------------- Custom Components / Utilities ------------------------
 import {
@@ -27,7 +27,7 @@ const Tooltip = ({ icon, children }: Props) => {
   // #region ------------------ Hooks (Resources) ------------------------------
   /** Application configuration */
   // const config = useConfiguration();
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
 
   // #endregion --------------- Hooks (Resources) ------------------------------
 
@@ -39,15 +39,13 @@ const Tooltip = ({ icon, children }: Props) => {
     <StyledTooltip.Provider>
       <StyledTooltip.Root>
         <StyledTooltip.Trigger asChild>
-          <StyledTriggerButton
-            aria-label="TODO"
-          >
-              <StyledIcon>{icon}</StyledIcon>
+          <StyledTriggerButton aria-label='TODO'>
+            <StyledIcon>{icon}</StyledIcon>
           </StyledTriggerButton>
         </StyledTooltip.Trigger>
-        <StyledTooltip.Content className="TooltipContent" sideOffset={5}>
+        <StyledTooltip.Content className='TooltipContent' sideOffset={5}>
           {children}
-          <StyledTooltip.Arrow className="TooltipArrow" />
+          <StyledTooltip.Arrow className='TooltipArrow' />
         </StyledTooltip.Content>
       </StyledTooltip.Root>
     </StyledTooltip.Provider>
