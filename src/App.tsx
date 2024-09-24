@@ -24,10 +24,6 @@ import "@/styles/index.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
-// import where needed to bring in i18n translation
-import "./utils/i18n";
-import { useTranslation, Trans } from "react-i18next";
-
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 // #region ======================== CONSTANTS ==================================
@@ -35,18 +31,24 @@ const StyledAppLayout = styled.section`
   // --- Sizing / Box-Model ---
   width: inherit;
   height: inherit;
+  overflow-y: hidden;
   /* padding: 1rem; */
   // --- Layout ---
   display: grid;
-  /* grid-template-areas:
-    "header"
-    "content"
-    "footer"; */
-  grid-template-rows: auto auto minmax(1fr, auto) auto;
+
+    grid-template-rows: min-content min-content minmax(0, 1fr) auto;
+
   // --- Decorative ---
-  /* background-color: var(--app-green); */
   background-color: var(--app-bg);
 `;
+
+const StyledLocsLayout = styled(StyledAppLayout)`
+/* height: fit-content; */
+height: inherit;
+overflow-y: auto;
+grid-template-rows: min-content min-content;
+
+`
 
 const router = createBrowserRouter(
   [
@@ -63,11 +65,11 @@ const router = createBrowserRouter(
     {
       path: "/locations",
       element: (
-        <StyledAppLayout>
+        <StyledLocsLayout>
           <Header />
           <Locations />
           <Footer />
-        </StyledAppLayout>
+        </StyledLocsLayout>
       ),
     },
   ],
@@ -78,21 +80,6 @@ const router = createBrowserRouter(
 // #endregion ===================== CONSTANTS ==================================
 // #region =================== EXPORTED COMPONENT ==============================
 function App() {
-  // define and use the 't' function for translating content.
-  // 'i18n' to get the i18n instance in order to change the language
-  const { t, i18n } = useTranslation();
-
-  // Can change language here
-  // TODO: will need to tie this to a dropdown selector
-  // const lng = 'es';
-  // TODO: Need to tie this to a button, etc.
-  // i18n.changeLanguage(lng);
-
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
-  };
-
-  const count = 3;
 
   // #region ------------------ Hooks (Resources) ------------------------------
   // #endregion --------------- Hooks (Resources) ------------------------------
@@ -111,23 +98,6 @@ function App() {
   return (
     <AppContextProvider>
       <RouterProvider router={router} />
-      <p>{t("title", { name: "John" })}</p>
-      <p>{t("description.part1")}</p>
-      <p>{t("description.part2")}</p>
-      <Trans i18nKey="userMessagesUnread" count={count}>
-        You have {{ count }} unread message.
-      </Trans>
-      <div>
-        <button onClick={() => changeLanguage("en")}>English</button>
-      </div>
-      <div>
-        <button onClick={() => changeLanguage("es")}>Spanish</button>
-      </div>
-      <div>
-        <button onClick={() => changeLanguage("zh")}>
-          Chinese (Simplified)
-        </button>
-      </div>
     </AppContextProvider>
   );
   // #endregion -------------------- Render ------------------------------------
