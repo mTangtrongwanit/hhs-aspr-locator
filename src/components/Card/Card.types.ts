@@ -34,6 +34,6 @@ export interface ServiceProvider {
   pediatric?: boolean;
   isHRSA?: boolean;
   //TODO: Set this prop to optional for testing, but it should be required.
-  location?: Point; 
+  location?: Point;
 }
 // #endregion ================== EXPORTED TYPES ================================
