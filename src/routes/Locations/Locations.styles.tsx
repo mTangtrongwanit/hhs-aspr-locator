@@ -56,6 +56,7 @@ export const StyledListContainer = styled.section`
   padding: calc(var(--unit) * 2);
   height: fit-content;
   // --- Position ---
+  position: relative;
   // --- Layout ---
   display: flex;
   flex-direction: column;
@@ -64,17 +65,20 @@ export const StyledListContainer = styled.section`
   background: var(--light);
   // --- States ---
   // --- Children ---
-  div:first-child {
+  #list-title {
     // --- Layout ---
     padding-top: var(--unit);
+    padding-bottom: var(--unit);
+    margin-bottom: calc(0px - var(--unit));
     position: sticky;
     top: 0;
+    z-index: 2;
 
     display: flex;
     flex-wrap: wrap;
     gap: var(--unit);
 
-    /* background: var(--light); */
+    background: var(--light);
 
     .dev-placeholder {
       width: min-content;
@@ -90,7 +94,9 @@ export const StyledMapContainer = styled.section`
   // --- Local Variables ---
   // --- Sizing / Box-Model ---
   width: 100%;
+  /* height: calc((var(--vh) * 100) - var(--remainder, 0px)); */
   height: calc((var(--vh) * 100));
+
   // --- Position ---
   position: sticky;
   top: 0;

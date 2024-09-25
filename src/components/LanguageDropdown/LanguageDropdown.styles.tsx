@@ -29,6 +29,8 @@ import styled from "styled-components";
 // --- States ---
 // --- Children ---
 
+
+
 // #region -------------------------- Atoms ------------------------------------
 // #endregion ----------------------- Atoms ------------------------------------
 
@@ -36,25 +38,64 @@ import styled from "styled-components";
 // #endregion ----------- Molecules (Internal Layouts) -------------------------
 
 // #region --------------- Parent Component + Variants -------------------------
-export const StyledHeader = styled.header`
-    height: min-content;
-    padding: var(--unit);
+export const StyledDropdownSelect = styled.section`
+  min-width: 8rem;
+
+  .DropDownButton{
+    position: relative;
+    
+    width: inherit;
+    min-width: inherit;
 
     display: flex;
     justify-content: space-between;
+    gap: 4px;
+    
+    cursor: pointer;
+    background: #155197;
+    border-radius: 4px;
+    color: white;
+    padding: 5px;
+    height: 30px;
+  }
+  
+  .DropdownMenuContent{
+    min-width: inherit;
+    background-color: white;
+    border-radius: 6px;
+    padding: 5px;
+    box-shadow: 0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2);
+    animation-duration: 400ms;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+  }
+  
+  .DropdownMenuArrow {
+    fill: white;
+  }
+  
+  .DropDownItem {
+    font-size: var(--text--1);
+    line-height: 25px;
+    
+    cursor: pointer;
+
+    display: flex;
+    gap: 4px;
     align-items: center;
 
-    h1 {
-        margin: 0;
-        font-weight: 700;
-        color: var(--brand);
-        font-size: var(--text-3);
+    color: var(--selected, var(--text));
+
+    svg {
+      width: 20px;
+      height: 20px;
+      aspect-ratio: 1;
     }
 
-    & .dev-placeholder {
-        width: 12rem;
+    .placeholder {
+      width: 20px;
     }
+  }
 `;
-
 // #endregion ------------ Parent Component + Variants -------------------------
 // #endregion ================ EXPORTED COMPONENTS =============================
