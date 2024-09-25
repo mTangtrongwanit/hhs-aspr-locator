@@ -20,6 +20,6 @@
 
 // #region ===================== EXPORTED TYPES ================================
 export interface Props {
-    label: string, // for the button
+  label: string; // for the button
 }
 // #endregion ================== EXPORTED TYPES ================================

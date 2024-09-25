@@ -18,7 +18,12 @@ import { useTranslation } from "react-i18next";
 
 // #region -------------- Custom Components / Utilities ------------------------
 import LanguageDropdown from "@/components/LanguageDropdown";
-import { StyledHeader, StyledHeaderLogo, StyledAppTitle, StyledHeaderContentContainer } from "./Header.styles";
+import {
+  StyledHeader,
+  StyledHeaderLogo,
+  StyledAppTitle,
+  StyledHeaderContentContainer,
+} from "./Header.styles";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
@@ -79,17 +84,19 @@ const HeaderComponent = () => {
     <>
       <aside ref={bannerRef}>
         <GovBanner
-          language={i18n.resolvedLanguage === 'es' ? 'spanish' : undefined}
+          language={i18n.resolvedLanguage === "es" ? "spanish" : undefined}
         />
       </aside>
-      <StyledHeader ref={headerRef} >
+      <StyledHeader ref={headerRef}>
         <StyledHeaderContentContainer>
-          <StyledHeaderLogo src="/src/assets/images/ASPR-logo-web.jpg" 
-            srcset="/src/assets/images/ASPR-logo-mobile.jpg 274w,
+          <StyledHeaderLogo
+            src="/src/assets/images/ASPR-logo-web.jpg"
+            srcSet="/src/assets/images/ASPR-logo-mobile.jpg 274w,
             /src/assets/images/ASPR-logo-web.jpg 693w"
             sizes="(max-width: 1100px) 117px,
             296px"
-            alt="Administration for Strategic Preparedness and Response Logo" />
+            alt="Administration for Strategic Preparedness and Response Logo"
+          />
         </StyledHeaderContentContainer>
         <StyledHeaderContentContainer>
           <StyledAppTitle>Covid-19 and Flu Treatments Locator</StyledAppTitle>

@@ -13,7 +13,7 @@ export default defineConfig({
       include: "**/*.svg",
     }),
   ],
-  base: process.env.BASE_PATH ? `/${process.env.BASE_PATH}/ ` : '/',
+  base: process.env.BASE_PATH ? `/${process.env.BASE_PATH}/ ` : "/",
   resolve: {
     alias: {
       // Resolve the ~ alias to the src/ directory

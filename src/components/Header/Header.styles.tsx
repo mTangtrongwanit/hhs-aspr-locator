@@ -13,7 +13,7 @@ import styled from "styled-components";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
-import { Breakpoints } from '@/utils/style-utils';
+import { Breakpoints } from "@/utils/style-utils";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
@@ -38,64 +38,63 @@ import { Breakpoints } from '@/utils/style-utils';
 
 // #region --------------- Parent Component + Variants -------------------------
 export const StyledHeaderContentContainer = styled.div`
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    &:first-child {
-        margin-right: auto;
-        justify-content: flex-start;
-    }
-    &:last-child {
-        margin-left: auto;
-        justify-content: flex-end;
-    }
-`
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &:first-child {
+    margin-right: auto;
+    justify-content: flex-start;
+  }
+  &:last-child {
+    margin-left: auto;
+    justify-content: flex-end;
+  }
+`;
 
 export const StyledHeaderLogo = styled.img`
-    max-inline-size: 100%;
-    block-size: auto;
-    object-fit: contain;
-    height: 32px;
-    width: auto;
+  max-inline-size: 100%;
+  block-size: auto;
+  object-fit: contain;
+  height: 32px;
+  width: auto;
 `;
 
 export const StyledAppTitle = styled.h1`
-    margin: 0;
-    text-align: center;
-    font-size: var(--text-3);
-    font-weight: 700;
-    color: var(--brand);
+  margin: 0;
+  text-align: center;
+  font-size: var(--text-3);
+  font-weight: 700;
+  color: var(--brand);
 `;
 
 export const StyledHeader = styled.header`
-    display: flex;
-    height: min-content;
-    padding: var(--unit);
-    gap: var(--unit);
-    @media ${Breakpoints.lg} {
-        flex-wrap: wrap;
-        ${StyledAppTitle} {
-            order: 3;
-            flex-basis: 100%;
-        }
-        ${StyledHeaderContentContainer}{
-            &:nth-child(2) {
-                order: 3;
-                flex-basis: 100%;
-            }
-            &:first-child {
-                margin-right: auto;
-                justify-content: flex-start;
-            }
-            &:last-child {
-                margin-left: auto;
-                justify-content: flex-end;
-            }
-        }
+  display: flex;
+  height: min-content;
+  padding: var(--unit);
+  gap: var(--unit);
+  @media ${Breakpoints.lg} {
+    flex-wrap: wrap;
+    ${StyledAppTitle} {
+      order: 3;
+      flex-basis: 100%;
     }
+    ${StyledHeaderContentContainer} {
+      &:nth-child(2) {
+        order: 3;
+        flex-basis: 100%;
+      }
+      &:first-child {
+        margin-right: auto;
+        justify-content: flex-start;
+      }
+      &:last-child {
+        margin-left: auto;
+        justify-content: flex-end;
+      }
+    }
+  }
 `;
-
 
 // #endregion ------------ Parent Component + Variants -------------------------
 // #endregion ================ EXPORTED COMPONENTS =============================
