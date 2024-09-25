@@ -42,20 +42,13 @@ export const StyledHeaderContentContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-
     &:first-child {
         margin-right: auto;
         justify-content: flex-start;
     }
-
     &:last-child {
         margin-left: auto;
         justify-content: flex-end;
-    }
-
-    @media ${Breakpoints.lg} {
-
-
     }
 `
 
@@ -80,14 +73,12 @@ export const StyledHeader = styled.header`
     height: min-content;
     padding: var(--unit);
     gap: var(--unit);
-
     @media ${Breakpoints.lg} {
         flex-wrap: wrap;
         ${StyledAppTitle} {
             order: 3;
             flex-basis: 100%;
         }
-
         ${StyledHeaderContentContainer}{
             &:nth-child(2) {
                 order: 3;
