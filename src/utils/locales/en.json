@@ -41,5 +41,14 @@
     "Results Screenreader Heading": "Results",
     "List Heading": "{{count}} Sites",
     "Map Screenreader Heading": "Map of Sites"
+  },
+  "Card": {
+    "pap": "PAP",
+    "usgProduct": "USG product",
+    "homeDelivery": "Home Delivery",
+    "icatt": "ICATT",
+    "tamifluOnly": "Tamiflu Only",
+    "oseltamivirSuspension": "Oseltamivir suspension*",
+    "prescribingServices": "Prescribing Services"
   }
 }

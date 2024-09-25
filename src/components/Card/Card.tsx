@@ -6,7 +6,7 @@
 
 // #region ========================= IMPORTS ===================================
 // #region ------------ 3rd-Party Components / Libraries -----------------------
-// import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -31,6 +31,9 @@ import NoGenericIcon from "@/assets/icons/no-generic.svg";
 import PatientAssistIcon from "@/assets/icons/patient-assist.svg";
 import PediatricIcon from "@/assets/icons/pediatric.svg";
 import UsgProcuredIcon from "@/assets/icons/usg-procured.svg";
+// import PapIcon from "@/assets/icons/pap.svg";
+// import OseltamivirIcon from "@/assets/icons/oseltamivir.svg";
+// import PrescribingServicesIcon from "@/assets/icons/prescribing-services.svg";
 
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
@@ -39,7 +42,7 @@ import UsgProcuredIcon from "@/assets/icons/usg-procured.svg";
 const Card = ({ selected, serviceProvider }: Props) => {
   // #region ------------------ Hooks (Resources) ------------------------------
   /** Internationalization translation function */
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region ----------------------- Render ------------------------------------
@@ -47,20 +50,29 @@ const Card = ({ selected, serviceProvider }: Props) => {
     <StyledCard $selected={selected}>
       <StyledTitleRow>
         <StyledCardTitle className='bold'>
-          {serviceProvider.name}
+          {serviceProvider.provider_name}
         </StyledCardTitle>
-        {serviceProvider.distance && (
+        {/* {serviceProvider.distance && (
           <p className='smallText'>{`Distance: ${serviceProvider.distance} miles`}</p>
-        )}
+        )} */}
       </StyledTitleRow>
       <address>
         <StyledIconField className='addr'>
           <PinIcon></PinIcon>{" "}
-          <p className='smallText'>{serviceProvider.address}</p>
+          <p className='smallText'>
+            {serviceProvider.address1} |{" "}
+            {serviceProvider.address2 ? serviceProvider.address2 : null}
+          </p>
         </StyledIconField>
         <StyledIconField className='addr'>
           <PhoneIcon></PhoneIcon>
-          <a href={`tel:${serviceProvider.phone}`}>{serviceProvider.phone}</a>
+          <a
+            href={`tel:${
+              serviceProvider.public_phone ? serviceProvider.public_phone : null
+            }`}
+          >
+            {serviceProvider.public_phone ? serviceProvider.public_phone : null}
+          </a>
         </StyledIconField>
       </address>
 
@@ -68,48 +80,55 @@ const Card = ({ selected, serviceProvider }: Props) => {
       {/* TODO: Alt text for these icons */}
 
       <StyledRow>
-        {serviceProvider.homeDelivery && (
-          <Tooltip icon={<HomeDeliveryIcon />}>
-            <p>Home Delivery</p>
+        {/* {serviceProvider.is_pap === "TRUE" && (
+          <Tooltip icon={<PapIcon />}>
+            <p>{t("Card.pap")}</p>
           </Tooltip>
-        )}
-        {serviceProvider.usgProcured && (
+        )} */}
+        {serviceProvider.has_usg_product === "TRUE" && (
           <Tooltip icon={<UsgProcuredIcon />}>
-            <p>USG-procured product</p>
+            <p>{t("Card.usgProduct")}</p>
           </Tooltip>
         )}
-        {serviceProvider.icatt && (
+        {serviceProvider.home_delivery === "TRUE" && (
+          <Tooltip icon={<HomeDeliveryIcon />}>
+            <p>{t("Card.homeDelivery")}</p>
+          </Tooltip>
+        )}
+        {serviceProvider.is_icatt_site === "TRUE" && (
           <Tooltip icon={<IcattIcon />}>
-            <p>ICATT</p>
+            <p>{t("Card.icatt")}</p>
           </Tooltip>
         )}
-        {serviceProvider.patientAssistance && (
-          <Tooltip icon={<PatientAssistIcon />}>
-            <p>Patient Assistance</p>
+        {serviceProvider.has_oseltamivir_tamiflu === "TRUE" &&
+          serviceProvider.has_oseltamivir_generic === "FALSE" &&
+          serviceProvider.has_oseltamivir_suspension === "FALSE" && (
+            <Tooltip icon={<NoGenericIcon />}>
+              <p>{t("Card.tamifluOnly")}</p>
+            </Tooltip>
+          )}
+        {/* {serviceProvider.has_oseltamivir_suspension === "TRUE" && (
+          <Tooltip icon={<OseltamivirIcon />}>
+            <p>{t("Card.oseltamivirSuspension")}</p>
           </Tooltip>
-        )}
-        {serviceProvider.tamifluOnly && (
-          <Tooltip icon={<NoGenericIcon />}>
-            <p>"Tamiflu" brand name only (no generic oseltamivir available)</p>
+        )} */}
+        {/* {serviceProvider.is_prescribing_svcs_available === "TRUE" && (
+          <Tooltip icon={<PrescribingServicesIcon />}>
+            <p>{t("Card.prescribingServices")}</p>
           </Tooltip>
-        )}
-        {serviceProvider.pediatric && (
-          <Tooltip icon={<PediatricIcon />}>
-            <p>Pediatric oseltamivir suspension</p>
-          </Tooltip>
-        )}
+        )} */}
       </StyledRow>
       <p>
         Rx or telehealth&nbsp;
         <a href='TODO'>additional information</a>
       </p>
-      {serviceProvider.isHRSA && (
+      {/* {serviceProvider.isHRSA && (
         <p className='ital'>
           Health Resources and Services Administration (HRSA) supported Health
           Center
         </p>
-      )}
-      <StyledRow>
+      )} */}
+      {/* <StyledRow>
         <button>Share Location</button>
         {serviceProvider.address && (
           <StyledOutlinedLink
@@ -123,7 +142,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
             <span>Open in Maps</span>
           </StyledOutlinedLink>
         )}
-      </StyledRow>
+      </StyledRow> */}
     </StyledCard>
   );
   // #endregion -------------------- Render ------------------------------------
