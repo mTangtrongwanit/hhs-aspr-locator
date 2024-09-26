@@ -49,6 +49,13 @@
     "icatt": "ICATT",
     "tamifluOnly": "Tamiflu Only",
     "oseltamivirSuspension": "Oseltamivir suspension*",
-    "prescribingServices": "Prescribing Services"
+    "prescribingServices": "Prescribing Services",
+    "rXorTelehealth": "Rx or Telehealth",
+    "additionalInformation": "additional information",
+    "shareLocation": "Share Location",
+    "directionsToLocation": "Directions to Location",
+    "openInMaps": "Open in Maps",
+    "distance": "Distance",
+    "miles": "miles"
   }
 }
