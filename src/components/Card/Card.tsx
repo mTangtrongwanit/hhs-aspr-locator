@@ -152,11 +152,6 @@ const Card = ({ selected, serviceProvider }: Props) => {
       {/* TODO: Alt text for these icons */}
 
       <StyledRow>
-        {/* {serviceProvider.is_pap === "TRUE" && (
-          <Tooltip icon={<PapIcon />}>
-            <p>{t("Card.pap")}</p>
-          </Tooltip>
-        )} */}
         {serviceProvider.has_usg_product === "TRUE" && (
           <Tooltip icon={<UsgProcuredIcon />}>
             <p>{t("Card.usgProduct")}</p>
@@ -179,16 +174,6 @@ const Card = ({ selected, serviceProvider }: Props) => {
               <p>{t("Card.tamifluOnly")}</p>
             </Tooltip>
           )}
-        {/* {serviceProvider.has_oseltamivir_suspension === "TRUE" && (
-          <Tooltip icon={<OseltamivirIcon />}>
-            <p>{t("Card.oseltamivirSuspension")}</p>
-          </Tooltip>
-        )} */}
-        {/* {serviceProvider.is_prescribing_svcs_available === "TRUE" && (
-          <Tooltip icon={<PrescribingServicesIcon />}>
-            <p>{t("Card.prescribingServices")}</p>
-          </Tooltip>
-        )} */}
       </StyledRow>
       {serviceProvider.is_prescribing_svcs_available === "TRUE" && (
         <p>
