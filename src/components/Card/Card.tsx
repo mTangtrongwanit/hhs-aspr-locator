@@ -200,6 +200,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
                 ? serviceProvider.url_appointment
                 : ""
             }
+            target='_blank'
           >
             <strong>{t("Card.additionalInformation")}</strong>
           </a>
