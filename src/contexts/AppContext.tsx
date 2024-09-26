@@ -5,7 +5,7 @@ import { createContext, useContext, useState } from "react";
 // #endregion ------------------- React ---------------------------------
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
-
+import Point from "@arcgis/core/geometry/Point.js";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region ------------------------ Resources ----------------------------------
@@ -24,6 +24,14 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
    */
   const [bannerHeight, setBannerHeight] = useState<number>(0);
   const [headerHeight, setHeaderHeight] = useState<number>(0);
+  const [searchPoint, setSearchPoint] = useState<__esri.Point | null>(
+    // TODO: This is a placeholder. Update this to null and use the
+    // Search component to set the search point in the future
+    new Point({
+      longitude: -118.2437,
+      latitude: 34.0522, // Los Angeles
+    })
+  );
 
   return (
     <AppContext.Provider
@@ -32,6 +40,8 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
         setBannerHeight: setBannerHeight,
         headerHeight: headerHeight,
         setHeaderHeight: setHeaderHeight,
+        searchPoint: searchPoint,
+        setSearchPoint: setSearchPoint,
       }}
     >
       {children}
@@ -45,7 +55,7 @@ export const useAppContext = () => {
   if (!appContext) {
     // the below text is for developers not for users. It does not need to be translated
     throw new Error(
-      "Cannot use 'useAppContext' outside of a AppContextProvider",
+      "Cannot use 'useAppContext' outside of a AppContextProvider"
     );
   }
   return appContext;
