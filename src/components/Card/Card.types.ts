@@ -58,7 +58,5 @@ export interface ServiceProvider {
   has_oseltamivir_tamiflu?: string;
   non_public_yn?: string;
   grantee_code?: string;
-  //TODO: Set this prop to optional for testing, but it should be required.
-  // location?: Point; 
 }
 // #endregion ================== EXPORTED TYPES ================================
