@@ -210,8 +210,16 @@ const Card = ({ selected, serviceProvider }: Props) => {
         <button onClick={copyToClipboard}>{t("Card.shareLocation")}</button>
         {serviceProvider.address1 && (
           <StyledOutlinedLink
-            href={`https://www.google.com/maps/dir//${encodeURIComponent(
-              serviceProvider.address1
+            href={`https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(
+              searchPoint
+                ? `${searchPoint.latitude},${searchPoint.longitude}`
+                : ""
+            )}&destination=${encodeURIComponent(
+              `${serviceProvider.address1} ${
+                serviceProvider.address2 ? serviceProvider.address2 + " " : ""
+              }${serviceProvider.city} ${serviceProvider.state} ${
+                serviceProvider.zip
+              }`
             )}`}
             target='_blank'
             rel='noopener noreferrer'
