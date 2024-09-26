@@ -70,49 +70,57 @@ const Landing = () => {
           <button>{t("Landing.View Locations Button Label")}</button>
         </Link>
       </StyledSearchContainer>
-      <div className="dev-placeholder" style={{ gridArea: "image" }}>
-        Image placeholder, hide from SR
+      <div className="img">
       </div>
       <StyledContextRow>
         <h2 className="visually-hidden">
           {t("Landing.Context Container Screenreader Heading")}
         </h2>
         <p>Locations participating in the U.S. Government&nbsp;
-          <a>Patient Assistance Program</a> operated by Pfizer offering free Paxlovid for eligible patients are included on this website. Eligible patients with a Paxlovid prescription can enroll in the program at <a>https://paxlovid.iassist.com.</a> Other <a>assistance programs</a> are available for Paxlovid, Lagevrio, and Veklury.
+          <a href="TODO">Patient Assistance Program</a> operated by Pfizer offering free Paxlovid for eligible patients are included on this website.
+          Eligible patients with a Paxlovid prescription can enroll in the program at <a href="TODO">https://paxlovid.iassist.com.</a>&nbsp;
+          Other <a href="TODO">assistance programs</a> are available for Paxlovid, Lagevrio, and Veklury.
         </p>
         <Accordion.Root className="AccordionRoot" type="single" defaultValue="item-1" collapsible>
-    <Accordion.Item className="AccordionItem" value="item-1">
-    <Accordion.Header className="AccordionHeader">
-    <Accordion.Trigger
-      className={'AccordionTrigger'}
-    >
-      Frequently Asked Questions
-      <ChevronDownIcon className="AccordionChevron" aria-hidden />
-    </Accordion.Trigger>
-  </Accordion.Header>      <Accordion.Content>TODO</Accordion.Content>
-    </Accordion.Item>
+          <Accordion.Item className="AccordionItem" value="item-1">
+            <Accordion.Header className="AccordionHeader">
+              <Accordion.Trigger
+                className={'AccordionTrigger'}
+              >
+                Frequently Asked Questions
+                <ChevronDownIcon className="AccordionChevron" aria-hidden />
+              </Accordion.Trigger>
+            </Accordion.Header>
+            <Accordion.Content className="AccordionContent">
+              <div className="AccordionContentText">
+                TODO
+              </div></Accordion.Content>
+          </Accordion.Item>
 
-    <Accordion.Item className="AccordionItem" value="item-2">
-    <Accordion.Header className="AccordionHeader">
-    <Accordion.Trigger
-      className={'AccordionTrigger'}
-    >
-      Disclaimer
-      <ChevronDownIcon className="AccordionChevron" aria-hidden />
-    </Accordion.Trigger>
-  </Accordion.Header>
-      <Accordion.Content>
-      <div className="AccordionContentText">
-      <p>
-        Additional information on COVID-19 treatments can be found on the <a></a>ASPR COVID-19 Treatments page.  For questions regarding this site, contact 1-800-232-0233 (TTY  888-720-7489). To learn more about COVID-19 testing, including how to  order free test kits, visit COVID.gov.
-
-        </p>
-      * This content is not fully Section 508 conformant. If you need assistance, please contact gis@hhs.gov. Tabular access to the data is also available.     
-
-      </div>
-      </Accordion.Content>
-    </Accordion.Item>
-  </Accordion.Root>
+          <Accordion.Item className="AccordionItem" value="item-2">
+            <Accordion.Header className="AccordionHeader">
+              <Accordion.Trigger
+                className={'AccordionTrigger'}
+              >
+                Disclaimer
+                <ChevronDownIcon className="AccordionChevron" aria-hidden />
+              </Accordion.Trigger>
+            </Accordion.Header>
+            <Accordion.Content className="AccordionContent">
+              <div className="AccordionContentText">
+                <p>
+                  Additional information on COVID-19 treatments can be found on the <a href="TODO">ASPR COVID-19 Treatments page.</a>&nbsp;
+                  For questions regarding this site, contact 1-800-232-0233 (TTY  888-720-7489).
+                  To learn more about COVID-19 testing, including how to  order free test kits, visit <a href="TODO">COVID.gov.</a>
+                </p>
+                <p className="ital">
+                  * This content is not fully Section 508 conformant.
+                  If you need assistance, please contact <a href="TODO">gis@hhs.gov.</a> <a href="TODO">Tabular access to the data is also available.</a>
+                </p>
+              </div>
+            </Accordion.Content>
+          </Accordion.Item>
+        </Accordion.Root>
 
       </StyledContextRow>
     </StyledLandingContent>

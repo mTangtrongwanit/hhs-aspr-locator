@@ -13,6 +13,7 @@ import styled from "styled-components";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
+import { Breakpoints } from "@/utils";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
@@ -122,12 +123,24 @@ export const StyledLandingContent = styled.section`
   // --- States ---
   // --- Children ---
 
+  .img {
+    grid-area: image;
+      // --- Decorative ---
+    background-image: url('./src/assets/nurse.jpg');
+    background-repeat: no-repeat;
+    background-position:top right;
+    background-size: cover;
+
+    @media ${Breakpoints.sm} {
+      display: none;
+    }
+  }
+
   //Accordion
   .AccordionRoot {
   border-radius: 6px;
-  width: 300px;
+  width: 100%;
   background-color: var(--light);
-  box-shadow: 0 2px 10px var(--text);
 }
 
 .AccordionItem {
@@ -149,7 +162,7 @@ export const StyledLandingContent = styled.section`
 .AccordionItem:focus-within {
   position: relative;
   z-index: 1;
-  box-shadow: 0 0 0 2px var(--brand);
+  box-shadow: 0 0 0 2px var(--action);
 }
 
 .AccordionHeader {
@@ -159,14 +172,13 @@ export const StyledLandingContent = styled.section`
 .AccordionTrigger {
   font-family: inherit;
   background-color: transparent;
-  padding: 0 20px;
   height: 45px;
+  font-weight: 700;
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 15px;
-  line-height: 1;
+  font-size: var(--text-0);
   color: var(--brand);
   box-shadow: 0 1px 0 var(--brand);
   background-color: white;
@@ -177,10 +189,18 @@ export const StyledLandingContent = styled.section`
 }
 
 .AccordionContent {
-  overflow: hidden;
-  font-size: 15px;
-  color: var(--brand);
-  background-color: var(--brand);
+  font-size: var(--text-0);
+  color: var(--text);
+  background-color: #fff;
+
+  a {
+    font-weight: 400;
+  }
+
+  .ital, .ital a {
+    font-style: italic;
+
+  }
 }
 .AccordionContent[data-state='open'] {
   animation: slideDown 300ms cubic-bezier(0.87, 0, 0.13, 1);
@@ -191,6 +211,10 @@ export const StyledLandingContent = styled.section`
 
 .AccordionContentText {
   padding: 15px 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--unit);
 }
 
 .AccordionChevron {
