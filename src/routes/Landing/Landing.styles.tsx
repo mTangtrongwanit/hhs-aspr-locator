@@ -1,12 +1,10 @@
 /**
- * _TemplateComponent_ Styles
+ * Landing Styles
  *
- * Styled components for the _TemplateComponent_ component.
+ * Styled components for the Landing component.
  */
 
 // #region ========================= IMPORTS ===================================
-// #region --------------------------- React -----------------------------------
-// #endregion ------------------------ React -----------------------------------
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
 import styled from "styled-components";
@@ -16,8 +14,6 @@ import styled from "styled-components";
 import { Breakpoints } from "@/utils";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
-// #region ------------------------ Resources ----------------------------------
-// #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 
 // #region =================== EXPORTED COMPONENTS =============================
@@ -69,16 +65,16 @@ export const StyledViewLocsButton = styled.button`
 `;
 
 export const StyledDecorativeImage = styled.div`
-      grid-area: image;
-    // --- Decorative ---
-    background-image: url("./src/assets/nurse.jpg");
-    background-repeat: no-repeat;
-    background-position: top right;
-    background-size: cover;
+  grid-area: image;
+  // --- Decorative ---
+  background-image: url("./src/assets/nurse.jpg");
+  background-repeat: no-repeat;
+  background-position: top right;
+  background-size: cover;
 
-    @media ${Breakpoints.sm} {
-      display: none;
-    }
+  @media ${Breakpoints.sm} {
+    display: none;
+  }
 `;
 // #endregion ----------------------- Atoms ------------------------------------
 
@@ -149,33 +145,42 @@ export const StyledLandingContent = styled.main`
   }
   // --- Children ---
 
-  //Accordion
+  /**
+  * Note: Classes copied from Radix UI example and slightly adapted.
+  * https://www.radix-ui.com/primitives/docs/components/accordion
+  */
+
+
   .AccordionRoot {
     border-radius: 6px;
     width: 100%;
-    background-color: var(--light);
   }
 
   .AccordionItem {
-    overflow: hidden;
+    // --- Sizing / Box-Model ---
     margin-top: 1px;
-  }
+    // --- Position ---
+    // --- Layout ---
+    // --- Decorative ---
+    overflow: hidden; //Necessary for animation to look smooth
 
-  .AccordionItem:first-child {
-    margin-top: 0;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-  }
+    // --- States ---
+    &:first-child {
+      margin-top: 0;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+    }
 
-  .AccordionItem:last-child {
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-  }
+    &:last-child {
+      border-bottom-left-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
 
-  .AccordionItem:focus-within {
-    position: relative;
-    z-index: 1;
-    box-shadow: 0 0 0 2px var(--action);
+    &:focus-within {
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 0 0 2px var(--action);
+    }
   }
 
   .AccordionHeader {
@@ -183,28 +188,44 @@ export const StyledLandingContent = styled.main`
   }
 
   .AccordionTrigger {
-    font-family: inherit;
-    background-color: transparent;
+    // --- Sizing / Box-Model ---
+    border-bottom: 1px solid var(--brand);
+    margin: 0.25rem;
     height: 45px;
-    font-weight: 700;
+    // --- Position ---
+    // --- Layout ---
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    // --- Decorative ---
+    font-family: inherit;
+    background-color: transparent;
+    font-weight: 700;
     font-size: var(--text-0);
     color: var(--brand);
-    box-shadow: 0 1px 0 var(--brand);
     background-color: white;
-  }
-
-  .AccordionTrigger:hover {
-    background-color: var(--light);
+    // --- States ---
+    &:hover {
+      background-color: var(--light);
+    }
   }
 
   .AccordionContent {
+    // --- Decorative ---
     font-size: var(--text-0);
     color: var(--text);
     background-color: #fff;
+    // --- States ---
+
+    &[data-state="open"] {
+      animation: slideDown 300ms cubic-bezier(0.87, 0, 0.13, 1);
+    }
+
+    &[data-state="closed"] {
+      animation: slideUp 300ms cubic-bezier(0.87, 0, 0.13, 1);
+    }
+    // --- Children ---
 
     a {
       font-weight: 400;
@@ -215,16 +236,12 @@ export const StyledLandingContent = styled.main`
       font-style: italic;
     }
   }
-  .AccordionContent[data-state="open"] {
-    animation: slideDown 300ms cubic-bezier(0.87, 0, 0.13, 1);
-  }
-  .AccordionContent[data-state="closed"] {
-    animation: slideUp 300ms cubic-bezier(0.87, 0, 0.13, 1);
-  }
 
   .AccordionContentText {
+    //--- Sizing ---
     padding: 15px 20px;
 
+    //--- Layout ---
     display: flex;
     flex-direction: column;
     gap: var(--unit);
@@ -237,6 +254,8 @@ export const StyledLandingContent = styled.main`
   .AccordionTrigger[data-state="open"] > .AccordionChevron {
     transform: rotate(180deg);
   }
+
+  //--- Animations ---
 
   @keyframes slideDown {
     from {
