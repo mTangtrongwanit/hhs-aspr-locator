@@ -31,6 +31,10 @@ import { Breakpoints } from "@/utils";
 // --- Children ---
 
 // #region -------------------------- Atoms ------------------------------------
+export const StyledFAQTitle = styled.h4`
+  color: var(--brand);
+  font-weight: 700;
+`
 // #endregion ----------------------- Atoms ------------------------------------
 
 // #region -------------- Molecules (Internal Layouts) -------------------------

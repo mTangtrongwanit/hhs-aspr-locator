@@ -16,6 +16,7 @@ import {
   StyledLandingContent,
   StyledSearchContainer,
   StyledContextRow,
+  StyledFAQTitle
 } from "./Landing.styles";
 import * as Accordion from '@radix-ui/react-accordion';
 import { ChevronDownIcon } from '@radix-ui/react-icons';// #endregion ----------- Custom Components / Utilities ------------------------
@@ -93,7 +94,8 @@ const Landing = () => {
             </Accordion.Header>
             <Accordion.Content className="AccordionContent">
               <div className="AccordionContentText">
-                TODO
+                <StyledFAQTitle>Placeholder - FAQ 1</StyledFAQTitle>
+                <p>Placeholder Answer - FAQ 1</p>
               </div></Accordion.Content>
           </Accordion.Item>
 
