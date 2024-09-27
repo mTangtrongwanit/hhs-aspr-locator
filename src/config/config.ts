@@ -11,6 +11,7 @@ import { type StaticConfiguration } from "./config.types";
 // #region ========================= EXPORTED CONSTANTS ==============================
 const config: StaticConfiguration = {
     treatmentData: {
+        locationsWebMapId: "b5346d4c624f4c1f991928d6fc392fda",
         treatment_sites: {
             name: "Treatment Sites",
             url: "https://services2.arcgis.com/ZQ4jTQn6k7VPXEwO/arcgis/rest/services/Treatments_Locator_2_Test_Data/FeatureServer/0",

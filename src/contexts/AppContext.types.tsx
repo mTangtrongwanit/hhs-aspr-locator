@@ -3,6 +3,10 @@ export interface AppContextType {
   setBannerHeight: (x: number) => void;
   headerHeight: number;
   setHeaderHeight: (x: number) => void;
+  locationsMapView: __esri.MapView | null;
+  setLocationsMapView: (x: __esri.MapView) => void;
+  selectedTreatmentSite: __esri.Graphic | null;
+  setSelectedTreatmentSite: (x: __esri.Graphic) => void;
 }
 
 export interface AppContextProps {
