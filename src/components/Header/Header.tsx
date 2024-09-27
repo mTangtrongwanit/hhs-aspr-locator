@@ -23,7 +23,6 @@ import { StyledHeader } from "./Header.styles";
 
 // #region ------------------------ Resources ----------------------------------
 import { useAppContext } from "@/contexts/AppContext";
-
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 
@@ -32,7 +31,7 @@ import { useAppContext } from "@/contexts/AppContext";
 
 // #region =================== EXPORTED COMPONENT ==============================
 const HeaderComponent = () => {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   const { setBannerHeight, setHeaderHeight } = useAppContext();
   // #region ------------------ Hooks (Resources) ------------------------------
@@ -85,7 +84,7 @@ const HeaderComponent = () => {
       <StyledHeader ref={headerRef} >
       <div className="dev-placeholder"> Logo
       </div>
-      <h1>Covid-19 and Flu Treatments Locator</h1>
+      <h1>{t("Header.Title")}</h1>
       <LanguageDropdown></LanguageDropdown>
       </StyledHeader>
     </>
