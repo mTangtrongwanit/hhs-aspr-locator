@@ -1,0 +1,1 @@
+import{V as n}from"./index-DxjjwORx.js";function u(r,e,i=n){return e||(e=new i),e===r||(e.removeAll(),a(r)?e.addMany(r):r&&e.add(r)),e}function m(r){return r}function a(r){return r&&(Array.isArray(r)||"items"in r&&Array.isArray(r.items))}export{u as n,m as t};
