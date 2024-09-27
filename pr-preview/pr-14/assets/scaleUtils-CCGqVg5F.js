@@ -1,1 +1,0 @@
-import{b1 as o,b2 as u,b3 as c}from"./index-DQGnl-bO.js";const e=96;function b(n,t){const r=n.extent,i=n.width,f=o(r==null?void 0:r.spatialReference);return r&&i?r.width/i*f*u*e:0}function d(n,t){return n/(o(t)*u*e)}function h(n,t,r){return a(n,t)&&s(n,r)}function a(n,t){return t===0||c(n,t)||n<t}function s(n,t){return t===0||c(n,t)||n>t}export{h as d,b as i,d as o};
