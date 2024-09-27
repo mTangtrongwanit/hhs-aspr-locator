@@ -16,13 +16,17 @@ import {
   StyledLandingContent,
   StyledSearchContainer,
   StyledContextRow,
+  StyledFAQTitle,
+  StyledRow,
+  StyledViewLocsButton,
+  StyledDecorativeImage,
 } from "./Landing.styles";
-// #endregion ----------- Custom Components / Utilities ------------------------
+import * as Accordion from "@radix-ui/react-accordion";
+import { ChevronDownIcon } from "@radix-ui/react-icons"; // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
 // import { type Props } from "./Landing.types";
 
-// import where needed to bring in i18n translation
 import "@/utils/i18n";
 import { useTranslation } from "react-i18next";
 // #endregion --------------------- Resources ----------------------------------
@@ -58,28 +62,110 @@ const Landing = () => {
   // #region ----------------------- Render ------------------------------------
   return (
     <StyledLandingContent>
+      {
+        //#region First Row
+      }
+
       <StyledSearchContainer>
         <h2>{t("Landing.Search Container Heading")}</h2>
         <p>{t("Landing.Search Container Description")}</p>
-        <div>
+        <StyledRow>
+          {/* TODO: Replace with components */}
           <div className="dev-placeholder">Location Search Placeholder</div>
           <div className="dev-placeholder">Illness Select Placeholder</div>
-        </div>
+        </StyledRow>
         <Link to="/locations">
-          <button>{t("Landing.View Locations Button Label")}</button>
+          <StyledViewLocsButton>
+            {t("Landing.View Locations Button Label")}
+          </StyledViewLocsButton>
         </Link>
       </StyledSearchContainer>
-      <div className="dev-placeholder" style={{ gridArea: "image" }}>
-        Image placeholder, hide from SR
-      </div>
+      <StyledDecorativeImage></StyledDecorativeImage>
+
+      {
+        //#endregion First Row
+      }
+
       <StyledContextRow>
         <h2 className="visually-hidden">
           {t("Landing.Context Container Screenreader Heading")}
         </h2>
-        {/* <p>&str Locations participating in the U.S. Government&nbsp;
-        <a href="/todo">Patient Assistance Program</a>       ...
-      </p> */}
-        <div className="dev-placeholder">Accordion placeholder</div>
+        <p>
+          Locations participating in the U.S. Government&nbsp;
+          <a href="TODO">Patient Assistance Program</a> operated by Pfizer
+          offering free Paxlovid for eligible patients are included on this
+          website. Eligible patients with a Paxlovid prescription can enroll in
+          the program at <a href="TODO">https://paxlovid.iassist.com.</a>&nbsp;
+          Other <a href="TODO">assistance programs</a> are available for
+          Paxlovid, Lagevrio, and Veklury.
+        </p>
+        {
+          //#region Accordion
+        }
+        <Accordion.Root
+          className="AccordionRoot"
+          type="single"
+          defaultValue="item-1"
+          collapsible
+        >
+          <Accordion.Item className="AccordionItem" value="item-1">
+            <Accordion.Header className="AccordionHeader">
+              {
+                //#region Accordion Drawer 1
+              }
+              <Accordion.Trigger className={"AccordionTrigger"}>
+                Frequently Asked Questions
+                <ChevronDownIcon className="AccordionChevron" aria-hidden />
+              </Accordion.Trigger>
+            </Accordion.Header>
+            <Accordion.Content className="AccordionContent">
+              <div className="AccordionContentText">
+                <StyledFAQTitle>Placeholder - FAQ 1</StyledFAQTitle>
+                <p>Placeholder Answer - FAQ 1</p>
+              </div>
+            </Accordion.Content>
+          </Accordion.Item>
+          {
+            //#endregion Accordion Drawer 1
+          }
+          {
+            //#region Accordion Drawer 2
+          }
+          <Accordion.Item className="AccordionItem" value="item-2">
+            <Accordion.Header className="AccordionHeader">
+              <Accordion.Trigger className={"AccordionTrigger"}>
+                Disclaimer
+                <ChevronDownIcon className="AccordionChevron" aria-hidden />
+              </Accordion.Trigger>
+            </Accordion.Header>
+            <Accordion.Content className="AccordionContent">
+              <div className="AccordionContentText">
+                <p>
+                  Additional information on COVID-19 treatments can be found on
+                  the <a href="TODO">ASPR COVID-19 Treatments page.</a>&nbsp;
+                  For questions regarding this site, contact 1-800-232-0233 (TTY
+                  888-720-7489). To learn more about COVID-19 testing, including
+                  how to order free test kits, visit{" "}
+                  <a href="TODO">COVID.gov.</a>
+                </p>
+                <p className="ital">
+                  * This content is not fully Section 508 conformant. If you
+                  need assistance, please contact{" "}
+                  <a href="TODO">gis@hhs.gov.</a>{" "}
+                  <a href="TODO">
+                    Tabular access to the data is also available.
+                  </a>
+                </p>
+              </div>
+            </Accordion.Content>
+          </Accordion.Item>
+          {
+            //#endregion Accordion Drawer 2
+          }
+        </Accordion.Root>
+        {
+          //#endregion Accordion
+        }
       </StyledContextRow>
     </StyledLandingContent>
   );
