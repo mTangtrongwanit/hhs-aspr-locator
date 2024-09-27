@@ -37,23 +37,23 @@ import styled from "styled-components";
 
 // #region --------------- Parent Component + Variants -------------------------
 export const StyledHeader = styled.header`
-    height: min-content;
-    padding: var(--unit);
+  height: min-content;
+  padding: var(--unit);
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    h1 {
-        margin: 0;
-        font-weight: 700;
-        color: var(--brand);
-        font-size: var(--text-3);
-    }
+  h1 {
+    margin: 0;
+    font-weight: 700;
+    color: var(--brand);
+    font-size: var(--text-3);
+  }
 
-    & .dev-placeholder {
-        width: 12rem;
-    }
+  & .dev-placeholder {
+    width: 12rem;
+  }
 `;
 
 // #endregion ------------ Parent Component + Variants -------------------------

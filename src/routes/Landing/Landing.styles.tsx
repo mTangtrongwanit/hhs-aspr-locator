@@ -150,7 +150,6 @@ export const StyledLandingContent = styled.main`
   * https://www.radix-ui.com/primitives/docs/components/accordion
   */
 
-
   .AccordionRoot {
     border-radius: 6px;
     width: 100%;

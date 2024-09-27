@@ -46,19 +46,19 @@ const Card = ({ selected, serviceProvider }: Props) => {
   return (
     <StyledCard $selected={selected}>
       <StyledTitleRow>
-        <StyledCardTitle className='bold'>
+        <StyledCardTitle className="bold">
           {serviceProvider.name}
         </StyledCardTitle>
         {serviceProvider.distance && (
-          <p className='smallText'>{`Distance: ${serviceProvider.distance} miles`}</p>
+          <p className="smallText">{`Distance: ${serviceProvider.distance} miles`}</p>
         )}
       </StyledTitleRow>
       <address>
-        <StyledIconField className='addr'>
+        <StyledIconField className="addr">
           <PinIcon></PinIcon>{" "}
-          <p className='smallText'>{serviceProvider.address}</p>
+          <p className="smallText">{serviceProvider.address}</p>
         </StyledIconField>
-        <StyledIconField className='addr'>
+        <StyledIconField className="addr">
           <PhoneIcon></PhoneIcon>
           <a href={`tel:${serviceProvider.phone}`}>{serviceProvider.phone}</a>
         </StyledIconField>
@@ -101,10 +101,10 @@ const Card = ({ selected, serviceProvider }: Props) => {
       </StyledRow>
       <p>
         Rx or telehealth&nbsp;
-        <a href='TODO'>additional information</a>
+        <a href="TODO">additional information</a>
       </p>
       {serviceProvider.isHRSA && (
-        <p className='ital'>
+        <p className="ital">
           Health Resources and Services Administration (HRSA) supported Health
           Center
         </p>
@@ -114,10 +114,10 @@ const Card = ({ selected, serviceProvider }: Props) => {
         {serviceProvider.address && (
           <StyledOutlinedLink
             href={`https://www.google.com/maps/dir//${encodeURIComponent(
-              serviceProvider.address
+              serviceProvider.address,
             )}`}
-            target='_blank'
-            rel='noopener noreferrer'
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label={`Directions to Location`}
           >
             <span>Open in Maps</span>

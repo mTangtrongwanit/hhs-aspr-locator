@@ -78,14 +78,13 @@ const HeaderComponent = () => {
     <>
       <aside ref={bannerRef}>
         <GovBanner
-          language={i18n.resolvedLanguage === 'es' ? 'spanish' : undefined}
+          language={i18n.resolvedLanguage === "es" ? "spanish" : undefined}
         />
       </aside>
-      <StyledHeader ref={headerRef} >
-      <div className="dev-placeholder"> Logo
-      </div>
-      <h1>{t("Header.Title")}</h1>
-      <LanguageDropdown></LanguageDropdown>
+      <StyledHeader ref={headerRef}>
+        <div className="dev-placeholder"> Logo</div>
+        <h1>{t("Header.Title")}</h1>
+        <LanguageDropdown></LanguageDropdown>
       </StyledHeader>
     </>
   );

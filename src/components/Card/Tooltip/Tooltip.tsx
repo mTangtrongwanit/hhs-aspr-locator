@@ -39,13 +39,13 @@ const Tooltip = ({ icon, children }: Props) => {
     <StyledTooltip.Provider>
       <StyledTooltip.Root>
         <StyledTooltip.Trigger asChild>
-          <StyledTriggerButton aria-label='TODO'>
+          <StyledTriggerButton aria-label="TODO">
             <StyledIcon>{icon}</StyledIcon>
           </StyledTriggerButton>
         </StyledTooltip.Trigger>
-        <StyledTooltip.Content className='TooltipContent' sideOffset={5}>
+        <StyledTooltip.Content className="TooltipContent" sideOffset={5}>
           {children}
-          <StyledTooltip.Arrow className='TooltipArrow' />
+          <StyledTooltip.Arrow className="TooltipArrow" />
         </StyledTooltip.Content>
       </StyledTooltip.Root>
     </StyledTooltip.Provider>

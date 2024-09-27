@@ -36,19 +36,18 @@ const StyledAppLayout = styled.div`
   // --- Layout ---
   display: grid;
 
-    grid-template-rows: min-content min-content minmax(0, 1fr) auto;
+  grid-template-rows: min-content min-content minmax(0, 1fr) auto;
 
   // --- Decorative ---
   background-color: var(--app-bg);
 `;
 
 const StyledLocsLayout = styled(StyledAppLayout)`
-/* height: fit-content; */
-height: inherit;
-overflow-y: auto;
-grid-template-rows: min-content min-content;
-
-`
+  /* height: fit-content; */
+  height: inherit;
+  overflow-y: auto;
+  grid-template-rows: min-content min-content;
+`;
 
 const router = createBrowserRouter(
   [
@@ -80,7 +79,6 @@ const router = createBrowserRouter(
 // #endregion ===================== CONSTANTS ==================================
 // #region =================== EXPORTED COMPONENT ==============================
 function App() {
-
   // #region ------------------ Hooks (Resources) ------------------------------
   // #endregion --------------- Hooks (Resources) ------------------------------
   // #region -------------------- Hooks (State) --------------------------------
