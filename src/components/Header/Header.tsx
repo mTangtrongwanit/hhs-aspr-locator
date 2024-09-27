@@ -28,7 +28,6 @@ import {
 
 // #region ------------------------ Resources ----------------------------------
 import { useAppContext } from "@/contexts/AppContext";
-
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 
@@ -37,7 +36,7 @@ import { useAppContext } from "@/contexts/AppContext";
 
 // #region =================== EXPORTED COMPONENT ==============================
 const HeaderComponent = () => {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   const { setBannerHeight, setHeaderHeight } = useAppContext();
   // #region ------------------ Hooks (Resources) ------------------------------
@@ -99,7 +98,7 @@ const HeaderComponent = () => {
           />
         </StyledHeaderContentContainer>
         <StyledHeaderContentContainer>
-          <StyledAppTitle>Covid-19 and Flu Treatments Locator</StyledAppTitle>
+          <StyledAppTitle>{t("Header.Title")}</StyledAppTitle>
         </StyledHeaderContentContainer>
         <StyledHeaderContentContainer>
           <LanguageDropdown></LanguageDropdown>

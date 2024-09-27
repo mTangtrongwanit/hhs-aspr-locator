@@ -33,7 +33,7 @@ import config from "@/config";
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 // #region ======================== CONSTANTS ==================================
-const StyledAppLayout = styled.section`
+const StyledAppLayout = styled.div`
   // --- Sizing / Box-Model ---
   width: inherit;
   height: inherit;
