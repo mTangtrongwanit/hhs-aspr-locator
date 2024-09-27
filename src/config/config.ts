@@ -11,11 +11,11 @@ import { type StaticConfiguration } from "./config.types";
 // #region ========================= EXPORTED CONSTANTS ==============================
 const config: StaticConfiguration = {
     treatmentData: {
-        locationsWebMapId: "TODO: Add WebMap ID",
+        locationsWebMapId: "b5346d4c624f4c1f991928d6fc392fda",
     },
     portal: {
         url: "https://dhhs.maps.arcgis.com/",
-        appId: "TODO: Add WebMap ID"
+        appId: "2MAyeDcDhNcYTqwX"
     }
 };
 // #endregion ========================== EXPORTED CONSTANTS ==============================
