@@ -30,6 +30,11 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
       latitude: 38.889805, // Washington, DC
     })
   );
+  // Locations Map and Treatment Site
+  const [locationsMapView, setLocationsMapView] =
+    useState<__esri.MapView | null>(null);
+  const [selectedTreatmentSite, setSelectedTreatmentSite] =
+    useState<__esri.Graphic | null>(null);
 
   return (
     <AppContext.Provider
@@ -40,6 +45,10 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
         setHeaderHeight: setHeaderHeight,
         searchPoint: searchPoint,
         setSearchPoint: setSearchPoint,
+        locationsMapView: locationsMapView,
+        setLocationsMapView: setLocationsMapView,
+        selectedTreatmentSite: selectedTreatmentSite,
+        setSelectedTreatmentSite: setSelectedTreatmentSite,
       }}
     >
       {children}

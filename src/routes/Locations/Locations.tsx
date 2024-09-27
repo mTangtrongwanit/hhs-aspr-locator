@@ -20,6 +20,7 @@ import {
 } from "./Locations.styles";
 import Card from "@/components/Card";
 import { ServiceProvider } from "@/components/Card";
+import LocationsMap from "@/components/LocationsMap";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
@@ -150,7 +151,7 @@ const Locations = () => {
           {t("Locations.Results Screenreader Heading")}
         </h2>
         <StyledListContainer>
-          <div id="list-title">
+          <div id='list-title'>
             <h3>
               <Trans i18nKey='Locations.List Heading' count={0}></Trans>
             </h3>
@@ -175,7 +176,7 @@ const Locations = () => {
           <h3 className='visually-hidden'>
             {t("Locations.Map Screenreader Heading")}
           </h3>
-          <div className='dev-placeholder'>Map Placeholder</div>
+          <LocationsMap />
         </StyledMapContainer>
       </div>
     </StyledLocationsContent>

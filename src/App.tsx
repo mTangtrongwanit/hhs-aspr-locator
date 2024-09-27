@@ -1,11 +1,16 @@
 // #region ========================= IMPORTS ===================================
 // #region --------------------------- React -----------------------------------
+import { useEffect } from "react";
 // #endregion ------------------------ React -----------------------------------
 // #region ------------ 3rd-Party Components / Libraries -----------------------
 /* Routing */
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 /* Styling */
 import { setAssetPath } from "@esri/calcite-components/dist/components";
+/* Auth */
+import esriId from "@arcgis/core/identity/IdentityManager";
+import OAuthInfo from "@arcgis/core/identity/OAuthInfo";
+import Portal from "@arcgis/core/portal/Portal";
 
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
@@ -23,11 +28,12 @@ import Locations from "@/routes/Locations";
 import "@/styles/index.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import config from "@/config";
 
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 // #region ======================== CONSTANTS ==================================
-const StyledAppLayout = styled.section`
+const StyledAppLayout = styled.div`
   // --- Sizing / Box-Model ---
   width: inherit;
   height: inherit;
@@ -74,7 +80,7 @@ const router = createBrowserRouter(
   ],
   {
     basename: import.meta.env.BASE_URL,
-  },
+  }
 );
 // #endregion ===================== CONSTANTS ==================================
 // #region =================== EXPORTED COMPONENT ==============================
@@ -84,6 +90,23 @@ function App() {
   // #region -------------------- Hooks (State) --------------------------------
   // #endregion ----------------- Hooks (State) --------------------------------
   // #region -------------------- Hooks (Other) --------------------------------
+  useEffect(() => {
+    // Auth
+    const info = new OAuthInfo({
+      appId: config.portal.appId,
+      flowType: "authorization-code",
+    });
+
+    esriId.registerOAuthInfos([info]);
+    const portal = new Portal({
+      url: config.portal.url,
+      authMode: "immediate",
+    });
+
+    portal.load().catch((error) => {
+      console.error("Portal failed to load", error);
+    });
+  }, []);
   // #endregion ----------------- Hooks (Other) --------------------------------
   // #region ---------------- Supporting Functions -----------------------------
   // Styles
