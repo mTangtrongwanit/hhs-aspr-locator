@@ -37,9 +37,9 @@ import NoGenericIcon from "@/assets/icons/no-generic.svg";
 // import PatientAssistIcon from "@/assets/icons/patient-assist.svg";
 // import PediatricIcon from "@/assets/icons/pediatric.svg";
 import UsgProcuredIcon from "@/assets/icons/usg-procured.svg";
-// import PapIcon from "@/assets/icons/pap.svg";
-// import OseltamivirIcon from "@/assets/icons/oseltamivir.svg";
-// import PrescribingServicesIcon from "@/assets/icons/prescribing-services.svg";
+import PapIcon from "@/assets/icons/pap.svg";
+import OseltamivirIcon from "@/assets/icons/oseltamivir.svg";
+import PrescribingServicesIcon from "@/assets/icons/prescribing-services.svg";
 
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
@@ -98,7 +98,8 @@ const Card = ({ selected, serviceProvider }: Props) => {
    * @returns {void}
    */
   const copyToClipboard = () => {
-    const url = `${window.location.origin}/locations/?facility_id=${serviceProvider.facility_id}`;
+    // TODO: Remove "pr-preview/pr-13" from the URL prior to merging to main
+    const url = `${window.location.origin}/pr-preview/pr-13/locations/?facility_id=${serviceProvider.facility_id}`;
     navigator.clipboard.writeText(url);
   };
   // #endregion ------------- Supporting Functions -----------------------------
@@ -135,6 +136,9 @@ const Card = ({ selected, serviceProvider }: Props) => {
                 {serviceProvider.address2}
               </>
             ) : null}
+            <br />
+            {serviceProvider.city}, {serviceProvider.state}{" "}
+            {serviceProvider.zip}
           </p>
         </StyledIconField>
         <StyledIconField className='addr'>
@@ -152,11 +156,11 @@ const Card = ({ selected, serviceProvider }: Props) => {
       {/* TODO: Alt text for these icons */}
 
       <StyledRow>
-        {/* {serviceProvider.is_pap === "TRUE" && (
+        {serviceProvider.is_pap === "TRUE" && (
           <Tooltip icon={<PapIcon />}>
             <p>{t("Card.pap")}</p>
           </Tooltip>
-        )} */}
+        )}
         {serviceProvider.has_usg_product === "TRUE" && (
           <Tooltip icon={<UsgProcuredIcon />}>
             <p>{t("Card.usgProduct")}</p>
@@ -180,16 +184,16 @@ const Card = ({ selected, serviceProvider }: Props) => {
               <p>{t("Card.tamifluOnly")}</p>
             </Tooltip>
           )}
-        {/* {serviceProvider.has_oseltamivir_suspension === "TRUE" && (
+        {serviceProvider.has_oseltamivir_suspension === "TRUE" && (
           <Tooltip icon={<OseltamivirIcon />}>
             <p>{t("Card.oseltamivirSuspension")}</p>
           </Tooltip>
-        )} */}
-        {/* {serviceProvider.is_prescribing_svcs_available === "TRUE" && (
+        )}
+        {serviceProvider.is_prescribing_svcs_available === "TRUE" && (
           <Tooltip icon={<PrescribingServicesIcon />}>
             <p>{t("Card.prescribingServices")}</p>
           </Tooltip>
-        )} */}
+        )}
       </StyledRow>
       {serviceProvider.is_prescribing_svcs_available === "TRUE" && (
         <p>
@@ -205,6 +209,10 @@ const Card = ({ selected, serviceProvider }: Props) => {
             <strong>{t("Card.additionalInformation")}</strong>
           </a>
         </p>
+      )}
+      {/* TODO: This is a placeholder. Fix this (HRSA) based on the direction from the client. */}
+      {serviceProvider.grantee_code === "CV1" && (
+        <p className='ital'>{t("Card.hrsa")}</p>
       )}
       <StyledRow>
         <button onClick={copyToClipboard}>{t("Card.shareLocation")}</button>

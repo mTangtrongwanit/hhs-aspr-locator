@@ -25,11 +25,9 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   const [bannerHeight, setBannerHeight] = useState<number>(0);
   const [headerHeight, setHeaderHeight] = useState<number>(0);
   const [searchPoint, setSearchPoint] = useState<__esri.Point | null>(
-    // TODO: This is a placeholder. Update this to null and use the
-    // Search component to set the search point in the future
     new Point({
-      longitude: -118.2437,
-      latitude: 34.0522, // Los Angeles
+      longitude: -77.009056,
+      latitude: 38.889805, // Washington, DC
     })
   );
 
