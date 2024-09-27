@@ -1,1 +1,0 @@
-import{L as o}from"./portalItemUtils-SOz5vLrp.js";import{b8 as c,b9 as e}from"./index-DxjjwORx.js";const f=96;function d(t,r){const n=t.extent,i=t.width,u=c(n==null?void 0:n.spatialReference);return n&&i?n.width/i*u*e*f:0}function b(t,r,n){return a(t,r)&&s(t,n)}function a(t,r){return r===0||o(t,r)||t<r}function s(t,r){return r===0||o(t,r)||t>r}export{b as d,d as i};
