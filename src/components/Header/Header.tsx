@@ -18,7 +18,12 @@ import { useTranslation } from "react-i18next";
 
 // #region -------------- Custom Components / Utilities ------------------------
 import LanguageDropdown from "@/components/LanguageDropdown";
-import { StyledHeader } from "./Header.styles";
+import {
+  StyledHeader,
+  StyledHeaderLogo,
+  StyledAppTitle,
+  StyledHeaderContentContainer,
+} from "./Header.styles";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
@@ -82,9 +87,22 @@ const HeaderComponent = () => {
         />
       </aside>
       <StyledHeader ref={headerRef}>
-        <div className="dev-placeholder"> Logo</div>
-        <h1>{t("Header.Title")}</h1>
-        <LanguageDropdown></LanguageDropdown>
+        <StyledHeaderContentContainer>
+          <StyledHeaderLogo
+            src="/src/assets/images/ASPR-logo-web.jpg"
+            srcSet="/src/assets/images/ASPR-logo-mobile.jpg 274w,
+            /src/assets/images/ASPR-logo-web.jpg 693w"
+            sizes="(max-width: 1100px) 117px,
+            296px"
+            alt="Administration for Strategic Preparedness and Response Logo"
+          />
+        </StyledHeaderContentContainer>
+        <StyledHeaderContentContainer>
+          <StyledAppTitle>{t("Header.Title")}</StyledAppTitle>
+        </StyledHeaderContentContainer>
+        <StyledHeaderContentContainer>
+          <LanguageDropdown></LanguageDropdown>
+        </StyledHeaderContentContainer>
       </StyledHeader>
     </>
   );
