@@ -24,6 +24,11 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
    */
   const [bannerHeight, setBannerHeight] = useState<number>(0);
   const [headerHeight, setHeaderHeight] = useState<number>(0);
+  // Locations Map and Treatment Site
+  const [locationsMapView, setLocationsMapView] =
+    useState<__esri.MapView | null>(null);
+  const [selectedTreatmentSite, setSelectedTreatmentSite] =
+    useState<__esri.Graphic | null>(null);
 
   return (
     <AppContext.Provider
@@ -32,6 +37,10 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
         setBannerHeight: setBannerHeight,
         headerHeight: headerHeight,
         setHeaderHeight: setHeaderHeight,
+        locationsMapView: locationsMapView,
+        setLocationsMapView: setLocationsMapView,
+        selectedTreatmentSite: selectedTreatmentSite,
+        setSelectedTreatmentSite: setSelectedTreatmentSite,
       }}
     >
       {children}
@@ -45,7 +54,7 @@ export const useAppContext = () => {
   if (!appContext) {
     // the below text is for developers not for users. It does not need to be translated
     throw new Error(
-      "Cannot use 'useAppContext' outside of a AppContextProvider",
+      "Cannot use 'useAppContext' outside of a AppContextProvider"
     );
   }
   return appContext;
