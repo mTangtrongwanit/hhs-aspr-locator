@@ -1,45 +1,38 @@
 {
-  "title": "Bienvenido {{name}}",
-  "description": {
-    "part1": "Este es un ejemplo sencillo.",
-    "part2": "algo"
-  },
-  "userMessagesUnread_one": "Tienes {{count}} mensaje no leído.",
-  "userMessagesUnread_other": "Tienes {{count}} mensaje no leído.",
   "Header": {
     "Logo Alt Text": "Administración para la preparación y respuesta estratégica",
     "Title": "Localizador de tratamientos para el COVID-19 y la gripe",
     "Title Alt Text": "Localizador de tratamientos para el COVID-19 y la gripe"
   },
   "Footer": {
-    "Home Link": "Hogar",
-    "Contact Us Link": "Contacta con nosotras",
-    "ASPR Archive Link": "ASPR Archivo",
-    "Accessibility Link": "Accesibilidad",
-    "Privacy Policies Link": "Políticas de privacidad",
-    "Disclaimer Link": "Descargo de responsabilidad",
-    "HHS Viewers & Players Link": "HHS Espectadoras y jugadoras",
-    "HHS Plain Language Link": "HHS Lenguaje sencillo",
+    "Home Link": "Home",
+    "Contact Us Link": "Contact Us",
+    "ASPR Archive Link": "ASPR Archive",
+    "Accessibility Link": "Accessibility",
+    "Privacy Policies Link": "Privacy Policies",
+    "Disclaimer Link": "Disclaimer",
+    "HHS Viewers & Players Link": "HHS Viewers & Players",
+    "HHS Plain Language Link": "HHS Plain Language",
     "FOIA Link": "FOIA",
-    "Vulnerability Disclosure Policy Link": "Política de divulgación de vulnerabilidades"
+    "Vulnerability Disclosure Policy Link": "Vulnerability Disclosure Policy"
   },
   "Landing": {
-    "Search Container Heading": "Encuentre medicamentos para el COVID-19 y la gripe",
-    "Search Container Description": "Este localizador muestra farmacias, clínicas y otros lugares con medicamentos seguros y eficaces para el COVID-19 y la gripe. Estos medicamentos requieren receta médica de un proveedor de atención médica.",
-    "View Locations Button Label": "Ver ubicaciones",
-    "Context Container Screenreader Heading": "Información contextual",
-    "Assistance Program Description": "i18n Todo - No estoy seguro de cómo dividir esto de manera efectiva en texto de párrafo y enlaces",
+    "Search Container Heading": "Find COVID-19 and Flu Medications",
+    "Search Container Description": "This locator displays pharmacies, clinics, and other locations with  safe and effective COVID-19 and Flu medications. These medications require a  prescription from a healthcare provider.",
+    "View Locations Button Label": "View Locations",
+    "Context Container Screenreader Heading": "Contextual Information",
+    "Assistance Program Description": "i18n Todo - not sure how to effectively break this up into paragraph text vs links",
     "Accordion Item 1": {
-      "Heading": "Preguntas frecuentes"
+      "Heading": "Frequently Asked Questions"
     },
     "Accordion Item 2": {
-      "Heading": "Descargo de responsabilidad"
+      "Heading": "Disclaimer"
     }
   },
   "Locations": {
-    "Search Container Screenreader Heading": "Busca ubicaciones",
-    "Results Screenreader Heading": "Resultos",
-    "List Heading": "{{count}} Ubicaciones",
-    "Map Screenreader Heading": "Mapa de ubicaciones"
+    "Search Container Screenreader Heading": "Search for Locations",
+    "Results Screenreader Heading": "Results",
+    "List Heading": "{{count}} Sites",
+    "Map Screenreader Heading": "Map of Sites"
   }
 }

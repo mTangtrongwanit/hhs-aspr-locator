@@ -13,6 +13,7 @@
 // #region ===================== EXPORTED TYPES ================================
 export interface StaticConfiguration {
     treatmentData: {
+        locationsWebMapId: string;
         treatment_sites: {
             name: string;
             url: string;

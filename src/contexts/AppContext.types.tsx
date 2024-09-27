@@ -5,6 +5,10 @@ export interface AppContextType {
   setHeaderHeight: (x: number) => void;
   searchPoint: __esri.Point | null;
   setSearchPoint: (x: __esri.Point | null) => void;
+  locationsMapView: __esri.MapView | null;
+  setLocationsMapView: (x: __esri.MapView) => void;
+  selectedTreatmentSite: __esri.Graphic | null;
+  setSelectedTreatmentSite: (x: __esri.Graphic) => void;
 }
 
 export interface AppContextProps {
