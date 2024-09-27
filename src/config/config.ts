@@ -38,8 +38,7 @@ const config: StaticConfiguration = {
     },
     portal: {
         url: "https://dhhs.maps.arcgis.com/",
-        // TODO
-        appId: ""
+        appId: "2MAyeDcDhNcYTqwX"
     }
 };
 // #endregion ========================== EXPORTED CONSTANTS ==============================
