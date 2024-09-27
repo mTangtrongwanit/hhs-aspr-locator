@@ -108,7 +108,7 @@ export const StyledMapContainer = styled.section`
 // #endregion ----------- Molecules (Internal Layouts) -------------------------
 
 // #region --------------- Parent Component + Variants -------------------------
-export const StyledLocationsContent = styled.section`
+export const StyledLocationsContent = styled.main`
   // --- Local Variables ---
   // --- Sizing / Box-Model ---
   width: 100%;

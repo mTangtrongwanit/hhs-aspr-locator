@@ -16,7 +16,10 @@ import {
   StyledLandingContent,
   StyledSearchContainer,
   StyledContextRow,
-  StyledFAQTitle
+  StyledFAQTitle,
+  StyledRow,
+  StyledViewLocsButton,
+  StyledDecorativeImage
 } from "./Landing.styles";
 import * as Accordion from '@radix-ui/react-accordion';
 import { ChevronDownIcon } from '@radix-ui/react-icons';// #endregion ----------- Custom Components / Utilities ------------------------
@@ -63,16 +66,15 @@ const Landing = () => {
       <StyledSearchContainer>
         <h2>{t("Landing.Search Container Heading")}</h2>
         <p>{t("Landing.Search Container Description")}</p>
-        <div>
+        <StyledRow>
           <div className="dev-placeholder">Location Search Placeholder</div>
           <div className="dev-placeholder">Illness Select Placeholder</div>
-        </div>
+        </StyledRow>
         <Link to="/locations">
-          <button>{t("Landing.View Locations Button Label")}</button>
+          <StyledViewLocsButton>{t("Landing.View Locations Button Label")}</StyledViewLocsButton>
         </Link>
       </StyledSearchContainer>
-      <div className="img">
-      </div>
+      <StyledDecorativeImage></StyledDecorativeImage>
       <StyledContextRow>
         <h2 className="visually-hidden">
           {t("Landing.Context Container Screenreader Heading")}

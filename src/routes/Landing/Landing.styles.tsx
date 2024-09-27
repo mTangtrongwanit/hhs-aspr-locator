@@ -32,8 +32,53 @@ import { Breakpoints } from "@/utils";
 
 // #region -------------------------- Atoms ------------------------------------
 export const StyledFAQTitle = styled.h4`
+  // --- Decorative ---
   color: var(--brand);
   font-weight: 700;
+`;
+
+export const StyledRow = styled.div`
+  // --- Layout ---
+
+  display: flex;
+  gap: inherit;
+  // --- States ---
+
+  @media ${Breakpoints.sm} {
+    flex-direction: column;
+  }
+`;
+
+export const StyledViewLocsButton = styled.button`
+  // --- Sizing / Box-Model ---
+  width: min-content;
+  padding: calc(var(--unit) / 2) calc(var(--unit)); //vert horz
+  // --- Decorative ---
+  white-space: nowrap;
+  background: var(--accent);
+  color: #fff;
+  border-radius: var(--radius);
+  border: var(--border) solid #fff;
+  font-weight: bold;
+  // --- States ---
+
+  &:hover,
+  &:focus {
+    background: var(--brand);
+  }
+`;
+
+export const StyledDecorativeImage = styled.div`
+      grid-area: image;
+    // --- Decorative ---
+    background-image: url("./src/assets/nurse.jpg");
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-size: cover;
+
+    @media ${Breakpoints.sm} {
+      display: none;
+    }
 `;
 // #endregion ----------------------- Atoms ------------------------------------
 
@@ -51,7 +96,6 @@ export const StyledSearchContainer = styled.section`
   // --- Decorative ---
   color: #fff;
   background-color: var(--brand);
-  // --- States ---
 
   // --- Children ---
   h2 {
@@ -59,40 +103,9 @@ export const StyledSearchContainer = styled.section`
     font-size: var(--text-5);
     font-weight: 700;
   }
-
-  p + div {
-    display: flex;
-    gap: inherit;
-
-    @media ${Breakpoints.sm} {
-      flex-direction: column;
-    }
-  }
-
-  button {
-    // --- Sizing / Box-Model ---
-    width: min-content;
-    padding: calc(var(--unit) / 2) calc(var(--unit)); //vert horz
-    // --- Position ---
-    // --- Layout ---
-    // --- Decorative ---
-    white-space: nowrap;
-    background: var(--accent);
-    color: #fff;
-    border-radius: var(--radius);
-    border: var(--border) solid #fff;
-    font-weight: bold;
-    // --- States ---
-
-    &:hover {
-      background: var(--brand);
-    }
-    // --- Children ---
-  }
 `;
 
 export const StyledContextRow = styled.section`
-  // --- Local Variables ---
   // --- Sizing / Box-Model ---
   width: 100%;
   padding: calc(var(--unit) * 2) var(--footer-offset);
@@ -115,11 +128,10 @@ export const StyledContextRow = styled.section`
 // #endregion ----------- Molecules (Internal Layouts) -------------------------
 
 // #region --------------- Parent Component + Variants -------------------------
-export const StyledLandingContent = styled.section`
-  // --- Local Variables ---
+export const StyledLandingContent = styled.main`
   // --- Sizing / Box-Model ---
   width: 100%;
-  /* height: 100%; */
+  overflow-y: auto; //prevent accordion and footer from overlapping
   // --- Position ---
   // --- Layout ---
   display: grid;
@@ -136,19 +148,6 @@ export const StyledLandingContent = styled.section`
     flex-direction: column;
   }
   // --- Children ---
-
-  .img {
-    grid-area: image;
-    // --- Decorative ---
-    background-image: url("./src/assets/nurse.jpg");
-    background-repeat: no-repeat;
-    background-position: top right;
-    background-size: cover;
-
-    @media ${Breakpoints.sm} {
-      display: none;
-    }
-  }
 
   //Accordion
   .AccordionRoot {
