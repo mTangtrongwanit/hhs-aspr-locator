@@ -92,6 +92,12 @@ export const StyledListContainer = styled.section`
     font-size: var(--text-3);
     color: var(--brand);
   }
+
+  ul {
+    display: flex;
+  flex-direction: column;
+  gap: var(--unit);
+  }
 `;
 
 export const StyledMapContainer = styled.section`

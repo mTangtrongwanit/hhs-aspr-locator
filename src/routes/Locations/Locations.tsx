@@ -158,6 +158,7 @@ const Locations = () => {
             <div className='dev-placeholder'>Filter Placeholder</div>
             <div className='dev-placeholder'>Sort Placeholder</div>
           </div>
+          <ul>
           {treatmentSites.features.map((site: object) => {
             const serviceProver: Site = site as Site;
             const serviceProvider: ServiceProvider = serviceProver.attributes;
@@ -169,6 +170,7 @@ const Locations = () => {
               ></Card>
             );
           })}
+          </ul>
         </StyledListContainer>
         <StyledMapContainer
           style={{ "--remainder": `${totalHeight}px` } as React.CSSProperties}

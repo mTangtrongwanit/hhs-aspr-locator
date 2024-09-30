@@ -116,8 +116,7 @@ export const StyledLabelRow = styled.div`
 // #endregion ----------- Molecules (Internal Layouts) -------------------------
 
 // #region --------------- Parent Component + Variants -------------------------
-export const StyledCard = styled.div<{
-  $category?: string;
+export const StyledCard = styled.li<{
   $selected?: boolean;
 }>`
   // --- Sizing / Box-Model ---
@@ -137,8 +136,7 @@ export const StyledCard = styled.div<{
   gap: calc(var(--unit) / 2);
 
   // --- Decorative ---
-  border: var(border) solid
-    ${(props) => `var(--${props.$category}-med, var(--ui-pale-light))`};
+  border: var(border) solid #fff;
   color: var(--text);
   background-color: #fff;
 
@@ -146,7 +144,7 @@ export const StyledCard = styled.div<{
   ${(props) =>
     props.$selected &&
     `
-    border-color: var(--${props.$category}-dark, var(--ui-pale-dark));
+    border-color: var(--brand);
   `}
 
   // --- Children ---
@@ -162,8 +160,7 @@ export const StyledCard = styled.div<{
     // --- Decorative ---
     color: var(--text);
     background-color: white;
-    box-shadow:
-      hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
+    box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
       hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
     // --- Children ---
     & ${StyledOfferingSpan} {
@@ -183,7 +180,7 @@ export const StyledCard = styled.div<{
   .smallText {
     font-size: var(--text--1);
     font-weight: 300;
-    line-height: 125%; 
+    line-height: 125%;
     color: var(--text);
   }
 
