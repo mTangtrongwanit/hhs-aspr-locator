@@ -95,8 +95,8 @@ export const StyledListContainer = styled.section`
 
   ul {
     display: flex;
-  flex-direction: column;
-  gap: var(--unit);
+    flex-direction: column;
+    gap: var(--unit);
   }
 `;
 

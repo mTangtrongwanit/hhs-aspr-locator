@@ -66,7 +66,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
     const fetchDistance = async () => {
       const dist = await calculateDistanceBetweenTwoPoints(
         serviceProvider,
-        searchPoint
+        searchPoint,
       );
       setDistance(dist);
     };
@@ -100,7 +100,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
    */
   const copyToClipboard = (
     path: string,
-    queryParams: Record<string, string>
+    queryParams: Record<string, string>,
   ) => {
     const url = new URL(`${window.location.origin}${path}`);
     Object.keys(queryParams).forEach((key) => {
@@ -162,10 +162,8 @@ const Card = ({ selected, serviceProvider }: Props) => {
         <StyledIconField className="addr">
           {serviceProvider.public_phone && <PhoneIcon></PhoneIcon>}
           {serviceProvider.public_phone && (
-            <a
-              href={`tel:serviceProvider.public_phone`}
-            >
-             { serviceProvider.public_phone }
+            <a href={`tel:serviceProvider.public_phone`}>
+              {serviceProvider.public_phone}
             </a>
           )}
         </StyledIconField>
@@ -244,13 +242,13 @@ const Card = ({ selected, serviceProvider }: Props) => {
             href={`https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(
               searchPoint
                 ? `${searchPoint.latitude},${searchPoint.longitude}`
-                : ""
+                : "",
             )}&destination=${encodeURIComponent(
               `${serviceProvider.address1} ${
                 serviceProvider.address2 ? serviceProvider.address2 + " " : ""
               }${serviceProvider.city} ${serviceProvider.state} ${
                 serviceProvider.zip
-              }`
+              }`,
             )}`}
             target="_blank"
             rel="noopener noreferrer"

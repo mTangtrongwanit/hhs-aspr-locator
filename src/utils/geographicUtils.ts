@@ -23,26 +23,29 @@ import { type AppContextType } from "@/contexts/AppContext.types";
  *
  * @param {ServiceProvider} serviceProvider The service provider for which to calculate the distance.
  */
-export const calculateDistanceBetweenTwoPoints = async (serviceProvider: ServiceProvider, searchPoint: AppContextType["searchPoint"]) => {
-    try {
-        if (!searchPoint) {
-            return null;
-        }
-        const serviceProviderPoint = new Point({
-            latitude: serviceProvider.latitude,
-            longitude: serviceProvider.longitude,
-        });
-        const polyline = new Polyline({
-            paths: [
-                [
-                    [searchPoint.longitude, searchPoint.latitude], // First point
-                    [serviceProviderPoint.longitude, serviceProviderPoint.latitude], // Second point
-                ],
-            ],
-        });
-        return geometryEngine.geodesicLength(polyline, "miles");
-    } catch (error) {
-        console.error("Error calculating distance: ", error);
-        return null;
+export const calculateDistanceBetweenTwoPoints = async (
+  serviceProvider: ServiceProvider,
+  searchPoint: AppContextType["searchPoint"],
+) => {
+  try {
+    if (!searchPoint) {
+      return null;
     }
+    const serviceProviderPoint = new Point({
+      latitude: serviceProvider.latitude,
+      longitude: serviceProvider.longitude,
+    });
+    const polyline = new Polyline({
+      paths: [
+        [
+          [searchPoint.longitude, searchPoint.latitude], // First point
+          [serviceProviderPoint.longitude, serviceProviderPoint.latitude], // Second point
+        ],
+      ],
+    });
+    return geometryEngine.geodesicLength(polyline, "miles");
+  } catch (error) {
+    console.error("Error calculating distance: ", error);
+    return null;
+  }
 };

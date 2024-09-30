@@ -19,5 +19,5 @@
 // #endregion ====================== IMPORTS ===================================
 
 // #region ===================== EXPORTED TYPES ================================
-export interface Props { }
+export interface Props {}
 // #endregion ================== EXPORTED TYPES ================================
