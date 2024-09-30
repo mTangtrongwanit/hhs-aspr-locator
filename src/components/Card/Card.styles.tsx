@@ -59,12 +59,15 @@ export const StyledOutlinedLink = styled.a`
   align-items: center;
 
   // --- Decorative ---
-  color: var(--text);
+  color: var(--brand);
   text-decoration: none;
-  border: var(--border) solid var(--brand);
+  background: none;
+  border: 1px solid var(--brand);
+  border-radius: var(--radius);
+  cursor: pointer;
 
   span {
-    font-weight: 600;
+    font-weight: 400;
   }
 `;
 // #endregion ----------------------- Atoms ------------------------------------
@@ -81,7 +84,7 @@ export const StyledIconField = styled.div`
   // --- Layout ---
   display: flex;
   gap: calc(var(--unit) / 2);
-  align-items: center;
+  align-items: start;
   color: var(--text);
 `;
 
@@ -95,13 +98,17 @@ export const StyledTooltipContainer = styled.div`
 export const StyledRow = styled.div`
   // --- Layout ---
   display: flex;
-  gap: var(--unit);
+  gap: calc(var(--unit) / 2);
   flex-wrap: wrap;
   row-gap: 4px;
 
   // --- Decorative ---
   color: var(--text);
   background: #fff;
+
+  &:last-child {
+    justify-content: end;
+  }
 `;
 
 export const StyledLabelRow = styled.div`
@@ -133,7 +140,7 @@ export const StyledCard = styled.li<{
   // --- Layout ---
   display: flex;
   flex-direction: column;
-  gap: calc(var(--unit) / 2);
+  gap: calc(var(--unit));
 
   // --- Decorative ---
   border: var(border) solid #fff;
@@ -148,6 +155,17 @@ export const StyledCard = styled.li<{
   `}
 
   // --- Children ---
+
+  a {
+    color: var(--brand);
+    font-weight: 400;
+  }
+  address {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--unit) / 2);
+    font-weight: 300;
+  }
   .TooltipContent {
     // --- Sizing / Box-Model ---
     border-radius: 4px;

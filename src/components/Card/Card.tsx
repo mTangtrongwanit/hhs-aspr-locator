@@ -160,7 +160,10 @@ const Card = ({ selected, serviceProvider }: Props) => {
           </p>
         </StyledIconField>
         <StyledIconField className='addr'>
-          <PhoneIcon></PhoneIcon>
+          {
+            serviceProvider.public_phone && <PhoneIcon></PhoneIcon>
+          }
+          
           <a
             href={`tel:${
               serviceProvider.public_phone ? serviceProvider.public_phone : null
@@ -222,7 +225,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
             }
             target='_blank'
           >
-            <strong>{t("Card.additionalInformation")}</strong>
+            {t("Card.additionalInformation")}
           </a>
         </p>
       )}
@@ -236,9 +239,9 @@ const Card = ({ selected, serviceProvider }: Props) => {
         <p className='ital'>{t("Card.ihs")}</p>
       )}
       <StyledRow>
-        <button onClick={handleCopyToClipboard}>
+        <StyledOutlinedLink as="button" onClick={handleCopyToClipboard}>
           {t("Card.shareLocation")}
-        </button>
+        </StyledOutlinedLink>
         {serviceProvider.address1 && (
           <StyledOutlinedLink
             href={`https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(

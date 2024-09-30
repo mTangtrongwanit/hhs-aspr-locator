@@ -11,6 +11,7 @@
 @import "@arcgis/core/assets/esri/themes/light/main.css";
 @import "@trussworks/react-uswds/lib/uswds.css";
 @import "@trussworks/react-uswds/lib/index.css";
+@import "@fontsource/open-sans/300.css";
 @import "@fontsource/open-sans/400.css";
 @import "@fontsource/open-sans/700.css";
 
