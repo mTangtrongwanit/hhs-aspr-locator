@@ -40,10 +40,12 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   });
 
   const [searchPoint, setSearchPoint] = useState<__esri.Point | null>(null);
+  //@ts-expect-error will map these later
   const [locations, setLocations] = useState<__esri.Graphic[] | null>(null);
   const [treatmentsIllnesses, setTreatmentsIllnesses] = useState<
     __esri.Graphic[] | null
   >(null);
+  //@ts-expect-error will map these later
   const [illnessesTreatments, setIllnessesTreatments] = useState<{
     [key: string]: string[];
   }>({});
