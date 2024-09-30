@@ -17,6 +17,8 @@ Utility variables for sizing & layouts
   --border: 2px; /*width*/
   --radius: 4px;
   --footer-offset: 4rem;
+  --min-card-width: 20rem;
+  --max-card-width: 36rem;
 }
 
 /* See style-utils for breakpoints */
