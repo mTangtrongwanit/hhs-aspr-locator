@@ -92,15 +92,33 @@ const Card = ({ selected, serviceProvider }: Props) => {
 
   // #region ---------------- Supporting Functions -----------------------------
   /**
-   * Copies the URL of the current location with a specific facility ID to the clipboard.
-   * The URL is constructed using the current window's origin and the facility ID of the service provider.
-   * @param {void}
+   * Copies a URL with specified path and query parameters to the clipboard.
+   * The URL is constructed using the current window's origin, the provided path, and query parameters.
+   * @param {string} path - The path to append to the origin.
+   * @param {Record<string, string>} queryParams - An object representing the query parameters.
    * @returns {void}
    */
-  const copyToClipboard = () => {
-    // TODO: Remove "pr-preview/pr-13" from the URL prior to merging to main
-    const url = `${window.location.origin}/pr-preview/pr-13/locations/?facility_id=${serviceProvider.facility_id}`;
-    navigator.clipboard.writeText(url);
+  const copyToClipboard = (
+    path: string,
+    queryParams: Record<string, string>
+  ) => {
+    const url = new URL(`${window.location.origin}${path}`);
+    Object.keys(queryParams).forEach((key) => {
+      url.searchParams.append(key, queryParams[key]);
+    });
+    navigator.clipboard.writeText(url.toString());
+  };
+
+  /**
+   * Handles the click event for the "Share Location" button.
+   * Copies the URL with the path "/locations/" and the facility ID of the service provider to the clipboard.
+   * @param {React.MouseEvent<HTMLButtonElement>} event - The click event.
+   * @returns {void}
+   */
+  const handleCopyToClipboard = () => {
+    copyToClipboard("/locations/", {
+      facility_id: serviceProvider.facility_id,
+    });
   };
   // #endregion ------------- Supporting Functions -----------------------------
 
@@ -176,10 +194,8 @@ const Card = ({ selected, serviceProvider }: Props) => {
             <p>{t("Card.icatt")}</p>
           </Tooltip>
         )}
-        {/* TODO: Verify this inclusion logic */}
         {serviceProvider.has_oseltamivir_tamiflu === "TRUE" &&
-          serviceProvider.has_oseltamivir_generic === "FALSE" &&
-          serviceProvider.has_oseltamivir_suspension === "FALSE" && (
+          serviceProvider.has_oseltamivir_generic === "FALSE" && (
             <Tooltip icon={<NoGenericIcon />}>
               <p>{t("Card.tamifluOnly")}</p>
             </Tooltip>
@@ -210,12 +226,19 @@ const Card = ({ selected, serviceProvider }: Props) => {
           </a>
         </p>
       )}
-      {/* TODO: This is a placeholder. Fix this (HRSA) based on the direction from the client. */}
-      {serviceProvider.grantee_code === "CV1" && (
+      {serviceProvider.grantee_code === "HR2" && (
         <p className='ital'>{t("Card.hrsa")}</p>
       )}
+      {serviceProvider.grantee_code === "DD2" && (
+        <p className='ital'>{t("Card.dod")}</p>
+      )}
+      {serviceProvider.grantee_code === "IH2" && (
+        <p className='ital'>{t("Card.ihs")}</p>
+      )}
       <StyledRow>
-        <button onClick={copyToClipboard}>{t("Card.shareLocation")}</button>
+        <button onClick={handleCopyToClipboard}>
+          {t("Card.shareLocation")}
+        </button>
         {serviceProvider.address1 && (
           <StyledOutlinedLink
             href={`https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(

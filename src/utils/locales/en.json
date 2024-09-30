@@ -57,6 +57,8 @@
     "openInMaps": "Open in Maps",
     "distance": "Distance",
     "miles": "miles",
-    "hrsa": "Health Resources and Services Administration (HRSA) supported Health Center"
+    "hrsa": "Health Resources and Services Administration (HRSA) supported Health Center",
+    "dod": "Department of Defense (DoD) supported site",
+    "ihs": "Indian Health Service (IHS) supported site"
   }
 }
