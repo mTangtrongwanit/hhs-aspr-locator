@@ -158,7 +158,8 @@ const Locations = () => {
             <div className='dev-placeholder'>Filter Placeholder</div>
             <div className='dev-placeholder'>Sort Placeholder</div>
           </div>
-          <ul>
+          {/* tabindex for scrollable list */}
+          <ul tabIndex={0}>
           {treatmentSites.features.map((site: object) => {
             const serviceProver: Site = site as Site;
             const serviceProvider: ServiceProvider = serviceProver.attributes;

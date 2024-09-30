@@ -21,6 +21,7 @@ export const StyledCardTitle = styled.h3`
   font-weight: 600;
   line-height: 125%;
   color: var(--text);
+  flex-grow: 1;
 `;
 
 export const StyledLabel = styled.span`
