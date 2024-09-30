@@ -23,7 +23,7 @@ import {
   StyledTitleRow,
 } from "./Card.styles";
 import Tooltip from "./Tooltip";
-import { calculateDistanceBetweenTwoPoints } from "../../utils/goegraphicUtils";
+import { calculateDistanceBetweenTwoPoints } from "../../utils/geographicUtils";
 import { useAppContext } from "@/contexts/AppContext";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
