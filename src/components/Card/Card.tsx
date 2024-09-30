@@ -5,8 +5,12 @@
  */
 
 // #region ========================= IMPORTS ===================================
+// #region --------------------------- React -----------------------------------
+import { useEffect, useState, useRef } from "react";
+// #endregion ------------------------ React -----------------------------------
 // #region ------------ 3rd-Party Components / Libraries -----------------------
-// import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -19,6 +23,8 @@ import {
   StyledTitleRow,
 } from "./Card.styles";
 import Tooltip from "./Tooltip";
+import { calculateDistanceBetweenTwoPoints } from "../../utils/goegraphicUtils";
+import { useAppContext } from "@/contexts/AppContext";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
@@ -28,9 +34,12 @@ import PhoneIcon from "@/assets/icons/phone.svg";
 import HomeDeliveryIcon from "@/assets/icons/home-delivery.svg";
 import IcattIcon from "@/assets/icons/icatt.svg";
 import NoGenericIcon from "@/assets/icons/no-generic.svg";
-import PatientAssistIcon from "@/assets/icons/patient-assist.svg";
-import PediatricIcon from "@/assets/icons/pediatric.svg";
+// import PatientAssistIcon from "@/assets/icons/patient-assist.svg";
+// import PediatricIcon from "@/assets/icons/pediatric.svg";
 import UsgProcuredIcon from "@/assets/icons/usg-procured.svg";
+import PapIcon from "@/assets/icons/pap.svg";
+import OseltamivirIcon from "@/assets/icons/oseltamivir.svg";
+import PrescribingServicesIcon from "@/assets/icons/prescribing-services.svg";
 
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
@@ -38,95 +47,222 @@ import UsgProcuredIcon from "@/assets/icons/usg-procured.svg";
 // #region =================== EXPORTED COMPONENT ==============================
 const Card = ({ selected, serviceProvider }: Props) => {
   // #region ------------------ Hooks (Resources) ------------------------------
-  /** Internationalization translation function */
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
+  const location = useLocation();
+  const cardRef = useRef<HTMLDivElement>(null);
+  const { searchPoint } = useAppContext();
   // #endregion --------------- Hooks (Resources) ------------------------------
+  // #region ----------------------- Hooks (State) -------------------------------------
+  const [distance, setDistance] = useState<number | null>(null);
+  // #endregion -------------------- Hooks (State) -------------------------------------
+
+  // #region ----------------- Hooks (Memoization) -----------------------------
+  // #endregion -------------- Hooks (Memoization) -----------------------------
+
+  // #region -------------------- Hooks (Other) --------------------------------
+
+  // Get the distance between the user's search location and the service provider
+  useEffect(() => {
+    const fetchDistance = async () => {
+      const dist = await calculateDistanceBetweenTwoPoints(
+        serviceProvider,
+        searchPoint
+      );
+      setDistance(dist);
+    };
+
+    fetchDistance();
+  }, []);
+
+  // Highlight the location if the facility ID in the URL matches the facility ID of the service provider
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const facilityId = urlParams.get("facility_id");
+    // TODO: Chandan/Lillie - remove inline CSS and use styled-components
+    if (facilityId === serviceProvider.facility_id && cardRef.current) {
+      // Highlight the location by applying inline CSS
+      cardRef.current.scrollIntoView({ behavior: "smooth" });
+      cardRef.current.style.setProperty("border", "2px solid red");
+    }
+  }, [location.search, serviceProvider.facility_id]);
+  // #endregion ----------------- Hooks (Other) --------------------------------
+
+  // #region --------- Short-Circuit (Empty/Invalid State) ---------------------
+  // #endregion ------ Short-Circuit (Empty/Invalid State) ---------------------
+
+  // #region ---------------- Supporting Functions -----------------------------
+  /**
+   * Copies a URL with specified path and query parameters to the clipboard.
+   * The URL is constructed using the current window's origin, the provided path, and query parameters.
+   * @param {string} path - The path to append to the origin.
+   * @param {Record<string, string>} queryParams - An object representing the query parameters.
+   * @returns {void}
+   */
+  const copyToClipboard = (
+    path: string,
+    queryParams: Record<string, string>
+  ) => {
+    const url = new URL(`${window.location.origin}${path}`);
+    Object.keys(queryParams).forEach((key) => {
+      url.searchParams.append(key, queryParams[key]);
+    });
+    navigator.clipboard.writeText(url.toString());
+  };
+
+  /**
+   * Handles the click event for the "Share Location" button.
+   * Copies the URL with the path "/locations/" and the facility ID of the service provider to the clipboard.
+   * @param {React.MouseEvent<HTMLButtonElement>} event - The click event.
+   * @returns {void}
+   */
+  const handleCopyToClipboard = () => {
+    copyToClipboard("/locations/", {
+      facility_id: serviceProvider.facility_id,
+    });
+  };
+  // #endregion ------------- Supporting Functions -----------------------------
+
+  // #region ------------------- Event Handlers --------------------------------
+  // #endregion ---------------- Event Handlers --------------------------------
 
   // #region ----------------------- Render ------------------------------------
   return (
-    <StyledCard $selected={selected}>
+    <StyledCard $selected={selected} ref={cardRef}>
       <StyledTitleRow>
-        <StyledCardTitle className="bold">
-          {serviceProvider.name}
+        <StyledCardTitle className='bold'>
+          {serviceProvider.provider_name}
         </StyledCardTitle>
-        {serviceProvider.distance && (
-          <p className="smallText">{`Distance: ${serviceProvider.distance} miles`}</p>
+        {distance !== null && (
+          <p className='smallText'>
+            {t("Card.distance")}
+            {`: ${distance
+              .toFixed(0)
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}
+            {` ${t("Card.miles")}`}
+          </p>
         )}
       </StyledTitleRow>
       <address>
-        <StyledIconField className="addr">
+        <StyledIconField className='addr'>
           <PinIcon></PinIcon>{" "}
-          <p className="smallText">{serviceProvider.address}</p>
+          <p className='smallText'>
+            {serviceProvider.address1}
+            {serviceProvider.address2 ? (
+              <>
+                <br />
+                {serviceProvider.address2}
+              </>
+            ) : null}
+            <br />
+            {serviceProvider.city}, {serviceProvider.state}{" "}
+            {serviceProvider.zip}
+          </p>
         </StyledIconField>
-        <StyledIconField className="addr">
+        <StyledIconField className='addr'>
           <PhoneIcon></PhoneIcon>
-          <a href={`tel:${serviceProvider.phone}`}>{serviceProvider.phone}</a>
+          <a
+            href={`tel:${
+              serviceProvider.public_phone ? serviceProvider.public_phone : null
+            }`}
+          >
+            {serviceProvider.public_phone ? serviceProvider.public_phone : null}
+          </a>
         </StyledIconField>
       </address>
 
-      {/* TODO: Tooltips for these icons */}
       {/* TODO: Alt text for these icons */}
 
       <StyledRow>
-        {serviceProvider.homeDelivery && (
-          <Tooltip icon={<HomeDeliveryIcon />}>
-            <p>Home Delivery</p>
+        {serviceProvider.is_pap === "TRUE" && (
+          <Tooltip icon={<PapIcon />}>
+            <p>{t("Card.pap")}</p>
           </Tooltip>
         )}
-        {serviceProvider.usgProcured && (
+        {serviceProvider.has_usg_product === "TRUE" && (
           <Tooltip icon={<UsgProcuredIcon />}>
-            <p>USG-procured product</p>
+            <p>{t("Card.usgProduct")}</p>
           </Tooltip>
         )}
-        {serviceProvider.icatt && (
+        {serviceProvider.home_delivery === "TRUE" && (
+          <Tooltip icon={<HomeDeliveryIcon />}>
+            <p>{t("Card.homeDelivery")}</p>
+          </Tooltip>
+        )}
+        {serviceProvider.is_icatt_site === "TRUE" && (
           <Tooltip icon={<IcattIcon />}>
-            <p>ICATT</p>
+            <p>{t("Card.icatt")}</p>
           </Tooltip>
         )}
-        {serviceProvider.patientAssistance && (
-          <Tooltip icon={<PatientAssistIcon />}>
-            <p>Patient Assistance</p>
+        {serviceProvider.has_oseltamivir_tamiflu === "TRUE" &&
+          serviceProvider.has_oseltamivir_generic === "FALSE" && (
+            <Tooltip icon={<NoGenericIcon />}>
+              <p>{t("Card.tamifluOnly")}</p>
+            </Tooltip>
+          )}
+        {serviceProvider.has_oseltamivir_suspension === "TRUE" && (
+          <Tooltip icon={<OseltamivirIcon />}>
+            <p>{t("Card.oseltamivirSuspension")}</p>
           </Tooltip>
         )}
-        {serviceProvider.tamifluOnly && (
-          <Tooltip icon={<NoGenericIcon />}>
-            <p>"Tamiflu" brand name only (no generic oseltamivir available)</p>
-          </Tooltip>
-        )}
-        {serviceProvider.pediatric && (
-          <Tooltip icon={<PediatricIcon />}>
-            <p>Pediatric oseltamivir suspension</p>
+        {serviceProvider.is_prescribing_svcs_available === "TRUE" && (
+          <Tooltip icon={<PrescribingServicesIcon />}>
+            <p>{t("Card.prescribingServices")}</p>
           </Tooltip>
         )}
       </StyledRow>
-      <p>
-        Rx or telehealth&nbsp;
-        <a href="TODO">additional information</a>
-      </p>
-      {serviceProvider.isHRSA && (
-        <p className="ital">
-          Health Resources and Services Administration (HRSA) supported Health
-          Center
+      {serviceProvider.is_prescribing_svcs_available === "TRUE" && (
+        <p>
+          {t("Card.rXorTelehealth")}&nbsp;
+          <a
+            href={
+              serviceProvider.url_appointment
+                ? serviceProvider.url_appointment
+                : ""
+            }
+            target='_blank'
+          >
+            <strong>{t("Card.additionalInformation")}</strong>
+          </a>
         </p>
       )}
+      {serviceProvider.grantee_code === "HR2" && (
+        <p className='ital'>{t("Card.hrsa")}</p>
+      )}
+      {serviceProvider.grantee_code === "DD2" && (
+        <p className='ital'>{t("Card.dod")}</p>
+      )}
+      {serviceProvider.grantee_code === "IH2" && (
+        <p className='ital'>{t("Card.ihs")}</p>
+      )}
       <StyledRow>
-        <button>Share Location</button>
-        {serviceProvider.address && (
+        <button onClick={handleCopyToClipboard}>
+          {t("Card.shareLocation")}
+        </button>
+        {serviceProvider.address1 && (
           <StyledOutlinedLink
-            href={`https://www.google.com/maps/dir//${encodeURIComponent(
-              serviceProvider.address,
+            href={`https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(
+              searchPoint
+                ? `${searchPoint.latitude},${searchPoint.longitude}`
+                : ""
+            )}&destination=${encodeURIComponent(
+              `${serviceProvider.address1} ${
+                serviceProvider.address2 ? serviceProvider.address2 + " " : ""
+              }${serviceProvider.city} ${serviceProvider.state} ${
+                serviceProvider.zip
+              }`
             )}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`Directions to Location`}
+            target='_blank'
+            rel='noopener noreferrer'
+            aria-label={t("Card.directionsToLocation")}
           >
-            <span>Open in Maps</span>
+            <span>{t("Card.openInMaps")}</span>
           </StyledOutlinedLink>
         )}
       </StyledRow>
     </StyledCard>
   );
-  // #endregion -------------------- Render ------------------------------------
 };
+// #endregion -------------------- Render ------------------------------------
 export default Card;
 // #endregion ================ EXPORTED COMPONENT ==============================

@@ -5,7 +5,7 @@ import { createContext, useContext, useState } from "react";
 // #endregion ------------------- React ---------------------------------
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
-
+import Point from "@arcgis/core/geometry/Point.js";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region ------------------------ Resources ----------------------------------
@@ -24,6 +24,12 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
    */
   const [bannerHeight, setBannerHeight] = useState<number>(0);
   const [headerHeight, setHeaderHeight] = useState<number>(0);
+  const [searchPoint, setSearchPoint] = useState<__esri.Point | null>(
+    new Point({
+      longitude: -77.009056,
+      latitude: 38.889805, // Washington, DC
+    })
+  );
   // Locations Map and Treatment Site
   const [locationsMapView, setLocationsMapView] =
     useState<__esri.MapView | null>(null);
@@ -37,6 +43,8 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
         setBannerHeight: setBannerHeight,
         headerHeight: headerHeight,
         setHeaderHeight: setHeaderHeight,
+        searchPoint: searchPoint,
+        setSearchPoint: setSearchPoint,
         locationsMapView: locationsMapView,
         setLocationsMapView: setLocationsMapView,
         selectedTreatmentSite: selectedTreatmentSite,

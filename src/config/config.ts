@@ -4,7 +4,7 @@
 
 // #region ========================= IMPORTS ===================================
 // #region ------------------------ Resources ----------------------------------
-import { type StaticConfiguration } from "./config.types";
+import { type StaticConfiguration } from "@/config/config.types";
 // #endregion ------------------------- Resources ---------------------------------
 // #endregion ========================== IMPORTS ==================================
 
