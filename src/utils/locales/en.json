@@ -41,5 +41,24 @@
     "Results Screenreader Heading": "Results",
     "List Heading": "{{count}} Sites",
     "Map Screenreader Heading": "Map of Sites"
+  },
+  "Card": {
+    "pap": "PAP",
+    "usgProduct": "USG product",
+    "homeDelivery": "Home Delivery",
+    "icatt": "ICATT",
+    "tamifluOnly": "Tamiflu Only",
+    "oseltamivirSuspension": "Oseltamivir suspension*",
+    "prescribingServices": "Prescribing Services",
+    "rXorTelehealth": "Rx or Telehealth",
+    "additionalInformation": "additional information",
+    "shareLocation": "Share Location",
+    "directionsToLocation": "Directions to Location",
+    "openInMaps": "Open in Maps",
+    "distance": "Distance",
+    "miles": "miles",
+    "hrsa": "Health Resources and Services Administration (HRSA) supported Health Center",
+    "dod": "Department of Defense (DoD) supported site",
+    "ihs": "Indian Health Service (IHS) supported site"
   }
 }

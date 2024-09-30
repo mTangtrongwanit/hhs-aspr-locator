@@ -18,6 +18,8 @@ import styled from "styled-components";
 export const StyledCardTitle = styled.h3`
   // --- Decorative ---
   font-size: var(--text-1);
+  font-weight: 600;
+  line-height: 125%;
   color: var(--text);
 `;
 
@@ -73,6 +75,7 @@ export const StyledTitleRow = styled.div`
   display: flex;
   gap: var(--unit);
   justify-content: space-between;
+  align-items: baseline;
 `;
 export const StyledIconField = styled.div`
   // --- Layout ---
@@ -179,6 +182,9 @@ export const StyledCard = styled.div<{
 
   .smallText {
     font-size: var(--text--1);
+    font-weight: 300;
+    line-height: 125%; 
+    color: var(--text);
   }
 
   li {
