@@ -13,6 +13,7 @@ import * as geometryEngine from "@arcgis/core/geometry/geometryEngine";
 // #region ------------------------ Resources ----------------------------------
 import config from "@/config";
 import { type ServiceProvider } from "../components/Card/Card.types";
+import { type AppContextType } from "@/contexts/AppContext.types";
 // #endregion --------------------- Resources ----------------------------------
 
 // #region ------------------------ Constants ----------------------------------
@@ -68,7 +69,7 @@ export const getTreatmentsIllnessesData = async () => {
  *
  * @param {ServiceProvider} serviceProvider The service provider for which to calculate the distance.
  */
-export const calculateDistanceBetweenTwoPoints = async (serviceProvider: ServiceProvider, searchPoint: Point) => {
+export const calculateDistanceBetweenTwoPoints = async (serviceProvider: ServiceProvider, searchPoint: AppContextType["searchPoint"]) => {
     try {
         if (!searchPoint) {
             return null;
