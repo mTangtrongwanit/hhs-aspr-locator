@@ -170,7 +170,7 @@ export const PopoverCheckBoxContainer = styled.div`
 
 export const PopoverCheckBoxRow = styled.div`
  display: 'flex';
- alignItems: 'center';
+ align-items: 'center';
 `;
 
 export const StyledCheckboxLabel = styled.label`
