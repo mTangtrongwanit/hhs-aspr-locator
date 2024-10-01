@@ -53,6 +53,9 @@ export const StyledSearchContainer = styled.section`
 export const StyledListContainer = styled.section`
   // --- Local Variables ---
   // --- Sizing / Box-Model ---
+  min-width: calc(var(--min-card-width) + (var(--unit) * 4));
+  max-width: var(--max-card-width);
+  width: 30vw;
   padding: calc(var(--unit) * 2);
   height: fit-content;
   // --- Position ---
@@ -89,12 +92,18 @@ export const StyledListContainer = styled.section`
     font-size: var(--text-3);
     color: var(--brand);
   }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--unit);
+  }
 `;
 
 export const StyledMapContainer = styled.section`
   // --- Local Variables ---
   // --- Sizing / Box-Model ---
-  width: 100%;
+  flex: 1;
   /* height: calc((var(--vh) * 100) - var(--remainder, 0px)); */
   height: calc((var(--vh) * 100));
 

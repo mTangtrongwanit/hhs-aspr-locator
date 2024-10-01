@@ -15,20 +15,20 @@ import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 
 // #region ===================== EXPORTED TYPES ================================
 export interface StaticConfiguration {
-    portal: {
-        url: string;
-        appId: string;
+  portal: {
+    url: string;
+    appId: string;
+  };
+  treatmentData: {
+    locationsWebMapId: string;
+    treatment_sites: {
+      name: string;
+      locationsLayer: FeatureLayer;
     };
-    treatmentData: {
-        locationsWebMapId: string;
-        treatment_sites: {
-            name: string;
-            locationsLayer: FeatureLayer;
-        };
-        treatmentsIllnessesData: {
-            name: string;
-            treatmentsIllnessesLayer: FeatureLayer;
-        };
+    treatmentsIllnessesData: {
+      name: string;
+      treatmentsIllnessesLayer: FeatureLayer;
     };
+  };
 }
 // #endregion ================== EXPORTED TYPES ================================

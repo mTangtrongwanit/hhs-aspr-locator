@@ -21,6 +21,7 @@ export const StyledCardTitle = styled.h3`
   font-weight: 600;
   line-height: 125%;
   color: var(--text);
+  flex-grow: 1;
 `;
 
 export const StyledLabel = styled.span`
@@ -59,12 +60,15 @@ export const StyledOutlinedLink = styled.a`
   align-items: center;
 
   // --- Decorative ---
-  color: var(--text);
+  color: var(--brand);
   text-decoration: none;
-  border: var(--border) solid var(--brand);
+  background: none;
+  border: 1px solid var(--brand);
+  border-radius: var(--radius);
+  cursor: pointer;
 
   span {
-    font-weight: 600;
+    font-weight: 400;
   }
 `;
 // #endregion ----------------------- Atoms ------------------------------------
@@ -81,7 +85,7 @@ export const StyledIconField = styled.div`
   // --- Layout ---
   display: flex;
   gap: calc(var(--unit) / 2);
-  align-items: center;
+  align-items: start;
   color: var(--text);
 `;
 
@@ -95,13 +99,17 @@ export const StyledTooltipContainer = styled.div`
 export const StyledRow = styled.div`
   // --- Layout ---
   display: flex;
-  gap: var(--unit);
+  gap: calc(var(--unit) / 2);
   flex-wrap: wrap;
   row-gap: 4px;
 
   // --- Decorative ---
   color: var(--text);
   background: #fff;
+
+  &:last-child {
+    justify-content: end;
+  }
 `;
 
 export const StyledLabelRow = styled.div`
@@ -116,8 +124,7 @@ export const StyledLabelRow = styled.div`
 // #endregion ----------- Molecules (Internal Layouts) -------------------------
 
 // #region --------------- Parent Component + Variants -------------------------
-export const StyledCard = styled.div<{
-  $category?: string;
+export const StyledCard = styled.li<{
   $selected?: boolean;
 }>`
   // --- Sizing / Box-Model ---
@@ -134,11 +141,10 @@ export const StyledCard = styled.div<{
   // --- Layout ---
   display: flex;
   flex-direction: column;
-  gap: calc(var(--unit) / 2);
+  gap: calc(var(--unit));
 
   // --- Decorative ---
-  border: var(border) solid
-    ${(props) => `var(--${props.$category}-med, var(--ui-pale-light))`};
+  border: var(border) solid #fff;
   color: var(--text);
   background-color: #fff;
 
@@ -146,10 +152,21 @@ export const StyledCard = styled.div<{
   ${(props) =>
     props.$selected &&
     `
-    border-color: var(--${props.$category}-dark, var(--ui-pale-dark));
+    border-color: var(--brand);
   `}
 
   // --- Children ---
+
+  a {
+    color: var(--brand);
+    font-weight: 400;
+  }
+  address {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--unit) / 2);
+    font-weight: 300;
+  }
   .TooltipContent {
     // --- Sizing / Box-Model ---
     border-radius: 4px;
@@ -183,7 +200,7 @@ export const StyledCard = styled.div<{
   .smallText {
     font-size: var(--text--1);
     font-weight: 300;
-    line-height: 125%; 
+    line-height: 125%;
     color: var(--text);
   }
 

@@ -111,7 +111,7 @@ const Locations = () => {
 
   //get size when element updates
   useResizeObserver(searchContRef.current, (entry) =>
-    setSearchContHeight(entry.contentRect.height)
+    setSearchContHeight(entry.contentRect.height),
   );
 
   useEffect(() => {
@@ -133,41 +133,44 @@ const Locations = () => {
   return (
     <StyledLocationsContent>
       <StyledSearchContainer ref={searchContRef}>
-        <h2 className='visually-hidden'>
+        <h2 className="visually-hidden">
           {t("Locations.Search Container Screenreader Heading")}
         </h2>
-        <div className='dev-placeholder'>Location Search Placeholder</div>
-        <div className='dev-placeholder'>Illness Select Placeholder</div>
-        <div className='dev-placeholder'>Medication Select Placeholder</div>
+        <div className="dev-placeholder">Location Search Placeholder</div>
+        <div className="dev-placeholder">Illness Select Placeholder</div>
+        <div className="dev-placeholder">Medication Select Placeholder</div>
       </StyledSearchContainer>
-      <div id='locs'>
-        <h2 className='visually-hidden'>
+      <div id="locs">
+        <h2 className="visually-hidden">
           {t("Locations.Results Screenreader Heading")}
         </h2>
         <StyledListContainer>
-          <div id='list-title'>
+          <div id="list-title">
             <h3>
-              <Trans i18nKey='Locations.List Heading' count={0}></Trans>
+              <Trans i18nKey="Locations.List Heading" count={0}></Trans>
             </h3>
-            <div className='dev-placeholder'>Filter Placeholder</div>
-            <div className='dev-placeholder'>Sort Placeholder</div>
+            <div className="dev-placeholder">Filter Placeholder</div>
+            <div className="dev-placeholder">Sort Placeholder</div>
           </div>
-          {treatmentSites.features.map((site: object) => {
-            const serviceProver: Site = site as Site;
-            const serviceProvider: ServiceProvider = serviceProver.attributes;
-            return (
-              <Card
-                serviceProvider={serviceProvider}
-                selected={false}
-                key={serviceProvider.OBJECTID}
-              ></Card>
-            );
-          })}
+          {/* tabindex for scrollable list */}
+          <ul tabIndex={0}>
+            {treatmentSites.features.map((site: object) => {
+              const serviceProver: Site = site as Site;
+              const serviceProvider: ServiceProvider = serviceProver.attributes;
+              return (
+                <Card
+                  serviceProvider={serviceProvider}
+                  selected={false}
+                  key={serviceProvider.OBJECTID}
+                ></Card>
+              );
+            })}
+          </ul>
         </StyledListContainer>
         <StyledMapContainer
           style={{ "--remainder": `${totalHeight}px` } as React.CSSProperties}
         >
-          <h3 className='visually-hidden'>
+          <h3 className="visually-hidden">
             {t("Locations.Map Screenreader Heading")}
           </h3>
           <LocationsMap />
