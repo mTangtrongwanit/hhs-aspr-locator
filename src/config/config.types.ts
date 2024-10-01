@@ -5,6 +5,9 @@
 // #region ========================= IMPORTS ===================================
 // #region ------------ 3rd-Party Components / Libraries -----------------------
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
+// #region ------------------------ Resources ----------------------------------
+import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
+// #endregion ------------------------- Resources ---------------------------------
 // #endregion ====================== IMPORTS ===================================
 
 // #region ========================== TYPES ====================================
@@ -12,36 +15,20 @@
 
 // #region ===================== EXPORTED TYPES ================================
 export interface StaticConfiguration {
+  portal: {
+    url: string;
+    appId: string;
+  };
   treatmentData: {
     locationsWebMapId: string;
     treatment_sites: {
       name: string;
-      url: string;
-      fields: {
-        state: string;
-        city: string;
-        zip: string;
-      };
+      locationsLayer: FeatureLayer;
     };
-    treatmentDictionaryOptiion1: {
+    treatmentsIllnessesData: {
       name: string;
-      url: string;
-      fields: {
-        illness: string;
-      };
+      treatmentsIllnessesLayer: FeatureLayer;
     };
-    treatmentDictionaryOption2: {
-      name: string;
-      url: string;
-      fields: {
-        display_name: string;
-        illness: string;
-      };
-    };
-  };
-  portal: {
-    url: string;
-    appId: string;
   };
 }
 // #endregion ================== EXPORTED TYPES ================================
