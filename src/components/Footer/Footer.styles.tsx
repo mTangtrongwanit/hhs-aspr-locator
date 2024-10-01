@@ -53,6 +53,7 @@ export const StyledFooter = styled.footer`
     @media ${Breakpoints.md} {
         flex-direction: column;
         justify-content: center;
+        padding: 16px;
     }   
 `;
 
