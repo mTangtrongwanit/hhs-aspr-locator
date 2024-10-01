@@ -109,7 +109,7 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
   /* --- Sizing / Box-Model --- */
   flex: 1 0 auto;
   min-height: 44px;
-  /* width: min(300px, calc(33.3333% - var(--default-spacing))); */
+  width: min(300px, calc(33.3333% - var(--unit)));
 
   /* --- Position --- */
   /* --- Layout --- */
