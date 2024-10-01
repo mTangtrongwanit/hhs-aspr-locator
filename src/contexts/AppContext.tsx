@@ -28,7 +28,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     new Point({
       longitude: -77.009056,
       latitude: 38.889805, // Washington, DC
-    })
+    }),
   );
   // Locations Map and Treatment Site
   const [locationsMapView, setLocationsMapView] =
@@ -62,7 +62,7 @@ export const useAppContext = () => {
   if (!appContext) {
     // the below text is for developers not for users. It does not need to be translated
     throw new Error(
-      "Cannot use 'useAppContext' outside of a AppContextProvider"
+      "Cannot use 'useAppContext' outside of a AppContextProvider",
     );
   }
   return appContext;
