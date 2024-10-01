@@ -9,6 +9,7 @@ import { useRef, useState, useEffect } from "react";
 // #endregion ------------------------ React -----------------------------------
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
+import { CalciteButton } from "@esri/calcite-components-react";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -95,6 +96,7 @@ const Locations = () => {
   // #region -------------------- Hooks (State) --------------------------------
   const [searchContHeight, setSearchContHeight] = useState<number>(0);
   const [totalHeight, setTotalHeight] = useState<number>(0);
+  const [isMobileListView, setIsMobileListView] = useState<boolean>(true);
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
@@ -151,6 +153,7 @@ const Locations = () => {
             </h3>
             <div className="dev-placeholder">Filter Placeholder</div>
             <div className="dev-placeholder">Sort Placeholder</div>
+            <CalciteButton onClick={setIsMobileListView((isList) => !isList)} id="mobile-view-toggle">{isMobileListView ? "View Map" : "View List"}</CalciteButton>
           </div>
           {/* tabindex for scrollable list */}
           <ul tabIndex={0}>
