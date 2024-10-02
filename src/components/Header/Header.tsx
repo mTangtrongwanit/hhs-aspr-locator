@@ -14,6 +14,9 @@ import { useRef, useEffect } from "react";
 import { GovBanner } from "@trussworks/react-uswds";
 import useResizeObserver from "@react-hook/resize-observer";
 import { useTranslation } from "react-i18next";
+import webLogoPath from "@/assets/images/ASPR-logo-web.jpg";
+import mobileLogoPath from "@/assets/images/ASPR-logo-mobile.jpg";
+
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -89,9 +92,8 @@ const HeaderComponent = () => {
       <StyledHeader ref={headerRef}>
         <StyledHeaderContentContainer>
           <StyledHeaderLogo
-            src="/src/assets/images/ASPR-logo-web.jpg"
-            srcSet="/src/assets/images/ASPR-logo-mobile.jpg 274w,
-            /src/assets/images/ASPR-logo-web.jpg 693w"
+            src={webLogoPath}
+            srcSet={`${mobileLogoPath} 274w, ${webLogoPath} 639w`}
             sizes="(max-width: 1100px) 117px,
             296px"
             alt="Administration for Strategic Preparedness and Response Logo"

@@ -110,12 +110,6 @@ const Locations = () => {
     }
   }, []);
 
-  useEffect(() => {
-    if (treatmentSites) {
-      console.log(treatmentSites);
-    }
-  }, []);
-
   //get size when element updates
   useResizeObserver(searchContRef.current, (entry) =>
     setSearchContHeight(entry.contentRect.height),
