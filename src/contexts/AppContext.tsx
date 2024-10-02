@@ -34,13 +34,18 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     useState<__esri.Graphic | null>(null);
 
   // Initial search point for locations when app loads or when user clears search
-  const initialSearchPoint = new Point({
-    longitude: -77.009056,
-    latitude: 38.889805, // Washington, DC
-  });
+  const initialSearchPoint = {
+    name: "Washington, District of Columbia",
+    point: new Point({
+      longitude: -77.0199124,
+      latitude: 38.892062100000004,
+    }),
+  };
 
-  const [searchPoint, setSearchPoint] = useState<__esri.Point | null>(null);
-  //@ts-expect-error will map these later
+  const [searchPoint, setSearchPoint] = useState<{
+    name: string;
+    point: __esri.Point;
+  } | null>(null);
   const [locations, setLocations] = useState<__esri.Graphic[] | null>(null);
   const [treatmentsIllnesses, setTreatmentsIllnesses] = useState<
     __esri.Graphic[] | null
@@ -73,7 +78,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   useEffect(() => {
     const getLocations = async () => {
       const locations = await getLocationsData(
-        searchPoint ?? initialSearchPoint
+        searchPoint?.point ?? initialSearchPoint.point
       );
       setLocations(locations ?? []);
     };
@@ -112,6 +117,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
         setLocationsMapView: setLocationsMapView,
         selectedTreatmentSite: selectedTreatmentSite,
         setSelectedTreatmentSite: setSelectedTreatmentSite,
+        locations: locations,
       }}
     >
       {children}

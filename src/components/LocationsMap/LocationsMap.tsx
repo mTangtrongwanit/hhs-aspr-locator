@@ -42,6 +42,7 @@ const LocationsMap = () => {
     setLocationsMapView,
     selectedTreatmentSite,
     setSelectedTreatmentSite,
+    searchPoint,
   } = useAppContext();
   // #endregion --------------- Hooks (Resources) ------------------------------
 
@@ -59,7 +60,7 @@ const LocationsMap = () => {
           },
         },
       }),
-    [],
+    []
   );
   // #endregion -------------- Hooks (Memoization) -----------------------------
 
@@ -109,7 +110,7 @@ const LocationsMap = () => {
                     (hitResult as __esri.GraphicHit).graphic?.layer?.title &&
                     (
                       hitResult as __esri.GraphicHit
-                    ).graphic?.layer?.title.includes("Treatments"),
+                    ).graphic?.layer?.title.includes("Treatments")
                 ) as __esri.GraphicHit;
                 if (!treatmentsLayer) return;
                 const t = treatmentsLayer as __esri.GraphicHit;
@@ -134,12 +135,6 @@ const LocationsMap = () => {
     }
   }, [map, setLocationsMapView, setSelectedTreatmentSite]);
 
-  useEffect(() => {
-    if (selectedTreatmentSite) {
-      console.log("Selected treatment site changed: ", selectedTreatmentSite);
-    }
-  }, [selectedTreatmentSite]);
-
   /** Highlight selected feature */
   useEffect(() => {
     if (locationsMapView && selectedTreatmentSite) {
@@ -161,6 +156,22 @@ const LocationsMap = () => {
       };
     }
   }, [locationsMapView, selectedTreatmentSite, setLocationsMapView]);
+
+  /** Zoom to search point */
+  useEffect(() => {
+    if (locationsMapView && searchPoint) {
+      locationsMapView.when(() => {
+        locationsMapView
+          .goTo({
+            center: [searchPoint.point.x, searchPoint.point.y],
+            zoom: 12,
+          })
+          .catch((error) => {
+            console.error("MapView goTo error: ", error);
+          });
+      });
+    }
+  }, [locationsMapView, searchPoint]);
 
   // #endregion ----------------- Hooks (Other) --------------------------------
 

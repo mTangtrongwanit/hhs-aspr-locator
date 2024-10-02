@@ -11,7 +11,6 @@ import { useRef, useEffect, useState } from "react";
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
 import Search from "@arcgis/core/widgets/Search";
-import Point from "@arcgis/core/geometry/Point";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -29,7 +28,7 @@ import { useAppContext } from "@/contexts/AppContext";
 // #region =================== EXPORTED COMPONENT ==============================
 const SearchComponent = () => {
   // #region ------------------ Hooks (Resources) ------------------------------
-  const { locationsMapView, searchPoint, setSearchPoint } = useAppContext();
+  const { searchPoint, setSearchPoint } = useAppContext();
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region -------------------- Hooks (State) --------------------------------
@@ -43,22 +42,15 @@ const SearchComponent = () => {
   const searchRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!locationsMapView || !searchRef.current) {
+    if (!searchRef.current) {
       return;
     }
-
-    // const countryLayer = new FeatureLayer({
-    //   url: config.treatmentData.treatment_sites.locationsLayer,
-    // });
 
     /**
      * Set up Search widget
      */
     const search = new Search({
       container: document.createElement("div"),
-      view: locationsMapView,
-      // includeDefaultSources: false,
-      popupEnabled: false,
     });
     //add to DOM
     searchRef.current.appendChild(search.container as Node);
@@ -69,22 +61,23 @@ const SearchComponent = () => {
      * Watch for result selection to set AOI
      */
     search.on("select-result", function (event) {
-      setSearchPoint(new Point(event.result.feature.geometry.extent.center));
+      const result = event as __esri.SearchSelectResultEvent;
+      const name = result.result.name;
+      const geometry = result.result.feature.geometry as __esri.Point;
+      setSearchPoint({ name, point: geometry });
     });
 
     // Note: We need to create a fresh element for the widget everytime it is built, can't just assign it to ref.current or it won't re-render.
     return () => search.destroy();
-  }, [locationsMapView, setSearchPoint]);
+  }, [setSearchPoint]);
 
   /**
    * Effect to update widget with SelectionMap results
    */
   useEffect(() => {
-    //set selectedResult to AOI if it's not already there.
+    //Set search term to searchPoint name
     if (searchPoint !== null && searchWidget !== null) {
-      searchWidget.searchTerm =
-        searchPoint.latitude + ", " + searchPoint.longitude;
-      // console.log(AOI.graphic.geometry)
+      searchWidget.searchTerm = searchPoint.name;
     }
   }, [searchPoint, searchWidget]);
   // #endregion ----------------- Hooks (Other) --------------------------------
