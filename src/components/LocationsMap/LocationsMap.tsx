@@ -158,7 +158,7 @@ const LocationsMap = () => {
     }
   }, [locationsMapView, selectedTreatmentSite, setLocationsMapView]);
 
-  /** Zoom to search point */
+  /** Zoom to locations center and extent. */
   useEffect(() => {
     if (locationsMapView && searchPoint && locationsExtent) {
       locationsMapView.when(() => {
