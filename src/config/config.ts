@@ -49,7 +49,7 @@ const config: StaticConfiguration = {
     ],
     sortOptions: [
       { label: "Distance", value: "distance" },
-      { label: "Last Reported", value: "lastReported" },
+      { label: "Last Reported", value: "last reported" },
     ],
     illnessOptions: [
       { label: "Flu", value: "flu" },
