@@ -31,7 +31,31 @@ const config: StaticConfiguration = {
                 url: "https://services2.arcgis.com/ZQ4jTQn6k7VPXEwO/arcgis/rest/services/Treatments_Locator_2_Test_Data/FeatureServer/2"
             }),
         }
-    }
+    },
+    options: {
+        languageOptions: [
+            {
+                label: "English",
+                value: "en",
+            },
+            {
+                label: "Spanish",
+                value: "es",
+            },
+            {
+                label: "Chinese (Simplified)",
+                value: "zh",
+            },
+        ],
+        sortOptions: [
+            { label: "Distance", value: "distance" },
+            { label: "Last Reported", value: "lastReported" },
+        ],
+        illnessOptions: [
+            { label: "Flu", value: "flu" },
+            { label: "COVID-19", value: "covid" },
+        ],
+    },
 };
 // #endregion ========================== EXPORTED CONSTANTS ==============================
 // #region ========================= EXPORTS ===================================

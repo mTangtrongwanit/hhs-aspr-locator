@@ -20,7 +20,7 @@ import mobileLogoPath from "@/assets/images/ASPR-logo-mobile.jpg";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
-import LanguageDropdown from "@/components/LanguageDropdown";
+import DropdownSingleSelect from "@/components/DropdownSingleSelect";
 import {
   StyledHeader,
   StyledHeaderLogo,
@@ -47,10 +47,10 @@ const HeaderComponent = () => {
   const headerRef = useRef<HTMLDivElement>(null);
 
   useResizeObserver(bannerRef.current, (entry) =>
-    setBannerHeight(entry.contentRect.height),
+    setBannerHeight(entry.contentRect.height)
   );
   useResizeObserver(headerRef.current, (entry) =>
-    setHeaderHeight(entry.contentRect.height),
+    setHeaderHeight(entry.contentRect.height)
   );
 
   // #endregion --------------- Hooks (Resources) ------------------------------
@@ -94,16 +94,16 @@ const HeaderComponent = () => {
           <StyledHeaderLogo
             src={webLogoPath}
             srcSet={`${mobileLogoPath} 274w, ${webLogoPath} 639w`}
-            sizes="(max-width: 1100px) 117px,
-            296px"
-            alt="Administration for Strategic Preparedness and Response Logo"
+            sizes='(max-width: 1100px) 117px,
+            296px'
+            alt='Administration for Strategic Preparedness and Response Logo'
           />
         </StyledHeaderContentContainer>
         <StyledHeaderContentContainer>
           <StyledAppTitle>{t("Header.Title")}</StyledAppTitle>
         </StyledHeaderContentContainer>
         <StyledHeaderContentContainer>
-          <LanguageDropdown></LanguageDropdown>
+          <DropdownSingleSelect type='language' />
         </StyledHeaderContentContainer>
       </StyledHeader>
     </>
