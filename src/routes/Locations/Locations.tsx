@@ -129,11 +129,12 @@ const Locations = () => {
   // #endregion ------------- Supporting Functions -----------------------------
 
   // #region ------------------- Event Handlers --------------------------------
+  const onButtonClick = (() => {setIsMobileListView((isList) => !isList)});
   // #endregion ---------------- Event Handlers --------------------------------
 
   // #region ----------------------- Render ------------------------------------
   return (
-    <StyledLocationsContent>
+    <StyledLocationsContent className={isMobileListView ? "lView" : "mView"}>
       <StyledSearchContainer ref={searchContRef}>
         <h2 className="visually-hidden">
           {t("Locations.Search Container Screenreader Heading")}
@@ -141,6 +142,7 @@ const Locations = () => {
         <div className="dev-placeholder">Location Search Placeholder</div>
         <div className="dev-placeholder">Illness Select Placeholder</div>
         <div className="dev-placeholder">Medication Select Placeholder</div>
+        <CalciteButton id="listViewToggle" iconEnd={isMobileListView ? "map" : "list"} onClick={onButtonClick}>{isMobileListView ? "View Map" : "View List"}</CalciteButton>
       </StyledSearchContainer>
       <div id="locs">
         <h2 className="visually-hidden">
@@ -153,7 +155,6 @@ const Locations = () => {
             </h3>
             <div className="dev-placeholder">Filter Placeholder</div>
             <div className="dev-placeholder">Sort Placeholder</div>
-            <CalciteButton onClick={setIsMobileListView((isList) => !isList)} id="mobile-view-toggle">{isMobileListView ? "View Map" : "View List"}</CalciteButton>
           </div>
           {/* tabindex for scrollable list */}
           <ul tabIndex={0}>

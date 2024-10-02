@@ -49,6 +49,14 @@ export const StyledSearchContainer = styled.section`
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.04);
   // --- States ---
   // --- Children ---
+  #listViewToggle {
+    display: none;
+    height: min-content;
+
+    @media ${Breakpoints.sm} {
+      display: block;
+    }
+  }
 `;
 
 export const StyledListContainer = styled.section`
@@ -68,6 +76,7 @@ export const StyledListContainer = styled.section`
   // --- Decorative ---
   background: var(--light);
   // --- States ---
+
   // --- Children ---
   #list-title {
     // --- Layout ---
@@ -99,6 +108,9 @@ export const StyledListContainer = styled.section`
     flex-direction: column;
     gap: var(--unit);
   }
+
+
+
 `;
 
 export const StyledMapContainer = styled.section`
@@ -131,6 +143,27 @@ export const StyledLocationsContent = styled.main`
   flex-direction: column;
   // --- Decorative ---
   // --- States ---
+
+  @media ${Breakpoints.sm} {
+    &.lView ${StyledMapContainer}{
+      display: none;
+    }
+
+    &.mView ${StyledListContainer}{
+      display: none;
+    }
+    ${StyledMapContainer} {
+      position: relative;
+      width: 100vw;
+        height: calc((var(--vh) * 100) - var(--remainder, 0px));
+
+    }
+
+    ${StyledListContainer} {
+      width: 100vw;
+    }
+
+  }
   // --- Children ---
   #locs {
     display: flex;
