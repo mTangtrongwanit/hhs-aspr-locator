@@ -6,14 +6,14 @@
 
 // #region ========================= IMPORTS ===================================
 // #region --------------------------- React -----------------------------------import { useState } from 'react';
-import { useState } from "react";
+// import { useState } from "react";
 // #endregion ------------------------ React -----------------------------------
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
 import * as PopoverMenu from "@radix-ui/react-popover";
 import * as Checkbox from '@radix-ui/react-checkbox';
 import { ChevronDownIcon, Cross2Icon, CheckIcon } from "@radix-ui/react-icons";
-import { useTranslation } from "react-i18next";
+// import { useTranslation } from "react-i18next";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -31,11 +31,11 @@ import { StyledPopoverMultiSelect, PopoverMenuTitle, PopoverCheckBoxContainer, P
 const PopoverMultiSelect = () => {
 
   // #region ------------------ Hooks (Resources) ------------------------------
-  const { i18n } = useTranslation();
+
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region -------------------- Hooks (State) --------------------------------
-  const [selectedLanguage] = useState("English");
+
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
@@ -60,6 +60,7 @@ const PopoverMultiSelect = () => {
       <PopoverMenu.Root>
         <PopoverMenu.Trigger className="PopoverMenuButton">
           Medications <ChevronDownIcon />
+          <span className="PopOverFilterCount">4</span>
         </PopoverMenu.Trigger>
         <PopoverMenu.Portal>
         <PopoverMenu.Content className="PopoverMenuContent" sideOffset={5}>
