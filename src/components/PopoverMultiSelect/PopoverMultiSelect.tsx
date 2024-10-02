@@ -17,7 +17,7 @@ import { useTranslation } from "react-i18next";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
-import { StyledPopoverMultiSelect, PopoverMenuContentContainer, PopoverMenuTitle, PopoverCheckBoxContainer, PopoverCheckBoxRow, StyledCheckboxLabel } from "./PopoverMultiSelect.styles";
+import { StyledPopoverMultiSelect, PopoverMenuTitle, PopoverCheckBoxContainer, PopoverCheckBoxRow, StyledCheckboxLabel, StyledFilterButtonContainer, StyledOutlineButton, StyledPrimaryButton} from "./PopoverMultiSelect.styles";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
@@ -63,7 +63,6 @@ const PopoverMultiSelect = () => {
         </PopoverMenu.Trigger>
         <PopoverMenu.Portal>
         <PopoverMenu.Content className="PopoverMenuContent" sideOffset={5}>
-          <PopoverMenuContentContainer>
             <PopoverMenuTitle>
                 Medications
             </PopoverMenuTitle>
@@ -75,11 +74,28 @@ const PopoverMultiSelect = () => {
                   </Checkbox.Indicator>
                 </Checkbox.Root>
                 <StyledCheckboxLabel htmlFor="c1">
-                  Accept terms and conditions.
+                  Oseltamivir
+                </StyledCheckboxLabel>
+              </PopoverCheckBoxRow>
+              <PopoverCheckBoxRow>
+                <Checkbox.Root className="CheckboxRoot" defaultChecked id="c2">
+                  <Checkbox.Indicator className="CheckboxIndicator">
+                    <CheckIcon />
+                  </Checkbox.Indicator>
+                </Checkbox.Root>
+                <StyledCheckboxLabel htmlFor="c2">
+                  Baloxavir
                 </StyledCheckboxLabel>
               </PopoverCheckBoxRow>
             </PopoverCheckBoxContainer>
-          </PopoverMenuContentContainer>
+            <StyledFilterButtonContainer>
+              <StyledOutlineButton>
+                Clear All
+              </StyledOutlineButton>
+              <StyledPrimaryButton>
+                Apply
+              </StyledPrimaryButton>
+            </StyledFilterButtonContainer>
           <PopoverMenu.Close className="PopoverMenuClose" aria-label="Close">
             <Cross2Icon />
           </PopoverMenu.Close>

@@ -57,69 +57,6 @@ export const StyledPopoverMultiSelect = styled.section`
     height: 30px;
   }
 
-  .PopoverMenuContent {
-    border-radius: 4px;
-    padding: 20px;
-    width: 260px;
-    display: flex;
-    background-color: white;
-    box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
-    animation-duration: 400ms;
-    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: transform, opacity;
-  }
-  .PopoverMenuContent:focus {
-    box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px,
-      0 0 0 2px var(--violet-7);
-  }
-  .PopoverMenuContent[data-state='open'][data-side='top'] {
-    animation-name: slideDownAndFade;
-  }
-  .PopoverMenuContent[data-state='open'][data-side='right'] {
-    animation-name: slideLeftAndFade;
-  }
-  .PopoverMenuContent[data-state='open'][data-side='bottom'] {
-    animation-name: slideUpAndFade;
-  }
-  .PopoverMenuContent[data-state='open'][data-side='left'] {
-    animation-name: slideRightAndFade;
-  }
-
-  .PopoverMenuArrow {
-    fill: white;
-  }
-
-  .PopoverMenuClose {
-    font-family: inherit;
-    border-radius: 100%;
-    height: 25px;
-    width: 25px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--violet-11);
-    position: absolute;
-    top: 5px;
-    right: 5px;
-  }
-  .PopoverMenuClose:hover {
-    background-color: var(--violet-4);
-  }
-  .PopoverMenuClose:focus {
-    box-shadow: 0 0 0 2px var(--violet-7);
-  }
-
-  @keyframes slideUpAndFade {
-    from {
-      opacity: 0;
-      transform: translateY(2px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
   @keyframes slideRightAndFade {
     from {
       opacity: 0;
@@ -166,18 +103,68 @@ export const PopoverMenuTitle = styled.h3`
 `;
 
 export const PopoverCheckBoxContainer = styled.div`
+ display: flex;
+ flex-direction: column;
+ gap: 2px;
+ overflow: hidden;
+ border-radius: 4px;
+ border: 1px solid var(--light);
 `;
 
 export const PopoverCheckBoxRow = styled.div`
- display: 'flex';
+ display: flex;
+ padding: 12px 16px;
  align-items: 'center';
+ background: var(--light);
+ gap: 16px;
 `;
 
 export const StyledCheckboxLabel = styled.label`
+  font-size: var(--text-0);
+  font-weight: 400;
+  line-height: 125%;
   color: var(--text);
-  padding-left: 15px;
-  font-size: 15px;
-  line-height: 1;
+`;
+
+export const StyledFilterButtonContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+`;
+
+export const StyledOutlineButton = styled.button`
+  display: flex;
+  padding: 10px 16px;
+  font-size: var(--text-0);
+  font-weight: 600;
+  line-height: 125%;
+  color: var(--brand);
+  border: 1px solid var(--brand);
+  border-radius: 4px;
+  background: white;
+
+  &:hover {
+    color: white;
+    background: var(--accent);
+    cursor: pointer;
+  }
+`;
+
+export const StyledPrimaryButton = styled.button`
+  display: flex;
+  padding: 10px 12px;
+  font-size: var(--text-0);
+  font-weight: 600;
+  line-height: 125%;
+  color: white;
+  border: 1px solid var(--brand);
+  border-radius: 4px;
+  background: var(--brand);
+
+  &:hover {
+    background: var(--accent);
+    cursor: pointer;
+  }
 `;
 
 
