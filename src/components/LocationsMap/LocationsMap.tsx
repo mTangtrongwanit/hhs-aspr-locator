@@ -158,23 +158,23 @@ const LocationsMap = () => {
     }
   }, [locationsMapView, selectedTreatmentSite, setLocationsMapView]);
 
-  /** Zoom to locations center and extent. */
+  /** Zoom to locations center and extent or zoom depending on properties of locationsExtent. */
   useEffect(() => {
     if (locationsMapView && searchPoint && locationsExtent) {
-      locationsMapView.when(() => {
-        reactiveUtils
-          .whenOnce(() => !locationsMapView.updating)
-          .then(() => {
-            locationsMapView
-              .goTo({
-                target: locationsExtent.center,
-                extent: locationsExtent.extent,
-              })
-              .catch((error) => {
-                console.error("MapView goTo error: ", error);
-              });
+      reactiveUtils
+        .whenOnce(() => locationsMapView.ready)
+        .then(() => {
+          const target = locationsExtent.extent
+            ? locationsExtent.extent.center
+            : searchPoint.point;
+          const options = locationsExtent.extent
+            ? { target, extent: locationsExtent.extent }
+            : { target, zoom: 8 };
+
+          locationsMapView.goTo(options).catch((error) => {
+            console.error("MapView goTo error: ", error);
           });
-      });
+        });
     }
   }, [locationsExtent, locationsMapView, searchPoint]);
 

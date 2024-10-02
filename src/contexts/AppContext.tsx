@@ -66,6 +66,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   // #region ----------------- Hooks (Memoization) -----------------------------
   // #endregion -------------- Hooks (Memoization) -----------------------------
   // #region -------------------- Hooks (Other) --------------------------------
+  /** Get the treatement illness data and set it to state */
   useEffect(() => {
     const fetchTreatmentsIllnesses = async () => {
       const treatmentIllnesses = await getTreatmentsIllnessesData();
@@ -74,21 +75,28 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     fetchTreatmentsIllnesses();
   }, []);
 
+  /** Set search point to initial search point when component mounts */
   useEffect(() => {
     setSearchPoint(initialSearchPoint);
   }, []);
 
+  /** Get the locations and set locations and locations extent to state */
   useEffect(() => {
     const getLocations = async () => {
-      const locations = await getLocationsData(
-        searchPoint?.point ?? initialSearchPoint.point
-      );
-      setLocations(locations?.features.features ?? []);
-      setLocationsExtent(locations?.extent ?? null);
+      try {
+        const locs = await getLocationsData(
+          searchPoint?.point ?? initialSearchPoint.point
+        );
+        setLocations(locs?.features.features ?? []);
+        setLocationsExtent(locs?.extent ?? null);
+      } catch (error) {
+        console.error("Error getting locations data: ", error);
+      }
     };
     getLocations();
   }, [searchPoint]);
 
+  /** Set illnessesTreatments dictionary when treatmentsIllness data is set */
   useEffect(() => {
     if (treatmentsIllnesses) {
       // Combine treatments and illnesses into a dictionary
