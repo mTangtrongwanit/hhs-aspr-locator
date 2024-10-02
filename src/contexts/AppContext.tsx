@@ -47,6 +47,9 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     point: __esri.Point;
   } | null>(null);
   const [locations, setLocations] = useState<__esri.Graphic[] | null>(null);
+  const [locationsExtent, setLocationsExtent] = useState<__esri.Extent | null>(
+    null
+  );
   const [treatmentsIllnesses, setTreatmentsIllnesses] = useState<
     __esri.Graphic[] | null
   >(null);
@@ -80,7 +83,8 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
       const locations = await getLocationsData(
         searchPoint?.point ?? initialSearchPoint.point
       );
-      setLocations(locations ?? []);
+      setLocations(locations?.features.features ?? []);
+      setLocationsExtent(locations?.extent ?? null);
     };
     getLocations();
   }, [searchPoint]);
@@ -118,6 +122,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
         selectedTreatmentSite: selectedTreatmentSite,
         setSelectedTreatmentSite: setSelectedTreatmentSite,
         locations: locations,
+        locationsExtent: locationsExtent,
       }}
     >
       {children}

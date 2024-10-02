@@ -43,6 +43,7 @@ const LocationsMap = () => {
     selectedTreatmentSite,
     setSelectedTreatmentSite,
     searchPoint,
+    locationsExtent,
   } = useAppContext();
   // #endregion --------------- Hooks (Resources) ------------------------------
 
@@ -159,19 +160,23 @@ const LocationsMap = () => {
 
   /** Zoom to search point */
   useEffect(() => {
-    if (locationsMapView && searchPoint) {
+    if (locationsMapView && searchPoint && locationsExtent) {
       locationsMapView.when(() => {
-        locationsMapView
-          .goTo({
-            center: [searchPoint.point.x, searchPoint.point.y],
-            zoom: 12,
-          })
-          .catch((error) => {
-            console.error("MapView goTo error: ", error);
+        reactiveUtils
+          .whenOnce(() => !locationsMapView.updating)
+          .then(() => {
+            locationsMapView
+              .goTo({
+                target: locationsExtent.center,
+                extent: locationsExtent.extent,
+              })
+              .catch((error) => {
+                console.error("MapView goTo error: ", error);
+              });
           });
       });
     }
-  }, [locationsMapView, searchPoint]);
+  }, [locationsExtent, locationsMapView, searchPoint]);
 
   // #endregion ----------------- Hooks (Other) --------------------------------
 

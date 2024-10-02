@@ -10,6 +10,7 @@ export interface AppContextType {
   selectedTreatmentSite: __esri.Graphic | null;
   setSelectedTreatmentSite: (x: __esri.Graphic) => void;
   locations: __esri.Graphic[] | null;
+  locationsExtent: __esri.Extent | null;
 }
 
 export interface AppContextProps {
