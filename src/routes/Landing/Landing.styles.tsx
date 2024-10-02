@@ -16,6 +16,9 @@ import { Breakpoints } from "@/utils";
 
 // #endregion ====================== IMPORTS ===================================
 
+const imgUrl = new URL("@/assets/nurse.jpg", import.meta.url).href
+
+
 // #region =================== EXPORTED COMPONENTS =============================
 /* Property Organization Guide */
 // --- Local Variables ---
@@ -68,7 +71,7 @@ export const StyledViewLocsButton = styled.button`
 export const StyledDecorativeImage = styled.div`
   grid-area: image;
   // --- Decorative ---
-  background-image: url("./src/assets/nurse.jpg");
+  background-image: ${`url(${imgUrl})`};
   background-repeat: no-repeat;
   background-position: top right;
   background-size: cover;

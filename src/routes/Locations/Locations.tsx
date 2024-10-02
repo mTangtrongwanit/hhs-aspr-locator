@@ -18,6 +18,7 @@ import {
   StyledMapContainer,
   StyledSearchContainer,
 } from "./Locations.styles";
+import PopoverMultiSelect from "@/components/PopoverMultiSelect";
 import Card from "@/components/Card";
 import { ServiceProvider } from "@/components/Card";
 import LocationsMap from "@/components/LocationsMap";
@@ -143,7 +144,7 @@ const Locations = () => {
         </h2>
         <div className="dev-placeholder">Location Search Placeholder</div>
         <div className="dev-placeholder">Illness Select Placeholder</div>
-        <div className="dev-placeholder">Medication Select Placeholder</div>
+        <PopoverMultiSelect></PopoverMultiSelect>
         <button id="listViewToggle" onClick={onButtonClick}>
           {isMobileListView ? <MapIcon></MapIcon> : <ListIcon></ListIcon>}
           <span>{isMobileListView ? "Map" : "List"}</span>
