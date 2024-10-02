@@ -73,7 +73,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   useEffect(() => {
     const getLocations = async () => {
       const locations = await getLocationsData(
-        searchPoint ?? initialSearchPoint
+        searchPoint ?? initialSearchPoint,
       );
       setLocations(locations ?? []);
     };
@@ -126,7 +126,7 @@ export const useAppContext = () => {
   if (!appContext) {
     // the below text is for developers not for users. It does not need to be translated
     throw new Error(
-      "Cannot use 'useAppContext' outside of a AppContextProvider"
+      "Cannot use 'useAppContext' outside of a AppContextProvider",
     );
   }
   return appContext;

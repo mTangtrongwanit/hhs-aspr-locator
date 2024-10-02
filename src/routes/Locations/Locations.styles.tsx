@@ -52,25 +52,25 @@ export const StyledSearchContainer = styled.section`
   #listViewToggle {
     display: none;
     height: min-content;
-      // --- Sizing / Box-Model ---
-  width: min-content;
-  padding: calc(var(--unit) / 2) calc(var(--unit)); //vert horz
+    // --- Sizing / Box-Model ---
+    width: min-content;
+    padding: calc(var(--unit) / 2) calc(var(--unit)); //vert horz
 
-  gap: calc(var(--unit) / 2);
-  // --- Decorative ---
-  white-space: nowrap;
-  background: #fff;
-  color: var(--brand);
-  border-radius: var(--radius);
-  border: 1px solid var(--brand);
-  font-weight: bold;
-  // --- States ---
+    gap: calc(var(--unit) / 2);
+    // --- Decorative ---
+    white-space: nowrap;
+    background: #fff;
+    color: var(--brand);
+    border-radius: var(--radius);
+    border: 1px solid var(--brand);
+    font-weight: bold;
+    // --- States ---
 
-  &:hover,
-  &:focus {
-    border-color: var(--accent);
-    cursor: pointer;
-  }
+    &:hover,
+    &:focus {
+      border-color: var(--accent);
+      cursor: pointer;
+    }
 
     @media ${Breakpoints.sm} {
       display: flex;
@@ -127,9 +127,6 @@ export const StyledListContainer = styled.section`
     flex-direction: column;
     gap: var(--unit);
   }
-
-
-
 `;
 
 export const StyledMapContainer = styled.section`
@@ -164,24 +161,22 @@ export const StyledLocationsContent = styled.main`
   // --- States ---
 
   @media ${Breakpoints.sm} {
-    &.lView ${StyledMapContainer}{
+    &.lView ${StyledMapContainer} {
       display: none;
     }
 
-    &.mView ${StyledListContainer}{
+    &.mView ${StyledListContainer} {
       display: none;
     }
     ${StyledMapContainer} {
       position: relative;
       width: 100vw;
-        height: calc((var(--vh) * 100) - var(--remainder, 0px));
-
+      height: calc((var(--vh) * 100) - var(--remainder, 0px));
     }
 
     ${StyledListContainer} {
       width: 100vw;
     }
-
   }
   // --- Children ---
   #locs {

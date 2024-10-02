@@ -129,7 +129,9 @@ const Locations = () => {
   // #endregion ------------- Supporting Functions -----------------------------
 
   // #region ------------------- Event Handlers --------------------------------
-  const onButtonClick = (() => {setIsMobileListView((isList) => !isList)});
+  const onButtonClick = () => {
+    setIsMobileListView((isList) => !isList);
+  };
   // #endregion ---------------- Event Handlers --------------------------------
 
   // #region ----------------------- Render ------------------------------------
@@ -144,10 +146,7 @@ const Locations = () => {
         <div className="dev-placeholder">Medication Select Placeholder</div>
         <button id="listViewToggle" onClick={onButtonClick}>
           {isMobileListView ? <MapIcon></MapIcon> : <ListIcon></ListIcon>}
-          <span>
-          {isMobileListView ? "Map" : "List"}
-
-          </span>
+          <span>{isMobileListView ? "Map" : "List"}</span>
         </button>
       </StyledSearchContainer>
       <div id="locs">
