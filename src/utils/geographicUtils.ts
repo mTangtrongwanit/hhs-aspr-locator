@@ -18,7 +18,8 @@ import { type AppContextType } from "@/contexts/AppContext.types";
 
 // #region ------------------------ Constants ----------------------------------
 const locationsData = config.treatmentData.treatment_sites.locationsLayer;
-const treatmentsIllnessesData = config.treatmentData.treatmentsIllnessesData.treatmentsIllnessesLayer;
+const treatmentsIllnessesData =
+  config.treatmentData.treatmentsIllnessesData.treatmentsIllnessesLayer;
 // #endregion --------------------- Constants ----------------------------------
 
 /**
