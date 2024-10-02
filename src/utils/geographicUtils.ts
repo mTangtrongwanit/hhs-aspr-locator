@@ -18,7 +18,8 @@ import { type AppContextType } from "@/contexts/AppContext.types";
 
 // #region ------------------------ Constants ----------------------------------
 const locationsData = config.treatmentData.treatment_sites.locationsLayer;
-const treatmentsIllnessesData = config.treatmentData.treatmentsIllnessesData.treatmentsIllnessesLayer;
+const treatmentsIllnessesData =
+  config.treatmentData.treatmentsIllnessesData.treatmentsIllnessesLayer;
 // #endregion --------------------- Constants ----------------------------------
 
 /**
@@ -27,20 +28,20 @@ const treatmentsIllnessesData = config.treatmentData.treatmentsIllnessesData.tre
  * @returns {Promise<__esri.Feature[]>} - Locations data
  */
 export const getLocationsData = async (location: Point) => {
-    try {
-        const query = locationsData.createQuery();
-        query.where = "1=1";
-        query.outFields = ["*"];
-        query.returnGeometry = true;
-        query.geometry = location;
-        query.distance = 50;
-        query.units = "miles";
-        query.spatialRelationship = "intersects";
-        const locations = await locationsData.queryFeatures(query);
-        return locations.features;
-    } catch (error) {
-        console.error("Error getting locations data: ", error);
-    }
+  try {
+    const query = locationsData.createQuery();
+    query.where = "1=1";
+    query.outFields = ["*"];
+    query.returnGeometry = true;
+    query.geometry = location;
+    query.distance = 50;
+    query.units = "miles";
+    query.spatialRelationship = "intersects";
+    const locations = await locationsData.queryFeatures(query);
+    return locations.features;
+  } catch (error) {
+    console.error("Error getting locations data: ", error);
+  }
 };
 
 /**
@@ -49,16 +50,17 @@ export const getLocationsData = async (location: Point) => {
  * @returns {Promise<__esri.Feature[]>} - Treatments illnesses data
  */
 export const getTreatmentsIllnessesData = async () => {
-    try {
-        const query = treatmentsIllnessesData.createQuery();
-        query.where = "1=1";
-        query.outFields = ["*"];
-        query.returnGeometry = false;
-        const treatmentsIllnesses = await treatmentsIllnessesData.queryFeatures(query);
-        return treatmentsIllnesses.features;
-    } catch (error) {
-        console.error("Error getting treatments illnesses data: ", error);
-    }
+  try {
+    const query = treatmentsIllnessesData.createQuery();
+    query.where = "1=1";
+    query.outFields = ["*"];
+    query.returnGeometry = false;
+    const treatmentsIllnesses =
+      await treatmentsIllnessesData.queryFeatures(query);
+    return treatmentsIllnesses.features;
+  } catch (error) {
+    console.error("Error getting treatments illnesses data: ", error);
+  }
 };
 
 /**
