@@ -167,7 +167,7 @@ export const StyledFooterMediaLinksContainer = styled.ul`
     }
 `;
 
-export const StyledFooterMediaLink = styled.a`
+export const StyledFooterMediaLink = styled.li`
     text-decoration: none;
     
     &:hover {
