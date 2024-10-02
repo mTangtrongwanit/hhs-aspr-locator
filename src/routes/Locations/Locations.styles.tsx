@@ -13,6 +13,7 @@ import styled from "styled-components";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
+import { Breakpoints } from "@/utils";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
@@ -48,6 +49,33 @@ export const StyledSearchContainer = styled.section`
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.04);
   // --- States ---
   // --- Children ---
+  #listViewToggle {
+    display: none;
+    height: min-content;
+    // --- Sizing / Box-Model ---
+    width: min-content;
+    padding: calc(var(--unit) / 2) calc(var(--unit)); //vert horz
+
+    gap: calc(var(--unit) / 2);
+    // --- Decorative ---
+    white-space: nowrap;
+    background: #fff;
+    color: var(--brand);
+    border-radius: var(--radius);
+    border: 1px solid var(--brand);
+    font-weight: bold;
+    // --- States ---
+
+    &:hover,
+    &:focus {
+      border-color: var(--accent);
+      cursor: pointer;
+    }
+
+    @media ${Breakpoints.sm} {
+      display: flex;
+    }
+  }
 `;
 
 export const StyledListContainer = styled.section`
@@ -67,6 +95,7 @@ export const StyledListContainer = styled.section`
   // --- Decorative ---
   background: var(--light);
   // --- States ---
+
   // --- Children ---
   #list-title {
     // --- Layout ---
@@ -130,6 +159,25 @@ export const StyledLocationsContent = styled.main`
   flex-direction: column;
   // --- Decorative ---
   // --- States ---
+
+  @media ${Breakpoints.sm} {
+    &.lView ${StyledMapContainer} {
+      display: none;
+    }
+
+    &.mView ${StyledListContainer} {
+      display: none;
+    }
+    ${StyledMapContainer} {
+      position: relative;
+      width: 100vw;
+      height: calc((var(--vh) * 100) - var(--remainder, 0px));
+    }
+
+    ${StyledListContainer} {
+      width: 100vw;
+    }
+  }
   // --- Children ---
   #locs {
     display: flex;

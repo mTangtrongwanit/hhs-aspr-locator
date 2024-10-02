@@ -30,7 +30,8 @@ import { useTranslation, Trans } from "react-i18next";
 import useResizeObserver from "@react-hook/resize-observer";
 import { useAppContext } from "@/contexts/AppContext";
 import * as treatmentSites from "../../data/treatment-sites.json";
-
+import MapIcon from "@/assets/icons/map.svg";
+import ListIcon from "@/assets/icons/list.svg";
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 
@@ -96,6 +97,7 @@ const Locations = () => {
   // #region -------------------- Hooks (State) --------------------------------
   const [searchContHeight, setSearchContHeight] = useState<number>(0);
   const [totalHeight, setTotalHeight] = useState<number>(0);
+  const [isMobileListView, setIsMobileListView] = useState<boolean>(true);
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
@@ -128,11 +130,14 @@ const Locations = () => {
   // #endregion ------------- Supporting Functions -----------------------------
 
   // #region ------------------- Event Handlers --------------------------------
+  const onButtonClick = () => {
+    setIsMobileListView((isList) => !isList);
+  };
   // #endregion ---------------- Event Handlers --------------------------------
 
   // #region ----------------------- Render ------------------------------------
   return (
-    <StyledLocationsContent>
+    <StyledLocationsContent className={isMobileListView ? "lView" : "mView"}>
       <StyledSearchContainer ref={searchContRef}>
         <h2 className="visually-hidden">
           {t("Locations.Search Container Screenreader Heading")}
@@ -140,6 +145,10 @@ const Locations = () => {
         <div className="dev-placeholder">Location Search Placeholder</div>
         <div className="dev-placeholder">Illness Select Placeholder</div>
         <PopoverMultiSelect></PopoverMultiSelect>
+        <button id="listViewToggle" onClick={onButtonClick}>
+          {isMobileListView ? <MapIcon></MapIcon> : <ListIcon></ListIcon>}
+          <span>{isMobileListView ? "Map" : "List"}</span>
+        </button>
       </StyledSearchContainer>
       <div id="locs">
         <h2 className="visually-hidden">
