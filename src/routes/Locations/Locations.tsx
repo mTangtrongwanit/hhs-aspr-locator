@@ -21,6 +21,7 @@ import {
 import Card from "@/components/Card";
 import { ServiceProvider } from "@/components/Card";
 import LocationsMap from "@/components/LocationsMap";
+import Search from "@/components/Search";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
@@ -134,7 +135,7 @@ const Locations = () => {
         <h2 className='visually-hidden'>
           {t("Locations.Search Container Screenreader Heading")}
         </h2>
-        <div className='dev-placeholder'>Location Search Placeholder</div>
+        <Search />
         <div className='dev-placeholder'>Illness Select Placeholder</div>
         <div className='dev-placeholder'>Medication Select Placeholder</div>
       </StyledSearchContainer>
