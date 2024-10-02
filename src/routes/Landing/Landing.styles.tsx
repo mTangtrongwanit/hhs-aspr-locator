@@ -61,6 +61,7 @@ export const StyledViewLocsButton = styled.button`
   &:hover,
   &:focus {
     background: var(--brand);
+    cursor: pointer;
   }
 `;
 

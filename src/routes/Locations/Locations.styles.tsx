@@ -52,9 +52,28 @@ export const StyledSearchContainer = styled.section`
   #listViewToggle {
     display: none;
     height: min-content;
+      // --- Sizing / Box-Model ---
+  width: min-content;
+  padding: calc(var(--unit) / 2) calc(var(--unit)); //vert horz
+
+  gap: calc(var(--unit) / 2);
+  // --- Decorative ---
+  white-space: nowrap;
+  background: #fff;
+  color: var(--brand);
+  border-radius: var(--radius);
+  border: 1px solid var(--brand);
+  font-weight: bold;
+  // --- States ---
+
+  &:hover,
+  &:focus {
+    border-color: var(--accent);
+    cursor: pointer;
+  }
 
     @media ${Breakpoints.sm} {
-      display: block;
+      display: flex;
     }
   }
 `;

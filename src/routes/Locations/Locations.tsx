@@ -9,7 +9,6 @@ import { useRef, useState, useEffect } from "react";
 // #endregion ------------------------ React -----------------------------------
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
-import { CalciteButton } from "@esri/calcite-components-react";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -30,7 +29,8 @@ import { useTranslation, Trans } from "react-i18next";
 import useResizeObserver from "@react-hook/resize-observer";
 import { useAppContext } from "@/contexts/AppContext";
 import * as treatmentSites from "../../data/treatment-sites.json";
-
+import MapIcon from "@/assets/icons/map.svg";
+import ListIcon from "@/assets/icons/list.svg";
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 
@@ -142,7 +142,13 @@ const Locations = () => {
         <div className="dev-placeholder">Location Search Placeholder</div>
         <div className="dev-placeholder">Illness Select Placeholder</div>
         <div className="dev-placeholder">Medication Select Placeholder</div>
-        <CalciteButton id="listViewToggle" iconEnd={isMobileListView ? "map" : "list"} onClick={onButtonClick}>{isMobileListView ? "View Map" : "View List"}</CalciteButton>
+        <button id="listViewToggle" onClick={onButtonClick}>
+          {isMobileListView ? <MapIcon></MapIcon> : <ListIcon></ListIcon>}
+          <span>
+          {isMobileListView ? "Map" : "List"}
+
+          </span>
+        </button>
       </StyledSearchContainer>
       <div id="locs">
         <h2 className="visually-hidden">
