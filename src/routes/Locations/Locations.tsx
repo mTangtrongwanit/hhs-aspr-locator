@@ -17,6 +17,7 @@ import {
   StyledListContainer,
   StyledMapContainer,
   StyledSearchContainer,
+  StyledButton,
 } from "./Locations.styles";
 import PopoverMultiSelect from "@/components/PopoverMultiSelect";
 import Card from "@/components/Card";
@@ -27,6 +28,8 @@ import LocationsMap from "@/components/LocationsMap";
 // #region ------------------------ Resources ----------------------------------
 // import { type Props } from "./Landing.types";
 import { useTranslation, Trans } from "react-i18next";
+import { useSearchParams } from "react-router-dom";
+
 import useResizeObserver from "@react-hook/resize-observer";
 import { useAppContext } from "@/contexts/AppContext";
 import * as treatmentSites from "../../data/treatment-sites.json";
@@ -88,6 +91,7 @@ interface Site {
 const Locations = () => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const { t } = useTranslation();
+  const [searchParams, setSearchParams] = useSearchParams();
   const { bannerHeight, headerHeight } = useAppContext();
 
   const searchContRef = useRef<HTMLDivElement>(null);
@@ -98,6 +102,7 @@ const Locations = () => {
   const [searchContHeight, setSearchContHeight] = useState<number>(0);
   const [totalHeight, setTotalHeight] = useState<number>(0);
   const [isMobileListView, setIsMobileListView] = useState<boolean>(true);
+  const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
@@ -114,13 +119,20 @@ const Locations = () => {
 
   //get size when element updates
   useResizeObserver(searchContRef.current, (entry) =>
-    setSearchContHeight(entry.contentRect.height),
+    setSearchContHeight(entry.contentRect.height)
   );
 
   useEffect(() => {
     //console.log("banner " + bannerHeight + " header " + headerHeight + " search " + searchContHeight);
     setTotalHeight(bannerHeight + headerHeight + searchContHeight);
   }, [bannerHeight, headerHeight, searchContHeight]);
+
+  // Highlight the location if the facility ID in the URL matches the facility ID of the service provider
+  useEffect(() => {
+    if (searchParams.has("facility_id")) {
+      setSelectedLocation(searchParams.get("facility_id"));
+    }
+  }, [searchParams]);
   // #endregion ----------------- Hooks (Other) --------------------------------
 
   // #region --------- Short-Circuit (Empty/Invalid State) ---------------------
@@ -133,6 +145,13 @@ const Locations = () => {
   const onButtonClick = () => {
     setIsMobileListView((isList) => !isList);
   };
+  const onToggleSelectedLoc = () => {
+    if (searchParams.has("facility_id")) {
+      searchParams.delete("facility_id");
+      setSearchParams(searchParams);
+    }
+    setSelectedLocation(null);
+  };
   // #endregion ---------------- Event Handlers --------------------------------
 
   // #region ----------------------- Render ------------------------------------
@@ -142,9 +161,20 @@ const Locations = () => {
         <h2 className="visually-hidden">
           {t("Locations.Search Container Screenreader Heading")}
         </h2>
-        <div className="dev-placeholder">Location Search Placeholder</div>
-        <div className="dev-placeholder">Illness Select Placeholder</div>
-        <PopoverMultiSelect></PopoverMultiSelect>
+        {selectedLocation !== null ? (
+          <>
+            <StyledButton as="button" onClick={onToggleSelectedLoc}>
+              Search for Other Locations
+            </StyledButton>
+          </>
+        ) : (
+          <>
+            <div className="dev-placeholder">Location Search Placeholder</div>
+            <div className="dev-placeholder">Illness Select Placeholder</div>
+            <PopoverMultiSelect></PopoverMultiSelect>
+          </>
+        )}
+
         <button id="listViewToggle" onClick={onButtonClick}>
           {isMobileListView ? <MapIcon></MapIcon> : <ListIcon></ListIcon>}
           <span>{isMobileListView ? "Map" : "List"}</span>
@@ -156,17 +186,26 @@ const Locations = () => {
         </h2>
         <StyledListContainer>
           <div id="list-title">
-            <h3>
-              <Trans i18nKey="Locations.List Heading" count={0}></Trans>
-            </h3>
-            <div className="dev-placeholder">Filter Placeholder</div>
-            <div className="dev-placeholder">Sort Placeholder</div>
+            {selectedLocation == null && (
+              <>
+                <h3>
+                  <Trans i18nKey="Locations.List Heading" count={0}></Trans>
+                </h3>
+                <div className="dev-placeholder">Filter Placeholder</div>
+                <div className="dev-placeholder">Sort Placeholder</div>
+              </>
+            )}
           </div>
           {/* tabindex for scrollable list */}
           <ul tabIndex={0}>
             {treatmentSites.features.map((site: object) => {
               const serviceProver: Site = site as Site;
               const serviceProvider: ServiceProvider = serviceProver.attributes;
+              if (selectedLocation !== null) {
+                if (selectedLocation !== serviceProvider.facility_id) {
+                  return <></>;
+                }
+              }
               return (
                 <Card
                   serviceProvider={serviceProvider}
