@@ -104,27 +104,17 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
   width: 1px;
 }
 
-.e-search {
-  /* --- Local Variables --- */
-  /* --- Sizing / Box-Model --- */
-  flex: 1 0 auto;
-  min-height: 44px;
-  width: min(300px, calc(33.3333% - var(--unit)));
+/* esri component and widget overrides*/
+.esri-search {
+  width: 100%;
+}
 
-  /* --- Position --- */
-  /* --- Layout --- */
+.esri-search__clear-button {
+  display: none;
+}
 
-  /* --- Decorative ---  */
-  background: transparent;
-  outline: 1px solid var(--calcite-color-border-input);
-  outline-offset: -1px;
-
-  &.landing {
-    width: 100%;
-    background: var(--app-bg);
-    display: flex;
-    /* max-width: 600px; */
-  }
+.esri-search__submit-button {
+  display: none;
 }
 
 /* radix-ui style and overrides */
