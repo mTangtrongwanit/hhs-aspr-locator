@@ -54,6 +54,7 @@ body,
     */
 
   width: 100vw;
+  overflow-x: hidden;
   /* --vh: see ./style-utils */
   height: calc(var(--vh, 1vh) * 100);
 

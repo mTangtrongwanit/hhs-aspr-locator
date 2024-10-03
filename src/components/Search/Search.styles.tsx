@@ -42,7 +42,8 @@ export const StyledSearch = styled.div`
   align-items: center;
   border: var(--border) solid var(--brand);
   /* min-height: 42px; */
-  width: min(300px, calc(33.3333% - var(--unit)));
+  width: auto;
+  max-width: 20rem;
   padding: 8px 4px;
   background: white;
   color: var(--brand);
