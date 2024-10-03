@@ -45,7 +45,6 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   const [treatmentsIllnesses, setTreatmentsIllnesses] = useState<
     __esri.Graphic[] | null
   >(null);
-  //@ts-expect-error will map these later
   const [illnessesTreatments, setIllnessesTreatments] = useState<{
     [key: string]: string[];
   }>({});
@@ -73,7 +72,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   useEffect(() => {
     const getLocations = async () => {
       const locations = await getLocationsData(
-        searchPoint ?? initialSearchPoint,
+        searchPoint ?? initialSearchPoint
       );
       setLocations(locations ?? []);
     };
@@ -112,6 +111,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
         setLocationsMapView: setLocationsMapView,
         selectedTreatmentSite: selectedTreatmentSite,
         setSelectedTreatmentSite: setSelectedTreatmentSite,
+        illnessesTreatments: illnessesTreatments,
       }}
     >
       {children}
@@ -126,7 +126,7 @@ export const useAppContext = () => {
   if (!appContext) {
     // the below text is for developers not for users. It does not need to be translated
     throw new Error(
-      "Cannot use 'useAppContext' outside of a AppContextProvider",
+      "Cannot use 'useAppContext' outside of a AppContextProvider"
     );
   }
   return appContext;

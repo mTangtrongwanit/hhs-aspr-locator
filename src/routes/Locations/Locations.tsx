@@ -114,7 +114,7 @@ const Locations = () => {
 
   //get size when element updates
   useResizeObserver(searchContRef.current, (entry) =>
-    setSearchContHeight(entry.contentRect.height),
+    setSearchContHeight(entry.contentRect.height)
   );
 
   useEffect(() => {
@@ -139,28 +139,28 @@ const Locations = () => {
   return (
     <StyledLocationsContent className={isMobileListView ? "lView" : "mView"}>
       <StyledSearchContainer ref={searchContRef}>
-        <h2 className="visually-hidden">
+        <h2 className='visually-hidden'>
           {t("Locations.Search Container Screenreader Heading")}
         </h2>
-        <div className="dev-placeholder">Location Search Placeholder</div>
-        <div className="dev-placeholder">Illness Select Placeholder</div>
-        <PopoverMultiSelect></PopoverMultiSelect>
-        <button id="listViewToggle" onClick={onButtonClick}>
+        <div className='dev-placeholder'>Location Search Placeholder</div>
+        <div className='dev-placeholder'>Illness Select Placeholder</div>
+        <PopoverMultiSelect type='medications' />
+        <button id='listViewToggle' onClick={onButtonClick}>
           {isMobileListView ? <MapIcon></MapIcon> : <ListIcon></ListIcon>}
           <span>{isMobileListView ? "Map" : "List"}</span>
         </button>
       </StyledSearchContainer>
-      <div id="locs">
-        <h2 className="visually-hidden">
+      <div id='locs'>
+        <h2 className='visually-hidden'>
           {t("Locations.Results Screenreader Heading")}
         </h2>
         <StyledListContainer>
-          <div id="list-title">
+          <div id='list-title'>
             <h3>
-              <Trans i18nKey="Locations.List Heading" count={0}></Trans>
+              <Trans i18nKey='Locations.List Heading' count={0}></Trans>
             </h3>
-            <div className="dev-placeholder">Filter Placeholder</div>
-            <div className="dev-placeholder">Sort Placeholder</div>
+            <PopoverMultiSelect type='filter' />
+            <div className='dev-placeholder'>Sort Placeholder</div>
           </div>
           {/* tabindex for scrollable list */}
           <ul tabIndex={0}>
@@ -180,7 +180,7 @@ const Locations = () => {
         <StyledMapContainer
           style={{ "--remainder": `${totalHeight}px` } as React.CSSProperties}
         >
-          <h3 className="visually-hidden">
+          <h3 className='visually-hidden'>
             {t("Locations.Map Screenreader Heading")}
           </h3>
           <LocationsMap />
