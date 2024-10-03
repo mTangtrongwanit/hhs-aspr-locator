@@ -58,5 +58,6 @@ export interface ServiceProvider {
   has_oseltamivir_tamiflu?: string;
   non_public_yn?: string;
   grantee_code?: string;
+  distance?: number;
 }
 // #endregion ================== EXPORTED TYPES ================================

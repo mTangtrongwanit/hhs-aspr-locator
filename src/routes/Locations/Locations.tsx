@@ -23,6 +23,7 @@ import Card from "@/components/Card";
 import { ServiceProvider } from "@/components/Card";
 import LocationsMap from "@/components/LocationsMap";
 import DropdownSingleSelect from "@/components/DropdownSingleSelect";
+import { calculateDistanceBetweenTwoPoints } from "../../utils/geographicUtils";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
@@ -78,6 +79,7 @@ interface SiteAttributes {
   has_oseltamivir_tamiflu?: string;
   non_public_yn?: string;
   grantee_code?: string;
+  distance?: number;
 }
 
 interface Site {
@@ -89,7 +91,8 @@ interface Site {
 const Locations = () => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const { t } = useTranslation();
-  const { bannerHeight, headerHeight } = useAppContext();
+  const { bannerHeight, headerHeight, searchPoint, selectedSort } =
+    useAppContext();
 
   const searchContRef = useRef<HTMLDivElement>(null);
 
@@ -99,6 +102,7 @@ const Locations = () => {
   const [searchContHeight, setSearchContHeight] = useState<number>(0);
   const [totalHeight, setTotalHeight] = useState<number>(0);
   const [isMobileListView, setIsMobileListView] = useState<boolean>(true);
+  const [sortedSites, setSortedSites] = useState<Site[]>([]);
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
@@ -122,6 +126,41 @@ const Locations = () => {
     //console.log("banner " + bannerHeight + " header " + headerHeight + " search " + searchContHeight);
     setTotalHeight(bannerHeight + headerHeight + searchContHeight);
   }, [bannerHeight, headerHeight, searchContHeight]);
+
+  /** Sort the sites based on the value of the sort dropdown. */
+  useEffect(() => {
+    const fetchDistancesAndSort = async () => {
+      const updatedSites = await Promise.all(
+        treatmentSites.features.map(async (site: object) => {
+          const serviceProver: Site = site as Site;
+          const serviceProvider: ServiceProvider = serviceProver.attributes;
+          const distance = await calculateDistanceBetweenTwoPoints(
+            serviceProvider,
+            searchPoint
+          );
+          serviceProvider.distance = distance ?? 0;
+          return serviceProver;
+        })
+      );
+
+      const sortedSites = updatedSites.sort((a, b) => {
+        if (selectedSort.value === "distance") {
+          const distanceA = a.attributes.distance || 0;
+          const distanceB = b.attributes.distance || 0;
+          return distanceA - distanceB;
+        } else if (selectedSort.value === "last_report_date") {
+          const dateA = new Date(a.attributes.last_report_date).getTime();
+          const dateB = new Date(b.attributes.last_report_date).getTime();
+          return dateB - dateA;
+        }
+        return 0;
+      });
+
+      setSortedSites(sortedSites);
+    };
+
+    fetchDistancesAndSort();
+  }, [searchPoint, selectedSort]);
   // #endregion ----------------- Hooks (Other) --------------------------------
 
   // #region --------- Short-Circuit (Empty/Invalid State) ---------------------
@@ -147,7 +186,7 @@ const Locations = () => {
         <DropdownSingleSelect type={"illness"} />
         {/* <DropdownSingleSelect type={"language"} /> */}
         <PopoverMultiSelect></PopoverMultiSelect>
-        <button id="listViewToggle" onClick={onButtonClick}>
+        <button id='listViewToggle' onClick={onButtonClick}>
           {isMobileListView ? <MapIcon></MapIcon> : <ListIcon></ListIcon>}
           <span>{isMobileListView ? "Map" : "List"}</span>
         </button>
@@ -166,9 +205,8 @@ const Locations = () => {
           </div>
           {/* tabindex for scrollable list */}
           <ul tabIndex={0}>
-            {treatmentSites.features.map((site: object) => {
-              const serviceProver: Site = site as Site;
-              const serviceProvider: ServiceProvider = serviceProver.attributes;
+            {sortedSites.map((site: Site) => {
+              const serviceProvider: ServiceProvider = site.attributes;
               return (
                 <Card
                   serviceProvider={serviceProvider}
