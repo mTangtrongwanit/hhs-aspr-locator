@@ -38,6 +38,8 @@ import styled from "styled-components";
 // #region --------------- Parent Component + Variants -------------------------
 export const StyledDropdownSelect = styled.section`
   min-width: 8rem;
+  position: relative;
+  z-index: 2;
 
   .DropDownButton {
     position: relative;
