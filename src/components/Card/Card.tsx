@@ -127,7 +127,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
 
   // #region ----------------------- Render ------------------------------------
   return (
-    <StyledCard $selected={selected} ref={cardRef}>
+    <StyledCard tabIndex={0} $selected={selected} ref={cardRef}>
       <StyledTitleRow>
         <StyledCardTitle className="bold">
           {serviceProvider.provider_name}
