@@ -47,7 +47,6 @@ export const StyledSearch = styled.div`
   background: white;
   color: var(--brand);
   border-radius: 4px;
-  overflow: hidden;
 `;
 // #endregion ------------ Parent Component + Variants -------------------------
 // #endregion ================ EXPORTED COMPONENTS =============================
