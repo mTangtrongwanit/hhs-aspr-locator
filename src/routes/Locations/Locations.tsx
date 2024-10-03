@@ -19,7 +19,7 @@ import {
   StyledSearchContainer,
 } from "./Locations.styles";
 import PopoverMultiSelect from "@/components/PopoverMultiSelect";
-import Card from "@/components/Card";
+import CardList from "@/components/CardList";
 import { ServiceProvider } from "@/components/Card";
 import LocationsMap from "@/components/LocationsMap";
 import DropdownSingleSelect from "@/components/DropdownSingleSelect";
@@ -147,7 +147,7 @@ const Locations = () => {
         <DropdownSingleSelect type={"illness"} />
         {/* <DropdownSingleSelect type={"language"} /> */}
         <PopoverMultiSelect></PopoverMultiSelect>
-        <button id="listViewToggle" onClick={onButtonClick}>
+        <button id='listViewToggle' onClick={onButtonClick}>
           {isMobileListView ? <MapIcon></MapIcon> : <ListIcon></ListIcon>}
           <span>{isMobileListView ? "Map" : "List"}</span>
         </button>
@@ -170,11 +170,10 @@ const Locations = () => {
               const serviceProver: Site = site as Site;
               const serviceProvider: ServiceProvider = serviceProver.attributes;
               return (
-                <Card
-                  serviceProvider={serviceProvider}
-                  selected={false}
-                  key={serviceProvider.OBJECTID}
-                ></Card>
+                <CardList
+                  key={serviceProver.attributes.facility_id}
+                  serviceProviders={[serviceProvider]}
+                />
               );
             })}
           </ul>

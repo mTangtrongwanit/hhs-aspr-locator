@@ -6,7 +6,7 @@
 
 // #region ========================= IMPORTS ===================================
 // #region --------------------------- React -----------------------------------
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 // #endregion ------------------------ React -----------------------------------
 // #region ------------ 3rd-Party Components / Libraries -----------------------
 import { useTranslation } from "react-i18next";
@@ -23,7 +23,6 @@ import {
   StyledTitleRow,
 } from "./Card.styles";
 import Tooltip from "./Tooltip";
-import { calculateDistanceBetweenTwoPoints } from "../../utils/geographicUtils";
 import { useAppContext } from "@/contexts/AppContext";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
@@ -53,7 +52,6 @@ const Card = ({ selected, serviceProvider }: Props) => {
   const { searchPoint } = useAppContext();
   // #endregion --------------- Hooks (Resources) ------------------------------
   // #region ----------------------- Hooks (State) -------------------------------------
-  const [distance, setDistance] = useState<number | null>(null);
   // #endregion -------------------- Hooks (State) -------------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
@@ -61,18 +59,18 @@ const Card = ({ selected, serviceProvider }: Props) => {
 
   // #region -------------------- Hooks (Other) --------------------------------
 
-  // Get the distance between the user's search location and the service provider
-  useEffect(() => {
-    const fetchDistance = async () => {
-      const dist = await calculateDistanceBetweenTwoPoints(
-        serviceProvider,
-        searchPoint,
-      );
-      setDistance(dist);
-    };
+  // // Get the distance between the user's search location and the service provider
+  // useEffect(() => {
+  //   const fetchDistance = async () => {
+  //     const dist = await calculateDistanceBetweenTwoPoints(
+  //       serviceProvider,
+  //       searchPoint
+  //     );
+  //     setDistance(dist);
+  //   };
 
-    fetchDistance();
-  }, []);
+  //   fetchDistance();
+  // }, []);
 
   // Highlight the location if the facility ID in the URL matches the facility ID of the service provider
   useEffect(() => {
@@ -100,7 +98,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
    */
   const copyToClipboard = (
     path: string,
-    queryParams: Record<string, string>,
+    queryParams: Record<string, string>
   ) => {
     const url = new URL(`${window.location.origin}${path}`);
     Object.keys(queryParams).forEach((key) => {
@@ -129,24 +127,25 @@ const Card = ({ selected, serviceProvider }: Props) => {
   return (
     <StyledCard $selected={selected} ref={cardRef}>
       <StyledTitleRow>
-        <StyledCardTitle className="bold">
+        <StyledCardTitle className='bold'>
           {serviceProvider.provider_name}
         </StyledCardTitle>
-        {distance !== null && (
-          <p className="smallText">
+        {serviceProvider.distance !== undefined && (
+          <p className='smallText'>
             {t("Card.distance")}
-            {`: ${distance
-              .toFixed(0)
-              .toString()
-              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}
+            {serviceProvider.distance !== null &&
+              `: ${serviceProvider.distance
+                .toFixed(0)
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}
             {` ${t("Card.miles")}`}
           </p>
         )}
       </StyledTitleRow>
       <address>
-        <StyledIconField className="addr">
+        <StyledIconField className='addr'>
           <PinIcon></PinIcon>{" "}
-          <p className="smallText">
+          <p className='smallText'>
             {serviceProvider.address1}
             {serviceProvider.address2 ? (
               <>
@@ -159,7 +158,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
             {serviceProvider.zip}
           </p>
         </StyledIconField>
-        <StyledIconField className="addr">
+        <StyledIconField className='addr'>
           {serviceProvider.public_phone && <PhoneIcon></PhoneIcon>}
           {serviceProvider.public_phone && (
             <a href={`tel:serviceProvider.public_phone`}>
@@ -168,8 +167,6 @@ const Card = ({ selected, serviceProvider }: Props) => {
           )}
         </StyledIconField>
       </address>
-
-      {/* TODO: Alt text for these icons */}
 
       <StyledRow>
         {serviceProvider.is_pap === "TRUE" && (
@@ -218,23 +215,23 @@ const Card = ({ selected, serviceProvider }: Props) => {
                 ? serviceProvider.url_appointment
                 : ""
             }
-            target="_blank"
+            target='_blank'
           >
             {t("Card.additionalInformation")}
           </a>
         </p>
       )}
       {serviceProvider.grantee_code === "HR2" && (
-        <p className="ital">{t("Card.hrsa")}</p>
+        <p className='ital'>{t("Card.hrsa")}</p>
       )}
       {serviceProvider.grantee_code === "DD2" && (
-        <p className="ital">{t("Card.dod")}</p>
+        <p className='ital'>{t("Card.dod")}</p>
       )}
       {serviceProvider.grantee_code === "IH2" && (
-        <p className="ital">{t("Card.ihs")}</p>
+        <p className='ital'>{t("Card.ihs")}</p>
       )}
       <StyledRow>
-        <StyledOutlinedLink as="button" onClick={handleCopyToClipboard}>
+        <StyledOutlinedLink as='button' onClick={handleCopyToClipboard}>
           {t("Card.shareLocation")}
         </StyledOutlinedLink>
         {serviceProvider.address1 && (
@@ -242,16 +239,16 @@ const Card = ({ selected, serviceProvider }: Props) => {
             href={`https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(
               searchPoint
                 ? `${searchPoint.latitude},${searchPoint.longitude}`
-                : "",
+                : ""
             )}&destination=${encodeURIComponent(
               `${serviceProvider.address1} ${
                 serviceProvider.address2 ? serviceProvider.address2 + " " : ""
               }${serviceProvider.city} ${serviceProvider.state} ${
                 serviceProvider.zip
-              }`,
+              }`
             )}`}
-            target="_blank"
-            rel="noopener noreferrer"
+            target='_blank'
+            rel='noopener noreferrer'
             aria-label={t("Card.directionsToLocation")}
           >
             <span>{t("Card.openInMaps")}</span>

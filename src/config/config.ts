@@ -49,11 +49,11 @@ const config: StaticConfiguration = {
     ],
     sortOptions: [
       { label: "Distance", value: "distance" },
-      { label: "Last Reported", value: "last reported" },
+      { label: "Last Report Date", value: "last_report_date" },
     ],
     illnessOptions: [
-      { label: "Flu", value: "flu" },
-      { label: "COVID-19", value: "covid" },
+      { label: "Flu", value: "Flu" },
+      { label: "COVID", value: "COVID" },
     ],
   }
 };

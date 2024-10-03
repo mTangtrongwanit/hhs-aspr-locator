@@ -5,8 +5,8 @@
  */
 
 // #region ========================= IMPORTS ===================================
-// #region --------------------------- React -----------------------------------import { useState } from 'react';
-import { useState } from "react";
+// #region --------------------------- React -----------------------------------
+import { useState, useEffect } from "react";
 // #endregion ------------------------ React -----------------------------------
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
@@ -21,6 +21,7 @@ import { StyledDropdownSelect } from "./DropdownSingleSelect.styles";
 
 // #region ------------------------ Resources ----------------------------------
 import config from "@/config/config";
+import { useAppContext } from "@/contexts/AppContext";
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 
@@ -36,18 +37,27 @@ interface DropdownSingleSelectProps {
 const DropdownSingleSelect = ({ type }: DropdownSingleSelectProps) => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const { i18n } = useTranslation();
+  const { illnessesTreatments, selectedSort, setSelectedSort } =
+    useAppContext();
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region -------------------- Hooks (State) --------------------------------
   const [selectedLanguage, setSelectedLanguage] = useState("English");
-  const [selectedSort, setSelectedSort] = useState("Distance");
   const [selectedIllness, setSelectedIllness] = useState("Flu");
+  const [illnesses, setIllnesses] = useState<string[]>([]);
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
   // #endregion -------------- Hooks (Memoization) -----------------------------
 
   // #region -------------------- Hooks (Other) --------------------------------
+  // Get the illness options from illnessesTreatments
+  useEffect(() => {
+    if (!(JSON.stringify(illnessesTreatments) === "{}")) {
+      const illnesses = Object.keys(illnessesTreatments);
+      setIllnesses(illnesses);
+    }
+  }, [illnessesTreatments]);
   // #endregion ----------------- Hooks (Other) --------------------------------
 
   // #region --------- Short-Circuit (Empty/Invalid State) ---------------------
@@ -64,7 +74,7 @@ const DropdownSingleSelect = ({ type }: DropdownSingleSelectProps) => {
   };
 
   const handleSortChange = (sort: { label: string; value: string }) => {
-    setSelectedSort(sort.label);
+    setSelectedSort(sort);
   };
 
   const handleIllnessChange = (illness: { label: string; value: string }) => {
@@ -78,13 +88,13 @@ const DropdownSingleSelect = ({ type }: DropdownSingleSelectProps) => {
       ? config.options.languageOptions
       : type === "sort"
       ? config.options.sortOptions
-      : config.options.illnessOptions;
+      : illnesses.map((illness) => ({ label: illness, value: illness }));
 
   const selectedValue =
     type === "language"
       ? selectedLanguage
       : type === "sort"
-      ? selectedSort
+      ? selectedSort.label
       : selectedIllness;
 
   const handleChange =
@@ -106,9 +116,8 @@ const DropdownSingleSelect = ({ type }: DropdownSingleSelectProps) => {
               style={
                 {
                   "--selected": `${
-                    (type === "language"
-                      ? i18n.language
-                      : selectedValue.toLowerCase()) === item.value
+                    (type === "language" ? i18n.language : selectedValue) ===
+                    item.value
                       ? "var(--brand)"
                       : ""
                   }`,
@@ -118,9 +127,8 @@ const DropdownSingleSelect = ({ type }: DropdownSingleSelectProps) => {
               key={item.value}
               onClick={() => handleChange(item)}
             >
-              {(type === "language"
-                ? i18n.language
-                : selectedValue.toLowerCase()) === item.value ? (
+              {(type === "language" ? i18n.language : selectedValue) ===
+              item.label ? (
                 <CheckIcon fontSize={"var(--text-2)"} />
               ) : (
                 <span className='placeholder'>&nbsp;</span>
