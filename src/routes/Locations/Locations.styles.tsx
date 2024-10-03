@@ -88,6 +88,7 @@ export const StyledListContainer = styled.section`
   height: fit-content;
   // --- Position ---
   position: relative;
+  isolation: isolate;
   // --- Layout ---
   display: flex;
   flex-direction: column;
