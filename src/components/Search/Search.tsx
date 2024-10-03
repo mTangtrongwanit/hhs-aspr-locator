@@ -15,7 +15,6 @@ import Search from "@arcgis/core/widgets/Search";
 
 // #region -------------- Custom Components / Utilities ------------------------
 import { useAppContext } from "@/contexts/AppContext";
-import { StyledSearchContainer } from "@/routes/Landing/Landing.styles";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { StyledSearch } from "./Search.styles";
 // #endregion ----------- Custom Components / Utilities ------------------------
@@ -96,9 +95,9 @@ const SearchComponent = () => {
 
   // #region ----------------------- Render ------------------------------------
   return (
-  <StyledSearch ref={searchRef}>
-    <MagnifyingGlassIcon  width="18" height="18" />
-  </StyledSearch>
+    <StyledSearch ref={searchRef}>
+      <MagnifyingGlassIcon width='18' height='18' />
+    </StyledSearch>
   );
   // #endregion -------------------- Render ------------------------------------
 };
