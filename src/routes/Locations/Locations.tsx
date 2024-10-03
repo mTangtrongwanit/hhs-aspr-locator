@@ -143,7 +143,7 @@ const Locations = () => {
           {t("Locations.Search Container Screenreader Heading")}
         </h2>
         <Search />
-        <div className='dev-placeholder'>Illness Select Placeholder</div>
+        {/* <div className='dev-placeholder'>Illness Select Placeholder</div> */}
         <PopoverMultiSelect></PopoverMultiSelect>
         <button id='listViewToggle' onClick={onButtonClick}>
           {isMobileListView ? <MapIcon></MapIcon> : <ListIcon></ListIcon>}

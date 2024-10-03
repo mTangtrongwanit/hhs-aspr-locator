@@ -110,6 +110,10 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
   margin-left: 4px;
 }
 
+.esri-input[type=text] {
+  height: min-content;
+}
+
 .esri-search__suggestions-menu {
   min-width: 20rem;
 }

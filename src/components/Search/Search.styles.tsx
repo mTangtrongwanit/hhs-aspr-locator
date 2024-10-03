@@ -41,12 +41,13 @@ export const StyledSearch = styled.div`
   display: flex;
   align-items: center;
   border: var(--border) solid var(--brand);
-  min-height: 42px;
+  /* min-height: 42px; */
   width: min(300px, calc(33.3333% - var(--unit)));
-  padding: 8px 12px;
+  padding: 8px 4px;
   background: white;
   color: var(--brand);
   border-radius: 4px;
+  height: var(--search-container-item-height);
 `;
 // #endregion ------------ Parent Component + Variants -------------------------
 // #endregion ================ EXPORTED COMPONENTS =============================
