@@ -118,6 +118,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
   const handleCopyToClipboard = () => {
     copyToClipboard("/locations/", {
       facility_id: serviceProvider.facility_id,
+      geopoint: serviceProvider.geopoint
     });
   };
   // #endregion ------------- Supporting Functions -----------------------------

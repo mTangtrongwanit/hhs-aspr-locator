@@ -150,6 +150,10 @@ const Locations = () => {
       searchParams.delete("facility_id");
       setSearchParams(searchParams);
     }
+    if (searchParams.has("geopoint")) {
+      searchParams.delete("geopoint");
+      setSearchParams(searchParams);
+    }
     setSelectedLocation(null);
   };
   // #endregion ---------------- Event Handlers --------------------------------
