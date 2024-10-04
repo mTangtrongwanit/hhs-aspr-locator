@@ -53,6 +53,12 @@ const SearchComponent = () => {
      */
     const search = new Search({
       container: document.createElement("div"),
+      sources: [
+        {
+          url: "https://geocode-api.arcgis.com/arcgis/rest/services/World/GeocodeServer",
+          countryCode: "US",
+        },
+      ] as __esri.LocatorSearchSourceProperties[],
     });
     //add to DOM
     searchRef.current.appendChild(search.container as Node);
@@ -80,6 +86,7 @@ const SearchComponent = () => {
     //Set search term to searchPoint name
     if (searchPoint !== null && searchWidget !== null) {
       searchWidget.searchTerm = searchPoint.name;
+      searchWidget.includeDefaultSources = false;
     }
   }, [searchPoint, searchWidget]);
   // #endregion ----------------- Hooks (Other) --------------------------------
