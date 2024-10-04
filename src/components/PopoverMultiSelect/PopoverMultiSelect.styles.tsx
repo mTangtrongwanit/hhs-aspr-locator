@@ -47,14 +47,16 @@ export const StyledPopoverMultiSelect = styled.section`
 
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 4px;
 
     cursor: pointer;
+    font-size: var(--text-0);
     background: #155197;
     border-radius: 4px;
     color: white;
     padding: 5px;
-    height: 30px;
+    height: var(--search-container-item-height);
   }
 
   @keyframes slideRightAndFade {
