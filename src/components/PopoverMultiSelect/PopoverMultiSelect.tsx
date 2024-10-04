@@ -56,6 +56,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
   ]);
   const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
   // TODO: This will come from the single select comonent based on the selected illness
+  // tslint:disable-next-line: no-unused-variable
   const [selectedIllness, setSelectedIllness] = useState<string>("Flu");
   const [treatments, setTreatments] = useState<string[]>([]);
   // #endregion ----------------- Hooks (State) --------------------------------
