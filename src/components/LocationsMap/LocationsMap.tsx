@@ -42,6 +42,8 @@ const LocationsMap = () => {
     setLocationsMapView,
     selectedTreatmentSite,
     setSelectedTreatmentSite,
+    searchPoint,
+    locationsExtent,
   } = useAppContext();
   // #endregion --------------- Hooks (Resources) ------------------------------
 
@@ -59,7 +61,7 @@ const LocationsMap = () => {
           },
         },
       }),
-    [],
+    []
   );
   // #endregion -------------- Hooks (Memoization) -----------------------------
 
@@ -109,7 +111,7 @@ const LocationsMap = () => {
                     (hitResult as __esri.GraphicHit).graphic?.layer?.title &&
                     (
                       hitResult as __esri.GraphicHit
-                    ).graphic?.layer?.title.includes("Treatments"),
+                    ).graphic?.layer?.title.includes("Treatments")
                 ) as __esri.GraphicHit;
                 if (!treatmentsLayer) return;
                 const t = treatmentsLayer as __esri.GraphicHit;
@@ -134,12 +136,6 @@ const LocationsMap = () => {
     }
   }, [map, setLocationsMapView, setSelectedTreatmentSite]);
 
-  useEffect(() => {
-    if (selectedTreatmentSite) {
-      console.log("Selected treatment site changed: ", selectedTreatmentSite);
-    }
-  }, [selectedTreatmentSite]);
-
   /** Highlight selected feature */
   useEffect(() => {
     if (locationsMapView && selectedTreatmentSite) {
@@ -161,6 +157,26 @@ const LocationsMap = () => {
       };
     }
   }, [locationsMapView, selectedTreatmentSite, setLocationsMapView]);
+
+  /** Zoom to locations center and extent or zoom depending on properties of locationsExtent. */
+  useEffect(() => {
+    if (locationsMapView && searchPoint && locationsExtent) {
+      reactiveUtils
+        .whenOnce(() => locationsMapView.ready)
+        .then(() => {
+          const target = locationsExtent.extent
+            ? locationsExtent.extent.center
+            : searchPoint.point;
+          const options = locationsExtent.extent
+            ? { target, extent: locationsExtent.extent }
+            : { target, zoom: 8 };
+
+          locationsMapView.goTo(options).catch((error) => {
+            console.error("MapView goTo error: ", error);
+          });
+        });
+    }
+  }, [locationsExtent, locationsMapView, searchPoint]);
 
   // #endregion ----------------- Hooks (Other) --------------------------------
 

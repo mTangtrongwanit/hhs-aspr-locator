@@ -66,7 +66,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
     const fetchDistance = async () => {
       const dist = await calculateDistanceBetweenTwoPoints(
         serviceProvider,
-        searchPoint,
+        searchPoint
       );
       setDistance(dist);
     };
@@ -100,7 +100,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
    */
   const copyToClipboard = (
     path: string,
-    queryParams: Record<string, string>,
+    queryParams: Record<string, string>
   ) => {
     const url = new URL(`${window.location.origin}${path}`);
     Object.keys(queryParams).forEach((key) => {
@@ -127,13 +127,13 @@ const Card = ({ selected, serviceProvider }: Props) => {
 
   // #region ----------------------- Render ------------------------------------
   return (
-    <StyledCard $selected={selected} ref={cardRef}>
+    <StyledCard tabIndex={0} $selected={selected} ref={cardRef}>
       <StyledTitleRow>
-        <StyledCardTitle className="bold">
+        <StyledCardTitle className='bold'>
           {serviceProvider.provider_name}
         </StyledCardTitle>
         {distance !== null && (
-          <p className="smallText">
+          <p className='smallText'>
             {t("Card.distance")}
             {`: ${distance
               .toFixed(0)
@@ -144,9 +144,9 @@ const Card = ({ selected, serviceProvider }: Props) => {
         )}
       </StyledTitleRow>
       <address>
-        <StyledIconField className="addr">
+        <StyledIconField className='addr'>
           <PinIcon></PinIcon>{" "}
-          <p className="smallText">
+          <p className='smallText'>
             {serviceProvider.address1}
             {serviceProvider.address2 ? (
               <>
@@ -159,7 +159,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
             {serviceProvider.zip}
           </p>
         </StyledIconField>
-        <StyledIconField className="addr">
+        <StyledIconField className='addr'>
           {serviceProvider.public_phone && <PhoneIcon></PhoneIcon>}
           {serviceProvider.public_phone && (
             <a href={`tel:serviceProvider.public_phone`}>
@@ -218,40 +218,40 @@ const Card = ({ selected, serviceProvider }: Props) => {
                 ? serviceProvider.url_appointment
                 : ""
             }
-            target="_blank"
+            target='_blank'
           >
             {t("Card.additionalInformation")}
           </a>
         </p>
       )}
       {serviceProvider.grantee_code === "HR2" && (
-        <p className="ital">{t("Card.hrsa")}</p>
+        <p className='ital'>{t("Card.hrsa")}</p>
       )}
       {serviceProvider.grantee_code === "DD2" && (
-        <p className="ital">{t("Card.dod")}</p>
+        <p className='ital'>{t("Card.dod")}</p>
       )}
       {serviceProvider.grantee_code === "IH2" && (
-        <p className="ital">{t("Card.ihs")}</p>
+        <p className='ital'>{t("Card.ihs")}</p>
       )}
       <StyledRow>
-        <StyledOutlinedLink as="button" onClick={handleCopyToClipboard}>
+        <StyledOutlinedLink as='button' onClick={handleCopyToClipboard}>
           {t("Card.shareLocation")}
         </StyledOutlinedLink>
         {serviceProvider.address1 && (
           <StyledOutlinedLink
             href={`https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(
               searchPoint
-                ? `${searchPoint.latitude},${searchPoint.longitude}`
-                : "",
+                ? `${searchPoint.point.latitude},${searchPoint.point.longitude}`
+                : ""
             )}&destination=${encodeURIComponent(
               `${serviceProvider.address1} ${
                 serviceProvider.address2 ? serviceProvider.address2 + " " : ""
               }${serviceProvider.city} ${serviceProvider.state} ${
                 serviceProvider.zip
-              }`,
+              }`
             )}`}
-            target="_blank"
-            rel="noopener noreferrer"
+            target='_blank'
+            rel='noopener noreferrer'
             aria-label={t("Card.directionsToLocation")}
           >
             <span>{t("Card.openInMaps")}</span>

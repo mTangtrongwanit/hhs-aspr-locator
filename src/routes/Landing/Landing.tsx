@@ -22,7 +22,9 @@ import {
   StyledDecorativeImage,
 } from "./Landing.styles";
 import * as Accordion from "@radix-ui/react-accordion";
-import { ChevronDownIcon } from "@radix-ui/react-icons"; // #endregion ----------- Custom Components / Utilities ------------------------
+import { ChevronDownIcon } from "@radix-ui/react-icons";
+import Search from "@/components/Search";
+// #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
 // import { type Props } from "./Landing.types";
@@ -71,7 +73,7 @@ const Landing = () => {
         <p>{t("Landing.Search Container Description")}</p>
         <StyledRow>
           {/* TODO: Replace with components */}
-          <div className="dev-placeholder">Location Search Placeholder</div>
+          <Search />
           <div className="dev-placeholder">Illness Select Placeholder</div>
         </StyledRow>
         <Link to="/locations">
