@@ -163,7 +163,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
         <StyledIconField className='addr'>
           {serviceProvider.public_phone && <PhoneIcon></PhoneIcon>}
           {serviceProvider.public_phone && (
-            <a href={`tel:serviceProvider.public_phone`}>
+            <a href={`tel:${serviceProvider.public_phone}`}>
               {serviceProvider.public_phone}
             </a>
           )}
