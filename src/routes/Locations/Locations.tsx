@@ -23,6 +23,7 @@ import PopoverMultiSelect from "@/components/PopoverMultiSelect";
 import Card from "@/components/Card";
 import { ServiceProvider } from "@/components/Card";
 import LocationsMap from "@/components/LocationsMap";
+import Search from "@/components/Search";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
@@ -32,7 +33,6 @@ import { useSearchParams } from "react-router-dom";
 
 import useResizeObserver from "@react-hook/resize-observer";
 import { useAppContext } from "@/contexts/AppContext";
-import * as treatmentSites from "../../data/treatment-sites.json";
 import MapIcon from "@/assets/icons/map.svg";
 import ListIcon from "@/assets/icons/list.svg";
 // #endregion --------------------- Resources ----------------------------------
@@ -92,7 +92,7 @@ const Locations = () => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
-  const { bannerHeight, headerHeight } = useAppContext();
+  const { bannerHeight, headerHeight, locations } = useAppContext();
 
   const searchContRef = useRef<HTMLDivElement>(null);
 
@@ -158,47 +158,43 @@ const Locations = () => {
   return (
     <StyledLocationsContent className={isMobileListView ? "lView" : "mView"}>
       <StyledSearchContainer ref={searchContRef}>
-        <h2 className="visually-hidden">
+        <h2 className='visually-hidden'>
           {t("Locations.Search Container Screenreader Heading")}
         </h2>
         {selectedLocation !== null ? (
           <>
-            <StyledButton as="button" onClick={onToggleSelectedLoc}>
+            <StyledButton as='button' onClick={onToggleSelectedLoc}>
               Search for Other Locations
             </StyledButton>
           </>
         ) : (
           <>
-            <div className="dev-placeholder">Location Search Placeholder</div>
-            <div className="dev-placeholder">Illness Select Placeholder</div>
-            <PopoverMultiSelect></PopoverMultiSelect>
+            <Search />
+            <div className='dev-placeholder'>Illness Select Placeholder</div>
+            <PopoverMultiSelect />
           </>
         )}
 
-        <button id="listViewToggle" onClick={onButtonClick}>
+        <button id='listViewToggle' onClick={onButtonClick}>
           {isMobileListView ? <MapIcon></MapIcon> : <ListIcon></ListIcon>}
           <span>{isMobileListView ? "Map" : "List"}</span>
         </button>
       </StyledSearchContainer>
-      <div id="locs">
-        <h2 className="visually-hidden">
+      <div id='locs'>
+        <h2 className='visually-hidden'>
           {t("Locations.Results Screenreader Heading")}
         </h2>
         <StyledListContainer>
-          <div id="list-title">
-            {selectedLocation == null && (
-              <>
-                <h3>
-                  <Trans i18nKey="Locations.List Heading" count={0}></Trans>
-                </h3>
-                <div className="dev-placeholder">Filter Placeholder</div>
-                <div className="dev-placeholder">Sort Placeholder</div>
-              </>
-            )}
+          <div id='list-title'>
+            <h3>
+              <Trans i18nKey='Locations.List Heading' count={0}></Trans>
+            </h3>
+            <div className='dev-placeholder'>Filter Placeholder</div>
+            <div className='dev-placeholder'>Sort Placeholder</div>
           </div>
           {/* tabindex for scrollable list */}
           <ul tabIndex={0}>
-            {treatmentSites.features.map((site: object) => {
+            {locations?.map((site: object) => {
               const serviceProver: Site = site as Site;
               const serviceProvider: ServiceProvider = serviceProver.attributes;
               if (selectedLocation !== null) {
@@ -219,7 +215,7 @@ const Locations = () => {
         <StyledMapContainer
           style={{ "--remainder": `${totalHeight}px` } as React.CSSProperties}
         >
-          <h3 className="visually-hidden">
+          <h3 className='visually-hidden'>
             {t("Locations.Map Screenreader Heading")}
           </h3>
           <LocationsMap />

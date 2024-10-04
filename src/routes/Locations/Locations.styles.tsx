@@ -66,17 +66,19 @@ export const StyledSearchContainer = styled.section`
   // --- Layout ---
   display: flex;
   gap: var(--unit);
+  flex-wrap: wrap;
   // --- Decorative ---
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.04);
   // --- States ---
   // --- Children ---
   #listViewToggle {
     display: none;
-    height: min-content;
+    height: var(--search-container-item-height);
     // --- Sizing / Box-Model ---
     width: min-content;
     padding: calc(var(--unit) / 2) calc(var(--unit)); //vert horz
 
+    align-items: center;
     gap: calc(var(--unit) / 2);
     // --- Decorative ---
     white-space: nowrap;
@@ -85,6 +87,7 @@ export const StyledSearchContainer = styled.section`
     border-radius: var(--radius);
     border: 1px solid var(--brand);
     font-weight: bold;
+    font-size: var(--text-0);
     // --- States ---
 
     &:hover,
@@ -109,6 +112,7 @@ export const StyledListContainer = styled.section`
   height: fit-content;
   // --- Position ---
   position: relative;
+  isolation: isolate;
   // --- Layout ---
   display: flex;
   flex-direction: column;
