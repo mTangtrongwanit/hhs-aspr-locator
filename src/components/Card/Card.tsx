@@ -78,11 +78,11 @@ const Card = ({ selected, serviceProvider }: Props) => {
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const facilityId = urlParams.get("facility_id");
+    //facility-id: 245515224383025463412585545222964544201 for testing
     // TODO: Chandan/Lillie - remove inline CSS and use styled-components
     if (facilityId === serviceProvider.facility_id && cardRef.current) {
       // Highlight the location by applying inline CSS
-      cardRef.current.scrollIntoView({ behavior: "smooth" });
-      cardRef.current.style.setProperty("border", "2px solid red");
+      cardRef.current.style.setProperty("border", "2px solid var(--brand)");
     }
   }, [location.search, serviceProvider.facility_id]);
   // #endregion ----------------- Hooks (Other) --------------------------------
@@ -118,6 +118,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
   const handleCopyToClipboard = () => {
     copyToClipboard("/locations/", {
       facility_id: serviceProvider.facility_id,
+      geopoint: serviceProvider.geopoint
     });
   };
   // #endregion ------------- Supporting Functions -----------------------------

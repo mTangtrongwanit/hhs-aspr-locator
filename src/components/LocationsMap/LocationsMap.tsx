@@ -18,6 +18,7 @@ import * as reactiveUtils from "@arcgis/core/core/reactiveUtils.js";
 import Color from "@arcgis/core/Color";
 import SimpleFillSymbol from "@arcgis/core/symbols/SimpleFillSymbol";
 import SimpleLineSymbol from "@arcgis/core/symbols/SimpleLineSymbol";
+import Point from "@arcgis/core/geometry/Point";
 
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
@@ -28,6 +29,7 @@ import { useAppContext } from "@/contexts/AppContext";
 
 // #region ------------------------ Resources ----------------------------------
 import config from "@/config/config";
+import { useSearchParams } from "react-router-dom";
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 
@@ -45,6 +47,7 @@ const LocationsMap = () => {
     searchPoint,
     locationsExtent,
   } = useAppContext();
+  const [searchParams] = useSearchParams();
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region -------------------- Hooks (State) --------------------------------
@@ -71,6 +74,10 @@ const LocationsMap = () => {
 
   /** Create map view when map and container are ready */
   useEffect(() => {
+    let geopoint;
+    if (searchParams.has("geopoint")) {
+      geopoint = searchParams.get("geopoint");
+    }
     if (map && mapRef.current && messageRef.current) {
       // Create map view
       const mapView = new MapView({
@@ -82,49 +89,68 @@ const LocationsMap = () => {
 
       mapView.ui.add(messageRef.current);
 
-      reactiveUtils
-        .whenOnce(() => !mapView.updating)
-        .then(() => {
-          // Get all layers from the map
-          const allLayers = mapView.map.allLayers;
-          // If the layer is a feature layer, and the layer includes "Treatments" set the outFields to all fields
-          allLayers.forEach((layer) => {
-            if (
-              layer.type === "feature" &&
-              layer.title &&
-              layer.title.includes("Treatments")
-            ) {
-              (layer as __esri.FeatureLayer).outFields = ["*"];
-            }
+      if (geopoint && geopoint !== "" && geopoint.includes(",")) {
+        reactiveUtils
+          .whenOnce(() => !mapView.updating)
+          .then(() => {
+            const [lat, lon] = geopoint.split(",").map(Number);
+            const p = new Point({
+              longitude: lon,
+              latitude: lat,
+            });
+            mapView.goTo({
+              center: p,
+              zoom: 12,
+            });
+          })
+          .catch((error) => {
+            console.error("MapView updating reactiveUtils error: ", error);
           });
+      } else {
+        reactiveUtils
+          .whenOnce(() => !mapView.updating)
+          .then(() => {
+            // Get all layers from the map
+            const allLayers = mapView.map.allLayers;
+            // If the layer is a feature layer, and the layer includes "Treatments" set the outFields to all fields
+            allLayers.forEach((layer) => {
+              if (
+                layer.type === "feature" &&
+                layer.title &&
+                layer.title.includes("Treatments")
+              ) {
+                (layer as __esri.FeatureLayer).outFields = ["*"];
+              }
+            });
 
-          mapView.on("click", (event) => {
-            // Get the country name when a user clicks on the map
-            // If the boundary layer is undefined return
-            // If the user clicks on a country boundary, log the country name
-            mapView
-              .hitTest(event)
-              .then(function (response) {
-                const treatmentsLayer = response.results?.find(
-                  (hitResult) =>
-                    (hitResult as __esri.GraphicHit).graphic?.layer &&
-                    (hitResult as __esri.GraphicHit).graphic?.layer?.title &&
-                    (
-                      hitResult as __esri.GraphicHit
-                    ).graphic?.layer?.title.includes("Treatments")
-                ) as __esri.GraphicHit;
-                if (!treatmentsLayer) return;
-                const t = treatmentsLayer as __esri.GraphicHit;
-                setSelectedTreatmentSite(t.graphic);
-              })
-              .catch((error) => {
-                console.error("MapView hitTest error: ", error);
-              });
+            mapView.on("click", (event) => {
+              // Get the country name when a user clicks on the map
+              // If the boundary layer is undefined return
+              // If the user clicks on a country boundary, log the country name
+              mapView
+                .hitTest(event)
+                .then(function (response) {
+                  const treatmentsLayer = response.results?.find(
+                    (hitResult) =>
+                      (hitResult as __esri.GraphicHit).graphic?.layer &&
+                      (hitResult as __esri.GraphicHit).graphic?.layer?.title &&
+                      (
+                        hitResult as __esri.GraphicHit
+                      ).graphic?.layer?.title.includes("Treatments")
+                  ) as __esri.GraphicHit;
+                  if (!treatmentsLayer) return;
+                  const t = treatmentsLayer as __esri.GraphicHit;
+                  setSelectedTreatmentSite(t.graphic);
+                })
+                .catch((error) => {
+                  console.error("MapView hitTest error: ", error);
+                });
+            });
+          })
+          .catch((error) => {
+            console.error("MapView updating reactiveUtils error: ", error);
           });
-        })
-        .catch((error) => {
-          console.error("MapView updating reactiveUtils error: ", error);
-        });
+      }
 
       // Cleanup map view on unmount
       return () => {
@@ -134,7 +160,7 @@ const LocationsMap = () => {
         mapView.map = null;
       };
     }
-  }, [map, setLocationsMapView, setSelectedTreatmentSite]);
+  }, [map, setLocationsMapView, setSelectedTreatmentSite, searchParams]);
 
   /** Highlight selected feature */
   useEffect(() => {
@@ -160,6 +186,9 @@ const LocationsMap = () => {
 
   /** Zoom to locations center and extent or zoom depending on properties of locationsExtent. */
   useEffect(() => {
+    if (searchParams.has("geopoint")) {
+      return;
+    }
     if (locationsMapView && searchPoint && locationsExtent) {
       reactiveUtils
         .whenOnce(() => locationsMapView.ready)
@@ -176,7 +205,7 @@ const LocationsMap = () => {
           });
         });
     }
-  }, [locationsExtent, locationsMapView, searchPoint]);
+  }, [locationsExtent, locationsMapView, searchPoint, searchParams]);
 
   // #endregion ----------------- Hooks (Other) --------------------------------
 
