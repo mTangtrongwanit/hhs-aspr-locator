@@ -170,47 +170,45 @@ const Card = ({ selected, serviceProvider }: Props) => {
         </StyledIconField>
       </address>
 
-      {/* TODO: Alt text for these icons */}
-
       <StyledRow>
-        {serviceProvider.is_pap === "TRUE" && (
+        {serviceProvider.is_pap?.toUpperCase() === "TRUE" && (
           <Tooltip icon={<PapIcon />}>
             <p>{t("Card.pap")}</p>
           </Tooltip>
         )}
-        {serviceProvider.has_usg_product === "TRUE" && (
+        {serviceProvider.has_usg_product?.toUpperCase() === "TRUE" && (
           <Tooltip icon={<UsgProcuredIcon />}>
             <p>{t("Card.usgProduct")}</p>
           </Tooltip>
         )}
-        {serviceProvider.home_delivery === "TRUE" && (
+        {serviceProvider.home_delivery?.toUpperCase() === "TRUE" && (
           <Tooltip icon={<HomeDeliveryIcon />}>
             <p>{t("Card.homeDelivery")}</p>
           </Tooltip>
         )}
-        {serviceProvider.is_icatt_site === "TRUE" && (
+        {serviceProvider.is_icatt_site?.toUpperCase() === "TRUE" && (
           <Tooltip icon={<IcattIcon />}>
             <p>{t("Card.icatt")}</p>
           </Tooltip>
         )}
-        {serviceProvider.has_oseltamivir_tamiflu === "TRUE" &&
-          serviceProvider.has_oseltamivir_generic === "FALSE" && (
+        {serviceProvider.has_oseltamivir_tamiflu?.toUpperCase() === "TRUE" &&
+          serviceProvider.has_oseltamivir_generic?.toUpperCase() === "FALSE" && (
             <Tooltip icon={<NoGenericIcon />}>
               <p>{t("Card.tamifluOnly")}</p>
             </Tooltip>
           )}
-        {serviceProvider.has_oseltamivir_suspension === "TRUE" && (
+        {serviceProvider.has_oseltamivir_suspension?.toUpperCase() === "TRUE" && (
           <Tooltip icon={<OseltamivirIcon />}>
             <p>{t("Card.oseltamivirSuspension")}</p>
           </Tooltip>
         )}
-        {serviceProvider.is_prescribing_svcs_available === "TRUE" && (
+        {serviceProvider.is_prescribing_svcs_available?.toUpperCase() === "TRUE" && (
           <Tooltip icon={<PrescribingServicesIcon />}>
             <p>{t("Card.prescribingServices")}</p>
           </Tooltip>
         )}
       </StyledRow>
-      {serviceProvider.is_prescribing_svcs_available === "TRUE" && (
+      {serviceProvider.is_prescribing_svcs_available?.toUpperCase() === "TRUE" && (
         <p>
           {t("Card.rXorTelehealth")}&nbsp;
           <a
