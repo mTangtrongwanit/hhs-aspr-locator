@@ -174,7 +174,7 @@ const Locations = () => {
         ) : (
           <>
             <Search />
-            <div className='dev-placeholder'>Illness Select Placeholder</div>
+            {/* <div className='dev-placeholder'>Illness Select Placeholder</div> */}
             <PopoverMultiSelect />
           </>
         )}
