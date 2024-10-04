@@ -17,6 +17,7 @@ import {
   StyledListContainer,
   StyledMapContainer,
   StyledSearchContainer,
+  StyledButton,
 } from "./Locations.styles";
 import PopoverMultiSelect from "@/components/PopoverMultiSelect";
 import Card from "@/components/Card";
@@ -28,6 +29,8 @@ import Search from "@/components/Search";
 // #region ------------------------ Resources ----------------------------------
 // import { type Props } from "./Landing.types";
 import { useTranslation, Trans } from "react-i18next";
+import { useSearchParams } from "react-router-dom";
+
 import useResizeObserver from "@react-hook/resize-observer";
 import { useAppContext } from "@/contexts/AppContext";
 import MapIcon from "@/assets/icons/map.svg";
@@ -88,6 +91,7 @@ interface Site {
 const Locations = () => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const { t } = useTranslation();
+  const [searchParams, setSearchParams] = useSearchParams();
   const { bannerHeight, headerHeight, locations } = useAppContext();
 
   const searchContRef = useRef<HTMLDivElement>(null);
@@ -98,6 +102,7 @@ const Locations = () => {
   const [searchContHeight, setSearchContHeight] = useState<number>(0);
   const [totalHeight, setTotalHeight] = useState<number>(0);
   const [isMobileListView, setIsMobileListView] = useState<boolean>(true);
+  const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
@@ -121,6 +126,13 @@ const Locations = () => {
     //console.log("banner " + bannerHeight + " header " + headerHeight + " search " + searchContHeight);
     setTotalHeight(bannerHeight + headerHeight + searchContHeight);
   }, [bannerHeight, headerHeight, searchContHeight]);
+
+  // Highlight the location if the facility ID in the URL matches the facility ID of the service provider
+  useEffect(() => {
+    if (searchParams.has("facility_id")) {
+      setSelectedLocation(searchParams.get("facility_id"));
+    }
+  }, [searchParams]);
   // #endregion ----------------- Hooks (Other) --------------------------------
 
   // #region --------- Short-Circuit (Empty/Invalid State) ---------------------
@@ -133,6 +145,17 @@ const Locations = () => {
   const onButtonClick = () => {
     setIsMobileListView((isList) => !isList);
   };
+  const onToggleSelectedLoc = () => {
+    if (searchParams.has("facility_id")) {
+      searchParams.delete("facility_id");
+      setSearchParams(searchParams);
+    }
+    if (searchParams.has("geopoint")) {
+      searchParams.delete("geopoint");
+      setSearchParams(searchParams);
+    }
+    setSelectedLocation(null);
+  };
   // #endregion ---------------- Event Handlers --------------------------------
 
   // #region ----------------------- Render ------------------------------------
@@ -142,9 +165,20 @@ const Locations = () => {
         <h2 className='visually-hidden'>
           {t("Locations.Search Container Screenreader Heading")}
         </h2>
-        <Search />
-        {/* <div className='dev-placeholder'>Illness Select Placeholder</div> */}
-        <PopoverMultiSelect></PopoverMultiSelect>
+        {selectedLocation !== null ? (
+          <>
+            <StyledButton as='button' onClick={onToggleSelectedLoc}>
+              Search for Other Locations
+            </StyledButton>
+          </>
+        ) : (
+          <>
+            <Search />
+            {/* <div className='dev-placeholder'>Illness Select Placeholder</div> */}
+            <PopoverMultiSelect />
+          </>
+        )}
+
         <button id='listViewToggle' onClick={onButtonClick}>
           {isMobileListView ? <MapIcon></MapIcon> : <ListIcon></ListIcon>}
           <span>{isMobileListView ? "Map" : "List"}</span>
@@ -167,6 +201,11 @@ const Locations = () => {
             {locations?.map((site: object) => {
               const serviceProver: Site = site as Site;
               const serviceProvider: ServiceProvider = serviceProver.attributes;
+              if (selectedLocation !== null) {
+                if (selectedLocation !== serviceProvider.facility_id) {
+                  return <></>;
+                }
+              }
               return (
                 <Card
                   serviceProvider={serviceProvider}
