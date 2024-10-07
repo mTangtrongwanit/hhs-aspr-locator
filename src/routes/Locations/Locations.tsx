@@ -17,21 +17,25 @@ import {
   StyledListContainer,
   StyledMapContainer,
   StyledSearchContainer,
+  StyledButton,
 } from "./Locations.styles";
 import PopoverMultiSelect from "@/components/PopoverMultiSelect";
 import Card from "@/components/Card";
 import { ServiceProvider } from "@/components/Card";
 import LocationsMap from "@/components/LocationsMap";
+import * as treatmentSites from "../../data/treatment-sites.json";
 import DropdownSingleSelect from "@/components/DropdownSingleSelect";
 import { calculateDistanceBetweenTwoPoints } from "../../utils/geographicUtils";
+import Search from "@/components/Search";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
 // import { type Props } from "./Landing.types";
 import { useTranslation, Trans } from "react-i18next";
+import { useSearchParams } from "react-router-dom";
+
 import useResizeObserver from "@react-hook/resize-observer";
 import { useAppContext } from "@/contexts/AppContext";
-import * as treatmentSites from "../../data/treatment-sites.json";
 import MapIcon from "@/assets/icons/map.svg";
 import ListIcon from "@/assets/icons/list.svg";
 // #endregion --------------------- Resources ----------------------------------
@@ -91,7 +95,8 @@ interface Site {
 const Locations = () => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const { t } = useTranslation();
-  const { bannerHeight, headerHeight, searchPoint, selectedSort } =
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { bannerHeight, headerHeight, searchPoint, selectedSort, locations } =
     useAppContext();
 
   const searchContRef = useRef<HTMLDivElement>(null);
@@ -103,6 +108,7 @@ const Locations = () => {
   const [totalHeight, setTotalHeight] = useState<number>(0);
   const [isMobileListView, setIsMobileListView] = useState<boolean>(true);
   const [sortedSites, setSortedSites] = useState<Site[]>([]);
+  const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
@@ -126,6 +132,13 @@ const Locations = () => {
     //console.log("banner " + bannerHeight + " header " + headerHeight + " search " + searchContHeight);
     setTotalHeight(bannerHeight + headerHeight + searchContHeight);
   }, [bannerHeight, headerHeight, searchContHeight]);
+
+  // Highlight the location if the facility ID in the URL matches the facility ID of the service provider
+  useEffect(() => {
+    if (searchParams.has("facility_id")) {
+      setSelectedLocation(searchParams.get("facility_id"));
+    }
+  }, [searchParams]);
 
   /** Sort the sites based on the value of the sort dropdown. */
   useEffect(() => {
@@ -173,6 +186,17 @@ const Locations = () => {
   const onButtonClick = () => {
     setIsMobileListView((isList) => !isList);
   };
+  const onToggleSelectedLoc = () => {
+    if (searchParams.has("facility_id")) {
+      searchParams.delete("facility_id");
+      setSearchParams(searchParams);
+    }
+    if (searchParams.has("geopoint")) {
+      searchParams.delete("geopoint");
+      setSearchParams(searchParams);
+    }
+    setSelectedLocation(null);
+  };
   // #endregion ---------------- Event Handlers --------------------------------
 
   // #region ----------------------- Render ------------------------------------
@@ -180,12 +204,23 @@ const Locations = () => {
     <StyledLocationsContent className={isMobileListView ? "lView" : "mView"}>
       <StyledSearchContainer ref={searchContRef}>
         <h2 className='visually-hidden'>
+        <h2 className='visually-hidden'>
           {t("Locations.Search Container Screenreader Heading")}
         </h2>
-        <div className='dev-placeholder'>Location Search Placeholder</div>
-        <DropdownSingleSelect type={"illness"} />
-        {/* <DropdownSingleSelect type={"language"} /> */}
-        <PopoverMultiSelect></PopoverMultiSelect>
+        {selectedLocation !== null ? (
+          <>
+            <StyledButton as='button' onClick={onToggleSelectedLoc}>
+              Search for Other Locations
+            </StyledButton>
+          </>
+        ) : (
+          <>
+            <Search />
+            <DropdownSingleSelect type={"illness"} />
+            <PopoverMultiSelect />
+          </>
+        )}
+
         <button id='listViewToggle' onClick={onButtonClick}>
           {isMobileListView ? <MapIcon></MapIcon> : <ListIcon></ListIcon>}
           <span>{isMobileListView ? "Map" : "List"}</span>
@@ -193,11 +228,15 @@ const Locations = () => {
       </StyledSearchContainer>
       <div id='locs'>
         <h2 className='visually-hidden'>
+      <div id='locs'>
+        <h2 className='visually-hidden'>
           {t("Locations.Results Screenreader Heading")}
         </h2>
         <StyledListContainer>
           <div id='list-title'>
+          <div id='list-title'>
             <h3>
+              <Trans i18nKey='Locations.List Heading' count={0}></Trans>
               <Trans i18nKey='Locations.List Heading' count={0}></Trans>
             </h3>
             <div className='dev-placeholder'>Filter Placeholder</div>
@@ -205,8 +244,14 @@ const Locations = () => {
           </div>
           {/* tabindex for scrollable list */}
           <ul tabIndex={0}>
-            {sortedSites.map((site: Site) => {
-              const serviceProvider: ServiceProvider = site.attributes;
+            {sortedSites?.map((site: object) => {
+              const serviceProver: Site = site as Site;
+              const serviceProvider: ServiceProvider = serviceProver.attributes;
+              if (selectedLocation !== null) {
+                if (selectedLocation !== serviceProvider.facility_id) {
+                  return <></>;
+                }
+              }
               return (
                 <Card
                   serviceProvider={serviceProvider}
@@ -220,6 +265,7 @@ const Locations = () => {
         <StyledMapContainer
           style={{ "--remainder": `${totalHeight}px` } as React.CSSProperties}
         >
+          <h3 className='visually-hidden'>
           <h3 className='visually-hidden'>
             {t("Locations.Map Screenreader Heading")}
           </h3>

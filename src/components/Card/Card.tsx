@@ -66,7 +66,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
     const fetchDistance = async () => {
       const dist = await calculateDistanceBetweenTwoPoints(
         serviceProvider,
-        searchPoint,
+        searchPoint
       );
       setDistance(dist);
     };
@@ -78,11 +78,11 @@ const Card = ({ selected, serviceProvider }: Props) => {
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const facilityId = urlParams.get("facility_id");
+    //facility-id: 245515224383025463412585545222964544201 for testing
     // TODO: Chandan/Lillie - remove inline CSS and use styled-components
     if (facilityId === serviceProvider.facility_id && cardRef.current) {
       // Highlight the location by applying inline CSS
-      cardRef.current.scrollIntoView({ behavior: "smooth" });
-      cardRef.current.style.setProperty("border", "2px solid red");
+      cardRef.current.style.setProperty("border", "2px solid var(--brand)");
     }
   }, [location.search, serviceProvider.facility_id]);
   // #endregion ----------------- Hooks (Other) --------------------------------
@@ -100,7 +100,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
    */
   const copyToClipboard = (
     path: string,
-    queryParams: Record<string, string>,
+    queryParams: Record<string, string>
   ) => {
     const url = new URL(`${window.location.origin}${path}`);
     Object.keys(queryParams).forEach((key) => {
@@ -118,6 +118,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
   const handleCopyToClipboard = () => {
     copyToClipboard("/locations/", {
       facility_id: serviceProvider.facility_id,
+      geopoint: serviceProvider.geopoint
     });
   };
   // #endregion ------------- Supporting Functions -----------------------------
@@ -127,13 +128,13 @@ const Card = ({ selected, serviceProvider }: Props) => {
 
   // #region ----------------------- Render ------------------------------------
   return (
-    <StyledCard $selected={selected} ref={cardRef}>
+    <StyledCard tabIndex={0} $selected={selected} ref={cardRef}>
       <StyledTitleRow>
-        <StyledCardTitle className="bold">
+        <StyledCardTitle className='bold'>
           {serviceProvider.provider_name}
         </StyledCardTitle>
         {distance !== null && (
-          <p className="smallText">
+          <p className='smallText'>
             {t("Card.distance")}
             {`: ${distance
               .toFixed(0)
@@ -144,9 +145,9 @@ const Card = ({ selected, serviceProvider }: Props) => {
         )}
       </StyledTitleRow>
       <address>
-        <StyledIconField className="addr">
+        <StyledIconField className='addr'>
           <PinIcon></PinIcon>{" "}
-          <p className="smallText">
+          <p className='smallText'>
             {serviceProvider.address1}
             {serviceProvider.address2 ? (
               <>
@@ -159,7 +160,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
             {serviceProvider.zip}
           </p>
         </StyledIconField>
-        <StyledIconField className="addr">
+        <StyledIconField className='addr'>
           {serviceProvider.public_phone && <PhoneIcon></PhoneIcon>}
           {serviceProvider.public_phone && (
             <a href={`tel:serviceProvider.public_phone`}>
@@ -169,47 +170,45 @@ const Card = ({ selected, serviceProvider }: Props) => {
         </StyledIconField>
       </address>
 
-      {/* TODO: Alt text for these icons */}
-
       <StyledRow>
-        {serviceProvider.is_pap === "TRUE" && (
+        {serviceProvider.is_pap?.toUpperCase() === "TRUE" && (
           <Tooltip icon={<PapIcon />}>
             <p>{t("Card.pap")}</p>
           </Tooltip>
         )}
-        {serviceProvider.has_usg_product === "TRUE" && (
+        {serviceProvider.has_usg_product?.toUpperCase() === "TRUE" && (
           <Tooltip icon={<UsgProcuredIcon />}>
             <p>{t("Card.usgProduct")}</p>
           </Tooltip>
         )}
-        {serviceProvider.home_delivery === "TRUE" && (
+        {serviceProvider.home_delivery?.toUpperCase() === "TRUE" && (
           <Tooltip icon={<HomeDeliveryIcon />}>
             <p>{t("Card.homeDelivery")}</p>
           </Tooltip>
         )}
-        {serviceProvider.is_icatt_site === "TRUE" && (
+        {serviceProvider.is_icatt_site?.toUpperCase() === "TRUE" && (
           <Tooltip icon={<IcattIcon />}>
             <p>{t("Card.icatt")}</p>
           </Tooltip>
         )}
-        {serviceProvider.has_oseltamivir_tamiflu === "TRUE" &&
-          serviceProvider.has_oseltamivir_generic === "FALSE" && (
+        {serviceProvider.has_oseltamivir_tamiflu?.toUpperCase() === "TRUE" &&
+          serviceProvider.has_oseltamivir_generic?.toUpperCase() === "FALSE" && (
             <Tooltip icon={<NoGenericIcon />}>
               <p>{t("Card.tamifluOnly")}</p>
             </Tooltip>
           )}
-        {serviceProvider.has_oseltamivir_suspension === "TRUE" && (
+        {serviceProvider.has_oseltamivir_suspension?.toUpperCase() === "TRUE" && (
           <Tooltip icon={<OseltamivirIcon />}>
             <p>{t("Card.oseltamivirSuspension")}</p>
           </Tooltip>
         )}
-        {serviceProvider.is_prescribing_svcs_available === "TRUE" && (
+        {serviceProvider.is_prescribing_svcs_available?.toUpperCase() === "TRUE" && (
           <Tooltip icon={<PrescribingServicesIcon />}>
             <p>{t("Card.prescribingServices")}</p>
           </Tooltip>
         )}
       </StyledRow>
-      {serviceProvider.is_prescribing_svcs_available === "TRUE" && (
+      {serviceProvider.is_prescribing_svcs_available?.toUpperCase() === "TRUE" && (
         <p>
           {t("Card.rXorTelehealth")}&nbsp;
           <a
@@ -218,40 +217,40 @@ const Card = ({ selected, serviceProvider }: Props) => {
                 ? serviceProvider.url_appointment
                 : ""
             }
-            target="_blank"
+            target='_blank'
           >
             {t("Card.additionalInformation")}
           </a>
         </p>
       )}
       {serviceProvider.grantee_code === "HR2" && (
-        <p className="ital">{t("Card.hrsa")}</p>
+        <p className='ital'>{t("Card.hrsa")}</p>
       )}
       {serviceProvider.grantee_code === "DD2" && (
-        <p className="ital">{t("Card.dod")}</p>
+        <p className='ital'>{t("Card.dod")}</p>
       )}
       {serviceProvider.grantee_code === "IH2" && (
-        <p className="ital">{t("Card.ihs")}</p>
+        <p className='ital'>{t("Card.ihs")}</p>
       )}
       <StyledRow>
-        <StyledOutlinedLink as="button" onClick={handleCopyToClipboard}>
+        <StyledOutlinedLink as='button' onClick={handleCopyToClipboard}>
           {t("Card.shareLocation")}
         </StyledOutlinedLink>
         {serviceProvider.address1 && (
           <StyledOutlinedLink
             href={`https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(
               searchPoint
-                ? `${searchPoint.latitude},${searchPoint.longitude}`
-                : "",
+                ? `${searchPoint.point.latitude},${searchPoint.point.longitude}`
+                : ""
             )}&destination=${encodeURIComponent(
               `${serviceProvider.address1} ${
                 serviceProvider.address2 ? serviceProvider.address2 + " " : ""
               }${serviceProvider.city} ${serviceProvider.state} ${
                 serviceProvider.zip
-              }`,
+              }`
             )}`}
-            target="_blank"
-            rel="noopener noreferrer"
+            target='_blank'
+            rel='noopener noreferrer'
             aria-label={t("Card.directionsToLocation")}
           >
             <span>{t("Card.openInMaps")}</span>

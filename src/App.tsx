@@ -38,6 +38,7 @@ const StyledAppLayout = styled.div`
   width: inherit;
   height: inherit;
   overflow-y: hidden;
+  overflow-x: hidden;
   /* padding: 1rem; */
   // --- Layout ---
   display: grid;

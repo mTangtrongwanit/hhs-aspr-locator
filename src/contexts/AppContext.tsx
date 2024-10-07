@@ -34,14 +34,22 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     useState<__esri.Graphic | null>(null);
 
   // Initial search point for locations when app loads or when user clears search
-  const initialSearchPoint = new Point({
-    longitude: -77.009056,
-    latitude: 38.889805, // Washington, DC
-  });
+  const initialSearchPoint = {
+    name: "Washington, District of Columbia",
+    point: new Point({
+      longitude: -77.0199124,
+      latitude: 38.892062100000004,
+    }),
+  };
 
-  const [searchPoint, setSearchPoint] = useState<__esri.Point | null>(null);
-  //@ts-expect-error will map these later
+  const [searchPoint, setSearchPoint] = useState<{
+    name: string;
+    point: __esri.Point;
+  } | null>(null);
   const [locations, setLocations] = useState<__esri.Graphic[] | null>(null);
+  const [locationsExtent, setLocationsExtent] = useState<__esri.Extent | null>(
+    null
+  );
   const [treatmentsIllnesses, setTreatmentsIllnesses] = useState<
     __esri.Graphic[] | null
   >(null);
@@ -61,6 +69,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   // #region ----------------- Hooks (Memoization) -----------------------------
   // #endregion -------------- Hooks (Memoization) -----------------------------
   // #region -------------------- Hooks (Other) --------------------------------
+  /** Get the treatement illness data and set it to state */
   useEffect(() => {
     const fetchTreatmentsIllnesses = async () => {
       const treatmentIllnesses = await getTreatmentsIllnessesData();
@@ -69,20 +78,28 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     fetchTreatmentsIllnesses();
   }, []);
 
+  /** Set search point to initial search point when component mounts */
   useEffect(() => {
     setSearchPoint(initialSearchPoint);
   }, []);
 
+  /** Get the locations and set locations and locations extent to state */
   useEffect(() => {
     const getLocations = async () => {
-      const locations = await getLocationsData(
-        searchPoint ?? initialSearchPoint
-      );
-      setLocations(locations ?? []);
+      try {
+        const locs = await getLocationsData(
+          searchPoint?.point ?? initialSearchPoint.point
+        );
+        setLocations(locs?.features.features ?? []);
+        setLocationsExtent(locs?.extent ?? null);
+      } catch (error) {
+        console.error("Error getting locations data: ", error);
+      }
     };
     getLocations();
   }, [searchPoint]);
 
+  /** Set illnessesTreatments dictionary when treatmentsIllness data is set */
   useEffect(() => {
     if (treatmentsIllnesses) {
       // Combine treatments and illnesses into a dictionary
@@ -115,6 +132,8 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
         setLocationsMapView: setLocationsMapView,
         selectedTreatmentSite: selectedTreatmentSite,
         setSelectedTreatmentSite: setSelectedTreatmentSite,
+        locations: locations,
+        locationsExtent: locationsExtent,
         illnessesTreatments: illnessesTreatments,
         setIllnessesTreatments: setIllnessesTreatments,
         selectedSort: selectedSort,

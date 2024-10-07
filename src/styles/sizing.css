@@ -19,6 +19,7 @@ Utility variables for sizing & layouts
   --footer-offset: 4rem;
   --min-card-width: 20rem;
   --max-card-width: 48rem;
+  --search-container-item-height: 2rem;
 }
 
 /* See style-utils for breakpoints */
