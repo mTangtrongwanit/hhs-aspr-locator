@@ -60,6 +60,10 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     label: "Distance",
     value: "distance",
   });
+  const [selectedIllness, setSelectedIllness] = useState({
+    label: "Flu",
+    value: "flu",
+  });
 
   // #endregion --------------- Hooks (Resources) ------------------------------
 
@@ -138,6 +142,8 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
         setIllnessesTreatments: setIllnessesTreatments,
         selectedSort: selectedSort,
         setSelectedSort: setSelectedSort,
+        selectedIllness: selectedIllness,
+        setSelectedIllness: setSelectedIllness
       }}
     >
       {children}

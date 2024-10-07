@@ -15,6 +15,8 @@ export interface AppContextType {
   setIllnessesTreatments: (x: { [key: string]: string[] }) => void;
   selectedSort: { label: string; value: string };
   setSelectedSort: (x: { label: string; value: string }) => void;
+  selectedIllness: { label: string; value: string };
+  setSelectedIllness: (x: { label: string; value: string }) => void;
 }
 
 export interface AppContextProps {

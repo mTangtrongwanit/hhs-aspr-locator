@@ -37,13 +37,12 @@ interface DropdownSingleSelectProps {
 const DropdownSingleSelect = ({ type }: DropdownSingleSelectProps) => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const { i18n } = useTranslation();
-  const { illnessesTreatments, selectedSort, setSelectedSort } =
+  const { illnessesTreatments, selectedSort, setSelectedSort, selectedIllness, setSelectedIllness } =
     useAppContext();
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region -------------------- Hooks (State) --------------------------------
   const [selectedLanguage, setSelectedLanguage] = useState("English");
-  const [selectedIllness, setSelectedIllness] = useState("Flu");
   const [illnesses, setIllnesses] = useState<string[]>([]);
   // #endregion ----------------- Hooks (State) --------------------------------
 
@@ -54,6 +53,7 @@ const DropdownSingleSelect = ({ type }: DropdownSingleSelectProps) => {
   // Get the illness options from illnessesTreatments
   useEffect(() => {
     if (!(JSON.stringify(illnessesTreatments) === "{}")) {
+      console.log(illnessesTreatments);
       const illnesses = Object.keys(illnessesTreatments);
       setIllnesses(illnesses);
     }
@@ -78,7 +78,8 @@ const DropdownSingleSelect = ({ type }: DropdownSingleSelectProps) => {
   };
 
   const handleIllnessChange = (illness: { label: string; value: string }) => {
-    setSelectedIllness(illness.label);
+    console.log(illness.value);
+    setSelectedIllness(illness);
   };
   // #endregion ---------------- Event Handlers --------------------------------
 
@@ -95,7 +96,7 @@ const DropdownSingleSelect = ({ type }: DropdownSingleSelectProps) => {
       ? selectedLanguage
       : type === "sort"
       ? selectedSort.label
-      : selectedIllness;
+      : selectedIllness.label;
 
   const handleChange =
     type === "language"

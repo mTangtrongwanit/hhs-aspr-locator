@@ -38,6 +38,7 @@ import useResizeObserver from "@react-hook/resize-observer";
 import { useAppContext } from "@/contexts/AppContext";
 import MapIcon from "@/assets/icons/map.svg";
 import ListIcon from "@/assets/icons/list.svg";
+import config from "@/config";
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 
@@ -84,6 +85,8 @@ interface SiteAttributes {
   non_public_yn?: string;
   grantee_code?: string;
   distance?: number;
+  has_flu_treatments?: boolean;
+  has_covid_treatments?: boolean;
 }
 
 interface Site {
@@ -96,7 +99,7 @@ const Locations = () => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
-  const { bannerHeight, headerHeight, searchPoint, selectedSort, locations } =
+  const { bannerHeight, headerHeight, searchPoint, selectedSort, selectedIllness, locations } =
     useAppContext();
 
   const searchContRef = useRef<HTMLDivElement>(null);
@@ -152,6 +155,20 @@ const Locations = () => {
             searchPoint
           );
           serviceProvider.distance = distance ?? 0;
+
+          // Evaluate whether site has treatments for the different illnesses
+          serviceProver.attributes.has_flu_treatments = false;
+          serviceProver.attributes.has_covid_treatments = false;
+          config.fieldsets.fluTreatmentFields.forEach((field) => {
+            if (serviceProvider[`${field}` as keyof ServiceProvider] == "TRUE") {
+              serviceProver.attributes.has_flu_treatments = true;
+            } 
+          });
+          config.fieldsets.covidTreatmentFields.forEach((field) => {
+            if (serviceProvider[`${field}` as keyof ServiceProvider] == "TRUE") {
+              serviceProver.attributes.has_covid_treatments = true;
+            } 
+          });
           return serviceProver;
         })
       );
@@ -169,11 +186,27 @@ const Locations = () => {
         return 0;
       });
 
-      setSortedSites(sortedSites);
+      //Filter by Illness value
+      const filteredSites = [...sortedSites];
+      
+      const x = filteredSites.filter((site) => {
+        // console.log(site);
+        if (selectedIllness.value.toLowerCase() == "flu") {
+          console.log("flu");
+          console.log(site.attributes.has_flu_treatments);
+          return(site.attributes.has_flu_treatments == true);
+        } else if (selectedIllness.value == "COVID") {
+          return (site.attributes.has_covid_treatments == true);
+        }
+        console.log("got here");
+        return true;
+      })
+      console.log(x);
+      setSortedSites(x);
     };
 
     fetchDistancesAndSort();
-  }, [searchPoint, selectedSort]);
+  }, [searchPoint, selectedSort, selectedIllness]);
   // #endregion ----------------- Hooks (Other) --------------------------------
 
   // #region --------- Short-Circuit (Empty/Invalid State) ---------------------

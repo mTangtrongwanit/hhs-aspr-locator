@@ -59,5 +59,7 @@ export interface ServiceProvider {
   non_public_yn?: string;
   grantee_code?: string;
   distance?: number;
+  has_flu_treatments?: boolean;
+  has_covid_treatments?: boolean;
 }
 // #endregion ================== EXPORTED TYPES ================================
