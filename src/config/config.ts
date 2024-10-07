@@ -66,7 +66,42 @@ const config: StaticConfiguration = {
         label: en.Card.prescribingServices,
       },
     }
-  }
+  },
+  options: {
+    languageOptions: [
+      {
+        label: "English",
+        value: "en",
+      },
+      {
+        label: "Spanish",
+        value: "es",
+      },
+      {
+        label: "Chinese (Simplified)",
+        value: "zh",
+      },
+    ],
+    sortOptions: [
+      { label: "Distance", value: "distance" },
+      { label: "Last Reported", value: "last reported" },
+    ],
+    illnessOptions: [
+      { label: "Flu", value: "flu" },
+      { label: "COVID-19", value: "COVID" },
+    ],
+  },
+  fieldsets: {
+    fluTreatmentFields: [
+      "has_baloxavir",
+      "has_zanamivir",
+      "has_peramivir",
+      "has_oseltamivir_generic",
+      "has_oseltamivir_suspension",
+      "has_oseltamivir_tamiflu",
+    ],
+    covidTreatmentFields: ["has_paxlovid", "has_lagevrio", "has_veklury"],
+  },
 };
 // #endregion ========================== EXPORTED CONSTANTS ==============================
 // #region ========================= EXPORTS ===================================

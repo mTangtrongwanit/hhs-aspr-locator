@@ -20,7 +20,7 @@ import mobileLogoPath from "@/assets/images/ASPR-logo-mobile.jpg";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
-import LanguageDropdown from "@/components/LanguageDropdown";
+import DropdownSingleSelect from "@/components/DropdownSingleSelect";
 import {
   StyledHeader,
   StyledHeaderLogo,
@@ -103,7 +103,7 @@ const HeaderComponent = () => {
           <StyledAppTitle>{t("Header.Title")}</StyledAppTitle>
         </StyledHeaderContentContainer>
         <StyledHeaderContentContainer>
-          <LanguageDropdown></LanguageDropdown>
+          <DropdownSingleSelect type="language" />
         </StyledHeaderContentContainer>
       </StyledHeader>
     </>

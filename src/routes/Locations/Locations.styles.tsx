@@ -32,25 +32,25 @@ import { Breakpoints } from "@/utils";
 
 // #region -------------------------- Atoms ------------------------------------
 export const StyledButton = styled.button`
-// --- Sizing / Box-Model ---
-padding: calc(var(--unit) / 2);
+  // --- Sizing / Box-Model ---
+  padding: calc(var(--unit) / 2);
 
-// --- Layout ---
-display: flex;
-gap: calc(var(--unit) / 2);
-align-items: center;
+  // --- Layout ---
+  display: flex;
+  gap: calc(var(--unit) / 2);
+  align-items: center;
 
-// --- Decorative ---
-background-color: var(--brand);
-text-decoration: none;
-border: 1px solid #fff;
-border-radius: var(--radius);
-cursor: pointer;
-color: #fff;
+  // --- Decorative ---
+  background-color: var(--brand);
+  text-decoration: none;
+  border: 1px solid #fff;
+  border-radius: var(--radius);
+  cursor: pointer;
+  color: #fff;
 
-span {
-  font-weight: 400;
-}
+  span {
+    font-weight: 400;
+  }
 `;
 // #endregion ----------------------- Atoms ------------------------------------
 
