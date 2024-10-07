@@ -129,7 +129,9 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
         selectedTreatmentSite: selectedTreatmentSite,
         setSelectedTreatmentSite: setSelectedTreatmentSite,
         illnessesTreatments: illnessesTreatments,
+        treatmentsIllnesses: treatmentsIllnesses,
         locations: locations,
+        setLocations: setLocations,
         locationsExtent: locationsExtent,
       }}
     >

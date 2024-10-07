@@ -10,7 +10,9 @@ export interface AppContextType {
   selectedTreatmentSite: __esri.Graphic | null;
   setSelectedTreatmentSite: (x: __esri.Graphic) => void;
   illnessesTreatments: { [key: string]: string[] };
+  treatmentsIllnesses: __esri.Graphic[] | null;
   locations: __esri.Graphic[] | null;
+  setLocations: (x: __esri.Graphic[] | null) => void;
   locationsExtent: __esri.Extent | null;
 }
 

@@ -1,11 +1,11 @@
 /**
- * _TemplateComponent_
+ * PopoverMultiSelect
  *
- * _TemplateComponent_ component implementation.
+ * PopoverMultiSelect component implementation.
  */
 
 // #region ========================= IMPORTS ===================================
-// #region --------------------------- React -----------------------------------import { useState } from 'react';
+// #region --------------------------- React -----------------------------------
 import { useEffect, useState } from "react";
 // #endregion ------------------------ React -----------------------------------
 
@@ -31,6 +31,7 @@ import {
 
 // #region ------------------------ Resources ----------------------------------
 import { useAppContext } from "@/contexts/AppContext";
+import config from "@/config/config";
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 
@@ -41,26 +42,31 @@ import { useAppContext } from "@/contexts/AppContext";
 interface PopoverMultiSelectProps {
   type: "medications" | "filter";
 }
+
+interface Filter {
+  name: string;
+  label: string;
+}
 // #endregion ================== TYPES ==========================================
 
 // #region =================== EXPORTED COMPONENT ==============================
 const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
   // #region ------------------ Hooks (Resources) ------------------------------
-  const { illnessesTreatments } = useAppContext();
+  const { illnessesTreatments, locations, setLocations, treatmentsIllnesses } =
+    useAppContext();
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region -------------------- Hooks (State) --------------------------------
-  const [selectedMedications, setSelectedMedications] = useState<string[]>([
-    "Oseltamivir",
-    "Baloxavir",
-  ]);
-  const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
-  // TODO: This will come from the single select comonent based on the selected illness
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [selectedMedications, setSelectedMedications] = useState<string[]>([]);
+  const [selectedFilters, setSelectedFilters] = useState<Filter[]>([]);
+  // TODO: This will come from the single select component based on the selected illness
+  // @ts-expect-error-line @typescript-eslint/no-unused-vars
   const [selectedIllness, setSelectedIllness] = useState<string>("Flu");
   const [treatments, setTreatments] = useState<string[]>([]);
+  const [unfilteredLocations, setUnfilteredLocations] = useState<
+    __esri.Graphic[] | null
+  >(null);
   // #endregion ----------------- Hooks (State) --------------------------------
-
   // #region ----------------- Hooks (Memoization) -----------------------------
   // #endregion -------------- Hooks (Memoization) -----------------------------
 
@@ -72,7 +78,6 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
 
   // #region ---------------- Supporting Functions -----------------------------
   // #endregion ------------- Supporting Functions -----------------------------
-
   // #region ------------------- Event Handlers --------------------------------
   /** Handle the medication change */
   const handleMedicationChange = (medication: string) => {
@@ -84,13 +89,161 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
   };
 
   /** Handle the filter change */
-  const handleFilterChange = (filter: string) => {
+  const handleFilterChange = (filter: Filter) => {
     setSelectedFilters((prev) =>
       prev.includes(filter)
         ? prev.filter((item) => item !== filter)
         : [...prev, filter]
     );
   };
+
+  /** Handle the apply click */
+  const handleApplyClick = () => {
+    if (
+      (selectedMedications.length > 0 && treatmentsIllnesses) ||
+      (selectedFilters.length > 0 && treatmentsIllnesses)
+    ) {
+      setUnfilteredLocations(locations);
+
+      const filteredLocations = locations?.filter((loc) => {
+        let match = true;
+
+        // Filter based on selected filters
+        if (selectedFilters.length > 0) {
+          selectedFilters.forEach((filter) => {
+            const attributeValue =
+              loc.attributes[
+                config.treatmentData.fields[
+                  filter.name as keyof typeof config.treatmentData.fields
+                ].name
+              ]?.toUpperCase();
+
+            if (filter.name === "has_oseltamivir_tamiflu") {
+              if (
+                attributeValue !== "TRUE" ||
+                loc.attributes[
+                  config.treatmentData.fields.has_oseltamivir_generic.name
+                ]?.toUpperCase() === "TRUE"
+              ) {
+                match = false;
+              }
+            } else if (attributeValue !== "TRUE") {
+              match = false;
+            }
+          });
+        }
+
+        // Filter based on selected medications
+        if (match && selectedMedications.length > 0) {
+          const medicationMatch = selectedMedications.every((medication) => {
+            const treatment = treatmentsIllnesses.find(
+              (treatment) => treatment.attributes.display_name === medication
+            );
+            if (!treatment) return false;
+
+            const medicationAttribute =
+              loc.attributes[treatment.attributes.field_name]?.toUpperCase();
+            return medicationAttribute === "TRUE";
+          });
+          if (!medicationMatch) {
+            match = false;
+          }
+        }
+
+        return match;
+      });
+
+      setLocations(filteredLocations || null);
+    } else {
+      setLocations(unfilteredLocations);
+    }
+  };
+
+  /** Handle the clear filters click */
+  const handleClearFilters = (type: "medications" | "filter") => {
+    if (type === "medications") {
+      setSelectedMedications([]);
+    } else {
+      setSelectedFilters([]);
+    }
+    setLocations(unfilteredLocations);
+  };
+
+  // Get the services from the locations
+  const services = Array.from(
+    new Set(
+      locations?.flatMap((loc) => {
+        const serviceList: Filter[] = [];
+        if (
+          loc.attributes[config.treatmentData.fields.is_pap.name] &&
+          loc.attributes[
+            config.treatmentData.fields.is_pap.name
+          ].toUpperCase() === "TRUE"
+        )
+          serviceList.push(config.treatmentData.fields.is_pap);
+        if (
+          loc.attributes[config.treatmentData.fields.is_icatt_site.name] &&
+          loc.attributes[
+            config.treatmentData.fields.is_icatt_site.name
+          ].toUpperCase() === "TRUE"
+        )
+          serviceList.push(config.treatmentData.fields.is_icatt_site);
+        if (
+          loc.attributes[config.treatmentData.fields.home_delivery.name] &&
+          loc.attributes[
+            config.treatmentData.fields.home_delivery.name
+          ].toUpperCase() === "TRUE"
+        )
+          serviceList.push(config.treatmentData.fields.home_delivery);
+        if (
+          loc.attributes[config.treatmentData.fields.has_USG_product.name] &&
+          loc.attributes[
+            config.treatmentData.fields.has_USG_product.name
+          ].toUpperCase() === "TRUE"
+        )
+          serviceList.push(config.treatmentData.fields.has_USG_product);
+        if (
+          loc.attributes[
+            config.treatmentData.fields.has_oseltamivir_suspension.name
+          ] &&
+          loc.attributes[
+            config.treatmentData.fields.has_oseltamivir_suspension.name
+          ].toUpperCase() === "TRUE"
+        )
+          serviceList.push(
+            config.treatmentData.fields.has_oseltamivir_suspension
+          );
+        if (
+          loc.attributes[
+            config.treatmentData.fields.has_oseltamivir_tamiflu.name
+          ] &&
+          loc.attributes[
+            config.treatmentData.fields.has_oseltamivir_tamiflu.name
+          ].toUpperCase() === "TRUE" &&
+          loc.attributes[
+            config.treatmentData.fields.has_oseltamivir_generic.name
+          ] &&
+          loc.attributes[
+            config.treatmentData.fields.has_oseltamivir_generic.name
+          ].toUpperCase() === "FALSE"
+        )
+          serviceList.push(config.treatmentData.fields.has_oseltamivir_tamiflu);
+        if (
+          loc.attributes[
+            config.treatmentData.fields.is_prescribing_svcs_available.name
+          ] &&
+          loc.attributes[
+            config.treatmentData.fields.is_prescribing_svcs_available.name
+          ].toUpperCase() === "TRUE"
+        )
+          serviceList.push(
+            config.treatmentData.fields.is_prescribing_svcs_available
+          );
+        return serviceList;
+      }) || []
+    )
+  );
+
   // #endregion ---------------- Event Handlers --------------------------------
 
   // #region ----------------------- Effects -----------------------------------
@@ -109,7 +262,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
         <>
           <PopoverMenuTitle>Medications</PopoverMenuTitle>
           <PopoverCheckBoxContainer>
-            {["Oseltamivir", "Baloxavir"].map((medication) => (
+            {treatments.map((medication) => (
               <PopoverCheckBoxRow key={medication}>
                 <Checkbox.Root
                   className='CheckboxRoot'
@@ -134,27 +287,22 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
         <>
           <PopoverMenuTitle>Filters</PopoverMenuTitle>
           <PopoverCheckBoxContainer>
-            {treatments.length === 0 && ( // If there are no treatments, show a message to the user
-              <PopoverCheckBoxRow>
-                <StyledCheckboxLabel>No filters available</StyledCheckboxLabel>
-              </PopoverCheckBoxRow>
-            )}
-            {treatments &&
-              treatments.length > 0 &&
-              treatments.map((filter) => (
-                <PopoverCheckBoxRow key={filter}>
+            {services &&
+              services.length > 0 &&
+              services.map((filter) => (
+                <PopoverCheckBoxRow key={filter.name}>
                   <Checkbox.Root
                     className='CheckboxRoot'
                     checked={selectedFilters.includes(filter)}
                     onCheckedChange={() => handleFilterChange(filter)}
-                    id={filter}
+                    id={filter.name}
                   >
                     <Checkbox.Indicator className='CheckboxIndicator'>
                       <CheckIcon />
                     </Checkbox.Indicator>
                   </Checkbox.Root>
-                  <StyledCheckboxLabel htmlFor={filter}>
-                    {filter}
+                  <StyledCheckboxLabel htmlFor={filter.label}>
+                    {filter.label}
                   </StyledCheckboxLabel>
                 </PopoverCheckBoxRow>
               ))}
@@ -180,16 +328,12 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
           <PopoverMenu.Content className='PopoverMenuContent' sideOffset={5}>
             {renderContent()}
             <StyledFilterButtonContainer>
-              <StyledOutlineButton
-                onClick={() =>
-                  type === "medications"
-                    ? setSelectedMedications([])
-                    : setSelectedFilters([])
-                }
-              >
+              <StyledOutlineButton onClick={() => handleClearFilters(type)}>
                 Clear All
               </StyledOutlineButton>
-              <StyledPrimaryButton>Apply</StyledPrimaryButton>
+              <StyledPrimaryButton onClick={handleApplyClick}>
+                Apply
+              </StyledPrimaryButton>
             </StyledFilterButtonContainer>
             <PopoverMenu.Close className='PopoverMenuClose' aria-label='Close'>
               <Cross2Icon />

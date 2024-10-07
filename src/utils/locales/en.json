@@ -49,6 +49,8 @@
     "icatt": "ICATT",
     "tamifluOnly": "Tamiflu Only",
     "oseltamivirSuspension": "Oseltamivir suspension*",
+    "oseltamivirTamiflu": "Oseltamivir Tamiflu",
+    "oseltamivirGeneric": "Oseltamivir Generic",
     "prescribingServices": "Prescribing Services",
     "rXorTelehealth": "Rx or Telehealth",
     "additionalInformation": "additional information",

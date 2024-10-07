@@ -176,7 +176,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
             <p>{t("Card.pap")}</p>
           </Tooltip>
         )}
-        {serviceProvider.has_usg_product?.toUpperCase() === "TRUE" && (
+        {serviceProvider.has_USG_product?.toUpperCase() === "TRUE" && (
           <Tooltip icon={<UsgProcuredIcon />}>
             <p>{t("Card.usgProduct")}</p>
           </Tooltip>
@@ -192,23 +192,27 @@ const Card = ({ selected, serviceProvider }: Props) => {
           </Tooltip>
         )}
         {serviceProvider.has_oseltamivir_tamiflu?.toUpperCase() === "TRUE" &&
-          serviceProvider.has_oseltamivir_generic?.toUpperCase() === "FALSE" && (
+          serviceProvider.has_oseltamivir_generic?.toUpperCase() ===
+            "FALSE" && (
             <Tooltip icon={<NoGenericIcon />}>
               <p>{t("Card.tamifluOnly")}</p>
             </Tooltip>
           )}
-        {serviceProvider.has_oseltamivir_suspension?.toUpperCase() === "TRUE" && (
+        {serviceProvider.has_oseltamivir_suspension?.toUpperCase() ===
+          "TRUE" && (
           <Tooltip icon={<OseltamivirIcon />}>
             <p>{t("Card.oseltamivirSuspension")}</p>
           </Tooltip>
         )}
-        {serviceProvider.is_prescribing_svcs_available?.toUpperCase() === "TRUE" && (
+        {serviceProvider.is_prescribing_svcs_available?.toUpperCase() ===
+          "TRUE" && (
           <Tooltip icon={<PrescribingServicesIcon />}>
             <p>{t("Card.prescribingServices")}</p>
           </Tooltip>
         )}
       </StyledRow>
-      {serviceProvider.is_prescribing_svcs_available?.toUpperCase() === "TRUE" && (
+      {serviceProvider.is_prescribing_svcs_available?.toUpperCase() ===
+        "TRUE" && (
         <p>
           {t("Card.rXorTelehealth")}&nbsp;
           <a

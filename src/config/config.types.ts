@@ -29,6 +29,40 @@ export interface StaticConfiguration {
       name: string;
       treatmentsIllnessesLayer: FeatureLayer;
     };
-  };
+    fields: {
+      is_pap: {
+        name: string;
+        label: string;
+      };
+      home_delivery: {
+        name: string;
+        label: string;
+      };
+      is_icatt_site: {
+        name: string;
+        label: string;
+      };
+      has_USG_product: {
+        name: string;
+        label: string;
+      };
+      has_oseltamivir_suspension: {
+        name: string;
+        label: string;
+      };
+      has_oseltamivir_tamiflu: {
+        name: string;
+        label: string;
+      };
+      has_oseltamivir_generic: {
+        name: string;
+        label: string;
+      };
+      is_prescribing_svcs_available: {
+        name: string;
+        label: string;
+      };
+    };
+  }
 }
 // #endregion ================== EXPORTED TYPES ================================
