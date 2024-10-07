@@ -204,7 +204,6 @@ const Locations = () => {
     <StyledLocationsContent className={isMobileListView ? "lView" : "mView"}>
       <StyledSearchContainer ref={searchContRef}>
         <h2 className='visually-hidden'>
-        <h2 className='visually-hidden'>
           {t("Locations.Search Container Screenreader Heading")}
         </h2>
         {selectedLocation !== null ? (
@@ -228,12 +227,9 @@ const Locations = () => {
       </StyledSearchContainer>
       <div id='locs'>
         <h2 className='visually-hidden'>
-      <div id='locs'>
-        <h2 className='visually-hidden'>
           {t("Locations.Results Screenreader Heading")}
         </h2>
         <StyledListContainer>
-          <div id='list-title'>
           <div id='list-title'>
             <h3>
               <Trans i18nKey='Locations.List Heading' count={0}></Trans>
@@ -265,7 +261,6 @@ const Locations = () => {
         <StyledMapContainer
           style={{ "--remainder": `${totalHeight}px` } as React.CSSProperties}
         >
-          <h3 className='visually-hidden'>
           <h3 className='visually-hidden'>
             {t("Locations.Map Screenreader Heading")}
           </h3>
