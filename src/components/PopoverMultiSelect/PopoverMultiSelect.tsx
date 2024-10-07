@@ -11,13 +11,22 @@
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
 import * as PopoverMenu from "@radix-ui/react-popover";
-import * as Checkbox from '@radix-ui/react-checkbox';
+import * as Checkbox from "@radix-ui/react-checkbox";
 import { ChevronDownIcon, Cross2Icon, CheckIcon } from "@radix-ui/react-icons";
 // import { useTranslation } from "react-i18next";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
-import { StyledPopoverMultiSelect, PopoverMenuTitle, PopoverCheckBoxContainer, PopoverCheckBoxRow, StyledCheckboxLabel, StyledFilterButtonContainer, StyledOutlineButton, StyledPrimaryButton} from "./PopoverMultiSelect.styles";
+import {
+  StyledPopoverMultiSelect,
+  PopoverMenuTitle,
+  PopoverCheckBoxContainer,
+  PopoverCheckBoxRow,
+  StyledCheckboxLabel,
+  StyledFilterButtonContainer,
+  StyledOutlineButton,
+  StyledPrimaryButton,
+} from "./PopoverMultiSelect.styles";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
@@ -29,7 +38,6 @@ import { StyledPopoverMultiSelect, PopoverMenuTitle, PopoverCheckBoxContainer, P
 
 // #region =================== EXPORTED COMPONENT ==============================
 const PopoverMultiSelect = () => {
-
   // #region ------------------ Hooks (Resources) ------------------------------
 
   // #endregion --------------- Hooks (Resources) ------------------------------
@@ -63,10 +71,8 @@ const PopoverMultiSelect = () => {
           <span className="PopOverFilterCount">4</span>
         </PopoverMenu.Trigger>
         <PopoverMenu.Portal>
-        <PopoverMenu.Content className="PopoverMenuContent" sideOffset={5}>
-            <PopoverMenuTitle>
-                Medications
-            </PopoverMenuTitle>
+          <PopoverMenu.Content className="PopoverMenuContent" sideOffset={5}>
+            <PopoverMenuTitle>Medications</PopoverMenuTitle>
             <PopoverCheckBoxContainer>
               <PopoverCheckBoxRow>
                 <Checkbox.Root className="CheckboxRoot" defaultChecked id="c1">
@@ -90,18 +96,14 @@ const PopoverMultiSelect = () => {
               </PopoverCheckBoxRow>
             </PopoverCheckBoxContainer>
             <StyledFilterButtonContainer>
-              <StyledOutlineButton>
-                Clear All
-              </StyledOutlineButton>
-              <StyledPrimaryButton>
-                Apply
-              </StyledPrimaryButton>
+              <StyledOutlineButton>Clear All</StyledOutlineButton>
+              <StyledPrimaryButton>Apply</StyledPrimaryButton>
             </StyledFilterButtonContainer>
-          <PopoverMenu.Close className="PopoverMenuClose" aria-label="Close">
-            <Cross2Icon />
-          </PopoverMenu.Close>
-          <PopoverMenu.Arrow className="PopoverMenuArrow" />
-        </PopoverMenu.Content>
+            <PopoverMenu.Close className="PopoverMenuClose" aria-label="Close">
+              <Cross2Icon />
+            </PopoverMenu.Close>
+            <PopoverMenu.Arrow className="PopoverMenuArrow" />
+          </PopoverMenu.Content>
         </PopoverMenu.Portal>
       </PopoverMenu.Root>
     </StyledPopoverMultiSelect>

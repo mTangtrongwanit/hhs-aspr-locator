@@ -99,8 +99,13 @@ const Locations = () => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
-  const { bannerHeight, headerHeight, searchPoint, selectedSort, selectedIllness, locations } =
-    useAppContext();
+  const {
+    bannerHeight,
+    headerHeight,
+    searchPoint,
+    selectedSort,
+    selectedIllness,
+  } = useAppContext();
 
   const searchContRef = useRef<HTMLDivElement>(null);
 
@@ -128,7 +133,7 @@ const Locations = () => {
 
   //get size when element updates
   useResizeObserver(searchContRef.current, (entry) =>
-    setSearchContHeight(entry.contentRect.height)
+    setSearchContHeight(entry.contentRect.height),
   );
 
   useEffect(() => {
@@ -152,7 +157,7 @@ const Locations = () => {
           const serviceProvider: ServiceProvider = serviceProver.attributes;
           const distance = await calculateDistanceBetweenTwoPoints(
             serviceProvider,
-            searchPoint
+            searchPoint,
           );
           serviceProvider.distance = distance ?? 0;
 
@@ -160,17 +165,21 @@ const Locations = () => {
           serviceProver.attributes.has_flu_treatments = false;
           serviceProver.attributes.has_covid_treatments = false;
           config.fieldsets.fluTreatmentFields.forEach((field) => {
-            if (serviceProvider[`${field}` as keyof ServiceProvider] == "TRUE") {
+            if (
+              serviceProvider[`${field}` as keyof ServiceProvider] == "TRUE"
+            ) {
               serviceProver.attributes.has_flu_treatments = true;
-            } 
+            }
           });
           config.fieldsets.covidTreatmentFields.forEach((field) => {
-            if (serviceProvider[`${field}` as keyof ServiceProvider] == "TRUE") {
+            if (
+              serviceProvider[`${field}` as keyof ServiceProvider] == "TRUE"
+            ) {
               serviceProver.attributes.has_covid_treatments = true;
-            } 
+            }
           });
           return serviceProver;
-        })
+        }),
       );
 
       const sortedSites = updatedSites.sort((a, b) => {
@@ -188,20 +197,15 @@ const Locations = () => {
 
       //Filter by Illness value
       const filteredSites = [...sortedSites];
-      
+
       const x = filteredSites.filter((site) => {
-        // console.log(site);
         if (selectedIllness.value.toLowerCase() == "flu") {
-          console.log("flu");
-          console.log(site.attributes.has_flu_treatments);
-          return(site.attributes.has_flu_treatments == true);
-        } else if (selectedIllness.value == "COVID") {
-          return (site.attributes.has_covid_treatments == true);
+          return site.attributes.has_flu_treatments == true;
+        } else if (selectedIllness.value.toLowerCase() == "covid") {
+          return site.attributes.has_covid_treatments == true;
         }
-        console.log("got here");
-        return true;
-      })
-      console.log(x);
+        return false;
+      });
       setSortedSites(x);
     };
 
@@ -236,12 +240,12 @@ const Locations = () => {
   return (
     <StyledLocationsContent className={isMobileListView ? "lView" : "mView"}>
       <StyledSearchContainer ref={searchContRef}>
-        <h2 className='visually-hidden'>
+        <h2 className="visually-hidden">
           {t("Locations.Search Container Screenreader Heading")}
         </h2>
         {selectedLocation !== null ? (
           <>
-            <StyledButton as='button' onClick={onToggleSelectedLoc}>
+            <StyledButton as="button" onClick={onToggleSelectedLoc}>
               Search for Other Locations
             </StyledButton>
           </>
@@ -253,22 +257,24 @@ const Locations = () => {
           </>
         )}
 
-        <button id='listViewToggle' onClick={onButtonClick}>
+        <button id="listViewToggle" onClick={onButtonClick}>
           {isMobileListView ? <MapIcon></MapIcon> : <ListIcon></ListIcon>}
           <span>{isMobileListView ? "Map" : "List"}</span>
         </button>
       </StyledSearchContainer>
-      <div id='locs'>
-        <h2 className='visually-hidden'>
+      <div id="locs">
+        <h2 className="visually-hidden">
           {t("Locations.Results Screenreader Heading")}
         </h2>
         <StyledListContainer>
-          <div id='list-title'>
+          <div id="list-title">
             <h3>
-              <Trans i18nKey='Locations.List Heading' count={0}></Trans>
-              <Trans i18nKey='Locations.List Heading' count={0}></Trans>
+              <Trans
+                i18nKey="Locations.List Heading"
+                count={sortedSites.length}
+              ></Trans>
             </h3>
-            <div className='dev-placeholder'>Filter Placeholder</div>
+            <div className="dev-placeholder">Filter Placeholder</div>
             <DropdownSingleSelect type={"sort"} />
           </div>
           {/* tabindex for scrollable list */}
@@ -294,7 +300,7 @@ const Locations = () => {
         <StyledMapContainer
           style={{ "--remainder": `${totalHeight}px` } as React.CSSProperties}
         >
-          <h3 className='visually-hidden'>
+          <h3 className="visually-hidden">
             {t("Locations.Map Screenreader Heading")}
           </h3>
           <LocationsMap />

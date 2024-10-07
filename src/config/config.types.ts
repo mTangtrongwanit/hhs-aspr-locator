@@ -29,15 +29,15 @@ export interface StaticConfiguration {
       name: string;
       treatmentsIllnessesLayer: FeatureLayer;
     };
-  },
+  };
   options: {
-    languageOptions: { label: string; value: string }[],
-    sortOptions: { label: string; value: string }[],
-    illnessOptions: { label: string; value: string }[]
+    languageOptions: { label: string; value: string }[];
+    sortOptions: { label: string; value: string }[];
+    illnessOptions: { label: string; value: string }[];
   };
   fieldsets: {
-    fluTreatmentFields: string[],
-    covidTreatmentFields: string[]
-  }
+    fluTreatmentFields: string[];
+    covidTreatmentFields: string[];
+  };
 }
 // #endregion ================== EXPORTED TYPES ================================

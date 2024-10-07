@@ -59,7 +59,8 @@ export const getTreatmentsIllnessesData = async () => {
     query.where = "1=1";
     query.outFields = ["*"];
     query.returnGeometry = false;
-    const treatmentsIllnesses = await treatmentsIllnessesData.queryFeatures(query);
+    const treatmentsIllnesses =
+      await treatmentsIllnessesData.queryFeatures(query);
     return treatmentsIllnesses.features;
   } catch (error) {
     console.error("Error getting treatments illnesses data: ", error);

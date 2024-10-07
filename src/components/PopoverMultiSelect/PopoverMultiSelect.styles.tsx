@@ -93,8 +93,7 @@ export const StyledPopoverMultiSelect = styled.section`
   }
 `;
 
-export const PopoverMenuContentContainer = styled.div`
-`;
+export const PopoverMenuContentContainer = styled.div``;
 
 export const PopoverMenuTitle = styled.h3`
   font-size: var(--text-1);
@@ -105,20 +104,20 @@ export const PopoverMenuTitle = styled.h3`
 `;
 
 export const PopoverCheckBoxContainer = styled.div`
- display: flex;
- flex-direction: column;
- gap: 2px;
- overflow: hidden;
- border-radius: 4px;
- border: 1px solid var(--light);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid var(--light);
 `;
 
 export const PopoverCheckBoxRow = styled.div`
- display: flex;
- padding: 12px 16px;
- align-items: 'center';
- background: var(--light);
- gap: 16px;
+  display: flex;
+  padding: 12px 16px;
+  align-items: "center";
+  background: var(--light);
+  gap: 16px;
 `;
 
 export const StyledCheckboxLabel = styled.label`
@@ -168,7 +167,6 @@ export const StyledPrimaryButton = styled.button`
     cursor: pointer;
   }
 `;
-
 
 // #endregion ------------ Parent Component + Variants -------------------------
 // #endregion ================ EXPORTED COMPONENTS =============================

@@ -48,7 +48,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   } | null>(null);
   const [locations, setLocations] = useState<__esri.Graphic[] | null>(null);
   const [locationsExtent, setLocationsExtent] = useState<__esri.Extent | null>(
-    null
+    null,
   );
   const [treatmentsIllnesses, setTreatmentsIllnesses] = useState<
     __esri.Graphic[] | null
@@ -61,8 +61,8 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     value: "distance",
   });
   const [selectedIllness, setSelectedIllness] = useState({
-    label: "Flu",
-    value: "flu",
+    label: "Illness",
+    value: "",
   });
 
   // #endregion --------------- Hooks (Resources) ------------------------------
@@ -92,7 +92,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     const getLocations = async () => {
       try {
         const locs = await getLocationsData(
-          searchPoint?.point ?? initialSearchPoint.point
+          searchPoint?.point ?? initialSearchPoint.point,
         );
         setLocations(locs?.features.features ?? []);
         setLocationsExtent(locs?.extent ?? null);
@@ -143,7 +143,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
         selectedSort: selectedSort,
         setSelectedSort: setSelectedSort,
         selectedIllness: selectedIllness,
-        setSelectedIllness: setSelectedIllness
+        setSelectedIllness: setSelectedIllness,
       }}
     >
       {children}
@@ -158,7 +158,7 @@ export const useAppContext = () => {
   if (!appContext) {
     // the below text is for developers not for users. It does not need to be translated
     throw new Error(
-      "Cannot use 'useAppContext' outside of a AppContextProvider"
+      "Cannot use 'useAppContext' outside of a AppContextProvider",
     );
   }
   return appContext;
