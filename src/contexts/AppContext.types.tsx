@@ -11,6 +11,12 @@ export interface AppContextType {
   setSelectedTreatmentSite: (x: __esri.Graphic) => void;
   locations: __esri.Graphic[] | null;
   locationsExtent: __esri.Extent | null;
+  illnessesTreatments: { [key: string]: string[] };
+  setIllnessesTreatments: (x: { [key: string]: string[] }) => void;
+  selectedSort: { label: string; value: string };
+  setSelectedSort: (x: { label: string; value: string }) => void;
+  selectedIllness: { label: string; value: string };
+  setSelectedIllness: (x: { label: string; value: string }) => void;
 }
 
 export interface AppContextProps {

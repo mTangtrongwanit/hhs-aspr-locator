@@ -30,5 +30,14 @@ export interface StaticConfiguration {
       treatmentsIllnessesLayer: FeatureLayer;
     };
   };
+  options: {
+    languageOptions: { label: string; value: string }[];
+    sortOptions: { label: string; value: string }[];
+    illnessOptions: { label: string; value: string }[];
+  };
+  fieldsets: {
+    fluTreatmentFields: string[];
+    covidTreatmentFields: string[];
+  };
 }
 // #endregion ================== EXPORTED TYPES ================================

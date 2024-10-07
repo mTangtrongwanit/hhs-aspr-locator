@@ -164,26 +164,17 @@ const Footer = () => {
         </StyledFooterFirstColumn>
         <StyledFooterSecondColumn>
           <StyledFooterImageContainer>
-            <StyledFooterImage
-              src={whiteLogoPath}
-              alt="ASPR logo"
-            />
+            <StyledFooterImage src={whiteLogoPath} alt="ASPR logo" />
           </StyledFooterImageContainer>
           <StyledFooterMediaLinksContainer>
             <StyledFooterMediaLink>
               <a href="https://x.com/ASPRgov" target="_blank">
-                <img
-                  src={xAltPath}
-                  alt="X AltIcon"
-                />
+                <img src={xAltPath} alt="X AltIcon" />
               </a>
             </StyledFooterMediaLink>
             <StyledFooterMediaLink>
               <a href="https://x.com/HHS_ASPR" target="_blank">
-                <img
-                  src={xPath}
-                  alt="X Icon"
-                />
+                <img src={xPath} alt="X Icon" />
               </a>
             </StyledFooterMediaLink>
             <StyledFooterMediaLink>
@@ -193,26 +184,17 @@ const Footer = () => {
             </StyledFooterMediaLink>
             <StyledFooterMediaLink>
               <a href="https://www.facebook.com/ASPRgov/" target="_blank">
-                <img
-                  src={fbPath}
-                  alt="Facebook Icon"
-                />
+                <img src={fbPath} alt="Facebook Icon" />
               </a>
             </StyledFooterMediaLink>
             <StyledFooterMediaLink>
               <a href="https://www.instagram.com/asprgov" target="_blank">
-                <img
-                  src={igPath}
-                  alt="Instagram Icon"
-                />
+                <img src={igPath} alt="Instagram Icon" />
               </a>
             </StyledFooterMediaLink>
             <StyledFooterMediaLink>
               <a href="https://www.threads.net/@asprgov" target="_blank">
-                <img
-                  src={threadsPath}
-                  alt="Threads Icon"
-                />
+                <img src={threadsPath} alt="Threads Icon" />
               </a>
             </StyledFooterMediaLink>
             <StyledFooterMediaLink>
@@ -222,10 +204,7 @@ const Footer = () => {
             </StyledFooterMediaLink>
             <StyledFooterMediaLink>
               <a href="https://www.youtube.com/c/ASPRgov" target="_blank">
-                <img
-                  src={ytPath}
-                  alt="YouTube Icon"
-                />
+                <img src={ytPath} alt="YouTube Icon" />
               </a>
             </StyledFooterMediaLink>
             <StyledFooterMediaLink>

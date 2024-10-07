@@ -16,8 +16,7 @@ import { Breakpoints } from "@/utils";
 
 // #endregion ====================== IMPORTS ===================================
 
-const imgUrl = new URL("@/assets/nurse.jpg", import.meta.url).href
-
+const imgUrl = new URL("@/assets/nurse.jpg", import.meta.url).href;
 
 // #region =================== EXPORTED COMPONENTS =============================
 /* Property Organization Guide */

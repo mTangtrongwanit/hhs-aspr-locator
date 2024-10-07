@@ -111,7 +111,7 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
   margin-left: 4px;
 }
 
-.esri-input[type=text] {
+.esri-input[type="text"] {
   height: min-content;
 }
 
@@ -145,8 +145,10 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
 }
 
 .PopoverMenuContent:focus {
-  box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
-    hsl(206 22% 7% / 20%) 0px 10px 20px -15px, 0 0 0 2px var(--violet-7);
+  box-shadow:
+    hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
+    hsl(206 22% 7% / 20%) 0px 10px 20px -15px,
+    0 0 0 2px var(--violet-7);
 }
 
 .PopoverMenuContent[data-state="open"][data-side="top"] {

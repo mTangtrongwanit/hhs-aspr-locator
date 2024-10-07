@@ -23,6 +23,9 @@ import PopoverMultiSelect from "@/components/PopoverMultiSelect";
 import Card from "@/components/Card";
 import { ServiceProvider } from "@/components/Card";
 import LocationsMap from "@/components/LocationsMap";
+import * as treatmentSites from "../../data/treatment-sites.json";
+import DropdownSingleSelect from "@/components/DropdownSingleSelect";
+import { calculateDistanceBetweenTwoPoints } from "../../utils/geographicUtils";
 import Search from "@/components/Search";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
@@ -35,6 +38,7 @@ import useResizeObserver from "@react-hook/resize-observer";
 import { useAppContext } from "@/contexts/AppContext";
 import MapIcon from "@/assets/icons/map.svg";
 import ListIcon from "@/assets/icons/list.svg";
+import config from "@/config";
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 
@@ -80,6 +84,9 @@ interface SiteAttributes {
   has_oseltamivir_tamiflu?: string;
   non_public_yn?: string;
   grantee_code?: string;
+  distance?: number;
+  has_flu_treatments?: boolean;
+  has_covid_treatments?: boolean;
 }
 
 interface Site {
@@ -92,7 +99,13 @@ const Locations = () => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const { t } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
-  const { bannerHeight, headerHeight, locations } = useAppContext();
+  const {
+    bannerHeight,
+    headerHeight,
+    searchPoint,
+    selectedSort,
+    selectedIllness,
+  } = useAppContext();
 
   const searchContRef = useRef<HTMLDivElement>(null);
 
@@ -102,6 +115,7 @@ const Locations = () => {
   const [searchContHeight, setSearchContHeight] = useState<number>(0);
   const [totalHeight, setTotalHeight] = useState<number>(0);
   const [isMobileListView, setIsMobileListView] = useState<boolean>(true);
+  const [sortedSites, setSortedSites] = useState<Site[]>([]);
   const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
   // #endregion ----------------- Hooks (State) --------------------------------
 
@@ -119,7 +133,7 @@ const Locations = () => {
 
   //get size when element updates
   useResizeObserver(searchContRef.current, (entry) =>
-    setSearchContHeight(entry.contentRect.height)
+    setSearchContHeight(entry.contentRect.height),
   );
 
   useEffect(() => {
@@ -133,6 +147,70 @@ const Locations = () => {
       setSelectedLocation(searchParams.get("facility_id"));
     }
   }, [searchParams]);
+
+  /** Sort the sites based on the value of the sort dropdown. */
+  useEffect(() => {
+    const fetchDistancesAndSort = async () => {
+      const updatedSites = await Promise.all(
+        treatmentSites.features.map(async (site: object) => {
+          const serviceProver: Site = site as Site;
+          const serviceProvider: ServiceProvider = serviceProver.attributes;
+          const distance = await calculateDistanceBetweenTwoPoints(
+            serviceProvider,
+            searchPoint,
+          );
+          serviceProvider.distance = distance ?? 0;
+
+          // Evaluate whether site has treatments for the different illnesses
+          serviceProver.attributes.has_flu_treatments = false;
+          serviceProver.attributes.has_covid_treatments = false;
+          config.fieldsets.fluTreatmentFields.forEach((field) => {
+            if (
+              serviceProvider[`${field}` as keyof ServiceProvider] == "TRUE"
+            ) {
+              serviceProver.attributes.has_flu_treatments = true;
+            }
+          });
+          config.fieldsets.covidTreatmentFields.forEach((field) => {
+            if (
+              serviceProvider[`${field}` as keyof ServiceProvider] == "TRUE"
+            ) {
+              serviceProver.attributes.has_covid_treatments = true;
+            }
+          });
+          return serviceProver;
+        }),
+      );
+
+      const sortedSites = updatedSites.sort((a, b) => {
+        if (selectedSort.value === "distance") {
+          const distanceA = a.attributes.distance || 0;
+          const distanceB = b.attributes.distance || 0;
+          return distanceA - distanceB;
+        } else if (selectedSort.value === "last_report_date") {
+          const dateA = new Date(a.attributes.last_report_date).getTime();
+          const dateB = new Date(b.attributes.last_report_date).getTime();
+          return dateB - dateA;
+        }
+        return 0;
+      });
+
+      //Filter by Illness value
+      const filteredSites = [...sortedSites];
+
+      const x = filteredSites.filter((site) => {
+        if (selectedIllness.value.toLowerCase() == "flu") {
+          return site.attributes.has_flu_treatments == true;
+        } else if (selectedIllness.value.toLowerCase() == "covid") {
+          return site.attributes.has_covid_treatments == true;
+        }
+        return false;
+      });
+      setSortedSites(x);
+    };
+
+    fetchDistancesAndSort();
+  }, [searchPoint, selectedSort, selectedIllness]);
   // #endregion ----------------- Hooks (Other) --------------------------------
 
   // #region --------- Short-Circuit (Empty/Invalid State) ---------------------
@@ -162,43 +240,46 @@ const Locations = () => {
   return (
     <StyledLocationsContent className={isMobileListView ? "lView" : "mView"}>
       <StyledSearchContainer ref={searchContRef}>
-        <h2 className='visually-hidden'>
+        <h2 className="visually-hidden">
           {t("Locations.Search Container Screenreader Heading")}
         </h2>
         {selectedLocation !== null ? (
           <>
-            <StyledButton as='button' onClick={onToggleSelectedLoc}>
+            <StyledButton as="button" onClick={onToggleSelectedLoc}>
               Search for Other Locations
             </StyledButton>
           </>
         ) : (
           <>
             <Search />
-            {/* <div className='dev-placeholder'>Illness Select Placeholder</div> */}
+            <DropdownSingleSelect type={"illness"} />
             <PopoverMultiSelect />
           </>
         )}
 
-        <button id='listViewToggle' onClick={onButtonClick}>
+        <button id="listViewToggle" onClick={onButtonClick}>
           {isMobileListView ? <MapIcon></MapIcon> : <ListIcon></ListIcon>}
           <span>{isMobileListView ? "Map" : "List"}</span>
         </button>
       </StyledSearchContainer>
-      <div id='locs'>
-        <h2 className='visually-hidden'>
+      <div id="locs">
+        <h2 className="visually-hidden">
           {t("Locations.Results Screenreader Heading")}
         </h2>
         <StyledListContainer>
-          <div id='list-title'>
+          <div id="list-title">
             <h3>
-              <Trans i18nKey='Locations.List Heading' count={0}></Trans>
+              <Trans
+                i18nKey="Locations.List Heading"
+                count={sortedSites.length}
+              ></Trans>
             </h3>
-            <div className='dev-placeholder'>Filter Placeholder</div>
-            <div className='dev-placeholder'>Sort Placeholder</div>
+            <div className="dev-placeholder">Filter Placeholder</div>
+            <DropdownSingleSelect type={"sort"} />
           </div>
           {/* tabindex for scrollable list */}
           <ul tabIndex={0}>
-            {locations?.map((site: object) => {
+            {sortedSites?.map((site: object) => {
               const serviceProver: Site = site as Site;
               const serviceProvider: ServiceProvider = serviceProver.attributes;
               if (selectedLocation !== null) {
@@ -219,7 +300,7 @@ const Locations = () => {
         <StyledMapContainer
           style={{ "--remainder": `${totalHeight}px` } as React.CSSProperties}
         >
-          <h3 className='visually-hidden'>
+          <h3 className="visually-hidden">
             {t("Locations.Map Screenreader Heading")}
           </h3>
           <LocationsMap />
