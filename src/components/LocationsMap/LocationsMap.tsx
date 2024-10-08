@@ -50,6 +50,7 @@ const LocationsMap = () => {
     sharedSiteFacilityID,
     selectedIllness,
     selectedMedications,
+    selectedFilters
   } = useAppContext();
   const [searchParams] = useSearchParams();
   // #endregion --------------- Hooks (Resources) ------------------------------
@@ -275,15 +276,29 @@ const LocationsMap = () => {
         if (selectedMedications.includes("Oseltamivir Tamiflu")) {
           where += ` AND (has_oseltamivir_suspension = 'TRUE' OR has_oseltamivir_suspension = 'true')`;
         }
-      // }
+        if (selectedMedications.includes("Paxlovid")) {
+          where += ` AND (has_paxlovid = 'TRUE' OR has_paxlovid = 'true')`;
+        }
+        if (selectedMedications.includes("Lagevrio")) {
+          where += ` AND (has_lagevrio = 'TRUE' OR has_lagevrio = 'true')`;
+        }
+        if (selectedMedications.includes("Veklury")) {
+          where += ` AND (has_veklury = 'TRUE' OR has_veklury = 'true')`;
+        }
+      if (selectedFilters.length !== 0) {
+        selectedFilters.forEach((filter) => {
+          where += ` AND (${filter.name} = 'TRUE' OR ${filter.name} = 'true')`;
+        })
+      }
     }
-    console.log(where);
+
     featureLayer.definitionExpression = where;
   }, [
     featureLayer,
     sharedSiteFacilityID,
     selectedIllness,
     selectedMedications,
+    selectedFilters
   ]);
 
   // #endregion ----------------- Hooks (Other) --------------------------------
