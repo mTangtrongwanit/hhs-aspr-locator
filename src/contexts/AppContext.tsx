@@ -9,7 +9,7 @@ import Point from "@arcgis/core/geometry/Point";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region ------------------------ Resources ----------------------------------
-import { AppContextType, AppContextProps } from "./AppContext.types.tsx";
+import { AppContextType, AppContextProps, Filter } from "./AppContext.types.tsx";
 import {
   getLocationsData,
   getTreatmentsIllnessesData,
@@ -66,6 +66,8 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   });
   const [sharedSiteFacilityID, setSFID] = useState<string | null>(null);
   const [selectedMedications, setSelectedMedications] = useState<string[]>([]);
+  const [selectedFilters, setSelectedFilters] = useState<Filter[]>([]);
+
 
   // #endregion --------------- Hooks (Resources) ------------------------------
 
@@ -152,6 +154,8 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
         setSFID: setSFID,
         selectedMedications: selectedMedications,
         setSelectedMedications: setSelectedMedications,
+        selectedFilters: selectedFilters,
+        setSelectedFilters: setSelectedFilters
       }}
     >
       {children}

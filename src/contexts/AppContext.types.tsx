@@ -24,8 +24,15 @@ export interface AppContextType {
   setSFID: (x: string | null) => void;
   selectedMedications: string[];
   setSelectedMedications: (x: string[]) => void;
+  selectedFilters: Filter[];
+  setSelectedFilters: (x: Filter[]) => void;
 }
 
 export interface AppContextProps {
   children?: React.ReactNode;
+}
+
+export interface Filter {
+  name: string;
+  label: string;
 }

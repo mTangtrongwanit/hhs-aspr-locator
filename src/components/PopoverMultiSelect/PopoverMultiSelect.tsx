@@ -52,15 +52,12 @@ interface Filter {
 // #region =================== EXPORTED COMPONENT ==============================
 const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
   // #region ------------------ Hooks (Resources) ------------------------------
-  const { illnessesTreatments, locations, setLocations, treatmentsIllnesses, selectedMedications, setSelectedMedications } =
+  const { illnessesTreatments, locations, setLocations, treatmentsIllnesses, selectedIllness, selectedMedications, setSelectedMedications, selectedFilters, setSelectedFilters } =
     useAppContext();
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region -------------------- Hooks (State) --------------------------------
-  const [selectedFilters, setSelectedFilters] = useState<Filter[]>([]);
   // TODO: This will come from the single select component based on the selected illness
-  // @ts-expect-error-line @typescript-eslint/no-unused-vars
-  const [selectedIllness, setSelectedIllness] = useState<string>("Flu");
   const [treatments, setTreatments] = useState<string[]>([]);
   const [unfilteredLocations, setUnfilteredLocations] = useState<
     __esri.Graphic[] | null
@@ -90,7 +87,8 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
 
   /** Handle the filter change */
   const handleFilterChange = (filter: Filter) => {
-    setSelectedFilters((prev) =>
+    //@ts-ignore
+    setSelectedFilters((prev: Filter[]) =>
       prev.includes(filter)
         ? prev.filter((item) => item !== filter)
         : [...prev, filter]
@@ -250,7 +248,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
   /** When the illnessesTreatements object is not empty, set the treatments based off the selected illness. */
   useEffect(() => {
     if (!(JSON.stringify(illnessesTreatments) === "{}")) {
-      setTreatments(illnessesTreatments[selectedIllness]);
+      setTreatments(illnessesTreatments[selectedIllness.value]);
     }
   }, [illnessesTreatments, selectedIllness]);
   // #endregion -------------------- Effects -----------------------------------
@@ -262,7 +260,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
         <>
           <PopoverMenuTitle>Medications</PopoverMenuTitle>
           <PopoverCheckBoxContainer>
-            {treatments.map((medication) => (
+            {treatments !== undefined && treatments.map((medication) => (
               <PopoverCheckBoxRow key={medication}>
                 <Checkbox.Root
                   className='CheckboxRoot'
@@ -287,7 +285,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
         <>
           <PopoverMenuTitle>Filters</PopoverMenuTitle>
           <PopoverCheckBoxContainer>
-            {services &&
+            {services !== undefined &&
               services.length > 0 &&
               services.map((filter) => (
                 <PopoverCheckBoxRow key={filter.name}>
