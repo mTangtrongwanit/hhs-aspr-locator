@@ -169,14 +169,14 @@ const Locations = () => {
           serviceProver.attributes.has_covid_treatments = false;
           config.fieldsets.fluTreatmentFields.forEach((field) => {
             if (
-              serviceProvider[`${field}` as keyof ServiceProvider] == "TRUE"
+              serviceProvider[`${field}` as keyof ServiceProvider]?.toString().toLowerCase()== "true"
             ) {
               serviceProver.attributes.has_flu_treatments = true;
             }
           });
           config.fieldsets.covidTreatmentFields.forEach((field) => {
             if (
-              serviceProvider[`${field}` as keyof ServiceProvider] == "TRUE"
+              serviceProvider[`${field}` as keyof ServiceProvider]?.toString().toLowerCase() == "true"
             ) {
               serviceProver.attributes.has_covid_treatments = true;
             }
@@ -199,17 +199,17 @@ const Locations = () => {
       });
 
       //Filter by Illness value
-      // const filteredSites = [...sortedSites];
+      const filteredSites = [...sortedSites];
 
-      // const x = filteredSites.filter((site) => {
-      //   if (selectedIllness.value.toLowerCase() == "flu") {
-      //     return site.attributes.has_flu_treatments == true;
-      //   } else if (selectedIllness.value.toLowerCase() == "covid") {
-      //     return site.attributes.has_covid_treatments == true;
-      //   }
-      //   return false;
-      // });
-      setSortedSites(sortedSites);
+      const x = filteredSites.filter((site) => {
+        if (selectedIllness.value.toLowerCase() == "flu") {
+          return site.attributes.has_flu_treatments == true;
+        } else if (selectedIllness.value.toLowerCase() == "covid") {
+          return site.attributes.has_covid_treatments == true;
+        }
+        return false;
+      });
+      setSortedSites(x);
     };
 
     fetchDistancesAndSort();
