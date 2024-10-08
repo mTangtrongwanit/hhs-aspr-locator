@@ -9,7 +9,11 @@ import Point from "@arcgis/core/geometry/Point";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region ------------------------ Resources ----------------------------------
-import { AppContextType, AppContextProps, Filter } from "./AppContext.types.tsx";
+import {
+  AppContextType,
+  AppContextProps,
+  Filter,
+} from "./AppContext.types.tsx";
 import {
   getLocationsData,
   getTreatmentsIllnessesData,
@@ -48,7 +52,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   } | null>(null);
   const [locations, setLocations] = useState<__esri.Graphic[] | null>(null);
   const [locationsExtent, setLocationsExtent] = useState<__esri.Extent | null>(
-    null
+    null,
   );
   const [treatmentsIllnesses, setTreatmentsIllnesses] = useState<
     __esri.Graphic[] | null
@@ -67,7 +71,6 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   const [sharedSiteFacilityID, setSFID] = useState<string | null>(null);
   const [selectedMedications, setSelectedMedications] = useState<string[]>([]);
   const [selectedFilters, setSelectedFilters] = useState<Filter[]>([]);
-
 
   // #endregion --------------- Hooks (Resources) ------------------------------
 
@@ -96,7 +99,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     const getLocations = async () => {
       try {
         const locs = await getLocationsData(
-          searchPoint?.point ?? initialSearchPoint.point
+          searchPoint?.point ?? initialSearchPoint.point,
         );
         setLocations(locs?.features.features ?? []);
         setLocationsExtent(locs?.extent ?? null);
@@ -155,7 +158,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
         selectedMedications: selectedMedications,
         setSelectedMedications: setSelectedMedications,
         selectedFilters: selectedFilters,
-        setSelectedFilters: setSelectedFilters
+        setSelectedFilters: setSelectedFilters,
       }}
     >
       {children}
@@ -170,7 +173,7 @@ export const useAppContext = () => {
   if (!appContext) {
     // the below text is for developers not for users. It does not need to be translated
     throw new Error(
-      "Cannot use 'useAppContext' outside of a AppContextProvider"
+      "Cannot use 'useAppContext' outside of a AppContextProvider",
     );
   }
   return appContext;

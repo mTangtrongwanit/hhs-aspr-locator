@@ -134,7 +134,7 @@ const Locations = () => {
 
   //get size when element updates
   useResizeObserver(searchContRef.current, (entry) =>
-    setSearchContHeight(entry.contentRect.height)
+    setSearchContHeight(entry.contentRect.height),
   );
 
   useEffect(() => {
@@ -168,7 +168,7 @@ const Locations = () => {
           const serviceProvider: ServiceProvider = serviceProver.attributes;
           const distance = await calculateDistanceBetweenTwoPoints(
             serviceProvider,
-            searchPoint
+            searchPoint,
           );
           serviceProvider.distance = distance ?? 0;
 
@@ -194,7 +194,7 @@ const Locations = () => {
             }
           });
           return serviceProver;
-        })
+        }),
       );
 
       const sortedSites = updatedSites.sort((a, b) => {
@@ -261,12 +261,12 @@ const Locations = () => {
   return (
     <StyledLocationsContent className={isMobileListView ? "lView" : "mView"}>
       <StyledSearchContainer ref={searchContRef}>
-        <h2 className='visually-hidden'>
+        <h2 className="visually-hidden">
           {t("Locations.Search Container Screenreader Heading")}
         </h2>
         {sharedSiteFacilityID !== null ? (
           <>
-            <StyledButton as='button' onClick={onToggleSelectedLoc}>
+            <StyledButton as="button" onClick={onToggleSelectedLoc}>
               Search for Other Locations
             </StyledButton>
           </>
@@ -278,24 +278,24 @@ const Locations = () => {
           </>
         )}
 
-        <button id='listViewToggle' onClick={onButtonClick}>
+        <button id="listViewToggle" onClick={onButtonClick}>
           {isMobileListView ? <MapIcon></MapIcon> : <ListIcon></ListIcon>}
           <span>{isMobileListView ? "Map" : "List"}</span>
         </button>
       </StyledSearchContainer>
-      <div id='locs'>
-        <h2 className='visually-hidden'>
+      <div id="locs">
+        <h2 className="visually-hidden">
           {t("Locations.Results Screenreader Heading")}
         </h2>
         <StyledListContainer>
-          <div id='list-title'>
+          <div id="list-title">
             <h3>
               <Trans
-                i18nKey='Locations.List Heading'
+                i18nKey="Locations.List Heading"
                 count={sortedSites.length}
               ></Trans>
             </h3>
-            <PopoverMultiSelect type='filter' />
+            <PopoverMultiSelect type="filter" />
             <DropdownSingleSelect type={"sort"} />
           </div>
           {/* tabindex for scrollable list */}
@@ -316,7 +316,7 @@ const Locations = () => {
         <StyledMapContainer
           style={{ "--remainder": `${totalHeight}px` } as React.CSSProperties}
         >
-          <h3 className='visually-hidden'>
+          <h3 className="visually-hidden">
             {t("Locations.Map Screenreader Heading")}
           </h3>
           <LocationsMap />

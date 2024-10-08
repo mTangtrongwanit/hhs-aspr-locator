@@ -50,7 +50,7 @@ const LocationsMap = () => {
     sharedSiteFacilityID,
     selectedIllness,
     selectedMedications,
-    selectedFilters
+    selectedFilters,
   } = useAppContext();
   const [searchParams] = useSearchParams();
   // #endregion --------------- Hooks (Resources) ------------------------------
@@ -70,7 +70,7 @@ const LocationsMap = () => {
           },
         },
       }),
-    []
+    [],
   );
   // #endregion -------------- Hooks (Memoization) -----------------------------
 
@@ -163,7 +163,7 @@ const LocationsMap = () => {
                       (hitResult as __esri.GraphicHit).graphic?.layer?.title &&
                       (
                         hitResult as __esri.GraphicHit
-                      ).graphic?.layer?.title.includes("Treatments")
+                      ).graphic?.layer?.title.includes("Treatments"),
                   ) as __esri.GraphicHit;
                   if (!treatmentsLayer) return;
                   const t = treatmentsLayer as __esri.GraphicHit;
@@ -251,44 +251,44 @@ const LocationsMap = () => {
       //If no selectedIllness, filter out everything
       where = "1=0";
     } else {
-        // Start with selected illness check
-        if (selectedIllness.value.toLowerCase() == "flu") {
-          where = matchesFluFields;
-        } else if (selectedIllness.value.toLowerCase() == "covid") {
-          where = matchesCovidFields;
-        }
-        // meds
-        if (selectedMedications.includes("Balaxovir")) {
-          where += ` AND (has_baloxavir = 'TRUE' OR has_baloxavir = 'true')`;
-        }
-        if (selectedMedications.includes("Zanamivir")) {
-          where += ` AND (has_zanamivir = 'TRUE' OR has_zanamivir = 'true')`;
-        }
-        if (selectedMedications.includes("Peramivir")) {
-          where += ` AND (has_peramivir = 'TRUE' OR has_peramivir = 'true')`;
-        }
-        if (selectedMedications.includes("Oseltamivir Generic")) {
-          where += ` AND (has_oseltamivir_generic = 'TRUE' OR has_oseltamivir_generic = 'true')`;
-        }
-        if (selectedMedications.includes("Oseltamivir Suspension")) {
-          where += ` AND (has_baloxavir = 'TRUE' OR has_baloxavir = 'true')`;
-        }
-        if (selectedMedications.includes("Oseltamivir Tamiflu")) {
-          where += ` AND (has_oseltamivir_suspension = 'TRUE' OR has_oseltamivir_suspension = 'true')`;
-        }
-        if (selectedMedications.includes("Paxlovid")) {
-          where += ` AND (has_paxlovid = 'TRUE' OR has_paxlovid = 'true')`;
-        }
-        if (selectedMedications.includes("Lagevrio")) {
-          where += ` AND (has_lagevrio = 'TRUE' OR has_lagevrio = 'true')`;
-        }
-        if (selectedMedications.includes("Veklury")) {
-          where += ` AND (has_veklury = 'TRUE' OR has_veklury = 'true')`;
-        }
+      // Start with selected illness check
+      if (selectedIllness.value.toLowerCase() == "flu") {
+        where = matchesFluFields;
+      } else if (selectedIllness.value.toLowerCase() == "covid") {
+        where = matchesCovidFields;
+      }
+      // meds
+      if (selectedMedications.includes("Balaxovir")) {
+        where += ` AND (has_baloxavir = 'TRUE' OR has_baloxavir = 'true')`;
+      }
+      if (selectedMedications.includes("Zanamivir")) {
+        where += ` AND (has_zanamivir = 'TRUE' OR has_zanamivir = 'true')`;
+      }
+      if (selectedMedications.includes("Peramivir")) {
+        where += ` AND (has_peramivir = 'TRUE' OR has_peramivir = 'true')`;
+      }
+      if (selectedMedications.includes("Oseltamivir Generic")) {
+        where += ` AND (has_oseltamivir_generic = 'TRUE' OR has_oseltamivir_generic = 'true')`;
+      }
+      if (selectedMedications.includes("Oseltamivir Suspension")) {
+        where += ` AND (has_baloxavir = 'TRUE' OR has_baloxavir = 'true')`;
+      }
+      if (selectedMedications.includes("Oseltamivir Tamiflu")) {
+        where += ` AND (has_oseltamivir_suspension = 'TRUE' OR has_oseltamivir_suspension = 'true')`;
+      }
+      if (selectedMedications.includes("Paxlovid")) {
+        where += ` AND (has_paxlovid = 'TRUE' OR has_paxlovid = 'true')`;
+      }
+      if (selectedMedications.includes("Lagevrio")) {
+        where += ` AND (has_lagevrio = 'TRUE' OR has_lagevrio = 'true')`;
+      }
+      if (selectedMedications.includes("Veklury")) {
+        where += ` AND (has_veklury = 'TRUE' OR has_veklury = 'true')`;
+      }
       if (selectedFilters.length !== 0) {
         selectedFilters.forEach((filter) => {
           where += ` AND (${filter.name} = 'TRUE' OR ${filter.name} = 'true')`;
-        })
+        });
       }
     }
 
@@ -298,7 +298,7 @@ const LocationsMap = () => {
     sharedSiteFacilityID,
     selectedIllness,
     selectedMedications,
-    selectedFilters
+    selectedFilters,
   ]);
 
   // #endregion ----------------- Hooks (Other) --------------------------------

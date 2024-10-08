@@ -52,8 +52,17 @@ interface Filter {
 // #region =================== EXPORTED COMPONENT ==============================
 const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
   // #region ------------------ Hooks (Resources) ------------------------------
-  const { illnessesTreatments, locations, setLocations, treatmentsIllnesses, selectedIllness, selectedMedications, setSelectedMedications, selectedFilters, setSelectedFilters } =
-    useAppContext();
+  const {
+    illnessesTreatments,
+    locations,
+    setLocations,
+    treatmentsIllnesses,
+    selectedIllness,
+    selectedMedications,
+    setSelectedMedications,
+    selectedFilters,
+    setSelectedFilters,
+  } = useAppContext();
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region -------------------- Hooks (State) --------------------------------
@@ -77,21 +86,21 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
   // #region ------------------- Event Handlers --------------------------------
   /** Handle the medication change */
   const handleMedicationChange = (medication: string) => {
-    //@ts-ignore
+    //@ts-expect-error todo
     setSelectedMedications((prev: string[]) =>
       prev.includes(medication)
         ? prev.filter((item: string) => item !== medication)
-        : [...prev, medication]
+        : [...prev, medication],
     );
   };
 
   /** Handle the filter change */
   const handleFilterChange = (filter: Filter) => {
-    //@ts-ignore
+    //@ts-expect-error todo
     setSelectedFilters((prev: Filter[]) =>
       prev.includes(filter)
         ? prev.filter((item) => item !== filter)
-        : [...prev, filter]
+        : [...prev, filter],
     );
   };
 
@@ -135,7 +144,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
         if (match && selectedMedications.length > 0) {
           const medicationMatch = selectedMedications.every((medication) => {
             const treatment = treatmentsIllnesses.find(
-              (treatment) => treatment.attributes.display_name === medication
+              (treatment) => treatment.attributes.display_name === medication,
             );
             if (!treatment) return false;
 
@@ -209,7 +218,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
           ].toUpperCase() === "TRUE"
         )
           serviceList.push(
-            config.treatmentData.fields.has_oseltamivir_suspension
+            config.treatmentData.fields.has_oseltamivir_suspension,
           );
         if (
           loc.attributes[
@@ -235,11 +244,11 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
           ].toUpperCase() === "TRUE"
         )
           serviceList.push(
-            config.treatmentData.fields.is_prescribing_svcs_available
+            config.treatmentData.fields.is_prescribing_svcs_available,
           );
         return serviceList;
-      }) || []
-    )
+      }) || [],
+    ),
   );
 
   // #endregion ---------------- Event Handlers --------------------------------
@@ -260,23 +269,24 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
         <>
           <PopoverMenuTitle>Medications</PopoverMenuTitle>
           <PopoverCheckBoxContainer>
-            {treatments !== undefined && treatments.map((medication) => (
-              <PopoverCheckBoxRow key={medication}>
-                <Checkbox.Root
-                  className='CheckboxRoot'
-                  checked={selectedMedications.includes(medication)}
-                  onCheckedChange={() => handleMedicationChange(medication)}
-                  id={medication}
-                >
-                  <Checkbox.Indicator className='CheckboxIndicator'>
-                    <CheckIcon />
-                  </Checkbox.Indicator>
-                </Checkbox.Root>
-                <StyledCheckboxLabel htmlFor={medication}>
-                  {medication}
-                </StyledCheckboxLabel>
-              </PopoverCheckBoxRow>
-            ))}
+            {treatments !== undefined &&
+              treatments.map((medication) => (
+                <PopoverCheckBoxRow key={medication}>
+                  <Checkbox.Root
+                    className="CheckboxRoot"
+                    checked={selectedMedications.includes(medication)}
+                    onCheckedChange={() => handleMedicationChange(medication)}
+                    id={medication}
+                  >
+                    <Checkbox.Indicator className="CheckboxIndicator">
+                      <CheckIcon />
+                    </Checkbox.Indicator>
+                  </Checkbox.Root>
+                  <StyledCheckboxLabel htmlFor={medication}>
+                    {medication}
+                  </StyledCheckboxLabel>
+                </PopoverCheckBoxRow>
+              ))}
           </PopoverCheckBoxContainer>
         </>
       );
@@ -290,12 +300,12 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
               services.map((filter) => (
                 <PopoverCheckBoxRow key={filter.name}>
                   <Checkbox.Root
-                    className='CheckboxRoot'
+                    className="CheckboxRoot"
                     checked={selectedFilters.includes(filter)}
                     onCheckedChange={() => handleFilterChange(filter)}
                     id={filter.name}
                   >
-                    <Checkbox.Indicator className='CheckboxIndicator'>
+                    <Checkbox.Indicator className="CheckboxIndicator">
                       <CheckIcon />
                     </Checkbox.Indicator>
                   </Checkbox.Root>
@@ -313,17 +323,17 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
   return (
     <StyledPopoverMultiSelect>
       <PopoverMenu.Root>
-        <PopoverMenu.Trigger className='PopoverMenuButton'>
+        <PopoverMenu.Trigger className="PopoverMenuButton">
           {type === "medications" ? "Medications" : "Filters"}{" "}
           <ChevronDownIcon />
-          <span className='PopOverFilterCount'>
+          <span className="PopOverFilterCount">
             {type === "medications"
               ? selectedMedications.length
               : selectedFilters.length}
           </span>
         </PopoverMenu.Trigger>
         <PopoverMenu.Portal>
-          <PopoverMenu.Content className='PopoverMenuContent' sideOffset={5}>
+          <PopoverMenu.Content className="PopoverMenuContent" sideOffset={5}>
             {renderContent()}
             <StyledFilterButtonContainer>
               <StyledOutlineButton onClick={() => handleClearFilters(type)}>
@@ -334,10 +344,10 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
                 Apply
               </StyledPrimaryButton>
             </StyledFilterButtonContainer>
-            <PopoverMenu.Close className='PopoverMenuClose' aria-label='Close'>
+            <PopoverMenu.Close className="PopoverMenuClose" aria-label="Close">
               <Cross2Icon />
             </PopoverMenu.Close>
-            <PopoverMenu.Arrow className='PopoverMenuArrow' />
+            <PopoverMenu.Arrow className="PopoverMenuArrow" />
           </PopoverMenu.Content>
         </PopoverMenu.Portal>
       </PopoverMenu.Root>

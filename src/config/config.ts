@@ -65,7 +65,7 @@ const config: StaticConfiguration = {
         name: "is_prescribing_svcs_available",
         label: en.Card.prescribingServices,
       },
-    }
+    },
   },
   options: {
     languageOptions: [
