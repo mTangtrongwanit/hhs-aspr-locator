@@ -23,7 +23,6 @@ import PopoverMultiSelect from "@/components/PopoverMultiSelect";
 import Card from "@/components/Card";
 import { ServiceProvider } from "@/components/Card";
 import LocationsMap from "@/components/LocationsMap";
-import * as treatmentSites from "../../data/treatment-sites.json";
 import DropdownSingleSelect from "@/components/DropdownSingleSelect";
 import { calculateDistanceBetweenTwoPoints } from "../../utils/geographicUtils";
 import Search from "@/components/Search";
@@ -105,6 +104,7 @@ const Locations = () => {
     searchPoint,
     selectedSort,
     selectedIllness,
+    locations,
   } = useAppContext();
 
   const searchContRef = useRef<HTMLDivElement>(null);
@@ -150,9 +150,19 @@ const Locations = () => {
 
   /** Sort the sites based on the value of the sort dropdown. */
   useEffect(() => {
+    if (locations == null) {
+      return;
+    }
+    if (selectedLocation !== null) {
+      const filteredLocs = locations.filter((location) => {
+        return selectedLocation == location.attributes.facility_id;
+      });
+      setSortedSites(filteredLocs);
+      return;
+    }
     const fetchDistancesAndSort = async () => {
       const updatedSites = await Promise.all(
-        treatmentSites.features.map(async (site: object) => {
+        locations.map(async (site: object) => {
           const serviceProver: Site = site as Site;
           const serviceProvider: ServiceProvider = serviceProver.attributes;
           const distance = await calculateDistanceBetweenTwoPoints(
@@ -166,14 +176,18 @@ const Locations = () => {
           serviceProver.attributes.has_covid_treatments = false;
           config.fieldsets.fluTreatmentFields.forEach((field) => {
             if (
-              serviceProvider[`${field}` as keyof ServiceProvider] == "TRUE"
+              serviceProvider[`${field}` as keyof ServiceProvider]
+                ?.toString()
+                .toLowerCase() == "true"
             ) {
               serviceProver.attributes.has_flu_treatments = true;
             }
           });
           config.fieldsets.covidTreatmentFields.forEach((field) => {
             if (
-              serviceProvider[`${field}` as keyof ServiceProvider] == "TRUE"
+              serviceProvider[`${field}` as keyof ServiceProvider]
+                ?.toString()
+                .toLowerCase() == "true"
             ) {
               serviceProver.attributes.has_covid_treatments = true;
             }
@@ -187,7 +201,7 @@ const Locations = () => {
           const distanceA = a.attributes.distance || 0;
           const distanceB = b.attributes.distance || 0;
           return distanceA - distanceB;
-        } else if (selectedSort.value === "last_report_date") {
+        } else if (selectedSort.value === "last reported") {
           const dateA = new Date(a.attributes.last_report_date).getTime();
           const dateB = new Date(b.attributes.last_report_date).getTime();
           return dateB - dateA;
@@ -210,7 +224,7 @@ const Locations = () => {
     };
 
     fetchDistancesAndSort();
-  }, [searchPoint, selectedSort, selectedIllness]);
+  }, [searchPoint, selectedSort, selectedIllness, locations, selectedLocation]);
   // #endregion ----------------- Hooks (Other) --------------------------------
 
   // #region --------- Short-Circuit (Empty/Invalid State) ---------------------
@@ -282,11 +296,6 @@ const Locations = () => {
             {sortedSites?.map((site: object) => {
               const serviceProver: Site = site as Site;
               const serviceProvider: ServiceProvider = serviceProver.attributes;
-              if (selectedLocation !== null) {
-                if (selectedLocation !== serviceProvider.facility_id) {
-                  return <></>;
-                }
-              }
               return (
                 <Card
                   serviceProvider={serviceProvider}

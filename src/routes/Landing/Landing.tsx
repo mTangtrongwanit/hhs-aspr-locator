@@ -24,6 +24,7 @@ import {
 import * as Accordion from "@radix-ui/react-accordion";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 import Search from "@/components/Search";
+import DropdownSingleSelect from "@/components/DropdownSingleSelect";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
@@ -72,9 +73,8 @@ const Landing = () => {
         <h2>{t("Landing.Search Container Heading")}</h2>
         <p>{t("Landing.Search Container Description")}</p>
         <StyledRow>
-          {/* TODO: Replace with components */}
           <Search />
-          <div className="dev-placeholder">Illness Select Placeholder</div>
+          <DropdownSingleSelect type={"illness"} />
         </StyledRow>
         <Link to="/locations">
           <StyledViewLocsButton>
