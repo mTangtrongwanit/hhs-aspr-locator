@@ -48,6 +48,7 @@ const LocationsMap = () => {
     searchPoint,
     locationsExtent,
     sharedSiteFacilityID,
+    selectedIllness,
   } = useAppContext();
   const [searchParams] = useSearchParams();
   // #endregion --------------- Hooks (Resources) ------------------------------
@@ -67,7 +68,7 @@ const LocationsMap = () => {
           },
         },
       }),
-    [],
+    []
   );
   // #endregion -------------- Hooks (Memoization) -----------------------------
 
@@ -160,7 +161,7 @@ const LocationsMap = () => {
                       (hitResult as __esri.GraphicHit).graphic?.layer?.title &&
                       (
                         hitResult as __esri.GraphicHit
-                      ).graphic?.layer?.title.includes("Treatments"),
+                      ).graphic?.layer?.title.includes("Treatments")
                   ) as __esri.GraphicHit;
                   if (!treatmentsLayer) return;
                   const t = treatmentsLayer as __esri.GraphicHit;
@@ -235,24 +236,29 @@ const LocationsMap = () => {
     if (featureLayer == null) {
       return;
     }
-    console.log(featureLayer);
-
     let where = "";
 
     const matchFacilityID = `facility_id = ${sharedSiteFacilityID}`;
-    const matchesFluFields = `has_baloxavir = "TRUE" OR has_baloxavir = "true" OR has_zanamivir = "TRUE" OR has_zanamivir = "true" OR has_peramivir = "TRUE" OR has_peramivir = "true" OR has_oseltamivir_generic = "TRUE" OR has_oseltamivir_generic = "true" OR has_oseltamivir_suspension = "TRUE" OR has_oseltamivir_suspension = "true" OR has_oseltamivir_tamiflu = "TRUE" OR has_oseltamivir_tamiflu = "true"`;
-    const matchesCovidFields = `has_paxlovid = "TRUE" OR has_paxlovid = "true" OR has_lagevrio = "TRUE" OR has_lagevrio = "true" OR has_veklury = "TRUE" OR has_veklury = "true"`;
+    const matchesFluFields = `has_baloxavir = 'TRUE' OR has_baloxavir = 'true' OR has_zanamivir = 'TRUE' OR has_zanamivir = 'true' OR has_peramivir = 'TRUE' OR has_peramivir = 'true' OR has_oseltamivir_generic = 'TRUE' OR has_oseltamivir_generic = 'true' OR has_oseltamivir_suspension = 'TRUE' OR has_oseltamivir_suspension = 'true' OR has_oseltamivir_tamiflu = 'TRUE' OR has_oseltamivir_tamiflu = 'true'`;
+    const matchesCovidFields = `has_paxlovid = 'TRUE' OR has_paxlovid = 'true' OR has_lagevrio = 'TRUE' OR has_lagevrio = 'true' OR has_veklury = 'TRUE' OR has_veklury = 'true'`;
+
     //If a site was shared in the URL params, filter only to that site.
     if (sharedSiteFacilityID) {
       where = matchFacilityID;
+    } else if (selectedIllness.value == "") {
+      //If no selectedIllness, filter out everything
+      where = "1=0";
     } else {
-      where = "1=1";
+      // Start with selected illness check
+      if (selectedIllness.value.toLowerCase() == "flu") {
+        where = matchesFluFields;
+      } else if (selectedIllness.value.toLowerCase() == "covid") {
+        where = matchesCovidFields;
+      }
     }
-    //Else:
-    //If no selectedIllness, filter out everything
 
     featureLayer.definitionExpression = where;
-  }, [featureLayer, sharedSiteFacilityID]);
+  }, [featureLayer, sharedSiteFacilityID, selectedIllness]);
 
   // #endregion ----------------- Hooks (Other) --------------------------------
 
