@@ -19,7 +19,7 @@ import Color from "@arcgis/core/Color";
 import SimpleFillSymbol from "@arcgis/core/symbols/SimpleFillSymbol";
 import SimpleLineSymbol from "@arcgis/core/symbols/SimpleLineSymbol";
 import Point from "@arcgis/core/geometry/Point";
-import FeatureLayerView from "@arcgis/core/views/layers/FeatureLayerView";
+import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -53,8 +53,7 @@ const LocationsMap = () => {
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region -------------------- Hooks (State) --------------------------------
-  const [featureLayerView, setFeatureLayerView] =
-    useState<FeatureLayerView | null>(null);
+  const [featureLayer, setFeatureLayer] = useState<FeatureLayer | null>(null);
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
@@ -97,6 +96,22 @@ const LocationsMap = () => {
         reactiveUtils
           .whenOnce(() => !mapView.updating)
           .then(() => {
+            // Get all layers from the map
+            const allLayers = mapView.map.allLayers;
+            // If the layer is a feature layer, and the layer includes "Treatments" set the outFields to all fields
+            allLayers.forEach((layer) => {
+              if (
+                layer.type === "feature" &&
+                layer.title &&
+                layer.title.includes("Treatments")
+              ) {
+                (layer as __esri.FeatureLayer).outFields = ["*"];
+                layer.load().then(() => {
+                  setFeatureLayer(layer as FeatureLayer);
+                });
+              }
+            });
+
             const [lat, lon] = geopoint.split(",").map(Number);
             const p = new Point({
               longitude: lon,
@@ -125,17 +140,17 @@ const LocationsMap = () => {
                 layer.title.includes("Treatments")
               ) {
                 (layer as __esri.FeatureLayer).outFields = ["*"];
-                mapView
-                  .whenLayerView(layer)
-                  .then(function (layerView) {setFeatureLayerView(layerView as FeatureLayerView)})
-                  .catch(function (error) {});
+                layer.load().then(() => {
+                  setFeatureLayer(layer as FeatureLayer);
+                });
               }
             });
-
             mapView.on("click", (event) => {
               // Get the country name when a user clicks on the map
               // If the boundary layer is undefined return
-              // If the user clicks on a country boundary, log the country name
+              // If the user clicks on a country boundary, log the country name\
+
+              //TODO: move this up into SFID block
               mapView
                 .hitTest(event)
                 .then(function (response) {
@@ -217,17 +232,27 @@ const LocationsMap = () => {
   }, [locationsExtent, locationsMapView, searchPoint, searchParams]);
 
   useEffect(() => {
-if (featureLayerView == null) {
-  return;
-}
-console.log(featureLayerView);
-    //If a site was shared in the URL params, filter only to that site.
+    if (featureLayer == null) {
+      return;
+    }
+    console.log(featureLayer);
 
+    let where = "";
+
+    const matchFacilityID = `facility_id = ${sharedSiteFacilityID}`;
+    const matchesFluFields = `has_baloxavir = "TRUE" OR has_baloxavir = "true" OR has_zanamivir = "TRUE" OR has_zanamivir = "true" OR has_peramivir = "TRUE" OR has_peramivir = "true" OR has_oseltamivir_generic = "TRUE" OR has_oseltamivir_generic = "true" OR has_oseltamivir_suspension = "TRUE" OR has_oseltamivir_suspension = "true" OR has_oseltamivir_tamiflu = "TRUE" OR has_oseltamivir_tamiflu = "true"`;
+    const matchesCovidFields = `has_paxlovid = "TRUE" OR has_paxlovid = "true" OR has_lagevrio = "TRUE" OR has_lagevrio = "true" OR has_veklury = "TRUE" OR has_veklury = "true"`;
+    //If a site was shared in the URL params, filter only to that site.
+    if (sharedSiteFacilityID) {
+      where = matchFacilityID;
+    } else {
+      where = "1=1";
+    }
     //Else:
     //If no selectedIllness, filter out everything
 
-
-  }, [featureLayerView, sharedSiteFacilityID]);
+    featureLayer.definitionExpression = where;
+  }, [featureLayer, sharedSiteFacilityID]);
 
   // #endregion ----------------- Hooks (Other) --------------------------------
 
