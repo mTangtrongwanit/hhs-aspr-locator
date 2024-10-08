@@ -331,6 +331,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
               <StyledOutlineButton onClick={() => handleClearFilters(type)}>
                 Clear All
               </StyledOutlineButton>
+              {/* TODO: disable if nothing selected ("if nothing, do the same thing as clear all") */}
               <StyledPrimaryButton onClick={handleApplyClick}>
                 Apply
               </StyledPrimaryButton>
