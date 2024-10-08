@@ -67,7 +67,7 @@ const LocationsMap = () => {
           },
         },
       }),
-    []
+    [],
   );
   // #endregion -------------- Hooks (Memoization) -----------------------------
 
@@ -160,7 +160,7 @@ const LocationsMap = () => {
                       (hitResult as __esri.GraphicHit).graphic?.layer?.title &&
                       (
                         hitResult as __esri.GraphicHit
-                      ).graphic?.layer?.title.includes("Treatments")
+                      ).graphic?.layer?.title.includes("Treatments"),
                   ) as __esri.GraphicHit;
                   if (!treatmentsLayer) return;
                   const t = treatmentsLayer as __esri.GraphicHit;
