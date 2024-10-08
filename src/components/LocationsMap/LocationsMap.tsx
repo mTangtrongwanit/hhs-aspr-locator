@@ -240,7 +240,7 @@ const LocationsMap = () => {
     let where = "";
 
     const matchFacilityID = `facility_id = ${sharedSiteFacilityID}`;
-    const matchesFluFields = `has_baloxavir = 'TRUE' OR has_baloxavir = 'true' OR has_zanamivir = 'TRUE' OR has_zanamivir = 'true' OR has_peramivir = 'TRUE' OR has_peramivir = 'true' OR has_oseltamivir_generic = 'TRUE' OR has_oseltamivir_generic = 'true' OR has_oseltamivir_suspension = 'TRUE' OR has_oseltamivir_suspension = 'true' OR has_oseltamivir_tamiflu = 'TRUE' OR has_oseltamivir_tamiflu = 'true'`;
+    const matchesFluFields = `(has_baloxavir = 'TRUE' OR has_baloxavir = 'true' OR has_zanamivir = 'TRUE' OR has_zanamivir = 'true' OR has_peramivir = 'TRUE' OR has_peramivir = 'true' OR has_oseltamivir_generic = 'TRUE' OR has_oseltamivir_generic = 'true' OR has_oseltamivir_suspension = 'TRUE' OR has_oseltamivir_suspension = 'true' OR has_oseltamivir_tamiflu = 'TRUE' OR has_oseltamivir_tamiflu = 'true')`;
     const matchesCovidFields = `has_paxlovid = 'TRUE' OR has_paxlovid = 'true' OR has_lagevrio = 'TRUE' OR has_lagevrio = 'true' OR has_veklury = 'TRUE' OR has_veklury = 'true'`;
 
     //If a site was shared in the URL params, filter only to that site.
@@ -250,52 +250,32 @@ const LocationsMap = () => {
       //If no selectedIllness, filter out everything
       where = "1=0";
     } else {
-      if (selectedMedications.length == 0) {
         // Start with selected illness check
         if (selectedIllness.value.toLowerCase() == "flu") {
           where = matchesFluFields;
         } else if (selectedIllness.value.toLowerCase() == "covid") {
           where = matchesCovidFields;
         }
-      } else {
         // meds
         if (selectedMedications.includes("Balaxovir")) {
-          if (where !== "") {
-            where += " AND ";
-          }
-          where += `(has_baloxavir = 'TRUE' OR has_baloxavir = 'true')`;
+          where += ` AND (has_baloxavir = 'TRUE' OR has_baloxavir = 'true')`;
         }
         if (selectedMedications.includes("Zanamivir")) {
-          if (where !== "") {
-            where += " AND ";
-          }
-          where += `(has_zanamivir = 'TRUE' OR has_zanamivir = 'true')`;
+          where += ` AND (has_zanamivir = 'TRUE' OR has_zanamivir = 'true')`;
         }
         if (selectedMedications.includes("Peramivir")) {
-          if (where !== "") {
-            where += " AND ";
-          }
-          where += `(has_peramivir = 'TRUE' OR has_peramivir = 'true')`;
+          where += ` AND (has_peramivir = 'TRUE' OR has_peramivir = 'true')`;
         }
         if (selectedMedications.includes("Oseltamivir Generic")) {
-          if (where !== "") {
-            where += " AND ";
-          }
-          where += `(has_oseltamivir_generic = 'TRUE' OR has_oseltamivir_generic = 'true')`;
+          where += ` AND (has_oseltamivir_generic = 'TRUE' OR has_oseltamivir_generic = 'true')`;
         }
         if (selectedMedications.includes("Oseltamivir Suspension")) {
-          if (where !== "") {
-            where += " AND ";
-          }
-          where += `(has_baloxavir = 'TRUE' OR has_baloxavir = 'true')`;
+          where += ` AND (has_baloxavir = 'TRUE' OR has_baloxavir = 'true')`;
         }
         if (selectedMedications.includes("Oseltamivir Tamiflu")) {
-          if (where !== "") {
-            where += " AND ";
-          }
-          where += `(has_oseltamivir_suspension = 'TRUE' OR has_oseltamivir_suspension = 'true')`;
+          where += ` AND (has_oseltamivir_suspension = 'TRUE' OR has_oseltamivir_suspension = 'true')`;
         }
-      }
+      // }
     }
     console.log(where);
     featureLayer.definitionExpression = where;
