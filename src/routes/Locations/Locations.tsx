@@ -143,7 +143,7 @@ const Locations = () => {
 
   // Highlight the location if the facility ID in the URL matches the facility ID of the service provider
   useEffect(() => {
-    if (searchParams.has("facility_id")) {
+    if (searchParams.has("facility_id") && searchParams.has("geopoint")) {
       setSelectedLocation(searchParams.get("facility_id"));
     }
   }, [searchParams]);

@@ -44,6 +44,7 @@ const LocationsMap = () => {
     setLocationsMapView,
     selectedTreatmentSite,
     setSelectedTreatmentSite,
+    setSearchPoint,
     searchPoint,
     locationsExtent,
   } = useAppContext();
@@ -98,6 +99,7 @@ const LocationsMap = () => {
               longitude: lon,
               latitude: lat,
             });
+            setSearchPoint({name: geopoint, point: p});
             mapView.goTo({
               center: p,
               zoom: 12,

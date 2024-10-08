@@ -116,6 +116,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
    * @returns {void}
    */
   const handleCopyToClipboard = () => {
+    //TODO: add one more param here for the searched name s.t. it can show in the Search bar.
     copyToClipboard("/locations/", {
       facility_id: serviceProvider.facility_id,
       geopoint: serviceProvider.geopoint,
