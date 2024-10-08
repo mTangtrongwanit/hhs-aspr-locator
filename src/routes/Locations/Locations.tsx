@@ -23,7 +23,6 @@ import PopoverMultiSelect from "@/components/PopoverMultiSelect";
 import Card from "@/components/Card";
 import { ServiceProvider } from "@/components/Card";
 import LocationsMap from "@/components/LocationsMap";
-import * as treatmentSites from "../../data/treatment-sites.json";
 import DropdownSingleSelect from "@/components/DropdownSingleSelect";
 import { calculateDistanceBetweenTwoPoints } from "../../utils/geographicUtils";
 import Search from "@/components/Search";
@@ -105,6 +104,7 @@ const Locations = () => {
     searchPoint,
     selectedSort,
     selectedIllness,
+    locations
   } = useAppContext();
 
   const searchContRef = useRef<HTMLDivElement>(null);
@@ -150,9 +150,12 @@ const Locations = () => {
 
   /** Sort the sites based on the value of the sort dropdown. */
   useEffect(() => {
+    if (locations == null) {
+      return;
+    }
     const fetchDistancesAndSort = async () => {
       const updatedSites = await Promise.all(
-        treatmentSites.features.map(async (site: object) => {
+        locations.map(async (site: object) => {
           const serviceProver: Site = site as Site;
           const serviceProvider: ServiceProvider = serviceProver.attributes;
           const distance = await calculateDistanceBetweenTwoPoints(
@@ -196,21 +199,21 @@ const Locations = () => {
       });
 
       //Filter by Illness value
-      const filteredSites = [...sortedSites];
+      // const filteredSites = [...sortedSites];
 
-      const x = filteredSites.filter((site) => {
-        if (selectedIllness.value.toLowerCase() == "flu") {
-          return site.attributes.has_flu_treatments == true;
-        } else if (selectedIllness.value.toLowerCase() == "covid") {
-          return site.attributes.has_covid_treatments == true;
-        }
-        return false;
-      });
-      setSortedSites(x);
+      // const x = filteredSites.filter((site) => {
+      //   if (selectedIllness.value.toLowerCase() == "flu") {
+      //     return site.attributes.has_flu_treatments == true;
+      //   } else if (selectedIllness.value.toLowerCase() == "covid") {
+      //     return site.attributes.has_covid_treatments == true;
+      //   }
+      //   return false;
+      // });
+      setSortedSites(sortedSites);
     };
 
     fetchDistancesAndSort();
-  }, [searchPoint, selectedSort, selectedIllness]);
+  }, [searchPoint, selectedSort, selectedIllness, locations]);
   // #endregion ----------------- Hooks (Other) --------------------------------
 
   // #region --------- Short-Circuit (Empty/Invalid State) ---------------------
