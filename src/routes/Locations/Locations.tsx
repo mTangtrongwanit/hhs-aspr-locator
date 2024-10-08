@@ -153,6 +153,13 @@ const Locations = () => {
     if (locations == null) {
       return;
     }
+    if (selectedLocation !== null) {
+      const filteredLocs = locations.filter((location) => {
+        return (selectedLocation == location.attributes.facility_id);
+      })
+      setSortedSites(filteredLocs);
+      return;
+    }
     const fetchDistancesAndSort = async () => {
       const updatedSites = await Promise.all(
         locations.map(async (site: object) => {
@@ -198,6 +205,7 @@ const Locations = () => {
         return 0;
       });
 
+
       //Filter by Illness value
       const filteredSites = [...sortedSites];
 
@@ -213,7 +221,7 @@ const Locations = () => {
     };
 
     fetchDistancesAndSort();
-  }, [searchPoint, selectedSort, selectedIllness, locations]);
+  }, [searchPoint, selectedSort, selectedIllness, locations, selectedLocation]);
   // #endregion ----------------- Hooks (Other) --------------------------------
 
   // #region --------- Short-Circuit (Empty/Invalid State) ---------------------
@@ -285,11 +293,6 @@ const Locations = () => {
             {sortedSites?.map((site: object) => {
               const serviceProver: Site = site as Site;
               const serviceProvider: ServiceProvider = serviceProver.attributes;
-              if (selectedLocation !== null) {
-                if (selectedLocation !== serviceProvider.facility_id) {
-                  return <></>;
-                }
-              }
               return (
                 <Card
                   serviceProvider={serviceProvider}
