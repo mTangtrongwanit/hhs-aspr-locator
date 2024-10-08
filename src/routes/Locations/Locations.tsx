@@ -104,7 +104,7 @@ const Locations = () => {
     searchPoint,
     selectedSort,
     selectedIllness,
-    locations
+    locations,
   } = useAppContext();
 
   const searchContRef = useRef<HTMLDivElement>(null);
@@ -155,8 +155,8 @@ const Locations = () => {
     }
     if (selectedLocation !== null) {
       const filteredLocs = locations.filter((location) => {
-        return (selectedLocation == location.attributes.facility_id);
-      })
+        return selectedLocation == location.attributes.facility_id;
+      });
       setSortedSites(filteredLocs);
       return;
     }
@@ -176,14 +176,18 @@ const Locations = () => {
           serviceProver.attributes.has_covid_treatments = false;
           config.fieldsets.fluTreatmentFields.forEach((field) => {
             if (
-              serviceProvider[`${field}` as keyof ServiceProvider]?.toString().toLowerCase()== "true"
+              serviceProvider[`${field}` as keyof ServiceProvider]
+                ?.toString()
+                .toLowerCase() == "true"
             ) {
               serviceProver.attributes.has_flu_treatments = true;
             }
           });
           config.fieldsets.covidTreatmentFields.forEach((field) => {
             if (
-              serviceProvider[`${field}` as keyof ServiceProvider]?.toString().toLowerCase() == "true"
+              serviceProvider[`${field}` as keyof ServiceProvider]
+                ?.toString()
+                .toLowerCase() == "true"
             ) {
               serviceProver.attributes.has_covid_treatments = true;
             }
@@ -204,7 +208,6 @@ const Locations = () => {
         }
         return 0;
       });
-
 
       //Filter by Illness value
       const filteredSites = [...sortedSites];
