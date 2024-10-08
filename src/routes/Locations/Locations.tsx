@@ -197,7 +197,7 @@ const Locations = () => {
           const distanceA = a.attributes.distance || 0;
           const distanceB = b.attributes.distance || 0;
           return distanceA - distanceB;
-        } else if (selectedSort.value === "last_report_date") {
+        } else if (selectedSort.value === "last reported") {
           const dateA = new Date(a.attributes.last_report_date).getTime();
           const dateB = new Date(b.attributes.last_report_date).getTime();
           return dateB - dateA;
