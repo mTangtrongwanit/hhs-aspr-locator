@@ -65,6 +65,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     value: "",
   });
   const [sharedSiteFacilityID, setSFID] = useState<string | null>(null);
+  const [selectedMedications, setSelectedMedications] = useState<string[]>([]);
 
   // #endregion --------------- Hooks (Resources) ------------------------------
 
@@ -149,6 +150,8 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
         setSelectedIllness: setSelectedIllness,
         sharedSiteFacilityID: sharedSiteFacilityID,
         setSFID: setSFID,
+        selectedMedications: selectedMedications,
+        setSelectedMedications: setSelectedMedications,
       }}
     >
       {children}

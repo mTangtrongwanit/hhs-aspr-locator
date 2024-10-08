@@ -49,6 +49,7 @@ const LocationsMap = () => {
     locationsExtent,
     sharedSiteFacilityID,
     selectedIllness,
+    selectedMedications,
   } = useAppContext();
   const [searchParams] = useSearchParams();
   // #endregion --------------- Hooks (Resources) ------------------------------
@@ -249,16 +250,61 @@ const LocationsMap = () => {
       //If no selectedIllness, filter out everything
       where = "1=0";
     } else {
-      // Start with selected illness check
-      if (selectedIllness.value.toLowerCase() == "flu") {
-        where = matchesFluFields;
-      } else if (selectedIllness.value.toLowerCase() == "covid") {
-        where = matchesCovidFields;
+      if (selectedMedications.length == 0) {
+        // Start with selected illness check
+        if (selectedIllness.value.toLowerCase() == "flu") {
+          where = matchesFluFields;
+        } else if (selectedIllness.value.toLowerCase() == "covid") {
+          where = matchesCovidFields;
+        }
+      } else {
+        // meds
+        if (selectedMedications.includes("Balaxovir")) {
+          if (where !== "") {
+            where += " AND ";
+          }
+          where += `(has_baloxavir = 'TRUE' OR has_baloxavir = 'true')`;
+        }
+        if (selectedMedications.includes("Zanamivir")) {
+          if (where !== "") {
+            where += " AND ";
+          }
+          where += `(has_zanamivir = 'TRUE' OR has_zanamivir = 'true')`;
+        }
+        if (selectedMedications.includes("Peramivir")) {
+          if (where !== "") {
+            where += " AND ";
+          }
+          where += `(has_peramivir = 'TRUE' OR has_peramivir = 'true')`;
+        }
+        if (selectedMedications.includes("Oseltamivir Generic")) {
+          if (where !== "") {
+            where += " AND ";
+          }
+          where += `(has_oseltamivir_generic = 'TRUE' OR has_oseltamivir_generic = 'true')`;
+        }
+        if (selectedMedications.includes("Oseltamivir Suspension")) {
+          if (where !== "") {
+            where += " AND ";
+          }
+          where += `(has_baloxavir = 'TRUE' OR has_baloxavir = 'true')`;
+        }
+        if (selectedMedications.includes("Oseltamivir Tamiflu")) {
+          if (where !== "") {
+            where += " AND ";
+          }
+          where += `(has_oseltamivir_suspension = 'TRUE' OR has_oseltamivir_suspension = 'true')`;
+        }
       }
     }
-
+    console.log(where);
     featureLayer.definitionExpression = where;
-  }, [featureLayer, sharedSiteFacilityID, selectedIllness]);
+  }, [
+    featureLayer,
+    sharedSiteFacilityID,
+    selectedIllness,
+    selectedMedications,
+  ]);
 
   // #endregion ----------------- Hooks (Other) --------------------------------
 

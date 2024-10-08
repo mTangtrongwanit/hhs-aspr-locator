@@ -52,12 +52,11 @@ interface Filter {
 // #region =================== EXPORTED COMPONENT ==============================
 const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
   // #region ------------------ Hooks (Resources) ------------------------------
-  const { illnessesTreatments, locations, setLocations, treatmentsIllnesses } =
+  const { illnessesTreatments, locations, setLocations, treatmentsIllnesses, selectedMedications, setSelectedMedications } =
     useAppContext();
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region -------------------- Hooks (State) --------------------------------
-  const [selectedMedications, setSelectedMedications] = useState<string[]>([]);
   const [selectedFilters, setSelectedFilters] = useState<Filter[]>([]);
   // TODO: This will come from the single select component based on the selected illness
   // @ts-expect-error-line @typescript-eslint/no-unused-vars
@@ -81,9 +80,10 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
   // #region ------------------- Event Handlers --------------------------------
   /** Handle the medication change */
   const handleMedicationChange = (medication: string) => {
-    setSelectedMedications((prev) =>
+    //@ts-ignore
+    setSelectedMedications((prev: string[]) =>
       prev.includes(medication)
-        ? prev.filter((item) => item !== medication)
+        ? prev.filter((item: string) => item !== medication)
         : [...prev, medication]
     );
   };

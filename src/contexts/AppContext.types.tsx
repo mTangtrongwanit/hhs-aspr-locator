@@ -22,6 +22,8 @@ export interface AppContextType {
   setSelectedIllness: (x: { label: string; value: string }) => void;
   sharedSiteFacilityID: string | null;
   setSFID: (x: string | null) => void;
+  selectedMedications: string[];
+  setSelectedMedications: (x: string[]) => void;
 }
 
 export interface AppContextProps {
