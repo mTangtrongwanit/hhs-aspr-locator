@@ -7,6 +7,7 @@ export interface AppContextType {
   setSearchPoint: (x: { name: string; point: __esri.Point } | null) => void;
   locationsMapView: __esri.MapView | null;
   setLocationsMapView: (x: __esri.MapView) => void;
+  // TODO: restore logic that scrolls to this card
   selectedTreatmentSite: __esri.Graphic | null;
   setSelectedTreatmentSite: (x: __esri.Graphic) => void;
   illnessesTreatments: { [key: string]: string[] };
@@ -19,6 +20,8 @@ export interface AppContextType {
   setSelectedSort: (x: { label: string; value: string }) => void;
   selectedIllness: { label: string; value: string };
   setSelectedIllness: (x: { label: string; value: string }) => void;
+  sharedSiteFacilityID: string | null;
+  setSFID: (x: string | null) => void;
 }
 
 export interface AppContextProps {

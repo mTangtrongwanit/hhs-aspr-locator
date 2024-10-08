@@ -105,6 +105,8 @@ const Locations = () => {
     selectedSort,
     selectedIllness,
     locations,
+    setSFID,
+    sharedSiteFacilityID
   } = useAppContext();
 
   const searchContRef = useRef<HTMLDivElement>(null);
@@ -116,7 +118,6 @@ const Locations = () => {
   const [totalHeight, setTotalHeight] = useState<number>(0);
   const [isMobileListView, setIsMobileListView] = useState<boolean>(true);
   const [sortedSites, setSortedSites] = useState<Site[]>([]);
-  const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
@@ -144,7 +145,7 @@ const Locations = () => {
   // Highlight the location if the facility ID in the URL matches the facility ID of the service provider
   useEffect(() => {
     if (searchParams.has("facility_id") && searchParams.has("geopoint")) {
-      setSelectedLocation(searchParams.get("facility_id"));
+      setSFID(searchParams.get("facility_id"));
     }
   }, [searchParams]);
 
@@ -153,9 +154,9 @@ const Locations = () => {
     if (locations == null) {
       return;
     }
-    if (selectedLocation !== null) {
+    if (sharedSiteFacilityID !== null) {
       const filteredLocs = locations.filter((location) => {
-        return selectedLocation == location.attributes.facility_id;
+        return sharedSiteFacilityID == location.attributes.facility_id;
       });
       setSortedSites(filteredLocs);
       return;
@@ -224,7 +225,7 @@ const Locations = () => {
     };
 
     fetchDistancesAndSort();
-  }, [searchPoint, selectedSort, selectedIllness, locations, selectedLocation]);
+  }, [searchPoint, selectedSort, selectedIllness, locations, sharedSiteFacilityID]);
   // #endregion ----------------- Hooks (Other) --------------------------------
 
   // #region --------- Short-Circuit (Empty/Invalid State) ---------------------
@@ -246,7 +247,7 @@ const Locations = () => {
       searchParams.delete("geopoint");
       setSearchParams(searchParams);
     }
-    setSelectedLocation(null);
+    setSFID(null);
   };
   // #endregion ---------------- Event Handlers --------------------------------
 
@@ -257,7 +258,7 @@ const Locations = () => {
         <h2 className="visually-hidden">
           {t("Locations.Search Container Screenreader Heading")}
         </h2>
-        {selectedLocation !== null ? (
+        {sharedSiteFacilityID !== null ? (
           <>
             <StyledButton as="button" onClick={onToggleSelectedLoc}>
               Search for Other Locations

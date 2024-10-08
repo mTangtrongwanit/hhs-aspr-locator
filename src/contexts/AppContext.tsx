@@ -64,6 +64,8 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     label: "Illness",
     value: "",
   });
+  const [sharedSiteFacilityID, setSFID] = useState<string | null>(null);
+
 
   // #endregion --------------- Hooks (Resources) ------------------------------
 
@@ -146,6 +148,8 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
         setSelectedSort: setSelectedSort,
         selectedIllness: selectedIllness,
         setSelectedIllness: setSelectedIllness,
+        sharedSiteFacilityID: sharedSiteFacilityID,
+        setSFID: setSFID
       }}
     >
       {children}

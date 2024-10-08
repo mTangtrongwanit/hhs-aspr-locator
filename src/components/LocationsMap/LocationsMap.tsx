@@ -6,7 +6,7 @@
 
 // #region ========================= IMPORTS ===================================
 // #region --------------------------- React -----------------------------------
-import { useRef, useEffect, useMemo } from "react";
+import { useRef, useEffect, useMemo, useState } from "react";
 
 // #endregion ------------------------ React -----------------------------------
 
@@ -19,7 +19,7 @@ import Color from "@arcgis/core/Color";
 import SimpleFillSymbol from "@arcgis/core/symbols/SimpleFillSymbol";
 import SimpleLineSymbol from "@arcgis/core/symbols/SimpleLineSymbol";
 import Point from "@arcgis/core/geometry/Point";
-
+import FeatureLayerView from "@arcgis/core/views/layers/FeatureLayerView";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -47,11 +47,14 @@ const LocationsMap = () => {
     setSearchPoint,
     searchPoint,
     locationsExtent,
+    sharedSiteFacilityID,
   } = useAppContext();
   const [searchParams] = useSearchParams();
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region -------------------- Hooks (State) --------------------------------
+  const [featureLayerView, setFeatureLayerView] =
+    useState<FeatureLayerView | null>(null);
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
@@ -65,7 +68,7 @@ const LocationsMap = () => {
           },
         },
       }),
-    [],
+    []
   );
   // #endregion -------------- Hooks (Memoization) -----------------------------
 
@@ -99,7 +102,7 @@ const LocationsMap = () => {
               longitude: lon,
               latitude: lat,
             });
-            setSearchPoint({name: geopoint, point: p});
+            setSearchPoint({ name: geopoint, point: p });
             mapView.goTo({
               center: p,
               zoom: 12,
@@ -122,6 +125,10 @@ const LocationsMap = () => {
                 layer.title.includes("Treatments")
               ) {
                 (layer as __esri.FeatureLayer).outFields = ["*"];
+                mapView
+                  .whenLayerView(layer)
+                  .then(function (layerView) {setFeatureLayerView(layerView as FeatureLayerView)})
+                  .catch(function (error) {});
               }
             });
 
@@ -138,7 +145,7 @@ const LocationsMap = () => {
                       (hitResult as __esri.GraphicHit).graphic?.layer?.title &&
                       (
                         hitResult as __esri.GraphicHit
-                      ).graphic?.layer?.title.includes("Treatments"),
+                      ).graphic?.layer?.title.includes("Treatments")
                   ) as __esri.GraphicHit;
                   if (!treatmentsLayer) return;
                   const t = treatmentsLayer as __esri.GraphicHit;
@@ -208,6 +215,19 @@ const LocationsMap = () => {
         });
     }
   }, [locationsExtent, locationsMapView, searchPoint, searchParams]);
+
+  useEffect(() => {
+if (featureLayerView == null) {
+  return;
+}
+console.log(featureLayerView);
+    //If a site was shared in the URL params, filter only to that site.
+
+    //Else:
+    //If no selectedIllness, filter out everything
+
+
+  }, [featureLayerView, sharedSiteFacilityID]);
 
   // #endregion ----------------- Hooks (Other) --------------------------------
 
