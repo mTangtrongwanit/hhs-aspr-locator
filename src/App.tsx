@@ -4,7 +4,7 @@ import { useEffect } from "react";
 // #endregion ------------------------ React -----------------------------------
 // #region ------------ 3rd-Party Components / Libraries -----------------------
 /* Routing */
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { HashRouter as Router, Route, Routes } from "react-router-dom";
 /* Styling */
 import { setAssetPath } from "@esri/calcite-components/dist/components";
 /* Auth */
@@ -55,34 +55,6 @@ const StyledLocsLayout = styled(StyledAppLayout)`
   overflow-y: auto;
   grid-template-rows: min-content min-content;
 `;
-
-const router = createBrowserRouter(
-  [
-    {
-      path: "/",
-      element: (
-        <StyledAppLayout>
-          <Header></Header>
-          <Landing></Landing>
-          <Footer></Footer>
-        </StyledAppLayout>
-      ),
-    },
-    {
-      path: "/locations",
-      element: (
-        <StyledLocsLayout>
-          <Header />
-          <Locations />
-          <Footer />
-        </StyledLocsLayout>
-      ),
-    },
-  ],
-  {
-    basename: import.meta.env.BASE_URL,
-  },
-);
 // #endregion ===================== CONSTANTS ==================================
 // #region =================== EXPORTED COMPONENT ==============================
 function App() {
@@ -119,7 +91,30 @@ function App() {
   // #region ----------------------- Render ------------------------------------
   return (
     <AppContextProvider>
-      <RouterProvider router={router} />
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <StyledAppLayout>
+                <Header />
+                <Landing />
+                <Footer />
+              </StyledAppLayout>
+            }
+          />
+          <Route
+            path="/locations"
+            element={
+              <StyledLocsLayout>
+                <Header />
+                <Locations />
+                <Footer />
+              </StyledLocsLayout>
+            }
+          />
+        </Routes>
+      </Router>
     </AppContextProvider>
   );
   // #endregion -------------------- Render ------------------------------------
