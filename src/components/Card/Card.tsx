@@ -99,10 +99,9 @@ const Card = ({ selected, serviceProvider }: Props) => {
    * @returns {void}
    */
   const copyToClipboard = (
-    path: string,
     queryParams: Record<string, string>,
   ) => {
-    const url = new URL(`${window.location.origin}${path}`);
+    const url = new URL(`${window.location.origin}${window.location.pathname}`);
     Object.keys(queryParams).forEach((key) => {
       url.searchParams.append(key, queryParams[key]);
     });
@@ -117,7 +116,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
    */
   const handleCopyToClipboard = () => {
     //TODO: add one more param here for the searched name s.t. it can show in the Search bar.
-    copyToClipboard("/locations/", {
+    copyToClipboard({
       facility_id: serviceProvider.facility_id,
       geopoint: serviceProvider.geopoint,
     });
