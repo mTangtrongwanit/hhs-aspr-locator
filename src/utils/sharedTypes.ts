@@ -44,3 +44,8 @@ export interface SiteAttributesType {
   export interface SiteType {
     attributes: SiteAttributesType;
   }
+
+  export interface FilterType {
+    name: string;
+    label: string;
+  }
