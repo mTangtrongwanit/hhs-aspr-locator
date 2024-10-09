@@ -1,25 +1,26 @@
 /**
- * _TemplateComponent_
+ * Search
  *
- * _TemplateComponent_ component implementation.
+ * Search component implementation.
  */
 
 // #region ========================= IMPORTS ===================================
-// #region --------------------------- React -----------------------------------import { useState } from 'react';
-import { useState } from "react";
+// #region --------------------------- React -----------------------------------
+import { useRef, useEffect, useState } from "react";
 // #endregion ------------------------ React -----------------------------------
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
-import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { CheckIcon, ChevronDownIcon } from "@radix-ui/react-icons";
-import { useTranslation } from "react-i18next";
+import Search from "@arcgis/core/widgets/Search";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
-import { StyledDropdownSelect } from "./LanguageDropdown.styles";
+import { useAppContext } from "@/contexts/AppContext";
+import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
+import { StyledSearch } from "./Search.styles";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
+// import { type Props } from "./Search.types";
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 
@@ -27,35 +28,67 @@ import { StyledDropdownSelect } from "./LanguageDropdown.styles";
 // #endregion ===================== CONSTANTS ==================================
 
 // #region =================== EXPORTED COMPONENT ==============================
-const LanguageDropdown = () => {
-  // TODO later: Move to config
-  const itemArray = [
-    {
-      label: "English",
-      value: "en",
-    },
-    {
-      label: "Spanish",
-      value: "es",
-    },
-    {
-      label: "Chinese (Simplified)",
-      value: "zh",
-    },
-  ];
-
+const SearchComponent = () => {
   // #region ------------------ Hooks (Resources) ------------------------------
-  const { i18n } = useTranslation();
+  const { searchPoint, setSearchPoint } = useAppContext();
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region -------------------- Hooks (State) --------------------------------
-  const [selectedLanguage, setSelectedLanguage] = useState("English");
+  const [searchWidget, setSearchWidget] = useState<Search | null>(null);
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
   // #endregion -------------- Hooks (Memoization) -----------------------------
 
   // #region -------------------- Hooks (Other) --------------------------------
+  const searchRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!searchRef.current) {
+      return;
+    }
+
+    /**
+     * Set up Search widget
+     */
+    const search = new Search({
+      container: document.createElement("div"),
+      sources: [
+        {
+          url: "https://geocode-api.arcgis.com/arcgis/rest/services/World/GeocodeServer",
+          countryCode: "US",
+        },
+      ] as __esri.LocatorSearchSourceProperties[],
+    });
+    //add to DOM
+    searchRef.current.appendChild(search.container as Node);
+
+    //add to component state
+    setSearchWidget(search);
+    /**
+     * Watch for result selection to set AOI
+     */
+    search.on("select-result", function (event) {
+      const result = event as __esri.SearchSelectResultEvent;
+      const name = result.result.name;
+      const geometry = result.result.feature.geometry as __esri.Point;
+      setSearchPoint({ name, point: geometry });
+    });
+
+    // Note: We need to create a fresh element for the widget everytime it is built, can't just assign it to ref.current or it won't re-render.
+    return () => search.destroy();
+  }, [setSearchPoint]);
+
+  /**
+   * Effect to update widget with SelectionMap results
+   */
+  useEffect(() => {
+    //Set search term to searchPoint name
+    if (searchPoint !== null && searchWidget !== null) {
+      searchWidget.searchTerm = searchPoint.name;
+      searchWidget.includeDefaultSources = false;
+    }
+  }, [searchPoint, searchWidget]);
   // #endregion ----------------- Hooks (Other) --------------------------------
 
   // #region --------- Short-Circuit (Empty/Invalid State) ---------------------
@@ -65,47 +98,15 @@ const LanguageDropdown = () => {
   // #endregion ------------- Supporting Functions -----------------------------
 
   // #region ------------------- Event Handlers --------------------------------
-
-  const handleLanguageChange = (lang: { label: string; value: string }) => {
-    i18n.changeLanguage(lang.value);
-    setSelectedLanguage(lang.label);
-  };
   // #endregion ---------------- Event Handlers --------------------------------
 
   // #region ----------------------- Render ------------------------------------
   return (
-    <StyledDropdownSelect>
-      <DropdownMenu.Root>
-        <DropdownMenu.Trigger className="DropDownButton">
-          {selectedLanguage} <ChevronDownIcon />
-        </DropdownMenu.Trigger>
-        <DropdownMenu.Content className="DropdownMenuContent" sideOffset={5}>
-          {itemArray.map((item) => (
-            <DropdownMenu.Item
-              style={
-                {
-                  "--selected": `${i18n.language === item.value ? "var(--brand)" : ""}`,
-                } as React.CSSProperties
-              }
-              className="DropDownItem"
-              key={item.value}
-              onClick={() => handleLanguageChange(item)}
-            >
-              {i18n.language === item.value ? (
-                <CheckIcon fontSize={"var(--text-2)"} />
-              ) : (
-                <span className="placeholder">&nbsp;</span>
-              )}
-              {item.label}
-            </DropdownMenu.Item>
-          ))}
-
-          <DropdownMenu.Arrow className="DropdownMenuArrow" />
-        </DropdownMenu.Content>
-      </DropdownMenu.Root>
-    </StyledDropdownSelect>
+    <StyledSearch ref={searchRef}>
+      <MagnifyingGlassIcon width="18" height="18" />
+    </StyledSearch>
   );
   // #endregion -------------------- Render ------------------------------------
 };
-export default LanguageDropdown;
+export default SearchComponent;
 // #endregion ================ EXPORTED COMPONENT ==============================

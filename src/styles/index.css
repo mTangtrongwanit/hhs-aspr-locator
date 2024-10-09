@@ -54,6 +54,7 @@ body,
     */
 
   width: 100vw;
+  overflow-x: hidden;
   /* --vh: see ./style-utils */
   height: calc(var(--vh, 1vh) * 100);
 
@@ -104,6 +105,28 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
   width: 1px;
 }
 
+/* esri component and widget overrides*/
+.esri-search {
+  width: 100%;
+  margin-left: 4px;
+}
+
+.esri-input[type="text"] {
+  height: min-content;
+}
+
+.esri-search__suggestions-menu {
+  min-width: 20rem;
+}
+
+.esri-search__clear-button {
+  display: none;
+}
+
+.esri-search__submit-button {
+  display: none;
+}
+
 /* radix-ui style and overrides */
 .PopoverMenuContent {
   border-radius: 4px;
@@ -119,20 +142,30 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
   animation-duration: 400ms;
   animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
+
+  position: relative;
+  z-index: 2;
 }
+
 .PopoverMenuContent:focus {
-  box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
-    hsl(206 22% 7% / 20%) 0px 10px 20px -15px, 0 0 0 2px var(--violet-7);
+  box-shadow:
+    hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
+    hsl(206 22% 7% / 20%) 0px 10px 20px -15px,
+    0 0 0 2px var(--violet-7);
 }
+
 .PopoverMenuContent[data-state="open"][data-side="top"] {
   animation-name: slideDownAndFade;
 }
+
 .PopoverMenuContent[data-state="open"][data-side="right"] {
   animation-name: slideLeftAndFade;
 }
+
 .PopoverMenuContent[data-state="open"][data-side="bottom"] {
   animation-name: slideUpAndFade;
 }
+
 .PopoverMenuContent[data-state="open"][data-side="left"] {
   animation-name: slideRightAndFade;
 }
@@ -166,6 +199,7 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
     opacity: 0;
     transform: translateY(2px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -182,6 +216,7 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
   justify-content: center;
   border: 2px solid var(--light);
 }
+
 .CheckboxRoot:hover {
   border: 2px solid var(--brand);
 }

@@ -3,14 +3,36 @@ export interface AppContextType {
   setBannerHeight: (x: number) => void;
   headerHeight: number;
   setHeaderHeight: (x: number) => void;
-  searchPoint: __esri.Point | null;
-  setSearchPoint: (x: __esri.Point | null) => void;
+  searchPoint: { name: string; point: __esri.Point } | null;
+  setSearchPoint: (x: { name: string; point: __esri.Point } | null) => void;
   locationsMapView: __esri.MapView | null;
   setLocationsMapView: (x: __esri.MapView) => void;
+  // TODO: restore logic that scrolls to this card
   selectedTreatmentSite: __esri.Graphic | null;
   setSelectedTreatmentSite: (x: __esri.Graphic) => void;
+  illnessesTreatments: { [key: string]: string[] };
+  treatmentsIllnesses: __esri.Graphic[] | null;
+  locations: __esri.Graphic[] | null;
+  setLocations: (x: __esri.Graphic[] | null) => void;
+  locationsExtent: __esri.Extent | null;
+  setIllnessesTreatments: (x: { [key: string]: string[] }) => void;
+  selectedSort: { label: string; value: string };
+  setSelectedSort: (x: { label: string; value: string }) => void;
+  selectedIllness: { label: string; value: string };
+  setSelectedIllness: (x: { label: string; value: string }) => void;
+  sharedSiteFacilityID: string | null;
+  setSFID: (x: string | null) => void;
+  selectedMedications: string[];
+  setSelectedMedications: (x: string[]) => void;
+  selectedFilters: Filter[];
+  setSelectedFilters: (x: Filter[]) => void;
 }
 
 export interface AppContextProps {
   children?: React.ReactNode;
+}
+
+export interface Filter {
+  name: string;
+  label: string;
 }

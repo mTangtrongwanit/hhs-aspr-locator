@@ -1,0 +1,103 @@
+/**
+ * _TemplateComponent_ Styles
+ *
+ * Styled components for the _TemplateComponent_ component.
+ */
+
+// #region ========================= IMPORTS ===================================
+// #region --------------------------- React -----------------------------------
+// #endregion ------------------------ React -----------------------------------
+
+// #region ------------ 3rd-Party Components / Libraries -----------------------
+import styled from "styled-components";
+// #endregion --------- 3rd-Party Components / Libraries -----------------------
+
+// #region -------------- Custom Components / Utilities ------------------------
+// #endregion ----------- Custom Components / Utilities ------------------------
+
+// #region ------------------------ Resources ----------------------------------
+// #endregion --------------------- Resources ----------------------------------
+// #endregion ====================== IMPORTS ===================================
+
+// #region =================== EXPORTED COMPONENTS =============================
+/* Property Organization Guide */
+// --- Local Variables ---
+// --- Sizing / Box-Model ---
+// --- Position ---
+// --- Layout ---
+// --- Decorative ---
+// --- States ---
+// --- Children ---
+
+// #region -------------------------- Atoms ------------------------------------
+// #endregion ----------------------- Atoms ------------------------------------
+
+// #region -------------- Molecules (Internal Layouts) -------------------------
+// #endregion ----------- Molecules (Internal Layouts) -------------------------
+
+// #region --------------- Parent Component + Variants -------------------------
+export const StyledDropdownSelect = styled.section`
+  min-width: 8rem;
+  position: relative;
+  z-index: 2;
+
+  .DropDownButton {
+    position: relative;
+
+    width: inherit;
+    min-width: inherit;
+
+    display: flex;
+    justify-content: space-between;
+    gap: 4px;
+
+    cursor: pointer;
+    background: #155197;
+    border-radius: 4px;
+    color: white;
+    padding: 5px;
+    height: 30px;
+  }
+
+  .DropdownMenuContent {
+    min-width: inherit;
+    background-color: white;
+    border-radius: 6px;
+    padding: 5px;
+    box-shadow:
+      0px 10px 38px -10px rgba(22, 23, 24, 0.35),
+      0px 10px 20px -15px rgba(22, 23, 24, 0.2);
+    animation-duration: 400ms;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+  }
+
+  .DropdownMenuArrow {
+    fill: white;
+  }
+
+  .DropDownItem {
+    font-size: var(--text--1);
+    line-height: 25px;
+
+    cursor: pointer;
+
+    display: flex;
+    gap: 4px;
+    align-items: center;
+
+    color: var(--selected, var(--text));
+
+    svg {
+      width: 20px;
+      height: 20px;
+      aspect-ratio: 1;
+    }
+
+    .placeholder {
+      width: 20px;
+    }
+  }
+`;
+// #endregion ------------ Parent Component + Variants -------------------------
+// #endregion ================ EXPORTED COMPONENTS =============================

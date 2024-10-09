@@ -47,14 +47,16 @@ export const StyledPopoverMultiSelect = styled.section`
 
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 4px;
 
     cursor: pointer;
+    font-size: var(--text-0);
     background: #155197;
     border-radius: 4px;
     color: white;
     padding: 5px;
-    height: 30px;
+    height: var(--search-container-item-height);
   }
 
   @keyframes slideRightAndFade {
@@ -91,8 +93,7 @@ export const StyledPopoverMultiSelect = styled.section`
   }
 `;
 
-export const PopoverMenuContentContainer = styled.div`
-`;
+export const PopoverMenuContentContainer = styled.div``;
 
 export const PopoverMenuTitle = styled.h3`
   font-size: var(--text-1);
@@ -103,20 +104,20 @@ export const PopoverMenuTitle = styled.h3`
 `;
 
 export const PopoverCheckBoxContainer = styled.div`
- display: flex;
- flex-direction: column;
- gap: 2px;
- overflow: hidden;
- border-radius: 4px;
- border: 1px solid var(--light);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid var(--light);
 `;
 
 export const PopoverCheckBoxRow = styled.div`
- display: flex;
- padding: 12px 16px;
- align-items: 'center';
- background: var(--light);
- gap: 16px;
+  display: flex;
+  padding: 12px 16px;
+  align-items: "center";
+  background: var(--light);
+  gap: 16px;
 `;
 
 export const StyledCheckboxLabel = styled.label`
@@ -166,7 +167,6 @@ export const StyledPrimaryButton = styled.button`
     cursor: pointer;
   }
 `;
-
 
 // #endregion ------------ Parent Component + Variants -------------------------
 // #endregion ================ EXPORTED COMPONENTS =============================

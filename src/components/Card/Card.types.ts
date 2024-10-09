@@ -41,7 +41,7 @@ export interface ServiceProvider {
   url_appointment?: string;
   home_delivery?: string;
   is_icatt_site?: string;
-  has_usg_product?: string;
+  has_USG_product?: string;
   has_commercial_product?: string;
   has_paxlovid?: string;
   has_commercial_paxlovid?: string;
@@ -58,5 +58,8 @@ export interface ServiceProvider {
   has_oseltamivir_tamiflu?: string;
   non_public_yn?: string;
   grantee_code?: string;
+  distance?: number;
+  has_flu_treatments?: boolean;
+  has_covid_treatments?: boolean;
 }
 // #endregion ================== EXPORTED TYPES ================================

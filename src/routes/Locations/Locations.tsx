@@ -17,21 +17,27 @@ import {
   StyledListContainer,
   StyledMapContainer,
   StyledSearchContainer,
+  StyledButton,
 } from "./Locations.styles";
 import PopoverMultiSelect from "@/components/PopoverMultiSelect";
 import Card from "@/components/Card";
 import { ServiceProvider } from "@/components/Card";
 import LocationsMap from "@/components/LocationsMap";
+import DropdownSingleSelect from "@/components/DropdownSingleSelect";
+import { calculateDistanceBetweenTwoPoints } from "../../utils/geographicUtils";
+import Search from "@/components/Search";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
 // import { type Props } from "./Landing.types";
 import { useTranslation, Trans } from "react-i18next";
+import { useSearchParams } from "react-router-dom";
+
 import useResizeObserver from "@react-hook/resize-observer";
 import { useAppContext } from "@/contexts/AppContext";
-import * as treatmentSites from "../../data/treatment-sites.json";
 import MapIcon from "@/assets/icons/map.svg";
 import ListIcon from "@/assets/icons/list.svg";
+import config from "@/config";
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 
@@ -60,7 +66,7 @@ interface SiteAttributes {
   url_appointment?: string;
   home_delivery?: string;
   is_icatt_site?: string;
-  has_usg_product?: string;
+  has_USG_product?: string;
   has_commercial_product?: string;
   has_paxlovid?: string;
   has_commercial_paxlovid?: string;
@@ -77,6 +83,9 @@ interface SiteAttributes {
   has_oseltamivir_tamiflu?: string;
   non_public_yn?: string;
   grantee_code?: string;
+  distance?: number;
+  has_flu_treatments?: boolean;
+  has_covid_treatments?: boolean;
 }
 
 interface Site {
@@ -88,7 +97,17 @@ interface Site {
 const Locations = () => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const { t } = useTranslation();
-  const { bannerHeight, headerHeight } = useAppContext();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const {
+    bannerHeight,
+    headerHeight,
+    searchPoint,
+    selectedSort,
+    selectedIllness,
+    locations,
+    setSFID,
+    sharedSiteFacilityID,
+  } = useAppContext();
 
   const searchContRef = useRef<HTMLDivElement>(null);
 
@@ -98,6 +117,7 @@ const Locations = () => {
   const [searchContHeight, setSearchContHeight] = useState<number>(0);
   const [totalHeight, setTotalHeight] = useState<number>(0);
   const [isMobileListView, setIsMobileListView] = useState<boolean>(true);
+  const [sortedSites, setSortedSites] = useState<Site[]>([]);
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
@@ -121,6 +141,97 @@ const Locations = () => {
     //console.log("banner " + bannerHeight + " header " + headerHeight + " search " + searchContHeight);
     setTotalHeight(bannerHeight + headerHeight + searchContHeight);
   }, [bannerHeight, headerHeight, searchContHeight]);
+
+  // Highlight the location if the facility ID in the URL matches the facility ID of the service provider
+  useEffect(() => {
+    if (searchParams.has("facility_id") && searchParams.has("geopoint")) {
+      setSFID(searchParams.get("facility_id"));
+    }
+  }, [searchParams]);
+
+  /** Sort the sites based on the value of the sort dropdown. */
+  useEffect(() => {
+    if (locations == null) {
+      return;
+    }
+    if (sharedSiteFacilityID !== null) {
+      const filteredLocs = locations.filter((location) => {
+        return sharedSiteFacilityID == location.attributes.facility_id;
+      });
+      setSortedSites(filteredLocs);
+      return;
+    }
+    const fetchDistancesAndSort = async () => {
+      const updatedSites = await Promise.all(
+        locations.map(async (site: object) => {
+          const serviceProver: Site = site as Site;
+          const serviceProvider: ServiceProvider = serviceProver.attributes;
+          const distance = await calculateDistanceBetweenTwoPoints(
+            serviceProvider,
+            searchPoint,
+          );
+          serviceProvider.distance = distance ?? 0;
+
+          // Evaluate whether site has treatments for the different illnesses
+          serviceProver.attributes.has_flu_treatments = false;
+          serviceProver.attributes.has_covid_treatments = false;
+          config.fieldsets.fluTreatmentFields.forEach((field) => {
+            if (
+              serviceProvider[`${field}` as keyof ServiceProvider]
+                ?.toString()
+                .toLowerCase() == "true"
+            ) {
+              serviceProver.attributes.has_flu_treatments = true;
+            }
+          });
+          config.fieldsets.covidTreatmentFields.forEach((field) => {
+            if (
+              serviceProvider[`${field}` as keyof ServiceProvider]
+                ?.toString()
+                .toLowerCase() == "true"
+            ) {
+              serviceProver.attributes.has_covid_treatments = true;
+            }
+          });
+          return serviceProver;
+        }),
+      );
+
+      const sortedSites = updatedSites.sort((a, b) => {
+        if (selectedSort.value === "distance") {
+          const distanceA = a.attributes.distance || 0;
+          const distanceB = b.attributes.distance || 0;
+          return distanceA - distanceB;
+        } else if (selectedSort.value === "last reported") {
+          const dateA = new Date(a.attributes.last_report_date).getTime();
+          const dateB = new Date(b.attributes.last_report_date).getTime();
+          return dateB - dateA;
+        }
+        return 0;
+      });
+
+      //Filter by Illness value
+      const filteredSites = [...sortedSites];
+
+      const x = filteredSites.filter((site) => {
+        if (selectedIllness.value.toLowerCase() == "flu") {
+          return site.attributes.has_flu_treatments == true;
+        } else if (selectedIllness.value.toLowerCase() == "covid") {
+          return site.attributes.has_covid_treatments == true;
+        }
+        return false;
+      });
+      setSortedSites(x);
+    };
+
+    fetchDistancesAndSort();
+  }, [
+    searchPoint,
+    selectedSort,
+    selectedIllness,
+    locations,
+    sharedSiteFacilityID,
+  ]);
   // #endregion ----------------- Hooks (Other) --------------------------------
 
   // #region --------- Short-Circuit (Empty/Invalid State) ---------------------
@@ -133,6 +244,17 @@ const Locations = () => {
   const onButtonClick = () => {
     setIsMobileListView((isList) => !isList);
   };
+  const onToggleSelectedLoc = () => {
+    if (searchParams.has("facility_id")) {
+      searchParams.delete("facility_id");
+      setSearchParams(searchParams);
+    }
+    if (searchParams.has("geopoint")) {
+      searchParams.delete("geopoint");
+      setSearchParams(searchParams);
+    }
+    setSFID(null);
+  };
   // #endregion ---------------- Event Handlers --------------------------------
 
   // #region ----------------------- Render ------------------------------------
@@ -142,9 +264,20 @@ const Locations = () => {
         <h2 className="visually-hidden">
           {t("Locations.Search Container Screenreader Heading")}
         </h2>
-        <div className="dev-placeholder">Location Search Placeholder</div>
-        <div className="dev-placeholder">Illness Select Placeholder</div>
-        <PopoverMultiSelect></PopoverMultiSelect>
+        {sharedSiteFacilityID !== null ? (
+          <>
+            <StyledButton as="button" onClick={onToggleSelectedLoc}>
+              Search for Other Locations
+            </StyledButton>
+          </>
+        ) : (
+          <>
+            <Search />
+            <DropdownSingleSelect type={"illness"} />
+            <PopoverMultiSelect type={"medications"} />
+          </>
+        )}
+
         <button id="listViewToggle" onClick={onButtonClick}>
           {isMobileListView ? <MapIcon></MapIcon> : <ListIcon></ListIcon>}
           <span>{isMobileListView ? "Map" : "List"}</span>
@@ -157,14 +290,17 @@ const Locations = () => {
         <StyledListContainer>
           <div id="list-title">
             <h3>
-              <Trans i18nKey="Locations.List Heading" count={0}></Trans>
+              <Trans
+                i18nKey="Locations.List Heading"
+                count={sortedSites.length}
+              ></Trans>
             </h3>
-            <div className="dev-placeholder">Filter Placeholder</div>
-            <div className="dev-placeholder">Sort Placeholder</div>
+            <PopoverMultiSelect type="filter" />
+            <DropdownSingleSelect type={"sort"} />
           </div>
           {/* tabindex for scrollable list */}
           <ul tabIndex={0}>
-            {treatmentSites.features.map((site: object) => {
+            {sortedSites?.map((site: object) => {
               const serviceProver: Site = site as Site;
               const serviceProvider: ServiceProvider = serviceProver.attributes;
               return (

@@ -78,11 +78,11 @@ const Card = ({ selected, serviceProvider }: Props) => {
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const facilityId = urlParams.get("facility_id");
+    //facility-id: 245515224383025463412585545222964544201 for testing
     // TODO: Chandan/Lillie - remove inline CSS and use styled-components
     if (facilityId === serviceProvider.facility_id && cardRef.current) {
       // Highlight the location by applying inline CSS
-      cardRef.current.scrollIntoView({ behavior: "smooth" });
-      cardRef.current.style.setProperty("border", "2px solid red");
+      cardRef.current.style.setProperty("border", "2px solid var(--brand)");
     }
   }, [location.search, serviceProvider.facility_id]);
   // #endregion ----------------- Hooks (Other) --------------------------------
@@ -106,7 +106,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
     Object.keys(queryParams).forEach((key) => {
       url.searchParams.append(key, queryParams[key]);
     });
-    navigator.clipboard.writeText(url.toString());
+    navigator.clipboard.writeText(url.href);
   };
 
   /**
@@ -116,8 +116,10 @@ const Card = ({ selected, serviceProvider }: Props) => {
    * @returns {void}
    */
   const handleCopyToClipboard = () => {
+    //TODO: add one more param here for the searched name s.t. it can show in the Search bar.
     copyToClipboard("/locations/", {
       facility_id: serviceProvider.facility_id,
+      geopoint: serviceProvider.geopoint,
     });
   };
   // #endregion ------------- Supporting Functions -----------------------------
@@ -127,7 +129,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
 
   // #region ----------------------- Render ------------------------------------
   return (
-    <StyledCard $selected={selected} ref={cardRef}>
+    <StyledCard tabIndex={0} $selected={selected} ref={cardRef}>
       <StyledTitleRow>
         <StyledCardTitle className="bold">
           {serviceProvider.provider_name}
@@ -162,54 +164,56 @@ const Card = ({ selected, serviceProvider }: Props) => {
         <StyledIconField className="addr">
           {serviceProvider.public_phone && <PhoneIcon></PhoneIcon>}
           {serviceProvider.public_phone && (
-            <a href={`tel:serviceProvider.public_phone`}>
+            <a href={`tel:${serviceProvider.public_phone}`}>
               {serviceProvider.public_phone}
             </a>
           )}
         </StyledIconField>
       </address>
 
-      {/* TODO: Alt text for these icons */}
-
       <StyledRow>
-        {serviceProvider.is_pap === "TRUE" && (
+        {serviceProvider.is_pap?.toUpperCase() === "TRUE" && (
           <Tooltip icon={<PapIcon />}>
             <p>{t("Card.pap")}</p>
           </Tooltip>
         )}
-        {serviceProvider.has_usg_product === "TRUE" && (
+        {serviceProvider.has_USG_product?.toUpperCase() === "TRUE" && (
           <Tooltip icon={<UsgProcuredIcon />}>
             <p>{t("Card.usgProduct")}</p>
           </Tooltip>
         )}
-        {serviceProvider.home_delivery === "TRUE" && (
+        {serviceProvider.home_delivery?.toUpperCase() === "TRUE" && (
           <Tooltip icon={<HomeDeliveryIcon />}>
             <p>{t("Card.homeDelivery")}</p>
           </Tooltip>
         )}
-        {serviceProvider.is_icatt_site === "TRUE" && (
+        {serviceProvider.is_icatt_site?.toUpperCase() === "TRUE" && (
           <Tooltip icon={<IcattIcon />}>
             <p>{t("Card.icatt")}</p>
           </Tooltip>
         )}
-        {serviceProvider.has_oseltamivir_tamiflu === "TRUE" &&
-          serviceProvider.has_oseltamivir_generic === "FALSE" && (
+        {serviceProvider.has_oseltamivir_tamiflu?.toUpperCase() === "TRUE" &&
+          serviceProvider.has_oseltamivir_generic?.toUpperCase() ===
+            "FALSE" && (
             <Tooltip icon={<NoGenericIcon />}>
               <p>{t("Card.tamifluOnly")}</p>
             </Tooltip>
           )}
-        {serviceProvider.has_oseltamivir_suspension === "TRUE" && (
+        {serviceProvider.has_oseltamivir_suspension?.toUpperCase() ===
+          "TRUE" && (
           <Tooltip icon={<OseltamivirIcon />}>
             <p>{t("Card.oseltamivirSuspension")}</p>
           </Tooltip>
         )}
-        {serviceProvider.is_prescribing_svcs_available === "TRUE" && (
+        {serviceProvider.is_prescribing_svcs_available?.toUpperCase() ===
+          "TRUE" && (
           <Tooltip icon={<PrescribingServicesIcon />}>
             <p>{t("Card.prescribingServices")}</p>
           </Tooltip>
         )}
       </StyledRow>
-      {serviceProvider.is_prescribing_svcs_available === "TRUE" && (
+      {serviceProvider.is_prescribing_svcs_available?.toUpperCase() ===
+        "TRUE" && (
         <p>
           {t("Card.rXorTelehealth")}&nbsp;
           <a
@@ -241,7 +245,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
           <StyledOutlinedLink
             href={`https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(
               searchPoint
-                ? `${searchPoint.latitude},${searchPoint.longitude}`
+                ? `${searchPoint.point.latitude},${searchPoint.point.longitude}`
                 : "",
             )}&destination=${encodeURIComponent(
               `${serviceProvider.address1} ${

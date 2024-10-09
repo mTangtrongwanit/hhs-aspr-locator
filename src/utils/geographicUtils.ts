@@ -37,8 +37,12 @@ export const getLocationsData = async (location: Point) => {
     query.distance = 50;
     query.units = "miles";
     query.spatialRelationship = "intersects";
-    const locations = await locationsData.queryFeatures(query);
-    return locations.features;
+    const locationsExtent = await locationsData.queryExtent(query);
+    const locationsFeatures = await locationsData.queryFeatures(query);
+    return {
+      extent: locationsExtent,
+      features: locationsFeatures,
+    };
   } catch (error) {
     console.error("Error getting locations data: ", error);
   }
@@ -86,7 +90,7 @@ export const calculateDistanceBetweenTwoPoints = async (
     const polyline = new Polyline({
       paths: [
         [
-          [searchPoint.longitude, searchPoint.latitude], // First point
+          [searchPoint.point.longitude, searchPoint.point.latitude], // First point
           [serviceProviderPoint.longitude, serviceProviderPoint.latitude], // Second point
         ],
       ],
