@@ -9,6 +9,9 @@ import { useRef, useState, useEffect } from "react";
 // #endregion ------------------------ React -----------------------------------
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
+import { useTranslation, Trans } from "react-i18next";
+import { useSearchParams } from "react-router-dom";
+import useResizeObserver from "@react-hook/resize-observer";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -24,17 +27,13 @@ import Card from "@/components/Card";
 import { ServiceProvider } from "@/components/Card";
 import LocationsMap from "@/components/LocationsMap";
 import DropdownSingleSelect from "@/components/DropdownSingleSelect";
-import { calculateDistanceBetweenTwoPoints } from "../../utils/geographicUtils";
+import { calculateDistanceBetweenTwoPoints } from "@/utils/geographicUtils";
 import Search from "@/components/Search";
+import { useAppContext } from "@/contexts/AppContext";
+import { SiteAttributesType, SiteType } from "@/utils";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
-// import { type Props } from "./Landing.types";
-import { useTranslation, Trans } from "react-i18next";
-import { useSearchParams } from "react-router-dom";
-
-import useResizeObserver from "@react-hook/resize-observer";
-import { useAppContext } from "@/contexts/AppContext";
 import MapIcon from "@/assets/icons/map.svg";
 import ListIcon from "@/assets/icons/list.svg";
 import config from "@/config";
@@ -43,55 +42,6 @@ import config from "@/config";
 
 // #region ======================== CONSTANTS ==================================
 // #endregion ===================== CONSTANTS ==================================
-
-// #region ========================= TYPES =====================================
-interface SiteAttributes {
-  OBJECTID: number;
-  facility_id: string;
-  provider_name: string;
-  address1: string;
-  address2?: string;
-  city: string;
-  state: string;
-  zip: number;
-  public_phone?: string;
-  latitude: number;
-  longitude: number;
-  geopoint: string;
-  geopoint_x: number;
-  geopoint_y: number;
-  last_report_date: number;
-  is_pap?: string;
-  is_prescribing_svcs_available?: string;
-  url_appointment?: string;
-  home_delivery?: string;
-  is_icatt_site?: string;
-  has_USG_product?: string;
-  has_commercial_product?: string;
-  has_paxlovid?: string;
-  has_commercial_paxlovid?: string;
-  has_usg_paxlovid?: string;
-  has_lagevrio?: string;
-  has_commercial_lagevrio?: string;
-  has_usg_lagevrio?: string;
-  has_veklury?: string;
-  has_peramivir?: string;
-  has_zanamivir?: string;
-  has_baloxavir?: string;
-  has_oseltamivir_generic?: string;
-  has_oseltamivir_suspension?: string;
-  has_oseltamivir_tamiflu?: string;
-  non_public_yn?: string;
-  grantee_code?: string;
-  distance?: number;
-  has_flu_treatments?: boolean;
-  has_covid_treatments?: boolean;
-}
-
-interface Site {
-  attributes: SiteAttributes;
-}
-// #endregion ========================== TYPES ===================================
 
 // #region =================== EXPORTED COMPONENT ==============================
 const Locations = () => {
@@ -117,7 +67,7 @@ const Locations = () => {
   const [searchContHeight, setSearchContHeight] = useState<number>(0);
   const [totalHeight, setTotalHeight] = useState<number>(0);
   const [isMobileListView, setIsMobileListView] = useState<boolean>(true);
-  const [sortedSites, setSortedSites] = useState<Site[]>([]);
+  const [sortedSites, setSortedSites] = useState<SiteType[]>([]);
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
@@ -138,7 +88,6 @@ const Locations = () => {
   );
 
   useEffect(() => {
-    //console.log("banner " + bannerHeight + " header " + headerHeight + " search " + searchContHeight);
     setTotalHeight(bannerHeight + headerHeight + searchContHeight);
   }, [bannerHeight, headerHeight, searchContHeight]);
 
@@ -149,11 +98,13 @@ const Locations = () => {
     }
   }, [searchParams]);
 
-  /** Sort the sites based on the value of the sort dropdown. */
+  /** Filter and sort the sites based on the values of the illness and sort dropdowns. */
+  /** Medications, Filters effects handled in PopoverMultiSelect */
   useEffect(() => {
     if (locations == null) {
       return;
     }
+    //Single card should be displayed
     if (sharedSiteFacilityID !== null) {
       const filteredLocs = locations.filter((location) => {
         return sharedSiteFacilityID == location.attributes.facility_id;
@@ -161,39 +112,41 @@ const Locations = () => {
       setSortedSites(filteredLocs);
       return;
     }
-    const fetchDistancesAndSort = async () => {
+    const filterAndSort = async () => {
       const updatedSites = await Promise.all(
         locations.map(async (site: object) => {
-          const serviceProver: Site = site as Site;
-          const serviceProvider: ServiceProvider = serviceProver.attributes;
+          const serviceSite: SiteType = site as SiteType;
+          const serviceSiteAttributes: SiteAttributesType = serviceSite.attributes;
+
+          // Fetch distance
           const distance = await calculateDistanceBetweenTwoPoints(
-            serviceProvider,
+            serviceSiteAttributes,
             searchPoint,
           );
-          serviceProvider.distance = distance ?? 0;
+          serviceSiteAttributes.distance = distance ?? 0;
 
           // Evaluate whether site has treatments for the different illnesses
-          serviceProver.attributes.has_flu_treatments = false;
-          serviceProver.attributes.has_covid_treatments = false;
+          serviceSite.attributes.has_flu_treatments = false;
+          serviceSite.attributes.has_covid_treatments = false;
           config.fieldsets.fluTreatmentFields.forEach((field) => {
             if (
-              serviceProvider[`${field}` as keyof ServiceProvider]
+              serviceSiteAttributes[`${field}` as keyof ServiceProvider]
                 ?.toString()
                 .toLowerCase() == "true"
             ) {
-              serviceProver.attributes.has_flu_treatments = true;
+              serviceSite.attributes.has_flu_treatments = true;
             }
           });
           config.fieldsets.covidTreatmentFields.forEach((field) => {
             if (
-              serviceProvider[`${field}` as keyof ServiceProvider]
+              serviceSiteAttributes[`${field}` as keyof ServiceProvider]
                 ?.toString()
                 .toLowerCase() == "true"
             ) {
-              serviceProver.attributes.has_covid_treatments = true;
+              serviceSite.attributes.has_covid_treatments = true;
             }
           });
-          return serviceProver;
+          return serviceSite;
         }),
       );
 
@@ -224,7 +177,7 @@ const Locations = () => {
       setSortedSites(x);
     };
 
-    fetchDistancesAndSort();
+    filterAndSort();
   }, [
     searchPoint,
     selectedSort,
@@ -241,9 +194,10 @@ const Locations = () => {
   // #endregion ------------- Supporting Functions -----------------------------
 
   // #region ------------------- Event Handlers --------------------------------
-  const onButtonClick = () => {
+  const onToggleMobileView = () => {
     setIsMobileListView((isList) => !isList);
   };
+
   const onToggleSelectedLoc = () => {
     if (searchParams.has("facility_id")) {
       searchParams.delete("facility_id");
@@ -278,7 +232,7 @@ const Locations = () => {
           </>
         )}
 
-        <button id="listViewToggle" onClick={onButtonClick}>
+        <button id="listViewToggle" onClick={onToggleMobileView}>
           {isMobileListView ? <MapIcon></MapIcon> : <ListIcon></ListIcon>}
           <span>{isMobileListView ? "Map" : "List"}</span>
         </button>
@@ -301,13 +255,13 @@ const Locations = () => {
           {/* tabindex for scrollable list */}
           <ul tabIndex={0}>
             {sortedSites?.map((site: object) => {
-              const serviceProver: Site = site as Site;
-              const serviceProvider: ServiceProvider = serviceProver.attributes;
+              const serviceSite: SiteType = site as SiteType;
+              const serviceSiteAttributes: ServiceProvider = serviceSite.attributes;
               return (
                 <Card
-                  serviceProvider={serviceProvider}
+                  serviceProvider={serviceSiteAttributes}
                   selected={false}
-                  key={serviceProvider.OBJECTID}
+                  key={serviceSiteAttributes.OBJECTID}
                 ></Card>
               );
             })}
