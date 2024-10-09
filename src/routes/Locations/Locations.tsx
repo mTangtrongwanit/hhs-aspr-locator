@@ -24,7 +24,6 @@ import {
 } from "./Locations.styles";
 import PopoverMultiSelect from "@/components/PopoverMultiSelect";
 import Card from "@/components/Card";
-import { ServiceProvider } from "@/components/Card";
 import LocationsMap from "@/components/LocationsMap";
 import DropdownSingleSelect from "@/components/DropdownSingleSelect";
 import { calculateDistanceBetweenTwoPoints } from "@/utils/geographicUtils";
@@ -131,7 +130,7 @@ const Locations = () => {
           serviceSite.attributes.has_covid_treatments = false;
           config.fieldsets.fluTreatmentFields.forEach((field) => {
             if (
-              serviceSiteAttributes[`${field}` as keyof ServiceProvider]
+              serviceSiteAttributes[`${field}` as keyof SiteAttributesType]
                 ?.toString()
                 .toLowerCase() == "true"
             ) {
@@ -140,7 +139,7 @@ const Locations = () => {
           });
           config.fieldsets.covidTreatmentFields.forEach((field) => {
             if (
-              serviceSiteAttributes[`${field}` as keyof ServiceProvider]
+              serviceSiteAttributes[`${field}` as keyof SiteAttributesType]
                 ?.toString()
                 .toLowerCase() == "true"
             ) {
@@ -268,7 +267,7 @@ const Locations = () => {
           <ul tabIndex={0}>
             {sortedSites?.map((site: object) => {
               const serviceSite: SiteType = site as SiteType;
-              const serviceSiteAttributes: ServiceProvider =
+              const serviceSiteAttributes: SiteAttributesType =
                 serviceSite.attributes;
               return (
                 <Card
