@@ -26,6 +26,8 @@ export interface AppContextType {
   setSelectedMedications: (x: string[]) => void;
   selectedFilters: Filter[];
   setSelectedFilters: (x: Filter[]) => void;
+  featureLayer: __esri.FeatureLayer | null;
+  setFeatureLayer: (x: __esri.FeatureLayer | null) => void;
 }
 
 export interface AppContextProps {

@@ -6,6 +6,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
 import Point from "@arcgis/core/geometry/Point";
+import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region ------------------------ Resources ----------------------------------
@@ -52,7 +53,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   } | null>(null);
   const [locations, setLocations] = useState<__esri.Graphic[] | null>(null);
   const [locationsExtent, setLocationsExtent] = useState<__esri.Extent | null>(
-    null,
+    null
   );
   const [treatmentsIllnesses, setTreatmentsIllnesses] = useState<
     __esri.Graphic[] | null
@@ -71,6 +72,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   const [sharedSiteFacilityID, setSFID] = useState<string | null>(null);
   const [selectedMedications, setSelectedMedications] = useState<string[]>([]);
   const [selectedFilters, setSelectedFilters] = useState<Filter[]>([]);
+  const [featureLayer, setFeatureLayer] = useState<FeatureLayer | null>(null);
 
   // #endregion --------------- Hooks (Resources) ------------------------------
 
@@ -99,7 +101,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     const getLocations = async () => {
       try {
         const locs = await getLocationsData(
-          searchPoint?.point ?? initialSearchPoint.point,
+          searchPoint?.point ?? initialSearchPoint.point
         );
         setLocations(locs?.features.features ?? []);
         setLocationsExtent(locs?.extent ?? null);
@@ -127,6 +129,26 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
       setIllnessesTreatments(illnessesTreatments);
     }
   }, [treatmentsIllnesses]);
+
+  useEffect(() => {
+    if (!featureLayer || !locations || !locationsMapView) return;
+    let where = "";
+    if (locations.length === 0) {
+      // Set the definition expression to return no features
+      featureLayer.definitionExpression = "OBJECTID = -1";
+      return;
+    }
+    const objectIds = locations.map((location) => location.attributes.OBJECTID);
+    if (objectIds.length === 0) {
+      return;
+    }
+    where = `OBJECTID IN (${objectIds.join(",")})`;
+    featureLayer.definitionExpression = where;
+    console.log(
+      "Feature Layer Definition Expression: ",
+      featureLayer.definitionExpression
+    );
+  }, [featureLayer, locations, locationsMapView]);
   // #endregion -------------------- Hooks (Other) --------------------------------
 
   // #region ----------------------- Render ------------------------------------
@@ -159,6 +181,8 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
         setSelectedMedications: setSelectedMedications,
         selectedFilters: selectedFilters,
         setSelectedFilters: setSelectedFilters,
+        setFeatureLayer: setFeatureLayer,
+        featureLayer: featureLayer,
       }}
     >
       {children}
@@ -173,7 +197,7 @@ export const useAppContext = () => {
   if (!appContext) {
     // the below text is for developers not for users. It does not need to be translated
     throw new Error(
-      "Cannot use 'useAppContext' outside of a AppContextProvider",
+      "Cannot use 'useAppContext' outside of a AppContextProvider"
     );
   }
   return appContext;
