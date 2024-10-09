@@ -84,7 +84,7 @@ const Locations = () => {
 
   //get size when element updates
   useResizeObserver(searchContRef.current, (entry) =>
-    setSearchContHeight(entry.contentRect.height),
+    setSearchContHeight(entry.contentRect.height)
   );
 
   useEffect(() => {
@@ -116,12 +116,13 @@ const Locations = () => {
       const updatedSites = await Promise.all(
         locations.map(async (site: object) => {
           const serviceSite: SiteType = site as SiteType;
-          const serviceSiteAttributes: SiteAttributesType = serviceSite.attributes;
+          const serviceSiteAttributes: SiteAttributesType =
+            serviceSite.attributes;
 
           // Fetch distance
           const distance = await calculateDistanceBetweenTwoPoints(
             serviceSiteAttributes,
-            searchPoint,
+            searchPoint
           );
           serviceSiteAttributes.distance = distance ?? 0;
 
@@ -147,7 +148,7 @@ const Locations = () => {
             }
           });
           return serviceSite;
-        }),
+        })
       );
 
       const sortedSites = updatedSites.sort((a, b) => {
@@ -214,6 +215,9 @@ const Locations = () => {
   // #region ----------------------- Render ------------------------------------
   return (
     <StyledLocationsContent className={isMobileListView ? "lView" : "mView"}>
+      {
+        //#region Search Container (secondary header)
+      }
       <StyledSearchContainer ref={searchContRef}>
         <h2 className="visually-hidden">
           {t("Locations.Search Container Screenreader Heading")}
@@ -237,10 +241,18 @@ const Locations = () => {
           <span>{isMobileListView ? "Map" : "List"}</span>
         </button>
       </StyledSearchContainer>
+
+      {
+        //#endregion Search Container (secondary header)
+      }
       <div id="locs">
         <h2 className="visually-hidden">
           {t("Locations.Results Screenreader Heading")}
         </h2>
+
+        {
+          //#region List Container (left column, results displayed as cards)
+        }
         <StyledListContainer>
           <div id="list-title">
             <h3>
@@ -252,11 +264,12 @@ const Locations = () => {
             <PopoverMultiSelect type="filter" />
             <DropdownSingleSelect type={"sort"} />
           </div>
-          {/* tabindex for scrollable list */}
+          {/* tabindex for keyboard-scrollable list */}
           <ul tabIndex={0}>
             {sortedSites?.map((site: object) => {
               const serviceSite: SiteType = site as SiteType;
-              const serviceSiteAttributes: ServiceProvider = serviceSite.attributes;
+              const serviceSiteAttributes: ServiceProvider =
+                serviceSite.attributes;
               return (
                 <Card
                   serviceProvider={serviceSiteAttributes}
@@ -267,6 +280,9 @@ const Locations = () => {
             })}
           </ul>
         </StyledListContainer>
+        {
+          //#endregion List Container (left column, results displayed as cards)
+        }
         <StyledMapContainer
           style={{ "--remainder": `${totalHeight}px` } as React.CSSProperties}
         >
