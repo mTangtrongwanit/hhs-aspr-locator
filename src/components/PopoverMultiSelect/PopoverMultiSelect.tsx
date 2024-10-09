@@ -66,7 +66,6 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region -------------------- Hooks (State) --------------------------------
-  // TODO: This will come from the single select component based on the selected illness
   const [treatments, setTreatments] = useState<string[]>([]);
   const [unfilteredLocations, setUnfilteredLocations] = useState<
     __esri.Graphic[] | null

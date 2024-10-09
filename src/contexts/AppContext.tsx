@@ -9,10 +9,7 @@ import Point from "@arcgis/core/geometry/Point";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region ------------------------ Resources ----------------------------------
-import {
-  AppContextType,
-  AppContextProps
-} from "./AppContext.types.tsx";
+import { AppContextType, AppContextProps } from "./AppContext.types.tsx";
 import {
   getLocationsData,
   getTreatmentsIllnessesData,
@@ -59,9 +56,9 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   );
 
   //Data from Illnesses and Treatments table
-  const [treatmentIllnessData, setTIData] = useState<
-    __esri.Graphic[] | null
-  >(null);
+  const [treatmentIllnessData, setTIData] = useState<__esri.Graphic[] | null>(
+    null,
+  );
 
   //uses above to produce a combination of the illnesses and treatments together into a data dictionary that is workable (flu: all flu treatments, covid: all covid treatments)
   const [treatmentIllnessLookup, setTILookup] = useState<{

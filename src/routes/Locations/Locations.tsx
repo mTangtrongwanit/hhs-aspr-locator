@@ -83,7 +83,7 @@ const Locations = () => {
 
   //get size when element updates
   useResizeObserver(searchContRef.current, (entry) =>
-    setSearchContHeight(entry.contentRect.height)
+    setSearchContHeight(entry.contentRect.height),
   );
 
   useEffect(() => {
@@ -121,7 +121,7 @@ const Locations = () => {
           // Fetch distance
           const distance = await calculateDistanceBetweenTwoPoints(
             serviceSiteAttributes,
-            searchPoint
+            searchPoint,
           );
           serviceSiteAttributes.distance = distance ?? 0;
 
@@ -147,7 +147,7 @@ const Locations = () => {
             }
           });
           return serviceSite;
-        })
+        }),
       );
 
       const sortedSites = updatedSites.sort((a, b) => {
