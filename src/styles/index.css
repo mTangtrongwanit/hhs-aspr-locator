@@ -142,6 +142,9 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
   animation-duration: 400ms;
   animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
+
+  position: relative;
+  z-index: 2;
 }
 
 .PopoverMenuContent:focus {

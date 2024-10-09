@@ -41,7 +41,7 @@ export interface ServiceProvider {
   url_appointment?: string;
   home_delivery?: string;
   is_icatt_site?: string;
-  has_usg_product?: string;
+  has_USG_product?: string;
   has_commercial_product?: string;
   has_paxlovid?: string;
   has_commercial_paxlovid?: string;

@@ -106,7 +106,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
     Object.keys(queryParams).forEach((key) => {
       url.searchParams.append(key, queryParams[key]);
     });
-    navigator.clipboard.writeText(url.toString());
+    navigator.clipboard.writeText(url.href);
   };
 
   /**
@@ -116,6 +116,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
    * @returns {void}
    */
   const handleCopyToClipboard = () => {
+    //TODO: add one more param here for the searched name s.t. it can show in the Search bar.
     copyToClipboard("/locations/", {
       facility_id: serviceProvider.facility_id,
       geopoint: serviceProvider.geopoint,
@@ -163,7 +164,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
         <StyledIconField className="addr">
           {serviceProvider.public_phone && <PhoneIcon></PhoneIcon>}
           {serviceProvider.public_phone && (
-            <a href={`tel:serviceProvider.public_phone`}>
+            <a href={`tel:${serviceProvider.public_phone}`}>
               {serviceProvider.public_phone}
             </a>
           )}
@@ -176,7 +177,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
             <p>{t("Card.pap")}</p>
           </Tooltip>
         )}
-        {serviceProvider.has_usg_product?.toUpperCase() === "TRUE" && (
+        {serviceProvider.has_USG_product?.toUpperCase() === "TRUE" && (
           <Tooltip icon={<UsgProcuredIcon />}>
             <p>{t("Card.usgProduct")}</p>
           </Tooltip>

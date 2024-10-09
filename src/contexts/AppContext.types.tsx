@@ -7,18 +7,32 @@ export interface AppContextType {
   setSearchPoint: (x: { name: string; point: __esri.Point } | null) => void;
   locationsMapView: __esri.MapView | null;
   setLocationsMapView: (x: __esri.MapView) => void;
+  // TODO: restore logic that scrolls to this card
   selectedTreatmentSite: __esri.Graphic | null;
   setSelectedTreatmentSite: (x: __esri.Graphic) => void;
-  locations: __esri.Graphic[] | null;
-  locationsExtent: __esri.Extent | null;
   illnessesTreatments: { [key: string]: string[] };
+  treatmentsIllnesses: __esri.Graphic[] | null;
+  locations: __esri.Graphic[] | null;
+  setLocations: (x: __esri.Graphic[] | null) => void;
+  locationsExtent: __esri.Extent | null;
   setIllnessesTreatments: (x: { [key: string]: string[] }) => void;
   selectedSort: { label: string; value: string };
   setSelectedSort: (x: { label: string; value: string }) => void;
   selectedIllness: { label: string; value: string };
   setSelectedIllness: (x: { label: string; value: string }) => void;
+  sharedSiteFacilityID: string | null;
+  setSFID: (x: string | null) => void;
+  selectedMedications: string[];
+  setSelectedMedications: (x: string[]) => void;
+  selectedFilters: Filter[];
+  setSelectedFilters: (x: Filter[]) => void;
 }
 
 export interface AppContextProps {
   children?: React.ReactNode;
+}
+
+export interface Filter {
+  name: string;
+  label: string;
 }
