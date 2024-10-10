@@ -95,7 +95,6 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
 
   /** Handle the filter change */
   const handleFilterChange = (filter: Filter) => {
-    //@ts-expect-error todo
     setSelectedFilters((prev: Filter[]) =>
       prev.includes(filter)
         ? prev.filter((item) => item !== filter)

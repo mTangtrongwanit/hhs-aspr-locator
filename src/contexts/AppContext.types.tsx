@@ -1,4 +1,5 @@
 import { FilterType } from "@/utils";
+import { Dispatch, SetStateAction } from "react";
 
 export interface AppContextType {
   bannerHeight: number;
@@ -26,8 +27,14 @@ export interface AppContextType {
   setSFID: (x: string | null) => void;
   selectedMedications: string[];
   setSelectedMedications: (x: string[]) => void;
+  setSelectedFilterTypes: (x: FilterType[]) => void;
   selectedFilters: FilterType[];
-  setSelectedFilters: (x: FilterType[]) => void;
+  featureLayer: __esri.FeatureLayer | null;
+  setFeatureLayer: (x: __esri.FeatureLayer | null) => void;
+  // sortedSites setSortedSites
+  setSelectedFilters: Dispatch<SetStateAction<FilterType[]>>;
+  sortedSites: __esri.Graphic[];
+  setSortedSites: (x: __esri.Graphic[]) => void;
 }
 
 export interface AppContextProps {

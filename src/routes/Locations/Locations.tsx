@@ -56,6 +56,8 @@ const Locations = () => {
     locations,
     setSFID,
     sharedSiteFacilityID,
+    sortedSites,
+    setSortedSites,
   } = useAppContext();
 
   const searchContRef = useRef<HTMLDivElement>(null);
@@ -66,7 +68,7 @@ const Locations = () => {
   const [searchContHeight, setSearchContHeight] = useState<number>(0);
   const [totalHeight, setTotalHeight] = useState<number>(0);
   const [isMobileListView, setIsMobileListView] = useState<boolean>(true);
-  const [sortedSites, setSortedSites] = useState<SiteType[]>([]);
+  // const [sortedSites, setSortedSites] = useState<Site[]>([]);
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
@@ -83,7 +85,7 @@ const Locations = () => {
 
   //get size when element updates
   useResizeObserver(searchContRef.current, (entry) =>
-    setSearchContHeight(entry.contentRect.height),
+    setSearchContHeight(entry.contentRect.height)
   );
 
   useEffect(() => {
@@ -173,7 +175,7 @@ const Locations = () => {
           return site.attributes.has_covid_treatments == true;
         }
         return false;
-      });
+      }) as __esri.Graphic[];
       setSortedSites(x);
     };
 
@@ -184,6 +186,7 @@ const Locations = () => {
     selectedIllness,
     locations,
     sharedSiteFacilityID,
+    setSortedSites,
   ]);
   // #endregion ----------------- Hooks (Other) --------------------------------
 
@@ -218,12 +221,12 @@ const Locations = () => {
         //#region Search Container (secondary header)
       }
       <StyledSearchContainer ref={searchContRef}>
-        <h2 className="visually-hidden">
+        <h2 className='visually-hidden'>
           {t("Locations.Search Container Screenreader Heading")}
         </h2>
         {sharedSiteFacilityID !== null ? (
           <>
-            <StyledButton as="button" onClick={onToggleSelectedLoc}>
+            <StyledButton as='button' onClick={onToggleSelectedLoc}>
               Search for Other Locations
             </StyledButton>
           </>
@@ -253,14 +256,14 @@ const Locations = () => {
           //#region List Container (left column, results displayed as cards)
         }
         <StyledListContainer>
-          <div id="list-title">
+          <div id='list-title'>
             <h3>
               <Trans
-                i18nKey="Locations.List Heading"
-                count={sortedSites.length}
+                i18nKey='Locations.List Heading'
+                count={sortedSites?.length}
               ></Trans>
             </h3>
-            <PopoverMultiSelect type="filter" />
+            <PopoverMultiSelect type='filter' />
             <DropdownSingleSelect type={"sort"} />
           </div>
           {/* tabindex for keyboard-scrollable list */}
@@ -285,7 +288,7 @@ const Locations = () => {
         <StyledMapContainer
           style={{ "--remainder": `${totalHeight}px` } as React.CSSProperties}
         >
-          <h3 className="visually-hidden">
+          <h3 className='visually-hidden'>
             {t("Locations.Map Screenreader Heading")}
           </h3>
           <LocationsMap />
