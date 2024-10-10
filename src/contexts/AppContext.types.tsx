@@ -27,15 +27,11 @@ export interface AppContextType {
   setSFID: (x: string | null) => void;
   selectedMedications: string[];
   setSelectedMedications: (x: string[]) => void;
-  selectedFilters: FilterType[];
   setSelectedFilterTypes: (x: FilterType[]) => void;
   selectedFilters: FilterType[];
-  setSelectedFilters: (x: FilterType[]) => void;
   featureLayer: __esri.FeatureLayer | null;
   setFeatureLayer: (x: __esri.FeatureLayer | null) => void;
   // sortedSites setSortedSites
-  sortedSites: __esri.Graphic[] | null;
-  setSortedSites: (x: __esri.Graphic[] | null) => void;
   setSelectedFilters: Dispatch<SetStateAction<FilterType[]>>;
   sortedSites: __esri.Graphic[];
   setSortedSites: (x: __esri.Graphic[]) => void;
