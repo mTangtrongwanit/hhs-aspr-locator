@@ -99,13 +99,21 @@ const Card = ({ selected, serviceProvider }: Props) => {
    * @returns {void}
    */
   const copyToClipboard = (
-    path: string,
     queryParams: Record<string, string>,
   ) => {
-    const url = new URL(`${window.location.origin}${path}`);
-    Object.keys(queryParams).forEach((key) => {
-      url.searchParams.append(key, queryParams[key]);
-    });
+    const url = new URL(`${window.location.origin}${window.location.pathname}`);
+    let hash = window.location.hash;
+    // Append query parameters manually to the hash, otherwise they'll prepend it, breaking the url
+    const queryString = new URLSearchParams(queryParams).toString();
+    if (hash.includes('?')) {
+      // if not the first query parameter, add an ampersand
+      hash += `&${queryString}`;
+    } else {
+      // if the first query parameter, add a question mark
+      hash += `?${queryString}`;
+    }
+    // Set the modified hash back to the URL
+    url.hash = hash;
     navigator.clipboard.writeText(url.href);
   };
 
@@ -117,7 +125,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
    */
   const handleCopyToClipboard = () => {
     //TODO: add one more param here for the searched name s.t. it can show in the Search bar.
-    copyToClipboard("/locations/", {
+    copyToClipboard({
       facility_id: serviceProvider.facility_id,
       geopoint: serviceProvider.geopoint,
     });

@@ -61,6 +61,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   const [illnessesTreatments, setIllnessesTreatments] = useState<{
     [key: string]: string[];
   }>({});
+
   const [selectedSort, setSelectedSort] = useState({
     label: "Distance",
     value: "distance",
