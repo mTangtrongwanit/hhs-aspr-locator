@@ -141,7 +141,7 @@ export const StyledFilterButtonContainer = styled.div`
 
 export const StyledOutlineButton = styled.button`
   display: flex;
-  padding: 10px 16px;
+  padding: calc(var(--unit) * 0.75) calc(var(--unit) * 0.75);
   font-size: var(--text-0);
   font-weight: 600;
   line-height: 125%;
@@ -159,7 +159,7 @@ export const StyledOutlineButton = styled.button`
 
 export const StyledPrimaryButton = styled.button`
   display: flex;
-  padding: 10px 12px;
+  padding: calc(var(--unit) * 0.75) calc(var(--unit) * 0.75);
   font-size: var(--text-0);
   font-weight: 600;
   line-height: 125%;

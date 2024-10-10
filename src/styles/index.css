@@ -247,7 +247,7 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
   padding: calc(var(--unit) * 0.75) calc(var(--unit) * 0.75);
   gap: calc(var(--unit) * 0.25);
   font-size: var(--text-0);
-  font-weight: 600;
+  font-weight: 600 !important;
   line-height: 125%;
   color: white;
   border-radius: var(--radius);
@@ -265,7 +265,7 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
   display: flex;
   padding: calc(var(--unit) * 0.75) calc(var(--unit) * 0.75);
   font-size: var(--text-0);
-  font-weight: 600;
+  font-weight: 600 !important;
   line-height: 125%;
   color: white;
   border-radius: var(--radius);
@@ -283,7 +283,7 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
   display: flex;
   padding: calc(var(--unit) * 0.75) calc(var(--unit) * 0.75);
   font-size: var(--text-0);
-  font-weight: 600;
+  font-weight: 600 !important;
   line-height: 125%;
   color: var(--brand);
   border-radius: var(--radius);
