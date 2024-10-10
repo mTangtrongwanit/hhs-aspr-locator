@@ -107,8 +107,8 @@ const Locations = () => {
     locations,
     setSFID,
     sharedSiteFacilityID,
-    sortedSites, 
-    setSortedSites
+    sortedSites,
+    setSortedSites,
   } = useAppContext();
 
   const searchContRef = useRef<HTMLDivElement>(null);
@@ -223,11 +223,8 @@ const Locations = () => {
         }
         return false;
       });
-      // SHAWN TODO: use xObjectIds to filter the locations?
-      const xObjectIds = x.map((site) => site.attributes.OBJECTID);
       setSortedSites(x);
     };
-    console.log('myhook?')
     fetchDistancesAndSort();
   }, [
     searchPoint,
@@ -235,6 +232,7 @@ const Locations = () => {
     selectedIllness,
     locations,
     sharedSiteFacilityID,
+    setSortedSites,
   ]);
   // #endregion ----------------- Hooks (Other) --------------------------------
 
