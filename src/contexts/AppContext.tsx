@@ -6,18 +6,16 @@ import { createContext, useContext, useState, useEffect } from "react";
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
 import Point from "@arcgis/core/geometry/Point";
+import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region ------------------------ Resources ----------------------------------
-import {
-  AppContextType,
-  AppContextProps,
-  Filter,
-} from "./AppContext.types.tsx";
+import { AppContextType, AppContextProps } from "./AppContext.types.tsx";
 import {
   getLocationsData,
   getTreatmentsIllnessesData,
 } from "@/utils/geographicUtils.ts";
+import { FilterType } from "@/utils/sharedTypes.ts";
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 
@@ -45,34 +43,51 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
       latitude: 38.892062100000004,
     }),
   };
-
+  // Dynamically updated search point
   const [searchPoint, setSearchPoint] = useState<{
     name: string;
     point: __esri.Point;
   } | null>(null);
+
+  //Dynamically updated list of result features
   const [locations, setLocations] = useState<__esri.Graphic[] | null>(null);
+  const [sortedSites, setSortedSites] = useState<__esri.Graphic[]>([]);
+
   const [locationsExtent, setLocationsExtent] = useState<__esri.Extent | null>(
+    null
+  );
+
+  //Data from Illnesses and Treatments table
+  const [treatmentIllnessData, setTIData] = useState<__esri.Graphic[] | null>(
     null,
   );
-  const [treatmentsIllnesses, setTreatmentsIllnesses] = useState<
-    __esri.Graphic[] | null
-  >(null);
-  const [illnessesTreatments, setIllnessesTreatments] = useState<{
+
+  //uses above to produce a combination of the illnesses and treatments together into a data dictionary that is workable (flu: all flu treatments, covid: all covid treatments)
+  const [treatmentIllnessLookup, setTILookup] = useState<{
     [key: string]: string[];
   }>({});
 
-  const [selectedSort, setSelectedSort] = useState({
-    label: "Distance",
-    value: "distance",
-  });
+  //Valid if url params contain a facility ID (aka, output of the 'Copy Location Link' button.)
+  const [sharedSiteFacilityID, setSFID] = useState<string | null>(null);
+
+  /**
+   * User-selectable parameters that affect what is included in the displayed results of a spatial search.
+   */
+
+  //Required input, does not default to a valid option
   const [selectedIllness, setSelectedIllness] = useState({
     label: "Illness",
     value: "",
   });
-  const [sharedSiteFacilityID, setSFID] = useState<string | null>(null);
-  const [selectedMedications, setSelectedMedications] = useState<string[]>([]);
-  const [selectedFilters, setSelectedFilters] = useState<Filter[]>([]);
 
+  //Optional inputs
+  const [selectedMedications, setSelectedMedications] = useState<string[]>([]);
+  const [selectedFilters, setSelectedFilters] = useState<FilterType[]>([]);
+  const [featureLayer, setFeatureLayer] = useState<FeatureLayer | null>(null);
+  const [selectedSort, setSelectedSort] = useState({
+    label: "Distance",
+    value: "distance",
+  });
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region -------------------- Hooks (State) --------------------------------
@@ -85,7 +100,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   useEffect(() => {
     const fetchTreatmentsIllnesses = async () => {
       const treatmentIllnesses = await getTreatmentsIllnessesData();
-      setTreatmentsIllnesses(treatmentIllnesses ?? []);
+      setTIData(treatmentIllnesses ?? []);
     };
     fetchTreatmentsIllnesses();
   }, []);
@@ -100,7 +115,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     const getLocations = async () => {
       try {
         const locs = await getLocationsData(
-          searchPoint?.point ?? initialSearchPoint.point,
+          searchPoint?.point ?? initialSearchPoint.point
         );
         setLocations(locs?.features.features ?? []);
         setLocationsExtent(locs?.extent ?? null);
@@ -111,23 +126,45 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     getLocations();
   }, [searchPoint]);
 
-  /** Set illnessesTreatments dictionary when treatmentsIllness data is set */
+  /** Set treatmentIllnessLookup dictionary when treatmentsIllness data is set */
   useEffect(() => {
-    if (treatmentsIllnesses) {
+    if (treatmentIllnessData) {
       // Combine treatments and illnesses into a dictionary
-      const illnessesTreatments: { [key: string]: string[] } = {};
-      treatmentsIllnesses.forEach((treatment) => {
+      const treatmentIllnessLookup: { [key: string]: string[] } = {};
+      treatmentIllnessData.forEach((treatment) => {
         const illness = treatment.attributes.illness;
         const treatmentName = treatment.attributes.display_name;
-        if (illnessesTreatments[illness as string]) {
-          illnessesTreatments[illness].push(treatmentName);
+        if (treatmentIllnessLookup[illness as string]) {
+          treatmentIllnessLookup[illness].push(treatmentName);
         } else {
-          illnessesTreatments[illness] = [treatmentName];
+          treatmentIllnessLookup[illness] = [treatmentName];
         }
       });
-      setIllnessesTreatments(illnessesTreatments);
+      setTILookup(treatmentIllnessLookup);
     }
-  }, [treatmentsIllnesses]);
+  }, [treatmentIllnessData]);
+
+  useEffect(() => {
+    if (!featureLayer || !locations || !locationsMapView) return;
+    
+    let where = "";
+    if (sortedSites.length === 0) {
+      // Set the definition expression to return no features
+      featureLayer.definitionExpression = "OBJECTID = -1";
+      return;
+    }
+    const objectIds = sortedSites.map((location) => location.attributes.OBJECTID);
+    if (objectIds.length === 0) {
+      return;
+    }
+    console.log('map filtering' , objectIds.length)
+    where = `OBJECTID IN (${objectIds.join(",")})`;
+    featureLayer.definitionExpression = where;
+    // console.log(
+    //   "Feature Layer Definition Expression: ",
+    //   featureLayer.definitionExpression
+    // );
+  }, [featureLayer, locations, locationsMapView, sortedSites]);
   // #endregion -------------------- Hooks (Other) --------------------------------
 
   // #region ----------------------- Render ------------------------------------
@@ -144,12 +181,12 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
         setLocationsMapView: setLocationsMapView,
         selectedTreatmentSite: selectedTreatmentSite,
         setSelectedTreatmentSite: setSelectedTreatmentSite,
-        illnessesTreatments: illnessesTreatments,
-        treatmentsIllnesses: treatmentsIllnesses,
+        treatmentIllnessLookup: treatmentIllnessLookup,
+        treatmentIllnessData: treatmentIllnessData,
         locations: locations,
         setLocations: setLocations,
         locationsExtent: locationsExtent,
-        setIllnessesTreatments: setIllnessesTreatments,
+        setTILookup: setTILookup,
         selectedSort: selectedSort,
         setSelectedSort: setSelectedSort,
         selectedIllness: selectedIllness,
@@ -160,7 +197,11 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
         setSelectedMedications: setSelectedMedications,
         selectedFilters: selectedFilters,
         setSelectedFilters: setSelectedFilters,
-      }}
+        setFeatureLayer: setFeatureLayer,
+        featureLayer: featureLayer,
+        sortedSites, 
+        setSortedSites
+      } as AppContextType}
     >
       {children}
     </AppContext.Provider>
@@ -174,7 +215,7 @@ export const useAppContext = () => {
   if (!appContext) {
     // the below text is for developers not for users. It does not need to be translated
     throw new Error(
-      "Cannot use 'useAppContext' outside of a AppContextProvider",
+      "Cannot use 'useAppContext' outside of a AppContextProvider"
     );
   }
   return appContext;

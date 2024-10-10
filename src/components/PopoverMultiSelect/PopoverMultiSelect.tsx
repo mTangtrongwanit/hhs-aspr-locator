@@ -53,10 +53,10 @@ interface Filter {
 const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const {
-    illnessesTreatments,
+    treatmentIllnessLookup,
     locations,
     setLocations,
-    treatmentsIllnesses,
+    treatmentIllnessData,
     selectedIllness,
     selectedMedications,
     setSelectedMedications,
@@ -66,7 +66,6 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region -------------------- Hooks (State) --------------------------------
-  // TODO: This will come from the single select component based on the selected illness
   const [treatments, setTreatments] = useState<string[]>([]);
   const [unfilteredLocations, setUnfilteredLocations] = useState<
     __esri.Graphic[] | null
@@ -96,7 +95,6 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
 
   /** Handle the filter change */
   const handleFilterChange = (filter: Filter) => {
-    //@ts-expect-error todo
     setSelectedFilters((prev: Filter[]) =>
       prev.includes(filter)
         ? prev.filter((item) => item !== filter)
@@ -107,8 +105,8 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
   /** Handle the apply click */
   const handleApplyClick = () => {
     if (
-      (selectedMedications.length > 0 && treatmentsIllnesses) ||
-      (selectedFilters.length > 0 && treatmentsIllnesses)
+      (selectedMedications.length > 0 && treatmentIllnessData) ||
+      (selectedFilters.length > 0 && treatmentIllnessData)
     ) {
       setUnfilteredLocations(locations);
 
@@ -143,7 +141,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
         // Filter based on selected medications
         if (match && selectedMedications.length > 0) {
           const medicationMatch = selectedMedications.every((medication) => {
-            const treatment = treatmentsIllnesses.find(
+            const treatment = treatmentIllnessData.find(
               (treatment) => treatment.attributes.display_name === medication,
             );
             if (!treatment) return false;
@@ -256,10 +254,10 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
   // #region ----------------------- Effects -----------------------------------
   /** When the illnessesTreatements object is not empty, set the treatments based off the selected illness. */
   useEffect(() => {
-    if (!(JSON.stringify(illnessesTreatments) === "{}")) {
-      setTreatments(illnessesTreatments[selectedIllness.value]);
+    if (!(JSON.stringify(treatmentIllnessLookup) === "{}")) {
+      setTreatments(treatmentIllnessLookup[selectedIllness.value]);
     }
-  }, [illnessesTreatments, selectedIllness]);
+  }, [treatmentIllnessLookup, selectedIllness]);
   // #endregion -------------------- Effects -----------------------------------
 
   // #region ----------------------- Render ------------------------------------

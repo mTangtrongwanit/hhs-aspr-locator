@@ -38,7 +38,7 @@ const DropdownSingleSelect = ({ type }: DropdownSingleSelectProps) => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const { i18n } = useTranslation();
   const {
-    illnessesTreatments,
+    treatmentIllnessLookup,
     selectedSort,
     setSelectedSort,
     selectedIllness,
@@ -55,14 +55,14 @@ const DropdownSingleSelect = ({ type }: DropdownSingleSelectProps) => {
   // #endregion -------------- Hooks (Memoization) -----------------------------
 
   // #region -------------------- Hooks (Other) --------------------------------
-  // Get the illness options from illnessesTreatments
+  // Get the illness options from treatmentIllnessLookup
   useEffect(() => {
-    if (!(JSON.stringify(illnessesTreatments) === "{}")) {
-      console.log(illnessesTreatments);
-      const illnesses = Object.keys(illnessesTreatments);
+    if (!(JSON.stringify(treatmentIllnessLookup) === "{}")) {
+      console.log(treatmentIllnessLookup);
+      const illnesses = Object.keys(treatmentIllnessLookup);
       setIllnesses(illnesses);
     }
-  }, [illnessesTreatments]);
+  }, [treatmentIllnessLookup]);
   // #endregion ----------------- Hooks (Other) --------------------------------
 
   // #region --------- Short-Circuit (Empty/Invalid State) ---------------------

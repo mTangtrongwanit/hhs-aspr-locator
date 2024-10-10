@@ -1,3 +1,6 @@
+import { FilterType } from "@/utils";
+import { Dispatch, SetStateAction } from "react";
+
 export interface AppContextType {
   bannerHeight: number;
   setBannerHeight: (x: number) => void;
@@ -10,12 +13,12 @@ export interface AppContextType {
   // TODO: restore logic that scrolls to this card
   selectedTreatmentSite: __esri.Graphic | null;
   setSelectedTreatmentSite: (x: __esri.Graphic) => void;
-  illnessesTreatments: { [key: string]: string[] };
-  treatmentsIllnesses: __esri.Graphic[] | null;
+  treatmentIllnessLookup: { [key: string]: string[] };
+  treatmentIllnessData: __esri.Graphic[] | null;
   locations: __esri.Graphic[] | null;
   setLocations: (x: __esri.Graphic[] | null) => void;
   locationsExtent: __esri.Extent | null;
-  setIllnessesTreatments: (x: { [key: string]: string[] }) => void;
+  setTILookup: (x: { [key: string]: string[] }) => void;
   selectedSort: { label: string; value: string };
   setSelectedSort: (x: { label: string; value: string }) => void;
   selectedIllness: { label: string; value: string };
@@ -24,15 +27,16 @@ export interface AppContextType {
   setSFID: (x: string | null) => void;
   selectedMedications: string[];
   setSelectedMedications: (x: string[]) => void;
-  selectedFilters: Filter[];
-  setSelectedFilters: (x: Filter[]) => void;
+  setSelectedFilterTypes: (x: FilterType[]) => void;
+  selectedFilters: FilterType[];
+  featureLayer: __esri.FeatureLayer | null;
+  setFeatureLayer: (x: __esri.FeatureLayer | null) => void;
+  // sortedSites setSortedSites
+  setSelectedFilters: Dispatch<SetStateAction<FilterType[]>>;
+  sortedSites: __esri.Graphic[];
+  setSortedSites: (x: __esri.Graphic[]) => void;
 }
 
 export interface AppContextProps {
   children?: React.ReactNode;
-}
-
-export interface Filter {
-  name: string;
-  label: string;
 }
