@@ -94,14 +94,14 @@ export const StyledTooltipContainer = styled.div`
   display: flex;
   gap: var(--unit);
   flex-wrap: wrap;
-  row-gap: 4px;
+  row-gap: calc(var(--unit) * 0.25);
 `;
 export const StyledRow = styled.div`
   // --- Layout ---
   display: flex;
   gap: calc(var(--unit) / 2);
   flex-wrap: wrap;
-  row-gap: 4px;
+  row-gap: calc(var(--unit) / 2);
 
   // --- Decorative ---
   color: var(--text);

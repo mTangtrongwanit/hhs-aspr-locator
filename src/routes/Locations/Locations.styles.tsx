@@ -155,6 +155,8 @@ export const StyledListTitleContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: calc(var(--unit)/2);
 `;
 
 export const StyledListOptionsContainer = styled.div`
