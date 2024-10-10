@@ -177,8 +177,8 @@ export const StyledCard = styled.li<{
     position: relative;
     z-index: 3;
     // --- Decorative ---
-    color: var(--text);
-    background-color: white;
+    color: var(--light);
+    background-color: var(--text);
     box-shadow:
       hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
       hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
@@ -190,7 +190,7 @@ export const StyledCard = styled.li<{
 
   .TooltipArrow {
     // --- Decorative ---
-    fill: white;
+    fill: var(--text);
   }
 
   .icon-light {

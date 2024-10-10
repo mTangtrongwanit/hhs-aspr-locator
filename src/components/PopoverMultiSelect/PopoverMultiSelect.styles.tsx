@@ -59,6 +59,12 @@ export const StyledPopoverMultiSelect = styled.section`
     height: var(--search-container-item-height);
   }
 
+  .PopOverFilterCount {
+    display: flex;
+    align-items: center;
+    margin-left: calc(var(--unit) * 0.25);
+  }
+
   @keyframes slideRightAndFade {
     from {
       opacity: 0;
@@ -115,7 +121,7 @@ export const PopoverCheckBoxContainer = styled.div`
 export const PopoverCheckBoxRow = styled.div`
   display: flex;
   padding: 12px 16px;
-  align-items: "center";
+  align-items: center;
   background: var(--light);
   gap: 16px;
 `;
@@ -141,7 +147,7 @@ export const StyledOutlineButton = styled.button`
   line-height: 125%;
   color: var(--brand);
   border: 1px solid var(--brand);
-  border-radius: 4px;
+  border-radius: var(--radius);
   background: white;
 
   &:hover {
@@ -159,7 +165,7 @@ export const StyledPrimaryButton = styled.button`
   line-height: 125%;
   color: white;
   border: 1px solid var(--brand);
-  border-radius: 4px;
+  border-radius: var(--radius);
   background: var(--brand);
 
   &:hover {

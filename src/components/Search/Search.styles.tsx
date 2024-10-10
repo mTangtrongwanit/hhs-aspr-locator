@@ -44,11 +44,11 @@ export const StyledSearch = styled.div`
   /* min-height: 42px; */
   width: auto;
   max-width: 20rem;
-  padding: 8px 4px;
+  padding: 8px 8px;
   background: white;
   color: var(--brand);
-  border-radius: 4px;
-  height: var(--search-container-item-height);
+  border-radius: var(--radius);
+  height: auto;
 `;
 // #endregion ------------ Parent Component + Variants -------------------------
 // #endregion ================ EXPORTED COMPONENTS =============================

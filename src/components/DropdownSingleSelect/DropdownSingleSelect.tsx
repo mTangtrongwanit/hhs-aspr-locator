@@ -113,7 +113,7 @@ const DropdownSingleSelect = ({ type }: DropdownSingleSelectProps) => {
   return (
     <StyledDropdownSelect>
       <DropdownMenu.Root>
-        <DropdownMenu.Trigger className="DropDownButton">
+        <DropdownMenu.Trigger className="hhs-primary-button">
           {selectedValue} <ChevronDownIcon />
         </DropdownMenu.Trigger>
         <DropdownMenu.Content className="DropdownMenuContent" sideOffset={5}>

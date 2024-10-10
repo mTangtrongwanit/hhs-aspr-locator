@@ -76,10 +76,10 @@ const Landing = () => {
           <Search />
           <DropdownSingleSelect type={"illness"} />
         </StyledRow>
-        <Link to="/locations">
-          <StyledViewLocsButton>
+        <Link to="/locations" style={{textDecoration: "none"}}>
+          <button className="hhs-secondary-button">
             {t("Landing.View Locations Button Label")}
-          </StyledViewLocsButton>
+          </button>
         </Link>
       </StyledSearchContainer>
       <StyledDecorativeImage></StyledDecorativeImage>

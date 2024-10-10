@@ -23,6 +23,7 @@ import mobileLogoPath from "@/assets/images/ASPR-logo-mobile.jpg";
 import DropdownSingleSelect from "@/components/DropdownSingleSelect";
 import {
   StyledHeader,
+  StyledHeaderLink,
   StyledHeaderLogo,
   StyledAppTitle,
   StyledHeaderContentContainer,
@@ -91,13 +92,15 @@ const HeaderComponent = () => {
       </aside>
       <StyledHeader ref={headerRef}>
         <StyledHeaderContentContainer>
-          <StyledHeaderLogo
-            src={webLogoPath}
-            srcSet={`${mobileLogoPath} 274w, ${webLogoPath} 639w`}
-            sizes="(max-width: 1100px) 117px,
-            296px"
-            alt="Administration for Strategic Preparedness and Response Logo"
-          />
+          <StyledHeaderLink to="/">
+            <StyledHeaderLogo
+              src={webLogoPath}
+              srcSet={`${mobileLogoPath} 274w, ${webLogoPath} 639w`}
+              sizes="(max-width: 1100px) 117px,
+              296px"
+              alt="Administration for Strategic Preparedness and Response Logo"
+            />
+            </StyledHeaderLink>
         </StyledHeaderContentContainer>
         <StyledHeaderContentContainer>
           <StyledAppTitle>{t("Header.Title")}</StyledAppTitle>
