@@ -37,18 +37,26 @@ import styled from "styled-components";
 
 // #region --------------- Parent Component + Variants -------------------------
 export const StyledSearch = styled.div`
-  flex: 1 0 auto;
-  display: flex;
-  align-items: center;
-  border: var(--border) solid var(--brand);
-  /* min-height: 42px; */
+  //more relevant styles in index.css
+
+  // --- Sizing / Box-Model ---
   width: auto;
   max-width: 20rem;
   padding: 8px 4px;
+  height: var(--search-container-item-height);
+
+  // --- Position ---
+  // --- Layout ---
+  flex: 1 0 auto;
+  display: flex;
+  align-items: center;
+  // --- Decorative ---
+  border: var(--border) solid var(--brand);
   background: white;
   color: var(--brand);
   border-radius: 4px;
-  height: var(--search-container-item-height);
+  // --- States ---
+  // --- Children ---
 `;
 // #endregion ------------ Parent Component + Variants -------------------------
 // #endregion ================ EXPORTED COMPONENTS =============================
