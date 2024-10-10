@@ -266,7 +266,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
             rel="noopener noreferrer"
             aria-label={t("Card.directionsToLocation")}
           >
-            <span>{t("Card.openInMaps")}</span>
+            <span style={{fontWeight: "600"}}>{t("Card.openInMaps")}</span>
           </a>
         )}
       </StyledRow>
