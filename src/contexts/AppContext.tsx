@@ -51,7 +51,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
 
   //Dynamically updated list of result features
   const [locations, setLocations] = useState<__esri.Graphic[] | null>(null);
-  const [sortedSites, setSortedSites] = useState<any[]>([]);
+  const [sortedSites, setSortedSites] = useState<__esri.Graphic[]>([]);
 
   const [locationsExtent, setLocationsExtent] = useState<__esri.Extent | null>(
     null

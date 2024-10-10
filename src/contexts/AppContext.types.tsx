@@ -26,13 +26,12 @@ export interface AppContextType {
   setSFID: (x: string | null) => void;
   selectedMedications: string[];
   setSelectedMedications: (x: string[]) => void;
-  selectedFilters: Filter[];
-  setSelectedFilters: (x: Filter[]) => void;
+  selectedFilters: FilterType[];
+  setSelectedFilters: (x: FilterType[]) => void;
   featureLayer: __esri.FeatureLayer | null;
   setFeatureLayer: (x: __esri.FeatureLayer | null) => void;
-  // sortedSites setSortedSites
-  sortedSites: any[];
-  setSortedSites: (x: any[]) => void;
+  sortedSites: __esri.Graphic[];
+  setSortedSites: (x: __esri.Graphic[]) => void;
 }
 
 export interface AppContextProps {
