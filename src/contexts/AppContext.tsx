@@ -201,7 +201,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
         featureLayer: featureLayer,
         sortedSites, 
         setSortedSites
-      }}
+      } as AppContextType}
     >
       {children}
     </AppContext.Provider>

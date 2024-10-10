@@ -175,7 +175,7 @@ const Locations = () => {
           return site.attributes.has_covid_treatments == true;
         }
         return false;
-      });
+      }) as __esri.Graphic[];
       setSortedSites(x);
     };
 
@@ -260,7 +260,7 @@ const Locations = () => {
             <h3>
               <Trans
                 i18nKey='Locations.List Heading'
-                count={sortedSites.length}
+                count={sortedSites?.length}
               ></Trans>
             </h3>
             <PopoverMultiSelect type='filter' />
