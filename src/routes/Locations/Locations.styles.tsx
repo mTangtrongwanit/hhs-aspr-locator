@@ -151,6 +151,18 @@ export const StyledListContainer = styled.section`
   }
 `;
 
+export const StyledListTitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const StyledListOptionsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: var(--unit);
+`;
+
 export const StyledMapContainer = styled.section`
   // --- Local Variables ---
   // --- Sizing / Box-Model ---

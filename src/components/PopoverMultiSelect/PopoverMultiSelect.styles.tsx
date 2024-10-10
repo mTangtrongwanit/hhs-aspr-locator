@@ -37,7 +37,7 @@ import styled from "styled-components";
 
 // #region --------------- Parent Component + Variants -------------------------
 export const StyledPopoverMultiSelect = styled.section`
-  min-width: 8rem;
+  /* min-width: 8rem; */
 
   .PopoverMenuButton {
     position: relative;

@@ -15,6 +15,8 @@ import { useRef, useState, useEffect } from "react";
 import {
   StyledLocationsContent,
   StyledListContainer,
+  StyledListTitleContainer,
+  StyledListOptionsContainer,
   StyledMapContainer,
   StyledSearchContainer,
   StyledButton,
@@ -288,16 +290,18 @@ const Locations = () => {
           {t("Locations.Results Screenreader Heading")}
         </h2>
         <StyledListContainer>
-          <div id="list-title">
+          <StyledListTitleContainer>
             <h3>
               <Trans
                 i18nKey="Locations.List Heading"
                 count={sortedSites.length}
               ></Trans>
             </h3>
-            <PopoverMultiSelect type="filter" />
-            <DropdownSingleSelect type={"sort"} />
-          </div>
+            <StyledListOptionsContainer>
+              <PopoverMultiSelect type="filter" />
+              <DropdownSingleSelect type={"sort"} />
+            </StyledListOptionsContainer>
+          </StyledListTitleContainer>
           {/* tabindex for scrollable list */}
           <ul tabIndex={0}>
             {sortedSites?.map((site: object) => {
