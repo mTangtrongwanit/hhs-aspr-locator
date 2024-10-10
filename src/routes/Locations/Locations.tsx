@@ -107,6 +107,8 @@ const Locations = () => {
     locations,
     setSFID,
     sharedSiteFacilityID,
+    sortedSites, 
+    setSortedSites
   } = useAppContext();
 
   const searchContRef = useRef<HTMLDivElement>(null);
@@ -117,7 +119,7 @@ const Locations = () => {
   const [searchContHeight, setSearchContHeight] = useState<number>(0);
   const [totalHeight, setTotalHeight] = useState<number>(0);
   const [isMobileListView, setIsMobileListView] = useState<boolean>(true);
-  const [sortedSites, setSortedSites] = useState<Site[]>([]);
+  // const [sortedSites, setSortedSites] = useState<Site[]>([]);
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
@@ -225,7 +227,7 @@ const Locations = () => {
       const xObjectIds = x.map((site) => site.attributes.OBJECTID);
       setSortedSites(x);
     };
-
+    console.log('myhook?')
     fetchDistancesAndSort();
   }, [
     searchPoint,

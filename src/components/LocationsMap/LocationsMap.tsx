@@ -109,8 +109,10 @@ const LocationsMap = () => {
                 layer.type === "feature" &&
                 layer.title &&
                 layer.title.includes("Treatments")
+                
               ) {
                 (layer as __esri.FeatureLayer).outFields = ["*"];
+                (layer as __esri.FeatureLayer).definitionExpression = "OBJECTID = -1";
                 layer.load().then(() => {
                   setFeatureLayer(layer as FeatureLayer);
                 });
@@ -145,6 +147,7 @@ const LocationsMap = () => {
                 layer.title.includes("Treatments")
               ) {
                 (layer as __esri.FeatureLayer).outFields = ["*"];
+                (layer as __esri.FeatureLayer).definitionExpression = "OBJECTID = -1";
                 layer.load().then(() => {
                   setFeatureLayer(layer as FeatureLayer);
                 });

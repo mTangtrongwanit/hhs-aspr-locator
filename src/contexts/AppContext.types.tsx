@@ -28,6 +28,9 @@ export interface AppContextType {
   setSelectedFilters: (x: Filter[]) => void;
   featureLayer: __esri.FeatureLayer | null;
   setFeatureLayer: (x: __esri.FeatureLayer | null) => void;
+  // sortedSites setSortedSites
+  sortedSites: any[];
+  setSortedSites: (x: any[]) => void;
 }
 
 export interface AppContextProps {

@@ -52,6 +52,8 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     point: __esri.Point;
   } | null>(null);
   const [locations, setLocations] = useState<__esri.Graphic[] | null>(null);
+  const [sortedSites, setSortedSites] = useState<any[]>([]);
+
   const [locationsExtent, setLocationsExtent] = useState<__esri.Extent | null>(
     null
   );
@@ -115,6 +117,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
 
   /** Set illnessesTreatments dictionary when treatmentsIllness data is set */
   useEffect(() => {
+    console.log('the map filter hook')
     if (treatmentsIllnesses) {
       // Combine treatments and illnesses into a dictionary
       const illnessesTreatments: { [key: string]: string[] } = {};
@@ -133,23 +136,25 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
 
   useEffect(() => {
     if (!featureLayer || !locations || !locationsMapView) return;
+    
     let where = "";
-    if (locations.length === 0) {
+    if (sortedSites.length === 0) {
       // Set the definition expression to return no features
       featureLayer.definitionExpression = "OBJECTID = -1";
       return;
     }
-    const objectIds = locations.map((location) => location.attributes.OBJECTID);
+    const objectIds = sortedSites.map((location) => location.attributes.OBJECTID);
     if (objectIds.length === 0) {
       return;
     }
+    console.log('map filtering' , objectIds.length)
     where = `OBJECTID IN (${objectIds.join(",")})`;
     featureLayer.definitionExpression = where;
-    console.log(
-      "Feature Layer Definition Expression: ",
-      featureLayer.definitionExpression
-    );
-  }, [featureLayer, locations, locationsMapView]);
+    // console.log(
+    //   "Feature Layer Definition Expression: ",
+    //   featureLayer.definitionExpression
+    // );
+  }, [featureLayer, locations, locationsMapView, sortedSites]);
   // #endregion -------------------- Hooks (Other) --------------------------------
 
   // #region ----------------------- Render ------------------------------------
@@ -184,6 +189,8 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
         setSelectedFilters: setSelectedFilters,
         setFeatureLayer: setFeatureLayer,
         featureLayer: featureLayer,
+        sortedSites, 
+        setSortedSites
       }}
     >
       {children}
