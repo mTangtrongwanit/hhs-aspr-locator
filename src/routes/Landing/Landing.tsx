@@ -9,6 +9,9 @@ import { Link } from "react-router-dom";
 // #endregion ------------------------ React -----------------------------------
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
+import { useTranslation } from "react-i18next";
+import * as Accordion from "@radix-ui/react-accordion";
+import { ChevronDownIcon } from "@radix-ui/react-icons";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -21,17 +24,13 @@ import {
   StyledViewLocsButton,
   StyledDecorativeImage,
 } from "./Landing.styles";
-import * as Accordion from "@radix-ui/react-accordion";
-import { ChevronDownIcon } from "@radix-ui/react-icons";
+
 import Search from "@/components/Search";
 import DropdownSingleSelect from "@/components/DropdownSingleSelect";
+import "@/utils/i18n";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
-// import { type Props } from "./Landing.types";
-
-import "@/utils/i18n";
-import { useTranslation } from "react-i18next";
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 

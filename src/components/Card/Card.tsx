@@ -78,8 +78,6 @@ const Card = ({ selected, serviceProvider }: Props) => {
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const facilityId = urlParams.get("facility_id");
-    //facility-id: 245515224383025463412585545222964544201 for testing
-    // TODO: Chandan/Lillie - remove inline CSS and use styled-components
     if (facilityId === serviceProvider.facility_id && cardRef.current) {
       // Highlight the location by applying inline CSS
       cardRef.current.style.setProperty("border", "2px solid var(--brand)");
@@ -98,9 +96,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
    * @param {Record<string, string>} queryParams - An object representing the query parameters.
    * @returns {void}
    */
-  const copyToClipboard = (
-    queryParams: Record<string, string>,
-  ) => {
+  const copyToClipboard = (queryParams: Record<string, string>) => {
     const url = new URL(`${window.location.origin}${window.location.pathname}`);
     let hash = window.location.hash;
     // Append query parameters manually to the hash, otherwise they'll prepend it, breaking the url

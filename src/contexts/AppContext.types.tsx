@@ -1,3 +1,5 @@
+import { FilterType } from "@/utils";
+
 export interface AppContextType {
   bannerHeight: number;
   setBannerHeight: (x: number) => void;
@@ -10,12 +12,12 @@ export interface AppContextType {
   // TODO: restore logic that scrolls to this card
   selectedTreatmentSite: __esri.Graphic | null;
   setSelectedTreatmentSite: (x: __esri.Graphic) => void;
-  illnessesTreatments: { [key: string]: string[] };
-  treatmentsIllnesses: __esri.Graphic[] | null;
+  treatmentIllnessLookup: { [key: string]: string[] };
+  treatmentIllnessData: __esri.Graphic[] | null;
   locations: __esri.Graphic[] | null;
   setLocations: (x: __esri.Graphic[] | null) => void;
   locationsExtent: __esri.Extent | null;
-  setIllnessesTreatments: (x: { [key: string]: string[] }) => void;
+  setTILookup: (x: { [key: string]: string[] }) => void;
   selectedSort: { label: string; value: string };
   setSelectedSort: (x: { label: string; value: string }) => void;
   selectedIllness: { label: string; value: string };
@@ -24,15 +26,10 @@ export interface AppContextType {
   setSFID: (x: string | null) => void;
   selectedMedications: string[];
   setSelectedMedications: (x: string[]) => void;
-  selectedFilters: Filter[];
-  setSelectedFilters: (x: Filter[]) => void;
+  selectedFilters: FilterType[];
+  setSelectedFilters: (x: FilterType[]) => void;
 }
 
 export interface AppContextProps {
   children?: React.ReactNode;
-}
-
-export interface Filter {
-  name: string;
-  label: string;
 }

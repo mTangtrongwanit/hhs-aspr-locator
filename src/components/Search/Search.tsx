@@ -15,12 +15,11 @@ import Search from "@arcgis/core/widgets/Search";
 
 // #region -------------- Custom Components / Utilities ------------------------
 import { useAppContext } from "@/contexts/AppContext";
-import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { StyledSearch } from "./Search.styles";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
-// import { type Props } from "./Search.types";
+import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 
