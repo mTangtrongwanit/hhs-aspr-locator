@@ -18,7 +18,7 @@ import {
   StyledCard,
   StyledCardTitle,
   StyledIconField,
-  StyledOutlinedLink,
+  // StyledOutlinedLink,
   StyledRow,
   StyledTitleRow,
 } from "./Card.styles";

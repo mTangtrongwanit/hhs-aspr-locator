@@ -18,6 +18,7 @@ import useResizeObserver from "@react-hook/resize-observer";
 import {
   StyledLocationsContent,
   StyledListContainer,
+  StyledListNoResultsContainer,
   StyledListTitleContainer,
   StyledListOptionsContainer,
   StyledMapContainer,
@@ -37,6 +38,7 @@ import { SiteAttributesType, SiteType } from "@/utils";
 // #region ------------------------ Resources ----------------------------------
 import MapIcon from "@/assets/icons/map.svg";
 import ListIcon from "@/assets/icons/list.svg";
+import MagnifyingGlass from "@/assets/icons/magnifying-glass.svg";
 import config from "@/config";
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
@@ -257,35 +259,46 @@ const Locations = () => {
         {
           //#region List Container (left column, results displayed as cards)
         }
-        <StyledListContainer>
-          <StyledListTitleContainer>
-            <h3>
-              <Trans
-                i18nKey='Locations.List Heading'
-                count={sortedSites?.length}
-              ></Trans>
-            </h3>
-            <StyledListOptionsContainer>
-              <PopoverMultiSelect type="filter" />
-              <DropdownSingleSelect type={"sort"} />
-            </StyledListOptionsContainer>
-          </StyledListTitleContainer>
-          {/* tabindex for scrollable list */}
-          <ul tabIndex={0}>
-            {sortedSites?.map((site: object) => {
-              const serviceSite: SiteType = site as SiteType;
-              const serviceSiteAttributes: SiteAttributesType =
-                serviceSite.attributes;
-              return (
-                <Card
-                  serviceProvider={serviceSiteAttributes}
-                  selected={false}
-                  key={serviceSiteAttributes.OBJECTID}
-                ></Card>
-              );
-            })}
-          </ul>
-        </StyledListContainer>
+
+        {sortedSites?.length === 0 ? (
+                <StyledListContainer>
+                  <StyledListNoResultsContainer>
+                    <MagnifyingGlass></MagnifyingGlass>
+                    <p>
+                      {t("Locations.Empty List")}
+                    </p>
+                  </StyledListNoResultsContainer>
+                </StyledListContainer>
+              ): <StyledListContainer>
+                  <StyledListTitleContainer>
+                <h3>
+                  <Trans
+                    i18nKey='Locations.List Heading'
+                    count={sortedSites?.length}
+                  ></Trans>
+                </h3>
+                <StyledListOptionsContainer>
+                  <PopoverMultiSelect type='filter' />
+                  <DropdownSingleSelect type={"sort"} />
+                </StyledListOptionsContainer>
+                </StyledListTitleContainer>
+              {/* tabindex for keyboard-scrollable list */}
+              <ul tabIndex={0}>
+                {sortedSites?.map((site: object) => {
+                  const serviceSite: SiteType = site as SiteType;
+                  const serviceSiteAttributes: SiteAttributesType =
+                    serviceSite.attributes;
+                  return (
+                    <Card
+                      serviceProvider={serviceSiteAttributes}
+                      selected={false}
+                      key={serviceSiteAttributes.OBJECTID}
+                    ></Card>
+                  );
+                })}
+              </ul>
+            </StyledListContainer>}
+            
         {
           //#endregion List Container (left column, results displayed as cards)
         }

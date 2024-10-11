@@ -21,7 +21,7 @@ import {
   StyledContextRow,
   StyledFAQTitle,
   StyledRow,
-  StyledViewLocsButton,
+  // StyledViewLocsButton,
   StyledDecorativeImage,
 } from "./Landing.styles";
 
@@ -73,7 +73,7 @@ const Landing = () => {
         <p>{t("Landing.Search Container Description")}</p>
         <StyledRow>
           <Search />
-          <DropdownSingleSelect type={"illness"} />
+          <DropdownSingleSelect type={"illness"}  />
         </StyledRow>
         <Link to="/locations" style={{textDecoration: "none"}}>
           <button className="hhs-secondary-button">

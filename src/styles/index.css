@@ -130,7 +130,7 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
 /* radix-ui style and overrides */
 .PopoverMenuContent {
   border-radius: 4px;
-  padding: 16px 24px;
+  padding: var(--unit) calc(var(--unit) * 1.5);
   width: 280px;
   max-width: 360px;
   display: flex;
@@ -263,7 +263,9 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
 .hhs-secondary-button {
   border: var(--border) solid white;
   display: flex;
+  align-items: center;
   padding: calc(var(--unit) * 0.75) calc(var(--unit) * 0.75);
+  gap: calc(var(--unit) * 0.25);
   font-size: var(--text-0);
   font-weight: 600 !important;
   line-height: 125%;
@@ -281,7 +283,9 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
 .hhs-outline-button {
   border: var(--border) solid var(--brand);
   display: flex;
+  align-items: center;
   padding: calc(var(--unit) * 0.75) calc(var(--unit) * 0.75);
+  gap: calc(var(--unit) * 0.25);
   font-size: var(--text-0);
   font-weight: 600 !important;
   line-height: 125%;
@@ -295,6 +299,21 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
   color: white;
   background: var(--accent);
   cursor: pointer;
+}
+
+.hhs-outline-button-landing-container {
+  flex: 1 0 auto;
+  width: auto;
+  max-width: 20rem;
+}
+
+.hhs-outline-button-landing-container > div > .DropdownMenuContent {
+  min-width: 10rem;
+}
+
+.hhs-outline-button-landing {
+  justify-content: space-between;
+  width: 100%;
 }
 
 /* #endregion ------------------- Utility Classes ------------------------------*/

@@ -13,6 +13,7 @@ import { useState, useEffect } from "react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { CheckIcon, ChevronDownIcon } from "@radix-ui/react-icons";
 import { useTranslation } from "react-i18next";
+import { useLocation } from "react-router-dom";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -44,6 +45,7 @@ const DropdownSingleSelect = ({ type }: DropdownSingleSelectProps) => {
     selectedIllness,
     setSelectedIllness,
   } = useAppContext();
+  const location = useLocation();
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region -------------------- Hooks (State) --------------------------------
@@ -63,6 +65,7 @@ const DropdownSingleSelect = ({ type }: DropdownSingleSelectProps) => {
       setIllnesses(illnesses);
     }
   }, [treatmentIllnessLookup]);
+
   // #endregion ----------------- Hooks (Other) --------------------------------
 
   // #region --------- Short-Circuit (Empty/Invalid State) ---------------------
@@ -111,9 +114,10 @@ const DropdownSingleSelect = ({ type }: DropdownSingleSelectProps) => {
         : handleIllnessChange;
 
   return (
-    <StyledDropdownSelect>
+    <StyledDropdownSelect className={location.pathname === "/" && (type !== "language") ? "hhs-outline-button-landing-container" : ""}>
       <DropdownMenu.Root>
-        <DropdownMenu.Trigger className="hhs-primary-button">
+        {/* <DropdownMenu.Trigger className="hhs-primary-button"> */}
+        <DropdownMenu.Trigger className={location.pathname === "/" && (type !== "language") ? "hhs-outline-button hhs-outline-button-landing" : "hhs-primary-button"}>
           {selectedValue} <ChevronDownIcon />
         </DropdownMenu.Trigger>
         <DropdownMenu.Content className="DropdownMenuContent" sideOffset={5}>

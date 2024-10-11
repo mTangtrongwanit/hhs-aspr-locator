@@ -151,6 +151,21 @@ export const StyledListContainer = styled.section`
   }
 `;
 
+export const StyledListNoResultsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: calc(var(--unit) * 2) 0;
+  gap: var(--unit);
+  & p {
+    text-align: center;
+    font-weight: 400;
+    font-size: var(--text--1);
+    color: var(--text);
+  }
+`;
+
+
 export const StyledListTitleContainer = styled.div`
   display: flex;
   align-items: center;

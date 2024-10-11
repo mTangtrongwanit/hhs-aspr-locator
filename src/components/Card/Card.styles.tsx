@@ -50,27 +50,27 @@ export const StyledOfferingSpan = styled.span`
   }
 `;
 
-export const StyledOutlinedLink = styled.a`
-  // --- Sizing / Box-Model ---
-  padding: calc(var(--unit) / 2);
+// export const StyledOutlinedLink = styled.a`
+//   // --- Sizing / Box-Model ---
+//   padding: calc(var(--unit) / 2);
 
-  // --- Layout ---
-  display: flex;
-  gap: calc(var(--unit) / 2);
-  align-items: center;
+//   // --- Layout ---
+//   display: flex;
+//   gap: calc(var(--unit) / 2);
+//   align-items: center;
 
-  // --- Decorative ---
-  color: var(--brand);
-  text-decoration: none;
-  background: none;
-  border: 1px solid var(--brand);
-  border-radius: var(--radius);
-  cursor: pointer;
+//   // --- Decorative ---
+//   color: var(--brand);
+//   text-decoration: none;
+//   background: none;
+//   border: 1px solid var(--brand);
+//   border-radius: var(--radius);
+//   cursor: pointer;
 
-  span {
-    font-weight: 400;
-  }
-`;
+//   span {
+//     font-weight: 400;
+//   }
+// `;
 // #endregion ----------------------- Atoms ------------------------------------
 
 // #region -------------- Molecules (Internal Layouts) -------------------------

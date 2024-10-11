@@ -30,15 +30,6 @@ import styled from "styled-components";
 // --- Children ---
 
 // #region -------------------------- Atoms ------------------------------------
-
-export const StyledMessage = styled.p`
-  padding: 1rem;
-  margin: var(--border);
-  background-color: #000000;
-  color: #fff;
-
-  transform: translateX(50%);
-`;
 // #endregion ----------------------- Atoms ------------------------------------
 
 // #region -------------- Molecules (Internal Layouts) -------------------------

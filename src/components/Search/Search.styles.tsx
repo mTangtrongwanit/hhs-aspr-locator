@@ -42,7 +42,7 @@ export const StyledSearch = styled.div`
   // --- Sizing / Box-Model ---
   width: auto;
   max-width: 20rem;
-  padding: 8px 4px;
+  padding: calc(var(--unit) * 0.5) calc(var(--unit) * 0.25);
   height: var(--search-container-item-height);
 
   // --- Position ---
@@ -55,7 +55,7 @@ export const StyledSearch = styled.div`
   /* min-height: 42px; */
   width: auto;
   max-width: 20rem;
-  padding: 8px 8px;
+  padding: calc(var(--unit) * 0.25);
   background: white;
   color: var(--brand);
   border-radius: var(--radius);

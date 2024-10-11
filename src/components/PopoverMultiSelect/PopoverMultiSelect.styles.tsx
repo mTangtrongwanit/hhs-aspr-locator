@@ -55,7 +55,7 @@ export const StyledPopoverMultiSelect = styled.section`
     background: #155197;
     border-radius: 4px;
     color: white;
-    padding: 5px;
+    padding: calc(var(--unit) * 0.25);
     height: var(--search-container-item-height);
   }
 
@@ -120,7 +120,7 @@ export const PopoverCheckBoxContainer = styled.div`
 
 export const PopoverCheckBoxRow = styled.div`
   display: flex;
-  padding: 12px 16px;
+  padding: calc(var(--unit) * 0.75) var(--unit);
   align-items: center;
   background: var(--light);
   gap: 16px;

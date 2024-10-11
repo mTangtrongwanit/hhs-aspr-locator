@@ -48,13 +48,13 @@ export const StyledDropdownSelect = styled.section`
 
     display: flex;
     justify-content: space-between;
-    gap: 4px;
+    padding: calc(var(--unit) * 0.25);
 
     cursor: pointer;
     background: #155197;
-    border-radius: 4px;
+    border-radius: var(--radius);
     color: white;
-    padding: 5px;
+    padding: calc(var(--unit) * 0.25);
     height: 30px;
   }
 
@@ -62,7 +62,7 @@ export const StyledDropdownSelect = styled.section`
     min-width: inherit;
     background-color: white;
     border-radius: 6px;
-    padding: 5px;
+    padding: calc(var(--unit) * 0.25);
     box-shadow:
       0px 10px 38px -10px rgba(22, 23, 24, 0.35),
       0px 10px 20px -15px rgba(22, 23, 24, 0.2);
