@@ -62,7 +62,6 @@ const DropdownSingleSelect = ({ type }: DropdownSingleSelectProps) => {
   // Get the illness options from treatmentIllnessLookup
   useEffect(() => {
     if (!(JSON.stringify(treatmentIllnessLookup) === "{}")) {
-      console.log(treatmentIllnessLookup);
       const illnesses = Object.keys(treatmentIllnessLookup);
       setIllnesses(illnesses);
     }

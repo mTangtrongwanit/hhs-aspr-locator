@@ -160,25 +160,10 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     if (objectIds.length === 0) {
       return;
     }
-    console.log('map filtering' , objectIds.length)
     where = `OBJECTID IN (${objectIds.join(",")})`;
     featureLayer.definitionExpression = where;
-    // console.log(
-    //   "Feature Layer Definition Expression: ",
-    //   featureLayer.definitionExpression
-    // );
   }, [featureLayer, locations, locationsMapView, sortedSites]);
   // #endregion -------------------- Hooks (Other) --------------------------------
-
-
-    // todo: remove
-// useEffect to watch and log selected
-useEffect(() => {
-  console.log("Selected Filter: ", selectedFilters);
-}
-  , [selectedFilters]);
-  
-  
   // #region ----------------------- Render ------------------------------------
   return (
     <AppContext.Provider
