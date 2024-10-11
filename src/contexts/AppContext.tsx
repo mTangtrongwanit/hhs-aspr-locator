@@ -32,6 +32,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   // Locations Map and Treatment Site
   const [locationsMapView, setLocationsMapView] =
     useState<__esri.MapView | null>(null);
+    
   const [selectedTreatmentSite, setSelectedTreatmentSite] =
     useState<__esri.Graphic | null>(null);
 
@@ -51,6 +52,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
 
   //Dynamically updated list of result features
   const [locations, setLocations] = useState<__esri.Graphic[] | null>(null);
+  const [locationsTotals, setLocationsTotals] = useState<__esri.Graphic[] | null>(null);
   const [sortedSites, setSortedSites] = useState<__esri.Graphic[]>([]);
 
   const [locationsExtent, setLocationsExtent] = useState<__esri.Extent | null>(
@@ -118,6 +120,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
           searchPoint?.point ?? initialSearchPoint.point
         );
         setLocations(locs?.features.features ?? []);
+        setLocationsTotals(locs?.features.features ?? []);
         setLocationsExtent(locs?.extent ?? null);
       } catch (error) {
         console.error("Error getting locations data: ", error);
@@ -157,16 +160,10 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     if (objectIds.length === 0) {
       return;
     }
-    console.log('map filtering' , objectIds.length)
     where = `OBJECTID IN (${objectIds.join(",")})`;
     featureLayer.definitionExpression = where;
-    // console.log(
-    //   "Feature Layer Definition Expression: ",
-    //   featureLayer.definitionExpression
-    // );
   }, [featureLayer, locations, locationsMapView, sortedSites]);
   // #endregion -------------------- Hooks (Other) --------------------------------
-
   // #region ----------------------- Render ------------------------------------
   return (
     <AppContext.Provider
@@ -184,6 +181,8 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
         treatmentIllnessLookup: treatmentIllnessLookup,
         treatmentIllnessData: treatmentIllnessData,
         locations: locations,
+        setLocationsTotals: setLocationsTotals,
+        locationsTotals: locationsTotals,
         setLocations: setLocations,
         locationsExtent: locationsExtent,
         setTILookup: setTILookup,
@@ -208,6 +207,9 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   );
   // #endregion -------------------- Render ------------------------------------
 };
+
+
+
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const useAppContext = () => {

@@ -17,6 +17,8 @@ export interface AppContextType {
   treatmentIllnessData: __esri.Graphic[] | null;
   locations: __esri.Graphic[] | null;
   setLocations: (x: __esri.Graphic[] | null) => void;
+  locationsTotals: __esri.Graphic[] | null;
+  setLocationsTotals: (x: __esri.Graphic[] | null) => void;
   locationsExtent: __esri.Extent | null;
   setTILookup: (x: { [key: string]: string[] }) => void;
   selectedSort: { label: string; value: string };

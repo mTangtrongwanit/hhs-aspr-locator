@@ -44,6 +44,10 @@ const DropdownSingleSelect = ({ type }: DropdownSingleSelectProps) => {
     setSelectedSort,
     selectedIllness,
     setSelectedIllness,
+    setSelectedMedications,
+    setSelectedFilters,
+    locationsTotals,
+    setLocations,
   } = useAppContext();
   const location = useLocation();
   // #endregion --------------- Hooks (Resources) ------------------------------
@@ -60,7 +64,6 @@ const DropdownSingleSelect = ({ type }: DropdownSingleSelectProps) => {
   // Get the illness options from treatmentIllnessLookup
   useEffect(() => {
     if (!(JSON.stringify(treatmentIllnessLookup) === "{}")) {
-      console.log(treatmentIllnessLookup);
       const illnesses = Object.keys(treatmentIllnessLookup);
       setIllnesses(illnesses);
     }
@@ -86,8 +89,10 @@ const DropdownSingleSelect = ({ type }: DropdownSingleSelectProps) => {
   };
 
   const handleIllnessChange = (illness: { label: string; value: string }) => {
-    console.log(illness.value);
     setSelectedIllness(illness);
+    setSelectedMedications([]);
+    setSelectedFilters([]);
+    setLocations(locationsTotals);
   };
   // #endregion ---------------- Event Handlers --------------------------------
 
@@ -96,22 +101,22 @@ const DropdownSingleSelect = ({ type }: DropdownSingleSelectProps) => {
     type === "language"
       ? config.options.languageOptions
       : type === "sort"
-        ? config.options.sortOptions
-        : illnesses.map((illness) => ({ label: illness, value: illness }));
+      ? config.options.sortOptions
+      : illnesses.map((illness) => ({ label: illness, value: illness }));
 
   const selectedValue =
     type === "language"
       ? selectedLanguage
       : type === "sort"
-        ? selectedSort.label
-        : selectedIllness.label;
+      ? selectedSort.label
+      : selectedIllness.label;
 
   const handleChange =
     type === "language"
       ? handleLanguageChange
       : type === "sort"
-        ? handleSortChange
-        : handleIllnessChange;
+      ? handleSortChange
+      : handleIllnessChange;
 
   return (
     <StyledDropdownSelect className={location.pathname === "/" && (type !== "language") ? "hhs-outline-button-landing-container" : ""}>
@@ -120,7 +125,7 @@ const DropdownSingleSelect = ({ type }: DropdownSingleSelectProps) => {
         <DropdownMenu.Trigger className={location.pathname === "/" && (type !== "language") ? "hhs-outline-button hhs-outline-button-landing" : "hhs-primary-button"}>
           {selectedValue} <ChevronDownIcon />
         </DropdownMenu.Trigger>
-        <DropdownMenu.Content className="DropdownMenuContent" sideOffset={5}>
+        <DropdownMenu.Content className='DropdownMenuContent' sideOffset={5}>
           {options.map((item) => (
             <DropdownMenu.Item
               style={
@@ -133,7 +138,7 @@ const DropdownSingleSelect = ({ type }: DropdownSingleSelectProps) => {
                   }`,
                 } as React.CSSProperties
               }
-              className="DropDownItem"
+              className='DropDownItem'
               key={item.value}
               onClick={() => handleChange(item)}
             >
@@ -141,12 +146,12 @@ const DropdownSingleSelect = ({ type }: DropdownSingleSelectProps) => {
               item.label ? (
                 <CheckIcon fontSize={"var(--text-2)"} />
               ) : (
-                <span className="placeholder">&nbsp;</span>
+                <span className='placeholder'>&nbsp;</span>
               )}
               {item.label}
             </DropdownMenu.Item>
           ))}
-          <DropdownMenu.Arrow className="DropdownMenuArrow" />
+          <DropdownMenu.Arrow className='DropdownMenuArrow' />
         </DropdownMenu.Content>
       </DropdownMenu.Root>
     </StyledDropdownSelect>
