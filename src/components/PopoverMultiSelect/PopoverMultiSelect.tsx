@@ -54,8 +54,8 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const {
     treatmentIllnessLookup,
-    locations,
     setLocations,
+    locationsTotals,
     treatmentIllnessData,
     selectedIllness,
     selectedMedications,
@@ -67,9 +67,6 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
 
   // #region -------------------- Hooks (State) --------------------------------
   const [treatments, setTreatments] = useState<string[]>([]);
-  const [unfilteredLocations, setUnfilteredLocations] = useState<
-    __esri.Graphic[] | null
-  >(null);
   // #endregion ----------------- Hooks (State) --------------------------------
   // #region ----------------- Hooks (Memoization) -----------------------------
   // #endregion -------------- Hooks (Memoization) -----------------------------
@@ -108,20 +105,19 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
       (selectedMedications.length > 0 && treatmentIllnessData) ||
       (selectedFilters.length > 0 && treatmentIllnessData)
     ) {
-      setUnfilteredLocations(locations);
-
-      const filteredLocations = locations?.filter((loc) => {
+      const filteredLocations = locationsTotals?.filter((loc) => {
         let match = true;
-
+        
         // Filter based on selected filters
         if (selectedFilters.length > 0) {
           selectedFilters.forEach((filter) => {
             const attributeValue =
-              loc.attributes[
-                config.treatmentData.fields[
-                  filter.name as keyof typeof config.treatmentData.fields
-                ].name
-              ]?.toUpperCase();
+            loc.attributes[
+              config.treatmentData.fields[
+                filter.name as keyof typeof config.treatmentData.fields
+              ].name
+            ]?.toUpperCase();
+            
 
             if (filter.name === "has_oseltamivir_tamiflu") {
               if (
@@ -160,7 +156,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
 
       setLocations(filteredLocations || null);
     } else {
-      setLocations(unfilteredLocations);
+      setLocations(locationsTotals);
     }
   };
 
@@ -171,13 +167,13 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
     } else {
       setSelectedFilters([]);
     }
-    setLocations(unfilteredLocations);
+    setLocations(locationsTotals);
   };
 
   // Get the services from the locations
   const services = Array.from(
     new Set(
-      locations?.flatMap((loc) => {
+      locationsTotals?.flatMap((loc) => {
         const serviceList: Filter[] = [];
         if (
           loc.attributes[config.treatmentData.fields.is_pap.name] &&
