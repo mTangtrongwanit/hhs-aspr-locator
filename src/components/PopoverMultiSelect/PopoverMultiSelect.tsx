@@ -241,7 +241,6 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
     //   field: config.treatmentData.fields.has_oseltamivir_generic,
     // },
 
-    // todo: the labels in the app for each filter are wrong
     is_prescribing_svcs_available: {
       checker: (loc: any) =>
         [ "COVID", "Flu"].includes(selectedIllness.value) &&
