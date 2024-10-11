@@ -56,7 +56,6 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
     treatmentIllnessLookup,
     setLocations,
     locationsTotals,
-    locations,
     treatmentIllnessData,
     selectedIllness,
     selectedMedications,
@@ -256,6 +255,9 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
         const serviceList: Filter[] = [];
         // Iterate over the lookup object
         for (const [key, field] of Object.entries(filterLookup)) {
+          // handle type check for key
+          key 
+          // handle type check for key
           if (field.checker(loc)) {
               serviceList.push(field.field);
           }
