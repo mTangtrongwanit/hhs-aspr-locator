@@ -95,6 +95,9 @@ export const calculateDistanceBetweenTwoPoints = async (
         ],
       ],
     });
+    //todo: remove console logs
+    console.log("searchPoint geomUtils: ", searchPoint);
+    console.log("serviceProviderPoint geomUtils: ", serviceProviderPoint);
     return geometryEngine.geodesicLength(polyline, "miles");
   } catch (error) {
     console.error("Error calculating distance: ", error);
