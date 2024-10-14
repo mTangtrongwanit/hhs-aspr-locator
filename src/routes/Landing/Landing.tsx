@@ -361,36 +361,36 @@ const Landing = () => {
                     months and older.
                     <ul>
                       <li>
-                         This medication is given by a healthcare provider as a
+                        This medication is given by a healthcare provider as a
                         single dose through an intravenous infusion{" "}
                       </li>
                     </ul>
                   </li>
                   <li>
-                    o Zanamivir (Relenza): Adults and children 7 years and
+                   Zanamivir (Relenza): Adults and children 7 years and
                     older.
                     <ul>
                       <li>
-                         Zanamivir is administered using an inhaler device and
+                        Zanamivir is administered using an inhaler device and
                         is not recommended for people with breathing problems
                         like asthma or COPD or those with a history of allergy
                         to lactose or milk protein.{" "}
                       </li>
                       <li>
-                         Zanamivir is taken twice daily using an inhaler device
+                        Zanamivir is taken twice daily using an inhaler device
                         for 5 days.{" "}
                       </li>
                     </ul>
                   </li>
                   <li>
-                    o Baloxavir (Xofluza): Otherwise healthy children 5 years
+                   Baloxavir (Xofluza): Otherwise healthy children 5 years
                     and older for acute uncomplicated influenza, and adults and
                     children 12 years and older who are at high risk of
                     developing influenza-related complications.
                     <ul>
-                      <li> Baloxavir is taken by mouth as a single dose</li>
+                      <li>Baloxavir is taken by mouth as a single dose</li>
                       <li>
-                         Baloxavir is not recommended for treatment of flu in
+                        Baloxavir is not recommended for treatment of flu in
                         pregnant or breastfeeding people, severely
                         immunosuppressed persons, or in outpatients with
                         complicated or progressive illness because there is no
@@ -399,7 +399,7 @@ const Landing = () => {
                     </ul>
                   </li>
                   <li>
-                    o Please see{" "}
+                   Please see{" "}
                     <a href="https://www.cdc.gov/flu/treatment/whatyoushould.htm">
                       What are Flu Antiviral Drugs | CDC
                     </a>{" "}
@@ -432,19 +432,19 @@ const Landing = () => {
                 <strong>COVID-19</strong>
                 <ul>
                   <li>
-                    o Paxlovid is authorized by the FDA for emergency use in
+                   Paxlovid is authorized by the FDA for emergency use in
                     children 12 years or older weighing at least 88 pounds [40
                     kg], who are at high risk for getting very sick from
                     COVID-19 and who have mild to moderate symptoms.
                   </li>
                   <li>
-                    o Veklury is FDA-approved for children 28 days of age or
+                   Veklury is FDA-approved for children 28 days of age or
                     older and weighing at least 7 pounds [3 kg], who have mild
                     to moderate symptoms of COVID-19 and are at high risk for
                     getting very sick from COVID-19.
                     <ul>
                       <li>
-                         This medication is given through an intravenous
+                        This medication is given through an intravenous
                         infusion and may be given in the outpatient (not staying
                         in the hospital) or inpatient (staying in the hospital)
                         setting. This website lists only outpatient locations
@@ -457,7 +457,7 @@ const Landing = () => {
                 <strong>Influenza (Flu)</strong>
                 <ul>
                   <li>
-                    o Oral oseltamivir is approved by the FDA for treatment of
+                   Oral oseltamivir is approved by the FDA for treatment of
                     acute uncomplicated influenza within 2 days of illness onset
                     in people 14 days of age and older. Although not part of the
                     FDA-approved indications, use of oral oseltamivir for
@@ -466,7 +466,7 @@ const Landing = () => {
                     suspension for children.
                     <ul>
                       <li>
-                         If your health care provider prescribes oseltamivir
+                        If your health care provider prescribes oseltamivir
                         capsules for your child and your child cannot swallow
                         capsules, please refer to{" "}
                         <a href="https://www.cdc.gov/flu/highrisk/mixing-oseltamivir-qa.htm">
@@ -477,18 +477,18 @@ const Landing = () => {
                     </ul>
                   </li>
                   <li>
-                    o Zanamivir is approved for early treatment of flu in people
+                   Zanamivir is approved for early treatment of flu in people
                     7 years and older, though it is not recommended for use in
                     children with underlying respiratory disease, including
                     asthma and other chronic lung diseases, and in patients with
                     milk protein allergy.
                   </li>
                   <li>
-                    o Peramivir is approved for early treatment of flu in
+                   Peramivir is approved for early treatment of flu in
                     otherwise healthy patients 6 months and older.
                   </li>
                   <li>
-                    o Baloxavir is available in a single dose tablet for early
+                   Baloxavir is available in a single dose tablet for early
                     treatment of flu in otherwise healthy children aged 5 years
                     and older, and in children 12 years and older who are at
                     higher risk of developing flu-related complications.{" "}
@@ -515,17 +515,17 @@ const Landing = () => {
                 <strong>COVID-19:</strong>
                 <ul>
                   <li>
-                    o Pregnant and recently pregnant people (at least 6 weeks
+                   Pregnant and recently pregnant people (at least 6 weeks
                     following the end of pregnancy) are at increased risk of
                     severe illness from COVID-19.
                   </li>
                   <li>
-                    o Paxlovid (ritonavir with nirmatrelvir) is the preferred
+                   Paxlovid (ritonavir with nirmatrelvir) is the preferred
                     treatment option for pregnant and recently pregnant patients
                     with COVID-19.{" "}
                   </li>
                   <li>
-                    o Lagevrio (molnupiravir) is not recommended for use during
+                   Lagevrio (molnupiravir) is not recommended for use during
                     pregnancy because of risk it may cause fetal harm. Prior to
                     initiating treatment with Lagevrio, health care providers
                     should assess whether an individual of childbearing
@@ -534,7 +534,7 @@ const Landing = () => {
                     Lagevrio and for 4 days after final dose.
                   </li>
                   <li>
-                    o Healthcare providers can refer to the{" "}
+                   Healthcare providers can refer to the{" "}
                     <a href="https://aspr.hhs.gov/COVID-19-Therapeutics/Side-by-Side-Overview/Pages/default.aspx">
                       Side-by-Side Overview of Therapeutics Authorized or
                       Approved for the Treatment of Mild to Moderate COVID-19.
@@ -544,24 +544,24 @@ const Landing = () => {
                 <strong>Influenza (Flu):</strong>
                 <ul>
                   <li>
-                    o Treatment with antiviral medications for flu is
+                   Treatment with antiviral medications for flu is
                     recommended for pregnant people or people who are up to 2
                     weeks postpartum (including following pregnancy loss) with
                     suspected or confirmed influenza of any severity and can be
                     taken during any trimester of pregnancy.
                   </li>
                   <li>
-                    o Oral oseltamivir is the preferred treatment options for
+                   Oral oseltamivir is the preferred treatment options for
                     pregnant people with flu because it has the most studies
                     available to suggest that it is safe and beneficial.
                   </li>
                   <li>
-                    o Baloxavir is not recommended for pregnant or post-partum
+                   Baloxavir is not recommended for pregnant or post-partum
                     people or while breastfeeding, as there are no available
                     efficacy or safety data.
                   </li>
                   <li>
-                    o For more information on the treatment of flu during
+                   For more information on the treatment of flu during
                     pregnancy, healthcare providers can visit{" "}
                     <a href="https://www.cdc.gov/flu/professionals/antivirals/avrec_ob.htm#:~:text=For%20treatment%20of%20pregnant%20people,with%20oseltamivir%20is%205%20days.">
                       Recommendations for Obstetric Health Care Providers
@@ -591,19 +591,19 @@ const Landing = () => {
               <div className="AccordionContentText">
                 <ul>
                   <li>
-                    o Medications to treat COVID-19 (Paxlovid, Lagevrio,
+                   Medications to treat COVID-19 (Paxlovid, Lagevrio,
                     Veklury) and flu (oseltamivir, zanamivir, peramivir,
                     baloxavir) must be prescribed by a health care provider and
                     should be started as soon as possible after diagnosis to be
                     effective.
                   </li>
                   <li>
-                    o Talk to your health care professional about available
+                   Talk to your health care professional about available
                     treatment options if you have symptoms consistent with
                     COVID-19 or flu.{" "}
                   </li>
                   <li>
-                    o Certain locations listed on this locator may provide
+                   Certain locations listed on this locator may provide
                     prescribing services to patients who do not already have a
                     prescription.{" "}
                   </li>
@@ -628,22 +628,22 @@ const Landing = () => {
               <div className="AccordionContentText">
                 <ul>
                   <li>
-                    o All medications listed on this website are approved or
+                   All medications listed on this website are approved or
                     authorized by FDA as safe and effective when used
                     appropriately.
                   </li>
                   <li>
-                    o If you have COVID-19 and are more likely to get very sick,
+                   If you have COVID-19 and are more likely to get very sick,
                     treatments are available that can reduce your chances of
                     being hospitalized or dying from the disease.{" "}
                   </li>
                   <li>
-                    o Early flu antiviral treatment can shorten the duration of
+                   Early flu antiviral treatment can shorten the duration of
                     fever and illness and may reduce the risk of some
                     complications from influenza.{" "}
                   </li>
                   <li>
-                    o Some treatments might have side effects or interact with
+                   Some treatments might have side effects or interact with
                     other medications you are taking. Ask a health care provider
                     if medications to treat COVID-19 or influenza are right for
                     you.
@@ -671,10 +671,10 @@ const Landing = () => {
                 <strong>COVID-19:</strong>
                 <ul>
                   <li>
-                    o For Paxlovid:
+                   For Paxlovid:
                     <ul>
                       <li>
-                         Medicare, Medicaid, and uninsured patients can receive
+                        Medicare, Medicaid, and uninsured patients can receive
                         Paxlovid at no charge through December 2024 through the
                         U.S. Government (USG) Patient Assistance Program (PAP)
                         operated by Pfizer. This includes all patients who are
@@ -693,12 +693,12 @@ const Landing = () => {
                         or <a href="https://paxlovid.iassist.com/">enroll.</a>
                       </li>
                       <li>
-                         You can search for locations participating in this
+                        You can search for locations participating in this
                         Paxlovid PAP using this locator tool by filtering for
                         PAP sites.
                       </li>
                       <li>
-                         Concurrently, Pfizer is operating a Paxlovid Co-Pay
+                        Concurrently, Pfizer is operating a Paxlovid Co-Pay
                         Savings Program for eligible privately (commercially)
                         insured patients.{" "}
                         <a href="https://www.paxlovid.com/paxcess">Patients</a>{" "}
@@ -712,10 +712,10 @@ const Landing = () => {
                   </li>
                   <li>
                     {" "}
-                    o For Lagevrio:
+                   For Lagevrio:
                     <ul>
                       <li>
-                         The{" "}
+                        The{" "}
                         <a href="https://www.merckhelps.com/LAGEVRIO">
                           Merck Patient Assistance Program
                         </a>{" "}
@@ -730,7 +730,7 @@ const Landing = () => {
                     For Veklury:
                     <ul>
                       <li>
-                         Please contact Gilead's Advancing Access program to
+                        Please contact Gilead's Advancing Access program to
                         learn more about access to Veklury in the outpatient
                         setting and{" "}
                         <a href="https://www.veklury.com/patient-support/">
@@ -740,7 +740,7 @@ const Landing = () => {
                     </ul>
                   </li>
                   <li>
-                    o Note: This response does not address whether these
+                   Note: This response does not address whether these
                     COVID-19 treatments are covered by Medicare and Medicaid
                     generally. More information is available for{" "}
                     <a href="https://www.cms.gov/files/document/commercialcovid19oralantiviralsmemofinal.pdf">
@@ -756,10 +756,10 @@ const Landing = () => {
                 <strong>Influenza (Flu):</strong>
                 <ul>
                   <li>
-                    o For Zanamivir (Relenza):
+                   For Zanamivir (Relenza):
                     <ul>
                       <li>
-                         <a href="https://www.gskforyou.com/">GSK for You</a>{" "}
+                        <a href="https://www.gskforyou.com/">GSK for You</a>{" "}
                         is a program committed to assisting eligible patients
                         access to medications. They offer programs for patients
                         who meet income and other eligibility requirements.
@@ -767,7 +767,7 @@ const Landing = () => {
                     </ul>
                   </li>
                   <li>
-                    o For Tamiflu and Baloxavir (Xofluza):
+                   For Tamiflu and Baloxavir (Xofluza):
                     <ul>
                       <li>
                         <a href="https://www.gene.com/patients/patient-foundation/patient-foundation-faqs">
@@ -800,7 +800,7 @@ const Landing = () => {
             <Accordion.Content className="AccordionContent">
               <div className="AccordionContentText">
                 <p>
-                  o Throughout the COVID-19 pandemic, the federal government
+                 Throughout the COVID-19 pandemic, the federal government
                   granted Emergency Use Authorization (EUA) for therapeutics to
                   help combat COVID-19, including certain monoclonal antibodies.
                   Because the U.S. Food and Drug Administration (FDA) does not
@@ -839,7 +839,7 @@ const Landing = () => {
             <Accordion.Content className="AccordionContent">
               <div className="AccordionContentText">
                 <p>
-                  o There may be locations that offer outpatient COVID-19 or
+                 There may be locations that offer outpatient COVID-19 or
                   influenza medications and are not listed on this website. The
                   locations displayed on this website have either self-attested
                   they have inventory of COVID-19 or influenza antiviral
@@ -866,24 +866,24 @@ const Landing = () => {
             <Accordion.Content className="AccordionContent">
               <div className="AccordionContentText">
                 <p>
-                  o Where indicated, the locations listed on this website may:
+                 Where indicated, the locations listed on this website may:
                 </p>
                 <ul>
                   <li>
-                     Have remaining free Paxlovid and/or Lagevrio distributed
+                    Have remaining free Paxlovid and/or Lagevrio distributed
                     by the U.S. Department of Health and Human Services{" "}
                   </li>
                   <li>
-                     Participate in the Paxlovid Patient Assistance Program,
+                    Participate in the Paxlovid Patient Assistance Program,
                     providing free Paxlovid to publicly insured (Medicare,
                     Medicaid, etc.) and uninsured patients
                   </li>
                   <li>
-                     Offer prescribing services (including telehealth) or home
+                    Offer prescribing services (including telehealth) or home
                     delivery of medicines
                   </li>
                   <li>
-                     Offer no-cost COVID-19 testing for eligible uninsured
+                    Offer no-cost COVID-19 testing for eligible uninsured
                     people (Increasing Community Access to Testing [ICATT]
                     participating site){" "}
                   </li>
@@ -908,7 +908,7 @@ const Landing = () => {
               <div className="AccordionContentText">
                 <p>
                   {" "}
-                  o If you would like more information about being added to the
+                 If you would like more information about being added to the
                   Treatments Locator, please email{" "}
                   <a href="mailto:COVID19.therapeutics@hhs.gov">
                     COVID19.therapeutics@hhs.gov.
@@ -934,7 +934,7 @@ const Landing = () => {
             <Accordion.Content className="AccordionContent">
               <div className="AccordionContentText">
                 <p>
-                  o Retail pharmacies can learn more about participating in the
+                 Retail pharmacies can learn more about participating in the
                   Paxlovid Patient Assistance Program by <a href="mailto:PharmacyNetworkContract102101@assistrx.com">contacting the program
                   vendor</a>{" "}
                 </p>
