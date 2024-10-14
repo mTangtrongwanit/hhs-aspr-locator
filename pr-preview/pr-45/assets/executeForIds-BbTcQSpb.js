@@ -1,0 +1,1 @@
+import{Q as r,ad as c}from"./index-1ZRX0ezy.js";import{S as f,p as i}from"./query-Dnw7hckz.js";async function u(a,t,o){const s=r(a),{data:n}=await f(s,c.from(t),o);return n.count}async function d(a,t,o){const s=r(a),{data:n}=await i(s,c.from(t),o);return n.objectIds}export{d as a,u as s};
