@@ -16,7 +16,7 @@ import { Breakpoints } from "@/utils";
 
 // #endregion ====================== IMPORTS ===================================
 
-const imgUrl = new URL("@/assets/nurse.jpg", import.meta.url).href;
+const imgUrl = new URL("@/assets/images/nurse.jpg", import.meta.url).href;
 
 // #region =================== EXPORTED COMPONENTS =============================
 /* Property Organization Guide */
@@ -47,25 +47,25 @@ export const StyledRow = styled.div`
   }
 `;
 
-export const StyledViewLocsButton = styled.button`
-  // --- Sizing / Box-Model ---
-  width: min-content;
-  padding: calc(var(--unit) / 2) calc(var(--unit)); //vert horz
-  // --- Decorative ---
-  white-space: nowrap;
-  background: var(--accent);
-  color: #fff;
-  border-radius: var(--radius);
-  border: var(--border) solid #fff;
-  font-weight: bold;
-  // --- States ---
+// export const StyledViewLocsButton = styled.button`
+//   // --- Sizing / Box-Model ---
+//   width: min-content;
+//   padding: calc(var(--unit) / 2) calc(var(--unit)); //vert horz
+//   // --- Decorative ---
+//   white-space: nowrap;
+//   background: var(--accent);
+//   color: #fff;
+//   border-radius: var(--radius);
+//   border: var(--border) solid #fff;
+//   font-weight: bold;
+//   // --- States ---
 
-  &:hover,
-  &:focus {
-    background: var(--brand);
-    cursor: pointer;
-  }
-`;
+//   &:hover,
+//   &:focus {
+//     background: var(--brand);
+//     cursor: pointer;
+//   }
+// `;
 
 export const StyledDecorativeImage = styled.div`
   grid-area: image;

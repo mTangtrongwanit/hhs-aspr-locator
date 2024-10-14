@@ -42,7 +42,7 @@ export const StyledSearch = styled.div`
   // --- Sizing / Box-Model ---
   width: auto;
   max-width: 20rem;
-  padding: 8px 4px;
+  padding: calc(var(--unit) * 0.5) calc(var(--unit) * 0.25);
   height: var(--search-container-item-height);
 
   // --- Position ---
@@ -52,11 +52,14 @@ export const StyledSearch = styled.div`
   align-items: center;
   // --- Decorative ---
   border: var(--border) solid var(--brand);
+  /* min-height: 42px; */
+  width: auto;
+  max-width: 20rem;
+  padding: calc(var(--unit) * 0.25);
   background: white;
   color: var(--brand);
-  border-radius: 4px;
-  // --- States ---
-  // --- Children ---
+  border-radius: var(--radius);
+  height: auto;
 `;
 // #endregion ------------ Parent Component + Variants -------------------------
 // #endregion ================ EXPORTED COMPONENTS =============================

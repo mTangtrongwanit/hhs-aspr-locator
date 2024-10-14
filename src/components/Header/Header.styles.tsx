@@ -6,6 +6,7 @@
 
 // #region ========================= IMPORTS ===================================
 // #region --------------------------- React -----------------------------------
+import { Link } from "react-router-dom";
 // #endregion ------------------------ React -----------------------------------
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
@@ -50,6 +51,13 @@ export const StyledHeaderContentContainer = styled.div`
     margin-left: auto;
     justify-content: flex-end;
   }
+`;
+
+export const StyledHeaderLink = styled(Link)`
+  text-decoration: none;
+  & :hover {
+    opacity: 0.8;
+}
 `;
 
 export const StyledHeaderLogo = styled.img`

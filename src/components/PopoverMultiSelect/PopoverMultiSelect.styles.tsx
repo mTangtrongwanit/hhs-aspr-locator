@@ -37,7 +37,7 @@ import styled from "styled-components";
 
 // #region --------------- Parent Component + Variants -------------------------
 export const StyledPopoverMultiSelect = styled.section`
-  min-width: 8rem;
+  /* min-width: 8rem; */
 
   .PopoverMenuButton {
     position: relative;
@@ -55,8 +55,14 @@ export const StyledPopoverMultiSelect = styled.section`
     background: #155197;
     border-radius: 4px;
     color: white;
-    padding: 5px;
+    padding: calc(var(--unit) * 0.25);
     height: var(--search-container-item-height);
+  }
+
+  .PopOverFilterCount {
+    display: flex;
+    align-items: center;
+    margin-left: calc(var(--unit) * 0.25);
   }
 
   @keyframes slideRightAndFade {
@@ -114,8 +120,8 @@ export const PopoverCheckBoxContainer = styled.div`
 
 export const PopoverCheckBoxRow = styled.div`
   display: flex;
-  padding: 12px 16px;
-  align-items: "center";
+  padding: calc(var(--unit) * 0.75) var(--unit);
+  align-items: center;
   background: var(--light);
   gap: 16px;
 `;
@@ -135,13 +141,13 @@ export const StyledFilterButtonContainer = styled.div`
 
 export const StyledOutlineButton = styled.button`
   display: flex;
-  padding: 10px 16px;
+  padding: calc(var(--unit) * 0.75) calc(var(--unit) * 0.75);
   font-size: var(--text-0);
   font-weight: 600;
   line-height: 125%;
   color: var(--brand);
   border: 1px solid var(--brand);
-  border-radius: 4px;
+  border-radius: var(--radius);
   background: white;
 
   &:hover {
@@ -153,13 +159,13 @@ export const StyledOutlineButton = styled.button`
 
 export const StyledPrimaryButton = styled.button`
   display: flex;
-  padding: 10px 12px;
+  padding: calc(var(--unit) * 0.75) calc(var(--unit) * 0.75);
   font-size: var(--text-0);
   font-weight: 600;
   line-height: 125%;
   color: white;
   border: 1px solid var(--brand);
-  border-radius: 4px;
+  border-radius: var(--radius);
   background: var(--brand);
 
   &:hover {
