@@ -41,7 +41,7 @@ const DropdownSingleSelect = ({
   type,
 }: DropdownSingleSelectProps) => {
   // #region ------------------ Hooks (Resources) ------------------------------
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const {
     treatmentIllnessLookup,
     selectedSort,
@@ -106,11 +106,16 @@ const DropdownSingleSelect = ({
       ? config.options.languageOptions
       : type === "sort"
       ? config.options.sortOptions
-      : illnesses.map((illness) => ({ label: illness, value: illness }));
+      : illnesses.map((illness) => ({
+          label: t(`Illness.${illness}`, illness),
+          value: illness,
+        }));
 
   const selectedOption =
     type === "language"
-      ? { label: selectedLanguage, value: i18n.language }
+      ? selectedLanguage === "English"
+      ? { label: "Language", value: i18n.language }
+      : { label: selectedLanguage, value: i18n.language }
       : type === "sort"
       ? selectedSort
       : selectedIllness;

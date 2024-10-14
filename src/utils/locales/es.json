@@ -36,6 +36,10 @@
     "List Heading": "{{count}} Sites",
     "Map Screenreader Heading": "Map of Sites"
   },
+  "Illness": {
+    "COVID": "COVID-19",
+    "Flu": "Flu"
+  },
   "Card": {
     "pap": "PAP",
     "usgProduct": "USG product",
