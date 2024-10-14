@@ -45,7 +45,7 @@ import PrescribingServicesIcon from "@/assets/icons/prescribing-services.svg";
 // #endregion ====================== IMPORTS ===================================
 
 // #region =================== EXPORTED COMPONENT ==============================
-const Card = ({ selected, serviceProvider }: Props) => {
+const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const { t } = useTranslation();
   const location = useLocation();
@@ -125,6 +125,33 @@ const Card = ({ selected, serviceProvider }: Props) => {
       facility_id: serviceProvider.facility_id,
       geopoint: serviceProvider.geopoint,
     });
+  };
+
+  const renderSiteSpecificFeatureLanguage = () => {
+    const isTrue = (value?: string | boolean) =>
+      !!(typeof value === "string" ? value.toLowerCase() === "true" : value);
+    const toBinary = (arr: boolean[]) =>
+      arr.map((val) => (val ? "1" : "0")).join("");
+
+    if (selectedIllness.toLowerCase() == "covid") {
+      const suffix = toBinary([
+        isTrue(serviceProvider.has_paxlovid),
+        isTrue(serviceProvider.has_lagevrio),
+        isTrue(serviceProvider.has_veklury),
+      ]);
+      return <StyledRow>{t(`Card.features.covid_${suffix}`)}</StyledRow>;
+    } else if (selectedIllness.toLowerCase() == "flu") {
+      const suffix = toBinary([
+        isTrue(serviceProvider.has_oseltamivir_generic),
+        isTrue(serviceProvider.has_oseltamivir_tamiflu),
+        isTrue(serviceProvider.has_oseltamivir_suspension),
+        isTrue(serviceProvider.has_baloxavir),
+        isTrue(serviceProvider.has_peramivir),
+        isTrue(serviceProvider.has_zanamivir),
+      ]);
+      return <StyledRow>{t(`Card.features.flu_${suffix}`)}</StyledRow>;
+    }
+    return <></>;
   };
   // #endregion ------------- Supporting Functions -----------------------------
 
@@ -243,6 +270,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
       {serviceProvider.grantee_code === "IH2" && (
         <p className="ital">{t("Card.ihs")}</p>
       )}
+      {renderSiteSpecificFeatureLanguage()}
       <StyledRow>
         <a onClick={handleCopyToClipboard} className="hhs-outline-button">
           {t("Card.shareLocation")}
