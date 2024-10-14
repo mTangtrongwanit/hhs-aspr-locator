@@ -33,6 +33,7 @@ import {
 // #region ------------------------ Resources ----------------------------------
 // import { type Props } from "./Header.types";
 import whiteLogoPath from "@/assets/images/ASPR-LOGO-WHITE.png";
+import HHSLogoPath from "@/assets/images/birdlogo.png";
 import xPath from "@/assets/images/x-logo-hhs-footer.png";
 import xAltPath from "@/assets/images/x-logo-aspr-footer.png";
 import linkedinPath from "@/assets/images/Link-W.png";
@@ -152,7 +153,7 @@ const Footer = () => {
           <StyledFooterAddressContainer>
             <StyledFooterAddressImageContainer>
               <StyledFooterAddressImage
-                src="/src/assets/images/birdlogo.png"
+                src={HHSLogoPath}
                 alt="Department of Health and Human Services Logo"
               />
             </StyledFooterAddressImageContainer>
