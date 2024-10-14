@@ -233,13 +233,23 @@ export const StyledLandingContent = styled.main`
     }
     // --- Children ---
 
+    * {
+      font-size: var(--text-0);
+      line-height: var(--text-2);
+    }
+
     a {
       font-weight: 400;
+      color: var(--brand);
     }
 
     .ital,
     .ital a {
       font-style: italic;
+    }
+
+    ul {
+      margin-left: calc(var(--unit) * 2);
     }
   }
 
