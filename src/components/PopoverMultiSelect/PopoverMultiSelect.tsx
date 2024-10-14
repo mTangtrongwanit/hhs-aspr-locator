@@ -218,7 +218,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
       field: config.treatmentData.fields.home_delivery,
     },
     has_oseltamivir_suspension: {
-      checker: (loc: any) =>
+      checker: (loc: __esri.Graphic) =>
         selectedIllness.value === "Flu" &&
         loc.attributes[config.treatmentData.fields.has_oseltamivir_suspension.name]?.toUpperCase() === "TRUE",
       field: config.treatmentData.fields.has_oseltamivir_suspension,
