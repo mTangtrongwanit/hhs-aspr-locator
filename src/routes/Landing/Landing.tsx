@@ -503,7 +503,7 @@ const Landing = () => {
           {
             //#region Drawer 6
           }
-          <Accordion.Item className="AccordionItem" value="item-2">
+          <Accordion.Item className="AccordionItem" value="item-6">
             <Accordion.Header className="AccordionHeader">
               <Accordion.Trigger className={"AccordionTrigger"}>
                 Can pregnant people take flu and COVID-19 antiviral medications?
@@ -511,7 +511,22 @@ const Landing = () => {
               </Accordion.Trigger>
             </Accordion.Header>
             <Accordion.Content className="AccordionContent">
-              <div className="AccordionContentText"></div>
+              <div className="AccordionContentText">
+                <strong>COVID-19:</strong>
+                <ul>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ul>
+                <strong>Influenza (Flu):</strong>
+                <ul>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ul>
+              </div>
             </Accordion.Content>
           </Accordion.Item>
           {
@@ -520,15 +535,22 @@ const Landing = () => {
           {
             //#region Drawer 7
           }
-          <Accordion.Item className="AccordionItem" value="item-2">
+          <Accordion.Item className="AccordionItem" value="item-7">
             <Accordion.Header className="AccordionHeader">
               <Accordion.Trigger className={"AccordionTrigger"}>
-                2. What are antivirals?
+                Can I get COVID-19 or flu medications over the counter (without
+                a prescription)?
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.Trigger>
             </Accordion.Header>
             <Accordion.Content className="AccordionContent">
-              <div className="AccordionContentText"></div>
+              <div className="AccordionContentText">
+                <ul>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ul>
+              </div>
             </Accordion.Content>
           </Accordion.Item>
           {
@@ -537,15 +559,22 @@ const Landing = () => {
           {
             //#region Drawer 8
           }
-          <Accordion.Item className="AccordionItem" value="item-2">
+          <Accordion.Item className="AccordionItem" value="item-8">
             <Accordion.Header className="AccordionHeader">
               <Accordion.Trigger className={"AccordionTrigger"}>
-                2. What are antivirals?
+                Are the treatments listed on this website safe and effective?
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.Trigger>
             </Accordion.Header>
             <Accordion.Content className="AccordionContent">
-              <div className="AccordionContentText"></div>
+              <div className="AccordionContentText">
+                <ul>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ul>
+              </div>
             </Accordion.Content>
           </Accordion.Item>
           {
@@ -554,15 +583,51 @@ const Landing = () => {
           {
             //#region Drawer 9
           }
-          <Accordion.Item className="AccordionItem" value="item-2">
+          <Accordion.Item className="AccordionItem" value="item-9">
             <Accordion.Header className="AccordionHeader">
               <Accordion.Trigger className={"AccordionTrigger"}>
-                2. What are antivirals?
+                What programs exist to provide continued affordable access to
+                these treatments outside of usual prescription drug coverage?
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.Trigger>
             </Accordion.Header>
             <Accordion.Content className="AccordionContent">
-              <div className="AccordionContentText"></div>
+              <div className="AccordionContentText">
+                <strong>COVID-19:</strong>
+                <ul>
+                  <li>
+                    <ul>
+                      <li></li>
+                      <li></li>
+                      <li></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <ul>
+                      <li></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <ul>
+                      <li></li>
+                    </ul>
+                  </li>
+                  <li></li>
+                </ul>
+                <strong>Influenza (Flu):</strong>
+                <ul>
+                  <li>
+                    <ul>
+                      <li></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <ul>
+                      <li></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
             </Accordion.Content>
           </Accordion.Item>
           {
@@ -571,15 +636,18 @@ const Landing = () => {
           {
             //#region Drawer 10
           }
-          <Accordion.Item className="AccordionItem" value="item-2">
+          <Accordion.Item className="AccordionItem" value="item-10">
             <Accordion.Header className="AccordionHeader">
               <Accordion.Trigger className={"AccordionTrigger"}>
-                2. What are antivirals?
+                What are monoclonal antibodies and why are they not listed on
+                this map?
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.Trigger>
             </Accordion.Header>
             <Accordion.Content className="AccordionContent">
-              <div className="AccordionContentText"></div>
+              <div className="AccordionContentText">
+                <p></p>
+              </div>
             </Accordion.Content>
           </Accordion.Item>
           {
@@ -588,15 +656,26 @@ const Landing = () => {
           {
             //#region Drawer 11
           }
-          <Accordion.Item className="AccordionItem" value="item-2">
+          <Accordion.Item className="AccordionItem" value="item-11">
             <Accordion.Header className="AccordionHeader">
               <Accordion.Trigger className={"AccordionTrigger"}>
-                2. What are antivirals?
+                Are all sites that offer COVID-19 or influenza treatments listed
+                on the locator?
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.Trigger>
             </Accordion.Header>
             <Accordion.Content className="AccordionContent">
-              <div className="AccordionContentText"></div>
+              <div className="AccordionContentText">
+                <p>
+                  o There may be locations that offer outpatient COVID-19 or
+                  influenza medications and are not listed on this website. The
+                  locations displayed on this website have either self-attested
+                  they have inventory of COVID-19 or influenza antiviral
+                  medications within at least the last two months and/or
+                  reported participation in the US Government Paxlovid Patient
+                  Assistance Program operated by Pfizer.
+                </p>
+              </div>
             </Accordion.Content>
           </Accordion.Item>
           {
@@ -605,15 +684,23 @@ const Landing = () => {
           {
             //#region Drawer 12
           }
-          <Accordion.Item className="AccordionItem" value="item-2">
+          <Accordion.Item className="AccordionItem" value="item-12">
             <Accordion.Header className="AccordionHeader">
               <Accordion.Trigger className={"AccordionTrigger"}>
-                2. What are antivirals?
+                What services may the locations listed on the locator provide?
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.Trigger>
             </Accordion.Header>
             <Accordion.Content className="AccordionContent">
-              <div className="AccordionContentText"></div>
+              <div className="AccordionContentText">
+                <p></p>
+                <ul>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                  <li></li>
+                </ul>
+              </div>
             </Accordion.Content>
           </Accordion.Item>
           {
@@ -622,10 +709,10 @@ const Landing = () => {
           {
             //#region Drawer 13
           }
-          <Accordion.Item className="AccordionItem" value="item-2">
+          <Accordion.Item className="AccordionItem" value="item-13">
             <Accordion.Header className="AccordionHeader">
               <Accordion.Trigger className={"AccordionTrigger"}>
-                2. What are antivirals?
+              How can my site be added to locator?
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.Trigger>
             </Accordion.Header>
@@ -639,10 +726,10 @@ const Landing = () => {
           {
             //#region Drawer 14
           }
-          <Accordion.Item className="AccordionItem" value="item-2">
+          <Accordion.Item className="AccordionItem" value="item-14">
             <Accordion.Header className="AccordionHeader">
               <Accordion.Trigger className={"AccordionTrigger"}>
-                2. What are antivirals?
+              How can my site participate in the Paxlovid Patient Assistance Program?
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.Trigger>
             </Accordion.Header>
