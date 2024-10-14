@@ -23,7 +23,7 @@ import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
-import { StyledMap, StyledMessage } from "./LocationsMap.styles";
+import { StyledMap} from "./LocationsMap.styles";
 import { useAppContext } from "@/contexts/AppContext";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
@@ -74,7 +74,6 @@ const LocationsMap = () => {
 
   // #region -------------------- Hooks (Other) --------------------------------
   const mapRef = useRef<HTMLDivElement>(null);
-  const messageRef = useRef<HTMLParagraphElement>(null);
 
   /** Create map view when map and container are ready */
   useEffect(() => {
@@ -82,7 +81,7 @@ const LocationsMap = () => {
     if (searchParams.has("geopoint")) {
       geopoint = searchParams.get("geopoint");
     }
-    if (map && mapRef.current && messageRef.current) {
+    if (map && mapRef.current) {
       // Create map view
       const mapView = new MapView({
         map,
@@ -90,8 +89,6 @@ const LocationsMap = () => {
         popupEnabled: false,
       });
       setLocationsMapView(mapView);
-
-      mapView.ui.add(messageRef.current);
 
       if (geopoint && geopoint !== "" && geopoint.includes(",")) {
         reactiveUtils
@@ -267,10 +264,6 @@ const LocationsMap = () => {
   // #region ----------------------- Render ------------------------------------
   return (
     <>
-      <StyledMessage ref={messageRef}>
-        Select a treatment site to view details.
-      </StyledMessage>
-
       <StyledMap ref={mapRef}></StyledMap>
     </>
   );

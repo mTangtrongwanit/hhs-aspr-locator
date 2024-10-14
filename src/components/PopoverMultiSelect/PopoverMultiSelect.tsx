@@ -170,81 +170,86 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
     setLocations(locationsTotals);
   };
 
+  
+
+  /* note: this logic from https://dev.azure.com/Esri-Professional-Services/HHS-ASPR%20Treatment%20Locator%202.0/_workitems/edit/58802/
+    posted by Carlee, John (OS ASPR SIIM) (CTR)
+
+      COVID
+    Free/reduced cost
+    is_pap: true OR has_USG_product: true   
+    Free Testing
+    is_icatt_site: true
+    Prescribing Services
+    is_prescribing_svcs_available: true
+    Home Delivery
+    home_delivery: true
+    Flu
+    Prescribing Services
+    is_prescribing_svcs_available: true
+    Home Delivery
+    home_delivery: true
+    Oseltamivir suspension
+    has_oseltamivir_suspension: true
+
+
+  */
+
+  const filterLookup = {
+    is_pap: {
+      checker: (loc: __esri.Graphic) =>
+        selectedIllness.value === "COVID" &&
+        [
+          loc.attributes[config.treatmentData.fields.is_pap.name]?.toUpperCase(), 
+          loc.attributes[config.treatmentData.fields.has_USG_product.name
+        ]?.toUpperCase()].includes("TRUE"),
+      field: config.treatmentData.fields.is_pap,
+    },
+    is_icatt_site: {
+      checker: (loc: __esri.Graphic) =>
+        selectedIllness.value === "COVID" &&
+        loc.attributes[config.treatmentData.fields.is_icatt_site.name]?.toUpperCase() === "TRUE",
+      field: config.treatmentData.fields.is_icatt_site,
+    },
+    home_delivery: {
+      checker: (loc: __esri.Graphic) =>
+        [ "COVID", "Flu"].includes(selectedIllness.value) &&
+        loc.attributes[config.treatmentData.fields.home_delivery.name]?.toUpperCase() === "TRUE",
+      field: config.treatmentData.fields.home_delivery,
+    },
+    has_oseltamivir_suspension: {
+      checker: (loc: __esri.Graphic) =>
+        selectedIllness.value === "Flu" &&
+        loc.attributes[config.treatmentData.fields.has_oseltamivir_suspension.name]?.toUpperCase() === "TRUE",
+      field: config.treatmentData.fields.has_oseltamivir_suspension,
+    },
+
+    is_prescribing_svcs_available: {
+      checker: (loc: __esri.Graphic) =>
+        [ "COVID", "Flu"].includes(selectedIllness.value) &&
+        loc.attributes[config.treatmentData.fields.is_prescribing_svcs_available.name]?.toUpperCase() === "TRUE",
+      field: config.treatmentData.fields.is_prescribing_svcs_available,
+    },
+  };
+
   // Get the services from the locations
   const services = Array.from(
     new Set(
       locationsTotals?.flatMap((loc) => {
         const serviceList: Filter[] = [];
-        if (
-          loc.attributes[config.treatmentData.fields.is_pap.name] &&
-          loc.attributes[
-            config.treatmentData.fields.is_pap.name
-          ].toUpperCase() === "TRUE"
-        )
-          serviceList.push(config.treatmentData.fields.is_pap);
-        if (
-          loc.attributes[config.treatmentData.fields.is_icatt_site.name] &&
-          loc.attributes[
-            config.treatmentData.fields.is_icatt_site.name
-          ].toUpperCase() === "TRUE"
-        )
-          serviceList.push(config.treatmentData.fields.is_icatt_site);
-        if (
-          loc.attributes[config.treatmentData.fields.home_delivery.name] &&
-          loc.attributes[
-            config.treatmentData.fields.home_delivery.name
-          ].toUpperCase() === "TRUE"
-        )
-          serviceList.push(config.treatmentData.fields.home_delivery);
-        if (
-          loc.attributes[config.treatmentData.fields.has_USG_product.name] &&
-          loc.attributes[
-            config.treatmentData.fields.has_USG_product.name
-          ].toUpperCase() === "TRUE"
-        )
-          serviceList.push(config.treatmentData.fields.has_USG_product);
-        if (
-          loc.attributes[
-            config.treatmentData.fields.has_oseltamivir_suspension.name
-          ] &&
-          loc.attributes[
-            config.treatmentData.fields.has_oseltamivir_suspension.name
-          ].toUpperCase() === "TRUE"
-        )
-          serviceList.push(
-            config.treatmentData.fields.has_oseltamivir_suspension,
-          );
-        if (
-          loc.attributes[
-            config.treatmentData.fields.has_oseltamivir_tamiflu.name
-          ] &&
-          loc.attributes[
-            config.treatmentData.fields.has_oseltamivir_tamiflu.name
-          ].toUpperCase() === "TRUE" &&
-          loc.attributes[
-            config.treatmentData.fields.has_oseltamivir_generic.name
-          ] &&
-          loc.attributes[
-            config.treatmentData.fields.has_oseltamivir_generic.name
-          ].toUpperCase() === "FALSE"
-        )
-          serviceList.push(config.treatmentData.fields.has_oseltamivir_tamiflu);
-        if (
-          loc.attributes[
-            config.treatmentData.fields.is_prescribing_svcs_available.name
-          ] &&
-          loc.attributes[
-            config.treatmentData.fields.is_prescribing_svcs_available.name
-          ].toUpperCase() === "TRUE"
-        )
-          serviceList.push(
-            config.treatmentData.fields.is_prescribing_svcs_available,
-          );
+        // Iterate over the lookup object
+        for (const [key, field] of Object.entries(filterLookup)) {
+          // handle type check for key
+          key 
+          // handle type check for key
+          if (field.checker(loc)) {
+              serviceList.push(field.field);
+          }
+        }
         return serviceList;
       }) || [],
     ),
   );
-
   // #endregion ---------------- Event Handlers --------------------------------
 
   // #region ----------------------- Effects -----------------------------------
@@ -317,13 +322,15 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
   return (
     <StyledPopoverMultiSelect>
       <PopoverMenu.Root>
-        <PopoverMenu.Trigger className="PopoverMenuButton">
+        <PopoverMenu.Trigger className="hhs-primary-button">
           {type === "medications" ? "Medications" : "Filters"}{" "}
           <ChevronDownIcon />
           <span className="PopOverFilterCount">
+            &#40;
             {type === "medications"
               ? selectedMedications.length
               : selectedFilters.length}
+            &#41;
           </span>
         </PopoverMenu.Trigger>
         <PopoverMenu.Portal>

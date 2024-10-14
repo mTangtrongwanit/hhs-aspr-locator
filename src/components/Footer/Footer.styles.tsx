@@ -47,13 +47,13 @@ export const StyledFooterContainer = styled.div`
 export const StyledFooter = styled.footer`
   display: flex;
   max-width: 1440px;
-  padding: 24px;
+  padding: calc(var(--unit) * 1.5);
   gap: 32px;
 
   @media ${Breakpoints.md} {
     flex-direction: column;
     justify-content: center;
-    padding: 16px;
+    padding: var(--unit);
   }
 `;
 
@@ -158,7 +158,8 @@ export const StyledFooterImage = styled.img`
 export const StyledFooterMediaLinksContainer = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  gap: 4px 8px;
+  padding: calc(var(--unit) * 0.25) calc(var(--unit) * 0.5);
+  gap: calc(var(--unit) * 0.25) calc(var(--unit) * 0.25);
   align-items: center;
   list-style: none;
 
