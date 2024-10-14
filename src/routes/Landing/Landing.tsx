@@ -149,7 +149,7 @@ const Landing = () => {
                   The COVID-19 and flu treatment locator can be used to help you
                   find FDA approved or authorized treatments for these diseases.{" "}
                 </p>
-                <StyledFAQTitle>COVID-19</StyledFAQTitle>
+                <strong>COVID-19</strong>
                 <ul>
                   <li>
                     Three outpatient treatments are currently authorized or
@@ -177,7 +177,7 @@ const Landing = () => {
                   </li>
                 </ul>
 
-                <StyledFAQTitle>Influenza (Flu)</StyledFAQTitle>
+                <strong>Influenza (Flu)</strong>
                 <ul>
                   <li>
                     The following outpatient treatments are currently approved
@@ -428,7 +428,73 @@ const Landing = () => {
               </Accordion.Trigger>
             </Accordion.Header>
             <Accordion.Content className="AccordionContent">
-              <div className="AccordionContentText"></div>
+              <div className="AccordionContentText">
+                <strong>COVID-19</strong>
+                <ul>
+                  <li>
+                    o Paxlovid is authorized by the FDA for emergency use in
+                    children 12 years or older weighing at least 88 pounds [40
+                    kg], who are at high risk for getting very sick from
+                    COVID-19 and who have mild to moderate symptoms.
+                  </li>
+                  <li>
+                    o Veklury is FDA-approved for children 28 days of age or
+                    older and weighing at least 7 pounds [3 kg], who have mild
+                    to moderate symptoms of COVID-19 and are at high risk for
+                    getting very sick from COVID-19.
+                    <ul>
+                      <li>
+                         This medication is given through an intravenous
+                        infusion and may be given in the outpatient (not staying
+                        in the hospital) or inpatient (staying in the hospital)
+                        setting. This website lists only outpatient locations
+                        where Veklury is available.
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+
+                <strong>Influenza (Flu)</strong>
+                <ul>
+                  <li>
+                    o Oral oseltamivir is approved by the FDA for treatment of
+                    acute uncomplicated influenza within 2 days of illness onset
+                    in people 14 days of age and older. Although not part of the
+                    FDA-approved indications, use of oral oseltamivir for
+                    treatment of influenza in infants less than 14 days old is
+                    recommended by the CDC. Oseltamivir is available as an oral
+                    suspension for children.
+                    <ul>
+                      <li>
+                         If your health care provider prescribes oseltamivir
+                        capsules for your child and your child cannot swallow
+                        capsules, please refer to{" "}
+                        <a href="https://www.cdc.gov/flu/highrisk/mixing-oseltamivir-qa.htm">
+                          CDC guidance
+                        </a>{" "}
+                        on opening and mixing oseltamivir capsules with liquids.
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    o Zanamivir is approved for early treatment of flu in people
+                    7 years and older, though it is not recommended for use in
+                    children with underlying respiratory disease, including
+                    asthma and other chronic lung diseases, and in patients with
+                    milk protein allergy.
+                  </li>
+                  <li>
+                    o Peramivir is approved for early treatment of flu in
+                    otherwise healthy patients 6 months and older.
+                  </li>
+                  <li>
+                    o Baloxavir is available in a single dose tablet for early
+                    treatment of flu in otherwise healthy children aged 5 years
+                    and older, and in children 12 years and older who are at
+                    higher risk of developing flu-related complications.{" "}
+                  </li>
+                </ul>
+              </div>
             </Accordion.Content>
           </Accordion.Item>
           {
