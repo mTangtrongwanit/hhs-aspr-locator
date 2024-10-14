@@ -197,7 +197,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
 
   const filterLookup = {
     is_pap: {
-      checker: (loc: any) =>
+      checker: (loc: __esri.Graphic) =>
         selectedIllness.value === "COVID" &&
         [
           loc.attributes[config.treatmentData.fields.is_pap.name]?.toUpperCase(), 
@@ -206,13 +206,13 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
       field: config.treatmentData.fields.is_pap,
     },
     is_icatt_site: {
-      checker: (loc: any) =>
+      checker: (loc: __esri.Graphic) =>
         selectedIllness.value === "COVID" &&
         loc.attributes[config.treatmentData.fields.is_icatt_site.name]?.toUpperCase() === "TRUE",
       field: config.treatmentData.fields.is_icatt_site,
     },
     home_delivery: {
-      checker: (loc: any) =>
+      checker: (loc: __esri.Graphic) =>
         [ "COVID", "Flu"].includes(selectedIllness.value) &&
         loc.attributes[config.treatmentData.fields.home_delivery.name]?.toUpperCase() === "TRUE",
       field: config.treatmentData.fields.home_delivery,
@@ -223,22 +223,6 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
         loc.attributes[config.treatmentData.fields.has_oseltamivir_suspension.name]?.toUpperCase() === "TRUE",
       field: config.treatmentData.fields.has_oseltamivir_suspension,
     },
-
-    // todo: verify this, it's not in the original logic
-    // has_oseltamivir_tamiflu: {
-    //   // note, only show if has_oseltamivir_tamiflu is true and has_oseltamivir_generic is false
-    //   checker: (loc: any) =>
-    //     selectedIllness.value === "COVID" &&
-    //     loc.attributes[config.treatmentData.fields.has_oseltamivir_tamiflu.name]?.toUpperCase() === "TRUE" &&
-    //     loc.attributes[config.treatmentData.fields.has_oseltamivir_generic.name]?.toUpperCase() === "FALSE",
-    //   field: config.treatmentData.fields.has_oseltamivir_tamiflu,
-    // },
-    // has_oseltamivir_generic: {
-    //   checker: (loc: any) =>
-    //     selectedIllness.value === "COVID" &&
-    //     loc.attributes[config.treatmentData.fields.has_oseltamivir_generic.name]?.toUpperCase() === "TRUE",
-    //   field: config.treatmentData.fields.has_oseltamivir_generic,
-    // },
 
     is_prescribing_svcs_available: {
       checker: (loc: __esri.Graphic) =>
