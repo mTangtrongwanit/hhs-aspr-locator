@@ -52,6 +52,7 @@ const SearchComponent = () => {
      */
     const search = new Search({
       container: document.createElement("div"),
+      locationEnabled: false,
       sources: [
         {
           url: "https://geocode-api.arcgis.com/arcgis/rest/services/World/GeocodeServer",
