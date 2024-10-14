@@ -81,30 +81,6 @@ const router = createBrowserRouter(
   ],
   {
     basename: import.meta.env.BASE_URL,
-    // @ts-expect-error - debugging
-    async unstable_dataStrategy({ request, matches }) {
-      console.log("unstable_dataStrategy", request, matches);
-      // Grab only the matches we need to run handlers for
-      const matchesToLoad = matches.filter((m) => m.shouldLoad);
-      // Run the handlers in parallel, logging before and after
-      const results = await Promise.all(
-        matchesToLoad.map(async (match) => {
-          console.log(`Processing ${match.route.id}`);
-          // Don't override anything - just resolve route.lazy + call loader
-          const result = await match.resolve();
-          return result;
-        })
-      );
-
-      // Aggregate the results into a bn object of `routeId -> DataStrategyResult`
-      return results.reduce(
-        (acc, result, i) =>
-          Object.assign(acc, {
-            [matchesToLoad[i].route.id]: result,
-          }),
-        {}
-      );
-    },
   }
 );
 // #endregion ===================== CONSTANTS ==================================
