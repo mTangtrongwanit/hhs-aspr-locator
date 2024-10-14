@@ -514,17 +514,17 @@ const Landing = () => {
               <div className="AccordionContentText">
                 <strong>COVID-19:</strong>
                 <ul>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
+                  <li>o	Pregnant and recently pregnant people (at least 6 weeks following the end of pregnancy) are at increased risk of severe illness from COVID-19.</li>
+                  <li>o	Paxlovid (ritonavir with nirmatrelvir) is the preferred treatment option for pregnant and recently pregnant patients with COVID-19.  </li>
+                  <li>o	Lagevrio (molnupiravir) is not recommended for use during pregnancy because of risk it may cause fetal harm. Prior to initiating treatment with Lagevrio, health care providers should assess whether an individual of childbearing potential is pregnant, if clinically indicated. Breastfeeding is not recommended during treatment with Lagevrio and for 4 days after final dose.</li>
+                  <li>o	Healthcare providers can refer to the <a href="https://aspr.hhs.gov/COVID-19-Therapeutics/Side-by-Side-Overview/Pages/default.aspx">Side-by-Side Overview of Therapeutics Authorized or Approved for the Treatment of Mild to Moderate COVID-19.</a></li>
                 </ul>
                 <strong>Influenza (Flu):</strong>
                 <ul>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
+                  <li>o	Treatment with antiviral medications for flu is recommended for pregnant people or people who are up to 2 weeks postpartum (including following pregnancy loss) with suspected or confirmed influenza of any severity and can be taken during any trimester of pregnancy.</li>
+                  <li>o	Oral oseltamivir is the preferred treatment options for pregnant people with flu because it has the most studies available to suggest that it is safe and beneficial.</li>
+                  <li>o	Baloxavir is not recommended for pregnant or post-partum people or while breastfeeding, as there are no available efficacy or safety data.</li>
+                  <li>o	For more information on the treatment of flu during pregnancy, healthcare providers can visit <a href="https://www.cdc.gov/flu/professionals/antivirals/avrec_ob.htm#:~:text=For%20treatment%20of%20pregnant%20people,with%20oseltamivir%20is%205%20days.">Recommendations for Obstetric Health Care Providers Related to Use of Antiviral Medications in the Treatment and Prevention of Influenza.</a></li>
                 </ul>
               </div>
             </Accordion.Content>
@@ -546,9 +546,9 @@ const Landing = () => {
             <Accordion.Content className="AccordionContent">
               <div className="AccordionContentText">
                 <ul>
-                  <li></li>
-                  <li></li>
-                  <li></li>
+                  <li>o	Medications to treat COVID-19 (Paxlovid, Lagevrio, Veklury) and flu (oseltamivir, zanamivir, peramivir, baloxavir) must be prescribed by a health care provider and should be started as soon as possible after diagnosis to be effective.</li>
+                  <li>o	Talk to your health care professional about available treatment options if you have symptoms consistent with COVID-19 or flu. </li>
+                  <li>o	Certain locations listed on this locator may provide prescribing services to patients who do not already have a prescription.  </li>
                 </ul>
               </div>
             </Accordion.Content>
@@ -569,10 +569,10 @@ const Landing = () => {
             <Accordion.Content className="AccordionContent">
               <div className="AccordionContentText">
                 <ul>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
+                  <li>o	All medications listed on this website are approved or authorized by FDA as safe and effective when used appropriately.</li>
+                  <li>o	If you have COVID-19 and are more likely to get very sick, treatments are available that can reduce your chances of being hospitalized or dying from the disease.  </li>
+                  <li>o	Early flu antiviral treatment can shorten the duration of fever and illness and may reduce the risk of some complications from influenza.  </li>
+                  <li>o	Some treatments might have side effects or interact with other medications you are taking. Ask a health care provider if medications to treat COVID-19 or influenza are right for you.</li>
                 </ul>
               </div>
             </Accordion.Content>
