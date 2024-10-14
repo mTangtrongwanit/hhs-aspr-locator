@@ -58,6 +58,7 @@ export const StyledButton = styled.button`
 export const StyledSearchContainer = styled.section`
   // --- Local Variables ---
   // --- Sizing / Box-Model ---
+  border-top: var(--border) solid var(--brand);
   width: 100%;
   height: min-content;
   padding: var(--unit) calc(var(--unit) * 2);
@@ -67,6 +68,7 @@ export const StyledSearchContainer = styled.section`
   display: flex;
   gap: var(--unit);
   flex-wrap: wrap;
+  z-index: 1;
   // --- Decorative ---
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.04);
   // --- States ---
@@ -108,7 +110,7 @@ export const StyledListContainer = styled.section`
   min-width: calc(var(--min-card-width) + (var(--unit) * 4));
   max-width: var(--max-card-width);
   width: 30vw;
-  padding: calc(var(--unit) * 2);
+  padding: calc(var(--unit) * 1.5) calc(var(--unit) * 2) ;
   height: fit-content;
   // --- Position ---
   position: relative;
@@ -118,15 +120,11 @@ export const StyledListContainer = styled.section`
   flex-direction: column;
   gap: var(--unit);
   // --- Decorative ---
-  background: var(--light);
   // --- States ---
 
   // --- Children ---
   #list-title {
     // --- Layout ---
-    padding-top: var(--unit);
-    padding-bottom: var(--unit);
-    margin-bottom: calc(0px - var(--unit));
     position: sticky;
     top: 0;
     z-index: 2;
@@ -134,9 +132,8 @@ export const StyledListContainer = styled.section`
 
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     gap: var(--unit);
-
-    background: var(--light);
 
     .dev-placeholder {
       width: min-content;
@@ -152,6 +149,35 @@ export const StyledListContainer = styled.section`
     flex-direction: column;
     gap: var(--unit);
   }
+`;
+
+export const StyledListNoResultsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: calc(var(--unit) * 2) 0;
+  gap: var(--unit);
+  & p {
+    text-align: center;
+    font-weight: 400;
+    font-size: var(--text--1);
+    color: var(--text);
+  }
+`;
+
+
+export const StyledListTitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: calc(var(--unit)/2);
+`;
+
+export const StyledListOptionsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: var(--unit);
 `;
 
 export const StyledMapContainer = styled.section`
@@ -206,6 +232,7 @@ export const StyledLocationsContent = styled.main`
   // --- Children ---
   #locs {
     display: flex;
+    background: var(--light);
   }
 `;
 // #endregion ------------ Parent Component + Variants -------------------------

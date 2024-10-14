@@ -317,13 +317,15 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
   return (
     <StyledPopoverMultiSelect>
       <PopoverMenu.Root>
-        <PopoverMenu.Trigger className="PopoverMenuButton">
+        <PopoverMenu.Trigger className="hhs-primary-button">
           {type === "medications" ? "Medications" : "Filters"}{" "}
           <ChevronDownIcon />
           <span className="PopOverFilterCount">
+            &#40;
             {type === "medications"
               ? selectedMedications.length
               : selectedFilters.length}
+            &#41;
           </span>
         </PopoverMenu.Trigger>
         <PopoverMenu.Portal>

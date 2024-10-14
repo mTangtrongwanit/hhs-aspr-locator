@@ -130,7 +130,7 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
 /* radix-ui style and overrides */
 .PopoverMenuContent {
   border-radius: 4px;
-  padding: 16px 24px;
+  padding: var(--unit) calc(var(--unit) * 1.5);
   width: 280px;
   max-width: 360px;
   display: flex;
@@ -148,10 +148,8 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
 }
 
 .PopoverMenuContent:focus {
-  box-shadow:
-    hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
-    hsl(206 22% 7% / 20%) 0px 10px 20px -15px,
-    0 0 0 2px var(--violet-7);
+  box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
+    hsl(206 22% 7% / 20%) 0px 10px 20px -15px, 0 0 0 2px var(--violet-7);
 }
 
 .PopoverMenuContent[data-state="open"][data-side="top"] {
@@ -194,6 +192,21 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
   cursor: pointer;
 }
 
+/* .PopOverFilterCount {
+  position: absolute;
+  top: -44%;
+  right: -8%;
+  height: 24px;
+  width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24px;
+  font-size: 14px;
+  background: #db3030;
+  color: white;
+} */
+
 @keyframes slideUpAndFade {
   from {
     opacity: 0;
@@ -223,6 +236,84 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
 
 .CheckboxIndicator {
   color: var(--brand);
+}
+
+/* common styles (that are not styled components) */
+
+.hhs-primary-button {
+  border: var(--border) solid var(--brand);
+  display: flex;
+  align-items: center;
+  padding: calc(var(--unit) * 0.75) calc(var(--unit) * 0.75);
+  gap: calc(var(--unit) * 0.25);
+  font-size: var(--text-0);
+  font-weight: 600 !important;
+  line-height: 125%;
+  color: white;
+  border-radius: var(--radius);
+  background: var(--brand);
+  text-decoration: none;
+}
+
+.hhs-primary-button:hover {
+  background: var(--accent);
+  cursor: pointer;
+}
+
+.hhs-secondary-button {
+  border: var(--border) solid white;
+  display: flex;
+  align-items: center;
+  padding: calc(var(--unit) * 0.75) calc(var(--unit) * 0.75);
+  gap: calc(var(--unit) * 0.25);
+  font-size: var(--text-0);
+  font-weight: 600 !important;
+  line-height: 125%;
+  color: white;
+  border-radius: var(--radius);
+  background: var(--accent);
+  text-decoration: none;
+}
+
+.hhs-secondary-button:hover {
+  background: var(--brand);
+  cursor: pointer;
+}
+
+.hhs-outline-button {
+  border: var(--border) solid var(--brand);
+  display: flex;
+  align-items: center;
+  padding: calc(var(--unit) * 0.75) calc(var(--unit) * 0.75);
+  gap: calc(var(--unit) * 0.25);
+  font-size: var(--text-0);
+  font-weight: 600 !important;
+  line-height: 125%;
+  color: var(--brand);
+  border-radius: var(--radius);
+  background: white;
+  text-decoration: none;
+}
+
+.hhs-outline-button:hover {
+  color: white;
+  background: var(--accent);
+  cursor: pointer;
+}
+
+.hhs-outline-button-landing-container {
+  flex: 1 0 auto;
+  width: auto;
+  max-width: 20rem;
+}
+
+.hhs-outline-button-landing-container > div > .DropdownMenuContent {
+  min-width: 10rem;
+}
+
+.hhs-outline-button-landing {
+  justify-content: space-between;
+  width: 100%;
 }
 
 /* #endregion ------------------- Utility Classes ------------------------------*/

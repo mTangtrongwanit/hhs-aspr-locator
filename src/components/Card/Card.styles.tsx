@@ -50,27 +50,27 @@ export const StyledOfferingSpan = styled.span`
   }
 `;
 
-export const StyledOutlinedLink = styled.a`
-  // --- Sizing / Box-Model ---
-  padding: calc(var(--unit) / 2);
+// export const StyledOutlinedLink = styled.a`
+//   // --- Sizing / Box-Model ---
+//   padding: calc(var(--unit) / 2);
 
-  // --- Layout ---
-  display: flex;
-  gap: calc(var(--unit) / 2);
-  align-items: center;
+//   // --- Layout ---
+//   display: flex;
+//   gap: calc(var(--unit) / 2);
+//   align-items: center;
 
-  // --- Decorative ---
-  color: var(--brand);
-  text-decoration: none;
-  background: none;
-  border: 1px solid var(--brand);
-  border-radius: var(--radius);
-  cursor: pointer;
+//   // --- Decorative ---
+//   color: var(--brand);
+//   text-decoration: none;
+//   background: none;
+//   border: 1px solid var(--brand);
+//   border-radius: var(--radius);
+//   cursor: pointer;
 
-  span {
-    font-weight: 400;
-  }
-`;
+//   span {
+//     font-weight: 400;
+//   }
+// `;
 // #endregion ----------------------- Atoms ------------------------------------
 
 // #region -------------- Molecules (Internal Layouts) -------------------------
@@ -94,14 +94,14 @@ export const StyledTooltipContainer = styled.div`
   display: flex;
   gap: var(--unit);
   flex-wrap: wrap;
-  row-gap: 4px;
+  row-gap: calc(var(--unit) * 0.25);
 `;
 export const StyledRow = styled.div`
   // --- Layout ---
   display: flex;
   gap: calc(var(--unit) / 2);
   flex-wrap: wrap;
-  row-gap: 4px;
+  row-gap: calc(var(--unit) / 2);
 
   // --- Decorative ---
   color: var(--text);
@@ -177,8 +177,8 @@ export const StyledCard = styled.li<{
     position: relative;
     z-index: 3;
     // --- Decorative ---
-    color: var(--text);
-    background-color: white;
+    color: var(--light);
+    background-color: var(--text);
     box-shadow:
       hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
       hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
@@ -190,7 +190,7 @@ export const StyledCard = styled.li<{
 
   .TooltipArrow {
     // --- Decorative ---
-    fill: white;
+    fill: var(--text);
   }
 
   .icon-light {
