@@ -71,6 +71,25 @@ const Landing = () => {
       <StyledSearchContainer>
         <h2>{t("Landing.Search Container Heading")}</h2>
         <p>{t("Landing.Search Container Description")}</p>
+        <p>
+          This content is not fully Section 508 conformant. If you need
+          assistance, please contact&nbsp;
+          <a href="mailto:gis@hhs.gov">gis@hhs.gov</a>.{" "}
+          <a href="https://healthdata.gov/ASPR/COVID-19-Treatments/xkzp-zhs7/data_preview">
+            Tabular access to the data is also available.
+          </a>
+        </p>
+        <p>
+          This website includes locations participating in the U.S. Government&nbsp;
+          <a href="https://paxlovid.iassist.com/">Patient Assistance Program</a>&nbsp;
+          operated by Pfizer, offering free Paxlovid for eligible patients.
+          Other assistance programs are available for&nbsp;
+          <a href="https://aspr.hhs.gov/COVID-19/Treatments/Pages/Possible-Treatment-Options-for-COVID19.aspx#oral-antivirals">
+            COVID-19
+          </a>{" "}
+          {/* TODO: ADD THIS ID */}
+          and <a href="/#faq-flu">flu.</a>
+        </p>
         <StyledRow>
           <Search />
           <DropdownSingleSelect type={"illness"} />

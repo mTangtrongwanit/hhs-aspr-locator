@@ -102,6 +102,10 @@ export const StyledSearchContainer = styled.section`
     font-size: var(--text-5);
     font-weight: 700;
   }
+
+  a {
+    color: #fff;
+  }
 `;
 
 export const StyledContextRow = styled.section`
