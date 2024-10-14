@@ -35,20 +35,11 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
 
   const [selectedTreatmentSite, setSelectedTreatmentSite] =
     useState<__esri.Graphic | null>(null);
-
-  // Initial search point for locations when app loads or when user clears search
-  const initialSearchPoint = {
-    name: "",
-    point: new Point({
-      longitude: -99.41461919,
-      latitude: 39.398703156,
-    }),
-  };
   // Dynamically updated search point
   const [searchPoint, setSearchPoint] = useState<{
     name: string;
     point: __esri.Point;
-  } | null>(null);
+  } | null>({name: "", point: new Point()});
 
   //Dynamically updated list of result features
   const [locations, setLocations] = useState<__esri.Graphic[] | null>(null);
@@ -109,17 +100,13 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     fetchTreatmentsIllnesses();
   }, []);
 
-  /** Set search point to initial search point when component mounts */
-  useEffect(() => {
-    setSearchPoint(initialSearchPoint);
-  }, []);
-
   /** Get the locations and set locations and locations extent to state */
   useEffect(() => {
     const getLocations = async () => {
+      if (!searchPoint) return;
       try {
         const locs = await getLocationsData(
-          searchPoint?.point ?? initialSearchPoint.point
+          searchPoint?.point
         );
         setLocations(locs?.features.features ?? []);
         setLocationsTotals(locs?.features.features ?? []);
@@ -129,7 +116,6 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
       }
     };
     getLocations();
-    console.log("searchPoint", searchPoint);
   }, [searchPoint]);
 
   /** Set treatmentIllnessLookup dictionary when treatmentsIllness data is set */

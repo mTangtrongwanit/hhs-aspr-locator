@@ -72,7 +72,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
     };
 
     fetchDistance();
-  }, []);
+  }, [searchPoint, serviceProvider]);
 
   // Highlight the location if the facility ID in the URL matches the facility ID of the service provider
   useEffect(() => {
@@ -142,7 +142,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
           <p className="smallText">
             {t("Card.distance")}
             {`: ${distance
-              .toFixed(0)
+              .toFixed(1)
               .toString()
               .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}
             {` ${t("Card.miles")}`}

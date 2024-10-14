@@ -218,7 +218,7 @@ const LocationsMap = () => {
     if (searchParams.has("geopoint")) {
       return;
     }
-    if (locationsMapView && searchPoint && locationsExtent) {
+    if (locationsMapView && searchPoint && locationsExtent?.extent?.center) {
       reactiveUtils
         .whenOnce(() => locationsMapView.ready)
         .then(() => {
