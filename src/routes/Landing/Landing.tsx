@@ -74,7 +74,10 @@ const Landing = () => {
 
         <StyledRow>
           <Search />
-          <DropdownSingleSelect type={"illness"} />
+          <DropdownSingleSelect
+            type={"illness"}
+            placeholder={t("Landing.Illness Placeholder")}
+          />
         </StyledRow>
         <Link
           to="/locations"
