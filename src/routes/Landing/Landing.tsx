@@ -337,7 +337,80 @@ const Landing = () => {
               </Accordion.Trigger>
             </Accordion.Header>
             <Accordion.Content className="AccordionContent">
-              <div className="AccordionContentText"></div>
+              <div className="AccordionContentText">
+                <ul>
+                  <li>
+                    Oseltamivir (including brand name Tamiflu): Recommended for
+                    adults and children of all ages.
+                    <ul>
+                      <li>
+                        {" "}
+                        It is the preferred treatment for treatment of influenza
+                        in pregnant women, hospitalized patients, and
+                        outpatients with severe, complicated, or progressive
+                        illness.{" "}
+                      </li>
+                      <li>
+                        {" "}
+                        Oseltamivir is taken twice daily by mouth for 5 days.{" "}
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    Peramivir (Rapivab): Otherwise healthy adults and children 6
+                    months and older.
+                    <ul>
+                      <li>
+                         This medication is given by a healthcare provider as a
+                        single dose through an intravenous infusion{" "}
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    o Zanamivir (Relenza): Adults and children 7 years and
+                    older.
+                    <ul>
+                      <li>
+                         Zanamivir is administered using an inhaler device and
+                        is not recommended for people with breathing problems
+                        like asthma or COPD or those with a history of allergy
+                        to lactose or milk protein.{" "}
+                      </li>
+                      <li>
+                         Zanamivir is taken twice daily using an inhaler device
+                        for 5 days.{" "}
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    o Baloxavir (Xofluza): Otherwise healthy children 5 years
+                    and older for acute uncomplicated influenza, and adults and
+                    children 12 years and older who are at high risk of
+                    developing influenza-related complications.
+                    <ul>
+                      <li> Baloxavir is taken by mouth as a single dose</li>
+                      <li>
+                         Baloxavir is not recommended for treatment of flu in
+                        pregnant or breastfeeding people, severely
+                        immunosuppressed persons, or in outpatients with
+                        complicated or progressive illness because there is no
+                        information about use of baloxavir in these patients.{" "}
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    o Please see{" "}
+                    <a href="https://www.cdc.gov/flu/treatment/whatyoushould.htm">
+                      What are Flu Antiviral Drugs | CDC
+                    </a>{" "}
+                    for more information on treatment of flu. Healthcare
+                    providers can visit CDC’s{" "}
+                    <a href="https://www.cdc.gov/flu/professionals/antivirals/summary-clinicians.htm">
+                      Influenza Antiviral Medications: Summary for Clinicians.
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </Accordion.Content>
           </Accordion.Item>
           {
