@@ -113,9 +113,7 @@ const DropdownSingleSelect = ({
 
   const selectedOption =
     type === "language"
-      ? selectedLanguage === "English"
-      ? { label: "Language", value: i18n.language }
-      : { label: selectedLanguage, value: i18n.language }
+      ? { label: "Languages", value: i18n.language }
       : type === "sort"
       ? selectedSort
       : selectedIllness;
