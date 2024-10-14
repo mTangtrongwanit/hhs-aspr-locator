@@ -95,6 +95,35 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   useEffect(() => {
     const fetchTreatmentsIllnesses = async () => {
       const treatmentIllnesses = await getTreatmentsIllnessesData();
+      // order the treatment data by the following order:
+      // Oseltamivir
+      // Baloxavir
+      // Zanamivir
+      // Peramivir
+      // as provided by hhs
+      const treatmentOrder = [
+        'Oseltamivir Generic',
+        'Oseltamivir Suspension',
+        'Oseltamivir Tamiflu',
+        'Balaxovir',
+        'Zanamivir',
+        'Lagevrio',
+        'Peramivir',
+        'Paxlovid',
+        'Veklury',
+        ]
+
+      treatmentIllnesses?.sort((a, b) => {
+        return (
+          treatmentOrder.findIndex(
+        (order) => order.toLowerCase() === a.attributes.display_name.toLowerCase()
+          ) -
+          treatmentOrder.findIndex(
+        (order) => order.toLowerCase() === b.attributes.display_name.toLowerCase()
+          )
+        );
+      });
+
       setTIData(treatmentIllnesses ?? []);
     };
     fetchTreatmentsIllnesses();
@@ -123,6 +152,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     if (treatmentIllnessData) {
       // Combine treatments and illnesses into a dictionary
       const treatmentIllnessLookup: { [key: string]: string[] } = {};
+
       treatmentIllnessData.forEach((treatment) => {
         const illness = treatment.attributes.illness;
         const treatmentName = treatment.attributes.display_name;
