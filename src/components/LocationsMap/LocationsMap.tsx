@@ -220,22 +220,9 @@ const LocationsMap = () => {
         .whenOnce(() => locationsMapView.ready)
         .then(() => {
           const target = locationsExtent?.extent
-            ? searchPoint.point
-            : locationsExtent.extent.center;
-          let options;
-          // If there is a search point but no illness is selected, use zoom
-          if (searchPoint.name === "" && selectedIllness.value === "") {
-            // If no search point or illness is selected, zoom out to the extent of US
-            options = { target: target, zoom: 3 };
-          } else if (searchPoint.name !== "" && selectedIllness.value === "") {
-            // If there is a search point but no illness is selected, use zoom 10
-            options = { target: target, zoom: 10 };
-          } else {
-            // If there is a search point and an illness is selected, use extent or zoom 8
-            options = locationsExtent.extent
-              ? { target: target, extent: locationsExtent.extent }
-              : { target: target, zoom: 8 };
-          }
+            ? locationsExtent.extent.center
+            :  searchPoint.point;
+            const options = { target: target, extent: locationsExtent.extent }
 
           locationsMapView.goTo(options).catch((error) => {
             console.error("MapView goTo error: ", error);
