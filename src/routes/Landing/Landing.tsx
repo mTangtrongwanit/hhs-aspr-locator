@@ -367,14 +367,13 @@ const Landing = () => {
                     </ul>
                   </li>
                   <li>
-                   Zanamivir (Relenza): Adults and children 7 years and
-                    older.
+                    Zanamivir (Relenza): Adults and children 7 years and older.
                     <ul>
                       <li>
-                        Zanamivir is administered using an inhaler device and
-                        is not recommended for people with breathing problems
-                        like asthma or COPD or those with a history of allergy
-                        to lactose or milk protein.{" "}
+                        Zanamivir is administered using an inhaler device and is
+                        not recommended for people with breathing problems like
+                        asthma or COPD or those with a history of allergy to
+                        lactose or milk protein.{" "}
                       </li>
                       <li>
                         Zanamivir is taken twice daily using an inhaler device
@@ -383,8 +382,8 @@ const Landing = () => {
                     </ul>
                   </li>
                   <li>
-                   Baloxavir (Xofluza): Otherwise healthy children 5 years
-                    and older for acute uncomplicated influenza, and adults and
+                    Baloxavir (Xofluza): Otherwise healthy children 5 years and
+                    older for acute uncomplicated influenza, and adults and
                     children 12 years and older who are at high risk of
                     developing influenza-related complications.
                     <ul>
@@ -399,7 +398,7 @@ const Landing = () => {
                     </ul>
                   </li>
                   <li>
-                   Please see{" "}
+                    Please see{" "}
                     <a href="https://www.cdc.gov/flu/treatment/whatyoushould.htm">
                       What are Flu Antiviral Drugs | CDC
                     </a>{" "}
@@ -432,21 +431,21 @@ const Landing = () => {
                 <strong>COVID-19</strong>
                 <ul>
                   <li>
-                   Paxlovid is authorized by the FDA for emergency use in
+                    Paxlovid is authorized by the FDA for emergency use in
                     children 12 years or older weighing at least 88 pounds [40
                     kg], who are at high risk for getting very sick from
                     COVID-19 and who have mild to moderate symptoms.
                   </li>
                   <li>
-                   Veklury is FDA-approved for children 28 days of age or
-                    older and weighing at least 7 pounds [3 kg], who have mild
-                    to moderate symptoms of COVID-19 and are at high risk for
+                    Veklury is FDA-approved for children 28 days of age or older
+                    and weighing at least 7 pounds [3 kg], who have mild to
+                    moderate symptoms of COVID-19 and are at high risk for
                     getting very sick from COVID-19.
                     <ul>
                       <li>
-                        This medication is given through an intravenous
-                        infusion and may be given in the outpatient (not staying
-                        in the hospital) or inpatient (staying in the hospital)
+                        This medication is given through an intravenous infusion
+                        and may be given in the outpatient (not staying in the
+                        hospital) or inpatient (staying in the hospital)
                         setting. This website lists only outpatient locations
                         where Veklury is available.
                       </li>
@@ -457,7 +456,7 @@ const Landing = () => {
                 <strong>Influenza (Flu)</strong>
                 <ul>
                   <li>
-                   Oral oseltamivir is approved by the FDA for treatment of
+                    Oral oseltamivir is approved by the FDA for treatment of
                     acute uncomplicated influenza within 2 days of illness onset
                     in people 14 days of age and older. Although not part of the
                     FDA-approved indications, use of oral oseltamivir for
@@ -477,18 +476,18 @@ const Landing = () => {
                     </ul>
                   </li>
                   <li>
-                   Zanamivir is approved for early treatment of flu in people
-                    7 years and older, though it is not recommended for use in
+                    Zanamivir is approved for early treatment of flu in people 7
+                    years and older, though it is not recommended for use in
                     children with underlying respiratory disease, including
                     asthma and other chronic lung diseases, and in patients with
                     milk protein allergy.
                   </li>
                   <li>
-                   Peramivir is approved for early treatment of flu in
+                    Peramivir is approved for early treatment of flu in
                     otherwise healthy patients 6 months and older.
                   </li>
                   <li>
-                   Baloxavir is available in a single dose tablet for early
+                    Baloxavir is available in a single dose tablet for early
                     treatment of flu in otherwise healthy children aged 5 years
                     and older, and in children 12 years and older who are at
                     higher risk of developing flu-related complications.{" "}
@@ -515,17 +514,17 @@ const Landing = () => {
                 <strong>COVID-19:</strong>
                 <ul>
                   <li>
-                   Pregnant and recently pregnant people (at least 6 weeks
+                    Pregnant and recently pregnant people (at least 6 weeks
                     following the end of pregnancy) are at increased risk of
                     severe illness from COVID-19.
                   </li>
                   <li>
-                   Paxlovid (ritonavir with nirmatrelvir) is the preferred
+                    Paxlovid (ritonavir with nirmatrelvir) is the preferred
                     treatment option for pregnant and recently pregnant patients
                     with COVID-19.{" "}
                   </li>
                   <li>
-                   Lagevrio (molnupiravir) is not recommended for use during
+                    Lagevrio (molnupiravir) is not recommended for use during
                     pregnancy because of risk it may cause fetal harm. Prior to
                     initiating treatment with Lagevrio, health care providers
                     should assess whether an individual of childbearing
@@ -534,7 +533,7 @@ const Landing = () => {
                     Lagevrio and for 4 days after final dose.
                   </li>
                   <li>
-                   Healthcare providers can refer to the{" "}
+                    Healthcare providers can refer to the{" "}
                     <a href="https://aspr.hhs.gov/COVID-19-Therapeutics/Side-by-Side-Overview/Pages/default.aspx">
                       Side-by-Side Overview of Therapeutics Authorized or
                       Approved for the Treatment of Mild to Moderate COVID-19.
@@ -544,24 +543,24 @@ const Landing = () => {
                 <strong>Influenza (Flu):</strong>
                 <ul>
                   <li>
-                   Treatment with antiviral medications for flu is
-                    recommended for pregnant people or people who are up to 2
-                    weeks postpartum (including following pregnancy loss) with
+                    Treatment with antiviral medications for flu is recommended
+                    for pregnant people or people who are up to 2 weeks
+                    postpartum (including following pregnancy loss) with
                     suspected or confirmed influenza of any severity and can be
                     taken during any trimester of pregnancy.
                   </li>
                   <li>
-                   Oral oseltamivir is the preferred treatment options for
+                    Oral oseltamivir is the preferred treatment options for
                     pregnant people with flu because it has the most studies
                     available to suggest that it is safe and beneficial.
                   </li>
                   <li>
-                   Baloxavir is not recommended for pregnant or post-partum
+                    Baloxavir is not recommended for pregnant or post-partum
                     people or while breastfeeding, as there are no available
                     efficacy or safety data.
                   </li>
                   <li>
-                   For more information on the treatment of flu during
+                    For more information on the treatment of flu during
                     pregnancy, healthcare providers can visit{" "}
                     <a href="https://www.cdc.gov/flu/professionals/antivirals/avrec_ob.htm#:~:text=For%20treatment%20of%20pregnant%20people,with%20oseltamivir%20is%205%20days.">
                       Recommendations for Obstetric Health Care Providers
@@ -591,19 +590,18 @@ const Landing = () => {
               <div className="AccordionContentText">
                 <ul>
                   <li>
-                   Medications to treat COVID-19 (Paxlovid, Lagevrio,
-                    Veklury) and flu (oseltamivir, zanamivir, peramivir,
-                    baloxavir) must be prescribed by a health care provider and
-                    should be started as soon as possible after diagnosis to be
-                    effective.
+                    Medications to treat COVID-19 (Paxlovid, Lagevrio, Veklury)
+                    and flu (oseltamivir, zanamivir, peramivir, baloxavir) must
+                    be prescribed by a health care provider and should be
+                    started as soon as possible after diagnosis to be effective.
                   </li>
                   <li>
-                   Talk to your health care professional about available
+                    Talk to your health care professional about available
                     treatment options if you have symptoms consistent with
                     COVID-19 or flu.{" "}
                   </li>
                   <li>
-                   Certain locations listed on this locator may provide
+                    Certain locations listed on this locator may provide
                     prescribing services to patients who do not already have a
                     prescription.{" "}
                   </li>
@@ -628,22 +626,22 @@ const Landing = () => {
               <div className="AccordionContentText">
                 <ul>
                   <li>
-                   All medications listed on this website are approved or
+                    All medications listed on this website are approved or
                     authorized by FDA as safe and effective when used
                     appropriately.
                   </li>
                   <li>
-                   If you have COVID-19 and are more likely to get very sick,
+                    If you have COVID-19 and are more likely to get very sick,
                     treatments are available that can reduce your chances of
                     being hospitalized or dying from the disease.{" "}
                   </li>
                   <li>
-                   Early flu antiviral treatment can shorten the duration of
+                    Early flu antiviral treatment can shorten the duration of
                     fever and illness and may reduce the risk of some
                     complications from influenza.{" "}
                   </li>
                   <li>
-                   Some treatments might have side effects or interact with
+                    Some treatments might have side effects or interact with
                     other medications you are taking. Ask a health care provider
                     if medications to treat COVID-19 or influenza are right for
                     you.
@@ -671,7 +669,7 @@ const Landing = () => {
                 <strong>COVID-19:</strong>
                 <ul>
                   <li>
-                   For Paxlovid:
+                    For Paxlovid:
                     <ul>
                       <li>
                         Medicare, Medicaid, and uninsured patients can receive
@@ -712,7 +710,7 @@ const Landing = () => {
                   </li>
                   <li>
                     {" "}
-                   For Lagevrio:
+                    For Lagevrio:
                     <ul>
                       <li>
                         The{" "}
@@ -740,9 +738,9 @@ const Landing = () => {
                     </ul>
                   </li>
                   <li>
-                   Note: This response does not address whether these
-                    COVID-19 treatments are covered by Medicare and Medicaid
-                    generally. More information is available for{" "}
+                    Note: This response does not address whether these COVID-19
+                    treatments are covered by Medicare and Medicaid generally.
+                    More information is available for{" "}
                     <a href="https://www.cms.gov/files/document/commercialcovid19oralantiviralsmemofinal.pdf">
                       Medicare
                     </a>{" "}
@@ -756,18 +754,18 @@ const Landing = () => {
                 <strong>Influenza (Flu):</strong>
                 <ul>
                   <li>
-                   For Zanamivir (Relenza):
+                    For Zanamivir (Relenza):
                     <ul>
                       <li>
-                        <a href="https://www.gskforyou.com/">GSK for You</a>{" "}
-                        is a program committed to assisting eligible patients
+                        <a href="https://www.gskforyou.com/">GSK for You</a> is
+                        a program committed to assisting eligible patients
                         access to medications. They offer programs for patients
                         who meet income and other eligibility requirements.
                       </li>
                     </ul>
                   </li>
                   <li>
-                   For Tamiflu and Baloxavir (Xofluza):
+                    For Tamiflu and Baloxavir (Xofluza):
                     <ul>
                       <li>
                         <a href="https://www.gene.com/patients/patient-foundation/patient-foundation-faqs">
@@ -800,7 +798,7 @@ const Landing = () => {
             <Accordion.Content className="AccordionContent">
               <div className="AccordionContentText">
                 <p>
-                 Throughout the COVID-19 pandemic, the federal government
+                  Throughout the COVID-19 pandemic, the federal government
                   granted Emergency Use Authorization (EUA) for therapeutics to
                   help combat COVID-19, including certain monoclonal antibodies.
                   Because the U.S. Food and Drug Administration (FDA) does not
@@ -839,7 +837,7 @@ const Landing = () => {
             <Accordion.Content className="AccordionContent">
               <div className="AccordionContentText">
                 <p>
-                 There may be locations that offer outpatient COVID-19 or
+                  There may be locations that offer outpatient COVID-19 or
                   influenza medications and are not listed on this website. The
                   locations displayed on this website have either self-attested
                   they have inventory of COVID-19 or influenza antiviral
@@ -866,12 +864,12 @@ const Landing = () => {
             <Accordion.Content className="AccordionContent">
               <div className="AccordionContentText">
                 <p>
-                 Where indicated, the locations listed on this website may:
+                  Where indicated, the locations listed on this website may:
                 </p>
                 <ul>
                   <li>
-                    Have remaining free Paxlovid and/or Lagevrio distributed
-                    by the U.S. Department of Health and Human Services{" "}
+                    Have remaining free Paxlovid and/or Lagevrio distributed by
+                    the U.S. Department of Health and Human Services{" "}
                   </li>
                   <li>
                     Participate in the Paxlovid Patient Assistance Program,
@@ -883,8 +881,8 @@ const Landing = () => {
                     delivery of medicines
                   </li>
                   <li>
-                    Offer no-cost COVID-19 testing for eligible uninsured
-                    people (Increasing Community Access to Testing [ICATT]
+                    Offer no-cost COVID-19 testing for eligible uninsured people
+                    (Increasing Community Access to Testing [ICATT]
                     participating site){" "}
                   </li>
                 </ul>
@@ -908,7 +906,7 @@ const Landing = () => {
               <div className="AccordionContentText">
                 <p>
                   {" "}
-                 If you would like more information about being added to the
+                  If you would like more information about being added to the
                   Treatments Locator, please email{" "}
                   <a href="mailto:COVID19.therapeutics@hhs.gov">
                     COVID19.therapeutics@hhs.gov.
@@ -934,9 +932,11 @@ const Landing = () => {
             <Accordion.Content className="AccordionContent">
               <div className="AccordionContentText">
                 <p>
-                 Retail pharmacies can learn more about participating in the
-                  Paxlovid Patient Assistance Program by <a href="mailto:PharmacyNetworkContract102101@assistrx.com">contacting the program
-                  vendor</a>{" "}
+                  Retail pharmacies can learn more about participating in the
+                  Paxlovid Patient Assistance Program by{" "}
+                  <a href="mailto:PharmacyNetworkContract102101@assistrx.com">
+                    contacting the program vendor
+                  </a>{" "}
                 </p>
               </div>
             </Accordion.Content>
@@ -947,30 +947,51 @@ const Landing = () => {
           {
             //#region Disclaimer
           }
-          <Accordion.Item className="AccordionItem" value="item-2">
+          <Accordion.Item className="AccordionItem" value="item-15">
             <Accordion.Header className="AccordionHeader">
               <Accordion.Trigger className={"AccordionTrigger"}>
-                Disclaimer
+                Data Information and Disclaimers
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.Trigger>
             </Accordion.Header>
             <Accordion.Content className="AccordionContent">
               <div className="AccordionContentText">
                 <p>
-                  Additional information on COVID-19 treatments can be found on
-                  the <a href="TODO">ASPR COVID-19 Treatments page.</a>&nbsp;
-                  For questions regarding this site, contact 1-800-232-0233 (TTY
-                  888-720-7489). To learn more about COVID-19 testing, including
-                  how to order free test kits, visit{" "}
-                  <a href="TODO">COVID.gov.</a>
+                  Outpatient COVID-19 and influenza (flu) medications may be
+                  available at additional locations not listed on this website.
+                  The locations displayed have either self-attested they have
+                  inventory of COVID-19 or influenza antiviral medications
+                  within at least the last two months and/or reported
+                  participation in the Paxlovid Patient Assistance Program.
                 </p>
-                <p className="ital">
-                  * This content is not fully Section 508 conformant. If you
-                  need assistance, please contact{" "}
-                  <a href="TODO">gis@hhs.gov.</a>{" "}
-                  <a href="TODO">
-                    Tabular access to the data is also available.
+                <p>
+                  All therapeutics identified in the locator not approved by the
+                  FDA must be used in alignment with the terms of the respective
+                  product’s Emergency Use Authorization. Visit the{" "}
+                  <a href="https://aspr.hhs.gov/COVID-19/treatments/Pages/default.aspx">
+                    ASPR COVID-19 Treatments page
                   </a>
+                  for more information on all COVID-19 treatment options and{" "}
+                  <a href="https://www.cdc.gov/flu/treatment/index.html">
+                    CDC’s Flu Treatment page
+                  </a>{" "}
+                  for more information on influenza treatment options.
+                </p>
+                <p>
+                  This website identifies sites that have commercially purchased
+                  inventory of COVID-19 and influenza treatments and, in some
+                  cases, may identify sites that have remaining, no-cost U.S.
+                  government distributed supply. Some sites may charge for
+                  services which may or may not be covered by insurance. Some
+                  sites may offer prescribing services for patients, including
+                  telehealth services. This website is intended for
+                  informational purposes only and does not serve as an
+                  endorsement or recommendation for use of any of the locations
+                  listed on the sites.
+                </p>
+                <p>
+                  For questions regarding this site, contact 1-800-232-0233 (TTY
+                  888-720-7489).
                 </p>
               </div>
             </Accordion.Content>
