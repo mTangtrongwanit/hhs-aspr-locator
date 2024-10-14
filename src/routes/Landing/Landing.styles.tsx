@@ -137,6 +137,7 @@ export const StyledLandingContent = styled.main`
   width: 100%;
   margin-bottom: 1rem;
   overflow-y: auto; //prevent accordion and footer from overlapping
+
   // --- Position ---
   // --- Layout ---
   display: grid;
