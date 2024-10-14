@@ -37,24 +37,16 @@ const StyledAppLayout = styled.div`
   // --- Sizing / Box-Model ---
   width: inherit;
   height: inherit;
-  overflow-y: hidden;
   overflow-x: hidden;
+  overflow-y: auto;
   /* padding: 1rem; */
   // --- Layout ---
   display: grid;
-
-  grid-template-rows: min-content min-content minmax(0, 1fr) auto;
-
+  grid-template-rows: min-content min-content;
   // --- Decorative ---
   background-color: var(--app-bg);
 `;
 
-const StyledLocsLayout = styled(StyledAppLayout)`
-  /* height: fit-content; */
-  height: inherit;
-  overflow-y: auto;
-  grid-template-rows: min-content min-content;
-`;
 // #endregion ===================== CONSTANTS ==================================
 // #region =================== EXPORTED COMPONENT ==============================
 function App() {
@@ -64,12 +56,11 @@ function App() {
   // #endregion ----------------- Hooks (State) --------------------------------
   // #region -------------------- Hooks (Other) --------------------------------
   useEffect(() => {
-
     // todo: this is temporary until we ditch auth
     // this handles coming back from authentication
     // check session storage for hash and search params and if they're AND there are none in the current url there add them to the url
     if (!window.location.hash && sessionStorage.getItem("hash")) {
-       window.location.hash = sessionStorage.getItem("hash") as string
+      window.location.hash = sessionStorage.getItem("hash") as string;
     }
 
     // check for url hash and if they're there save them to session storage
@@ -83,7 +74,7 @@ function App() {
       const search = window.location.search;
       sessionStorage.setItem("search", search);
     }
-    
+
     // Auth
     const info = new OAuthInfo({
       appId: config.portal.appId,
@@ -126,11 +117,11 @@ function App() {
           <Route
             path="/locations"
             element={
-              <StyledLocsLayout>
+              <StyledAppLayout>
                 <Header />
                 <Locations />
                 <Footer />
-              </StyledLocsLayout>
+              </StyledAppLayout>
             }
           />
         </Routes>
