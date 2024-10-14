@@ -514,17 +514,61 @@ const Landing = () => {
               <div className="AccordionContentText">
                 <strong>COVID-19:</strong>
                 <ul>
-                  <li>o	Pregnant and recently pregnant people (at least 6 weeks following the end of pregnancy) are at increased risk of severe illness from COVID-19.</li>
-                  <li>o	Paxlovid (ritonavir with nirmatrelvir) is the preferred treatment option for pregnant and recently pregnant patients with COVID-19.  </li>
-                  <li>o	Lagevrio (molnupiravir) is not recommended for use during pregnancy because of risk it may cause fetal harm. Prior to initiating treatment with Lagevrio, health care providers should assess whether an individual of childbearing potential is pregnant, if clinically indicated. Breastfeeding is not recommended during treatment with Lagevrio and for 4 days after final dose.</li>
-                  <li>o	Healthcare providers can refer to the <a href="https://aspr.hhs.gov/COVID-19-Therapeutics/Side-by-Side-Overview/Pages/default.aspx">Side-by-Side Overview of Therapeutics Authorized or Approved for the Treatment of Mild to Moderate COVID-19.</a></li>
+                  <li>
+                    o Pregnant and recently pregnant people (at least 6 weeks
+                    following the end of pregnancy) are at increased risk of
+                    severe illness from COVID-19.
+                  </li>
+                  <li>
+                    o Paxlovid (ritonavir with nirmatrelvir) is the preferred
+                    treatment option for pregnant and recently pregnant patients
+                    with COVID-19.{" "}
+                  </li>
+                  <li>
+                    o Lagevrio (molnupiravir) is not recommended for use during
+                    pregnancy because of risk it may cause fetal harm. Prior to
+                    initiating treatment with Lagevrio, health care providers
+                    should assess whether an individual of childbearing
+                    potential is pregnant, if clinically indicated.
+                    Breastfeeding is not recommended during treatment with
+                    Lagevrio and for 4 days after final dose.
+                  </li>
+                  <li>
+                    o Healthcare providers can refer to the{" "}
+                    <a href="https://aspr.hhs.gov/COVID-19-Therapeutics/Side-by-Side-Overview/Pages/default.aspx">
+                      Side-by-Side Overview of Therapeutics Authorized or
+                      Approved for the Treatment of Mild to Moderate COVID-19.
+                    </a>
+                  </li>
                 </ul>
                 <strong>Influenza (Flu):</strong>
                 <ul>
-                  <li>o	Treatment with antiviral medications for flu is recommended for pregnant people or people who are up to 2 weeks postpartum (including following pregnancy loss) with suspected or confirmed influenza of any severity and can be taken during any trimester of pregnancy.</li>
-                  <li>o	Oral oseltamivir is the preferred treatment options for pregnant people with flu because it has the most studies available to suggest that it is safe and beneficial.</li>
-                  <li>o	Baloxavir is not recommended for pregnant or post-partum people or while breastfeeding, as there are no available efficacy or safety data.</li>
-                  <li>o	For more information on the treatment of flu during pregnancy, healthcare providers can visit <a href="https://www.cdc.gov/flu/professionals/antivirals/avrec_ob.htm#:~:text=For%20treatment%20of%20pregnant%20people,with%20oseltamivir%20is%205%20days.">Recommendations for Obstetric Health Care Providers Related to Use of Antiviral Medications in the Treatment and Prevention of Influenza.</a></li>
+                  <li>
+                    o Treatment with antiviral medications for flu is
+                    recommended for pregnant people or people who are up to 2
+                    weeks postpartum (including following pregnancy loss) with
+                    suspected or confirmed influenza of any severity and can be
+                    taken during any trimester of pregnancy.
+                  </li>
+                  <li>
+                    o Oral oseltamivir is the preferred treatment options for
+                    pregnant people with flu because it has the most studies
+                    available to suggest that it is safe and beneficial.
+                  </li>
+                  <li>
+                    o Baloxavir is not recommended for pregnant or post-partum
+                    people or while breastfeeding, as there are no available
+                    efficacy or safety data.
+                  </li>
+                  <li>
+                    o For more information on the treatment of flu during
+                    pregnancy, healthcare providers can visit{" "}
+                    <a href="https://www.cdc.gov/flu/professionals/antivirals/avrec_ob.htm#:~:text=For%20treatment%20of%20pregnant%20people,with%20oseltamivir%20is%205%20days.">
+                      Recommendations for Obstetric Health Care Providers
+                      Related to Use of Antiviral Medications in the Treatment
+                      and Prevention of Influenza.
+                    </a>
+                  </li>
                 </ul>
               </div>
             </Accordion.Content>
@@ -546,9 +590,23 @@ const Landing = () => {
             <Accordion.Content className="AccordionContent">
               <div className="AccordionContentText">
                 <ul>
-                  <li>o	Medications to treat COVID-19 (Paxlovid, Lagevrio, Veklury) and flu (oseltamivir, zanamivir, peramivir, baloxavir) must be prescribed by a health care provider and should be started as soon as possible after diagnosis to be effective.</li>
-                  <li>o	Talk to your health care professional about available treatment options if you have symptoms consistent with COVID-19 or flu. </li>
-                  <li>o	Certain locations listed on this locator may provide prescribing services to patients who do not already have a prescription.  </li>
+                  <li>
+                    o Medications to treat COVID-19 (Paxlovid, Lagevrio,
+                    Veklury) and flu (oseltamivir, zanamivir, peramivir,
+                    baloxavir) must be prescribed by a health care provider and
+                    should be started as soon as possible after diagnosis to be
+                    effective.
+                  </li>
+                  <li>
+                    o Talk to your health care professional about available
+                    treatment options if you have symptoms consistent with
+                    COVID-19 or flu.{" "}
+                  </li>
+                  <li>
+                    o Certain locations listed on this locator may provide
+                    prescribing services to patients who do not already have a
+                    prescription.{" "}
+                  </li>
                 </ul>
               </div>
             </Accordion.Content>
@@ -569,10 +627,27 @@ const Landing = () => {
             <Accordion.Content className="AccordionContent">
               <div className="AccordionContentText">
                 <ul>
-                  <li>o	All medications listed on this website are approved or authorized by FDA as safe and effective when used appropriately.</li>
-                  <li>o	If you have COVID-19 and are more likely to get very sick, treatments are available that can reduce your chances of being hospitalized or dying from the disease.  </li>
-                  <li>o	Early flu antiviral treatment can shorten the duration of fever and illness and may reduce the risk of some complications from influenza.  </li>
-                  <li>o	Some treatments might have side effects or interact with other medications you are taking. Ask a health care provider if medications to treat COVID-19 or influenza are right for you.</li>
+                  <li>
+                    o All medications listed on this website are approved or
+                    authorized by FDA as safe and effective when used
+                    appropriately.
+                  </li>
+                  <li>
+                    o If you have COVID-19 and are more likely to get very sick,
+                    treatments are available that can reduce your chances of
+                    being hospitalized or dying from the disease.{" "}
+                  </li>
+                  <li>
+                    o Early flu antiviral treatment can shorten the duration of
+                    fever and illness and may reduce the risk of some
+                    complications from influenza.{" "}
+                  </li>
+                  <li>
+                    o Some treatments might have side effects or interact with
+                    other medications you are taking. Ask a health care provider
+                    if medications to treat COVID-19 or influenza are right for
+                    you.
+                  </li>
                 </ul>
               </div>
             </Accordion.Content>
@@ -596,34 +671,112 @@ const Landing = () => {
                 <strong>COVID-19:</strong>
                 <ul>
                   <li>
+                    o For Paxlovid:
                     <ul>
-                      <li></li>
-                      <li></li>
-                      <li></li>
+                      <li>
+                         Medicare, Medicaid, and uninsured patients can receive
+                        Paxlovid at no charge through December 2024 through the
+                        U.S. Government (USG) Patient Assistance Program (PAP)
+                        operated by Pfizer. This includes all patients who are
+                        publicly insured through Medicare (with or without Part
+                        D, Part B, or Part C and inclusive of Medicare
+                        Advantage), Medicaid/Children’s Health Insurance
+                        Program, TRICARE, and patients insured through the
+                        Department of Veterans Affairs Community Care Network.
+                        More information can be found on the{" "}
+                        <a href="https://aspr.hhs.gov/COVID-19/Therapeutics/updates/Pages/Commercialization-FAQ-Nov2023.aspx#collapse001">
+                          COVID-19 therapeutics website.
+                        </a>{" "}
+                        <a href="https://www.paxlovid.com/paxcess">
+                          Learn more about this program
+                        </a>{" "}
+                        or <a href="https://paxlovid.iassist.com/">enroll.</a>
+                      </li>
+                      <li>
+                         You can search for locations participating in this
+                        Paxlovid PAP using this locator tool by filtering for
+                        PAP sites.
+                      </li>
+                      <li>
+                         Concurrently, Pfizer is operating a Paxlovid Co-Pay
+                        Savings Program for eligible privately (commercially)
+                        insured patients.{" "}
+                        <a href="https://www.paxlovid.com/paxcess">Patients</a>{" "}
+                        and{" "}
+                        <a href="https://paxlovid.pfizerpro.com/">
+                          healthcare providers
+                        </a>{" "}
+                        can download a co-pay savings card.
+                      </li>
                     </ul>
                   </li>
                   <li>
+                    {" "}
+                    o For Lagevrio:
                     <ul>
-                      <li></li>
+                      <li>
+                         The{" "}
+                        <a href="https://www.merckhelps.com/LAGEVRIO">
+                          Merck Patient Assistance Program
+                        </a>{" "}
+                        (a 501c3 non-profit organization) will provide Lagevrio
+                        free of charge to patients who meet eligibility criteria
+                        and who, without assistance, could not otherwise afford
+                        the product.{" "}
+                      </li>
                     </ul>
                   </li>
                   <li>
+                    For Veklury:
                     <ul>
-                      <li></li>
+                      <li>
+                         Please contact Gilead's Advancing Access program to
+                        learn more about access to Veklury in the outpatient
+                        setting and{" "}
+                        <a href="https://www.veklury.com/patient-support/">
+                          financial support.
+                        </a>
+                      </li>
                     </ul>
                   </li>
-                  <li></li>
+                  <li>
+                    o Note: This response does not address whether these
+                    COVID-19 treatments are covered by Medicare and Medicaid
+                    generally. More information is available for{" "}
+                    <a href="https://www.cms.gov/files/document/commercialcovid19oralantiviralsmemofinal.pdf">
+                      Medicare
+                    </a>{" "}
+                    and{" "}
+                    <a href="https://www.medicaid.gov/state-overviews/index.html">
+                      Medicaid
+                    </a>{" "}
+                    coverage.
+                  </li>
                 </ul>
                 <strong>Influenza (Flu):</strong>
                 <ul>
                   <li>
+                    o For Zanamivir (Relenza):
                     <ul>
-                      <li></li>
+                      <li>
+                         <a href="https://www.gskforyou.com/">GSK for You</a>{" "}
+                        is a program committed to assisting eligible patients
+                        access to medications. They offer programs for patients
+                        who meet income and other eligibility requirements.
+                      </li>
                     </ul>
                   </li>
                   <li>
+                    o For Tamiflu and Baloxavir (Xofluza):
                     <ul>
-                      <li></li>
+                      <li>
+                        <a href="https://www.gene.com/patients/patient-foundation/patient-foundation-faqs">
+                          The Genentech Patient Foundation
+                        </a>{" "}
+                        gives free Genentech medicine to people who do not have
+                        insurance coverage or who have financial concerns and
+                        meet eligibility criteria.
+                      </li>
                     </ul>
                   </li>
                 </ul>
@@ -712,7 +865,7 @@ const Landing = () => {
           <Accordion.Item className="AccordionItem" value="item-13">
             <Accordion.Header className="AccordionHeader">
               <Accordion.Trigger className={"AccordionTrigger"}>
-              How can my site be added to locator?
+                How can my site be added to locator?
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.Trigger>
             </Accordion.Header>
@@ -729,7 +882,8 @@ const Landing = () => {
           <Accordion.Item className="AccordionItem" value="item-14">
             <Accordion.Header className="AccordionHeader">
               <Accordion.Trigger className={"AccordionTrigger"}>
-              How can my site participate in the Paxlovid Patient Assistance Program?
+                How can my site participate in the Paxlovid Patient Assistance
+                Program?
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.Trigger>
             </Accordion.Header>
