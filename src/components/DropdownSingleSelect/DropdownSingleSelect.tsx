@@ -58,6 +58,7 @@ const DropdownSingleSelect = ({
 
   // #region -------------------- Hooks (State) --------------------------------
   const [selectedLanguage, setSelectedLanguage] = useState("English");
+  console.log(selectedLanguage);
   const [illnesses, setIllnesses] = useState<string[]>([]);
   // #endregion ----------------- Hooks (State) --------------------------------
 
@@ -113,9 +114,7 @@ const DropdownSingleSelect = ({
 
   const selectedOption =
     type === "language"
-      ? selectedLanguage === "English"
-      ? { label: "Language", value: i18n.language }
-      : { label: selectedLanguage, value: i18n.language }
+      ? { label: "Languages", value: i18n.language }
       : type === "sort"
       ? selectedSort
       : selectedIllness;
