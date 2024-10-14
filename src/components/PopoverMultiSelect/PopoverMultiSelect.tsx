@@ -241,7 +241,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
     // },
 
     is_prescribing_svcs_available: {
-      checker: (loc: any) =>
+      checker: (loc: __esri.Graphic) =>
         [ "COVID", "Flu"].includes(selectedIllness.value) &&
         loc.attributes[config.treatmentData.fields.is_prescribing_svcs_available.name]?.toUpperCase() === "TRUE",
       field: config.treatmentData.fields.is_prescribing_svcs_available,
