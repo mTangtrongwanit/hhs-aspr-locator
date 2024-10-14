@@ -73,9 +73,12 @@ const Landing = () => {
         <p>{t("Landing.Search Container Description")}</p>
         <StyledRow>
           <Search />
-          <DropdownSingleSelect type={"illness"}  />
+          <DropdownSingleSelect type={"illness"} />
         </StyledRow>
-        <Link to="/locations" style={{textDecoration: "none"}}>
+        <Link
+          to="/locations"
+          style={{ textDecoration: "none", width: "fit-content" }}
+        >
           <button className="hhs-secondary-button">
             {t("Landing.View Locations Button Label")}
           </button>
