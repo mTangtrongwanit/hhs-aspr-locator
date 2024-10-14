@@ -106,7 +106,9 @@ const DropdownSingleSelect = ({ type }: DropdownSingleSelectProps) => {
 
   const selectedValue =
     type === "language"
-      ? selectedLanguage
+      ? selectedLanguage === "English"
+      ? "Language"
+      : selectedLanguage
       : type === "sort"
       ? selectedSort.label
       : selectedIllness.label;
