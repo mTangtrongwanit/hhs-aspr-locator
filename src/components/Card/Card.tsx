@@ -18,7 +18,7 @@ import {
   StyledCard,
   StyledCardTitle,
   StyledIconField,
-  StyledOutlinedLink,
+  // StyledOutlinedLink,
   StyledRow,
   StyledTitleRow,
 } from "./Card.styles";
@@ -244,11 +244,11 @@ const Card = ({ selected, serviceProvider }: Props) => {
         <p className="ital">{t("Card.ihs")}</p>
       )}
       <StyledRow>
-        <StyledOutlinedLink as="button" onClick={handleCopyToClipboard}>
+        <a onClick={handleCopyToClipboard} className="hhs-outline-button">
           {t("Card.shareLocation")}
-        </StyledOutlinedLink>
+        </a>
         {serviceProvider.address1 && (
-          <StyledOutlinedLink
+          <a className="hhs-outline-button"
             href={`https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(
               searchPoint
                 ? `${searchPoint.point.latitude},${searchPoint.point.longitude}`
@@ -264,8 +264,8 @@ const Card = ({ selected, serviceProvider }: Props) => {
             rel="noopener noreferrer"
             aria-label={t("Card.directionsToLocation")}
           >
-            <span>{t("Card.openInMaps")}</span>
-          </StyledOutlinedLink>
+            <span style={{fontWeight: "600"}}>{t("Card.openInMaps")}</span>
+          </a>
         )}
       </StyledRow>
     </StyledCard>

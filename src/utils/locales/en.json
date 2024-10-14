@@ -40,7 +40,8 @@
     "Search Container Screenreader Heading": "Search for Locations",
     "Results Screenreader Heading": "Results",
     "List Heading": "{{count}} Sites",
-    "Map Screenreader Heading": "Map of Sites"
+    "Map Screenreader Heading": "Map of Sites",
+    "Empty List": "No sites. Select an illness or search at a different location and with different filters"
   },
   "Card": {
     "pap": "Free/reduced cost",
