@@ -71,26 +71,7 @@ const Landing = () => {
       <StyledSearchContainer>
         <h2>{t("Landing.Search Container Heading")}</h2>
         <p>{t("Landing.Search Container Description")}</p>
-        <p>
-          This content is not fully Section 508 conformant. If you need
-          assistance, please contact&nbsp;
-          <a href="mailto:gis@hhs.gov">gis@hhs.gov</a>.{" "}
-          <a href="https://healthdata.gov/ASPR/COVID-19-Treatments/xkzp-zhs7/data_preview">
-            Tabular access to the data is also available.
-          </a>
-        </p>
-        <p>
-          This website includes locations participating in the U.S.
-          Government&nbsp;
-          <a href="https://paxlovid.iassist.com/">Patient Assistance Program</a>
-          &nbsp; operated by Pfizer, offering free Paxlovid for eligible
-          patients. Other assistance programs are available for&nbsp;
-          <a href="https://aspr.hhs.gov/COVID-19/Treatments/Pages/Possible-Treatment-Options-for-COVID19.aspx#oral-antivirals">
-            COVID-19
-          </a>{" "}
-          {/* TODO: ADD THIS ID */}
-          and <a href="/#faq-flu">flu.</a>
-        </p>
+
         <StyledRow>
           <Search />
           <DropdownSingleSelect type={"illness"} />
@@ -115,14 +96,25 @@ const Landing = () => {
           {t("Landing.Context Container Screenreader Heading")}
         </h2>
         <p>
-          Locations participating in the U.S. Government&nbsp;
-          <a href="TODO">Patient Assistance Program</a> operated by Pfizer
-          offering free Paxlovid for eligible patients are included on this
-          website. Eligible patients with a Paxlovid prescription can enroll in
-          the program at <a href="TODO">https://paxlovid.iassist.com.</a>&nbsp;
-          Other <a href="TODO">assistance programs</a> are available for
-          Paxlovid, Lagevrio, and Veklury.
+          This content is not fully Section 508 conformant. If you need
+          assistance, please contact&nbsp;
+          <a href="mailto:gis@hhs.gov">gis@hhs.gov</a>.{" "}
+          <a href="https://healthdata.gov/ASPR/COVID-19-Treatments/xkzp-zhs7/data_preview">
+            Tabular access to the data is also available.
+          </a>
         </p>
+        <p>
+          This website includes locations participating in the U.S.
+          Government&nbsp;
+          <a href="https://paxlovid.iassist.com/">Patient Assistance Program</a>
+          &nbsp; operated by Pfizer, offering free Paxlovid for eligible
+          patients. Other assistance programs are available for&nbsp;
+          <a href="https://aspr.hhs.gov/COVID-19/Treatments/Pages/Possible-Treatment-Options-for-COVID19.aspx#oral-antivirals">
+            COVID-19
+          </a>{" "}
+          and <a href="#faq-flu">flu.</a>
+        </p>
+        <StyledFAQTitle>Frequently Asked Questions</StyledFAQTitle>
         {
           //#region Accordion
         }
@@ -656,7 +648,7 @@ const Landing = () => {
           {
             //#region Drawer 9
           }
-          <Accordion.Item className="AccordionItem" value="item-9">
+          <Accordion.Item className="AccordionItem" id="faq-flu" value="item-9">
             <Accordion.Header className="AccordionHeader">
               <Accordion.Trigger className={"AccordionTrigger"}>
                 What programs exist to provide continued affordable access to

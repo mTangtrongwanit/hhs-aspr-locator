@@ -32,6 +32,7 @@ const imgUrl = new URL("@/assets/images/nurse.jpg", import.meta.url).href;
 export const StyledFAQTitle = styled.h4`
   // --- Decorative ---
   color: var(--brand);
+  font-size: var(--text-1);
   font-weight: 700;
 `;
 
@@ -134,6 +135,7 @@ export const StyledContextRow = styled.section`
 export const StyledLandingContent = styled.main`
   // --- Sizing / Box-Model ---
   width: 100%;
+  margin-bottom: 1rem;
   overflow-y: auto; //prevent accordion and footer from overlapping
   // --- Position ---
   // --- Layout ---
