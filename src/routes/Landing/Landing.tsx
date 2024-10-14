@@ -799,7 +799,26 @@ const Landing = () => {
             </Accordion.Header>
             <Accordion.Content className="AccordionContent">
               <div className="AccordionContentText">
-                <p></p>
+                <p>
+                  o Throughout the COVID-19 pandemic, the federal government
+                  granted Emergency Use Authorization (EUA) for therapeutics to
+                  help combat COVID-19, including certain monoclonal antibodies.
+                  Because the U.S. Food and Drug Administration (FDA) does not
+                  currently authorize any monoclonal antibody therapeutics to
+                  treat COVID-19 in the United States, no monoclonal antibody
+                  products are listed on this locator. Pemivibart (PEMGARDA), a
+                  monoclonal antibody to prevent COVID-19 in certain patients,
+                  is currently{" "}
+                  <a href="https://www.fda.gov/media/177069/download">
+                    authorized by the FDA
+                  </a>{" "}
+                  for emergency use. Infusion sites offering this medication can
+                  be found using the{" "}
+                  <a href="https://www.pemgarda.com/patient/infusion-center-locator/">
+                    PEMGARDA infusion center locator tool.
+                  </a>{" "}
+                  There are no monoclonal antibodies available to treat flu.
+                </p>
               </div>
             </Accordion.Content>
           </Accordion.Item>
@@ -846,12 +865,28 @@ const Landing = () => {
             </Accordion.Header>
             <Accordion.Content className="AccordionContent">
               <div className="AccordionContentText">
-                <p></p>
+                <p>
+                  o Where indicated, the locations listed on this website may:
+                </p>
                 <ul>
-                  <li></li>
-                  <li></li>
-                  <li></li>
-                  <li></li>
+                  <li>
+                     Have remaining free Paxlovid and/or Lagevrio distributed
+                    by the U.S. Department of Health and Human Services{" "}
+                  </li>
+                  <li>
+                     Participate in the Paxlovid Patient Assistance Program,
+                    providing free Paxlovid to publicly insured (Medicare,
+                    Medicaid, etc.) and uninsured patients
+                  </li>
+                  <li>
+                     Offer prescribing services (including telehealth) or home
+                    delivery of medicines
+                  </li>
+                  <li>
+                     Offer no-cost COVID-19 testing for eligible uninsured
+                    people (Increasing Community Access to Testing [ICATT]
+                    participating site){" "}
+                  </li>
                 </ul>
               </div>
             </Accordion.Content>
@@ -870,7 +905,16 @@ const Landing = () => {
               </Accordion.Trigger>
             </Accordion.Header>
             <Accordion.Content className="AccordionContent">
-              <div className="AccordionContentText"></div>
+              <div className="AccordionContentText">
+                <p>
+                  {" "}
+                  o If you would like more information about being added to the
+                  Treatments Locator, please email{" "}
+                  <a href="mailto:COVID19.therapeutics@hhs.gov">
+                    COVID19.therapeutics@hhs.gov.
+                  </a>{" "}
+                </p>
+              </div>
             </Accordion.Content>
           </Accordion.Item>
           {
@@ -888,7 +932,13 @@ const Landing = () => {
               </Accordion.Trigger>
             </Accordion.Header>
             <Accordion.Content className="AccordionContent">
-              <div className="AccordionContentText"></div>
+              <div className="AccordionContentText">
+                <p>
+                  o Retail pharmacies can learn more about participating in the
+                  Paxlovid Patient Assistance Program by <a href="mailto:PharmacyNetworkContract102101@assistrx.com">contacting the program
+                  vendor</a>{" "}
+                </p>
+              </div>
             </Accordion.Content>
           </Accordion.Item>
           {
