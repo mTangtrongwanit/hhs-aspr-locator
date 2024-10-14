@@ -81,6 +81,7 @@ const router = createBrowserRouter(
   ],
   {
     basename: import.meta.env.BASE_URL,
+    // @ts-expect-error - debugging
     async unstable_dataStrategy({ request, matches }) {
       console.log("unstable_dataStrategy", request, matches);
       // Grab only the matches we need to run handlers for
