@@ -121,7 +121,6 @@ const Landing = () => {
         <Accordion.Root
           className="AccordionRoot"
           type="single"
-          defaultValue="item-1"
           collapsible
         >
           {
