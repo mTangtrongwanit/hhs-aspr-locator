@@ -47,12 +47,8 @@ const LocationsMap = () => {
     setSearchPoint,
     searchPoint,
     locationsExtent,
-    // sharedSiteFacilityID,
-    // selectedIllness,
-    // selectedMedications,
-    // selectedFilters,
-    // locations,
     setFeatureLayer,
+    selectedIllness,
   } = useAppContext();
   const [searchParams] = useSearchParams();
   // #endregion --------------- Hooks (Resources) ------------------------------
@@ -72,7 +68,7 @@ const LocationsMap = () => {
           },
         },
       }),
-    [],
+    []
   );
   // #endregion -------------- Hooks (Memoization) -----------------------------
 
@@ -106,10 +102,10 @@ const LocationsMap = () => {
                 layer.type === "feature" &&
                 layer.title &&
                 layer.title.includes("Treatments")
-                
               ) {
                 (layer as __esri.FeatureLayer).outFields = ["*"];
-                (layer as __esri.FeatureLayer).definitionExpression = "OBJECTID = -1";
+                (layer as __esri.FeatureLayer).definitionExpression =
+                  "OBJECTID = -1";
                 layer.load().then(() => {
                   setFeatureLayer(layer as FeatureLayer);
                 });
@@ -144,7 +140,8 @@ const LocationsMap = () => {
                 layer.title.includes("Treatments")
               ) {
                 (layer as __esri.FeatureLayer).outFields = ["*"];
-                (layer as __esri.FeatureLayer).definitionExpression = "OBJECTID = -1";
+                (layer as __esri.FeatureLayer).definitionExpression =
+                  "OBJECTID = -1";
                 layer.load().then(() => {
                   setFeatureLayer(layer as FeatureLayer);
                 });
@@ -165,7 +162,7 @@ const LocationsMap = () => {
                       (hitResult as __esri.GraphicHit).graphic?.layer?.title &&
                       (
                         hitResult as __esri.GraphicHit
-                      ).graphic?.layer?.title.includes("Treatments"),
+                      ).graphic?.layer?.title.includes("Treatments")
                   ) as __esri.GraphicHit;
                   if (!treatmentsLayer) return;
                   const t = treatmentsLayer as __esri.GraphicHit;
@@ -218,24 +215,27 @@ const LocationsMap = () => {
     if (searchParams.has("geopoint")) {
       return;
     }
-    if (locationsMapView && searchPoint && locationsExtent) {
+    if (locationsMapView && searchPoint && locationsExtent?.extent?.center) {
       reactiveUtils
         .whenOnce(() => locationsMapView.ready)
         .then(() => {
-          const target = locationsExtent.extent
+          const target = locationsExtent?.extent
             ? locationsExtent.extent.center
-            : searchPoint.point;
-          const options = locationsExtent.extent
-            ? { target, extent: locationsExtent.extent }
-            : { target, zoom: 8 };
+            :  searchPoint.point;
+            const options = { target: target, extent: locationsExtent.extent }
 
           locationsMapView.goTo(options).catch((error) => {
             console.error("MapView goTo error: ", error);
           });
         });
     }
-  }, [locationsExtent, locationsMapView, searchPoint, searchParams]);
-
+  }, [
+    locationsExtent,
+    locationsMapView,
+    searchPoint,
+    searchParams,
+    selectedIllness,
+  ]);
 
   // #endregion ----------------- Hooks (Other) --------------------------------
 

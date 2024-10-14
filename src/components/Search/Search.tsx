@@ -56,6 +56,7 @@ const SearchComponent = () => {
         {
           url: "https://geocode-api.arcgis.com/arcgis/rest/services/World/GeocodeServer",
           countryCode: "US",
+          placeholder: "Enter a location to view services",
         },
       ] as __esri.LocatorSearchSourceProperties[],
     });
@@ -76,7 +77,7 @@ const SearchComponent = () => {
 
     // Note: We need to create a fresh element for the widget everytime it is built, can't just assign it to ref.current or it won't re-render.
     return () => search.destroy();
-  }, [setSearchPoint]);
+  }, [setSearchPoint, searchPoint]);
 
   /**
    * Effect to update widget with SelectionMap results
@@ -102,7 +103,7 @@ const SearchComponent = () => {
   // #region ----------------------- Render ------------------------------------
   return (
     <StyledSearch ref={searchRef}>
-      <MagnifyingGlassIcon width="18" height="18" />
+      <MagnifyingGlassIcon width='18' height='18' />
     </StyledSearch>
   );
   // #endregion -------------------- Render ------------------------------------
