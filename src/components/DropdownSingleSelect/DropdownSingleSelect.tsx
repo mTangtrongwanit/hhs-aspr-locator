@@ -37,7 +37,7 @@ interface DropdownSingleSelectProps {
 // #region =================== EXPORTED COMPONENT ==============================
 const DropdownSingleSelect = ({ type }: DropdownSingleSelectProps) => {
   // #region ------------------ Hooks (Resources) ------------------------------
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const {
     treatmentIllnessLookup,
     selectedSort,
@@ -102,7 +102,10 @@ const DropdownSingleSelect = ({ type }: DropdownSingleSelectProps) => {
       ? config.options.languageOptions
       : type === "sort"
       ? config.options.sortOptions
-      : illnesses.map((illness) => ({ label: illness, value: illness }));
+      : illnesses.map((illness) => ({
+          label: t(`Illness.${illness}`, illness),
+          value: illness,
+        }));
 
   const selectedValue =
     type === "language"
