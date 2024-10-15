@@ -302,11 +302,13 @@ const Locations = () => {
                       <Card
                         serviceProvider={serviceSiteAttributes}
                         key={serviceSiteAttributes.OBJECTID}
+                        selectedIllness={selectedIllness.value}
                         selected={
                           serviceSiteAttributes.OBJECTID === cardSelected
                         }
                       ></Card>
                     </>
+
                   );
                 })}
               </ul>
