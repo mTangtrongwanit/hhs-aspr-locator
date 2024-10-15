@@ -29,7 +29,7 @@ import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 // #region =================== EXPORTED COMPONENT ==============================
 const SearchComponent = () => {
   // #region ------------------ Hooks (Resources) ------------------------------
-  const { searchPoint, setSearchPoint } = useAppContext();
+  const { searchPoint, setSearchPoint,setSelectedMedications, setSelectedFilters } = useAppContext();
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region -------------------- Hooks (State) --------------------------------
@@ -70,7 +70,9 @@ const SearchComponent = () => {
     /**
      * Watch for result selection to set AOI
      */
-    search.on("select-result", (event) => {
+    search.on("select-result", function (event) {
+      setSelectedMedications([]);
+      setSelectedFilters([]);
       const result = event as __esri.SearchSelectResultEvent;
       const name = result.result.name;
       const geometry = result.result.feature.geometry as __esri.Point;
