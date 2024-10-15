@@ -131,7 +131,7 @@ export const StyledCard = styled.li<{
   min-width: var(--min-card-width);
   max-width: var(--max-card-width);
   width: 100%; //prevent align-items: center from shrinking children
-  padding: var(--unit);
+  padding: calc(var(--unit) * 0.75) calc(var(--unit) * 0.5);
   border-radius: var(--border);
 
   // --- Position ---
@@ -141,7 +141,7 @@ export const StyledCard = styled.li<{
   // --- Layout ---
   display: flex;
   flex-direction: column;
-  gap: calc(var(--unit));
+  gap: calc(var(--unit) * 0.5);
 
   // --- Decorative ---
   border: var(border) solid #fff;
