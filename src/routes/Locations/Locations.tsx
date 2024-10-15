@@ -54,7 +54,6 @@ const Locations = () => {
   const {
     bannerHeight,
     headerHeight,
-    searchPoint,
     selectedSort,
     selectedIllness,
     locations,
@@ -62,9 +61,12 @@ const Locations = () => {
     sharedSiteFacilityID,
     sortedSites,
     setSortedSites,
+    selectedTreatmentSite,
+    searchPoint
   } = useAppContext();
 
   const searchContRef = useRef<HTMLDivElement>(null);
+  // const cardRefs = useRef<{ [key: string]: HTMLLIElement | null }>({});
 
   // #endregion --------------- Hooks (Resources) ------------------------------
 
@@ -72,7 +74,7 @@ const Locations = () => {
   const [searchContHeight, setSearchContHeight] = useState<number>(0);
   const [totalHeight, setTotalHeight] = useState<number>(0);
   const [isMobileListView, setIsMobileListView] = useState<boolean>(true);
-  // const [sortedSites, setSortedSites] = useState<Site[]>([]);
+  const [cardSelected, setCardSelected] = useState<number | null>(null);
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
@@ -101,7 +103,14 @@ const Locations = () => {
     if (searchParams.has("facility_id") && searchParams.has("geopoint")) {
       setSFID(searchParams.get("facility_id"));
     }
-  }, [searchParams]);
+  }, [searchParams, setSFID]);
+
+  useEffect(() => {
+    if (!selectedTreatmentSite) {
+      return;
+    }
+    setCardSelected(selectedTreatmentSite.attributes.OBJECTID);
+  }, [selectedTreatmentSite]);
 
   /** Filter and sort the sites based on the values of the illness and sort dropdowns. */
   /** Medications, Filters effects handled in PopoverMultiSelect */
@@ -156,6 +165,7 @@ const Locations = () => {
         })
       );
 
+
       const sortedSites = updatedSites.sort((a, b) => {
         if (selectedSort.value === "distance") {
           const distanceA = a.attributes.distance || 0;
@@ -180,6 +190,7 @@ const Locations = () => {
         }
         return false;
       }) as __esri.Graphic[];
+
       setSortedSites(x);
     };
 
@@ -276,7 +287,7 @@ const Locations = () => {
             //#region List Container (left column, results displayed as cards)
           }
 
-          {sortedSites?.length === 0 ? (
+          {(sortedSites?.length === 0 && !searchPoint?.name)? (
             <StyledListNoResultsContainer>
               <MagnifyingGlass></MagnifyingGlass>
               <h3>Please ensure an illness and location are selected.</h3>
@@ -291,11 +302,14 @@ const Locations = () => {
                   const serviceSiteAttributes: SiteAttributesType =
                     serviceSite.attributes;
                   return (
-                    <Card
-                      serviceProvider={serviceSiteAttributes}
-                      selected={false}
-                      key={serviceSiteAttributes.OBJECTID}
-                    ></Card>
+                      <Card
+                        serviceProvider={serviceSiteAttributes}
+                        key={serviceSiteAttributes.OBJECTID}
+                        selectedIllness={selectedIllness.value}
+                        selected={
+                          serviceSiteAttributes.OBJECTID === cardSelected
+                        }
+                      ></Card>
                   );
                 })}
               </ul>

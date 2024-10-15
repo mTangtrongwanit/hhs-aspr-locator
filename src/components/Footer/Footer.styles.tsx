@@ -127,6 +127,9 @@ export const StyledFooterAddressImageContainer = styled.div`
 `;
 
 export const StyledFooterAddressImage = styled.img`
+  max-inline-size: 100%;
+  block-size: auto;
+  object-fit: contain;
   height: 102px;
   width: auto;
 `;
@@ -150,7 +153,18 @@ export const StyledFooterImageContainer = styled.div`
   }
 `;
 
+export const StyledFooterImageLink = styled.a`
+  text-decoration: none;
+  & :hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+`;
+
 export const StyledFooterImage = styled.img`
+  max-inline-size: 100%;
+  block-size: auto;
+  object-fit: contain;
   height: 50px;
   width: auto;
 `;
