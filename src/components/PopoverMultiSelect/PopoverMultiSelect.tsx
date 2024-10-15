@@ -105,7 +105,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
 
 
 
-  const checkFilter = (loc: __esri.Graphic, selectedFilters: any) => {
+  const checkFilter = (loc: __esri.Graphic, selectedFilters: FilterType[]) => {
       let match = true
       selectedFilters.forEach((filter: FilterType) => {
 
@@ -140,11 +140,11 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
       return match;
   }
 
-  const checkMedication = (loc: __esri.Graphic, selectedMedications: any, treatmentIllnessData: any) => {
+  const checkMedication = (loc: __esri.Graphic, selectedMedications: string[], treatmentIllnessData: __esri.Graphic[]) => {
     let match = true
     if (selectedMedications.length > 0) {
       // if this location does not provide the selected medications
-      selectedMedications.forEach((medication: __esri.Graphic) => {
+      selectedMedications.forEach((medication: string) => {
 
              
         // find the treatment object for the medication
@@ -155,7 +155,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
         // attribute registering whether or not this location has the treatment you are filtering for
         // this will be true or false
         const medicationAttribute =
-          loc.attributes[treatment.attributes.field_name]?.toUpperCase();
+          loc.attributes[treatment?.attributes.field_name]?.toUpperCase();
 
         if (medicationAttribute !== "TRUE") {
           // if the attribute value is not true, set match to false
@@ -165,7 +165,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
           
 
         
-        if (treatment.attributes.display_name === "Oseltamivir") {
+        if (treatment?.attributes.display_name === "Oseltamivir") {
 
 
           const has_generic = loc.attributes[
