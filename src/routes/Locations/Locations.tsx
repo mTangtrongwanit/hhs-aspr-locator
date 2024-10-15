@@ -12,8 +12,8 @@ import { useRef, useState, useEffect } from "react";
 import { useTranslation, Trans } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 import useResizeObserver from "@react-hook/resize-observer";
+import { ArrowLeftIcon } from "@radix-ui/react-icons";
 import Point from "@arcgis/core/geometry/Point";
-
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -24,8 +24,7 @@ import {
   StyledListTitleContainer,
   StyledListOptionsContainer,
   StyledMapContainer,
-  StyledSearchContainer,
-  StyledButton,
+  StyledSearchContainer
 } from "./Locations.styles";
 import PopoverMultiSelect from "@/components/PopoverMultiSelect";
 import Card from "@/components/Card";
@@ -248,9 +247,10 @@ const Locations = () => {
         </h2>
         {sharedSiteFacilityID !== null ? (
           <>
-            <StyledButton as="button" onClick={onToggleSelectedLoc}>
+            <button className="hhs-primary-button" onClick={onToggleSelectedLoc}>
+             <ArrowLeftIcon />
               Search for Other Locations
-            </StyledButton>
+            </button>
           </>
         ) : (
           <>
@@ -281,10 +281,12 @@ const Locations = () => {
                 count={sortedSites?.length}
               ></Trans>
             </h3>
-            <StyledListOptionsContainer>
-              <PopoverMultiSelect type="filter" />
-              <DropdownSingleSelect type={"sort"} />
-            </StyledListOptionsContainer>
+            {sharedSiteFacilityID === null && (
+              <StyledListOptionsContainer>
+                <PopoverMultiSelect type="filter" />
+                <DropdownSingleSelect type={"sort"} />
+              </StyledListOptionsContainer>
+            )}
           </StyledListTitleContainer>
 
           {
@@ -295,8 +297,7 @@ const Locations = () => {
             <StyledListNoResultsContainer>
               <MagnifyingGlass></MagnifyingGlass>
               <h3>Please ensure an illness and location are selected.</h3>
-               <p>{t("Locations.Empty List")}</p>
-              
+              <p>{t("Locations.Empty List")}</p>
             </StyledListNoResultsContainer>
           ) : (
             <>
