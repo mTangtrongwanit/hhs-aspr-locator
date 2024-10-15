@@ -63,6 +63,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
     setSelectedMedications,
     selectedFilters,
     setSelectedFilters,
+    sortedSites
   } = useAppContext();
   // #endregion --------------- Hooks (Resources) ------------------------------
 
@@ -100,58 +101,104 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
     );
   };
 
+
+
+
+  const checkFilter = (loc: __esri.Graphic, selectedFilters: any) => {
+      let match = true
+      selectedFilters.forEach((filter: any) => {
+
+        // attribute registering whether or not this location has the service you are filtering for
+        // returns true or false
+        const attributeValue =
+        loc.attributes[
+          config.treatmentData.fields[
+            filter.name as keyof typeof config.treatmentData.fields
+          ].name
+        ]?.toUpperCase() || 'FALSE'
+        if (attributeValue !== "TRUE") {
+          // if the attribute value is not true, set match to false
+          match = false;
+        }
+      });
+      return match;
+  }
+
+  const checkMedication = (loc: __esri.Graphic, selectedMedications: any, treatmentIllnessData: any) => {
+    let match = true
+    if (selectedMedications.length > 0) {
+      // if this location does not provide the selected medications
+      selectedMedications.forEach((medication: __esri.Graphic) => {
+
+             
+        // find the treatment object for the medication
+        const treatment = treatmentIllnessData?.find(
+          (treatment: __esri.Graphic) => treatment.attributes.display_name === medication,
+        );
+
+        // attribute registering whether or not this location has the treatment you are filtering for
+        // this will be true or false
+        const medicationAttribute =
+          loc.attributes[treatment.attributes.field_name]?.toUpperCase();
+
+        if (medicationAttribute !== "TRUE") {
+          // if the attribute value is not true, set match to false
+          match = false;
+        }
+
+          
+
+        
+        if (treatment.attributes.display_name === "Oseltamivir") {
+
+
+          const has_generic = loc.attributes[
+            config.treatmentData.fields.has_oseltamivir_generic.name
+          ]?.toUpperCase() === "TRUE" ? true : false;
+
+          const has_tamiflu = loc.attributes[
+            config.treatmentData.fields.has_oseltamivir_tamiflu.name
+          ]?.toUpperCase() === "TRUE" ? true : false;
+
+          const has_suspension = loc.attributes[
+            config.treatmentData.fields.has_oseltamivir_suspension.name
+          ]?.toUpperCase() === "TRUE" ? true : false;
+          
+
+          
+          if (
+            has_suspension || has_generic ||  has_tamiflu
+          ) {
+            match = true;
+          }
+          else {
+            match = false;
+          }
+        }
+      return match;
+      });
+    }
+    return match;
+  }
+
+  
+  
+  
   /** Handle the apply click */
   const handleApplyClick = () => {
+    // if there are medications or filters, do some stuff, else set locations to all locations
     if (
       (selectedMedications.length > 0 && treatmentIllnessData) ||
       (selectedFilters.length > 0 && treatmentIllnessData)
     ) {
+      // filter the locations for any that have 
       const filteredLocations = locationsTotals?.filter((loc) => {
-        let match = true;
 
-        // Filter based on selected filters
-        if (selectedFilters.length > 0) {
-          selectedFilters.forEach((filter) => {
-            const attributeValue =
-              loc.attributes[
-                config.treatmentData.fields[
-                  filter.name as keyof typeof config.treatmentData.fields
-                ].name
-              ]?.toUpperCase();
+        const filterMatch = checkFilter(loc, selectedFilters);
+        
+        const medicationMatch = checkMedication(loc, selectedMedications, treatmentIllnessData);
 
-            if (filter.name === "has_oseltamivir_tamiflu") {
-              if (
-                attributeValue !== "TRUE" ||
-                loc.attributes[
-                  config.treatmentData.fields.has_oseltamivir_generic.name
-                ]?.toUpperCase() === "TRUE"
-              ) {
-                match = false;
-              }
-            } else if (attributeValue !== "TRUE") {
-              match = false;
-            }
-          });
-        }
-
-        // Filter based on selected medications
-        if (match && selectedMedications.length > 0) {
-          const medicationMatch = selectedMedications.every((medication) => {
-            const treatment = treatmentIllnessData.find(
-              (treatment) => treatment.attributes.display_name === medication
-            );
-            if (!treatment) return false;
-
-            const medicationAttribute =
-              loc.attributes[treatment.attributes.field_name]?.toUpperCase();
-            return medicationAttribute === "TRUE";
-          });
-          if (!medicationMatch) {
-            match = false;
-          }
-        }
-
-        return match;
+        return filterMatch && medicationMatch;
       });
 
       setLocations(filteredLocations || null);
@@ -242,10 +289,10 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
     },
   };
 
-  // Get the services from the locations
+  // Get the filtered locations from the locations based on filters
   const services = Array.from(
     new Set(
-      locationsTotals?.flatMap((loc) => {
+      sortedSites?.flatMap((loc) => {
         const serviceList: Filter[] = [];
         // Iterate over the lookup object
         for (const [key, field] of Object.entries(filterLookup)) {
@@ -276,6 +323,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
     if (type === "medications") {
       return (
         <>
+        {/* button to log locations */}
           <PopoverMenuTitle>Medications</PopoverMenuTitle>
           <PopoverCheckBoxContainer>
             {treatments !== undefined &&

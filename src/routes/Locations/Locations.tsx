@@ -56,7 +56,6 @@ const Locations = () => {
   const {
     bannerHeight,
     headerHeight,
-    searchPoint,
     selectedSort,
     selectedIllness,
     locations,
@@ -65,7 +64,8 @@ const Locations = () => {
     sortedSites,
     setSortedSites,
     selectedTreatmentSite,
-    setSearchPoint
+    setSearchPoint,
+    searchPoint
   } = useAppContext();
 
   const searchContRef = useRef<HTMLDivElement>(null);
@@ -168,6 +168,7 @@ const Locations = () => {
         })
       );
 
+
       const sortedSites = updatedSites.sort((a, b) => {
         if (selectedSort.value === "distance") {
           const distanceA = a.attributes.distance || 0;
@@ -192,6 +193,7 @@ const Locations = () => {
         }
         return false;
       }) as __esri.Graphic[];
+
       setSortedSites(x);
     };
 
@@ -289,7 +291,7 @@ const Locations = () => {
             //#region List Container (left column, results displayed as cards)
           }
 
-          {sortedSites?.length === 0 ? (
+          {(sortedSites?.length === 0 && !searchPoint?.name)? (
             <StyledListNoResultsContainer>
               <MagnifyingGlass></MagnifyingGlass>
               <h3>Please ensure an illness and location are selected.</h3>
