@@ -61,7 +61,8 @@ const Locations = () => {
     sharedSiteFacilityID,
     sortedSites,
     setSortedSites,
-    selectedTreatmentSite
+    selectedTreatmentSite,
+    searchPoint
   } = useAppContext();
 
   const searchContRef = useRef<HTMLDivElement>(null);
