@@ -184,7 +184,7 @@ const LocationsMap = () => {
         mapView.map = null;
       };
     }
-  }, [map, setLocationsMapView, setSelectedTreatmentSite, searchParams]);
+  }, [map, setLocationsMapView, setSelectedTreatmentSite, searchParams, setSearchPoint, setFeatureLayer]);
 
   /** Highlight selected feature */
   useEffect(() => {
@@ -214,8 +214,8 @@ const LocationsMap = () => {
         .then(() => {
           const target = locationsExtent?.extent
             ? locationsExtent.extent.center
-            : searchPoint.point;
-          const options = { target: target, extent: locationsExtent.extent };
+            :  searchPoint.point;
+            const options = { target: target, zoom: 10 };
 
           locationsMapView.goTo(options).catch((error) => {
             console.error("MapView goTo error: ", error);

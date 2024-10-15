@@ -94,18 +94,11 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
    */
   const copyToClipboard = (queryParams: Record<string, string>) => {
     const url = new URL(`${window.location.origin}${window.location.pathname}`);
-    let hash = window.location.hash;
-    // Append query parameters manually to the hash, otherwise they'll prepend it, breaking the url
-    const queryString = new URLSearchParams(queryParams).toString();
-    if (hash.includes("?")) {
-      // if not the first query parameter, add an ampersand
-      hash += `&${queryString}`;
-    } else {
-      // if the first query parameter, add a question mark
-      hash += `?${queryString}`;
-    }
-    // Set the modified hash back to the URL
-    url.hash = hash;
+
+    Object.keys(queryParams).forEach((key) => {
+      url.searchParams.append(key, queryParams[key]);
+    });
+
     navigator.clipboard.writeText(url.href);
   };
 

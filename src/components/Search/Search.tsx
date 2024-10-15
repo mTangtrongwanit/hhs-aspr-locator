@@ -57,9 +57,10 @@ const SearchComponent = () => {
         {
           url: "https://geocode-api.arcgis.com/arcgis/rest/services/World/GeocodeServer",
           countryCode: "US",
-          placeholder: "Enter a location to view services",
+          placeholder: "Enter a location to view services"
         },
       ] as __esri.LocatorSearchSourceProperties[],
+      includeDefaultSources: false
     });
     //add to DOM
     searchRef.current.appendChild(search.container as Node);
@@ -69,7 +70,7 @@ const SearchComponent = () => {
     /**
      * Watch for result selection to set AOI
      */
-    search.on("select-result", function (event) {
+    search.on("select-result", (event) => {
       const result = event as __esri.SearchSelectResultEvent;
       const name = result.result.name;
       const geometry = result.result.feature.geometry as __esri.Point;
