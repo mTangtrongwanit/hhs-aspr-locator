@@ -24,6 +24,7 @@ import {
   StyledFooterAddressImage,
   StyledFooterAddress,
   StyledFooterImageContainer,
+  StyledFooterImageLink,
   StyledFooterImage,
   StyledFooterMediaLinksContainer,
   StyledFooterMediaLink,
@@ -152,10 +153,12 @@ const Footer = () => {
           </StyledFooterLinksContainer>
           <StyledFooterAddressContainer>
             <StyledFooterAddressImageContainer>
-              <StyledFooterAddressImage
+              <StyledFooterImageLink href="https://www.hhs.gov/">
+                <StyledFooterAddressImage
                 src={HHSLogoPath}
                 alt="Department of Health and Human Services Logo"
               />
+              </StyledFooterImageLink>
             </StyledFooterAddressImageContainer>
             <StyledFooterAddress>
               HHS, Administration for Strategic Preparedness and Response (ASPR)
@@ -166,7 +169,9 @@ const Footer = () => {
         </StyledFooterFirstColumn>
         <StyledFooterSecondColumn>
           <StyledFooterImageContainer>
-            <StyledFooterImage src={whiteLogoPath} alt="ASPR logo" />
+            <StyledFooterImageLink href="https://aspr.hhs.gov/Pages/Home.aspx">
+              <StyledFooterImage src={whiteLogoPath} alt="ASPR logo" />
+            </StyledFooterImageLink>
           </StyledFooterImageContainer>
           <StyledFooterMediaLinksContainer>
             <StyledFooterMediaLink>
