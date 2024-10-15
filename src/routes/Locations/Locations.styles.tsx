@@ -163,6 +163,9 @@ export const StyledListNoResultsContainer = styled.div`
     font-size: var(--text--1);
     color: var(--text);
   }
+  h3 {
+    text-align: center;
+  }
 `;
 
 
