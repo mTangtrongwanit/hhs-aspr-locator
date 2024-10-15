@@ -19,6 +19,7 @@
   "Landing": {
     "Search Container Heading": "Find COVID-19 and Flu Medications",
     "Search Container Description": "This locator displays pharmacies, clinics, and other locations with  safe and effective COVID-19 and Flu medications. These medications require a  prescription from a healthcare provider.",
+    "Illness Placeholder": "What do you need treatment for",
     "View Locations Button Label": "View Locations",
     "Context Container Screenreader Heading": "Contextual Information",
     "Assistance Program Description": "i18n Todo - not sure how to effectively break this up into paragraph text vs links",
@@ -34,6 +35,10 @@
     "Results Screenreader Heading": "Results",
     "List Heading": "{{count}} Sites",
     "Map Screenreader Heading": "Map of Sites"
+  },
+  "Illness": {
+    "COVID": "COVID-19",
+    "Flu": "Flu"
   },
   "Card": {
     "pap": "PAP",

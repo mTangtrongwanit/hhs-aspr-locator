@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
 import * as PopoverMenu from "@radix-ui/react-popover";
+import { PopoverClose } from "@radix-ui/react-popover";
 import * as Checkbox from "@radix-ui/react-checkbox";
 import { ChevronDownIcon, Cross2Icon, CheckIcon } from "@radix-ui/react-icons";
 // import { useTranslation } from "react-i18next";
@@ -87,7 +88,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
     setSelectedMedications((prev: string[]) =>
       prev.includes(medication)
         ? prev.filter((item: string) => item !== medication)
-        : [...prev, medication],
+        : [...prev, medication]
     );
   };
 
@@ -96,7 +97,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
     setSelectedFilters((prev: Filter[]) =>
       prev.includes(filter)
         ? prev.filter((item) => item !== filter)
-        : [...prev, filter],
+        : [...prev, filter]
     );
   };
 
@@ -235,8 +236,6 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
     setLocations(locationsTotals);
   };
 
-  
-
   /* note: this logic from https://dev.azure.com/Esri-Professional-Services/HHS-ASPR%20Treatment%20Locator%202.0/_workitems/edit/58802/
     posted by Carlee, John (OS ASPR SIIM) (CTR)
 
@@ -265,34 +264,46 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
       checker: (loc: __esri.Graphic) =>
         selectedIllness.value === "COVID" &&
         [
-          loc.attributes[config.treatmentData.fields.is_pap.name]?.toUpperCase(), 
-          loc.attributes[config.treatmentData.fields.has_USG_product.name
-        ]?.toUpperCase()].includes("TRUE"),
+          loc.attributes[
+            config.treatmentData.fields.is_pap.name
+          ]?.toUpperCase(),
+          loc.attributes[
+            config.treatmentData.fields.has_USG_product.name
+          ]?.toUpperCase(),
+        ].includes("TRUE"),
       field: config.treatmentData.fields.is_pap,
     },
     is_icatt_site: {
       checker: (loc: __esri.Graphic) =>
         selectedIllness.value === "COVID" &&
-        loc.attributes[config.treatmentData.fields.is_icatt_site.name]?.toUpperCase() === "TRUE",
+        loc.attributes[
+          config.treatmentData.fields.is_icatt_site.name
+        ]?.toUpperCase() === "TRUE",
       field: config.treatmentData.fields.is_icatt_site,
     },
     home_delivery: {
       checker: (loc: __esri.Graphic) =>
-        [ "COVID", "Flu"].includes(selectedIllness.value) &&
-        loc.attributes[config.treatmentData.fields.home_delivery.name]?.toUpperCase() === "TRUE",
+        ["COVID", "Flu"].includes(selectedIllness.value) &&
+        loc.attributes[
+          config.treatmentData.fields.home_delivery.name
+        ]?.toUpperCase() === "TRUE",
       field: config.treatmentData.fields.home_delivery,
     },
     has_oseltamivir_suspension: {
       checker: (loc: __esri.Graphic) =>
         selectedIllness.value === "Flu" &&
-        loc.attributes[config.treatmentData.fields.has_oseltamivir_suspension.name]?.toUpperCase() === "TRUE",
+        loc.attributes[
+          config.treatmentData.fields.has_oseltamivir_suspension.name
+        ]?.toUpperCase() === "TRUE",
       field: config.treatmentData.fields.has_oseltamivir_suspension,
     },
 
     is_prescribing_svcs_available: {
       checker: (loc: __esri.Graphic) =>
-        [ "COVID", "Flu"].includes(selectedIllness.value) &&
-        loc.attributes[config.treatmentData.fields.is_prescribing_svcs_available.name]?.toUpperCase() === "TRUE",
+        ["COVID", "Flu"].includes(selectedIllness.value) &&
+        loc.attributes[
+          config.treatmentData.fields.is_prescribing_svcs_available.name
+        ]?.toUpperCase() === "TRUE",
       field: config.treatmentData.fields.is_prescribing_svcs_available,
     },
   };
@@ -305,15 +316,15 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
         // Iterate over the lookup object
         for (const [key, field] of Object.entries(filterLookup)) {
           // handle type check for key
-          key 
+          key;
           // handle type check for key
           if (field.checker(loc)) {
-              serviceList.push(field.field);
+            serviceList.push(field.field);
           }
         }
         return serviceList;
-      }) || [],
-    ),
+      }) || []
+    )
   );
   // #endregion ---------------- Event Handlers --------------------------------
 
@@ -403,13 +414,24 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
           <PopoverMenu.Content className="PopoverMenuContent" sideOffset={5}>
             {renderContent()}
             <StyledFilterButtonContainer>
-              <StyledOutlineButton onClick={() => handleClearFilters(type)}>
-                Clear All
-              </StyledOutlineButton>
+              <PopoverClose
+                asChild
+                aria-label="Clear Filters and Close Dropdown"
+              >
+                <StyledOutlineButton onClick={() => handleClearFilters(type)}>
+                  Clear All
+                </StyledOutlineButton>
+              </PopoverClose>
+
               {/* TODO: disable if nothing selected ("if nothing, do the same thing as clear all") */}
-              <StyledPrimaryButton onClick={handleApplyClick}>
-                Apply
-              </StyledPrimaryButton>
+              <PopoverClose
+                asChild
+                aria-label="Apply Changes and Close Dropdown"
+              >
+                <StyledPrimaryButton onClick={handleApplyClick}>
+                  Apply
+                </StyledPrimaryButton>
+              </PopoverClose>
             </StyledFilterButtonContainer>
             <PopoverMenu.Close className="PopoverMenuClose" aria-label="Close">
               <Cross2Icon />
