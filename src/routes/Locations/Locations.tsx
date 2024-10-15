@@ -182,22 +182,6 @@ const Locations = () => {
         return false;
       }) as __esri.Graphic[];
 
-
-      // const filteredLocations = x?.filter((loc) => {
-
-      //   const filterMatch = checkFilter(loc, selectedFilters);
-        
-      //   const medicationMatch = checkMedication(loc, selectedMedications, treatmentIllnessData);
-      //   // console.log('filterMatch', filterMatch)
-      //   // console.log('medicationMatch', medicationMatch)
-      //   // console.log('filterMatch && medicationMatch', filterMatch && medicationMatch)
-      //   // console.log('loc', loc)
-      //   return filterMatch && medicationMatch;
-      // });
-      
-      console.log('location', locations)
-      console.log('sortedSites', x)
-      
       setSortedSites(x);
     };
 

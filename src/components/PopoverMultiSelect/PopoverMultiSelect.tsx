@@ -105,9 +105,6 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
 
 
   const checkFilter = (loc: __esri.Graphic, selectedFilters: any) => {
-      if (selectedFilters.length === 0) {
-        return true;
-      }
       let match = true
       selectedFilters.forEach((filter: any) => {
 
@@ -119,13 +116,6 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
             filter.name as keyof typeof config.treatmentData.fields
           ].name
         ]?.toUpperCase() || 'FALSE'
-
-        console.log('attributeValue',attributeValue)
-
-        if (attributeValue == undefined) {
-          debugger
-        }
-
         if (attributeValue !== "TRUE") {
           // if the attribute value is not true, set match to false
           match = false;
@@ -145,10 +135,6 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
         const treatment = treatmentIllnessData?.find(
           (treatment: __esri.Graphic) => treatment.attributes.display_name === medication,
         );
-
-
-        // if there is no treatment object, return false
-        if (!treatment) return false;
 
         // attribute registering whether or not this location has the treatment you are filtering for
         // this will be true or false
@@ -183,11 +169,6 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
           if (
             has_suspension || has_generic ||  has_tamiflu
           ) {
-            console.log('oseltamivir match', {
-              has_suspension,
-              has_generic,
-              has_tamiflu
-            })
             match = true;
           }
           else {

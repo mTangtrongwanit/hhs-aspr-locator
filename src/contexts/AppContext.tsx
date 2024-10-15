@@ -122,7 +122,6 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
           }
         } as __esri.Graphic;
 
-        console.log('treatmentIllnesses',treatmentIllnesses)
         // remove 'Oseltamivir Generic',
         // 'Oseltamivir Suspension',
         // 'Oseltamivir Tamiflu',
