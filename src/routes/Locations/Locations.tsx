@@ -61,10 +61,11 @@ const Locations = () => {
     sharedSiteFacilityID,
     sortedSites,
     setSortedSites,
-    searchPoint
+    selectedTreatmentSite
   } = useAppContext();
 
   const searchContRef = useRef<HTMLDivElement>(null);
+  // const cardRefs = useRef<{ [key: string]: HTMLLIElement | null }>({});
 
   // #endregion --------------- Hooks (Resources) ------------------------------
 
@@ -72,7 +73,7 @@ const Locations = () => {
   const [searchContHeight, setSearchContHeight] = useState<number>(0);
   const [totalHeight, setTotalHeight] = useState<number>(0);
   const [isMobileListView, setIsMobileListView] = useState<boolean>(true);
-  // const [sortedSites, setSortedSites] = useState<Site[]>([]);
+  const [cardSelected, setCardSelected] = useState<number | null>(null);
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
@@ -101,7 +102,14 @@ const Locations = () => {
     if (searchParams.has("facility_id") && searchParams.has("geopoint")) {
       setSFID(searchParams.get("facility_id"));
     }
-  }, [searchParams]);
+  }, [searchParams, setSFID]);
+
+  useEffect(() => {
+    if (!selectedTreatmentSite) {
+      return;
+    }
+    setCardSelected(selectedTreatmentSite.attributes.OBJECTID);
+  }, [selectedTreatmentSite]);
 
   /** Filter and sort the sites based on the values of the illness and sort dropdowns. */
   /** Medications, Filters effects handled in PopoverMultiSelect */
@@ -291,11 +299,14 @@ const Locations = () => {
                   const serviceSiteAttributes: SiteAttributesType =
                     serviceSite.attributes;
                   return (
-                    <Card
-                      serviceProvider={serviceSiteAttributes}
-                      selected={false}
-                      key={serviceSiteAttributes.OBJECTID}
-                    ></Card>
+                      <Card
+                        serviceProvider={serviceSiteAttributes}
+                        key={serviceSiteAttributes.OBJECTID}
+                        selectedIllness={selectedIllness.value}
+                        selected={
+                          serviceSiteAttributes.OBJECTID === cardSelected
+                        }
+                      ></Card>
                   );
                 })}
               </ul>

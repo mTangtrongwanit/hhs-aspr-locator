@@ -39,7 +39,7 @@ const Tooltip = ({ icon, children }: Props) => {
     <StyledTooltip.Provider>
       <StyledTooltip.Root>
         <StyledTooltip.Trigger asChild>
-          <StyledTriggerButton aria-label="TODO">
+          <StyledTriggerButton aria-label="Category Label">
             <StyledIcon>{icon}</StyledIcon>
           </StyledTriggerButton>
         </StyledTooltip.Trigger>
