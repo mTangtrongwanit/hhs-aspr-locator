@@ -70,16 +70,16 @@ const config: StaticConfiguration = {
   options: {
     languageOptions: [
       {
+        label: "Chinese (Simplified)",
+        value: "zh",
+      },
+      {
         label: "English",
         value: "en",
       },
       {
         label: "Spanish",
         value: "es",
-      },
-      {
-        label: "Chinese (Simplified)",
-        value: "zh",
       },
     ],
     sortOptions: [
