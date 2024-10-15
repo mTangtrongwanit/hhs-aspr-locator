@@ -64,8 +64,8 @@ export const StyledDropdownSelect = styled.section`
     border-radius: 6px;
     padding: calc(var(--unit) * 0.25);
     box-shadow:
-      0px 10px 38px -10px rgba(22, 23, 24, 0.35),
-      0px 10px 20px -15px rgba(22, 23, 24, 0.2);
+      0px 0px 38px -10px rgba(18, 52, 85, 0.45),
+      0px 10px 20px -15px rgba(18, 49, 79, 0.45);
     animation-duration: 400ms;
     animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
     will-change: transform, opacity;
