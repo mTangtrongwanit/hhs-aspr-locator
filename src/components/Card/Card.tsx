@@ -74,15 +74,13 @@ const Card = ({ selected, serviceProvider }: Props) => {
     fetchDistance();
   }, [searchPoint, serviceProvider]);
 
-  // Highlight the location if the facility ID in the URL matches the facility ID of the service provider
+  // Highlight the location if it was selected on the map
   useEffect(() => {
-    const urlParams = new URLSearchParams(location.search);
-    const facilityId = urlParams.get("facility_id");
-    if (facilityId === serviceProvider.facility_id && cardRef.current) {
+    if (selected === true && cardRef.current) {
       // Highlight the location by applying inline CSS
-      cardRef.current.style.setProperty("border", "2px solid var(--brand)");
+      cardRef.current.scrollIntoView();
     }
-  }, [location.search, serviceProvider.facility_id]);
+  }, [selected]);
   // #endregion ----------------- Hooks (Other) --------------------------------
 
   // #region --------- Short-Circuit (Empty/Invalid State) ---------------------

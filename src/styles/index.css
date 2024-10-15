@@ -66,6 +66,8 @@ body,
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility !important;
+
+  scroll-behavior: smooth;
 }
 
 /* #endregion --------------------- CSS Reset ----------------------------------*/
