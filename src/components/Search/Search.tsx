@@ -70,18 +70,30 @@ const SearchComponent = () => {
     /**
      * Watch for result selection to set AOI
      */
-    search.on("select-result", function (event) {
+    search.on("select-result", async (event) => {
       setSelectedMedications([]);
       setSelectedFilters([]);
-      const result = event as __esri.SearchSelectResultEvent;
-      const name = result.result.name;
-      const geometry = result.result.feature.geometry as __esri.Point;
+      const result = (event as __esri.SearchSelectResultEvent).result;
+
+      // if the user triggers the search by hitting the enter key, use the first suggestion
+      if ((result as unknown as { key: string }).key === "null") {
+        const suggestion = (await search.suggest()).results
+          ?.at(0)
+          ?.results?.at(0);
+        if (suggestion) {
+          search.search(suggestion);
+          return;
+        }
+      }
+
+      const name = result.name;
+      const geometry = result.feature.geometry as __esri.Point;
       setSearchPoint({ name, point: geometry });
     });
 
     // Note: We need to create a fresh element for the widget everytime it is built, can't just assign it to ref.current or it won't re-render.
     return () => search.destroy();
-  }, [setSearchPoint, searchPoint]);
+  }, [setSelectedMedications, setSelectedFilters, setSearchPoint, searchPoint]);
 
   /**
    * Effect to update widget with SelectionMap results
