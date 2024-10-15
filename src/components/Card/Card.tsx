@@ -47,7 +47,6 @@ import PrescribingServicesIcon from "@/assets/icons/prescribing-services.svg";
 const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const { t } = useTranslation();
-  // const location = useLocation();
   const cardRef = useRef<HTMLLIElement>(null);
   const { searchPoint } = useAppContext();
   // #endregion --------------- Hooks (Resources) ------------------------------
