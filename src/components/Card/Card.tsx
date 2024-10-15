@@ -10,7 +10,6 @@ import { useEffect, useState, useRef } from "react";
 // #endregion ------------------------ React -----------------------------------
 // #region ------------ 3rd-Party Components / Libraries -----------------------
 import { useTranslation } from "react-i18next";
-import { useLocation } from "react-router-dom";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -48,7 +47,7 @@ import PrescribingServicesIcon from "@/assets/icons/prescribing-services.svg";
 const Card = ({ selected, serviceProvider }: Props) => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const { t } = useTranslation();
-  const location = useLocation();
+  // const location = useLocation();
   const cardRef = useRef<HTMLLIElement>(null);
   const { searchPoint } = useAppContext();
   // #endregion --------------- Hooks (Resources) ------------------------------

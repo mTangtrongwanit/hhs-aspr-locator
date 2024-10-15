@@ -15,9 +15,7 @@ import { useRef, useEffect, useMemo } from "react";
 import WebMap from "@arcgis/core/WebMap";
 import MapView from "@arcgis/core/views/MapView";
 import * as reactiveUtils from "@arcgis/core/core/reactiveUtils.js";
-import Color from "@arcgis/core/Color";
 import SimpleMarkerSymbol from "@arcgis/core/symbols/SimpleMarkerSymbol";
-import SimpleLineSymbol from "@arcgis/core/symbols/SimpleLineSymbol";
 import Point from "@arcgis/core/geometry/Point";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
