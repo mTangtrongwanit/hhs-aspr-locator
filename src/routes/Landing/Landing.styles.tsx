@@ -29,9 +29,10 @@ const imgUrl = new URL("@/assets/images/nurse.jpg", import.meta.url).href;
 // --- Children ---
 
 // #region -------------------------- Atoms ------------------------------------
-export const StyledFAQTitle = styled.h4`
+export const StyledFAQTitle = styled.h3`
   // --- Decorative ---
   color: var(--brand);
+  font-size: var(--text-1);
   font-weight: 700;
 `;
 
@@ -102,6 +103,10 @@ export const StyledSearchContainer = styled.section`
     font-size: var(--text-5);
     font-weight: 700;
   }
+
+  a {
+    color: #fff;
+  }
 `;
 
 export const StyledContextRow = styled.section`
@@ -130,6 +135,9 @@ export const StyledContextRow = styled.section`
 export const StyledLandingContent = styled.main`
   // --- Sizing / Box-Model ---
   width: 100%;
+  margin-bottom: 1rem;
+  overflow-y: auto; //prevent accordion and footer from overlapping
+
   // --- Position ---
   // --- Layout ---
   display: grid;
@@ -228,13 +236,23 @@ export const StyledLandingContent = styled.main`
     }
     // --- Children ---
 
+    * {
+      font-size: var(--text-0);
+      line-height: var(--text-2);
+    }
+
     a {
       font-weight: 400;
+      color: var(--brand);
     }
 
     .ital,
     .ital a {
       font-style: italic;
+    }
+
+    ul {
+      margin-left: calc(var(--unit) * 2);
     }
   }
 

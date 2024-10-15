@@ -25,7 +25,8 @@
   },
   "Landing": {
     "Search Container Heading": "Find COVID-19 and Flu Medications",
-    "Search Container Description": "This locator displays pharmacies, clinics, and other locations with  safe and effective COVID-19 and Flu medications. These medications require a  prescription from a healthcare provider.",
+     "Search Container Description": "The locator displays pharmacies, clinics, and other locations with safe and effective COVID-19 and flu medications. These medications require a prescription from a healthcare provider. COVID-19 and flu medications may be available at additional locations not shown on this locator.",
+    "Illness Placeholder": "What do you need treatment for",
     "View Locations Button Label": "View Locations",
     "Context Container Screenreader Heading": "Contextual Information",
     "Assistance Program Description": "i18n Todo - not sure how to effectively break this up into paragraph text vs links",
@@ -43,11 +44,15 @@
     "Map Screenreader Heading": "Map of Sites",
     "Empty List": "No sites. Select an illness or search at a different location and with different filters"
   },
+  "Illness": {
+    "COVID": "COVID-19",
+    "Flu": "Flu"
+  },
   "Card": {
-    "pap": "PAP",
+    "pap": "Free/reduced cost",
     "usgProduct": "USG product",
     "homeDelivery": "Home Delivery",
-    "icatt": "ICATT",
+    "icatt": "Free Testing",
     "tamifluOnly": "Tamiflu Only",
     "oseltamivirSuspension": "Oseltamivir suspension*",
     "oseltamivirTamiflu": "Oseltamivir Tamiflu",

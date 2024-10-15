@@ -32,27 +32,20 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   // Locations Map and Treatment Site
   const [locationsMapView, setLocationsMapView] =
     useState<__esri.MapView | null>(null);
-    
+
   const [selectedTreatmentSite, setSelectedTreatmentSite] =
     useState<__esri.Graphic | null>(null);
-
-  // Initial search point for locations when app loads or when user clears search
-  const initialSearchPoint = {
-    name: "Washington, District of Columbia",
-    point: new Point({
-      longitude: -77.0199124,
-      latitude: 38.892062100000004,
-    }),
-  };
   // Dynamically updated search point
   const [searchPoint, setSearchPoint] = useState<{
     name: string;
     point: __esri.Point;
-  } | null>(null);
+  } | null>({name: "", point: new Point()});
 
   //Dynamically updated list of result features
   const [locations, setLocations] = useState<__esri.Graphic[] | null>(null);
-  const [locationsTotals, setLocationsTotals] = useState<__esri.Graphic[] | null>(null);
+  const [locationsTotals, setLocationsTotals] = useState<
+    __esri.Graphic[] | null
+  >(null);
   const [sortedSites, setSortedSites] = useState<__esri.Graphic[]>([]);
 
   const [locationsExtent, setLocationsExtent] = useState<__esri.Extent | null>(
@@ -61,7 +54,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
 
   //Data from Illnesses and Treatments table
   const [treatmentIllnessData, setTIData] = useState<__esri.Graphic[] | null>(
-    null,
+    null
   );
 
   //uses above to produce a combination of the illnesses and treatments together into a data dictionary that is workable (flu: all flu treatments, covid: all covid treatments)
@@ -107,17 +100,13 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     fetchTreatmentsIllnesses();
   }, []);
 
-  /** Set search point to initial search point when component mounts */
-  useEffect(() => {
-    setSearchPoint(initialSearchPoint);
-  }, []);
-
   /** Get the locations and set locations and locations extent to state */
   useEffect(() => {
     const getLocations = async () => {
+      if (!searchPoint) return;
       try {
         const locs = await getLocationsData(
-          searchPoint?.point ?? initialSearchPoint.point
+          searchPoint?.point
         );
         setLocations(locs?.features.features ?? []);
         setLocationsTotals(locs?.features.features ?? []);
@@ -149,14 +138,16 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
 
   useEffect(() => {
     if (!featureLayer || !locations || !locationsMapView) return;
-    
+
     let where = "";
     if (sortedSites.length === 0) {
       // Set the definition expression to return no features
       featureLayer.definitionExpression = "OBJECTID = -1";
       return;
     }
-    const objectIds = sortedSites.map((location) => location.attributes.OBJECTID);
+    const objectIds = sortedSites.map(
+      (location) => location.attributes.OBJECTID
+    );
     if (objectIds.length === 0) {
       return;
     }
@@ -167,49 +158,48 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   // #region ----------------------- Render ------------------------------------
   return (
     <AppContext.Provider
-      value={{
-        bannerHeight: bannerHeight,
-        setBannerHeight: setBannerHeight,
-        headerHeight: headerHeight,
-        setHeaderHeight: setHeaderHeight,
-        searchPoint: searchPoint,
-        setSearchPoint: setSearchPoint,
-        locationsMapView: locationsMapView,
-        setLocationsMapView: setLocationsMapView,
-        selectedTreatmentSite: selectedTreatmentSite,
-        setSelectedTreatmentSite: setSelectedTreatmentSite,
-        treatmentIllnessLookup: treatmentIllnessLookup,
-        treatmentIllnessData: treatmentIllnessData,
-        locations: locations,
-        setLocationsTotals: setLocationsTotals,
-        locationsTotals: locationsTotals,
-        setLocations: setLocations,
-        locationsExtent: locationsExtent,
-        setTILookup: setTILookup,
-        selectedSort: selectedSort,
-        setSelectedSort: setSelectedSort,
-        selectedIllness: selectedIllness,
-        setSelectedIllness: setSelectedIllness,
-        sharedSiteFacilityID: sharedSiteFacilityID,
-        setSFID: setSFID,
-        selectedMedications: selectedMedications,
-        setSelectedMedications: setSelectedMedications,
-        selectedFilters: selectedFilters,
-        setSelectedFilters: setSelectedFilters,
-        setFeatureLayer: setFeatureLayer,
-        featureLayer: featureLayer,
-        sortedSites, 
-        setSortedSites
-      } as AppContextType}
+      value={
+        {
+          bannerHeight: bannerHeight,
+          setBannerHeight: setBannerHeight,
+          headerHeight: headerHeight,
+          setHeaderHeight: setHeaderHeight,
+          searchPoint: searchPoint,
+          setSearchPoint: setSearchPoint,
+          locationsMapView: locationsMapView,
+          setLocationsMapView: setLocationsMapView,
+          selectedTreatmentSite: selectedTreatmentSite,
+          setSelectedTreatmentSite: setSelectedTreatmentSite,
+          treatmentIllnessLookup: treatmentIllnessLookup,
+          treatmentIllnessData: treatmentIllnessData,
+          locations: locations,
+          setLocationsTotals: setLocationsTotals,
+          locationsTotals: locationsTotals,
+          setLocations: setLocations,
+          locationsExtent: locationsExtent,
+          setTILookup: setTILookup,
+          selectedSort: selectedSort,
+          setSelectedSort: setSelectedSort,
+          selectedIllness: selectedIllness,
+          setSelectedIllness: setSelectedIllness,
+          sharedSiteFacilityID: sharedSiteFacilityID,
+          setSFID: setSFID,
+          selectedMedications: selectedMedications,
+          setSelectedMedications: setSelectedMedications,
+          selectedFilters: selectedFilters,
+          setSelectedFilters: setSelectedFilters,
+          setFeatureLayer: setFeatureLayer,
+          featureLayer: featureLayer,
+          sortedSites,
+          setSortedSites,
+        } as AppContextType
+      }
     >
       {children}
     </AppContext.Provider>
   );
   // #endregion -------------------- Render ------------------------------------
 };
-
-
-
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const useAppContext = () => {
