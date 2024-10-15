@@ -136,7 +136,7 @@ export const StyledLandingContent = styled.main`
   // --- Sizing / Box-Model ---
   width: 100%;
   margin-bottom: 1rem;
-  overflow-y: auto; //prevent accordion and footer from overlapping
+  /* overflow-y: auto; //prevent accordion and footer from overlapping */
 
   // --- Position ---
   // --- Layout ---

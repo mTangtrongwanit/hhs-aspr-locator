@@ -57,9 +57,10 @@ const SearchComponent = () => {
         {
           url: "https://geocode-api.arcgis.com/arcgis/rest/services/World/GeocodeServer",
           countryCode: "US",
-          placeholder: "Enter a location to view services",
+          placeholder: "Enter a location to view services"
         },
       ] as __esri.LocatorSearchSourceProperties[],
+      includeDefaultSources: false
     });
     //add to DOM
     searchRef.current.appendChild(search.container as Node);
