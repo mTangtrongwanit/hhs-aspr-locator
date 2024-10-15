@@ -160,6 +160,7 @@ export const StyledCard = styled.li<{
   a {
     color: var(--brand);
     font-weight: 400;
+    word-wrap: break-word;
   }
   address {
     display: flex;

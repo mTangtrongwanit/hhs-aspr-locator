@@ -45,7 +45,7 @@ import PrescribingServicesIcon from "@/assets/icons/prescribing-services.svg";
 // #endregion ====================== IMPORTS ===================================
 
 // #region =================== EXPORTED COMPONENT ==============================
-const Card = ({ selected, serviceProvider }: Props) => {
+const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const { t } = useTranslation();
   const location = useLocation();
@@ -66,7 +66,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
     const fetchDistance = async () => {
       const dist = await calculateDistanceBetweenTwoPoints(
         serviceProvider,
-        searchPoint,
+        searchPoint
       );
       setDistance(dist);
     };
@@ -101,7 +101,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
     let hash = window.location.hash;
     // Append query parameters manually to the hash, otherwise they'll prepend it, breaking the url
     const queryString = new URLSearchParams(queryParams).toString();
-    if (hash.includes('?')) {
+    if (hash.includes("?")) {
       // if not the first query parameter, add an ampersand
       hash += `&${queryString}`;
     } else {
@@ -126,10 +126,16 @@ const Card = ({ selected, serviceProvider }: Props) => {
       geopoint: serviceProvider.geopoint,
     });
   };
+
+  /**
+   * Checks if a value is "true" or true.
+   * @param value Value to check for limited truthiness.
+   * @returns Boolean true/false
+   */
+  const isTrue = (value?: string | boolean) =>
+    !!(typeof value === "string" ? value.toLowerCase() === "true" : value);
   // #endregion ------------- Supporting Functions -----------------------------
 
-
-  
   // #region ------------------- Event Handlers --------------------------------
   // #endregion ---------------- Event Handlers --------------------------------
 
@@ -178,50 +184,69 @@ const Card = ({ selected, serviceProvider }: Props) => {
       </address>
 
       <StyledRow>
-        {serviceProvider.is_pap?.toUpperCase() === "TRUE" && (
+        {isTrue(serviceProvider.is_pap) && (
           <Tooltip icon={<PapIcon />}>
             <p>{t("Card.pap")}</p>
           </Tooltip>
         )}
-        {serviceProvider.has_USG_product?.toUpperCase() === "TRUE" && (
+        {isTrue(serviceProvider.has_USG_product) && (
           <Tooltip icon={<UsgProcuredIcon />}>
             <p>{t("Card.usgProduct")}</p>
           </Tooltip>
         )}
-        {serviceProvider.home_delivery?.toUpperCase() === "TRUE" && (
+        {isTrue(serviceProvider.home_delivery) && (
           <Tooltip icon={<HomeDeliveryIcon />}>
             <p>{t("Card.homeDelivery")}</p>
           </Tooltip>
         )}
-        {serviceProvider.is_icatt_site?.toUpperCase() === "TRUE" && (
+        {isTrue(serviceProvider.is_icatt_site) && (
           <Tooltip icon={<IcattIcon />}>
             <p>{t("Card.icatt")}</p>
           </Tooltip>
         )}
-        {serviceProvider.has_oseltamivir_tamiflu?.toUpperCase() === "TRUE" &&
-          serviceProvider.has_oseltamivir_generic?.toUpperCase() ===
-            "FALSE" && (
+        {isTrue(serviceProvider.has_oseltamivir_tamiflu) &&
+          !isTrue(serviceProvider.has_oseltamivir_generic) && (
             <Tooltip icon={<NoGenericIcon />}>
               <p>{t("Card.tamifluOnly")}</p>
             </Tooltip>
           )}
-        {serviceProvider.has_oseltamivir_suspension?.toUpperCase() ===
-          "TRUE" && (
+        {isTrue(serviceProvider.has_oseltamivir_suspension) && (
           <Tooltip icon={<OseltamivirIcon />}>
             <p>{t("Card.oseltamivirSuspension")}</p>
           </Tooltip>
         )}
-        {serviceProvider.is_prescribing_svcs_available?.toUpperCase() ===
-          "TRUE" && (
+        {isTrue(serviceProvider.is_prescribing_svcs_available) && (
           <Tooltip icon={<PrescribingServicesIcon />}>
             <p>{t("Card.prescribingServices")}</p>
           </Tooltip>
         )}
       </StyledRow>
-      {serviceProvider.is_prescribing_svcs_available?.toUpperCase() ===
-        "TRUE" && (
+      <StyledRow>
+        {selectedIllness.toLowerCase() == "covid" &&
+          t(
+            `Card.products.covid_${[
+              isTrue(serviceProvider.has_paxlovid) ? "p" : "-",
+              isTrue(serviceProvider.has_lagevrio) ? "l" : "-",
+              isTrue(serviceProvider.has_veklury) ? "v" : "-",
+            ].join("")}`
+          )}
+        {selectedIllness.toLowerCase() == "flu" &&
+          t(
+            `Card.products.flu_${[
+              isTrue(serviceProvider.has_oseltamivir_generic) ||
+              isTrue(serviceProvider.has_oseltamivir_tamiflu) ||
+              isTrue(serviceProvider.has_oseltamivir_suspension)
+                ? "o"
+                : "-",
+              isTrue(serviceProvider.has_baloxavir) ? "b" : "-",
+              isTrue(serviceProvider.has_peramivir) ? "p" : "-",
+              isTrue(serviceProvider.has_zanamivir) ? "z" : "-",
+            ].join("")}`
+          )}
+      </StyledRow>
+      {isTrue(serviceProvider.is_prescribing_svcs_available) && (
         <p>
-          {t("Card.rXorTelehealth")}&nbsp;
+          {t("Card.prescribingServicesLink")}&nbsp;
           <a
             href={
               serviceProvider.url_appointment
@@ -230,7 +255,7 @@ const Card = ({ selected, serviceProvider }: Props) => {
             }
             target="_blank"
           >
-            {t("Card.additionalInformation")}
+            {serviceProvider.url_appointment}
           </a>
         </p>
       )}
@@ -238,33 +263,38 @@ const Card = ({ selected, serviceProvider }: Props) => {
         <p className="ital">{t("Card.hrsa")}</p>
       )}
       {serviceProvider.grantee_code === "DD2" && (
-        <p className="ital">{t("Card.dod")}</p>
+        <p className="ital" style={{ whiteSpace: "pre-line" }}>
+          {t("Card.dod")}
+        </p>
       )}
       {serviceProvider.grantee_code === "IH2" && (
-        <p className="ital">{t("Card.ihs")}</p>
+        <p className="ital" style={{ whiteSpace: "pre-line" }}>
+          {t("Card.ihs")}
+        </p>
       )}
       <StyledRow>
         <a onClick={handleCopyToClipboard} className="hhs-outline-button">
           {t("Card.shareLocation")}
         </a>
         {serviceProvider.address1 && (
-          <a className="hhs-outline-button"
+          <a
+            className="hhs-outline-button"
             href={`https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(
               searchPoint
                 ? `${searchPoint.point.latitude},${searchPoint.point.longitude}`
-                : "",
+                : ""
             )}&destination=${encodeURIComponent(
               `${serviceProvider.address1} ${
                 serviceProvider.address2 ? serviceProvider.address2 + " " : ""
               }${serviceProvider.city} ${serviceProvider.state} ${
                 serviceProvider.zip
-              }`,
+              }`
             )}`}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={t("Card.directionsToLocation")}
           >
-            <span style={{fontWeight: "600"}}>{t("Card.openInMaps")}</span>
+            <span style={{ fontWeight: "600" }}>{t("Card.openInMaps")}</span>
           </a>
         )}
       </StyledRow>

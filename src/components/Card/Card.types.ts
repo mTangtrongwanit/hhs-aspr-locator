@@ -15,6 +15,7 @@ import { SiteAttributesType } from "@/utils";
 // #region ===================== EXPORTED TYPES ================================
 export interface Props {
   selected?: boolean;
+  selectedIllness: string;
   serviceProvider: SiteAttributesType;
 }
 // #endregion ================== EXPORTED TYPES ================================

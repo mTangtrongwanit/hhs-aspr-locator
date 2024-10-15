@@ -292,6 +292,7 @@ const Locations = () => {
                     <Card
                       serviceProvider={serviceSiteAttributes}
                       selected={false}
+                      selectedIllness={selectedIllness.value}
                       key={serviceSiteAttributes.OBJECTID}
                     ></Card>
                   );
