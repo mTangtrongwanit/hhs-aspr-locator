@@ -54,7 +54,6 @@ const Locations = () => {
   const {
     bannerHeight,
     headerHeight,
-    searchPoint,
     selectedSort,
     selectedIllness,
     locations,
@@ -62,6 +61,7 @@ const Locations = () => {
     sharedSiteFacilityID,
     sortedSites,
     setSortedSites,
+    searchPoint
   } = useAppContext();
 
   const searchContRef = useRef<HTMLDivElement>(null);
@@ -156,6 +156,7 @@ const Locations = () => {
         }),
       );
 
+
       const sortedSites = updatedSites.sort((a, b) => {
         if (selectedSort.value === "distance") {
           const distanceA = a.attributes.distance || 0;
@@ -180,6 +181,23 @@ const Locations = () => {
         }
         return false;
       }) as __esri.Graphic[];
+
+
+      // const filteredLocations = x?.filter((loc) => {
+
+      //   const filterMatch = checkFilter(loc, selectedFilters);
+        
+      //   const medicationMatch = checkMedication(loc, selectedMedications, treatmentIllnessData);
+      //   // console.log('filterMatch', filterMatch)
+      //   // console.log('medicationMatch', medicationMatch)
+      //   // console.log('filterMatch && medicationMatch', filterMatch && medicationMatch)
+      //   // console.log('loc', loc)
+      //   return filterMatch && medicationMatch;
+      // });
+      
+      console.log('location', locations)
+      console.log('sortedSites', x)
+      
       setSortedSites(x);
     };
 
@@ -260,7 +278,7 @@ const Locations = () => {
           //#region List Container (left column, results displayed as cards)
         }
 
-        {sortedSites?.length === 0 ? (
+        {(sortedSites?.length === 0 && !searchPoint?.name) ? (
                 <StyledListContainer>
                   <StyledListNoResultsContainer>
                     <MagnifyingGlass></MagnifyingGlass>

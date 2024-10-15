@@ -112,8 +112,30 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
         'Paxlovid',
         'Veklury',
         ]
+        // custom oseltamivir parent object to use in generic filtering
+        const oseltamivirParent = {
+          attributes: {
+            OBJECTID: 1,
+            display_name: "Oseltamivir",
+            field_name: "has_Oseltamivir",
+            illness: "Flu"
+          }
+        } as __esri.Graphic;
 
-      treatmentIllnesses?.sort((a, b) => {
+        console.log('treatmentIllnesses',treatmentIllnesses)
+        // remove 'Oseltamivir Generic',
+        // 'Oseltamivir Suspension',
+        // 'Oseltamivir Tamiflu',
+        // from treatmentIllnesses
+        const filterTreatmentIllnesses = treatmentIllnesses && [oseltamivirParent, ...treatmentIllnesses]?.filter((treatment) => {
+        return treatment.attributes.display_name !== 'Oseltamivir Generic' &&
+        treatment.attributes.display_name !== 'Oseltamivir Suspension' &&
+        treatment.attributes.display_name !== 'Oseltamivir Tamiflu'
+      })
+      
+   
+      
+      filterTreatmentIllnesses?.sort((a, b) => {
         return (
           treatmentOrder.findIndex(
         (order) => order.toLowerCase() === a.attributes.display_name.toLowerCase()
@@ -124,7 +146,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
         );
       });
 
-      setTIData(treatmentIllnesses ?? []);
+      setTIData(filterTreatmentIllnesses ?? []);
     };
     fetchTreatmentsIllnesses();
   }, []);
