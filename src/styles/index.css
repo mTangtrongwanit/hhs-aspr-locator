@@ -316,6 +316,8 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
   width: 100%;
 }
 
+/* TODO: Lillie - this is a temporary fix */
+ul { list-style-type: none; }
 /* #endregion ------------------- Utility Classes ------------------------------*/
 
 /* #endregion =================== EXPORTED RULES ===============================*/
