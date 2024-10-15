@@ -298,7 +298,6 @@ const Locations = () => {
                   const serviceSiteAttributes: SiteAttributesType =
                     serviceSite.attributes;
                   return (
-                    <>
                       <Card
                         serviceProvider={serviceSiteAttributes}
                         key={serviceSiteAttributes.OBJECTID}
@@ -307,8 +306,6 @@ const Locations = () => {
                           serviceSiteAttributes.OBJECTID === cardSelected
                         }
                       ></Card>
-                    </>
-
                   );
                 })}
               </ul>

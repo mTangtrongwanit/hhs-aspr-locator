@@ -138,7 +138,7 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
 
   // #region ----------------------- Render ------------------------------------
   return (
-    <StyledCard tabIndex={0} $selected={selected} ref={cardRef}>
+    <StyledCard tabIndex={0} $selected={selected} ref={cardRef} key={serviceProvider.OBJECTID}>
       <StyledTitleRow>
         <StyledCardTitle className="bold">
           {serviceProvider.provider_name}
