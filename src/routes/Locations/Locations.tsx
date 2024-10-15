@@ -127,7 +127,7 @@ const Locations = () => {
           // Fetch distance
           const distance = await calculateDistanceBetweenTwoPoints(
             serviceSiteAttributes,
-            searchPoint,
+            searchPoint
           );
           serviceSiteAttributes.distance = distance ?? 0;
 
@@ -153,7 +153,7 @@ const Locations = () => {
             }
           });
           return serviceSite;
-        }),
+        })
       );
 
       const sortedSites = updatedSites.sort((a, b) => {
@@ -225,12 +225,12 @@ const Locations = () => {
         //#region Search Container (secondary header)
       }
       <StyledSearchContainer ref={searchContRef}>
-        <h2 className='visually-hidden'>
+        <h2 className="visually-hidden">
           {t("Locations.Search Container Screenreader Heading")}
         </h2>
         {sharedSiteFacilityID !== null ? (
           <>
-            <StyledButton as='button' onClick={onToggleSelectedLoc}>
+            <StyledButton as="button" onClick={onToggleSelectedLoc}>
               Search for Other Locations
             </StyledButton>
           </>
@@ -255,33 +255,33 @@ const Locations = () => {
         <h2 className="visually-hidden">
           {t("Locations.Results Screenreader Heading")}
         </h2>
+        <StyledListContainer>
+          <StyledListTitleContainer>
+            <h3>
+              <Trans
+                i18nKey="Locations.List Heading"
+                count={sortedSites?.length}
+              ></Trans>
+            </h3>
+            <StyledListOptionsContainer>
+              <PopoverMultiSelect type="filter" />
+              <DropdownSingleSelect type={"sort"} />
+            </StyledListOptionsContainer>
+          </StyledListTitleContainer>
 
-        {
-          //#region List Container (left column, results displayed as cards)
-        }
+          {
+            //#region List Container (left column, results displayed as cards)
+          }
 
-        {sortedSites?.length === 0 ? (
-                <StyledListContainer>
-                  <StyledListNoResultsContainer>
-                    <MagnifyingGlass></MagnifyingGlass>
-                    <p>
-                      {t("Locations.Empty List")}
-                    </p>
-                  </StyledListNoResultsContainer>
-                </StyledListContainer>
-              ): <StyledListContainer>
-                  <StyledListTitleContainer>
-                <h3>
-                  <Trans
-                    i18nKey='Locations.List Heading'
-                    count={sortedSites?.length}
-                  ></Trans>
-                </h3>
-                <StyledListOptionsContainer>
-                  <PopoverMultiSelect type='filter' />
-                  <DropdownSingleSelect type={"sort"} />
-                </StyledListOptionsContainer>
-                </StyledListTitleContainer>
+          {sortedSites?.length === 0 ? (
+            <StyledListNoResultsContainer>
+              <MagnifyingGlass></MagnifyingGlass>
+              <h3>Please ensure an illness and location are selected.</h3>
+               <p>{t("Locations.Empty List")}</p>
+              
+            </StyledListNoResultsContainer>
+          ) : (
+            <>
               {/* tabindex for keyboard-scrollable list */}
               <ul tabIndex={0}>
                 {sortedSites?.map((site: object) => {
@@ -297,15 +297,16 @@ const Locations = () => {
                   );
                 })}
               </ul>
-            </StyledListContainer>}
-            
+            </>
+          )}
+        </StyledListContainer>
         {
           //#endregion List Container (left column, results displayed as cards)
         }
         <StyledMapContainer
           style={{ "--remainder": `${totalHeight}px` } as React.CSSProperties}
         >
-          <h3 className='visually-hidden'>
+          <h3 className="visually-hidden">
             {t("Locations.Map Screenreader Heading")}
           </h3>
           <LocationsMap />
