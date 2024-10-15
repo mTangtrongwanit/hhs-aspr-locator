@@ -42,7 +42,7 @@
     "Results Screenreader Heading": "Results",
     "List Heading": "{{count}} Sites",
     "Map Screenreader Heading": "Map of Sites",
-    "Empty List": "Please trying searching at a different location or with other filter settings"
+    "Empty List": "If you still have no results, try searching a different location to view sites."
   },
   "Illness": {
     "COVID": "COVID-19",

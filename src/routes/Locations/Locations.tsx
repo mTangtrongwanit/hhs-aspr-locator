@@ -276,8 +276,8 @@ const Locations = () => {
           {sortedSites?.length === 0 ? (
             <StyledListNoResultsContainer>
               <MagnifyingGlass></MagnifyingGlass>
-              <h3>No sites were found</h3>
-              {selectedIllness.value == "" ? <p>Please select an illness to view locations.</p> : <p>{t("Locations.Empty List")}</p>}
+              <h3>Please ensure an illness and location are selected.</h3>
+               <p>{t("Locations.Empty List")}</p>
               
             </StyledListNoResultsContainer>
           ) : (
