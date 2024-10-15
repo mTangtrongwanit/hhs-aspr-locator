@@ -10,7 +10,6 @@ import { useEffect, useState, useRef } from "react";
 // #endregion ------------------------ React -----------------------------------
 // #region ------------ 3rd-Party Components / Libraries -----------------------
 import { useTranslation } from "react-i18next";
-import { useLocation } from "react-router-dom";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -48,7 +47,6 @@ import PrescribingServicesIcon from "@/assets/icons/prescribing-services.svg";
 const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const { t } = useTranslation();
-  const location = useLocation();
   const cardRef = useRef<HTMLLIElement>(null);
   const { searchPoint } = useAppContext();
   // #endregion --------------- Hooks (Resources) ------------------------------
@@ -74,15 +72,13 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
     fetchDistance();
   }, [searchPoint, serviceProvider]);
 
-  // Highlight the location if the facility ID in the URL matches the facility ID of the service provider
+  // Highlight the location if it was selected on the map
   useEffect(() => {
-    const urlParams = new URLSearchParams(location.search);
-    const facilityId = urlParams.get("facility_id");
-    if (facilityId === serviceProvider.facility_id && cardRef.current) {
+    if (selected === true && cardRef.current) {
       // Highlight the location by applying inline CSS
-      cardRef.current.style.setProperty("border", "2px solid var(--brand)");
+      cardRef.current.scrollIntoView();
     }
-  }, [location.search, serviceProvider.facility_id]);
+  }, [selected]);
   // #endregion ----------------- Hooks (Other) --------------------------------
 
   // #region --------- Short-Circuit (Empty/Invalid State) ---------------------
@@ -98,18 +94,11 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
    */
   const copyToClipboard = (queryParams: Record<string, string>) => {
     const url = new URL(`${window.location.origin}${window.location.pathname}`);
-    let hash = window.location.hash;
-    // Append query parameters manually to the hash, otherwise they'll prepend it, breaking the url
-    const queryString = new URLSearchParams(queryParams).toString();
-    if (hash.includes("?")) {
-      // if not the first query parameter, add an ampersand
-      hash += `&${queryString}`;
-    } else {
-      // if the first query parameter, add a question mark
-      hash += `?${queryString}`;
-    }
-    // Set the modified hash back to the URL
-    url.hash = hash;
+
+    Object.keys(queryParams).forEach((key) => {
+      url.searchParams.append(key, queryParams[key]);
+    });
+
     navigator.clipboard.writeText(url.href);
   };
 
@@ -141,7 +130,7 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
 
   // #region ----------------------- Render ------------------------------------
   return (
-    <StyledCard tabIndex={0} $selected={selected} ref={cardRef}>
+    <StyledCard tabIndex={0} $selected={selected} ref={cardRef} key={serviceProvider.OBJECTID}>
       <StyledTitleRow>
         <StyledCardTitle className="bold">
           {serviceProvider.provider_name}

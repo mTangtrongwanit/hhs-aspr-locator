@@ -31,27 +31,7 @@ import { Breakpoints } from "@/utils";
 // --- Children ---
 
 // #region -------------------------- Atoms ------------------------------------
-export const StyledButton = styled.button`
-  // --- Sizing / Box-Model ---
-  padding: calc(var(--unit) / 2);
 
-  // --- Layout ---
-  display: flex;
-  gap: calc(var(--unit) / 2);
-  align-items: center;
-
-  // --- Decorative ---
-  background-color: var(--brand);
-  text-decoration: none;
-  border: 1px solid #fff;
-  border-radius: var(--radius);
-  cursor: pointer;
-  color: #fff;
-
-  span {
-    font-weight: 400;
-  }
-`;
 // #endregion ----------------------- Atoms ------------------------------------
 
 // #region -------------- Molecules (Internal Layouts) -------------------------
@@ -75,27 +55,28 @@ export const StyledSearchContainer = styled.section`
   // --- Children ---
   #listViewToggle {
     display: none;
-    height: var(--search-container-item-height);
-    // --- Sizing / Box-Model ---
-    width: min-content;
-    padding: calc(var(--unit) / 2) calc(var(--unit)); //vert horz
-
+    border: var(--border) solid var(--brand);
     align-items: center;
-    gap: calc(var(--unit) / 2);
-    // --- Decorative ---
-    white-space: nowrap;
-    background: #fff;
+    padding: calc(var(--unit) * 0.75) calc(var(--unit) * 0.75);
+    gap: calc(var(--unit) * 0.25);
+    font-size: var(--text-0);
+    font-weight: 600 !important;
+    line-height: 125%;
     color: var(--brand);
     border-radius: var(--radius);
-    border: 1px solid var(--brand);
-    font-weight: bold;
-    font-size: var(--text-0);
+    background: white;
+    text-decoration: none;
     // --- States ---
 
     &:hover,
     &:focus {
-      border-color: var(--accent);
+      color: white;
+      background: var(--accent);
       cursor: pointer;
+    }
+
+    &:hover > svg > g {
+      fill: white;
     }
 
     @media ${Breakpoints.sm} {

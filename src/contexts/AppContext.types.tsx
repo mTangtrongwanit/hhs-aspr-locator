@@ -10,7 +10,6 @@ export interface AppContextType {
   setSearchPoint: (x: { name: string; point: __esri.Point } | null) => void;
   locationsMapView: __esri.MapView | null;
   setLocationsMapView: (x: __esri.MapView) => void;
-  // TODO: restore logic that scrolls to this card
   selectedTreatmentSite: __esri.Graphic | null;
   setSelectedTreatmentSite: (x: __esri.Graphic) => void;
   treatmentIllnessLookup: { [key: string]: string[] };

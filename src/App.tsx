@@ -4,7 +4,7 @@ import { useEffect } from "react";
 // #endregion ------------------------ React -----------------------------------
 // #region ------------ 3rd-Party Components / Libraries -----------------------
 /* Routing */
-import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 /* Styling */
 import { setAssetPath } from "@esri/calcite-components/dist/components";
 /* Auth */
@@ -47,6 +47,33 @@ const StyledAppLayout = styled.div`
   background-color: var(--app-bg);
 `;
 
+const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: (
+        <StyledAppLayout>
+          <Header></Header>
+          <Landing></Landing>
+          <Footer></Footer>
+        </StyledAppLayout>
+      ),
+    },
+    {
+      path: "/locations",
+      element: (
+        <StyledAppLayout>
+          <Header />
+          <Locations />
+          <Footer />
+        </StyledAppLayout>
+      ),
+    },
+  ],
+  {
+    basename: import.meta.env.BASE_URL,
+  }
+);
 // #endregion ===================== CONSTANTS ==================================
 // #region =================== EXPORTED COMPONENT ==============================
 function App() {
@@ -56,25 +83,6 @@ function App() {
   // #endregion ----------------- Hooks (State) --------------------------------
   // #region -------------------- Hooks (Other) --------------------------------
   useEffect(() => {
-    // todo: this is temporary until we ditch auth
-    // this handles coming back from authentication
-    // check session storage for hash and search params and if they're AND there are none in the current url there add them to the url
-    if (!window.location.hash && sessionStorage.getItem("hash")) {
-      window.location.hash = sessionStorage.getItem("hash") as string;
-    }
-
-    // check for url hash and if they're there save them to session storage
-    if (window.location.hash) {
-      const hash = window.location.hash;
-      sessionStorage.setItem("hash", hash);
-    }
-
-    // check for search params and if they're there save them to session storage
-    if (window.location.search) {
-      const search = window.location.search;
-      sessionStorage.setItem("search", search);
-    }
-
     // Auth
     const info = new OAuthInfo({
       appId: config.portal.appId,
@@ -102,30 +110,7 @@ function App() {
   // #region ----------------------- Render ------------------------------------
   return (
     <AppContextProvider>
-      <Router>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <StyledAppLayout>
-                <Header />
-                <Landing />
-                <Footer />
-              </StyledAppLayout>
-            }
-          />
-          <Route
-            path="/locations"
-            element={
-              <StyledAppLayout>
-                <Header />
-                <Locations />
-                <Footer />
-              </StyledAppLayout>
-            }
-          />
-        </Routes>
-      </Router>
+      <RouterProvider router={router} />
     </AppContextProvider>
   );
   // #endregion -------------------- Render ------------------------------------

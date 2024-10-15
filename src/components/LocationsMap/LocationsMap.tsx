@@ -15,15 +15,13 @@ import { useRef, useEffect, useMemo } from "react";
 import WebMap from "@arcgis/core/WebMap";
 import MapView from "@arcgis/core/views/MapView";
 import * as reactiveUtils from "@arcgis/core/core/reactiveUtils.js";
-import Color from "@arcgis/core/Color";
-import SimpleFillSymbol from "@arcgis/core/symbols/SimpleFillSymbol";
-import SimpleLineSymbol from "@arcgis/core/symbols/SimpleLineSymbol";
+import SimpleMarkerSymbol from "@arcgis/core/symbols/SimpleMarkerSymbol";
 import Point from "@arcgis/core/geometry/Point";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
-import { StyledMap} from "./LocationsMap.styles";
+import { StyledMap } from "./LocationsMap.styles";
 import { useAppContext } from "@/contexts/AppContext";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
@@ -186,20 +184,15 @@ const LocationsMap = () => {
         mapView.map = null;
       };
     }
-  }, [map, setLocationsMapView, setSelectedTreatmentSite, searchParams]);
+  }, [map, setLocationsMapView, setSelectedTreatmentSite, searchParams, setSearchPoint, setFeatureLayer]);
 
   /** Highlight selected feature */
   useEffect(() => {
     if (locationsMapView && selectedTreatmentSite) {
       const highlight = selectedTreatmentSite.clone();
-      highlight.symbol = new SimpleFillSymbol({
-        outline: new SimpleLineSymbol({
-          color: new Color([0, 84, 64]),
-          style: "solid",
-          width: 2,
-        }),
-        style: "solid",
-        color: new Color([0, 84, 64, 0.25]),
+      highlight.symbol = new SimpleMarkerSymbol({
+        color: "#0274FA",
+        size: "20",
       });
 
       locationsMapView.graphics.add(highlight);
@@ -222,7 +215,7 @@ const LocationsMap = () => {
           const target = locationsExtent?.extent
             ? locationsExtent.extent.center
             :  searchPoint.point;
-            const options = { target: target, extent: locationsExtent.extent }
+            const options = { target: target, zoom: 10 };
 
           locationsMapView.goTo(options).catch((error) => {
             console.error("MapView goTo error: ", error);
