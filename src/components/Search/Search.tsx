@@ -55,7 +55,7 @@ const SearchComponent = () => {
       locationEnabled: false,
       sources: [
         {
-          url: "https://geocode-api.arcgis.com/arcgis/rest/services/World/GeocodeServer",
+          url: "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer",
           countryCode: "US",
           placeholder: "Enter a location to view services"
         },
