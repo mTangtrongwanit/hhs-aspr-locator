@@ -33,6 +33,7 @@ import {
 // #region ------------------------ Resources ----------------------------------
 import { useAppContext } from "@/contexts/AppContext";
 import config from "@/config/config";
+import { FilterType } from "@/utils";
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 
@@ -106,7 +107,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
 
   const checkFilter = (loc: __esri.Graphic, selectedFilters: any) => {
       let match = true
-      selectedFilters.forEach((filter: any) => {
+      selectedFilters.forEach((filter: FilterType) => {
 
         // attribute registering whether or not this location has the service you are filtering for
         // returns true or false
@@ -120,6 +121,21 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
           // if the attribute value is not true, set match to false
           match = false;
         }
+        // if name is "is_pap", then make match true if either is_pap or has_USG_product is true
+        if (filter.name === "is_pap") {
+          const has_usg = loc.attributes[
+            config.treatmentData.fields.has_USG_product.name
+          ]?.toUpperCase() === "TRUE" ? true : false;
+          if (
+            attributeValue === "TRUE" || has_usg
+          ) {
+            match = true;
+          }
+          else {
+            match = false;
+          }
+        }
+        
       });
       return match;
   }
