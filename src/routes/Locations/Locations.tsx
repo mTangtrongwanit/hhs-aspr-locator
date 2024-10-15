@@ -12,6 +12,7 @@ import { useRef, useState, useEffect } from "react";
 import { useTranslation, Trans } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 import useResizeObserver from "@react-hook/resize-observer";
+import { ArrowLeftIcon } from "@radix-ui/react-icons";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -22,8 +23,7 @@ import {
   StyledListTitleContainer,
   StyledListOptionsContainer,
   StyledMapContainer,
-  StyledSearchContainer,
-  StyledButton,
+  StyledSearchContainer
 } from "./Locations.styles";
 import PopoverMultiSelect from "@/components/PopoverMultiSelect";
 import Card from "@/components/Card";
@@ -230,9 +230,10 @@ const Locations = () => {
         </h2>
         {sharedSiteFacilityID !== null ? (
           <>
-            <StyledButton as="button" onClick={onToggleSelectedLoc}>
+            <button className="hhs-primary-button" onClick={onToggleSelectedLoc}>
+             <ArrowLeftIcon />
               Search for Other Locations
-            </StyledButton>
+            </button>
           </>
         ) : (
           <>

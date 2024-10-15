@@ -31,27 +31,7 @@ import { Breakpoints } from "@/utils";
 // --- Children ---
 
 // #region -------------------------- Atoms ------------------------------------
-export const StyledButton = styled.button`
-  // --- Sizing / Box-Model ---
-  padding: calc(var(--unit) / 2);
 
-  // --- Layout ---
-  display: flex;
-  gap: calc(var(--unit) / 2);
-  align-items: center;
-
-  // --- Decorative ---
-  background-color: var(--brand);
-  text-decoration: none;
-  border: 1px solid #fff;
-  border-radius: var(--radius);
-  cursor: pointer;
-  color: #fff;
-
-  span {
-    font-weight: 400;
-  }
-`;
 // #endregion ----------------------- Atoms ------------------------------------
 
 // #region -------------- Molecules (Internal Layouts) -------------------------
