@@ -31,13 +31,17 @@ import { useAppContext } from "@/contexts/AppContext";
 
 // #region ========================= TYPES =====================================
 interface DropdownSingleSelectProps {
+  placeholder?: string;
   type: "language" | "sort" | "illness";
 }
 // #endregion ====================== TYPES =====================================
 // #region =================== EXPORTED COMPONENT ==============================
-const DropdownSingleSelect = ({ type }: DropdownSingleSelectProps) => {
+const DropdownSingleSelect = ({
+  placeholder,
+  type,
+}: DropdownSingleSelectProps) => {
   // #region ------------------ Hooks (Resources) ------------------------------
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const {
     treatmentIllnessLookup,
     selectedSort,
@@ -54,6 +58,7 @@ const DropdownSingleSelect = ({ type }: DropdownSingleSelectProps) => {
 
   // #region -------------------- Hooks (State) --------------------------------
   const [selectedLanguage, setSelectedLanguage] = useState("English");
+  console.log(selectedLanguage);
   const [illnesses, setIllnesses] = useState<string[]>([]);
   // #endregion ----------------- Hooks (State) --------------------------------
 
@@ -102,14 +107,18 @@ const DropdownSingleSelect = ({ type }: DropdownSingleSelectProps) => {
       ? config.options.languageOptions
       : type === "sort"
       ? config.options.sortOptions
-      : illnesses.map((illness) => ({ label: illness, value: illness }));
+      : illnesses.map((illness) => ({
+          label: t(`Illness.${illness}`, illness),
+          value: illness,
+        }));
 
-  const selectedValue =
+  const selectedOption =
     type === "language"
-      ? selectedLanguage
+      ? { label: "Languages", value: i18n.language }
       : type === "sort"
-      ? selectedSort.label
-      : selectedIllness.label;
+      ? selectedSort
+      : selectedIllness;
+  const selectedLabel = selectedOption.label;
 
   const handleChange =
     type === "language"
@@ -119,39 +128,50 @@ const DropdownSingleSelect = ({ type }: DropdownSingleSelectProps) => {
       : handleIllnessChange;
 
   return (
-    <StyledDropdownSelect className={location.pathname === "/" && (type !== "language") ? "hhs-outline-button-landing-container" : ""}>
+    <StyledDropdownSelect
+      className={
+        location.pathname === "/" && type !== "language"
+          ? "hhs-outline-button-landing-container"
+          : ""
+      }
+    >
       <DropdownMenu.Root>
         {/* <DropdownMenu.Trigger className="hhs-primary-button"> */}
-        <DropdownMenu.Trigger className={location.pathname === "/" && (type !== "language") ? "hhs-outline-button hhs-outline-button-landing" : "hhs-primary-button"}>
-          {selectedValue} <ChevronDownIcon />
+        <DropdownMenu.Trigger
+          className={
+            location.pathname === "/" && type !== "language"
+              ? "hhs-outline-button hhs-outline-button-landing"
+              : "hhs-primary-button"
+          }
+        >
+          {placeholder && selectedOption.value === ""
+            ? placeholder
+            : selectedLabel}{" "}
+          <ChevronDownIcon />
         </DropdownMenu.Trigger>
-        <DropdownMenu.Content className='DropdownMenuContent' sideOffset={5}>
+        <DropdownMenu.Content className="DropdownMenuContent" sideOffset={5}>
           {options.map((item) => (
             <DropdownMenu.Item
               style={
                 {
                   "--selected": `${
-                    (type === "language" ? i18n.language : selectedValue) ===
-                    item.value
-                      ? "var(--brand)"
-                      : ""
+                    selectedOption.value === item.value ? "var(--brand)" : ""
                   }`,
                 } as React.CSSProperties
               }
-              className='DropDownItem'
+              className="DropDownItem"
               key={item.value}
               onClick={() => handleChange(item)}
             >
-              {(type === "language" ? i18n.language : selectedValue) ===
-              item.label ? (
+              {selectedOption.value === item.value ? (
                 <CheckIcon fontSize={"var(--text-2)"} />
               ) : (
-                <span className='placeholder'>&nbsp;</span>
+                <span className="placeholder">&nbsp;</span>
               )}
               {item.label}
             </DropdownMenu.Item>
           ))}
-          <DropdownMenu.Arrow className='DropdownMenuArrow' />
+          <DropdownMenu.Arrow className="DropdownMenuArrow" />
         </DropdownMenu.Content>
       </DropdownMenu.Root>
     </StyledDropdownSelect>
