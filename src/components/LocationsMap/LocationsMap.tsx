@@ -16,14 +16,14 @@ import WebMap from "@arcgis/core/WebMap";
 import MapView from "@arcgis/core/views/MapView";
 import * as reactiveUtils from "@arcgis/core/core/reactiveUtils.js";
 import Color from "@arcgis/core/Color";
-import SimpleFillSymbol from "@arcgis/core/symbols/SimpleFillSymbol";
+import SimpleMarkerSymbol from "@arcgis/core/symbols/SimpleMarkerSymbol";
 import SimpleLineSymbol from "@arcgis/core/symbols/SimpleLineSymbol";
 import Point from "@arcgis/core/geometry/Point";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
-import { StyledMap} from "./LocationsMap.styles";
+import { StyledMap } from "./LocationsMap.styles";
 import { useAppContext } from "@/contexts/AppContext";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
@@ -192,14 +192,9 @@ const LocationsMap = () => {
   useEffect(() => {
     if (locationsMapView && selectedTreatmentSite) {
       const highlight = selectedTreatmentSite.clone();
-      highlight.symbol = new SimpleFillSymbol({
-        outline: new SimpleLineSymbol({
-          color: new Color([0, 84, 64]),
-          style: "solid",
-          width: 2,
-        }),
-        style: "solid",
-        color: new Color([0, 84, 64, 0.25]),
+      highlight.symbol = new SimpleMarkerSymbol({
+        color: "#0274FA",
+        size: "20",
       });
 
       locationsMapView.graphics.add(highlight);
@@ -221,8 +216,8 @@ const LocationsMap = () => {
         .then(() => {
           const target = locationsExtent?.extent
             ? locationsExtent.extent.center
-            :  searchPoint.point;
-            const options = { target: target, extent: locationsExtent.extent }
+            : searchPoint.point;
+          const options = { target: target, extent: locationsExtent.extent };
 
           locationsMapView.goTo(options).catch((error) => {
             console.error("MapView goTo error: ", error);

@@ -144,7 +144,7 @@ export const StyledCard = styled.li<{
   gap: calc(var(--unit));
 
   // --- Decorative ---
-  border: var(--border) solid #fff;
+  border: 4px solid #fff;
   color: var(--text);
   background-color: #fff;
 
