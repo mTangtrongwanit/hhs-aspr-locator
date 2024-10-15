@@ -263,10 +263,12 @@ const Locations = () => {
                 count={sortedSites?.length}
               ></Trans>
             </h3>
-            <StyledListOptionsContainer>
-              <PopoverMultiSelect type="filter" />
-              <DropdownSingleSelect type={"sort"} />
-            </StyledListOptionsContainer>
+            {sharedSiteFacilityID === null && (
+              <StyledListOptionsContainer>
+                <PopoverMultiSelect type="filter" />
+                <DropdownSingleSelect type={"sort"} />
+              </StyledListOptionsContainer>
+            )}
           </StyledListTitleContainer>
 
           {
@@ -277,8 +279,7 @@ const Locations = () => {
             <StyledListNoResultsContainer>
               <MagnifyingGlass></MagnifyingGlass>
               <h3>Please ensure an illness and location are selected.</h3>
-               <p>{t("Locations.Empty List")}</p>
-              
+              <p>{t("Locations.Empty List")}</p>
             </StyledListNoResultsContainer>
           ) : (
             <>
