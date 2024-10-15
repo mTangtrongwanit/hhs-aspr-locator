@@ -132,7 +132,7 @@ export const StyledCard = styled.li<{
   max-width: var(--max-card-width);
   width: 100%; //prevent align-items: center from shrinking children
   padding: var(--unit);
-  border-radius: var(--border);
+  border-radius: var(--radius);
 
   // --- Position ---
   position: relative;
@@ -144,7 +144,7 @@ export const StyledCard = styled.li<{
   gap: calc(var(--unit));
 
   // --- Decorative ---
-  border: var(border) solid #fff;
+  border: 4px solid #fff;
   color: var(--text);
   background-color: #fff;
 
@@ -152,7 +152,7 @@ export const StyledCard = styled.li<{
   ${(props) =>
     props.$selected &&
     `
-    border-color: var(--brand);
+    border-color: #0274FA;
   `}
 
   // --- Children ---
@@ -160,6 +160,7 @@ export const StyledCard = styled.li<{
   a {
     color: var(--brand);
     font-weight: 400;
+    word-wrap: break-word;
   }
   address {
     display: flex;

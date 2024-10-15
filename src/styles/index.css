@@ -66,6 +66,8 @@ body,
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility !important;
+
+  scroll-behavior: smooth;
 }
 
 /* #endregion --------------------- CSS Reset ----------------------------------*/
@@ -337,6 +339,8 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
   background: var(--accent);
   cursor: pointer;
 }
+/* TODO: Lillie - this is a temporary fix */
+ul { list-style-type: none; }
 /* #endregion ------------------- Utility Classes ------------------------------*/
 
 /* #endregion =================== EXPORTED RULES ===============================*/

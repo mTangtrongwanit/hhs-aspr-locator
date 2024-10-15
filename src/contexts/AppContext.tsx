@@ -95,7 +95,57 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   useEffect(() => {
     const fetchTreatmentsIllnesses = async () => {
       const treatmentIllnesses = await getTreatmentsIllnessesData();
-      setTIData(treatmentIllnesses ?? []);
+      // order the treatment data by the following order:
+      // Oseltamivir
+      // Baloxavir
+      // Zanamivir
+      // Peramivir
+      // as provided by hhs
+      const treatmentOrder = [
+        'Oseltamivir Generic',
+        'Oseltamivir Suspension',
+        'Oseltamivir Tamiflu',
+        'Balaxovir',
+        'Zanamivir',
+        'Lagevrio',
+        'Peramivir',
+        'Paxlovid',
+        'Veklury',
+        ]
+        // custom oseltamivir parent object to use in generic filtering
+        const oseltamivirParent = {
+          attributes: {
+            OBJECTID: 1,
+            display_name: "Oseltamivir",
+            field_name: "has_Oseltamivir",
+            illness: "Flu"
+          }
+        } as __esri.Graphic;
+
+        // remove 'Oseltamivir Generic',
+        // 'Oseltamivir Suspension',
+        // 'Oseltamivir Tamiflu',
+        // from treatmentIllnesses
+        const filterTreatmentIllnesses = treatmentIllnesses && [oseltamivirParent, ...treatmentIllnesses]?.filter((treatment) => {
+        return treatment.attributes.display_name !== 'Oseltamivir Generic' &&
+        treatment.attributes.display_name !== 'Oseltamivir Suspension' &&
+        treatment.attributes.display_name !== 'Oseltamivir Tamiflu'
+      })
+      
+   
+      
+      filterTreatmentIllnesses?.sort((a, b) => {
+        return (
+          treatmentOrder.findIndex(
+        (order) => order.toLowerCase() === a.attributes.display_name.toLowerCase()
+          ) -
+          treatmentOrder.findIndex(
+        (order) => order.toLowerCase() === b.attributes.display_name.toLowerCase()
+          )
+        );
+      });
+
+      setTIData(filterTreatmentIllnesses ?? []);
     };
     fetchTreatmentsIllnesses();
   }, []);
@@ -123,6 +173,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     if (treatmentIllnessData) {
       // Combine treatments and illnesses into a dictionary
       const treatmentIllnessLookup: { [key: string]: string[] } = {};
+
       treatmentIllnessData.forEach((treatment) => {
         const illness = treatment.attributes.illness;
         const treatmentName = treatment.attributes.display_name;
