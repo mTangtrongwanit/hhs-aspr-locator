@@ -275,28 +275,15 @@ const Locations = () => {
             //#region List Container (left column, results displayed as cards)
           }
 
-        {(sortedSites?.length === 0 && !searchPoint?.name) ? (
-                <StyledListContainer>
-                  <StyledListNoResultsContainer>
-                    <MagnifyingGlass></MagnifyingGlass>
-                    <p>
-                      {t("Locations.Empty List")}
-                    </p>
-                  </StyledListNoResultsContainer>
-                </StyledListContainer>
-              ): <StyledListContainer>
-                  <StyledListTitleContainer>
-                <h3>
-                  <Trans
-                    i18nKey='Locations.List Heading'
-                    count={sortedSites?.length}
-                  ></Trans>
-                </h3>
-                <StyledListOptionsContainer>
-                  <PopoverMultiSelect type='filter' />
-                  <DropdownSingleSelect type={"sort"} />
-                </StyledListOptionsContainer>
-                </StyledListTitleContainer>
+          {(sortedSites?.length === 0 && !searchPoint?.name)? (
+            <StyledListNoResultsContainer>
+              <MagnifyingGlass></MagnifyingGlass>
+              <h3>Please ensure an illness and location are selected.</h3>
+               <p>{t("Locations.Empty List")}</p>
+              
+            </StyledListNoResultsContainer>
+          ) : (
+            <>
               {/* tabindex for keyboard-scrollable list */}
               <ul tabIndex={0}>
                 {sortedSites?.map((site: object) => {
