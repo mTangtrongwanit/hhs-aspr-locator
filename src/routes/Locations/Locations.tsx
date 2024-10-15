@@ -277,7 +277,8 @@ const Locations = () => {
             <StyledListNoResultsContainer>
               <MagnifyingGlass></MagnifyingGlass>
               <h3>No sites were found</h3>
-              <p>{t("Locations.Empty List")}</p>
+              {selectedIllness.value == "" ? <p>Please select an illness to view locations.</p> : <p>{t("Locations.Empty List")}</p>}
+              
             </StyledListNoResultsContainer>
           ) : (
             <>
