@@ -12,6 +12,8 @@ import { useRef, useState, useEffect } from "react";
 import { useTranslation, Trans } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 import useResizeObserver from "@react-hook/resize-observer";
+import Point from "@arcgis/core/geometry/Point";
+
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -62,7 +64,8 @@ const Locations = () => {
     sharedSiteFacilityID,
     sortedSites,
     setSortedSites,
-    selectedTreatmentSite
+    selectedTreatmentSite,
+    setSearchPoint
   } = useAppContext();
 
   const searchContRef = useRef<HTMLDivElement>(null);
@@ -217,7 +220,11 @@ const Locations = () => {
   const onToggleSelectedLoc = () => {
     if (searchParams.has("facility_id")) {
       searchParams.delete("facility_id");
-      setSearchParams(searchParams);
+      setSearchParams(searchParams); 
+      setSearchPoint({
+        name: "",
+        point: new Point()
+      });
     }
     if (searchParams.has("geopoint")) {
       searchParams.delete("geopoint");
