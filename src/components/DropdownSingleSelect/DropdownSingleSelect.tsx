@@ -58,8 +58,9 @@ const DropdownSingleSelect = ({
 
   // #region -------------------- Hooks (State) --------------------------------
   const [selectedLanguage, setSelectedLanguage] = useState("English");
-  console.log(selectedLanguage);
   const [illnesses, setIllnesses] = useState<string[]>([]);
+
+  console.log(selectedLanguage);
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
