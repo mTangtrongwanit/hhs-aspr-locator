@@ -16,6 +16,7 @@ import WebMap from "@arcgis/core/WebMap";
 import MapView from "@arcgis/core/views/MapView";
 import * as reactiveUtils from "@arcgis/core/core/reactiveUtils.js";
 import SimpleMarkerSymbol from "@arcgis/core/symbols/SimpleMarkerSymbol";
+import Extent from "@arcgis/core/geometry/Extent";
 import Point from "@arcgis/core/geometry/Point";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
@@ -214,9 +215,20 @@ const LocationsMap = () => {
         .then(() => {
           const target = locationsExtent?.extent
             ? locationsExtent.extent.center
-            :  searchPoint.point;
-            const options = { target: target, zoom: 10 };
+            : searchPoint.point;
 
+          const options =
+            searchPoint.name === "US"
+              ? new Extent({
+                  xmin: -13888529.05448729,
+                  ymin: 2816952.5443763654,
+                  xmax: -7452716.4203439662,
+                  ymax: 6340150.9062428866,
+                  spatialReference: {
+                    wkid: 102100,
+                  },
+                })
+              : { target: target, zoom: 10 };
           locationsMapView.goTo(options).catch((error) => {
             console.error("MapView goTo error: ", error);
           });
