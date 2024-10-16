@@ -83,28 +83,53 @@ function App() {
   // #endregion ----------------- Hooks (State) --------------------------------
   // #region -------------------- Hooks (Other) --------------------------------
   useEffect(() => {
-    // Auth
-    const info = new OAuthInfo({
-      appId: config.portal.appId,
-      flowType: "authorization-code",
-    });
+    const login = async () => {
+      if (!config) {
+        return;
+      }
 
-    esriId.registerOAuthInfos([info]);
-    const portal = new Portal({
-      url: config.portal.url,
-      authMode: "immediate",
-    });
+      // Auth
+      const info = new OAuthInfo({
+        appId: config.portal.appId,
+        flowType: "authorization-code",
+      });
 
-    portal.load().catch((error) => {
-      console.error("Portal failed to load", error);
-    });
-  }, []);
+      esriId.registerOAuthInfos([info]);
+      try {
+        const portal = new Portal({
+          url: config.portal.url,
+          authMode: "immediate",
+        });
+        await esriId.checkSignInStatus(info.portalUrl);
+        const account = await portal.load();
+
+        if (account.urlKey) {
+          console.log("account", account);
+        } else {
+          const error = new Error(
+            `Invalid account, please log in to an account associated with the lahsa.maps.arcgis.com organization`
+          );
+          alert(error.message);
+          esriId.destroyCredentials();
+          throw error;
+        }
+      } catch (error) {
+        const message = new Error(
+          `Invalid organization, please log in to an account associated with the https://dhhs.maps.arcgis.com/ organization`
+        );
+        alert(message.message);
+        esriId.destroyCredentials();
+        throw error;
+      }
+    };
+
+    login();
+  }, [config]);
   // #endregion ----------------- Hooks (Other) --------------------------------
   // #region ---------------- Supporting Functions -----------------------------
   // Styles
   setVH();
   setAssetPath("https://js.arcgis.com/calcite-components/2.11.1/assets");
-
   // #endregion ------------- Supporting Functions -----------------------------
 
   // #region ----------------------- Render ------------------------------------
