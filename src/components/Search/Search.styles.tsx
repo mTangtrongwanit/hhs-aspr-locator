@@ -46,6 +46,8 @@ export const StyledSearch = styled.div`
   height: var(--search-container-item-height);
 
   // --- Position ---
+  position: relative;
+  z-index: 3;
   // --- Layout ---
   flex: 1 0 auto;
   display: flex;
