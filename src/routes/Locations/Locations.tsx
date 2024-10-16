@@ -293,7 +293,8 @@ const Locations = () => {
             //#region List Container (left column, results displayed as cards)
           }
 
-          {(sortedSites?.length === 0 && !searchPoint?.name)? (
+          {sortedSites?.length === 0 &&
+          (!searchPoint?.name || !selectedIllness?.value) ? (
             <StyledListNoResultsContainer>
               <MagnifyingGlass></MagnifyingGlass>
               <h3>Please ensure an illness and location are selected.</h3>
