@@ -235,7 +235,7 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
       </StyledRow>
       {isTrue(serviceProvider.is_prescribing_svcs_available) && (
         <p>
-          {t("Card.prescribingServicesLink")}&nbsp;
+          {t("Card.additionalInformation")}&nbsp;
           <a
             href={
               serviceProvider.url_appointment
@@ -244,7 +244,7 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
             }
             target="_blank"
           >
-            {serviceProvider.url_appointment}
+            {t("Card.rXorTelehealth")}
           </a>
         </p>
       )}
