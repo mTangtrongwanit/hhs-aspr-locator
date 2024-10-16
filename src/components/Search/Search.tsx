@@ -27,7 +27,7 @@ import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 // #endregion ===================== CONSTANTS ==================================
 
 // #region =================== EXPORTED COMPONENT ==============================
-const SearchComponent = () => {
+const SearchComponent = ({ placeholder }: { placeholder?: string } = {}) => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const { searchPoint, setSearchPoint,setSelectedMedications, setSelectedFilters } = useAppContext();
   // #endregion --------------- Hooks (Resources) ------------------------------
@@ -57,7 +57,7 @@ const SearchComponent = () => {
         {
           url: "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer",
           countryCode: "US",
-          placeholder: "Enter a location to view services"
+          placeholder: placeholder ?? "Enter a location to view services",
         },
       ] as __esri.LocatorSearchSourceProperties[],
       includeDefaultSources: false

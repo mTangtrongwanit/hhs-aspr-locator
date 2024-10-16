@@ -254,7 +254,7 @@ const Locations = () => {
           </>
         ) : (
           <>
-            <Search />
+            <Search placeholder={t("Locations.Search Placeholder")} />
             <DropdownSingleSelect type={"illness"} />
             <PopoverMultiSelect type={"medications"} />
           </>
