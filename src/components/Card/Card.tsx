@@ -181,41 +181,41 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
                 target="_blank"
                 style={{ color: "inherit" }}
               >
-                {t("Card.papLink")}
+                {t("Card.hoverPapLink")}
               </a>
-              {t("Card.papDescription")}
+              {t("Card.hoverPapDescription")}
             </p>
           </Tooltip>
         )}
         {isTrue(serviceProvider.has_USG_product) && (
           <Tooltip icon={<UsgProcuredIcon />}>
-            <p>{t("Card.usgProduct")}</p>
+            <p>{t("Card.hoverUSGProduct")}</p>
           </Tooltip>
         )}
         {isTrue(serviceProvider.home_delivery) && (
           <Tooltip icon={<HomeDeliveryIcon />}>
-            <p>{t("Card.homeDelivery")}</p>
+            <p>{t("Card.hoverHomeDelivery")}</p>
           </Tooltip>
         )}
         {isTrue(serviceProvider.is_icatt_site) && (
           <Tooltip icon={<IcattIcon />}>
-            <p>{t("Card.icatt")}</p>
+            <p>{t("Card.hoverICATT")}</p>
           </Tooltip>
         )}
         {isTrue(serviceProvider.has_oseltamivir_tamiflu) &&
           !isTrue(serviceProvider.has_oseltamivir_generic) && (
             <Tooltip icon={<NoGenericIcon />}>
-              <p>{t("Card.tamifluOnly")}</p>
+              <p>{t("Card.hoverTamifluOnly")}</p>
             </Tooltip>
           )}
         {isTrue(serviceProvider.has_oseltamivir_suspension) && (
           <Tooltip icon={<OseltamivirIcon />}>
-            <p>{t("Card.oseltamivirSuspension")}</p>
+            <p>{t("Card.hoverOseltamivirSuspension")}</p>
           </Tooltip>
         )}
         {isTrue(serviceProvider.is_prescribing_svcs_available) && (
           <Tooltip icon={<PrescribingServicesIcon />}>
-            <p>{t("Card.prescribingServices")}</p>
+            <p>{t("Card.hoverPrescribingServices")}</p>
           </Tooltip>
         )}
       </StyledRow>
