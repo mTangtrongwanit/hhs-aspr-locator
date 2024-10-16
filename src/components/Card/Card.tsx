@@ -175,7 +175,16 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
       <StyledRow>
         {isTrue(serviceProvider.is_pap) && (
           <Tooltip icon={<PapIcon />}>
-            <p>{t("Card.pap")}</p>
+            <p>
+              <a
+                href="https://paxlovid.iassist.com/"
+                target="_blank"
+                style={{ color: "inherit" }}
+              >
+                {t("Card.papLink")}
+              </a>
+              {t("Card.papDescription")}
+            </p>
           </Tooltip>
         )}
         {isTrue(serviceProvider.has_USG_product) && (

@@ -41,7 +41,8 @@
     "Flu": "Flu"
   },
   "Card": {
-    "pap": "PAP",
+    "papLink": "Paxlovid Patient Assistance Program site",
+    "papDescription": ": no-cost Paxlovid for eligible patients",
     "usgProduct": "USG product",
     "homeDelivery": "Home Delivery",
     "icatt": "ICATT",
