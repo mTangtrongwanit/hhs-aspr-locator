@@ -347,7 +347,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
       return (
         <>
         {/* button to log locations */}
-          <PopoverMenuTitle>Medications</PopoverMenuTitle>
+          <PopoverMenuTitle>Looking for Specific Medications?</PopoverMenuTitle>
           <PopoverCheckBoxContainer>
             {treatments !== undefined &&
               treatments.map((medication) => (
