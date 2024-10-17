@@ -196,7 +196,7 @@ const LocationsMap = () => {
       });
 
       locationsMapView.graphics.add(highlight);
-      locationsMapView.goTo(highlight);
+      locationsMapView.goTo({target: highlight, zoom: 15});
 
       return () => {
         locationsMapView.graphics.remove(highlight);
@@ -216,7 +216,7 @@ const LocationsMap = () => {
           const target = locationsExtent?.extent
             ? locationsExtent.extent.center
             :  searchPoint.point;
-            const options = { target: target, zoom: 10 };
+            const options = { target: target, zoom: 12 };
 
           locationsMapView.goTo(options).catch((error) => {
             console.error("MapView goTo error: ", error);
