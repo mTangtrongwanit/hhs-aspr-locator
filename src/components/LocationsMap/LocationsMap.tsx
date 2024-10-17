@@ -196,6 +196,7 @@ const LocationsMap = () => {
       });
 
       locationsMapView.graphics.add(highlight);
+      locationsMapView.goTo(highlight);
 
       return () => {
         locationsMapView.graphics.remove(highlight);
