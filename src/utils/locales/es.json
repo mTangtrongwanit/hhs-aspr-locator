@@ -31,6 +31,7 @@
     }
   },
   "Locations": {
+    "Search Placeholder": "Find address or place",
     "Search Container Screenreader Heading": "Search for Locations",
     "Results Screenreader Heading": "Results",
     "List Heading": "{{count}} Sites",
