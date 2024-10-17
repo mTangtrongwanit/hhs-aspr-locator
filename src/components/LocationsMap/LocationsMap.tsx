@@ -119,7 +119,7 @@ const LocationsMap = () => {
             setSearchPoint({ name: geopoint, point: p });
             mapView.goTo({
               center: p,
-              zoom: 12,
+              zoom: 11,
             });
           })
           .catch((error) => {
@@ -229,7 +229,7 @@ const LocationsMap = () => {
                     wkid: 102100,
                   },
                 })
-              : { target: target, zoom: 12 };
+              : { target: target, zoom: 11 };
           locationsMapView.goTo(options).catch((error) => {
             console.error("MapView goTo error: ", error);
           });
