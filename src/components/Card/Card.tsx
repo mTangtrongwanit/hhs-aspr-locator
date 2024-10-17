@@ -123,13 +123,83 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
     graphic && setSelectedTreatmentSite(graphic);
   }
 
-  /**
+   /**
    * Checks if a value is "true" or true.
    * @param value Value to check for limited truthiness.
    * @returns Boolean true/false
    */
-  const isTrue = (value?: string | boolean) =>
+   const isTrue = (value?: string | boolean) =>
     !!(typeof value === "string" ? value.toLowerCase() === "true" : value);
+
+
+
+  {/*  these icons can just include a check for selected illness 
+        /* note: this logic from https://dev.azure.com/Esri-Professional-Services/HHS-ASPR%20Treatment%20Locator%202.0/_workitems/edit/58802/
+        posted by Carlee, John (OS ASPR SIIM) (CTR)
+          COVID
+        Free/reduced cost
+        is_pap: true OR has_USG_product: true   
+        Free Testing
+        is_icatt_site: true
+        Prescribing Services
+        is_prescribing_svcs_available: true
+        Home Delivery
+        home_delivery: true
+        Flu
+        Prescribing Services
+        is_prescribing_svcs_available: true
+        Home Delivery
+        home_delivery: true
+        Oseltamivir suspension
+        has_oseltamivir_suspension: true
+
+        */}
+  const toolTipIcons = [
+    {
+      condition: (isTrue(serviceProvider.is_pap) || isTrue(serviceProvider.has_USG_product)),
+      icon: <PapIcon />,
+      extraElement:     <a
+      href="https://paxlovid.iassist.com/"
+      target="_blank"
+      style={{ color: "inherit" }}
+    >
+      {t("Card.hoverPapLink")}
+    </a>,
+      description: t("Card.hoverPapDescription")
+    },
+    {
+      condition: isTrue(serviceProvider.has_USG_product),
+      icon: <UsgProcuredIcon />,
+      description: t("Card.hoverUSGProduct")
+    },
+    {
+      condition: isTrue(serviceProvider.home_delivery),
+      icon: <HomeDeliveryIcon />,
+      description: t("Card.hoverHomeDelivery")
+    },
+    {
+      condition: isTrue(serviceProvider.is_icatt_site),
+      icon: <IcattIcon />,
+      description: t("Card.hoverICATT")
+    },
+    {
+      condition: isTrue(serviceProvider.has_oseltamivir_tamiflu) && !isTrue(serviceProvider.has_oseltamivir_generic),
+      icon: <NoGenericIcon />,
+      description: t("Card.hoverTamifluOnly")
+    },
+    {
+      condition: isTrue(serviceProvider.has_oseltamivir_suspension),
+      icon: <OseltamivirIcon />,
+      description: t("Card.hoverOseltamivirSuspension")
+    },
+    {
+      condition: isTrue(serviceProvider.is_prescribing_svcs_available),
+      icon: <PrescribingServicesIcon />,
+      description: t("Card.hoverPrescribingServices")
+    }
+  ]
+
+ 
   // #endregion ------------- Supporting Functions -----------------------------
 
   // #region ------------------- Event Handlers --------------------------------
@@ -180,51 +250,20 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
       </address>
 
       <StyledRow>
-        {isTrue(serviceProvider.is_pap) && (
-          <Tooltip icon={<PapIcon />}>
-            <p>
-              <a
-                href="https://paxlovid.iassist.com/"
-                target="_blank"
-                style={{ color: "inherit" }}
-              >
-                {t("Card.hoverPapLink")}
-              </a>
-              {t("Card.hoverPapDescription")}
-            </p>
-          </Tooltip>
-        )}
-        {isTrue(serviceProvider.has_USG_product) && (
-          <Tooltip icon={<UsgProcuredIcon />}>
-            <p>{t("Card.hoverUSGProduct")}</p>
-          </Tooltip>
-        )}
-        {isTrue(serviceProvider.home_delivery) && (
-          <Tooltip icon={<HomeDeliveryIcon />}>
-            <p>{t("Card.hoverHomeDelivery")}</p>
-          </Tooltip>
-        )}
-        {isTrue(serviceProvider.is_icatt_site) && (
-          <Tooltip icon={<IcattIcon />}>
-            <p>{t("Card.hoverICATT")}</p>
-          </Tooltip>
-        )}
-        {isTrue(serviceProvider.has_oseltamivir_tamiflu) &&
-          !isTrue(serviceProvider.has_oseltamivir_generic) && (
-            <Tooltip icon={<NoGenericIcon />}>
-              <p>{t("Card.hoverTamifluOnly")}</p>
+       
+     
+        {/* iterate over toolTipIcons and return a tooltip for each */}
+        {toolTipIcons.map((icon, index) => {
+          return icon.condition && (
+            <Tooltip icon={icon.icon} key={index}>
+              <p>
+                {icon.extraElement}
+                {icon.description}
+              </p>
             </Tooltip>
-          )}
-        {isTrue(serviceProvider.has_oseltamivir_suspension) && (
-          <Tooltip icon={<OseltamivirIcon />}>
-            <p>{t("Card.hoverOseltamivirSuspension")}</p>
-          </Tooltip>
-        )}
-        {isTrue(serviceProvider.is_prescribing_svcs_available) && (
-          <Tooltip icon={<PrescribingServicesIcon />}>
-            <p>{t("Card.hoverPrescribingServices")}</p>
-          </Tooltip>
-        )}
+          )
+        })}
+        
       </StyledRow>
       <StyledRow>
         {selectedIllness.toLowerCase() == "covid" &&
