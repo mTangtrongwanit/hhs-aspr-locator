@@ -48,26 +48,6 @@ export const StyledRow = styled.div`
   }
 `;
 
-// export const StyledViewLocsButton = styled.button`
-//   // --- Sizing / Box-Model ---
-//   width: min-content;
-//   padding: calc(var(--unit) / 2) calc(var(--unit)); //vert horz
-//   // --- Decorative ---
-//   white-space: nowrap;
-//   background: var(--accent);
-//   color: #fff;
-//   border-radius: var(--radius);
-//   border: var(--border) solid #fff;
-//   font-weight: bold;
-//   // --- States ---
-
-//   &:hover,
-//   &:focus {
-//     background: var(--brand);
-//     cursor: pointer;
-//   }
-// `;
-
 export const StyledDecorativeImage = styled.div`
   grid-area: image;
   // --- Decorative ---
@@ -217,6 +197,10 @@ export const StyledLandingContent = styled.main`
     // --- States ---
     &:hover {
       background-color: var(--light);
+    }
+      // on mobile, show height as 100% to allow for full display
+    @media ${Breakpoints.sm} {
+      height: 100%;
     }
   }
 
