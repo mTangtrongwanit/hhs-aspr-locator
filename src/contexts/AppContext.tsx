@@ -16,6 +16,7 @@ import {
   getTreatmentsIllnessesData,
 } from "@/utils/geographicUtils.ts";
 import { FilterType } from "@/utils/sharedTypes.ts";
+import config from "@/config";
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 
@@ -95,23 +96,6 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   useEffect(() => {
     const fetchTreatmentsIllnesses = async () => {
       const treatmentIllnesses = await getTreatmentsIllnessesData();
-      // order the treatment data by the following order:
-      // Oseltamivir
-      // Baloxavir
-      // Zanamivir
-      // Peramivir
-      // as provided by hhs
-      const treatmentOrder = [
-        'Oseltamivir Generic',
-        'Oseltamivir Suspension',
-        'Oseltamivir Tamiflu',
-        'Balaxovir',
-        'Zanamivir',
-        'Lagevrio',
-        'Peramivir',
-        'Paxlovid',
-        'Veklury',
-        ]
         // custom oseltamivir parent object to use in generic filtering
         const oseltamivirParent = {
           attributes: {
@@ -122,24 +106,37 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
           }
         } as __esri.Graphic;
 
+        const vekluryParent = {
+          attributes: {
+            OBJECTID: 2,
+            display_name: "Outpatient Veklury",
+            field_name: "has_veklury",
+            illness: "COVID"
+          }
+        } as __esri.Graphic;
+
         // remove 'Oseltamivir Generic',
         // 'Oseltamivir Suspension',
         // 'Oseltamivir Tamiflu',
-        // from treatmentIllnesses
-        const filterTreatmentIllnesses = treatmentIllnesses && [oseltamivirParent, ...treatmentIllnesses]?.filter((treatment) => {
+        // 'Veklury'
+        // and add oseltamivirParent and vekluryParent
+        // to treatmentIllnesses
+        const filterTreatmentIllnesses = treatmentIllnesses && [vekluryParent, oseltamivirParent, ...treatmentIllnesses]?.filter((treatment) => {
         return treatment.attributes.display_name !== 'Oseltamivir Generic' &&
         treatment.attributes.display_name !== 'Oseltamivir Suspension' &&
-        treatment.attributes.display_name !== 'Oseltamivir Tamiflu'
+        treatment.attributes.display_name !== 'Oseltamivir Tamiflu' &&
+        treatment.attributes.display_name !== 'Veklury'
       })
       
    
       
       filterTreatmentIllnesses?.sort((a, b) => {
         return (
-          treatmentOrder.findIndex(
+          config.medicationOrder.findIndex(
+            // Order by the index of the medicationOrder array
         (order) => order.toLowerCase() === a.attributes.display_name.toLowerCase()
           ) -
-          treatmentOrder.findIndex(
+          config.medicationOrder.findIndex(
         (order) => order.toLowerCase() === b.attributes.display_name.toLowerCase()
           )
         );

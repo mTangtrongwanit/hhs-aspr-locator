@@ -163,7 +163,14 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
         }
 
           
-
+        if (treatment?.attributes.display_name === "Outpatient Veklury") {
+          if (loc.attributes["has_veklury"].toUpperCase() === "TRUE") {
+            match = true;
+          }
+          else {
+            match = false;
+          }
+        }
         
         if (treatment?.attributes.display_name === "Oseltamivir") {
 

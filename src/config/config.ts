@@ -102,6 +102,17 @@ const config: StaticConfiguration = {
     ],
     covidTreatmentFields: ["has_paxlovid", "has_lagevrio", "has_veklury"],
   },
+  medicationOrder: [
+      'Oseltamivir Generic',
+      'Oseltamivir Suspension',
+      'Oseltamivir Tamiflu',
+      'Baloxovir',
+      'Zanamivir',
+      'Lagevrio',
+      'Peramivir',
+      'Paxlovid',
+      'Outpatient Veklury',
+  ]
 };
 // #endregion ========================== EXPORTED CONSTANTS ==============================
 // #region ========================= EXPORTS ===================================
