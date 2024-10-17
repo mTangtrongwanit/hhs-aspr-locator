@@ -73,5 +73,6 @@ export interface StaticConfiguration {
     fluTreatmentFields: string[];
     covidTreatmentFields: string[];
   };
+  medicationOrder: string[]
 }
 // #endregion ================== EXPORTED TYPES ================================
