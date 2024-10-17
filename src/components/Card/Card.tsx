@@ -48,7 +48,7 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const { t } = useTranslation();
   const cardRef = useRef<HTMLLIElement>(null);
-  const { searchPoint } = useAppContext();
+  const { searchPoint, setSelectedTreatmentSite, locations } = useAppContext();
   // #endregion --------------- Hooks (Resources) ------------------------------
   // #region ----------------------- Hooks (State) -------------------------------------
   const [distance, setDistance] = useState<number | null>(null);
@@ -76,7 +76,7 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
   useEffect(() => {
     if (selected === true && cardRef.current) {
       // Highlight the location by applying inline CSS
-      cardRef.current.scrollIntoView();
+      cardRef.current.scrollIntoView({behavior: "smooth"});
     }
   }, [selected]);
   // #endregion ----------------- Hooks (Other) --------------------------------
@@ -116,6 +116,13 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
     });
   };
 
+  const onZoomToClick = () => {
+    const graphic = locations?.find((loc) => 
+      loc.attributes["facility_id"] === serviceProvider.facility_id
+    );
+    graphic && setSelectedTreatmentSite(graphic);
+  }
+
   /**
    * Checks if a value is "true" or true.
    * @param value Value to check for limited truthiness.
@@ -130,7 +137,7 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
 
   // #region ----------------------- Render ------------------------------------
   return (
-    <StyledCard tabIndex={0} $selected={selected} ref={cardRef} key={serviceProvider.OBJECTID}>
+    <StyledCard $selected={selected} ref={cardRef} key={serviceProvider.OBJECTID}>
       <StyledTitleRow>
         <StyledCardTitle className="bold">
           {serviceProvider.provider_name}
@@ -271,6 +278,7 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
         </p>
       )}
       <StyledRow>
+        <button className="hhs-primary-button zoom-to-button" onClick={() => onZoomToClick()}>Zoom To Location</button>
         <a onClick={handleCopyToClipboard} className="hhs-outline-button">
           {t("Card.shareLocation")}
         </a>
