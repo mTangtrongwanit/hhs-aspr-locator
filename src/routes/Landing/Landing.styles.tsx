@@ -200,13 +200,16 @@ export const StyledLandingContent = styled.main`
     // --- Sizing / Box-Model ---
     border-bottom: 1px solid var(--brand);
     margin: 0.25rem;
-    height: 45px;
+    padding-bottom: 0.25rem;
+    height: fit-content;
     // --- Position ---
     // --- Layout ---
     flex: 1;
-    display: flex;
     align-items: center;
-    justify-content: space-between;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr auto;
+    gap: 0.25rem;
     // --- Decorative ---
     font-family: inherit;
     background-color: transparent;
@@ -218,6 +221,7 @@ export const StyledLandingContent = styled.main`
     &:hover {
       background-color: var(--light);
     }
+
   }
 
   .AccordionContent {
