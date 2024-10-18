@@ -64,7 +64,8 @@ const Locations = () => {
     setSortedSites,
     selectedTreatmentSite,
     setSearchPoint,
-    searchPoint
+    searchPoint,
+    setSelectedTreatmentSite
   } = useAppContext();
 
   const searchContRef = useRef<HTMLDivElement>(null);
@@ -233,6 +234,21 @@ const Locations = () => {
     }
     setSFID(null);
   };
+
+
+  // useEffect that watches sortedSites and sets a distance param for each site
+  useEffect(() => {
+    if (sortedSites.length > 0) {
+      sortedSites.forEach(async (site) => {
+        const distance = await calculateDistanceBetweenTwoPoints(
+          site.attributes,
+          searchPoint
+        );
+        site.attributes.distance = distance ?? 0;
+      });
+    }
+  }, [sortedSites, searchPoint]);
+
   // #endregion ---------------- Event Handlers --------------------------------
 
   // #region ----------------------- Render ------------------------------------
@@ -310,12 +326,17 @@ const Locations = () => {
                     serviceSite.attributes;
                   return (
                       <Card
+                        searchPoint={searchPoint}
+                        setSelectedTreatmentSite={setSelectedTreatmentSite}
+                        locations={locations}
+                        t={t}
                         serviceProvider={serviceSiteAttributes}
                         key={serviceSiteAttributes.OBJECTID}
                         selectedIllness={selectedIllness.value}
                         selected={
                           serviceSiteAttributes.OBJECTID === cardSelected
                         }
+                        distance={serviceSiteAttributes.distance}
                       ></Card>
                   );
                 })}

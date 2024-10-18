@@ -15,7 +15,12 @@ import { SiteAttributesType } from "@/utils";
 // #region ===================== EXPORTED TYPES ================================
 export interface Props {
   selected?: boolean;
-  selectedIllness: string;
-  serviceProvider: SiteAttributesType;
+  selectedIllness?: string;
+  serviceProvider?: SiteAttributesType;
+  distance?: number | undefined;
+  searchPoint?: { name: string; point: __esri.Point; } | null;
+  locations?: __esri.Graphic[] | null;
+  setSelectedTreatmentSite: (x: __esri.Graphic) => void;
+  t: any;
 }
 // #endregion ================== EXPORTED TYPES ================================

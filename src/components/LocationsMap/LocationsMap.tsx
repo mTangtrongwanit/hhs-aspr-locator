@@ -6,7 +6,7 @@
 
 // #region ========================= IMPORTS ===================================
 // #region --------------------------- React -----------------------------------
-import { useRef, useEffect, useMemo } from "react";
+import React, { useRef, useEffect, useMemo } from "react";
 
 // #endregion ------------------------ React -----------------------------------
 
@@ -19,6 +19,10 @@ import SimpleMarkerSymbol from "@arcgis/core/symbols/SimpleMarkerSymbol";
 import Extent from "@arcgis/core/geometry/Extent";
 import Point from "@arcgis/core/geometry/Point";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
+import PopupTemplate from "@arcgis/core/PopupTemplate.js";
+import CustomContent from "@arcgis/core/popup/content/CustomContent.js";
+import Graphic from "@arcgis/core/Graphic";
+
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -29,6 +33,9 @@ import { useAppContext } from "@/contexts/AppContext";
 // #region ------------------------ Resources ----------------------------------
 import config from "@/config/config";
 import { useSearchParams } from "react-router-dom";
+import Card from "../Card";
+import { createRoot } from "react-dom/client";
+import { useTranslation } from "react-i18next";
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 
@@ -52,14 +59,45 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
     locationsExtent,
     setFeatureLayer,
     selectedIllness,
+    locations,
   } = useAppContext();
   const [searchParams] = useSearchParams();
+
+  const { t } = useTranslation();
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region -------------------- Hooks (State) --------------------------------
   // const [featureLayer, setFeatureLayer] = useState<FeatureLayer | null>(null);
   // #endregion ----------------- Hooks (State) --------------------------------
 
+
+    // define a method to create custom content for a popup
+  // taking in a jsx element and returning a custom content object
+  const createPopupValue = (Popup: JSX.Element) => {
+    return new CustomContent({
+        outFields: ["*"],
+        creator: (event: any) => {
+            // create an html element that will serve as the dom node
+            const popup = document.createElement("popup");
+            // use createRoot to create a domnode to which you can attach the html element
+            // see https://react.dev/reference/react-dom/client/createRoot#createroot
+            const root = createRoot(popup);
+            const feature: Graphic = event.graphic;
+            // render valid React jsx within that dom node
+            root.render(React.cloneElement(
+              Popup, 
+              { 
+                serviceProvider: feature.attributes,
+                key: feature.attributes.OBJECTID,
+                selected: true,
+                distance: feature.attributes.distance,
+               }));
+            return popup;
+        },
+    });
+  };
+
+  
   // #region ----------------- Hooks (Memoization) -----------------------------
   const map = useMemo<WebMap>(
     () =>
@@ -89,7 +127,8 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
       const mapView = new MapView({
         map,
         container: mapRef.current,
-        popupEnabled: isMobileListView ? false: true,
+        // popupEnabled: isMobileListView ? false: true,
+        popupEnabled:true
       });
       setLocationsMapView(mapView);
 
@@ -189,6 +228,42 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
     }
   }, [map, setLocationsMapView, setSelectedTreatmentSite, searchParams, setSearchPoint, setFeatureLayer, isMobileListView]);
 
+
+
+
+  // new useEffect that watches for selectedTreatmentSite and resets the map's popupTemplate
+  useEffect(() => {
+    if (!map || !selectedTreatmentSite) return;
+    const content = createPopupValue(
+      <Card
+      searchPoint={searchPoint}
+      setSelectedTreatmentSite={setSelectedTreatmentSite}
+      locations={locations}
+      t={t}
+      selectedIllness={selectedIllness.value}
+    ></Card>
+    )
+
+    const allLayers = map.allLayers;
+    allLayers.forEach((layer) => {
+      if (
+        layer.type === "feature" &&
+        layer.title &&
+        layer.title.includes("Treatments")
+      ) {
+        (layer as __esri.FeatureLayer).popupTemplate =  new PopupTemplate({
+          content:  [content]
+          ,
+        }) 
+      }
+    });
+    
+  }, [selectedTreatmentSite, map])
+
+  
+  
+  
+  
   /** Highlight selected feature */
   useEffect(() => {
     if (locationsMapView && selectedTreatmentSite) {
