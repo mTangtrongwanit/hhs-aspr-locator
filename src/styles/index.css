@@ -204,12 +204,21 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
 
 .esri-popup__content {
   overflow: visible;
+
+}
+
+.esri-popup__content * {
+  font-family: "Open Sans", sans-serif;
 }
 
 .esri-popup__main-container {
   width: var(--min-card-width);
   height: fit-content;
   max-height:none !important;
+}
+
+div[slot="footer"] {
+  display: none;
 }
 
 @media screen and (max-width: 42rem) {
