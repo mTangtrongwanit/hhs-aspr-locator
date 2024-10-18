@@ -230,6 +230,7 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
                   ) as __esri.GraphicHit;
                   if (!treatmentsLayer) return;
                   const t = treatmentsLayer as __esri.GraphicHit;
+                  console.log("treatmentsLayer", t);
                   setSelectedTreatmentSite(t.graphic);
                 })
                 .catch((error) => {

@@ -65,7 +65,7 @@ const Locations = () => {
     selectedTreatmentSite,
     setSearchPoint,
     searchPoint,
-    setSelectedTreatmentSite
+    setSelectedTreatmentSite,
   } = useAppContext();
 
   const searchContRef = useRef<HTMLDivElement>(null);
@@ -85,6 +85,12 @@ const Locations = () => {
 
   // #region -------------------- Hooks (Other) --------------------------------
 
+
+  useEffect(() => {
+    console.log('selectedTreatmentSite', selectedTreatmentSite);
+  }, [selectedTreatmentSite]);
+  
+  
   //get initial size
   useEffect(() => {
     if (searchContRef.current !== null) {
@@ -112,6 +118,7 @@ const Locations = () => {
     if (!selectedTreatmentSite) {
       return;
     }
+    console.log('setting seselectedTreatmentSite', selectedTreatmentSite);
     setCardSelected(selectedTreatmentSite.attributes.OBJECTID);
   }, [selectedTreatmentSite]);
 
@@ -235,6 +242,7 @@ const Locations = () => {
     setSFID(null);
   };
 
+  
 
   // useEffect that watches sortedSites and sets a distance param for each site
   useEffect(() => {
@@ -260,6 +268,16 @@ const Locations = () => {
   }, [locations, searchPoint]);
 
 
+
+  // Highlight the location if it was selected on the map
+  useEffect(() => {
+    if (selectedTreatmentSite) {
+      const activeCardItem = document.getElementById(selectedTreatmentSite.attributes.OBJECTID.toString());
+      activeCardItem?.scrollIntoView({behavior: "smooth"});
+    }
+  }, [selectedTreatmentSite]);
+  
+  
 
   // #endregion ---------------- Event Handlers --------------------------------
 
@@ -336,6 +354,16 @@ const Locations = () => {
                   const serviceSite: SiteType = site as SiteType;
                   const serviceSiteAttributes: SiteAttributesType =
                     serviceSite.attributes;
+
+                    const onZoomToClick = (serviceSiteAttributes: any) => {
+                      console.log("Zoom to location clicked", serviceSiteAttributes);
+                      const graphic = locations?.find((loc) => 
+                        loc.attributes["facility_id"] === serviceSiteAttributes?.facility_id
+                      );
+                      graphic && setSelectedTreatmentSite(graphic);
+                    }
+                    
+                    
                   return (
                       <Card
                         searchPoint={searchPoint}
@@ -349,6 +377,9 @@ const Locations = () => {
                           serviceSiteAttributes.OBJECTID === cardSelected
                         }
                         distance={serviceSiteAttributes.distance}
+                        onZoomToClick={
+                         ()=> onZoomToClick(serviceSiteAttributes)
+                        }
                       ></Card>
                   );
                 })}

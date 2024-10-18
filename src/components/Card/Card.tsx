@@ -38,7 +38,7 @@ import PrescribingServicesIcon from "@/assets/icons/prescribing-services.svg";
 // #endregion ====================== IMPORTS ===================================
 
 // #region =================== EXPORTED COMPONENT ==============================
-const Card = ({ asDiv, selected, selectedIllness, serviceProvider, distance, searchPoint, setSelectedTreatmentSite, locations, t  }: Props) => {
+const Card = ({ asDiv, selected, selectedIllness, serviceProvider, distance, searchPoint, setSelectedTreatmentSite, locations, t, onZoomToClick }: Props) => {
   // #region ------------------ Hooks (Resources) ------------------------------
   // #endregion --------------- Hooks (Resources) ------------------------------
   // #region ----------------------- Hooks (State) -------------------------------------
@@ -71,6 +71,13 @@ const Card = ({ asDiv, selected, selectedIllness, serviceProvider, distance, sea
 
     navigator.clipboard.writeText(url.href);
   };
+  // // Highlight the location if it was selected on the map
+  // useEffect(() => {
+  //   if (selected === true && cardRef.current) {
+  //     // Highlight the location by applying inline CSS
+  //     cardRef.current.scrollIntoView({behavior: "smooth"});
+  //   }
+  // }, [selected]);
 
   /**
    * Handles the click event for the "Share Location" button.
@@ -86,12 +93,13 @@ const Card = ({ asDiv, selected, selectedIllness, serviceProvider, distance, sea
     });
   };
 
-  const onZoomToClick = () => {
-    const graphic = locations?.find((loc) => 
-      loc.attributes["facility_id"] === serviceProvider?.facility_id
-    );
-    graphic && setSelectedTreatmentSite(graphic);
-  }
+  // const onZoomToClick = () => {
+  //   console.log("Zoom to location clicked", serviceProvider);
+  //   const graphic = locations?.find((loc) => 
+  //     loc.attributes["facility_id"] === serviceProvider?.facility_id
+  //   );
+  //   graphic && setSelectedTreatmentSite(graphic);
+  // }
 
    /**
    * Checks if a value is "true" or true.
@@ -167,7 +175,7 @@ const Card = ({ asDiv, selected, selectedIllness, serviceProvider, distance, sea
 
   // #region ----------------------- Render ------------------------------------
   return (
-    <StyledCard as={asDiv === true ? "div" : "li"} $selected={selected}  key={serviceProvider?.OBJECTID}>
+    <StyledCard id={serviceProvider?.OBJECTID} as={asDiv === true ? "div" : "li"} $selected={selected}  key={serviceProvider?.OBJECTID}>
       <StyledTitleRow>
         <StyledCardTitle className="bold">
           {serviceProvider?.provider_name}
@@ -277,7 +285,7 @@ const Card = ({ asDiv, selected, selectedIllness, serviceProvider, distance, sea
         </p>
       )}
       <StyledRow>
-        <button className="hhs-primary-button zoom-to-button" onClick={() => onZoomToClick()}>Zoom To Location</button>
+        <button className="hhs-primary-button zoom-to-button" onClick={() => onZoomToClick(serviceProvider)}>Zoom To Location</button>
         <button onClick={handleCopyToClipboard} className="hhs-outline-button">
           {t("Card.shareLocation")}
         </button>

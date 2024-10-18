@@ -23,5 +23,6 @@ export interface Props {
   locations?: __esri.Graphic[] | null;
   setSelectedTreatmentSite: (x: __esri.Graphic) => void;
   t: any;
+  onZoomToClick?: (x: __esri.Point) => void;
 }
 // #endregion ================== EXPORTED TYPES ================================
