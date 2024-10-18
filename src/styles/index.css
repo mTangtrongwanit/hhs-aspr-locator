@@ -88,7 +88,6 @@
 .esri-popup {
   * {
     margin: 0rem !important;
-    font-family: "Lato", sans-serif !important;
   }}
 
 html,
@@ -179,7 +178,6 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
 
 .esri-popup * {
   margin: 0rem !important;
-  font-family: "Lato", sans-serif !important;
 }
 
 /*  JSAPI 4.28 switches to use calcite components for the popup, this alters the default display to show a large margin around
@@ -207,8 +205,13 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
 
 }
 
+.esri-popup, .esri-widget {
+  font-family: "Open Sans", sans-serif !important;
+
+}
+
 .esri-popup__content * {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Open Sans", sans-serif !important;
 }
 
 .esri-popup__main-container {
