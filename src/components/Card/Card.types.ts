@@ -20,9 +20,7 @@ export interface Props {
   serviceProvider?: SiteAttributesType;
   distance?: number | undefined;
   searchPoint?: { name: string; point: __esri.Point; } | null;
-  locations?: __esri.Graphic[] | null;
-  setSelectedTreatmentSite: (x: __esri.Graphic) => void;
   t: any;
-  onZoomToClick?: (x: __esri.Point) => void;
+  onZoomToClick?: (x: SiteAttributesType) => void;
 }
 // #endregion ================== EXPORTED TYPES ================================

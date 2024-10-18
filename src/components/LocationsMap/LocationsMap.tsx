@@ -61,7 +61,6 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
     locationsExtent,
     setFeatureLayer,
     selectedIllness,
-    locations,
     sortedSites
   } = useAppContext();
   const [searchParams] = useSearchParams();
@@ -263,8 +262,6 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
       <Card
       asDiv={true}
       searchPoint={searchPoint}
-      setSelectedTreatmentSite={setSelectedTreatmentSite}
-      locations={locations}
       t={t}
       selectedIllness={selectedIllness.value}
     ></Card>

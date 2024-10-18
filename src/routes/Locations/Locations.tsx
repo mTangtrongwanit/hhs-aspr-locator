@@ -367,8 +367,6 @@ const Locations = () => {
                   return (
                       <Card
                         searchPoint={searchPoint}
-                        setSelectedTreatmentSite={setSelectedTreatmentSite}
-                        locations={locations}
                         t={t}
                         serviceProvider={serviceSiteAttributes}
                         key={serviceSiteAttributes.OBJECTID}

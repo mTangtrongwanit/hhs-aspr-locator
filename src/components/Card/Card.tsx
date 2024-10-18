@@ -38,7 +38,7 @@ import PrescribingServicesIcon from "@/assets/icons/prescribing-services.svg";
 // #endregion ====================== IMPORTS ===================================
 
 // #region =================== EXPORTED COMPONENT ==============================
-const Card = ({ asDiv, selected, selectedIllness, serviceProvider, distance, searchPoint, setSelectedTreatmentSite, locations, t, onZoomToClick }: Props) => {
+const Card = ({ asDiv, selected, selectedIllness, serviceProvider, distance, searchPoint, t, onZoomToClick }: Props) => {
   // #region ------------------ Hooks (Resources) ------------------------------
   // #endregion --------------- Hooks (Resources) ------------------------------
   // #region ----------------------- Hooks (State) -------------------------------------
@@ -93,13 +93,6 @@ const Card = ({ asDiv, selected, selectedIllness, serviceProvider, distance, sea
     });
   };
 
-  // const onZoomToClick = () => {
-  //   console.log("Zoom to location clicked", serviceProvider);
-  //   const graphic = locations?.find((loc) => 
-  //     loc.attributes["facility_id"] === serviceProvider?.facility_id
-  //   );
-  //   graphic && setSelectedTreatmentSite(graphic);
-  // }
 
    /**
    * Checks if a value is "true" or true.
@@ -175,7 +168,7 @@ const Card = ({ asDiv, selected, selectedIllness, serviceProvider, distance, sea
 
   // #region ----------------------- Render ------------------------------------
   return (
-    <StyledCard id={serviceProvider?.OBJECTID} as={asDiv === true ? "div" : "li"} $selected={selected}  key={serviceProvider?.OBJECTID}>
+    <StyledCard id={`${serviceProvider?.OBJECTID}` || 'card'} as={asDiv === true ? "div" : "li"} $selected={selected}  key={serviceProvider?.OBJECTID}>
       <StyledTitleRow>
         <StyledCardTitle className="bold">
           {serviceProvider?.provider_name}
@@ -285,7 +278,7 @@ const Card = ({ asDiv, selected, selectedIllness, serviceProvider, distance, sea
         </p>
       )}
       <StyledRow>
-        <button className="hhs-primary-button zoom-to-button" onClick={() => onZoomToClick(serviceProvider)}>Zoom To Location</button>
+        <button className="hhs-primary-button zoom-to-button" onClick={onZoomToClick ? () =>serviceProvider && onZoomToClick(serviceProvider) : undefined}>Zoom To Location</button>
         <button onClick={handleCopyToClipboard} className="hhs-outline-button">
           {t("Card.shareLocation")}
         </button>
