@@ -40,9 +40,10 @@ export const StyledSearch = styled.div`
   //more relevant styles in index.css
 
   // --- Sizing / Box-Model ---
+  border: var(--border) solid var(--brand);
   width: auto;
   max-width: 20rem;
-  padding: calc(var(--unit) * 0.5) calc(var(--unit) * 0.25);
+  padding: calc(var(--unit) * 0.75) calc(var(--unit) * 0.5);
   height: var(--search-container-item-height);
 
   // --- Position ---
@@ -53,15 +54,24 @@ export const StyledSearch = styled.div`
   display: flex;
   align-items: center;
   // --- Decorative ---
-  border: var(--border) solid var(--brand);
   /* min-height: 42px; */
-  width: auto;
-  max-width: 20rem;
-  padding: calc(var(--unit) * 0.25);
   background: white;
   color: var(--brand);
   border-radius: var(--radius);
   height: auto;
+  max-height: 48px;
+
+  input {
+    font-family: 'Open Sans', Sans-Serif;
+    font-size: var(--text-0);
+    font-weight: 600 !important;
+    line-height: 125%;
+    color: var(--brand) !important;
+  }
+
+  input::placeholder {
+    color: var(--brand) !important;
+  }
 `;
 // #endregion ------------ Parent Component + Variants -------------------------
 // #endregion ================ EXPORTED COMPONENTS =============================

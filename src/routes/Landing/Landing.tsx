@@ -3,10 +3,6 @@
  */
 
 // #region ========================= IMPORTS ===================================
-// #region --------------------------- React -----------------------------------
-import { Link } from "react-router-dom";
-
-// #endregion ------------------------ React -----------------------------------
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
 import { useTranslation } from "react-i18next";
@@ -23,6 +19,7 @@ import {
   StyledRow,
   // StyledViewLocsButton,
   StyledDecorativeImage,
+  StyledLink
 } from "./Landing.styles";
 
 import Search from "@/components/Search";
@@ -72,21 +69,18 @@ const Landing = () => {
         <h2>{t("Landing.Search Container Heading")}</h2>
         <p>{t("Landing.Search Container Description")}</p>
 
-        <StyledRow>
+        <StyledRow style={{ flexWrap: "wrap"}}>
           <Search />
           <DropdownSingleSelect
             type={"illness"}
             placeholder={t("Landing.Illness Placeholder")}
           />
         </StyledRow>
-        <Link
+        <StyledLink
           to="/locations"
-          style={{ textDecoration: "none", width: "fit-content" }}
         >
-          <button className="hhs-secondary-button">
-            {t("Landing.View Locations Button Label")}
-          </button>
-        </Link>
+          {t("Landing.View Locations Button Label")}
+        </StyledLink>
       </StyledSearchContainer>
       <StyledDecorativeImage></StyledDecorativeImage>
 
