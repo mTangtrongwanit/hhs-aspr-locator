@@ -296,7 +296,7 @@ const Locations = () => {
           {sortedSites?.length === 0 &&
           (!searchPoint?.name || !selectedIllness?.value) ? (
             <StyledListNoResultsContainer>
-              <MagnifyingGlass aria-label="Magnifying glass icon to indicate no items in the list"></MagnifyingGlass>
+              <MagnifyingGlass aria-hidden ></MagnifyingGlass>
               <h3>Please ensure an illness and location are selected.</h3>
               <p>{t("Locations.Empty List")}</p>
             </StyledListNoResultsContainer>
