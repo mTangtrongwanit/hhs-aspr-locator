@@ -144,6 +144,11 @@ const DropdownSingleSelect = ({
               ? "hhs-outline-button hhs-outline-button-landing"
               : "hhs-primary-button"
           }
+          title={
+            placeholder && selectedOption.value === ""
+            ? placeholder
+            : selectedLabel
+          }
           aria-label={placeholder && selectedOption.value === ""
             ? placeholder
             : selectedLabel}
