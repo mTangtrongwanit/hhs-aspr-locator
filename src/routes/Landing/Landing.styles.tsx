@@ -6,6 +6,12 @@
 
 // #region ========================= IMPORTS ===================================
 
+
+// #region --------------------------- React -----------------------------------
+import { Link } from "react-router-dom";
+
+// #endregion ------------------------ React -----------------------------------
+
 // #region ------------ 3rd-Party Components / Libraries -----------------------
 import styled from "styled-components";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
@@ -80,6 +86,28 @@ export const StyledDecorativeImage = styled.div`
     display: none;
   }
 `;
+
+export const StyledLink = styled(Link)`
+  border: var(--border) solid white;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  padding: calc(var(--unit) * 0.75) calc(var(--unit) * 0.75);
+  gap: calc(var(--unit) * 0.25);
+  font-size: var(--text-0);
+  font-weight: 600 !important;
+  line-height: 125%;
+  color: white;
+  border-radius: var(--radius);
+  background: var(--accent);
+  text-decoration: none;
+
+  &:hover {
+    background: var(--brand);
+    cursor: pointer;
+  }
+`;
+
 // #endregion ----------------------- Atoms ------------------------------------
 
 // #region -------------- Molecules (Internal Layouts) -------------------------

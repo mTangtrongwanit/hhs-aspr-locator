@@ -286,7 +286,7 @@ const Locations = () => {
         </h2>
         {sharedSiteFacilityID !== null ? (
           <>
-            <button className="hhs-primary-button" onClick={onToggleSelectedLoc}>
+            <button className="hhs-primary-button" onClick={onToggleSelectedLoc} aria-label="Continue to find locations near you" title="Continue to find locations near you" >
              <ArrowLeftIcon />
               Search for Other Locations
             </button>
@@ -335,7 +335,7 @@ const Locations = () => {
           {sortedSites?.length === 0 &&
           ((!searchPoint?.name || !selectedIllness?.value) && sharedSiteFacilityID == null) ? (
             <StyledListNoResultsContainer>
-              <MagnifyingGlass></MagnifyingGlass>
+              <MagnifyingGlass aria-hidden ></MagnifyingGlass>
               <h3>Please ensure an illness and location are selected.</h3>
               <p>{t("Locations.Empty List")}</p>
             </StyledListNoResultsContainer>

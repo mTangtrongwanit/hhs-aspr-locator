@@ -3,10 +3,6 @@
  */
 
 // #region ========================= IMPORTS ===================================
-// #region --------------------------- React -----------------------------------
-import { Link } from "react-router-dom";
-
-// #endregion ------------------------ React -----------------------------------
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
 import { useTranslation } from "react-i18next";
@@ -23,6 +19,7 @@ import {
   StyledRow,
   // StyledViewLocsButton,
   StyledDecorativeImage,
+  StyledLink
 } from "./Landing.styles";
 
 import Search from "@/components/Search";
@@ -72,21 +69,18 @@ const Landing = () => {
         <h2>{t("Landing.Search Container Heading")}</h2>
         <p>{t("Landing.Search Container Description")}</p>
 
-        <StyledRow>
+        <StyledRow style={{ flexWrap: "wrap"}}>
           <Search />
           <DropdownSingleSelect
             type={"illness"}
             placeholder={t("Landing.Illness Placeholder")}
           />
         </StyledRow>
-        <Link
-          to="/locations"
-          style={{ textDecoration: "none", width: "fit-content" }}
+        <StyledLink
+          to="/locations" aria-label="Continue to find locations near you" title="Continue to find locations near you"
         >
-          <button className="hhs-secondary-button">
-            {t("Landing.View Locations Button Label")}
-          </button>
-        </Link>
+          {t("Landing.View Locations Button Label")}
+        </StyledLink>
       </StyledSearchContainer>
       <StyledDecorativeImage></StyledDecorativeImage>
 
@@ -131,7 +125,7 @@ const Landing = () => {
           }
           <Accordion.Item className="AccordionItem" value="item-1">
             <Accordion.Header className="AccordionHeader">
-              <Accordion.Trigger className={"AccordionTrigger"}>
+              <Accordion.Trigger className={"AccordionTrigger"} aria-label="Read Frequently Asked Questions" title="Read Frequently Asked Questions">
                 Which outpatient medications available to treat COVID-19 and flu
                 appear on this locator?
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
@@ -215,7 +209,7 @@ const Landing = () => {
           }
           <Accordion.Item className="AccordionItem" value="item-2">
             <Accordion.Header className="AccordionHeader">
-              <Accordion.Trigger className={"AccordionTrigger"}>
+              <Accordion.Trigger className={"AccordionTrigger"} aria-label="Read Frequently Asked Questions" title="Read Frequently Asked Questions">
                 What are antivirals?
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.Trigger>
@@ -257,7 +251,7 @@ const Landing = () => {
           }
           <Accordion.Item className="AccordionItem" value="item-3">
             <Accordion.Header className="AccordionHeader">
-              <Accordion.Trigger className={"AccordionTrigger"}>
+              <Accordion.Trigger className={"AccordionTrigger"} aria-label="Read Frequently Asked Questions" title="Read Frequently Asked Questions">
                 Who can take the outpatient COVID-19 medications listed on this
                 website?
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
@@ -324,7 +318,7 @@ const Landing = () => {
           }
           <Accordion.Item className="AccordionItem" value="item-4">
             <Accordion.Header className="AccordionHeader">
-              <Accordion.Trigger className={"AccordionTrigger"}>
+              <Accordion.Trigger className={"AccordionTrigger"} aria-label="Read Frequently Asked Questions" title="Read Frequently Asked Questions">
                 Who can take the outpatient flu medications listed on this
                 website?
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
@@ -414,7 +408,7 @@ const Landing = () => {
           }
           <Accordion.Item className="AccordionItem" value="item-5">
             <Accordion.Header className="AccordionHeader">
-              <Accordion.Trigger className={"AccordionTrigger"}>
+              <Accordion.Trigger className={"AccordionTrigger"} aria-label="Read Frequently Asked Questions" title="Read Frequently Asked Questions">
                 Can children take the antiviral medications listed on this
                 website?
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
@@ -498,7 +492,7 @@ const Landing = () => {
           }
           <Accordion.Item className="AccordionItem" value="item-6">
             <Accordion.Header className="AccordionHeader">
-              <Accordion.Trigger className={"AccordionTrigger"}>
+              <Accordion.Trigger className={"AccordionTrigger"} aria-label="Read Frequently Asked Questions" title="Read Frequently Asked Questions">
                 Can pregnant people take flu and COVID-19 antiviral medications?
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.Trigger>
@@ -574,7 +568,7 @@ const Landing = () => {
           }
           <Accordion.Item className="AccordionItem" value="item-7">
             <Accordion.Header className="AccordionHeader">
-              <Accordion.Trigger className={"AccordionTrigger"}>
+              <Accordion.Trigger className={"AccordionTrigger"} aria-label="Read Frequently Asked Questions" title="Read Frequently Asked Questions">
                 Can I get COVID-19 or flu medications over the counter (without
                 a prescription)?
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
@@ -611,7 +605,7 @@ const Landing = () => {
           }
           <Accordion.Item className="AccordionItem" value="item-8">
             <Accordion.Header className="AccordionHeader">
-              <Accordion.Trigger className={"AccordionTrigger"}>
+              <Accordion.Trigger className={"AccordionTrigger"} aria-label="Read Frequently Asked Questions" title="Read Frequently Asked Questions">
                 Are the treatments listed on this website safe and effective?
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.Trigger>
@@ -652,7 +646,7 @@ const Landing = () => {
           }
           <Accordion.Item className="AccordionItem" id="faq-flu" value="item-9">
             <Accordion.Header className="AccordionHeader">
-              <Accordion.Trigger className={"AccordionTrigger"}>
+              <Accordion.Trigger className={"AccordionTrigger"} aria-label="Read Frequently Asked Questions" title="Read Frequently Asked Questions">
                 What programs exist to provide continued affordable access to
                 these treatments outside of usual prescription drug coverage?
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
@@ -783,7 +777,7 @@ const Landing = () => {
           }
           <Accordion.Item className="AccordionItem" value="item-10">
             <Accordion.Header className="AccordionHeader">
-              <Accordion.Trigger className={"AccordionTrigger"}>
+              <Accordion.Trigger className={"AccordionTrigger"} aria-label="Read Frequently Asked Questions" title="Read Frequently Asked Questions">
                 What are monoclonal antibodies and why are they not listed on
                 this map?
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
@@ -822,7 +816,7 @@ const Landing = () => {
           }
           <Accordion.Item className="AccordionItem" value="item-11">
             <Accordion.Header className="AccordionHeader">
-              <Accordion.Trigger className={"AccordionTrigger"}>
+              <Accordion.Trigger className={"AccordionTrigger"} aria-label="Read Frequently Asked Questions" title="Read Frequently Asked Questions">
                 Are all sites that offer COVID-19 or influenza treatments listed
                 on the locator?
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
@@ -850,7 +844,7 @@ const Landing = () => {
           }
           <Accordion.Item className="AccordionItem" value="item-12">
             <Accordion.Header className="AccordionHeader">
-              <Accordion.Trigger className={"AccordionTrigger"}>
+              <Accordion.Trigger className={"AccordionTrigger"} aria-label="Read Frequently Asked Questions" title="Read Frequently Asked Questions">
                 What services may the locations listed on the locator provide?
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.Trigger>
@@ -891,7 +885,7 @@ const Landing = () => {
           }
           <Accordion.Item className="AccordionItem" value="item-13">
             <Accordion.Header className="AccordionHeader">
-              <Accordion.Trigger className={"AccordionTrigger"}>
+              <Accordion.Trigger className={"AccordionTrigger"} aria-label="Read Frequently Asked Questions" title="Read Frequently Asked Questions">
                 How can my site be added to locator?
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.Trigger>
@@ -917,7 +911,7 @@ const Landing = () => {
           }
           <Accordion.Item className="AccordionItem" value="item-14">
             <Accordion.Header className="AccordionHeader">
-              <Accordion.Trigger className={"AccordionTrigger"}>
+              <Accordion.Trigger className={"AccordionTrigger"} aria-label="Read Frequently Asked Questions" title="Read Frequently Asked Questions">
                 How can my site participate in the Paxlovid Patient Assistance
                 Program?
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
@@ -943,7 +937,7 @@ const Landing = () => {
           }
           <Accordion.Item className="AccordionItem" value="item-15">
             <Accordion.Header className="AccordionHeader">
-              <Accordion.Trigger className={"AccordionTrigger"}>
+              <Accordion.Trigger className={"AccordionTrigger"} aria-label="Read Frequently Asked Questions" title="Read Frequently Asked Questions">
                 Data Information and Disclaimers
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.Trigger>

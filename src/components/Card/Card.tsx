@@ -298,7 +298,7 @@ const Card = ({ asDiv, selected, selectedIllness, serviceProvider, distance, sea
             )}`}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={t("Card.directionsToLocation")}
+            aria-label="Open location in Google Maps" title="Open location in Google Maps"
           >
             <span style={{ fontWeight: "600" }}>{t("Card.openInMaps")}</span>
           </a>
