@@ -6,6 +6,12 @@
 
 // #region ========================= IMPORTS ===================================
 
+
+// #region --------------------------- React -----------------------------------
+import { Link } from "react-router-dom";
+
+// #endregion ------------------------ React -----------------------------------
+
 // #region ------------ 3rd-Party Components / Libraries -----------------------
 import styled from "styled-components";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
@@ -29,7 +35,7 @@ const imgUrl = new URL("@/assets/images/nurse.jpg", import.meta.url).href;
 // --- Children ---
 
 // #region -------------------------- Atoms ------------------------------------
-export const StyledFAQTitle = styled.h3`
+export const StyledFAQTitle = styled.h2`
   // --- Decorative ---
   color: var(--brand);
   font-size: var(--text-1);
@@ -80,6 +86,28 @@ export const StyledDecorativeImage = styled.div`
     display: none;
   }
 `;
+
+export const StyledLink = styled(Link)`
+  border: var(--border) solid white;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  padding: calc(var(--unit) * 0.75) calc(var(--unit) * 0.75);
+  gap: calc(var(--unit) * 0.25);
+  font-size: var(--text-0);
+  font-weight: 600 !important;
+  line-height: 125%;
+  color: white;
+  border-radius: var(--radius);
+  background: var(--accent);
+  text-decoration: none;
+
+  &:hover {
+    background: var(--brand);
+    cursor: pointer;
+  }
+`;
+
 // #endregion ----------------------- Atoms ------------------------------------
 
 // #region -------------- Molecules (Internal Layouts) -------------------------
@@ -200,13 +228,16 @@ export const StyledLandingContent = styled.main`
     // --- Sizing / Box-Model ---
     border-bottom: 1px solid var(--brand);
     margin: 0.25rem;
-    height: 45px;
+    padding-bottom: 0.25rem;
+    height: fit-content;
     // --- Position ---
     // --- Layout ---
     flex: 1;
-    display: flex;
     align-items: center;
-    justify-content: space-between;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr auto;
+    gap: 0.25rem;
     // --- Decorative ---
     font-family: inherit;
     background-color: transparent;
@@ -218,6 +249,7 @@ export const StyledLandingContent = styled.main`
     &:hover {
       background-color: var(--light);
     }
+
   }
 
   .AccordionContent {

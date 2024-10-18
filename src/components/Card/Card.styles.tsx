@@ -9,7 +9,7 @@
 import styled from "styled-components";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 // #region -------------- Custom Components / Utilities ------------------------
-// import { Breakpoints } from "@/utils/style-utils";
+import { Breakpoints } from "@/utils/style-utils";
 // #endregion ----------- Custom Components / Utilities ------------------------
 // #endregion ====================== IMPORTS ===================================
 
@@ -134,6 +134,8 @@ export const StyledCard = styled.li<{
   padding: var(--unit);
   border-radius: var(--radius);
 
+  scroll-margin-top: 10rem;
+
   // --- Position ---
   position: relative;
   z-index: 1; //raise above plants
@@ -156,6 +158,12 @@ export const StyledCard = styled.li<{
   `}
 
   // --- Children ---
+  .zoom-to-button {
+    @media ${Breakpoints.sm} {
+      display: none;
+    }
+  }
+
 
   a {
     color: var(--brand);

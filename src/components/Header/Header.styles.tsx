@@ -39,15 +39,17 @@ import { Breakpoints } from "@/utils/style-utils";
 
 // #region --------------- Parent Component + Variants -------------------------
 export const StyledHeaderContentContainer = styled.div`
-  flex: 1;
+  flex: 2;
   display: flex;
   justify-content: center;
   align-items: center;
   &:first-child {
+    flex: 1;
     margin-right: auto;
     justify-content: flex-start;
   }
   &:last-child {
+    flex: 1;
     margin-left: auto;
     justify-content: flex-end;
   }

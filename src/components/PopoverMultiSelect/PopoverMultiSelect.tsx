@@ -163,7 +163,14 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
         }
 
           
-
+        if (treatment?.attributes.display_name === "Outpatient Veklury") {
+          if (loc.attributes["has_veklury"].toUpperCase() === "TRUE") {
+            match = true;
+          }
+          else {
+            match = false;
+          }
+        }
         
         if (treatment?.attributes.display_name === "Oseltamivir") {
 
@@ -235,7 +242,6 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
 
   /* note: this logic from https://dev.azure.com/Esri-Professional-Services/HHS-ASPR%20Treatment%20Locator%202.0/_workitems/edit/58802/
     posted by Carlee, John (OS ASPR SIIM) (CTR)
-
       COVID
     Free/reduced cost
     is_pap: true OR has_USG_product: true   
@@ -252,8 +258,6 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
     home_delivery: true
     Oseltamivir suspension
     has_oseltamivir_suspension: true
-
-
   */
 
   const filterLookup = {
@@ -397,7 +401,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
     <StyledPopoverMultiSelect>
       <PopoverMenu.Root>
         <PopoverMenu.Trigger className="hhs-primary-button">
-          {type === "medications" ? "Medications" : "Filters"}{" "}
+          {type === "medications" ? "Looking for Specific Medications?" : "Filters"}{" "}
           <ChevronDownIcon />
           <span className="PopOverFilterCount">
             &#40;

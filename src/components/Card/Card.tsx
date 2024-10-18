@@ -48,7 +48,7 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const { t } = useTranslation();
   const cardRef = useRef<HTMLLIElement>(null);
-  const { searchPoint } = useAppContext();
+  const { searchPoint, setSelectedTreatmentSite, locations } = useAppContext();
   // #endregion --------------- Hooks (Resources) ------------------------------
   // #region ----------------------- Hooks (State) -------------------------------------
   const [distance, setDistance] = useState<number | null>(null);
@@ -76,7 +76,7 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
   useEffect(() => {
     if (selected === true && cardRef.current) {
       // Highlight the location by applying inline CSS
-      cardRef.current.scrollIntoView();
+      cardRef.current.scrollIntoView({behavior: "smooth"});
     }
   }, [selected]);
   // #endregion ----------------- Hooks (Other) --------------------------------
@@ -116,13 +116,80 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
     });
   };
 
-  /**
+  const onZoomToClick = () => {
+    const graphic = locations?.find((loc) => 
+      loc.attributes["facility_id"] === serviceProvider.facility_id
+    );
+    graphic && setSelectedTreatmentSite(graphic);
+  }
+
+   /**
    * Checks if a value is "true" or true.
    * @param value Value to check for limited truthiness.
    * @returns Boolean true/false
    */
-  const isTrue = (value?: string | boolean) =>
+   const isTrue = (value?: string | boolean) =>
     !!(typeof value === "string" ? value.toLowerCase() === "true" : value);
+
+
+
+  {/*  this tooltip icons lookup object includes a check for selected illness, the icon to show, description to show on hover and an extra element if needed
+        Covid:
+          Pap
+          USG Product
+          Home Delivery
+          ICATT
+          Prescribing Services
+          Flu:
+          Oseltamivir Suspension
+          Tamiflu Only
+          Prescribing Services
+          Home Delivery
+        */}
+  const toolTipIcons = [
+    {
+      condition: selectedIllness.toLowerCase() === "covid" && (isTrue(serviceProvider.is_pap) || isTrue(serviceProvider.has_USG_product)),
+      icon: <PapIcon />,
+      extraElement: (
+        <a href="https://paxlovid.iassist.com/" target="_blank" style={{ color: "inherit" }}>
+          {t("Card.hoverPapLink")}
+        </a>
+      ),
+      description: t("Card.hoverPapDescription"),
+    },
+    {
+      condition: selectedIllness.toLowerCase() === "covid" && isTrue(serviceProvider.has_USG_product),
+      icon: <UsgProcuredIcon />,
+      description: t("Card.hoverUSGProduct"),
+    },
+    {
+      condition: (selectedIllness.toLowerCase() === "covid" || selectedIllness.toLowerCase() === "flu") && isTrue(serviceProvider.home_delivery),
+      icon: <HomeDeliveryIcon />,
+      description: t("Card.hoverHomeDelivery"),
+    },
+    {
+      condition: selectedIllness.toLowerCase() === "covid" && isTrue(serviceProvider.is_icatt_site),
+      icon: <IcattIcon />,
+      description: t("Card.hoverICATT"),
+    },
+    {
+      condition: selectedIllness.toLowerCase() === "flu" && isTrue(serviceProvider.has_oseltamivir_tamiflu) && !isTrue(serviceProvider.has_oseltamivir_generic),
+      icon: <NoGenericIcon />,
+      description: t("Card.hoverTamifluOnly"),
+    },
+    {
+      condition: selectedIllness.toLowerCase() === "flu" && isTrue(serviceProvider.has_oseltamivir_suspension),
+      icon: <OseltamivirIcon />,
+      description: t("Card.hoverOseltamivirSuspension"),
+    },
+    {
+      condition: (selectedIllness.toLowerCase() === "covid" || selectedIllness.toLowerCase() === "flu") && isTrue(serviceProvider.is_prescribing_svcs_available),
+      icon: <PrescribingServicesIcon />,
+      description: t("Card.hoverPrescribingServices"),
+    },
+  ];
+
+ 
   // #endregion ------------- Supporting Functions -----------------------------
 
   // #region ------------------- Event Handlers --------------------------------
@@ -130,7 +197,7 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
 
   // #region ----------------------- Render ------------------------------------
   return (
-    <StyledCard tabIndex={0} $selected={selected} ref={cardRef} key={serviceProvider.OBJECTID}>
+    <StyledCard $selected={selected} ref={cardRef} key={serviceProvider.OBJECTID}>
       <StyledTitleRow>
         <StyledCardTitle className="bold">
           {serviceProvider.provider_name}
@@ -173,42 +240,20 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
       </address>
 
       <StyledRow>
-        {isTrue(serviceProvider.is_pap) && (
-          <Tooltip icon={<PapIcon />}>
-            <p>{t("Card.pap")}</p>
-          </Tooltip>
-        )}
-        {isTrue(serviceProvider.has_USG_product) && (
-          <Tooltip icon={<UsgProcuredIcon />}>
-            <p>{t("Card.usgProduct")}</p>
-          </Tooltip>
-        )}
-        {isTrue(serviceProvider.home_delivery) && (
-          <Tooltip icon={<HomeDeliveryIcon />}>
-            <p>{t("Card.homeDelivery")}</p>
-          </Tooltip>
-        )}
-        {isTrue(serviceProvider.is_icatt_site) && (
-          <Tooltip icon={<IcattIcon />}>
-            <p>{t("Card.icatt")}</p>
-          </Tooltip>
-        )}
-        {isTrue(serviceProvider.has_oseltamivir_tamiflu) &&
-          !isTrue(serviceProvider.has_oseltamivir_generic) && (
-            <Tooltip icon={<NoGenericIcon />}>
-              <p>{t("Card.tamifluOnly")}</p>
+       
+     
+        {/* iterate over toolTipIcons and return a tooltip for each */}
+        {toolTipIcons.map((icon, index) => {
+          return icon.condition && (
+            <Tooltip icon={icon.icon} key={index}>
+              <p>
+                {icon.extraElement}
+                {icon.description}
+              </p>
             </Tooltip>
-          )}
-        {isTrue(serviceProvider.has_oseltamivir_suspension) && (
-          <Tooltip icon={<OseltamivirIcon />}>
-            <p>{t("Card.oseltamivirSuspension")}</p>
-          </Tooltip>
-        )}
-        {isTrue(serviceProvider.is_prescribing_svcs_available) && (
-          <Tooltip icon={<PrescribingServicesIcon />}>
-            <p>{t("Card.prescribingServices")}</p>
-          </Tooltip>
-        )}
+          )
+        })}
+
       </StyledRow>
       <StyledRow>
         {selectedIllness.toLowerCase() == "covid" &&
@@ -235,7 +280,7 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
       </StyledRow>
       {isTrue(serviceProvider.is_prescribing_svcs_available) && (
         <p>
-          {t("Card.prescribingServicesLink")}&nbsp;
+          {t("Card.additionalInformation")}&nbsp;
           <a
             href={
               serviceProvider.url_appointment
@@ -244,7 +289,7 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
             }
             target="_blank"
           >
-            {serviceProvider.url_appointment}
+            {t("Card.rXorTelehealth")}
           </a>
         </p>
       )}
@@ -262,9 +307,10 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
         </p>
       )}
       <StyledRow>
-        <a onClick={handleCopyToClipboard} className="hhs-outline-button">
+        <button className="hhs-primary-button zoom-to-button" aria-label="Zoom To Location" title="Zoom To Location" onClick={() => onZoomToClick()}>Zoom To Location</button>
+        <button onClick={handleCopyToClipboard} className="hhs-outline-button" aria-label="Copy location address to clipboard" title="Copy location address to clipboard">
           {t("Card.shareLocation")}
-        </a>
+        </button>
         {serviceProvider.address1 && (
           <a
             className="hhs-outline-button"
@@ -281,7 +327,7 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
             )}`}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={t("Card.directionsToLocation")}
+            aria-label="Open location in Google Maps" title="Open location in Google Maps"
           >
             <span style={{ fontWeight: "600" }}>{t("Card.openInMaps")}</span>
           </a>
