@@ -239,15 +239,27 @@ const Locations = () => {
   // useEffect that watches sortedSites and sets a distance param for each site
   useEffect(() => {
     if (sortedSites.length > 0) {
-      sortedSites.forEach(async (site) => {
-        const distance = await calculateDistanceBetweenTwoPoints(
-          site.attributes,
-          searchPoint
-        );
-        site.attributes.distance = distance ?? 0;
-      });
+
+      const resetDist = async () => {
+        const newSites = [...sortedSites];
+        newSites.forEach(async (site) => {
+          const distance = await calculateDistanceBetweenTwoPoints(
+            site.attributes,
+            searchPoint
+          );
+          site.attributes.distance = distance ?? 0;
+        });
+        return newSites;
     }
-  }, [sortedSites, searchPoint]);
+
+    resetDist().then((newSites) => {
+      setSortedSites(newSites);
+    });
+
+  }
+  }, [locations, searchPoint]);
+
+
 
   // #endregion ---------------- Event Handlers --------------------------------
 

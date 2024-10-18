@@ -36,6 +36,8 @@ import { useSearchParams } from "react-router-dom";
 import Card from "../Card";
 import { createRoot } from "react-dom/client";
 import { useTranslation } from "react-i18next";
+import { calculateDistanceBetweenTwoPoints } from "@/utils/geographicUtils";
+import { SiteAttributesType } from "@/utils";
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 
@@ -60,6 +62,7 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
     setFeatureLayer,
     selectedIllness,
     locations,
+    sortedSites
   } = useAppContext();
   const [searchParams] = useSearchParams();
 
@@ -76,13 +79,24 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
   const createPopupValue = (Popup: JSX.Element) => {
     return new CustomContent({
         outFields: ["*"],
-        creator: (event: any) => {
+        creator: async (event: any) => {
             // create an html element that will serve as the dom node
             const popup = document.createElement("popup");
             // use createRoot to create a domnode to which you can attach the html element
             // see https://react.dev/reference/react-dom/client/createRoot#createroot
             const root = createRoot(popup);
             const feature: Graphic = event.graphic;
+            const layer =  map.findLayerById(feature.layer.id) as FeatureLayer
+            // query the point on the map with the objectID of the feature
+            const item = await layer.queryFeatures({
+              objectIds: [feature.attributes.OBJECTID],
+              outFields: ["*"],
+              returnGeometry: true,
+            })
+            const distance = await  calculateDistanceBetweenTwoPoints(
+              item.features[0].geometry as any,
+              searchPoint
+            )
             // render valid React jsx within that dom node
             root.render(React.cloneElement(
               Popup, 
@@ -90,7 +104,7 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
                 serviceProvider: feature.attributes,
                 key: feature.attributes.OBJECTID,
                 selected: true,
-                distance: feature.attributes.distance,
+                distance: distance,
                }));
             return popup;
         },
@@ -256,14 +270,16 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
     console.log('map', map)
 
     const allLayers = map.allLayers;
-    allLayers.forEach((layer) => {
+    allLayers.forEach((layer) => {     
+
+
       if (
         layer.type === "feature" &&
         layer.title &&
         layer.title.includes("Treatments")
       ) {
+        
 
-      
 
         (layer as __esri.FeatureLayer).popupTemplate =  new PopupTemplate({
           content:  [content],
@@ -273,7 +289,7 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
       }
     });
     
-  }, [selectedTreatmentSite, map])
+  }, [selectedTreatmentSite, map, sortedSites])
 
   
   
