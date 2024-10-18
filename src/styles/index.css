@@ -177,6 +177,47 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
   display: none;
 }
 
+.esri-popup * {
+  margin: 0rem !important;
+  font-family: "Lato", sans-serif !important;
+}
+
+/*  JSAPI 4.28 switches to use calcite components for the popup, this alters the default display to show a large margin around
+  the popup content. To fix this, we are resetting the popup component to display content only.
+  see https://developers.arcgis.com/javascript/latest/release-notes/#popup-design-updates for change logs
+*/
+.esri-features__container {
+  display: contents;
+}
+
+.esri-popup__pointer {
+  border-radius: unset;
+}
+
+.esri-feature__content-element {
+  padding: 0;
+}
+
+.esri-popup__header {
+  display: none;
+}
+
+.esri-popup__content {
+  overflow: visible;
+}
+
+.esri-popup__main-container {
+  width: var(--min-card-width);
+  height: fit-content;
+  max-height:none !important;
+}
+
+@media screen and (max-width: 42rem) {
+  .esri-popup__main-container {
+  width: auto;
+  }
+}
+
 /* radix-ui style and overrides */
 .PopoverMenuContent {
   border-radius: 4px;
@@ -388,7 +429,9 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
   cursor: pointer;
 }
 /* TODO: Lillie - this is a temporary fix */
-ul { list-style-type: none; }
+ul {
+  list-style-type: none;
+}
 /* #endregion ------------------- Utility Classes ------------------------------*/
 
 /* #endregion =================== EXPORTED RULES ===============================*/

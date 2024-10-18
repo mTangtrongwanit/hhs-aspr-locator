@@ -266,7 +266,8 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
       
 
         (layer as __esri.FeatureLayer).popupTemplate =  new PopupTemplate({
-          content:  [content]
+          content:  [content],
+          overwriteActions: true
           ,
         }) 
       }
