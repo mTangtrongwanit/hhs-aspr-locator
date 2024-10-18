@@ -85,12 +85,6 @@ const Locations = () => {
 
   // #region -------------------- Hooks (Other) --------------------------------
 
-
-  useEffect(() => {
-    console.log('selectedTreatmentSite', selectedTreatmentSite);
-  }, [selectedTreatmentSite]);
-  
-  
   //get initial size
   useEffect(() => {
     if (searchContRef.current !== null) {
@@ -118,7 +112,6 @@ const Locations = () => {
     if (!selectedTreatmentSite) {
       return;
     }
-    console.log('setting seselectedTreatmentSite', selectedTreatmentSite);
     setCardSelected(selectedTreatmentSite.attributes.OBJECTID);
   }, [selectedTreatmentSite]);
 
@@ -340,7 +333,7 @@ const Locations = () => {
           }
 
           {sortedSites?.length === 0 &&
-          (!searchPoint?.name || !selectedIllness?.value) ? (
+          ((!searchPoint?.name || !selectedIllness?.value) && sharedSiteFacilityID == null) ? (
             <StyledListNoResultsContainer>
               <MagnifyingGlass></MagnifyingGlass>
               <h3>Please ensure an illness and location are selected.</h3>
@@ -356,7 +349,6 @@ const Locations = () => {
                     serviceSite.attributes;
 
                     const onZoomToClick = (serviceSiteAttributes: any) => {
-                      console.log("Zoom to location clicked", serviceSiteAttributes);
                       const graphic = locations?.find((loc) => 
                         loc.attributes["facility_id"] === serviceSiteAttributes?.facility_id
                       );

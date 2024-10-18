@@ -85,7 +85,8 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
             // see https://react.dev/reference/react-dom/client/createRoot#createroot
             const root = createRoot(popup);
             const feature: Graphic = event.graphic;
-            const layer =  map.findLayerById(feature.layer.id) as FeatureLayer
+            
+            const layer =  map.findLayerById(feature.sourceLayer.id) as FeatureLayer
             // query the point on the map with the objectID of the feature
             const item = await layer.queryFeatures({
               objectIds: [feature.attributes.OBJECTID],
@@ -156,6 +157,12 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
       
 
       if (geopoint && geopoint !== "" && geopoint.includes(",")) {
+        const [lat, lon] = geopoint.split(",").map(Number);
+        const p = new Point({
+          longitude: lon,
+          latitude: lat,
+        });
+          setSearchPoint({ name: geopoint, point: p });
         reactiveUtils
           .whenOnce(() => !mapView.updating)
           .then(() => {
@@ -183,6 +190,7 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
               latitude: lat,
             });
             setSearchPoint({ name: geopoint, point: p });
+
             mapView.goTo({
               center: p,
               zoom: 11,
@@ -215,9 +223,21 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
               // If the boundary layer is undefined return
               // If the user clicks on a country boundary, log the country name\
 
+
+              const treatmentsLayer = mapView.map.allLayers.find(
+                (layer) =>
+                 { return layer.type == "feature" &&
+                  layer.title?.includes("Treatments")
+                 }
+              ) as __esri.FeatureLayer;
+              
               //TODO: move this up into SFID block
               mapView
-                .hitTest(event)
+                .hitTest(event, 
+                  {
+                    include: treatmentsLayer ? [treatmentsLayer] : [],
+                }
+              )
                 .then(function (response) {
                   const treatmentsLayer = response.results?.find(
                     (hitResult) =>
@@ -227,9 +247,9 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
                         hitResult as __esri.GraphicHit
                       ).graphic?.layer?.title.includes("Treatments")
                   ) as __esri.GraphicHit;
+                  
                   if (!treatmentsLayer) return;
                   const t = treatmentsLayer as __esri.GraphicHit;
-                  console.log("treatmentsLayer", t);
                   setSelectedTreatmentSite(t.graphic);
                 })
                 .catch((error) => {
@@ -266,9 +286,8 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
       selectedIllness={selectedIllness.value}
     ></Card>
     )
-    console.log('map', map)
-
-    const allLayers = map.allLayers;
+    const allLayers = map.allLayers.filter(
+      (layer) => layer.type === "feature" && layer?.title.includes("Treatments") ) 
     allLayers.forEach((layer) => {     
 
 
