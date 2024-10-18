@@ -106,7 +106,7 @@ const HeaderComponent = () => {
           <StyledAppTitle>{t("Header.Title")}</StyledAppTitle>
         </StyledHeaderContentContainer>
         <StyledHeaderContentContainer>
-          <DropdownSingleSelect type="language" />
+          <DropdownSingleSelect type="language"/>
         </StyledHeaderContentContainer>
       </StyledHeader>
     </>

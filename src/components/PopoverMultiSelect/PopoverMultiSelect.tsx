@@ -401,7 +401,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
     <StyledPopoverMultiSelect>
       <PopoverMenu.Root>
         <PopoverMenu.Trigger className="hhs-primary-button">
-          {type === "medications" ? "Medications" : "Filters"}{" "}
+          {type === "medications" ? "Looking for Specific Medications?" : "Filters"}{" "}
           <ChevronDownIcon />
           <span className="PopOverFilterCount">
             &#40;
