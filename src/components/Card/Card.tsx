@@ -38,7 +38,7 @@ import PrescribingServicesIcon from "@/assets/icons/prescribing-services.svg";
 // #endregion ====================== IMPORTS ===================================
 
 // #region =================== EXPORTED COMPONENT ==============================
-const Card = ({ selected, selectedIllness, serviceProvider, distance, searchPoint, setSelectedTreatmentSite, locations, t  }: Props) => {
+const Card = ({ asDiv, selected, selectedIllness, serviceProvider, distance, searchPoint, setSelectedTreatmentSite, locations, t  }: Props) => {
   // #region ------------------ Hooks (Resources) ------------------------------
   // #endregion --------------- Hooks (Resources) ------------------------------
   // #region ----------------------- Hooks (State) -------------------------------------
@@ -167,7 +167,7 @@ const Card = ({ selected, selectedIllness, serviceProvider, distance, searchPoin
 
   // #region ----------------------- Render ------------------------------------
   return (
-    <StyledCard $selected={selected}  key={serviceProvider?.OBJECTID}>
+    <StyledCard as={asDiv === true ? "div" : "li"} $selected={selected}  key={serviceProvider?.OBJECTID}>
       <StyledTitleRow>
         <StyledCardTitle className="bold">
           {serviceProvider?.provider_name}

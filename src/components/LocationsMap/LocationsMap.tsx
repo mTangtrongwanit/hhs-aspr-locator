@@ -260,6 +260,7 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
     if (!map || !selectedTreatmentSite) return;
     const content = createPopupValue(
       <Card
+      asDiv={true}
       searchPoint={searchPoint}
       setSelectedTreatmentSite={setSelectedTreatmentSite}
       locations={locations}

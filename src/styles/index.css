@@ -46,50 +46,7 @@
 }
 
 
-.esri-popup__header {
-  display: none;
-}
 
-
-.action-bar-container {
-  display: none;
-}
-
-[slot="action-bar"] {
-  display: none;
-}
-
-.header-container .header-container--border-end {
-  display: none;
-}
-
-.header {
- display: none;
-}
-
-.header-container--border-end {
-  display: none;
-}
-
-.esri-popup__content {
-  overflow: visible;
-}
-
-.esri-popup__main-container {
-  width: var(--min-card-width);
-  height: fit-content;
-  max-height:none !important;
-
-  @media screen and (max-width: 42rem) {
-    width: auto;
-  }
-}
-
-.esri-popup {
-  * {
-    margin: 0rem !important;
-    font-family: "Lato", sans-serif !important;
-  }}
 
 html,
 body,
@@ -177,54 +134,102 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
   display: none;
 }
 
-.esri-popup * {
-  margin: 0rem !important;
-  font-family: "Lato", sans-serif !important;
-}
-
-/*  JSAPI 4.28 switches to use calcite components for the popup, this alters the default display to show a large margin around
-  the popup content. To fix this, we are resetting the popup component to display content only.
-  see https://developers.arcgis.com/javascript/latest/release-notes/#popup-design-updates for change logs
-*/
-.esri-features__container {
-  display: contents;
-}
-
-.esri-popup__pointer {
-  border-radius: unset;
-}
-
-.esri-feature__content-element {
-  padding: 0;
-}
-
-.esri-popup__header {
-  display: none;
-}
-
-.esri-popup__content {
-  overflow: visible;
-
-}
-
-.esri-popup__content * {
-  font-family: "Open Sans", sans-serif;
-}
-
 .esri-popup__main-container {
-  width: var(--min-card-width);
-  height: fit-content;
-  max-height:none !important;
-}
-
-div[slot="footer"] {
   display: none;
 }
+
 
 @media screen and (max-width: 42rem) {
   .esri-popup__main-container {
-  width: auto;
+    display: flex;
+  width: 100%;
   }
+
+  .esri-popup * {
+    margin: 0rem !important;
+  }
+  
+  /*  JSAPI 4.28 switches to use calcite components for the popup, this alters the default display to show a large margin around
+    the popup content. To fix this, we are resetting the popup component to display content only.
+    see https://developers.arcgis.com/javascript/latest/release-notes/#popup-design-updates for change logs
+  */
+  .esri-features__container {
+    display: contents;
+  }
+  
+  .esri-popup__pointer {
+    border-radius: unset;
+  }
+  
+  .esri-feature__content-element {
+    padding: 0;
+  }
+  
+  .esri-popup__header {
+    display: none;
+  }
+  
+  .esri-popup__content {
+    overflow: visible;
+  
+  }
+  
+  .esri-popup, .esri-widget {
+    font-family: "Open Sans", sans-serif !important;
+  
+  }
+  
+  .esri-popup__content * {
+    font-family: "Open Sans", sans-serif !important;
+  }
+  
+  .esri-popup__main-container {
+    width: var(--min-card-width);
+    height: fit-content;
+    max-height:none !important;
+  }
+  
+  div[slot="footer"] {
+    display: none;
+  }
+
+  .esri-popup__header {
+    display: none;
+  }
+  
+  
+  .action-bar-container {
+    display: none;
+  }
+  
+  [slot="action-bar"] {
+    display: none;
+  }
+  
+  .header-container .header-container--border-end {
+    display: none;
+  }
+  
+  .header {
+   display: none;
+  }
+  
+  .header-container--border-end {
+    display: none;
+  }
+  
+  .esri-popup__content {
+    overflow: visible;
+  }
+  
+  .esri-popup__main-container {
+    width: var(--min-card-width);
+    height: fit-content;
+    max-height:none !important;
+
+  }
+  
+  
 }
 
 /* radix-ui style and overrides */
