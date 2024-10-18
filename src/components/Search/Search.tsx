@@ -119,7 +119,7 @@ const SearchComponent = ({ placeholder }: { placeholder?: string } = {}) => {
   // #region ----------------------- Render ------------------------------------
   return (
     <StyledSearch ref={searchRef}>
-      <MagnifyingGlassIcon width='18' height='18' aria-label="Magnifying glass next to search bar" />
+      <MagnifyingGlassIcon width='18' height='18' role="presentation" aria-hidden aria-label="Magnifying glass next to search bar" />
     </StyledSearch>
   );
   // #endregion -------------------- Render ------------------------------------
