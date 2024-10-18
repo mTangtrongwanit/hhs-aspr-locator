@@ -6,10 +6,8 @@
 
 // #region ========================= IMPORTS ===================================
 // #region --------------------------- React -----------------------------------
-import { useEffect, useState, useRef } from "react";
 // #endregion ------------------------ React -----------------------------------
 // #region ------------ 3rd-Party Components / Libraries -----------------------
-import { useTranslation } from "react-i18next";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -22,8 +20,6 @@ import {
   StyledTitleRow,
 } from "./Card.styles";
 import Tooltip from "./Tooltip";
-import { calculateDistanceBetweenTwoPoints } from "../../utils/geographicUtils";
-import { useAppContext } from "@/contexts/AppContext";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
@@ -33,8 +29,6 @@ import PhoneIcon from "@/assets/icons/phone.svg";
 import HomeDeliveryIcon from "@/assets/icons/home-delivery.svg";
 import IcattIcon from "@/assets/icons/icatt.svg";
 import NoGenericIcon from "@/assets/icons/no-generic.svg";
-// import PatientAssistIcon from "@/assets/icons/patient-assist.svg";
-// import PediatricIcon from "@/assets/icons/pediatric.svg";
 import UsgProcuredIcon from "@/assets/icons/usg-procured.svg";
 import PapIcon from "@/assets/icons/pap.svg";
 import OseltamivirIcon from "@/assets/icons/oseltamivir.svg";
@@ -44,14 +38,10 @@ import PrescribingServicesIcon from "@/assets/icons/prescribing-services.svg";
 // #endregion ====================== IMPORTS ===================================
 
 // #region =================== EXPORTED COMPONENT ==============================
-const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
+const Card = ({ asDiv, selected, selectedIllness, serviceProvider, distance, searchPoint, t, onZoomToClick }: Props) => {
   // #region ------------------ Hooks (Resources) ------------------------------
-  const { t } = useTranslation();
-  const cardRef = useRef<HTMLLIElement>(null);
-  const { searchPoint, setSelectedTreatmentSite, locations } = useAppContext();
   // #endregion --------------- Hooks (Resources) ------------------------------
   // #region ----------------------- Hooks (State) -------------------------------------
-  const [distance, setDistance] = useState<number | null>(null);
   // #endregion -------------------- Hooks (State) -------------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
@@ -59,26 +49,6 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
 
   // #region -------------------- Hooks (Other) --------------------------------
 
-  // Get the distance between the user's search location and the service provider
-  useEffect(() => {
-    const fetchDistance = async () => {
-      const dist = await calculateDistanceBetweenTwoPoints(
-        serviceProvider,
-        searchPoint
-      );
-      setDistance(dist);
-    };
-
-    fetchDistance();
-  }, [searchPoint, serviceProvider]);
-
-  // Highlight the location if it was selected on the map
-  useEffect(() => {
-    if (selected === true && cardRef.current) {
-      // Highlight the location by applying inline CSS
-      cardRef.current.scrollIntoView({behavior: "smooth"});
-    }
-  }, [selected]);
   // #endregion ----------------- Hooks (Other) --------------------------------
 
   // #region --------- Short-Circuit (Empty/Invalid State) ---------------------
@@ -101,6 +71,13 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
 
     navigator.clipboard.writeText(url.href);
   };
+  // // Highlight the location if it was selected on the map
+  // useEffect(() => {
+  //   if (selected === true && cardRef.current) {
+  //     // Highlight the location by applying inline CSS
+  //     cardRef.current.scrollIntoView({behavior: "smooth"});
+  //   }
+  // }, [selected]);
 
   /**
    * Handles the click event for the "Share Location" button.
@@ -110,18 +87,12 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
    */
   const handleCopyToClipboard = () => {
     //TODO: add one more param here for the searched name s.t. it can show in the Search bar.
-    copyToClipboard({
-      facility_id: serviceProvider.facility_id,
-      geopoint: serviceProvider.geopoint,
+    serviceProvider && copyToClipboard({
+      facility_id: serviceProvider?.facility_id,
+      geopoint: serviceProvider?.geopoint,
     });
   };
 
-  const onZoomToClick = () => {
-    const graphic = locations?.find((loc) => 
-      loc.attributes["facility_id"] === serviceProvider.facility_id
-    );
-    graphic && setSelectedTreatmentSite(graphic);
-  }
 
    /**
    * Checks if a value is "true" or true.
@@ -148,7 +119,7 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
         */}
   const toolTipIcons = [
     {
-      condition: selectedIllness.toLowerCase() === "covid" && (isTrue(serviceProvider.is_pap) || isTrue(serviceProvider.has_USG_product)),
+      condition: selectedIllness?.toLowerCase() === "covid" && (isTrue(serviceProvider?.is_pap) || isTrue(serviceProvider?.has_USG_product)),
       icon: <PapIcon />,
       extraElement: (
         <a href="https://paxlovid.iassist.com/" target="_blank" style={{ color: "inherit" }}>
@@ -158,32 +129,32 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
       description: t("Card.hoverPapDescription"),
     },
     {
-      condition: selectedIllness.toLowerCase() === "covid" && isTrue(serviceProvider.has_USG_product),
+      condition: selectedIllness?.toLowerCase() === "covid" && isTrue(serviceProvider?.has_USG_product),
       icon: <UsgProcuredIcon />,
       description: t("Card.hoverUSGProduct"),
     },
     {
-      condition: (selectedIllness.toLowerCase() === "covid" || selectedIllness.toLowerCase() === "flu") && isTrue(serviceProvider.home_delivery),
+      condition: (selectedIllness?.toLowerCase() === "covid" || selectedIllness?.toLowerCase() === "flu") && isTrue(serviceProvider?.home_delivery),
       icon: <HomeDeliveryIcon />,
       description: t("Card.hoverHomeDelivery"),
     },
     {
-      condition: selectedIllness.toLowerCase() === "covid" && isTrue(serviceProvider.is_icatt_site),
+      condition: selectedIllness?.toLowerCase() === "covid" && isTrue(serviceProvider?.is_icatt_site),
       icon: <IcattIcon />,
       description: t("Card.hoverICATT"),
     },
     {
-      condition: selectedIllness.toLowerCase() === "flu" && isTrue(serviceProvider.has_oseltamivir_tamiflu) && !isTrue(serviceProvider.has_oseltamivir_generic),
+      condition: selectedIllness?.toLowerCase() === "flu" && isTrue(serviceProvider?.has_oseltamivir_tamiflu) && !isTrue(serviceProvider?.has_oseltamivir_generic),
       icon: <NoGenericIcon />,
       description: t("Card.hoverTamifluOnly"),
     },
     {
-      condition: selectedIllness.toLowerCase() === "flu" && isTrue(serviceProvider.has_oseltamivir_suspension),
+      condition: selectedIllness?.toLowerCase() === "flu" && isTrue(serviceProvider?.has_oseltamivir_suspension),
       icon: <OseltamivirIcon />,
       description: t("Card.hoverOseltamivirSuspension"),
     },
     {
-      condition: (selectedIllness.toLowerCase() === "covid" || selectedIllness.toLowerCase() === "flu") && isTrue(serviceProvider.is_prescribing_svcs_available),
+      condition: (selectedIllness?.toLowerCase() === "covid" || selectedIllness?.toLowerCase() === "flu") && isTrue(serviceProvider?.is_prescribing_svcs_available),
       icon: <PrescribingServicesIcon />,
       description: t("Card.hoverPrescribingServices"),
     },
@@ -197,15 +168,15 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
 
   // #region ----------------------- Render ------------------------------------
   return (
-    <StyledCard $selected={selected} ref={cardRef} key={serviceProvider.OBJECTID}>
+    <StyledCard id={`${serviceProvider?.OBJECTID}` || 'card'} as={asDiv === true ? "div" : "li"} $selected={selected}  key={serviceProvider?.OBJECTID}>
       <StyledTitleRow>
         <StyledCardTitle className="bold">
-          {serviceProvider.provider_name}
+          {serviceProvider?.provider_name}
         </StyledCardTitle>
         {distance !== null && (
           <p className="smallText">
             {t("Card.distance")}
-            {`: ${distance
+            {`: ${distance && distance
               .toFixed(1)
               .toString()
               .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}
@@ -217,23 +188,23 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
         <StyledIconField className="addr">
           <PinIcon></PinIcon>{" "}
           <p className="smallText">
-            {serviceProvider.address1}
-            {serviceProvider.address2 ? (
+            {serviceProvider?.address1}
+            {serviceProvider?.address2 ? (
               <>
                 <br />
-                {serviceProvider.address2}
+                {serviceProvider?.address2}
               </>
             ) : null}
             <br />
-            {serviceProvider.city}, {serviceProvider.state}{" "}
-            {serviceProvider.zip}
+            {serviceProvider?.city}, {serviceProvider?.state}{" "}
+            {serviceProvider?.zip}
           </p>
         </StyledIconField>
         <StyledIconField className="addr">
-          {serviceProvider.public_phone && <PhoneIcon></PhoneIcon>}
-          {serviceProvider.public_phone && (
-            <a href={`tel:${serviceProvider.public_phone}`}>
-              {serviceProvider.public_phone}
+          {serviceProvider?.public_phone && <PhoneIcon></PhoneIcon>}
+          {serviceProvider?.public_phone && (
+            <a href={`tel:${serviceProvider?.public_phone}`}>
+              {serviceProvider?.public_phone}
             </a>
           )}
         </StyledIconField>
@@ -256,35 +227,35 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
 
       </StyledRow>
       <StyledRow>
-        {selectedIllness.toLowerCase() == "covid" &&
+        {selectedIllness?.toLowerCase() == "covid" &&
           t(
             `Card.products.covid_${[
-              isTrue(serviceProvider.has_paxlovid) ? "p" : "-",
-              isTrue(serviceProvider.has_lagevrio) ? "l" : "-",
-              isTrue(serviceProvider.has_veklury) ? "v" : "-",
+              isTrue(serviceProvider?.has_paxlovid) ? "p" : "-",
+              isTrue(serviceProvider?.has_lagevrio) ? "l" : "-",
+              isTrue(serviceProvider?.has_veklury) ? "v" : "-",
             ].join("")}`
           )}
-        {selectedIllness.toLowerCase() == "flu" &&
+        {selectedIllness?.toLowerCase() == "flu" &&
           t(
             `Card.products.flu_${[
-              isTrue(serviceProvider.has_oseltamivir_generic) ||
-              isTrue(serviceProvider.has_oseltamivir_tamiflu) ||
-              isTrue(serviceProvider.has_oseltamivir_suspension)
+              isTrue(serviceProvider?.has_oseltamivir_generic) ||
+              isTrue(serviceProvider?.has_oseltamivir_tamiflu) ||
+              isTrue(serviceProvider?.has_oseltamivir_suspension)
                 ? "o"
                 : "-",
-              isTrue(serviceProvider.has_baloxavir) ? "b" : "-",
-              isTrue(serviceProvider.has_peramivir) ? "p" : "-",
-              isTrue(serviceProvider.has_zanamivir) ? "z" : "-",
+              isTrue(serviceProvider?.has_baloxavir) ? "b" : "-",
+              isTrue(serviceProvider?.has_peramivir) ? "p" : "-",
+              isTrue(serviceProvider?.has_zanamivir) ? "z" : "-",
             ].join("")}`
           )}
       </StyledRow>
-      {isTrue(serviceProvider.is_prescribing_svcs_available) && (
+      {isTrue(serviceProvider?.is_prescribing_svcs_available) && (
         <p>
           {t("Card.additionalInformation")}&nbsp;
           <a
             href={
-              serviceProvider.url_appointment
-                ? serviceProvider.url_appointment
+              serviceProvider?.url_appointment
+                ? serviceProvider?.url_appointment
                 : ""
             }
             target="_blank"
@@ -293,25 +264,25 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
           </a>
         </p>
       )}
-      {serviceProvider.grantee_code === "HR2" && (
+      {serviceProvider?.grantee_code === "HR2" && (
         <p className="ital">{t("Card.hrsa")}</p>
       )}
-      {serviceProvider.grantee_code === "DD2" && (
+      {serviceProvider?.grantee_code === "DD2" && (
         <p className="ital" style={{ whiteSpace: "pre-line" }}>
           {t("Card.dod")}
         </p>
       )}
-      {serviceProvider.grantee_code === "IH2" && (
+      {serviceProvider?.grantee_code === "IH2" && (
         <p className="ital" style={{ whiteSpace: "pre-line" }}>
           {t("Card.ihs")}
         </p>
       )}
       <StyledRow>
-        <button className="hhs-primary-button zoom-to-button" aria-label="Zoom To Location" title="Zoom To Location" onClick={() => onZoomToClick()}>Zoom To Location</button>
-        <button onClick={handleCopyToClipboard} className="hhs-outline-button" aria-label="Copy location address to clipboard" title="Copy location address to clipboard">
+        <button className="hhs-primary-button zoom-to-button" onClick={onZoomToClick ? () =>serviceProvider && onZoomToClick(serviceProvider) : undefined}>Zoom To Location</button>
+        <button onClick={handleCopyToClipboard} className="hhs-outline-button">
           {t("Card.shareLocation")}
         </button>
-        {serviceProvider.address1 && (
+        {serviceProvider?.address1 && (
           <a
             className="hhs-outline-button"
             href={`https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(
@@ -319,10 +290,10 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
                 ? `${searchPoint.point.latitude},${searchPoint.point.longitude}`
                 : ""
             )}&destination=${encodeURIComponent(
-              `${serviceProvider.address1} ${
-                serviceProvider.address2 ? serviceProvider.address2 + " " : ""
-              }${serviceProvider.city} ${serviceProvider.state} ${
-                serviceProvider.zip
+              `${serviceProvider?.address1} ${
+                serviceProvider?.address2 ? serviceProvider?.address2 + " " : ""
+              }${serviceProvider?.city} ${serviceProvider?.state} ${
+                serviceProvider?.zip
               }`
             )}`}
             target="_blank"

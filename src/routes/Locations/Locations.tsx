@@ -64,7 +64,8 @@ const Locations = () => {
     setSortedSites,
     selectedTreatmentSite,
     setSearchPoint,
-    searchPoint
+    searchPoint,
+    setSelectedTreatmentSite,
   } = useAppContext();
 
   const searchContRef = useRef<HTMLDivElement>(null);
@@ -233,6 +234,44 @@ const Locations = () => {
     }
     setSFID(null);
   };
+
+  
+
+  // useEffect that watches sortedSites and sets a distance param for each site
+  useEffect(() => {
+    if (sortedSites.length > 0) {
+
+      const resetDist = async () => {
+        const newSites = [...sortedSites];
+        newSites.forEach(async (site) => {
+          const distance = await calculateDistanceBetweenTwoPoints(
+            site.attributes,
+            searchPoint
+          );
+          site.attributes.distance = distance ?? 0;
+        });
+        return newSites;
+    }
+
+    resetDist().then((newSites) => {
+      setSortedSites(newSites);
+    });
+
+  }
+  }, [locations, searchPoint]);
+
+
+
+  // Highlight the location if it was selected on the map
+  useEffect(() => {
+    if (selectedTreatmentSite) {
+      const activeCardItem = document.getElementById(selectedTreatmentSite.attributes.OBJECTID.toString());
+      activeCardItem?.scrollIntoView({behavior: "smooth"});
+    }
+  }, [selectedTreatmentSite]);
+  
+  
+
   // #endregion ---------------- Event Handlers --------------------------------
 
   // #region ----------------------- Render ------------------------------------
@@ -294,7 +333,7 @@ const Locations = () => {
           }
 
           {sortedSites?.length === 0 &&
-          (!searchPoint?.name || !selectedIllness?.value) ? (
+          ((!searchPoint?.name || !selectedIllness?.value) && sharedSiteFacilityID == null) ? (
             <StyledListNoResultsContainer>
               <MagnifyingGlass aria-hidden ></MagnifyingGlass>
               <h3>Please ensure an illness and location are selected.</h3>
@@ -308,13 +347,28 @@ const Locations = () => {
                   const serviceSite: SiteType = site as SiteType;
                   const serviceSiteAttributes: SiteAttributesType =
                     serviceSite.attributes;
+
+                    const onZoomToClick = (serviceSiteAttributes: any) => {
+                      const graphic = locations?.find((loc) => 
+                        loc.attributes["facility_id"] === serviceSiteAttributes?.facility_id
+                      );
+                      graphic && setSelectedTreatmentSite(graphic);
+                    }
+                    
+                    
                   return (
                       <Card
+                        searchPoint={searchPoint}
+                        t={t}
                         serviceProvider={serviceSiteAttributes}
                         key={serviceSiteAttributes.OBJECTID}
                         selectedIllness={selectedIllness.value}
                         selected={
                           serviceSiteAttributes.OBJECTID === cardSelected
+                        }
+                        distance={serviceSiteAttributes.distance}
+                        onZoomToClick={
+                         ()=> onZoomToClick(serviceSiteAttributes)
                         }
                       ></Card>
                   );
@@ -332,7 +386,7 @@ const Locations = () => {
           <h3 className="visually-hidden">
             {t("Locations.Map Screenreader Heading")}
           </h3>
-          <LocationsMap />
+          <LocationsMap isMobileListView={isMobileListView} />
         </StyledMapContainer>
       </div>
     </StyledLocationsContent>

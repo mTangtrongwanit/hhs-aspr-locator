@@ -14,8 +14,13 @@ import { SiteAttributesType } from "@/utils";
 
 // #region ===================== EXPORTED TYPES ================================
 export interface Props {
+  asDiv?: boolean;
   selected?: boolean;
-  selectedIllness: string;
-  serviceProvider: SiteAttributesType;
+  selectedIllness?: string;
+  serviceProvider?: SiteAttributesType;
+  distance?: number | undefined;
+  searchPoint?: { name: string; point: __esri.Point; } | null;
+  t: any;
+  onZoomToClick?: (x: SiteAttributesType) => void;
 }
 // #endregion ================== EXPORTED TYPES ================================

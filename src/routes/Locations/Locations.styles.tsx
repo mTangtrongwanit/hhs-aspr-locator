@@ -171,6 +171,11 @@ export const StyledMapContainer = styled.section`
   /* height: calc((var(--vh) * 100) - var(--remainder, 0px)); */
   height: calc((var(--vh) * 100));
 
+  @media ${Breakpoints.sm} {
+    height: calc((var(--vh) * 70));
+
+  }
+
   // --- Position ---
   position: sticky;
   top: 0;
@@ -206,7 +211,6 @@ export const StyledLocationsContent = styled.main`
     ${StyledMapContainer} {
       position: relative;
       width: 100vw;
-      height: calc((var(--vh) * 100) - var(--remainder, 0px));
     }
 
     ${StyledListContainer} {
