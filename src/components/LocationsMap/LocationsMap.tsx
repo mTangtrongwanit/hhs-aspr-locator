@@ -85,12 +85,11 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
       geopoint = searchParams.get("geopoint");
     }
     if (map && mapRef.current) {
-      console.log("isMobileListView: ", isMobileListView);
       // Create map view
       const mapView = new MapView({
         map,
         container: mapRef.current,
-        popupEnabled: false,
+        popupEnabled: isMobileListView ? false: true,
       });
       setLocationsMapView(mapView);
 
