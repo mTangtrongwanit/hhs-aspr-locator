@@ -307,9 +307,8 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
         </p>
       )}
       <StyledRow>
-        <a onClick={handleCopyToClipboard} className="hhs-outline-button" aria-label="Copy location address to clipboard" title="Copy location address to clipboard">
         <button className="hhs-primary-button zoom-to-button" aria-label="Zoom To Location" title="Zoom To Location" onClick={() => onZoomToClick()}>Zoom To Location</button>
-        <button onClick={handleCopyToClipboard} className="hhs-outline-button">
+        <button onClick={handleCopyToClipboard} className="hhs-outline-button" aria-label="Copy location address to clipboard" title="Copy location address to clipboard">
           {t("Card.shareLocation")}
         </button>
         {serviceProvider.address1 && (
