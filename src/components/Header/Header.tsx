@@ -106,7 +106,7 @@ const HeaderComponent = () => {
           <StyledAppTitle>{t("Header.Title")}</StyledAppTitle>
         </StyledHeaderContentContainer>
         <StyledHeaderContentContainer>
-          <DropdownSingleSelect type="language" />
+          <DropdownSingleSelect type="language" aria-label="Select a language for the application" title="Select a language for the application"/>
         </StyledHeaderContentContainer>
       </StyledHeader>
     </>

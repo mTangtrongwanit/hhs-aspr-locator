@@ -347,7 +347,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
       return (
         <>
         {/* button to log locations */}
-          <PopoverMenuTitle>Looking for Specific Medications?</PopoverMenuTitle>
+          <PopoverMenuTitle>Medications</PopoverMenuTitle>
           <PopoverCheckBoxContainer>
             {treatments !== undefined &&
               treatments.map((medication) => (
@@ -404,7 +404,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
     <StyledPopoverMultiSelect>
       <PopoverMenu.Root>
         <PopoverMenu.Trigger className="hhs-primary-button">
-          {type === "medications" ? "Medications" : "Filters"}{" "}
+          {type === "medications" ? "Looking for Specific Medications" : "Filters"}{" "}
           <ChevronDownIcon />
           <span className="PopOverFilterCount">
             &#40;

@@ -271,7 +271,7 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
         </p>
       )}
       <StyledRow>
-        <a onClick={handleCopyToClipboard} className="hhs-outline-button">
+        <a onClick={handleCopyToClipboard} className="hhs-outline-button" aria-label="Copy location address to clipboard" title="Copy location address to clipboard">
           {t("Card.shareLocation")}
         </a>
         {serviceProvider.address1 && (
@@ -290,7 +290,7 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
             )}`}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={t("Card.directionsToLocation")}
+            aria-label="Open location in Google Maps" title="Open location in Google Maps"
           >
             <span style={{ fontWeight: "600" }}>{t("Card.openInMaps")}</span>
           </a>
