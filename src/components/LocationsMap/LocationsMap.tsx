@@ -130,7 +130,17 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
         // popupEnabled: isMobileListView ? false: true,
         popupEnabled:true
       });
+
+          // remove the all the dock options so they don't show in the popup
+          mapView.popup.dockOptions = {
+          buttonEnabled: false,
+          // set the break point to dock the popup in mobile
+          breakpoint: {width: 672},
+          position: "bottom-center",
+        };
       setLocationsMapView(mapView);
+
+      
 
       if (geopoint && geopoint !== "" && geopoint.includes(",")) {
         reactiveUtils
@@ -243,6 +253,7 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
       selectedIllness={selectedIllness.value}
     ></Card>
     )
+    console.log('map', map)
 
     const allLayers = map.allLayers;
     allLayers.forEach((layer) => {
@@ -251,6 +262,9 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
         layer.title &&
         layer.title.includes("Treatments")
       ) {
+
+      
+
         (layer as __esri.FeatureLayer).popupTemplate =  new PopupTemplate({
           content:  [content]
           ,
