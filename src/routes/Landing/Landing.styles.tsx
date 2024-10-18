@@ -35,7 +35,7 @@ const imgUrl = new URL("@/assets/images/nurse.jpg", import.meta.url).href;
 // --- Children ---
 
 // #region -------------------------- Atoms ------------------------------------
-export const StyledFAQTitle = styled.h3`
+export const StyledFAQTitle = styled.h2`
   // --- Decorative ---
   color: var(--brand);
   font-size: var(--text-1);
