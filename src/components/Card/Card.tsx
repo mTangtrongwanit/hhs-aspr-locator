@@ -118,7 +118,7 @@ const Card = ({ selected, selectedIllness, serviceProvider, distance, searchPoin
         */}
   const toolTipIcons = [
     {
-      condition: selectedIllness?.toLowerCase() === "covid" && (isTrue(serviceProvider.is_pap) || isTrue(serviceProvider.has_USG_product)),
+      condition: selectedIllness?.toLowerCase() === "covid" && (isTrue(serviceProvider?.is_pap) || isTrue(serviceProvider?.has_USG_product)),
       icon: <PapIcon />,
       extraElement: (
         <a href="https://paxlovid.iassist.com/" target="_blank" style={{ color: "inherit" }}>
@@ -128,32 +128,32 @@ const Card = ({ selected, selectedIllness, serviceProvider, distance, searchPoin
       description: t("Card.hoverPapDescription"),
     },
     {
-      condition: selectedIllness?.toLowerCase() === "covid" && isTrue(serviceProvider.has_USG_product),
+      condition: selectedIllness?.toLowerCase() === "covid" && isTrue(serviceProvider?.has_USG_product),
       icon: <UsgProcuredIcon />,
       description: t("Card.hoverUSGProduct"),
     },
     {
-      condition: (selectedIllness?.toLowerCase() === "covid" || selectedIllness?.toLowerCase() === "flu") && isTrue(serviceProvider.home_delivery),
+      condition: (selectedIllness?.toLowerCase() === "covid" || selectedIllness?.toLowerCase() === "flu") && isTrue(serviceProvider?.home_delivery),
       icon: <HomeDeliveryIcon />,
       description: t("Card.hoverHomeDelivery"),
     },
     {
-      condition: selectedIllness?.toLowerCase() === "covid" && isTrue(serviceProvider.is_icatt_site),
+      condition: selectedIllness?.toLowerCase() === "covid" && isTrue(serviceProvider?.is_icatt_site),
       icon: <IcattIcon />,
       description: t("Card.hoverICATT"),
     },
     {
-      condition: selectedIllness?.toLowerCase() === "flu" && isTrue(serviceProvider.has_oseltamivir_tamiflu) && !isTrue(serviceProvider.has_oseltamivir_generic),
+      condition: selectedIllness?.toLowerCase() === "flu" && isTrue(serviceProvider?.has_oseltamivir_tamiflu) && !isTrue(serviceProvider?.has_oseltamivir_generic),
       icon: <NoGenericIcon />,
       description: t("Card.hoverTamifluOnly"),
     },
     {
-      condition: selectedIllness?.toLowerCase() === "flu" && isTrue(serviceProvider.has_oseltamivir_suspension),
+      condition: selectedIllness?.toLowerCase() === "flu" && isTrue(serviceProvider?.has_oseltamivir_suspension),
       icon: <OseltamivirIcon />,
       description: t("Card.hoverOseltamivirSuspension"),
     },
     {
-      condition: (selectedIllness?.toLowerCase() === "covid" || selectedIllness?.toLowerCase() === "flu") && isTrue(serviceProvider.is_prescribing_svcs_available),
+      condition: (selectedIllness?.toLowerCase() === "covid" || selectedIllness?.toLowerCase() === "flu") && isTrue(serviceProvider?.is_prescribing_svcs_available),
       icon: <PrescribingServicesIcon />,
       description: t("Card.hoverPrescribingServices"),
     },
