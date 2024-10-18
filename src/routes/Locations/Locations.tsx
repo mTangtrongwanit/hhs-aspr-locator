@@ -332,7 +332,7 @@ const Locations = () => {
           <h3 className="visually-hidden">
             {t("Locations.Map Screenreader Heading")}
           </h3>
-          <LocationsMap />
+          <LocationsMap isMobileListView={isMobileListView} />
         </StyledMapContainer>
       </div>
     </StyledLocationsContent>

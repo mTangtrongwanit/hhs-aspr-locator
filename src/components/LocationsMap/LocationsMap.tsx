@@ -32,11 +32,15 @@ import { useSearchParams } from "react-router-dom";
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 
+interface LocationsMapProps {
+  isMobileListView: boolean;
+}
+
 // #region ======================== CONSTANTS ==================================
 // #endregion ===================== CONSTANTS ==================================
 
 // #region =================== EXPORTED COMPONENT ==============================
-const LocationsMap = () => {
+const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const {
     locationsMapView,
@@ -81,6 +85,7 @@ const LocationsMap = () => {
       geopoint = searchParams.get("geopoint");
     }
     if (map && mapRef.current) {
+      console.log("isMobileListView: ", isMobileListView);
       // Create map view
       const mapView = new MapView({
         map,
@@ -120,7 +125,7 @@ const LocationsMap = () => {
             mapView.goTo({
               center: p,
               zoom: 11,
-            });
+            }).catch((error) => { console.error("MapView goTo error: ", error); });
           })
           .catch((error) => {
             console.error("MapView updating reactiveUtils error: ", error);
@@ -139,8 +144,6 @@ const LocationsMap = () => {
                 layer.title.includes("Treatments")
               ) {
                 (layer as __esri.FeatureLayer).outFields = ["*"];
-                (layer as __esri.FeatureLayer).definitionExpression =
-                  "OBJECTID = -1";
                 layer.load().then(() => {
                   setFeatureLayer(layer as FeatureLayer);
                 });
@@ -185,25 +188,29 @@ const LocationsMap = () => {
         mapView.map = null;
       };
     }
-  }, [map, setLocationsMapView, setSelectedTreatmentSite, searchParams, setSearchPoint, setFeatureLayer]);
+  }, [map, setLocationsMapView, setSelectedTreatmentSite, searchParams, setSearchPoint, setFeatureLayer, isMobileListView]);
 
   /** Highlight selected feature */
   useEffect(() => {
     if (locationsMapView && selectedTreatmentSite) {
       const highlight = selectedTreatmentSite.clone();
-      highlight.symbol = new SimpleMarkerSymbol({
-        color: "#0274FA",
-        size: "20",
+      reactiveUtils
+      .whenOnce(() => !locationsMapView.updating && locationsMapView.ready)
+      .then(() => {
+        highlight.symbol = new SimpleMarkerSymbol({
+          color: "#0274FA",
+          size: "20",
+        });
+        locationsMapView.graphics.add(highlight);
+      locationsMapView.goTo({target: highlight.geometry, zoom: 15})
+      .catch((error) => { console.error("MapView goTo error: ", error); });
       });
-
-      locationsMapView.graphics.add(highlight);
-      locationsMapView.goTo({target: highlight, zoom: 15});
 
       return () => {
         locationsMapView.graphics.remove(highlight);
       };
     }
-  }, [locationsMapView, selectedTreatmentSite, setLocationsMapView]);
+  }, [locationsMapView, selectedTreatmentSite]);
 
   /** Zoom to locations center and extent or zoom depending on properties of locationsExtent. */
   useEffect(() => {
