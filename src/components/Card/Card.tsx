@@ -133,71 +133,61 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
 
 
 
-  {/*  these icons can just include a check for selected illness 
-        /* note: this logic from https://dev.azure.com/Esri-Professional-Services/HHS-ASPR%20Treatment%20Locator%202.0/_workitems/edit/58802/
-        posted by Carlee, John (OS ASPR SIIM) (CTR)
-          COVID
-        Free/reduced cost
-        is_pap: true OR has_USG_product: true   
-        Free Testing
-        is_icatt_site: true
-        Prescribing Services
-        is_prescribing_svcs_available: true
-        Home Delivery
-        home_delivery: true
-        Flu
-        Prescribing Services
-        is_prescribing_svcs_available: true
-        Home Delivery
-        home_delivery: true
-        Oseltamivir suspension
-        has_oseltamivir_suspension: true
-
+  {/*  this tooltip icons lookup object includes a check for selected illness, the icon to show, description to show on hover and an extra element if needed
+        Covid:
+          Pap
+          USG Product
+          Home Delivery
+          ICATT
+          Prescribing Services
+          Flu:
+          Oseltamivir Suspension
+          Tamiflu Only
+          Prescribing Services
+          Home Delivery
         */}
   const toolTipIcons = [
     {
-      condition: (isTrue(serviceProvider.is_pap) || isTrue(serviceProvider.has_USG_product)),
+      condition: selectedIllness.toLowerCase() === "covid" && (isTrue(serviceProvider.is_pap) || isTrue(serviceProvider.has_USG_product)),
       icon: <PapIcon />,
-      extraElement:     <a
-      href="https://paxlovid.iassist.com/"
-      target="_blank"
-      style={{ color: "inherit" }}
-    >
-      {t("Card.hoverPapLink")}
-    </a>,
-      description: t("Card.hoverPapDescription")
+      extraElement: (
+        <a href="https://paxlovid.iassist.com/" target="_blank" style={{ color: "inherit" }}>
+          {t("Card.hoverPapLink")}
+        </a>
+      ),
+      description: t("Card.hoverPapDescription"),
     },
     {
-      condition: isTrue(serviceProvider.has_USG_product),
+      condition: selectedIllness.toLowerCase() === "covid" && isTrue(serviceProvider.has_USG_product),
       icon: <UsgProcuredIcon />,
-      description: t("Card.hoverUSGProduct")
+      description: t("Card.hoverUSGProduct"),
     },
     {
-      condition: isTrue(serviceProvider.home_delivery),
+      condition: (selectedIllness.toLowerCase() === "covid" || selectedIllness.toLowerCase() === "flu") && isTrue(serviceProvider.home_delivery),
       icon: <HomeDeliveryIcon />,
-      description: t("Card.hoverHomeDelivery")
+      description: t("Card.hoverHomeDelivery"),
     },
     {
-      condition: isTrue(serviceProvider.is_icatt_site),
+      condition: selectedIllness.toLowerCase() === "covid" && isTrue(serviceProvider.is_icatt_site),
       icon: <IcattIcon />,
-      description: t("Card.hoverICATT")
+      description: t("Card.hoverICATT"),
     },
     {
-      condition: isTrue(serviceProvider.has_oseltamivir_tamiflu) && !isTrue(serviceProvider.has_oseltamivir_generic),
+      condition: selectedIllness.toLowerCase() === "flu" && isTrue(serviceProvider.has_oseltamivir_tamiflu) && !isTrue(serviceProvider.has_oseltamivir_generic),
       icon: <NoGenericIcon />,
-      description: t("Card.hoverTamifluOnly")
+      description: t("Card.hoverTamifluOnly"),
     },
     {
-      condition: isTrue(serviceProvider.has_oseltamivir_suspension),
+      condition: selectedIllness.toLowerCase() === "flu" && isTrue(serviceProvider.has_oseltamivir_suspension),
       icon: <OseltamivirIcon />,
-      description: t("Card.hoverOseltamivirSuspension")
+      description: t("Card.hoverOseltamivirSuspension"),
     },
     {
-      condition: isTrue(serviceProvider.is_prescribing_svcs_available),
+      condition: (selectedIllness.toLowerCase() === "covid" || selectedIllness.toLowerCase() === "flu") && isTrue(serviceProvider.is_prescribing_svcs_available),
       icon: <PrescribingServicesIcon />,
-      description: t("Card.hoverPrescribingServices")
-    }
-  ]
+      description: t("Card.hoverPrescribingServices"),
+    },
+  ];
 
  
   // #endregion ------------- Supporting Functions -----------------------------
@@ -263,7 +253,7 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
             </Tooltip>
           )
         })}
-        
+
       </StyledRow>
       <StyledRow>
         {selectedIllness.toLowerCase() == "covid" &&
