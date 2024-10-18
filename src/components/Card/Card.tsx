@@ -308,9 +308,9 @@ const Card = ({ selected, selectedIllness, serviceProvider }: Props) => {
       )}
       <StyledRow>
         <button className="hhs-primary-button zoom-to-button" onClick={() => onZoomToClick()}>Zoom To Location</button>
-        <a onClick={handleCopyToClipboard} className="hhs-outline-button">
+        <button onClick={handleCopyToClipboard} className="hhs-outline-button">
           {t("Card.shareLocation")}
-        </a>
+        </button>
         {serviceProvider.address1 && (
           <a
             className="hhs-outline-button"
