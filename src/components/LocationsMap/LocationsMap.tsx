@@ -85,7 +85,7 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
             // see https://react.dev/reference/react-dom/client/createRoot#createroot
             const root = createRoot(popup);
             const feature: Graphic = event.graphic;
-            
+            // @ts-ignore
             const layer =  map.findLayerById(feature.sourceLayer.id) as FeatureLayer
             // query the point on the map with the objectID of the feature
             const item = await layer.queryFeatures({
