@@ -37,7 +37,7 @@ import Card from "../Card";
 import { createRoot } from "react-dom/client";
 import { useTranslation } from "react-i18next";
 import { calculateDistanceBetweenTwoPoints } from "@/utils/geographicUtils";
-import { SiteAttributesType } from "@/utils";
+// import { SiteAttributesType } from "@/utils";
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 
