@@ -25,6 +25,7 @@ import {
   StyledListOptionsContainer,
   StyledMapContainer,
   StyledSearchContainer,
+  StyledSearchHere,
 } from "./Locations.styles";
 import PopoverMultiSelect from "@/components/PopoverMultiSelect";
 import Card from "@/components/Card";
@@ -66,6 +67,7 @@ const Locations = () => {
     setSearchPoint,
     searchPoint,
     setSelectedTreatmentSite,
+    locationsMapView,
   } = useAppContext();
 
   const searchContRef = useRef<HTMLDivElement>(null);
@@ -265,6 +267,14 @@ const Locations = () => {
     }
   }, [selectedTreatmentSite]);
 
+  const onSearchHereClick = () => {
+    // get the center of the mapview
+    locationsMapView &&
+      setSearchPoint({
+        name: "Current Location",
+        point: locationsMapView.center,
+      });
+  };
   // #endregion ---------------- Event Handlers --------------------------------
 
   // #region ----------------------- Render ------------------------------------
@@ -294,6 +304,14 @@ const Locations = () => {
             <Search placeholder={t("Locations.Search Placeholder")} />
             <DropdownSingleSelect type={"illness"} />
             <PopoverMultiSelect type={"medications"} />
+            <StyledSearchHere isMobileListView={isMobileListView}>
+              <button
+                className="hhs-primary-button zoom-to-button"
+                onClick={onSearchHereClick}
+              >
+                Search this location
+              </button>
+            </StyledSearchHere>
           </>
         )}
 

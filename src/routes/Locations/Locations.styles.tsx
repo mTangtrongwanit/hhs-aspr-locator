@@ -221,5 +221,17 @@ export const StyledLocationsContent = styled.main`
     background: var(--light);
   }
 `;
+
+export const StyledSearchHere = styled.div<{ isMobileListView: boolean }>`
+  // make this a grid that keeps the first three items on the right and the 4th on the left
+  position: fixed;
+  right:  var(--unit);
+  @media ${Breakpoints.sm} {
+  right: none;
+  position: relative;
+  display: ${({ isMobileListView }) => (isMobileListView ? 'none' : 'flex')
+}
+`;
+
 // #endregion ------------ Parent Component + Variants -------------------------
 // #endregion ================ EXPORTED COMPONENTS =============================
