@@ -47,7 +47,9 @@
   },
   "Illness": {
     "COVID": "COVID-19",
-    "Flu": "Flu"
+    "Flu": "Flu",
+    "Prompt": "Looking for Specific Medications?"
+
   },
   "Card": {
     "pap": "Free/reduced cost",
