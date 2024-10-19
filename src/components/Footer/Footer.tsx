@@ -155,14 +155,14 @@ const Footer = () => {
             <StyledFooterAddressImageContainer>
               <StyledFooterImageLink href="https://www.hhs.gov/">
                 <StyledFooterAddressImage
-                src={HHSLogoPath}
-                alt="Department of Health and Human Services Logo"
-              />
+                  src={HHSLogoPath}
+                  alt="Department of Health and Human Services Logo"
+                />
               </StyledFooterImageLink>
             </StyledFooterAddressImageContainer>
             <StyledFooterAddress>
               HHS, Administration for Strategic Preparedness and Response (ASPR)
-              <br/>
+              <br />
               200 Independence Ave., Washington, DC 20201
             </StyledFooterAddress>
           </StyledFooterAddressContainer>

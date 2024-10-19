@@ -24,7 +24,7 @@ import {
   StyledListTitleContainer,
   StyledListOptionsContainer,
   StyledMapContainer,
-  StyledSearchContainer
+  StyledSearchContainer,
 } from "./Locations.styles";
 import PopoverMultiSelect from "@/components/PopoverMultiSelect";
 import Card from "@/components/Card";
@@ -94,7 +94,7 @@ const Locations = () => {
 
   //get size when element updates
   useResizeObserver(searchContRef.current, (entry) =>
-    setSearchContHeight(entry.contentRect.height)
+    setSearchContHeight(entry.contentRect.height),
   );
 
   useEffect(() => {
@@ -139,7 +139,7 @@ const Locations = () => {
           // Fetch distance
           const distance = await calculateDistanceBetweenTwoPoints(
             serviceSiteAttributes,
-            searchPoint
+            searchPoint,
           );
           serviceSiteAttributes.distance = distance ?? 0;
 
@@ -165,9 +165,8 @@ const Locations = () => {
             }
           });
           return serviceSite;
-        })
+        }),
       );
-
 
       const sortedSites = updatedSites.sort((a, b) => {
         if (selectedSort.value === "distance") {
@@ -222,10 +221,10 @@ const Locations = () => {
   const onToggleSelectedLoc = () => {
     if (searchParams.has("facility_id")) {
       searchParams.delete("facility_id");
-      setSearchParams(searchParams); 
+      setSearchParams(searchParams);
       setSearchPoint({
         name: "",
-        point: new Point()
+        point: new Point(),
       });
     }
     if (searchParams.has("geopoint")) {
@@ -235,42 +234,36 @@ const Locations = () => {
     setSFID(null);
   };
 
-  
-
   // useEffect that watches sortedSites and sets a distance param for each site
   useEffect(() => {
     if (sortedSites.length > 0) {
-
       const resetDist = async () => {
         const newSites = [...sortedSites];
         newSites.forEach(async (site) => {
           const distance = await calculateDistanceBetweenTwoPoints(
             site.attributes,
-            searchPoint
+            searchPoint,
           );
           site.attributes.distance = distance ?? 0;
         });
         return newSites;
+      };
+
+      resetDist().then((newSites) => {
+        setSortedSites(newSites);
+      });
     }
-
-    resetDist().then((newSites) => {
-      setSortedSites(newSites);
-    });
-
-  }
   }, [locations, searchPoint]);
-
-
 
   // Highlight the location if it was selected on the map
   useEffect(() => {
     if (selectedTreatmentSite) {
-      const activeCardItem = document.getElementById(selectedTreatmentSite.attributes.OBJECTID.toString());
-      activeCardItem?.scrollIntoView({behavior: "smooth"});
+      const activeCardItem = document.getElementById(
+        selectedTreatmentSite.attributes.OBJECTID.toString(),
+      );
+      activeCardItem?.scrollIntoView({ behavior: "smooth" });
     }
   }, [selectedTreatmentSite]);
-  
-  
 
   // #endregion ---------------- Event Handlers --------------------------------
 
@@ -286,8 +279,13 @@ const Locations = () => {
         </h2>
         {sharedSiteFacilityID !== null ? (
           <>
-            <button className="hhs-primary-button" onClick={onToggleSelectedLoc} aria-label="Continue to find locations near you" title="Continue to find locations near you" >
-             <ArrowLeftIcon />
+            <button
+              className="hhs-primary-button"
+              onClick={onToggleSelectedLoc}
+              aria-label="Continue to find locations near you"
+              title="Continue to find locations near you"
+            >
+              <ArrowLeftIcon />
               Search for Other Locations
             </button>
           </>
@@ -333,9 +331,10 @@ const Locations = () => {
           }
 
           {sortedSites?.length === 0 &&
-          ((!searchPoint?.name || !selectedIllness?.value) && sharedSiteFacilityID == null) ? (
+          (!searchPoint?.name || !selectedIllness?.value) &&
+          sharedSiteFacilityID == null ? (
             <StyledListNoResultsContainer>
-              <MagnifyingGlass aria-hidden ></MagnifyingGlass>
+              <MagnifyingGlass aria-hidden></MagnifyingGlass>
               <h3>Please ensure an illness and location are selected.</h3>
               <p>{t("Locations.Empty List")}</p>
             </StyledListNoResultsContainer>
@@ -348,29 +347,26 @@ const Locations = () => {
                   const serviceSiteAttributes: SiteAttributesType =
                     serviceSite.attributes;
 
-                    const onZoomToClick = (serviceSiteAttributes: any) => {
-                      const graphic = locations?.find((loc) => 
-                        loc.attributes["facility_id"] === serviceSiteAttributes?.facility_id
-                      );
-                      graphic && setSelectedTreatmentSite(graphic);
-                    }
-                    
-                    
+                  const onZoomToClick = (serviceSiteAttributes: any) => {
+                    const graphic = locations?.find(
+                      (loc) =>
+                        loc.attributes["facility_id"] ===
+                        serviceSiteAttributes?.facility_id,
+                    );
+                    graphic && setSelectedTreatmentSite(graphic);
+                  };
+
                   return (
-                      <Card
-                        searchPoint={searchPoint}
-                        t={t}
-                        serviceProvider={serviceSiteAttributes}
-                        key={serviceSiteAttributes.OBJECTID}
-                        selectedIllness={selectedIllness.value}
-                        selected={
-                          serviceSiteAttributes.OBJECTID === cardSelected
-                        }
-                        distance={serviceSiteAttributes.distance}
-                        onZoomToClick={
-                         ()=> onZoomToClick(serviceSiteAttributes)
-                        }
-                      ></Card>
+                    <Card
+                      searchPoint={searchPoint}
+                      t={t}
+                      serviceProvider={serviceSiteAttributes}
+                      key={serviceSiteAttributes.OBJECTID}
+                      selectedIllness={selectedIllness.value}
+                      selected={serviceSiteAttributes.OBJECTID === cardSelected}
+                      distance={serviceSiteAttributes.distance}
+                      onZoomToClick={() => onZoomToClick(serviceSiteAttributes)}
+                    ></Card>
                   );
                 })}
               </ul>

@@ -40,7 +40,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   const [searchPoint, setSearchPoint] = useState<{
     name: string;
     point: __esri.Point;
-  } | null>({name: "", point: new Point()});
+  } | null>({ name: "", point: new Point() });
 
   //Dynamically updated list of result features
   const [locations, setLocations] = useState<__esri.Graphic[] | null>(null);
@@ -50,12 +50,12 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   const [sortedSites, setSortedSites] = useState<__esri.Graphic[]>([]);
 
   const [locationsExtent, setLocationsExtent] = useState<__esri.Extent | null>(
-    null
+    null,
   );
 
   //Data from Illnesses and Treatments table
   const [treatmentIllnessData, setTIData] = useState<__esri.Graphic[] | null>(
-    null
+    null,
   );
 
   //uses above to produce a combination of the illnesses and treatments together into a data dictionary that is workable (flu: all flu treatments, covid: all covid treatments)
@@ -96,48 +96,54 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   useEffect(() => {
     const fetchTreatmentsIllnesses = async () => {
       const treatmentIllnesses = await getTreatmentsIllnessesData();
-        // custom oseltamivir parent object to use in generic filtering
-        const oseltamivirParent = {
-          attributes: {
-            OBJECTID: 1,
-            display_name: "Oseltamivir",
-            field_name: "has_Oseltamivir",
-            illness: "Flu"
-          }
-        } as __esri.Graphic;
+      // custom oseltamivir parent object to use in generic filtering
+      const oseltamivirParent = {
+        attributes: {
+          OBJECTID: 1,
+          display_name: "Oseltamivir",
+          field_name: "has_Oseltamivir",
+          illness: "Flu",
+        },
+      } as __esri.Graphic;
 
-        const vekluryParent = {
-          attributes: {
-            OBJECTID: 2,
-            display_name: "Outpatient Veklury",
-            field_name: "has_veklury",
-            illness: "COVID"
-          }
-        } as __esri.Graphic;
+      const vekluryParent = {
+        attributes: {
+          OBJECTID: 2,
+          display_name: "Outpatient Veklury",
+          field_name: "has_veklury",
+          illness: "COVID",
+        },
+      } as __esri.Graphic;
 
-        // remove 'Oseltamivir Generic',
-        // 'Oseltamivir Suspension',
-        // 'Oseltamivir Tamiflu',
-        // 'Veklury'
-        // and add oseltamivirParent and vekluryParent
-        // to treatmentIllnesses
-        const filterTreatmentIllnesses = treatmentIllnesses && [vekluryParent, oseltamivirParent, ...treatmentIllnesses]?.filter((treatment) => {
-        return treatment.attributes.display_name !== 'Oseltamivir Generic' &&
-        treatment.attributes.display_name !== 'Oseltamivir Suspension' &&
-        treatment.attributes.display_name !== 'Oseltamivir Tamiflu' &&
-        treatment.attributes.display_name !== 'Veklury'
-      })
-      
-   
-      
+      // remove 'Oseltamivir Generic',
+      // 'Oseltamivir Suspension',
+      // 'Oseltamivir Tamiflu',
+      // 'Veklury'
+      // and add oseltamivirParent and vekluryParent
+      // to treatmentIllnesses
+      const filterTreatmentIllnesses =
+        treatmentIllnesses &&
+        [vekluryParent, oseltamivirParent, ...treatmentIllnesses]?.filter(
+          (treatment) => {
+            return (
+              treatment.attributes.display_name !== "Oseltamivir Generic" &&
+              treatment.attributes.display_name !== "Oseltamivir Suspension" &&
+              treatment.attributes.display_name !== "Oseltamivir Tamiflu" &&
+              treatment.attributes.display_name !== "Veklury"
+            );
+          },
+        );
+
       filterTreatmentIllnesses?.sort((a, b) => {
         return (
           config.medicationOrder.findIndex(
             // Order by the index of the medicationOrder array
-        (order) => order.toLowerCase() === a.attributes.display_name.toLowerCase()
+            (order) =>
+              order.toLowerCase() === a.attributes.display_name.toLowerCase(),
           ) -
           config.medicationOrder.findIndex(
-        (order) => order.toLowerCase() === b.attributes.display_name.toLowerCase()
+            (order) =>
+              order.toLowerCase() === b.attributes.display_name.toLowerCase(),
           )
         );
       });
@@ -152,9 +158,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     const getLocations = async () => {
       if (!searchPoint) return;
       try {
-        const locs = await getLocationsData(
-          searchPoint?.point
-        );
+        const locs = await getLocationsData(searchPoint?.point);
         setLocations(locs?.features.features ?? []);
         setLocationsTotals(locs?.features.features ?? []);
         setLocationsExtent(locs?.extent ?? null);
@@ -194,7 +198,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
       return;
     }
     const objectIds = sortedSites.map(
-      (location) => location.attributes.OBJECTID
+      (location) => location.attributes.OBJECTID,
     );
     if (objectIds.length === 0) {
       return;
@@ -255,7 +259,7 @@ export const useAppContext = () => {
   if (!appContext) {
     // the below text is for developers not for users. It does not need to be translated
     throw new Error(
-      "Cannot use 'useAppContext' outside of a AppContextProvider"
+      "Cannot use 'useAppContext' outside of a AppContextProvider",
     );
   }
   return appContext;

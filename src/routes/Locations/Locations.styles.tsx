@@ -91,7 +91,7 @@ export const StyledListContainer = styled.section`
   min-width: calc(var(--min-card-width) + (var(--unit) * 4));
   max-width: var(--max-card-width);
   width: 30vw;
-  padding: calc(var(--unit) * 1.5) calc(var(--unit) * 2) ;
+  padding: calc(var(--unit) * 1.5) calc(var(--unit) * 2);
   height: fit-content;
   // --- Position ---
   position: relative;
@@ -149,13 +149,12 @@ export const StyledListNoResultsContainer = styled.div`
   }
 `;
 
-
 export const StyledListTitleContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: calc(var(--unit)/2);
+  gap: calc(var(--unit) / 2);
 `;
 
 export const StyledListOptionsContainer = styled.div`
@@ -173,7 +172,6 @@ export const StyledMapContainer = styled.section`
 
   @media ${Breakpoints.sm} {
     height: calc((var(--vh) * 70));
-
   }
 
   // --- Position ---

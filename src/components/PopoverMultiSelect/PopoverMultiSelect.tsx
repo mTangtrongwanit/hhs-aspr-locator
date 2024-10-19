@@ -64,7 +64,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
     setSelectedMedications,
     selectedFilters,
     setSelectedFilters,
-    sortedSites
+    sortedSites,
   } = useAppContext();
   // #endregion --------------- Hooks (Resources) ------------------------------
 
@@ -89,7 +89,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
     setSelectedMedications((prev: string[]) =>
       prev.includes(medication)
         ? prev.filter((item: string) => item !== medication)
-        : [...prev, medication]
+        : [...prev, medication],
     );
   };
 
@@ -98,58 +98,56 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
     setSelectedFilters((prev: Filter[]) =>
       prev.includes(filter)
         ? prev.filter((item) => item !== filter)
-        : [...prev, filter]
+        : [...prev, filter],
     );
   };
 
-
-
-
   const checkFilter = (loc: __esri.Graphic, selectedFilters: FilterType[]) => {
-      let match = true
-      selectedFilters.forEach((filter: FilterType) => {
-
-        // attribute registering whether or not this location has the service you are filtering for
-        // returns true or false
-        const attributeValue =
+    let match = true;
+    selectedFilters.forEach((filter: FilterType) => {
+      // attribute registering whether or not this location has the service you are filtering for
+      // returns true or false
+      const attributeValue =
         loc.attributes[
           config.treatmentData.fields[
             filter.name as keyof typeof config.treatmentData.fields
           ].name
-        ]?.toUpperCase() || 'FALSE'
-        if (attributeValue !== "TRUE") {
-          // if the attribute value is not true, set match to false
+        ]?.toUpperCase() || "FALSE";
+      if (attributeValue !== "TRUE") {
+        // if the attribute value is not true, set match to false
+        match = false;
+      }
+      // if name is "is_pap", then make match true if either is_pap or has_USG_product is true
+      if (filter.name === "is_pap") {
+        const has_usg =
+          loc.attributes[
+            config.treatmentData.fields.has_USG_product.name
+          ]?.toUpperCase() === "TRUE"
+            ? true
+            : false;
+        if (attributeValue === "TRUE" || has_usg) {
+          match = true;
+        } else {
           match = false;
         }
-        // if name is "is_pap", then make match true if either is_pap or has_USG_product is true
-        if (filter.name === "is_pap") {
-          const has_usg = loc.attributes[
-            config.treatmentData.fields.has_USG_product.name
-          ]?.toUpperCase() === "TRUE" ? true : false;
-          if (
-            attributeValue === "TRUE" || has_usg
-          ) {
-            match = true;
-          }
-          else {
-            match = false;
-          }
-        }
-        
-      });
-      return match;
-  }
+      }
+    });
+    return match;
+  };
 
-  const checkMedication = (loc: __esri.Graphic, selectedMedications: string[], treatmentIllnessData: __esri.Graphic[]) => {
-    let match = true
+  const checkMedication = (
+    loc: __esri.Graphic,
+    selectedMedications: string[],
+    treatmentIllnessData: __esri.Graphic[],
+  ) => {
+    let match = true;
     if (selectedMedications.length > 0) {
       // if this location does not provide the selected medications
       selectedMedications.forEach((medication: string) => {
-
-             
         // find the treatment object for the medication
         const treatment = treatmentIllnessData?.find(
-          (treatment: __esri.Graphic) => treatment.attributes.display_name === medication,
+          (treatment: __esri.Graphic) =>
+            treatment.attributes.display_name === medication,
         );
 
         // attribute registering whether or not this location has the treatment you are filtering for
@@ -162,51 +160,48 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
           match = false;
         }
 
-          
         if (treatment?.attributes.display_name === "Outpatient Veklury") {
           if (loc.attributes["has_veklury"].toUpperCase() === "TRUE") {
             match = true;
-          }
-          else {
+          } else {
             match = false;
           }
         }
-        
+
         if (treatment?.attributes.display_name === "Oseltamivir") {
+          const has_generic =
+            loc.attributes[
+              config.treatmentData.fields.has_oseltamivir_generic.name
+            ]?.toUpperCase() === "TRUE"
+              ? true
+              : false;
 
+          const has_tamiflu =
+            loc.attributes[
+              config.treatmentData.fields.has_oseltamivir_tamiflu.name
+            ]?.toUpperCase() === "TRUE"
+              ? true
+              : false;
 
-          const has_generic = loc.attributes[
-            config.treatmentData.fields.has_oseltamivir_generic.name
-          ]?.toUpperCase() === "TRUE" ? true : false;
+          const has_suspension =
+            loc.attributes[
+              config.treatmentData.fields.has_oseltamivir_suspension.name
+            ]?.toUpperCase() === "TRUE"
+              ? true
+              : false;
 
-          const has_tamiflu = loc.attributes[
-            config.treatmentData.fields.has_oseltamivir_tamiflu.name
-          ]?.toUpperCase() === "TRUE" ? true : false;
-
-          const has_suspension = loc.attributes[
-            config.treatmentData.fields.has_oseltamivir_suspension.name
-          ]?.toUpperCase() === "TRUE" ? true : false;
-          
-
-          
-          if (
-            has_suspension || has_generic ||  has_tamiflu
-          ) {
+          if (has_suspension || has_generic || has_tamiflu) {
             match = true;
-          }
-          else {
+          } else {
             match = false;
           }
         }
-      return match;
+        return match;
       });
     }
     return match;
-  }
+  };
 
-  
-  
-  
   /** Handle the apply click */
   const handleApplyClick = () => {
     // if there are medications or filters, do some stuff, else set locations to all locations
@@ -214,12 +209,15 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
       (selectedMedications.length > 0 && treatmentIllnessData) ||
       (selectedFilters.length > 0 && treatmentIllnessData)
     ) {
-      // filter the locations for any that have 
+      // filter the locations for any that have
       const filteredLocations = locationsTotals?.filter((loc) => {
-
         const filterMatch = checkFilter(loc, selectedFilters);
-        
-        const medicationMatch = checkMedication(loc, selectedMedications, treatmentIllnessData);
+
+        const medicationMatch = checkMedication(
+          loc,
+          selectedMedications,
+          treatmentIllnessData,
+        );
 
         return filterMatch && medicationMatch;
       });
@@ -244,7 +242,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
     posted by Carlee, John (OS ASPR SIIM) (CTR)
       COVID
     Free/reduced cost
-    is_pap: true OR has_USG_product: true   
+    is_pap: true OR has_USG_product: true
     Free Testing
     is_icatt_site: true
     Prescribing Services
@@ -324,8 +322,8 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
           }
         }
         return serviceList;
-      }) || []
-    )
+      }) || [],
+    ),
   );
   // #endregion ---------------- Event Handlers --------------------------------
 
@@ -343,7 +341,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
     if (type === "medications") {
       return (
         <>
-        {/* button to log locations */}
+          {/* button to log locations */}
           <PopoverMenuTitle>Medications</PopoverMenuTitle>
           <PopoverCheckBoxContainer>
             {treatments !== undefined &&
@@ -401,7 +399,9 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
     <StyledPopoverMultiSelect>
       <PopoverMenu.Root>
         <PopoverMenu.Trigger className="hhs-primary-button">
-          {type === "medications" ? "Looking for Specific Medications?" : "Filters"}{" "}
+          {type === "medications"
+            ? "Looking for Specific Medications?"
+            : "Filters"}{" "}
           <ChevronDownIcon />
           <span className="PopOverFilterCount">
             &#40;

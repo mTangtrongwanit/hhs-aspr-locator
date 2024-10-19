@@ -100,13 +100,13 @@ const HeaderComponent = () => {
               296px"
               alt="Administration for Strategic Preparedness and Response Logo"
             />
-            </StyledHeaderLink>
+          </StyledHeaderLink>
         </StyledHeaderContentContainer>
         <StyledHeaderContentContainer>
           <StyledAppTitle>{t("Header.Title")}</StyledAppTitle>
         </StyledHeaderContentContainer>
         <StyledHeaderContentContainer>
-          <DropdownSingleSelect type="language"/>
+          <DropdownSingleSelect type="language" />
         </StyledHeaderContentContainer>
       </StyledHeader>
     </>

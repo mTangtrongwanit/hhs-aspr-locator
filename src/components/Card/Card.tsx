@@ -38,7 +38,16 @@ import PrescribingServicesIcon from "@/assets/icons/prescribing-services.svg";
 // #endregion ====================== IMPORTS ===================================
 
 // #region =================== EXPORTED COMPONENT ==============================
-const Card = ({ asDiv, selected, selectedIllness, serviceProvider, distance, searchPoint, t, onZoomToClick }: Props) => {
+const Card = ({
+  asDiv,
+  selected,
+  selectedIllness,
+  serviceProvider,
+  distance,
+  searchPoint,
+  t,
+  onZoomToClick,
+}: Props) => {
   // #region ------------------ Hooks (Resources) ------------------------------
   // #endregion --------------- Hooks (Resources) ------------------------------
   // #region ----------------------- Hooks (State) -------------------------------------
@@ -87,24 +96,23 @@ const Card = ({ asDiv, selected, selectedIllness, serviceProvider, distance, sea
    */
   const handleCopyToClipboard = () => {
     //TODO: add one more param here for the searched name s.t. it can show in the Search bar.
-    serviceProvider && copyToClipboard({
-      facility_id: serviceProvider?.facility_id,
-      geopoint: serviceProvider?.geopoint,
-    });
+    serviceProvider &&
+      copyToClipboard({
+        facility_id: serviceProvider?.facility_id,
+        geopoint: serviceProvider?.geopoint,
+      });
   };
 
-
-   /**
+  /**
    * Checks if a value is "true" or true.
    * @param value Value to check for limited truthiness.
    * @returns Boolean true/false
    */
-   const isTrue = (value?: string | boolean) =>
+  const isTrue = (value?: string | boolean) =>
     !!(typeof value === "string" ? value.toLowerCase() === "true" : value);
 
-
-
-  {/*  this tooltip icons lookup object includes a check for selected illness, the icon to show, description to show on hover and an extra element if needed
+  {
+    /*  this tooltip icons lookup object includes a check for selected illness, the icon to show, description to show on hover and an extra element if needed
         Covid:
           Pap
           USG Product
@@ -116,51 +124,73 @@ const Card = ({ asDiv, selected, selectedIllness, serviceProvider, distance, sea
           Tamiflu Only
           Prescribing Services
           Home Delivery
-        */}
+        */
+  }
   const toolTipIcons = [
     {
-      condition: selectedIllness?.toLowerCase() === "covid" && (isTrue(serviceProvider?.is_pap) || isTrue(serviceProvider?.has_USG_product)),
+      condition:
+        selectedIllness?.toLowerCase() === "covid" &&
+        (isTrue(serviceProvider?.is_pap) ||
+          isTrue(serviceProvider?.has_USG_product)),
       icon: <PapIcon />,
       extraElement: (
-        <a href="https://paxlovid.iassist.com/" target="_blank" style={{ color: "inherit" }}>
+        <a
+          href="https://paxlovid.iassist.com/"
+          target="_blank"
+          style={{ color: "inherit" }}
+        >
           {t("Card.hoverPapLink")}
         </a>
       ),
       description: t("Card.hoverPapDescription"),
     },
     {
-      condition: selectedIllness?.toLowerCase() === "covid" && isTrue(serviceProvider?.has_USG_product),
+      condition:
+        selectedIllness?.toLowerCase() === "covid" &&
+        isTrue(serviceProvider?.has_USG_product),
       icon: <UsgProcuredIcon />,
       description: t("Card.hoverUSGProduct"),
     },
     {
-      condition: (selectedIllness?.toLowerCase() === "covid" || selectedIllness?.toLowerCase() === "flu") && isTrue(serviceProvider?.home_delivery),
+      condition:
+        (selectedIllness?.toLowerCase() === "covid" ||
+          selectedIllness?.toLowerCase() === "flu") &&
+        isTrue(serviceProvider?.home_delivery),
       icon: <HomeDeliveryIcon />,
       description: t("Card.hoverHomeDelivery"),
     },
     {
-      condition: selectedIllness?.toLowerCase() === "covid" && isTrue(serviceProvider?.is_icatt_site),
+      condition:
+        selectedIllness?.toLowerCase() === "covid" &&
+        isTrue(serviceProvider?.is_icatt_site),
       icon: <IcattIcon />,
       description: t("Card.hoverICATT"),
     },
     {
-      condition: selectedIllness?.toLowerCase() === "flu" && isTrue(serviceProvider?.has_oseltamivir_tamiflu) && !isTrue(serviceProvider?.has_oseltamivir_generic),
+      condition:
+        selectedIllness?.toLowerCase() === "flu" &&
+        isTrue(serviceProvider?.has_oseltamivir_tamiflu) &&
+        !isTrue(serviceProvider?.has_oseltamivir_generic),
       icon: <NoGenericIcon />,
       description: t("Card.hoverTamifluOnly"),
     },
     {
-      condition: selectedIllness?.toLowerCase() === "flu" && isTrue(serviceProvider?.has_oseltamivir_suspension),
+      condition:
+        selectedIllness?.toLowerCase() === "flu" &&
+        isTrue(serviceProvider?.has_oseltamivir_suspension),
       icon: <OseltamivirIcon />,
       description: t("Card.hoverOseltamivirSuspension"),
     },
     {
-      condition: (selectedIllness?.toLowerCase() === "covid" || selectedIllness?.toLowerCase() === "flu") && isTrue(serviceProvider?.is_prescribing_svcs_available),
+      condition:
+        (selectedIllness?.toLowerCase() === "covid" ||
+          selectedIllness?.toLowerCase() === "flu") &&
+        isTrue(serviceProvider?.is_prescribing_svcs_available),
       icon: <PrescribingServicesIcon />,
       description: t("Card.hoverPrescribingServices"),
     },
   ];
 
- 
   // #endregion ------------- Supporting Functions -----------------------------
 
   // #region ------------------- Event Handlers --------------------------------
@@ -168,7 +198,12 @@ const Card = ({ asDiv, selected, selectedIllness, serviceProvider, distance, sea
 
   // #region ----------------------- Render ------------------------------------
   return (
-    <StyledCard id={`${serviceProvider?.OBJECTID}` || 'card'} as={asDiv === true ? "div" : "li"} $selected={selected}  key={serviceProvider?.OBJECTID}>
+    <StyledCard
+      id={`${serviceProvider?.OBJECTID}` || "card"}
+      as={asDiv === true ? "div" : "li"}
+      $selected={selected}
+      key={serviceProvider?.OBJECTID}
+    >
       <StyledTitleRow>
         <StyledCardTitle className="bold">
           {serviceProvider?.provider_name}
@@ -176,10 +211,13 @@ const Card = ({ asDiv, selected, selectedIllness, serviceProvider, distance, sea
         {distance !== null && (
           <p className="smallText">
             {t("Card.distance")}
-            {`: ${distance && distance
-              .toFixed(1)
-              .toString()
-              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`}
+            {`: ${
+              distance &&
+              distance
+                .toFixed(1)
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            }`}
             {` ${t("Card.miles")}`}
           </p>
         )}
@@ -211,20 +249,19 @@ const Card = ({ asDiv, selected, selectedIllness, serviceProvider, distance, sea
       </address>
 
       <StyledRow>
-       
-     
         {/* iterate over toolTipIcons and return a tooltip for each */}
         {toolTipIcons.map((icon, index) => {
-          return icon.condition && (
-            <Tooltip icon={icon.icon} key={index}>
-              <p>
-                {icon.extraElement}
-                {icon.description}
-              </p>
-            </Tooltip>
-          )
+          return (
+            icon.condition && (
+              <Tooltip icon={icon.icon} key={index}>
+                <p>
+                  {icon.extraElement}
+                  {icon.description}
+                </p>
+              </Tooltip>
+            )
+          );
         })}
-
       </StyledRow>
       <StyledRow>
         {selectedIllness?.toLowerCase() == "covid" &&
@@ -233,7 +270,7 @@ const Card = ({ asDiv, selected, selectedIllness, serviceProvider, distance, sea
               isTrue(serviceProvider?.has_paxlovid) ? "p" : "-",
               isTrue(serviceProvider?.has_lagevrio) ? "l" : "-",
               isTrue(serviceProvider?.has_veklury) ? "v" : "-",
-            ].join("")}`
+            ].join("")}`,
           )}
         {selectedIllness?.toLowerCase() == "flu" &&
           t(
@@ -246,7 +283,7 @@ const Card = ({ asDiv, selected, selectedIllness, serviceProvider, distance, sea
               isTrue(serviceProvider?.has_baloxavir) ? "b" : "-",
               isTrue(serviceProvider?.has_peramivir) ? "p" : "-",
               isTrue(serviceProvider?.has_zanamivir) ? "z" : "-",
-            ].join("")}`
+            ].join("")}`,
           )}
       </StyledRow>
       {isTrue(serviceProvider?.is_prescribing_svcs_available) && (
@@ -278,7 +315,16 @@ const Card = ({ asDiv, selected, selectedIllness, serviceProvider, distance, sea
         </p>
       )}
       <StyledRow>
-        <button className="hhs-primary-button zoom-to-button" onClick={onZoomToClick ? () =>serviceProvider && onZoomToClick(serviceProvider) : undefined}>Zoom To Location</button>
+        <button
+          className="hhs-primary-button zoom-to-button"
+          onClick={
+            onZoomToClick
+              ? () => serviceProvider && onZoomToClick(serviceProvider)
+              : undefined
+          }
+        >
+          Zoom To Location
+        </button>
         <button onClick={handleCopyToClipboard} className="hhs-outline-button">
           {t("Card.shareLocation")}
         </button>
@@ -288,17 +334,18 @@ const Card = ({ asDiv, selected, selectedIllness, serviceProvider, distance, sea
             href={`https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(
               searchPoint
                 ? `${searchPoint.point.latitude},${searchPoint.point.longitude}`
-                : ""
+                : "",
             )}&destination=${encodeURIComponent(
               `${serviceProvider?.address1} ${
                 serviceProvider?.address2 ? serviceProvider?.address2 + " " : ""
               }${serviceProvider?.city} ${serviceProvider?.state} ${
                 serviceProvider?.zip
-              }`
+              }`,
             )}`}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Open location in Google Maps" title="Open location in Google Maps"
+            aria-label="Open location in Google Maps"
+            title="Open location in Google Maps"
           >
             <span style={{ fontWeight: "600" }}>{t("Card.openInMaps")}</span>
           </a>

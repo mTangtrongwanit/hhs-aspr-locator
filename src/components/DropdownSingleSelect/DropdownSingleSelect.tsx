@@ -50,17 +50,14 @@ const DropdownSingleSelect = ({
     setSelectedIllness,
     setSelectedMedications,
     setSelectedFilters,
-    locationsTotals,
-    setLocations,
   } = useAppContext();
   const location = useLocation();
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region -------------------- Hooks (State) --------------------------------
-  const [selectedLanguage, setSelectedLanguage] = useState("English");
+  const [, setSelectedLanguage] = useState("English");
   const [illnesses, setIllnesses] = useState<string[]>([]);
 
-  console.log(selectedLanguage);
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
@@ -98,7 +95,6 @@ const DropdownSingleSelect = ({
     setSelectedIllness(illness);
     setSelectedMedications([]);
     setSelectedFilters([]);
-    setLocations(locationsTotals);
   };
   // #endregion ---------------- Event Handlers --------------------------------
 
@@ -107,26 +103,26 @@ const DropdownSingleSelect = ({
     type === "language"
       ? config.options.languageOptions
       : type === "sort"
-      ? config.options.sortOptions
-      : illnesses.map((illness) => ({
-          label: t(`Illness.${illness}`, illness),
-          value: illness,
-        }));
+        ? config.options.sortOptions
+        : illnesses.map((illness) => ({
+            label: t(`Illness.${illness}`, illness),
+            value: illness,
+          }));
 
   const selectedOption =
     type === "language"
       ? { label: "Languages", value: i18n.language }
       : type === "sort"
-      ? selectedSort
-      : selectedIllness;
+        ? selectedSort
+        : selectedIllness;
   const selectedLabel = selectedOption.label;
 
   const handleChange =
     type === "language"
       ? handleLanguageChange
       : type === "sort"
-      ? handleSortChange
-      : handleIllnessChange;
+        ? handleSortChange
+        : handleIllnessChange;
 
   return (
     <StyledDropdownSelect
@@ -146,12 +142,14 @@ const DropdownSingleSelect = ({
           }
           title={
             placeholder && selectedOption.value === ""
-            ? placeholder
-            : selectedLabel
+              ? placeholder
+              : selectedLabel
           }
-          aria-label={placeholder && selectedOption.value === ""
-            ? placeholder
-            : selectedLabel}
+          aria-label={
+            placeholder && selectedOption.value === ""
+              ? placeholder
+              : selectedLabel
+          }
         >
           {placeholder && selectedOption.value === ""
             ? placeholder

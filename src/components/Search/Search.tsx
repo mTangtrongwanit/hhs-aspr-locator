@@ -29,7 +29,12 @@ import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 // #region =================== EXPORTED COMPONENT ==============================
 const SearchComponent = ({ placeholder }: { placeholder?: string } = {}) => {
   // #region ------------------ Hooks (Resources) ------------------------------
-  const { searchPoint, setSearchPoint,setSelectedMedications, setSelectedFilters } = useAppContext();
+  const {
+    searchPoint,
+    setSearchPoint,
+    setSelectedMedications,
+    setSelectedFilters,
+  } = useAppContext();
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region -------------------- Hooks (State) --------------------------------
@@ -60,7 +65,7 @@ const SearchComponent = ({ placeholder }: { placeholder?: string } = {}) => {
           placeholder: placeholder ?? "Enter a location to view services",
         },
       ] as __esri.LocatorSearchSourceProperties[],
-      includeDefaultSources: false
+      includeDefaultSources: false,
     });
     //add to DOM
     searchRef.current.appendChild(search.container as Node);
@@ -119,7 +124,13 @@ const SearchComponent = ({ placeholder }: { placeholder?: string } = {}) => {
   // #region ----------------------- Render ------------------------------------
   return (
     <StyledSearch ref={searchRef}>
-      <MagnifyingGlassIcon width='18' height='18' role="presentation" aria-hidden aria-label="Magnifying glass next to search bar" />
+      <MagnifyingGlassIcon
+        width="18"
+        height="18"
+        role="presentation"
+        aria-hidden
+        aria-label="Magnifying glass next to search bar"
+      />
     </StyledSearch>
   );
   // #endregion -------------------- Render ------------------------------------

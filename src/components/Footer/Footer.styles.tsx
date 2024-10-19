@@ -158,7 +158,7 @@ export const StyledFooterImageLink = styled.a`
   & :hover {
     opacity: 0.8;
     cursor: pointer;
-}
+  }
 `;
 
 export const StyledFooterImage = styled.img`
