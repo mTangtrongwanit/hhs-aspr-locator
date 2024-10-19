@@ -61,7 +61,6 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
     locationsExtent,
     setFeatureLayer,
     selectedIllness,
-    sortedSites,
   } = useAppContext();
   const [searchParams] = useSearchParams();
 
@@ -303,7 +302,14 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
         });
       }
     });
-  }, [selectedTreatmentSite, map, sortedSites]);
+  }, [
+    createPopupValue,
+    selectedTreatmentSite,
+    map,
+    searchPoint,
+    selectedIllness.value,
+    t,
+  ]);
 
   /** Highlight selected feature */
   useEffect(() => {
