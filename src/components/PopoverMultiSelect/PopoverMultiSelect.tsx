@@ -14,7 +14,7 @@ import * as PopoverMenu from "@radix-ui/react-popover";
 import { PopoverClose } from "@radix-ui/react-popover";
 import * as Checkbox from "@radix-ui/react-checkbox";
 import { ChevronDownIcon, Cross2Icon, CheckIcon } from "@radix-ui/react-icons";
-// import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -66,6 +66,8 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
     setSelectedFilters,
     sortedSites,
   } = useAppContext();
+
+  const { t } = useTranslation();
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region -------------------- Hooks (State) --------------------------------
@@ -400,7 +402,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
       <PopoverMenu.Root>
         <PopoverMenu.Trigger className="hhs-primary-button">
           {type === "medications"
-            ? "Looking for Specific Medications?"
+            ? t("Illness.Prompt")
             : "Filters"}{" "}
           <ChevronDownIcon />
           <span className="PopOverFilterCount">

@@ -221,5 +221,16 @@ export const StyledLocationsContent = styled.main`
     background: var(--light);
   }
 `;
+
+export const StyledSearchHere = styled.div<{ isMobileListView: boolean }>`
+  position: fixed;
+  right:  var(--unit);
+  @media ${Breakpoints.sm} {
+  right: none;
+  position: relative;
+  display: ${({ isMobileListView }) => (isMobileListView ? 'none' : 'flex')
+}
+`;
+
 // #endregion ------------ Parent Component + Variants -------------------------
 // #endregion ================ EXPORTED COMPONENTS =============================

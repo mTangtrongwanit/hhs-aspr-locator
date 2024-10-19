@@ -19,6 +19,7 @@ export interface AppContextType {
   locationsTotals: __esri.Graphic[] | null;
   setLocationsTotals: (x: __esri.Graphic[] | null) => void;
   locationsExtent: __esri.Extent | null;
+  setLocationsExtent: (x: __esri.Extent | null) => void;
   setTILookup: (x: { [key: string]: string[] }) => void;
   selectedSort: { label: string; value: string };
   setSelectedSort: (x: { label: string; value: string }) => void;
