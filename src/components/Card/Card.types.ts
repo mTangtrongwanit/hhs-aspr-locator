@@ -19,7 +19,7 @@ export interface Props {
   selectedIllness?: string;
   serviceProvider?: SiteAttributesType;
   distance?: number | undefined;
-  searchPoint?: { name: string; point: __esri.Point; } | null;
+  searchPoint?: { name: string; point: __esri.Point } | null;
   t: any;
   onZoomToClick?: (x: SiteAttributesType) => void;
 }

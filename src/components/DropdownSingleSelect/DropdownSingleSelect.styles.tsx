@@ -85,7 +85,6 @@ export const StyledDropdownSelect = styled.section`
     color: var(--selected, var(--text));
     cursor: pointer;
 
-
     svg {
       width: 20px;
       height: 20px;

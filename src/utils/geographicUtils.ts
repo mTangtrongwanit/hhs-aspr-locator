@@ -95,7 +95,7 @@ export const calculateDistanceBetweenTwoPoints = async (
         ],
       ],
     });
-  
+
     return geometryEngine.geodesicLength(polyline, "miles");
   } catch (error) {
     console.error("Error calculating distance: ", error);

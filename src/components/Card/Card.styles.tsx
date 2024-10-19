@@ -164,7 +164,6 @@ export const StyledCard = styled.li<{
     }
   }
 
-
   a {
     color: var(--brand);
     font-weight: 400;
