@@ -23,20 +23,56 @@ const treatmentsIllnessesData =
 // #endregion --------------------- Constants ----------------------------------
 
 /**
+ * Build a query for locations
+ * @param location Search center
+ * @param distance Search radius (miles)
+ * @param where Filtering where clause
+ * @returns Query
+ */
+const buildLocationsQuery = (
+  location: Point,
+  distance: number,
+  where?: string,
+) => {
+  const query = locationsData.createQuery();
+  query.where = where || "1=1";
+  query.outFields = ["*"];
+  query.returnGeometry = true;
+  query.geometry = location;
+  query.distance = distance;
+  query.units = "miles";
+  query.spatialRelationship = "intersects";
+  return query;
+};
+
+/**
+ * Retrieve the number of locations for the given parameters
+ * @param location Search center
+ * @param distance Search radius (miles)
+ * @param where Location filter clause
+ * @returns Number of locations
+ */
+export const getLocationsCount = (
+  location: Point,
+  distance: number,
+  where?: string,
+) => {
+  const query = buildLocationsQuery(location, distance, where);
+  return locationsData.queryFeatureCount(query);
+};
+
+/**
  * Get locations data
  * @input {__esri.Point} searchPoint - Point to search around
  * @returns {Promise<__esri.Feature[]>} - Locations data
  */
-export const getLocationsData = async (location: Point) => {
+export const getLocationsData = async (
+  location: Point,
+  distance: number = 50,
+  where?: string,
+) => {
   try {
-    const query = locationsData.createQuery();
-    query.where = "1=1";
-    query.outFields = ["*"];
-    query.returnGeometry = true;
-    query.geometry = location;
-    query.distance = 50;
-    query.units = "miles";
-    query.spatialRelationship = "intersects";
+    const query = buildLocationsQuery(location, distance, where);
     const locationsExtent = await locationsData.queryExtent(query);
     const locationsFeatures = await locationsData.queryFeatures(query);
     return {

@@ -12,6 +12,7 @@ import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 // #region ------------------------ Resources ----------------------------------
 import { AppContextType, AppContextProps } from "./AppContext.types.tsx";
 import {
+  getLocationsCount,
   getLocationsData,
   getTreatmentsIllnessesData,
 } from "@/utils/geographicUtils.ts";
@@ -155,6 +156,75 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     };
     fetchTreatmentsIllnesses();
   }, []);
+
+  /** Update the locations by searchPoint/illness/medication */
+  useEffect(() => {
+    if (!searchPoint || !selectedIllness.value) return;
+
+    // build the illness clause
+    const illnessTreatmentFields =
+      config.fieldsets[
+        `${selectedIllness.value.toLowerCase()}TreatmentFields` as keyof typeof config.fieldsets
+      ] ?? [];
+    const illnessClause = illnessTreatmentFields
+      .map((field) => `LOWER(${field}) = 'true'`)
+      .join(" OR ");
+
+    // build the medications clause
+    const medicationClause = selectedMedications
+      .map((medication) =>
+        treatmentIllnessLookup[selectedIllness.value]?.find(
+          (treatment) => treatment.name === medication,
+        ),
+      )
+      .filter((treatment) => treatment)
+      .map((treatment) => `LOWER(${treatment?.field}) = 'true'`)
+      .join(" AND ");
+
+    // build the where clause from illness/medication clauses
+    const where = medicationClause.length
+      ? `(${illnessClause}) AND (${medicationClause})`
+      : illnessClause;
+
+    // find the appropriate search radius
+    const MAX_SEARCH_RADIUS = 50; // starting full search radius
+    const MIN_SEARCH_RADIUS_INCREMENT = 2; // minimum increment to reduce the search radius
+    const DISPLAY_COUNT = 100; // number of results to display
+    const COUNT_BUFFER_FACTOR = 2; // conservative buffer to ensure we don't miss any points
+    const DENSITY_ADJUSTMENT_FACTOR = 0.75; // density adjustment factor to account for clustering of points near cities (also assuming the search point is near a city, otherwise why would we have too many results?)
+    const narrowSearchRadius = (radius: number): Promise<number> =>
+      getLocationsCount(searchPoint.point, radius, where)
+        .then((count) => {
+          console.log("RADIUS CHECK", radius, count);
+          const target = DISPLAY_COUNT * COUNT_BUFFER_FACTOR;
+          // if the count is greater than the target count, calculate a new radius
+          if (count > target) {
+            // calculate the density of points (accounting for clustering near city center)
+            const area = Math.PI * Math.pow(radius, 2);
+            const density =
+              (count / area) *
+              (DENSITY_ADJUSTMENT_FACTOR * COUNT_BUFFER_FACTOR);
+            // calculate a new radius (with a minimum reduction)
+            const new_radius = Math.min(
+              Math.sqrt(target / density / Math.PI),
+              radius - MIN_SEARCH_RADIUS_INCREMENT,
+            );
+            return narrowSearchRadius(new_radius);
+          }
+          return radius;
+        })
+        .catch(() => radius);
+
+    narrowSearchRadius(MAX_SEARCH_RADIUS).then(async (distance) => {
+      const locs = await getLocationsData(searchPoint.point, distance, where);
+      console.log("RE-QUERY", searchPoint, where, distance, locs);
+    });
+  }, [
+    treatmentIllnessLookup,
+    searchPoint,
+    selectedIllness,
+    selectedMedications,
+  ]);
 
   /** Get the locations and set locations and locations extent to state */
   useEffect(() => {
