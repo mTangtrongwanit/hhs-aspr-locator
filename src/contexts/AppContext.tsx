@@ -60,7 +60,10 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
 
   //uses above to produce a combination of the illnesses and treatments together into a data dictionary that is workable (flu: all flu treatments, covid: all covid treatments)
   const [treatmentIllnessLookup, setTILookup] = useState<{
-    [key: string]: string[];
+    [key: string]: {
+      name: string;
+      field: string;
+    }[];
   }>({});
 
   //Valid if url params contain a facility ID (aka, output of the 'Copy Location Link' button.)
@@ -173,18 +176,24 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   useEffect(() => {
     if (treatmentIllnessData) {
       // Combine treatments and illnesses into a dictionary
-      const treatmentIllnessLookup: { [key: string]: string[] } = {};
-
-      treatmentIllnessData.forEach((treatment) => {
-        const illness = treatment.attributes.illness;
-        const treatmentName = treatment.attributes.display_name;
-        if (treatmentIllnessLookup[illness as string]) {
-          treatmentIllnessLookup[illness].push(treatmentName);
-        } else {
-          treatmentIllnessLookup[illness] = [treatmentName];
-        }
-      });
-      setTILookup(treatmentIllnessLookup);
+      setTILookup(
+        treatmentIllnessData.reduce(
+          (acc, feature) => {
+            const illness = feature.attributes.illness;
+            const treatment = {
+              name: feature.attributes.display_name,
+              field: feature.attributes.field_name,
+            };
+            if (acc[illness]) {
+              acc[illness].push(treatment);
+            } else {
+              acc[illness] = [treatment];
+            }
+            return acc;
+          },
+          {} as { [key: string]: { name: string; field: string }[] },
+        ),
+      );
     }
   }, [treatmentIllnessData]);
 

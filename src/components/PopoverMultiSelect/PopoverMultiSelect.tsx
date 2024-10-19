@@ -333,7 +333,9 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
   /** When the illnessesTreatements object is not empty, set the treatments based off the selected illness. */
   useEffect(() => {
     if (!(JSON.stringify(treatmentIllnessLookup) === "{}")) {
-      setTreatments(treatmentIllnessLookup[selectedIllness.value]);
+      setTreatments(
+        treatmentIllnessLookup[selectedIllness.value]?.map((t) => t.name),
+      );
     }
   }, [treatmentIllnessLookup, selectedIllness]);
   // #endregion -------------------- Effects -----------------------------------

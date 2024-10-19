@@ -12,7 +12,12 @@ export interface AppContextType {
   setLocationsMapView: (x: __esri.MapView) => void;
   selectedTreatmentSite: __esri.Graphic | null;
   setSelectedTreatmentSite: (x: __esri.Graphic) => void;
-  treatmentIllnessLookup: { [key: string]: string[] };
+  treatmentIllnessLookup: {
+    [key: string]: {
+      name: string;
+      field: string;
+    }[];
+  };
   treatmentIllnessData: __esri.Graphic[] | null;
   locations: __esri.Graphic[] | null;
   setLocations: (x: __esri.Graphic[] | null) => void;
@@ -20,7 +25,12 @@ export interface AppContextType {
   setLocationsTotals: (x: __esri.Graphic[] | null) => void;
   locationsExtent: __esri.Extent | null;
   setLocationsExtent: (x: __esri.Extent | null) => void;
-  setTILookup: (x: { [key: string]: string[] }) => void;
+  setTILookup: (x: {
+    [key: string]: {
+      name: string;
+      field: string;
+    }[];
+  }) => void;
   selectedSort: { label: string; value: string };
   setSelectedSort: (x: { label: string; value: string }) => void;
   selectedIllness: { label: string; value: string };
