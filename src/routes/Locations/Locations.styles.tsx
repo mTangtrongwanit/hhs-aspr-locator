@@ -223,7 +223,6 @@ export const StyledLocationsContent = styled.main`
 `;
 
 export const StyledSearchHere = styled.div<{ isMobileListView: boolean }>`
-  // make this a grid that keeps the first three items on the right and the 4th on the left
   position: fixed;
   right:  var(--unit);
   @media ${Breakpoints.sm} {
