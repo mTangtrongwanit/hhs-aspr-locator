@@ -68,6 +68,7 @@ const Locations = () => {
     searchPoint,
     setSelectedTreatmentSite,
     locationsMapView,
+    setLocationsExtent,
   } = useAppContext();
 
   const searchContRef = useRef<HTMLDivElement>(null);
@@ -268,6 +269,8 @@ const Locations = () => {
   }, [selectedTreatmentSite]);
 
   const onSearchHereClick = () => {
+    // reset locations extent so we don't zoom to the extent of the previous search
+    setLocationsExtent(null);
     // get the center of the mapview
     locationsMapView &&
       setSearchPoint({

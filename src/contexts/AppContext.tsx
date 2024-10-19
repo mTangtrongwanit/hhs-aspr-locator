@@ -229,6 +229,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
           locationsTotals: locationsTotals,
           setLocations: setLocations,
           locationsExtent: locationsExtent,
+          setLocationsExtent: setLocationsExtent,
           setTILookup: setTILookup,
           selectedSort: selectedSort,
           setSelectedSort: setSelectedSort,
