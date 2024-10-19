@@ -323,7 +323,7 @@ const Card = ({
               : undefined
           }
         >
-          Zoom To Location
+          {t("Card.Zoom")}
         </button>
         <button onClick={handleCopyToClipboard} className="hhs-outline-button">
           {t("Card.shareLocation")}
