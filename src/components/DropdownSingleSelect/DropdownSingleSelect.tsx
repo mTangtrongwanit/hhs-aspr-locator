@@ -50,17 +50,14 @@ const DropdownSingleSelect = ({
     setSelectedIllness,
     setSelectedMedications,
     setSelectedFilters,
-    locationsTotals,
-    setLocations,
   } = useAppContext();
   const location = useLocation();
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region -------------------- Hooks (State) --------------------------------
-  const [selectedLanguage, setSelectedLanguage] = useState("English");
+  const [, setSelectedLanguage] = useState("English");
   const [illnesses, setIllnesses] = useState<string[]>([]);
 
-  console.log(selectedLanguage);
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
@@ -98,7 +95,6 @@ const DropdownSingleSelect = ({
     setSelectedIllness(illness);
     setSelectedMedications([]);
     setSelectedFilters([]);
-    setLocations(locationsTotals);
   };
   // #endregion ---------------- Event Handlers --------------------------------
 
