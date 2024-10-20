@@ -137,7 +137,7 @@ function App() {
     };
 
     login();
-  }, [config]);
+  }, []);
   // #endregion ----------------- Hooks (Other) --------------------------------
   // #region ---------------- Supporting Functions -----------------------------
   // Styles

@@ -17,7 +17,7 @@ import {
   getLocationsData,
   getTreatmentsIllnessesData,
 } from "@/utils/geographicUtils.ts";
-import { FilterType } from "@/utils/sharedTypes.ts";
+import { isTrue, type FilterType } from "@/utils";
 import config from "@/config";
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
@@ -160,8 +160,10 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
 
   /** Update the locations by searchPoint/illness/medication */
   useEffect(() => {
-    if (!sharedSiteFacilityID && (!searchPoint || !selectedIllness.value))
+    if (!sharedSiteFacilityID && (!searchPoint || !selectedIllness.value)) {
+      setLocations([]);
       return;
+    }
 
     // build the illness clause
     const illnessTreatmentFields =
@@ -180,7 +182,11 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
         ),
       )
       .filter((treatment) => treatment)
-      .map((treatment) => `LOWER(${treatment?.field}) = 'true'`)
+      .map((treatment) =>
+        treatment?.field === "has_Oseltamivir"
+          ? `LOWER(has_oseltamivir_generic) = 'true' OR LOWER(has_oseltamivir_suspension) = 'true' OR LOWER(has_oseltamivir_tamiflu) = 'true'`
+          : `LOWER(${treatment?.field}) = 'true'`,
+      )
       .join(" AND ");
 
     // build the where clause from illness/medication clauses
@@ -200,7 +206,6 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
       // @ts-expect-error - TS doesn't detect that we won't reach here if searchPoint is null
       getLocationsCount(searchPoint.point, radius, where)
         .then((count) => {
-          console.log("RADIUS CHECK", radius, count);
           const target = DISPLAY_COUNT * COUNT_BUFFER_FACTOR;
           // if the count is greater than the target count, calculate a new radius
           if (count > target) {
@@ -229,7 +234,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     )
       .then((distance) =>
         // get the locations using the narrowed search radius
-        getLocationsData(searchPoint.point, distance, where),
+        getLocationsData(searchPoint?.point, distance, where),
       )
       .then((allLocations) => {
         // enrich the locations
@@ -288,13 +293,6 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   // #endregion ----------------- Hooks (Other) --------------------------------
 
   // #region ---------------- Supporting Functions -----------------------------
-  /**
-   * Checks if a value is "true" or true.
-   * @param value Value to check for limited truthiness.
-   * @returns Boolean true/false
-   */
-  const isTrue = (value?: string | boolean) =>
-    !!(typeof value === "string" ? value.toLowerCase() === "true" : value);
   // #endregion ------------- Supporting Functions -----------------------------
 
   // #region ----------------------- Render ------------------------------------

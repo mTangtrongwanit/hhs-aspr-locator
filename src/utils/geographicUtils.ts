@@ -30,7 +30,7 @@ const treatmentsIllnessesData =
  * @returns Query
  */
 const buildLocationsQuery = (
-  location: Point,
+  location: Point | undefined,
   distance: number,
   where?: string,
 ) => {
@@ -38,10 +38,12 @@ const buildLocationsQuery = (
   query.where = where || "1=1";
   query.outFields = ["*"];
   query.returnGeometry = true;
-  query.geometry = location;
-  query.distance = distance;
-  query.units = "miles";
-  query.spatialRelationship = "intersects";
+  if (location) {
+    query.geometry = location;
+    query.units = "miles";
+    query.spatialRelationship = "intersects";
+    query.distance = distance;
+  }
   return query;
 };
 
@@ -67,7 +69,7 @@ export const getLocationsCount = (
  * @returns {Promise<__esri.Feature[]>} - Locations data
  */
 export const getLocationsData = async (
-  location: Point,
+  location: Point | undefined,
   distance: number = 50,
   where?: string,
 ) => {

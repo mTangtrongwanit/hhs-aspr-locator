@@ -70,7 +70,7 @@ const HeaderComponent = () => {
     if (headerRef.current !== null) {
       setHeaderHeight(headerRef.current.clientHeight);
     }
-  }, []);
+  }, [setBannerHeight, setHeaderHeight]);
   // #endregion ----------------- Hooks (Other) --------------------------------
 
   // #region --------- Short-Circuit (Empty/Invalid State) ---------------------
