@@ -12,6 +12,7 @@ import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 // #region ------------------------ Resources ----------------------------------
 import { AppContextType, AppContextProps } from "./AppContext.types.tsx";
 import {
+  calculateDistanceBetweenTwoPoints,
   getLocationsCount,
   getLocationsData,
   getTreatmentsIllnessesData,
@@ -95,6 +96,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
 
   // #region ----------------- Hooks (Memoization) -----------------------------
   // #endregion -------------- Hooks (Memoization) -----------------------------
+
   // #region -------------------- Hooks (Other) --------------------------------
   /** Get the treatement illness data and set it to state */
   useEffect(() => {
@@ -199,14 +201,17 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
           const target = DISPLAY_COUNT * COUNT_BUFFER_FACTOR;
           // if the count is greater than the target count, calculate a new radius
           if (count > target) {
-            // calculate the density of points (accounting for clustering near city center)
-            const area = Math.PI * Math.pow(radius, 2);
-            const density =
-              (count / area) *
-              (DENSITY_ADJUSTMENT_FACTOR * COUNT_BUFFER_FACTOR);
-            // calculate a new radius (with a minimum reduction)
+            // calculate a new radius (w/minimum increment) using the density of points (accounting for clustering near city center)
+            // area = π * radius^2
+            // density = count / area * density adjustment factor
+            // new_area = target / density
+            // new_radius = sqrt(new_area / π) = radius * sqrt(target / (count * density adjustment factor))
             const new_radius = Math.min(
-              Math.sqrt(target / density / Math.PI),
+              radius *
+                Math.sqrt(
+                  target /
+                    (count * (DENSITY_ADJUSTMENT_FACTOR * COUNT_BUFFER_FACTOR)),
+                ),
               radius - MIN_SEARCH_RADIUS_INCREMENT,
             );
             return narrowSearchRadius(new_radius);
@@ -215,10 +220,47 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
         })
         .catch(() => radius);
 
-    narrowSearchRadius(MAX_SEARCH_RADIUS).then(async (distance) => {
-      const locs = await getLocationsData(searchPoint.point, distance, where);
-      console.log("RE-QUERY", searchPoint, where, distance, locs);
-    });
+    narrowSearchRadius(MAX_SEARCH_RADIUS)
+      .then((distance) =>
+        // get the locations using the narrowed search radius
+        getLocationsData(searchPoint.point, distance, where),
+      )
+      .then((allLocations) => {
+        // enrich the locations
+        const allLocationsEnriched = allLocations.map((location) => {
+          location.attributes.distance =
+            calculateDistanceBetweenTwoPoints(
+              location.attributes,
+              searchPoint,
+            ) ?? 0;
+          location.attributes.has_covid_treatments =
+            config.fieldsets.covidTreatmentFields.some((field) =>
+              isTrue(location.attributes[field]),
+            );
+          location.attributes.has_flu_treatments =
+            config.fieldsets.fluTreatmentFields.some((field) =>
+              isTrue(location.attributes[field]),
+            );
+
+          return location;
+        });
+
+        // sort the locations by distance and clip to display count
+        const locations = allLocationsEnriched
+          .sort((a, b) => a.attributes.distance - b.attributes.distance)
+          .slice(0, DISPLAY_COUNT);
+
+        console.log(
+          "RE-QUERY",
+          searchPoint,
+          selectedIllness,
+          selectedMedications,
+          locations,
+        );
+      })
+      .catch((error) => {
+        console.error("Error getting locations data: ", error);
+      });
   }, [
     treatmentIllnessLookup,
     searchPoint,
@@ -285,7 +327,18 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     where = `OBJECTID IN (${objectIds.join(",")})`;
     featureLayer.definitionExpression = where;
   }, [featureLayer, locations, locationsMapView, sortedSites]);
-  // #endregion -------------------- Hooks (Other) --------------------------------
+  // #endregion ----------------- Hooks (Other) --------------------------------
+
+  // #region ---------------- Supporting Functions -----------------------------
+  /**
+   * Checks if a value is "true" or true.
+   * @param value Value to check for limited truthiness.
+   * @returns Boolean true/false
+   */
+  const isTrue = (value?: string | boolean) =>
+    !!(typeof value === "string" ? value.toLowerCase() === "true" : value);
+  // #endregion ------------- Supporting Functions -----------------------------
+
   // #region ----------------------- Render ------------------------------------
   return (
     <AppContext.Provider

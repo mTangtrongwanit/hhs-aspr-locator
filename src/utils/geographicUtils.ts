@@ -73,14 +73,11 @@ export const getLocationsData = async (
 ) => {
   try {
     const query = buildLocationsQuery(location, distance, where);
-    const locationsExtent = await locationsData.queryExtent(query);
     const locationsFeatures = await locationsData.queryFeatures(query);
-    return {
-      extent: locationsExtent,
-      features: locationsFeatures,
-    };
+    return locationsFeatures.features;
   } catch (error) {
     console.error("Error getting locations data: ", error);
+    return [];
   }
 };
 
@@ -111,7 +108,7 @@ export const getTreatmentsIllnessesData = async () => {
  *
  * @param {ServiceProvider} serviceProvider The service provider for which to calculate the distance.
  */
-export const calculateDistanceBetweenTwoPoints = async (
+export const calculateDistanceBetweenTwoPoints = (
   serviceProvider: SiteAttributesType,
   searchPoint: AppContextType["searchPoint"],
 ) => {
