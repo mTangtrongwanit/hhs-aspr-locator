@@ -82,9 +82,11 @@ const SearchComponent = ({ placeholder }: { placeholder?: string } = {}) => {
 
       // if the user triggers the search by hitting the enter key, use the first suggestion
       if ((result as unknown as { key: string }).key === "null") {
-        const suggestion = (await search.suggest()).results
-          ?.at(0)
-          ?.results?.at(0);
+        const suggestions = await search.suggest();
+        if (!suggestions) {
+          return;
+        }
+        const suggestion = suggestions.results?.at(0)?.results?.at(0);
         if (suggestion) {
           search.search(suggestion);
           return;
