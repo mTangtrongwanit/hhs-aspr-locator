@@ -22,4 +22,11 @@
 export interface Props {
   label: string; // for the button
 }
+
+export interface Filter {
+  name: string;
+  label: string;
+  // Add other properties if needed
+}
+
 // #endregion ================== EXPORTED TYPES ================================

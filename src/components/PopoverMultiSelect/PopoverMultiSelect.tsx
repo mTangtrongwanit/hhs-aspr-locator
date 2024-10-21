@@ -28,7 +28,9 @@ import {
   StyledOutlineButton,
   StyledPrimaryButton,
 } from "./PopoverMultiSelect.styles";
-import { isTrue } from "@/utils";
+
+import { FilterType } from "../../utils/sharedTypes";
+
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
@@ -55,7 +57,6 @@ interface Filter {
 const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const {
-    locations,
     selectedFilters,
     selectedIllness,
     selectedMedications,
@@ -174,18 +175,17 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
       checker: () => ["COVID", "Flu"].includes(selectedIllness.value),
       field: config.treatmentData.fields.is_prescribing_svcs_available,
     },
-  } as Record<
-    string,
-    { checker: () => boolean; field: { name: string; label: string } }
-  >;
+  } as Record<string, { checker: () => boolean; field: FilterType }>;
 
   // Get the filtered locations from the locations based on filters
-  const services = Object.keys(filterLookup)?.map((key) => {
-    const filter = filterLookup[key];
-    if (filter.checker()) {
-      return filter.field;
-    }
-  }).filter((item) => item);
+  const services = Object.keys(filterLookup)
+    ?.map((key) => {
+      const filter = filterLookup[key];
+      if (filter.checker()) {
+        return filter.field;
+      }
+    })
+    .filter((item) => item);
   // #endregion ---------------- Event Handlers --------------------------------
 
   // #region ----------------------- Render ------------------------------------
@@ -222,9 +222,9 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
         <>
           <PopoverMenuTitle>Filters</PopoverMenuTitle>
           <PopoverCheckBoxContainer>
-            {services !== undefined &&
-              services.length > 0 &&
-              services.map((filter) => (
+            {services?.map((filter: FilterType | undefined) => {
+              if (!filter) return;
+              return (
                 <PopoverCheckBoxRow key={filter.name}>
                   <Checkbox.Root
                     className="CheckboxRoot"
@@ -240,7 +240,8 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
                     {filter.label}
                   </StyledCheckboxLabel>
                 </PopoverCheckBoxRow>
-              ))}
+              );
+            })}
           </PopoverCheckBoxContainer>
         </>
       );
