@@ -222,12 +222,13 @@ export const StyledLocationsContent = styled.main`
   }
 `;
 
-export const StyledSearchHere = styled.div`
+export const StyledSearchHere = styled.div<{ ismobilelistview: string }>`
   position: fixed;
   right:  var(--unit);
   @media ${Breakpoints.sm} {
   right: none;
   position: relative;
+  display: ${({ ismobilelistview }) => (ismobilelistview === 'true' ? 'none' : 'flex')
 }
 `;
 
