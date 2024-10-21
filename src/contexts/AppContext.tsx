@@ -160,8 +160,8 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
 
   /** Update the locations by searchPoint/illness/medication */
   useEffect(() => {
+    setLocations([]);
     if (!sharedSiteFacilityID && (!searchPoint || !selectedIllness.value)) {
-      setLocations([]);
       return;
     }
 
