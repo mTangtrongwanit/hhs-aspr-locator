@@ -78,6 +78,8 @@ const Locations = () => {
   const [totalHeight, setTotalHeight] = useState<number>(0);
   const [isMobileListView, setIsMobileListView] = useState<boolean>(true);
   const [cardSelected, setCardSelected] = useState<number | null>(null);
+  const [pageLoadAlertTxt, setPageLoadAlertTxt] = useState<string | null>(null);
+
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
@@ -146,6 +148,12 @@ const Locations = () => {
     }
     setCardSelected(selectedTreatmentSite.attributes.OBJECTID);
   }, [selectedTreatmentSite]);
+
+  useEffect(() => {
+    setTimeout(function(){
+      setPageLoadAlertTxt(`Page has loaded with ${locations.length} results`)
+    }, 2000);
+  });
   // #endregion ----------------- Hooks (Other) --------------------------------
 
   // #region --------- Short-Circuit (Empty/Invalid State) ---------------------
@@ -246,6 +254,8 @@ const Locations = () => {
         <h2 className="visually-hidden">
           {t("Locations.Results Screenreader Heading")}
         </h2>
+        <span id="alert" aria-live="assertive">{pageLoadAlertTxt ? pageLoadAlertTxt : ""}</span>
+
         <StyledListContainer>
           <StyledListTitleContainer>
             <h3 aria-live="polite">

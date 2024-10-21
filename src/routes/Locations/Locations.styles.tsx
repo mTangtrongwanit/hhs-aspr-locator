@@ -100,6 +100,7 @@ export const StyledListContainer = styled.section`
   display: flex;
   flex-direction: column;
   gap: var(--unit);
+  background-color: var(--light);
   // --- Decorative ---
   // --- States ---
 
@@ -219,6 +220,10 @@ export const StyledLocationsContent = styled.main`
   #locs {
     display: flex;
     background: var(--light);
+  }
+
+  #alert {
+    position: absolute;
   }
 `;
 
