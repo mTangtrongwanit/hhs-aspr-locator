@@ -23,28 +23,63 @@ const treatmentsIllnessesData =
 // #endregion --------------------- Constants ----------------------------------
 
 /**
+ * Build a query for locations
+ * @param location Search center
+ * @param distance Search radius (miles)
+ * @param where Filtering where clause
+ * @returns Query
+ */
+const buildLocationsQuery = (
+  location: Point | undefined,
+  distance: number,
+  where?: string,
+) => {
+  const query = locationsData.createQuery();
+  query.where = where || "1=1";
+  query.outFields = ["*"];
+  query.returnGeometry = true;
+  if (location) {
+    query.geometry = location;
+    query.units = "miles";
+    query.spatialRelationship = "intersects";
+    query.distance = distance;
+  }
+  return query;
+};
+
+/**
+ * Retrieve the number of locations for the given parameters
+ * @param location Search center
+ * @param distance Search radius (miles)
+ * @param where Location filter clause
+ * @returns Number of locations
+ */
+export const getLocationsCount = (
+  location: Point,
+  distance: number,
+  where?: string,
+) => {
+  const query = buildLocationsQuery(location, distance, where);
+  return locationsData.queryFeatureCount(query);
+};
+
+/**
  * Get locations data
  * @input {__esri.Point} searchPoint - Point to search around
  * @returns {Promise<__esri.Feature[]>} - Locations data
  */
-export const getLocationsData = async (location: Point) => {
+export const getLocationsData = async (
+  location: Point | undefined,
+  distance: number = 50,
+  where?: string,
+) => {
   try {
-    const query = locationsData.createQuery();
-    query.where = "1=1";
-    query.outFields = ["*"];
-    query.returnGeometry = true;
-    query.geometry = location;
-    query.distance = 50;
-    query.units = "miles";
-    query.spatialRelationship = "intersects";
-    const locationsExtent = await locationsData.queryExtent(query);
+    const query = buildLocationsQuery(location, distance, where);
     const locationsFeatures = await locationsData.queryFeatures(query);
-    return {
-      extent: locationsExtent,
-      features: locationsFeatures,
-    };
+    return locationsFeatures.features;
   } catch (error) {
     console.error("Error getting locations data: ", error);
+    return [];
   }
 };
 
@@ -75,7 +110,7 @@ export const getTreatmentsIllnessesData = async () => {
  *
  * @param {ServiceProvider} serviceProvider The service provider for which to calculate the distance.
  */
-export const calculateDistanceBetweenTwoPoints = async (
+export const calculateDistanceBetweenTwoPoints = (
   serviceProvider: SiteAttributesType,
   searchPoint: AppContextType["searchPoint"],
 ) => {
