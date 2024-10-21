@@ -28,7 +28,9 @@ import {
   StyledOutlineButton,
   StyledPrimaryButton,
 } from "./PopoverMultiSelect.styles";
-import { isTrue } from "@/utils";
+
+import { FilterType } from "../../utils/sharedTypes";
+
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
@@ -55,7 +57,6 @@ interface Filter {
 const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const {
-    locations,
     selectedFilters,
     selectedIllness,
     selectedMedications,
@@ -154,67 +155,37 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
 
   const filterLookup = {
     is_pap: {
-      checker: (loc: __esri.Graphic) =>
-        selectedIllness.value === "COVID" &&
-        [
-          loc.attributes[config.treatmentData.fields.is_pap.name],
-          loc.attributes[config.treatmentData.fields.has_USG_product.name],
-        ].some(isTrue),
+      checker: () => ["COVID"].includes(selectedIllness.value),
       field: config.treatmentData.fields.is_pap,
     },
     is_icatt_site: {
-      checker: (loc: __esri.Graphic) =>
-        selectedIllness.value === "COVID" &&
-        isTrue(loc.attributes[config.treatmentData.fields.is_icatt_site.name]),
+      checker: () => ["COVID"].includes(selectedIllness.value),
       field: config.treatmentData.fields.is_icatt_site,
     },
     home_delivery: {
-      checker: (loc: __esri.Graphic) =>
-        ["COVID", "Flu"].includes(selectedIllness.value) &&
-        isTrue(loc.attributes[config.treatmentData.fields.home_delivery.name]),
+      checker: () => ["COVID", "Flu"].includes(selectedIllness.value),
       field: config.treatmentData.fields.home_delivery,
     },
     has_oseltamivir_suspension: {
-      checker: (loc: __esri.Graphic) =>
-        selectedIllness.value === "Flu" &&
-        isTrue(
-          loc.attributes[
-            config.treatmentData.fields.has_oseltamivir_suspension.name
-          ],
-        ),
+      checker: () => ["Flu"].includes(selectedIllness.value),
       field: config.treatmentData.fields.has_oseltamivir_suspension,
     },
 
     is_prescribing_svcs_available: {
-      checker: (loc: __esri.Graphic) =>
-        ["COVID", "Flu"].includes(selectedIllness.value) &&
-        isTrue(
-          loc.attributes[
-            config.treatmentData.fields.is_prescribing_svcs_available.name
-          ],
-        ),
+      checker: () => ["COVID", "Flu"].includes(selectedIllness.value),
       field: config.treatmentData.fields.is_prescribing_svcs_available,
     },
-  };
+  } as Record<string, { checker: () => boolean; field: FilterType }>;
 
   // Get the filtered locations from the locations based on filters
-  const services = Array.from(
-    new Set(
-      locations?.flatMap((location) => {
-        const serviceList: Filter[] = [];
-        // Iterate over the lookup object
-        for (const [key, field] of Object.entries(filterLookup)) {
-          // handle type check for key
-          key;
-          // handle type check for key
-          if (field.checker(location)) {
-            serviceList.push(field.field);
-          }
-        }
-        return serviceList;
-      }) || [],
-    ),
-  );
+  const services = Object.keys(filterLookup)
+    ?.map((key) => {
+      const filter = filterLookup[key];
+      if (filter.checker()) {
+        return filter.field;
+      }
+    })
+    .filter((item) => item);
   // #endregion ---------------- Event Handlers --------------------------------
 
   // #region ----------------------- Render ------------------------------------
@@ -251,9 +222,9 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
         <>
           <PopoverMenuTitle>Filters</PopoverMenuTitle>
           <PopoverCheckBoxContainer>
-            {services !== undefined &&
-              services.length > 0 &&
-              services.map((filter) => (
+            {services?.map((filter: FilterType | undefined) => {
+              if (!filter) return;
+              return (
                 <PopoverCheckBoxRow key={filter.name}>
                   <Checkbox.Root
                     className="CheckboxRoot"
@@ -269,7 +240,8 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
                     {filter.label}
                   </StyledCheckboxLabel>
                 </PopoverCheckBoxRow>
-              ))}
+              );
+            })}
           </PopoverCheckBoxContainer>
         </>
       );
@@ -281,9 +253,16 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
       <PopoverMenu.Root>
         <PopoverMenu.Trigger
           className="hhs-primary-button"
-          title={type === "medications" ? "This button filters results to only include specific medications!" : "This buttons filters results to only include specific site information"
+          title={
+            type === "medications"
+              ? "This button filters results to only include specific medications!"
+              : "This buttons filters results to only include specific site information"
           }
-          aria-label={type === "medications" ? "This button filters results to only include specific medications!" : "This buttons filters results to only include specific site information"}
+          aria-label={
+            type === "medications"
+              ? "This button filters results to only include specific medications!"
+              : "This buttons filters results to only include specific site information"
+          }
         >
           {type === "medications" ? t("Illness.Prompt") : "Filters"}{" "}
           <ChevronDownIcon />
