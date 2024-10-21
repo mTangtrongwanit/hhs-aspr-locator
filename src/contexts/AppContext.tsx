@@ -5,7 +5,6 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 // #endregion ------------------- React ---------------------------------
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
-import Point from "@arcgis/core/geometry/Point";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
@@ -53,7 +52,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   const [searchPoint, setSearchPoint] = useState<{
     name: string;
     point: __esri.Point;
-  } | null>({ name: "", point: new Point() });
+  } | null>(null);
   /**
    * User-selectable parameters that affect what is included in the displayed results of a spatial search.
    */

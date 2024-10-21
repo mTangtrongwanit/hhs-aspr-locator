@@ -346,7 +346,8 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
           const target = locations.length ? locations : searchPoint?.point;
 
           const options =
-            searchPoint.name === "US"
+            // searchPoint.name === "US"
+            !searchPoint
               ? new Extent({
                   xmin: -13888529.05448729,
                   ymin: 2816952.5443763654,
