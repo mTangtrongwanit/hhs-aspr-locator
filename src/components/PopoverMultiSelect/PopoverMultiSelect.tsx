@@ -279,7 +279,12 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
   return (
     <StyledPopoverMultiSelect>
       <PopoverMenu.Root>
-        <PopoverMenu.Trigger className="hhs-primary-button">
+        <PopoverMenu.Trigger
+          className="hhs-primary-button"
+          title={type === "medications" ? "This button filters results to only include specific medications!" : "This buttons filters results to only include specific site information"
+          }
+          aria-label={type === "medications" ? "This button filters results to only include specific medications!" : "This buttons filters results to only include specific site information"}
+        >
           {type === "medications" ? t("Illness.Prompt") : "Filters"}{" "}
           <ChevronDownIcon />
           <span className="PopOverFilterCount">
