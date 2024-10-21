@@ -248,7 +248,8 @@ const Locations = () => {
         </h2>
         <StyledListContainer>
           <StyledListTitleContainer>
-            <h3>
+            <h3 aria-live="polite">
+              <span className="visually-hidden">Results have been filtered to: </span>
               <Trans
                 i18nKey="Locations.List Heading"
                 count={sortedSites?.length}
