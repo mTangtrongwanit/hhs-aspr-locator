@@ -222,7 +222,7 @@ const Locations = () => {
             <Search placeholder={t("Locations.Search Placeholder")} />
             <DropdownSingleSelect type={"illness"} />
             <PopoverMultiSelect type={"medications"} />
-            <StyledSearchHere style={{ display: isMobileListView ? 'none' : 'flex' }}>
+            <StyledSearchHere ismobilelistview={`${isMobileListView}`}>
               <button
                 className="hhs-primary-button zoom-to-button"
                 onClick={onSearchHereClick}
