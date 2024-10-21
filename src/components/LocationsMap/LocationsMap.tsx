@@ -137,7 +137,6 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
       const mapView = new MapView({
         map,
         container: mapRef.current,
-        // popupEnabled: isMobileListView ? false: true,
         popupEnabled: true,
       });
 

@@ -32,9 +32,8 @@ import Card from "@/components/Card";
 import LocationsMap from "@/components/LocationsMap";
 import DropdownSingleSelect from "@/components/DropdownSingleSelect";
 import Search from "@/components/Search";
-import config from "@/config";
 import { useAppContext } from "@/contexts/AppContext";
-import { isTrue, SiteAttributesType, SiteType } from "@/utils";
+import {SiteAttributesType, SiteType } from "@/utils";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
@@ -58,7 +57,6 @@ const Locations = () => {
     locations,
     locationsMapView,
     searchPoint,
-    selectedFilters,
     selectedIllness,
     selectedSort,
     selectedTreatmentSite,
@@ -66,6 +64,7 @@ const Locations = () => {
     setSearchPoint,
     setSelectedTreatmentSite,
     sharedSiteFacilityID,
+    filteredSites
   } = useAppContext();
 
   const searchContRef = useRef<HTMLDivElement>(null);
@@ -79,30 +78,6 @@ const Locations = () => {
   const [isMobileListView, setIsMobileListView] = useState<boolean>(true);
   const [cardSelected, setCardSelected] = useState<number | null>(null);
   // #endregion ----------------- Hooks (State) --------------------------------
-
-  // #region ----------------- Hooks (Memoization) -----------------------------
-  const filteredSites = useMemo(
-    () =>
-      locations.filter((location) =>
-        selectedFilters.every(
-          (filter) =>
-            isTrue(
-              location.attributes[
-                config.treatmentData.fields[
-                  filter.name as keyof typeof config.treatmentData.fields
-                ].name
-              ],
-            ) ||
-            (filter.name === "is_pap" &&
-              isTrue(
-                location.attributes[
-                  config.treatmentData.fields.has_USG_product.name
-                ],
-              )),
-        ),
-      ),
-    [locations, selectedFilters],
-  );
 
   const sortedSites = useMemo(() => {
     const sortedSites = filteredSites.slice();
