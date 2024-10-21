@@ -111,15 +111,6 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
         },
       } as __esri.Graphic;
 
-      const vekluryParent = {
-        attributes: {
-          OBJECTID: 2,
-          display_name: "Outpatient Veklury",
-          field_name: "has_veklury",
-          illness: "COVID",
-        },
-      } as __esri.Graphic;
-
       // remove 'Oseltamivir Generic',
       // 'Oseltamivir Suspension',
       // 'Oseltamivir Tamiflu',
@@ -128,7 +119,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
       // to treatmentIllnesses
       const filterTreatmentIllnesses =
         treatmentIllnesses &&
-        [vekluryParent, oseltamivirParent, ...treatmentIllnesses]?.filter(
+        [oseltamivirParent, ...treatmentIllnesses]?.filter(
           (treatment) => {
             return (
               treatment.attributes.display_name !== "Oseltamivir Generic" &&
