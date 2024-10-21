@@ -345,7 +345,6 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
         .whenOnce(() => locationsMapView.ready)
         .then(() => {
           const target = locations.length ? locations : searchPoint?.point;
-          console.log("TARGET", target);
 
           const options =
             searchPoint.name === "US"
