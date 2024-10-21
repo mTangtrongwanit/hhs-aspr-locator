@@ -72,6 +72,22 @@ const SearchComponent = ({ placeholder }: { placeholder?: string } = {}) => {
 
     //add to component state
     setSearchWidget(search);
+
+  /**
+   * Handle Enter key press to select the first suggestion
+   */
+  search.on("search-complete", async (e) => {
+    const suggestions = await search.viewModel.suggest(e.searchTerm);
+    if (!suggestions) {
+      return;
+    }
+    const suggestion = suggestions.results?.at(0)?.results?.at(0);
+    if (suggestion) {
+      search.search(suggestion);
+      return;
+    }
+  });
+
     /**
      * Watch for result selection to set AOI
      */
@@ -82,7 +98,7 @@ const SearchComponent = ({ placeholder }: { placeholder?: string } = {}) => {
 
       // if the user triggers the search by hitting the enter key, use the first suggestion
       if ((result as unknown as { key: string }).key === "null") {
-        const suggestions = await search.suggest();
+        const suggestions = await search.viewModel.suggest();
         if (!suggestions) {
           return;
         }
