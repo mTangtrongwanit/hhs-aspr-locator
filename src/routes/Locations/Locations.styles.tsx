@@ -233,8 +233,8 @@ export const StyledSearchHere = styled.div<{ ismobilelistview: string }>`
   @media ${Breakpoints.sm} {
   right: none;
   position: relative;
-  display: ${({ ismobilelistview }) => (ismobilelistview === 'true' ? 'none' : 'flex')
-}
+  display: ${({ ismobilelistview }) => (ismobilelistview === 'true' ? 'none' : 'flex')}
+  }
 `;
 
 // #endregion ------------ Parent Component + Variants -------------------------
