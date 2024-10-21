@@ -5,7 +5,6 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 // #endregion ------------------- React ---------------------------------
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
-import Point from "@arcgis/core/geometry/Point";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
@@ -53,7 +52,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   const [searchPoint, setSearchPoint] = useState<{
     name: string;
     point: __esri.Point;
-  } | null>({ name: "", point: new Point() });
+  } | null>(null);
   /**
    * User-selectable parameters that affect what is included in the displayed results of a spatial search.
    */
@@ -93,6 +92,29 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
         {} as { [key: string]: { name: string; field: string }[] },
       ),
     [treatmentIllnessData],
+  );
+
+  const filteredSites = useMemo(
+    () =>
+      locations.filter((location) =>
+        selectedFilters.every(
+          (filter) =>
+            isTrue(
+              location.attributes[
+                config.treatmentData.fields[
+                  filter.name as keyof typeof config.treatmentData.fields
+                ].name
+              ],
+            ) ||
+            (filter.name === "is_pap" &&
+              isTrue(
+                location.attributes[
+                  config.treatmentData.fields.has_USG_product.name
+                ],
+              )),
+        ),
+      ),
+    [locations, selectedFilters],
   );
   // #endregion -------------- Hooks (Memoization) -----------------------------
 
@@ -269,18 +291,18 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     if (!featureLayer || !locations || !locationsMapView) return;
 
     let where = "";
-    if (locations.length === 0) {
+    if (filteredSites.length === 0) {
       // Set the definition expression to return no features
       featureLayer.definitionExpression = "OBJECTID = -1";
       return;
     }
-    const objectIds = locations.map((location) => location.attributes.OBJECTID);
+    const objectIds = filteredSites.map((location) => location.attributes.OBJECTID);
     if (objectIds.length === 0) {
       return;
     }
     where = `OBJECTID IN (${objectIds.join(",")})`;
     featureLayer.definitionExpression = where;
-  }, [featureLayer, locations, locationsMapView]);
+  }, [featureLayer, locations, locationsMapView, filteredSites]);
   // #endregion ----------------- Hooks (Other) --------------------------------
 
   // #region ---------------- Supporting Functions -----------------------------
@@ -320,6 +342,8 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
           setSelectedSort,
           selectedTreatmentSite,
           setSelectedTreatmentSite,
+
+          filteredSites,
         } as AppContextType
       }
     >
