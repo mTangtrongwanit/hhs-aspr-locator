@@ -52,16 +52,15 @@ interface LocationsMapProps {
 const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const {
+    locations,
     locationsMapView,
-    setLocationsMapView,
-    selectedTreatmentSite,
-    setSelectedTreatmentSite,
-    setSearchPoint,
     searchPoint,
-    locationsExtent,
-    setFeatureLayer,
     selectedIllness,
-    sortedSites,
+    selectedTreatmentSite,
+    setFeatureLayer,
+    setLocationsMapView,
+    setSearchPoint,
+    setSelectedTreatmentSite,
   } = useAppContext();
   const [searchParams] = useSearchParams();
 
@@ -69,7 +68,6 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region -------------------- Hooks (State) --------------------------------
-  // const [featureLayer, setFeatureLayer] = useState<FeatureLayer | null>(null);
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // define a method to create custom content for a popup
@@ -84,7 +82,7 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
         // see https://react.dev/reference/react-dom/client/createRoot#createroot
         const root = createRoot(popup);
         const feature: Graphic = event.graphic;
-        // @ts-ignore
+        // @ts-expect-error - We know that the layer is a FeatureLayer
         const layer = map.findLayerById(feature.sourceLayer.id) as FeatureLayer;
         // query the point on the map with the objectID of the feature
         const item = await layer.queryFeatures({
@@ -303,7 +301,14 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
         });
       }
     });
-  }, [selectedTreatmentSite, map, sortedSites]);
+  }, [
+    createPopupValue,
+    selectedTreatmentSite,
+    map,
+    searchPoint,
+    selectedIllness.value,
+    t,
+  ]);
 
   /** Highlight selected feature */
   useEffect(() => {
@@ -330,18 +335,17 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
     }
   }, [locationsMapView, selectedTreatmentSite]);
 
-  /** Zoom to locations center and extent or zoom depending on properties of locationsExtent. */
+  /** Zoom to locations center and extent. */
   useEffect(() => {
     if (searchParams.has("geopoint")) {
       return;
     }
-    if (locationsMapView && searchPoint && locationsExtent?.extent?.center) {
+    if (locationsMapView && searchPoint) {
       reactiveUtils
         .whenOnce(() => locationsMapView.ready)
         .then(() => {
-          const target = locationsExtent?.extent
-            ? locationsExtent.extent.center
-            : searchPoint.point;
+          const target = locations.length ? locations : searchPoint?.point;
+          console.log("TARGET", target);
 
           const options =
             searchPoint.name === "US"
@@ -360,13 +364,7 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
           });
         });
     }
-  }, [
-    locationsExtent,
-    locationsMapView,
-    searchPoint,
-    searchParams,
-    selectedIllness,
-  ]);
+  }, [locations, locationsMapView, searchPoint, searchParams, selectedIllness]);
 
   // #endregion ----------------- Hooks (Other) --------------------------------
 

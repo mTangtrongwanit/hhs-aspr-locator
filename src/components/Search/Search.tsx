@@ -100,7 +100,13 @@ const SearchComponent = ({ placeholder }: { placeholder?: string } = {}) => {
 
     // Note: We need to create a fresh element for the widget everytime it is built, can't just assign it to ref.current or it won't re-render.
     return () => search.destroy();
-  }, [setSelectedMedications, setSelectedFilters, setSearchPoint, searchPoint, placeholder]);
+  }, [
+    placeholder,
+    setSelectedMedications,
+    setSelectedFilters,
+    setSearchPoint,
+    searchPoint,
+  ]);
 
   /**
    * Effect to update widget with SelectionMap results

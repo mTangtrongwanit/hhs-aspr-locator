@@ -6,7 +6,7 @@
 
 // #region ========================= IMPORTS ===================================
 // #region --------------------------- React -----------------------------------import { useState } from 'react';
-import { useState, useEffect } from "react";
+import { useMemo, useState } from "react";
 // #endregion ------------------------ React -----------------------------------
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
@@ -56,7 +56,6 @@ const DropdownSingleSelect = ({
 
   // #region -------------------- Hooks (State) --------------------------------
   const [, setSelectedLanguage] = useState("English");
-  const [illnesses, setIllnesses] = useState<string[]>([]);
 
   // #endregion ----------------- Hooks (State) --------------------------------
 
@@ -65,13 +64,10 @@ const DropdownSingleSelect = ({
 
   // #region -------------------- Hooks (Other) --------------------------------
   // Get the illness options from treatmentIllnessLookup
-  useEffect(() => {
-    if (!(JSON.stringify(treatmentIllnessLookup) === "{}")) {
-      const illnesses = Object.keys(treatmentIllnessLookup);
-      setIllnesses(illnesses);
-    }
-  }, [treatmentIllnessLookup]);
-
+  const illnesses = useMemo(
+    () => Object.keys(treatmentIllnessLookup),
+    [treatmentIllnessLookup],
+  );
   // #endregion ----------------- Hooks (Other) --------------------------------
 
   // #region --------- Short-Circuit (Empty/Invalid State) ---------------------

@@ -4,7 +4,7 @@
 
 // #region ========================= IMPORTS ===================================
 // #region --------------------------- React -----------------------------------
-import { useRef, useState, useEffect } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 // #endregion ------------------------ React -----------------------------------
 
@@ -31,17 +31,16 @@ import PopoverMultiSelect from "@/components/PopoverMultiSelect";
 import Card from "@/components/Card";
 import LocationsMap from "@/components/LocationsMap";
 import DropdownSingleSelect from "@/components/DropdownSingleSelect";
-import { calculateDistanceBetweenTwoPoints } from "@/utils/geographicUtils";
 import Search from "@/components/Search";
+import config from "@/config";
 import { useAppContext } from "@/contexts/AppContext";
-import { SiteAttributesType, SiteType } from "@/utils";
+import { isTrue, SiteAttributesType, SiteType } from "@/utils";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
 import MapIcon from "@/assets/icons/map.svg";
 import ListIcon from "@/assets/icons/list.svg";
 import MagnifyingGlass from "@/assets/icons/magnifying-glass.svg";
-import config from "@/config";
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 
@@ -56,19 +55,17 @@ const Locations = () => {
   const {
     bannerHeight,
     headerHeight,
-    selectedSort,
-    selectedIllness,
     locations,
-    setSFID,
-    sharedSiteFacilityID,
-    sortedSites,
-    setSortedSites,
-    selectedTreatmentSite,
-    setSearchPoint,
-    searchPoint,
-    setSelectedTreatmentSite,
     locationsMapView,
-    setLocationsExtent,
+    searchPoint,
+    selectedFilters,
+    selectedIllness,
+    selectedSort,
+    selectedTreatmentSite,
+    setSFID,
+    setSearchPoint,
+    setSelectedTreatmentSite,
+    sharedSiteFacilityID,
   } = useAppContext();
 
   const searchContRef = useRef<HTMLDivElement>(null);
@@ -84,6 +81,38 @@ const Locations = () => {
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
+  const filteredSites = useMemo(
+    () =>
+      locations.filter((location) =>
+        selectedFilters.every(
+          (filter) =>
+            isTrue(
+              location.attributes[
+                config.treatmentData.fields[
+                  filter.name as keyof typeof config.treatmentData.fields
+                ].name
+              ],
+            ) ||
+            (filter.name === "is_pap" &&
+              isTrue(
+                location.attributes[
+                  config.treatmentData.fields.has_USG_product.name
+                ],
+              )),
+        ),
+      ),
+    [locations, selectedFilters],
+  );
+
+  const sortedSites = useMemo(() => {
+    const sortedSites = filteredSites.slice();
+    if (selectedSort?.value === "last reported") {
+      return sortedSites.sort(
+        (a, b) => b.attributes.last_report_date - a.attributes.last_report_date,
+      );
+    }
+    return sortedSites;
+  }, [filteredSites, selectedSort?.value]);
   // #endregion -------------- Hooks (Memoization) -----------------------------
 
   // #region -------------------- Hooks (Other) --------------------------------
@@ -117,97 +146,6 @@ const Locations = () => {
     }
     setCardSelected(selectedTreatmentSite.attributes.OBJECTID);
   }, [selectedTreatmentSite]);
-
-  /** Filter and sort the sites based on the values of the illness and sort dropdowns. */
-  /** Medications, Filters effects handled in PopoverMultiSelect */
-  useEffect(() => {
-    if (locations == null) {
-      return;
-    }
-    //Single card should be displayed
-    if (sharedSiteFacilityID !== null) {
-      const filteredLocs = locations.filter((location) => {
-        return sharedSiteFacilityID == location.attributes.facility_id;
-      });
-      setSortedSites(filteredLocs);
-      return;
-    }
-    const filterAndSort = async () => {
-      const updatedSites = await Promise.all(
-        locations.map(async (site: object) => {
-          const serviceSite: SiteType = site as SiteType;
-          const serviceSiteAttributes: SiteAttributesType =
-            serviceSite.attributes;
-
-          // Fetch distance
-          const distance = await calculateDistanceBetweenTwoPoints(
-            serviceSiteAttributes,
-            searchPoint,
-          );
-          serviceSiteAttributes.distance = distance ?? 0;
-
-          // Evaluate whether site has treatments for the different illnesses
-          serviceSite.attributes.has_flu_treatments = false;
-          serviceSite.attributes.has_covid_treatments = false;
-          config.fieldsets.fluTreatmentFields.forEach((field) => {
-            if (
-              serviceSiteAttributes[`${field}` as keyof SiteAttributesType]
-                ?.toString()
-                .toLowerCase() == "true"
-            ) {
-              serviceSite.attributes.has_flu_treatments = true;
-            }
-          });
-          config.fieldsets.covidTreatmentFields.forEach((field) => {
-            if (
-              serviceSiteAttributes[`${field}` as keyof SiteAttributesType]
-                ?.toString()
-                .toLowerCase() == "true"
-            ) {
-              serviceSite.attributes.has_covid_treatments = true;
-            }
-          });
-          return serviceSite;
-        }),
-      );
-
-      const sortedSites = updatedSites.sort((a, b) => {
-        if (selectedSort.value === "distance") {
-          const distanceA = a.attributes.distance || 0;
-          const distanceB = b.attributes.distance || 0;
-          return distanceA - distanceB;
-        } else if (selectedSort.value === "last reported") {
-          const dateA = new Date(a.attributes.last_report_date).getTime();
-          const dateB = new Date(b.attributes.last_report_date).getTime();
-          return dateB - dateA;
-        }
-        return 0;
-      });
-
-      //Filter by Illness value
-      const filteredSites = [...sortedSites];
-
-      const x = filteredSites.filter((site) => {
-        if (selectedIllness.value.toLowerCase() == "flu") {
-          return site.attributes.has_flu_treatments == true;
-        } else if (selectedIllness.value.toLowerCase() == "covid") {
-          return site.attributes.has_covid_treatments == true;
-        }
-        return false;
-      }) as __esri.Graphic[];
-
-      setSortedSites(x);
-    };
-
-    filterAndSort();
-  }, [
-    searchPoint,
-    selectedSort,
-    selectedIllness,
-    locations,
-    sharedSiteFacilityID,
-    setSortedSites,
-  ]);
   // #endregion ----------------- Hooks (Other) --------------------------------
 
   // #region --------- Short-Circuit (Empty/Invalid State) ---------------------
@@ -237,27 +175,6 @@ const Locations = () => {
     setSFID(null);
   };
 
-  // useEffect that watches sortedSites and sets a distance param for each site
-  useEffect(() => {
-    if (sortedSites.length > 0) {
-      const resetDist = async () => {
-        const newSites = [...sortedSites];
-        newSites.forEach(async (site) => {
-          const distance = await calculateDistanceBetweenTwoPoints(
-            site.attributes,
-            searchPoint,
-          );
-          site.attributes.distance = distance ?? 0;
-        });
-        return newSites;
-      };
-
-      resetDist().then((newSites) => {
-        setSortedSites(newSites);
-      });
-    }
-  }, [locations, searchPoint]);
-
   // Highlight the location if it was selected on the map
   useEffect(() => {
     if (selectedTreatmentSite) {
@@ -269,8 +186,6 @@ const Locations = () => {
   }, [selectedTreatmentSite]);
 
   const onSearchHereClick = () => {
-    // reset locations extent so we don't zoom to the extent of the previous search
-    setLocationsExtent(null);
     // get the center of the mapview
     locationsMapView &&
       setSearchPoint({
@@ -307,7 +222,7 @@ const Locations = () => {
             <Search placeholder={t("Locations.Search Placeholder")} />
             <DropdownSingleSelect type={"illness"} />
             <PopoverMultiSelect type={"medications"} />
-            <StyledSearchHere isMobileListView={isMobileListView}>
+            <StyledSearchHere style={{ display: isMobileListView ? 'none' : 'flex' }}>
               <button
                 className="hhs-primary-button zoom-to-button"
                 onClick={onSearchHereClick}

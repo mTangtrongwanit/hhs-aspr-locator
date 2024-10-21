@@ -20,6 +20,7 @@ import {
   StyledTitleRow,
 } from "./Card.styles";
 import Tooltip from "./Tooltip";
+import { isTrue } from "@/utils";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
@@ -102,14 +103,6 @@ const Card = ({
         geopoint: serviceProvider?.geopoint,
       });
   };
-
-  /**
-   * Checks if a value is "true" or true.
-   * @param value Value to check for limited truthiness.
-   * @returns Boolean true/false
-   */
-  const isTrue = (value?: string | boolean) =>
-    !!(typeof value === "string" ? value.toLowerCase() === "true" : value);
 
   {
     /*  this tooltip icons lookup object includes a check for selected illness, the icon to show, description to show on hover and an extra element if needed
