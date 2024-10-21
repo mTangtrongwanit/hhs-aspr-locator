@@ -23,7 +23,7 @@ import { type Props } from "./Tooltip.types";
 // #endregion ====================== IMPORTS ===================================
 
 // #region =================== EXPORTED COMPONENT ==============================
-const Tooltip = ({ icon, children }: Props) => {
+const Tooltip = ({ icon, children, name }: Props) => {
   // #region ------------------ Hooks (Resources) ------------------------------
   /** Application configuration */
   // const config = useConfiguration();
@@ -39,7 +39,7 @@ const Tooltip = ({ icon, children }: Props) => {
     <StyledTooltip.Provider>
       <StyledTooltip.Root>
         <StyledTooltip.Trigger asChild>
-          <StyledTriggerButton aria-label="Category Label">
+          <StyledTriggerButton aria-label={`Description of ${name}`}>
             <StyledIcon>{icon}</StyledIcon>
           </StyledTriggerButton>
         </StyledTooltip.Trigger>

@@ -121,6 +121,7 @@ const Card = ({
   }
   const toolTipIcons = [
     {
+      name: "Patient Assistance Program",
       condition:
         selectedIllness?.toLowerCase() === "covid" &&
         (isTrue(serviceProvider?.is_pap) ||
@@ -138,6 +139,7 @@ const Card = ({
       description: t("Card.hoverPapDescription"),
     },
     {
+      name: "USG Product",
       condition:
         selectedIllness?.toLowerCase() === "covid" &&
         isTrue(serviceProvider?.has_USG_product),
@@ -145,6 +147,7 @@ const Card = ({
       description: t("Card.hoverUSGProduct"),
     },
     {
+      name: "Home Delivery",
       condition:
         (selectedIllness?.toLowerCase() === "covid" ||
           selectedIllness?.toLowerCase() === "flu") &&
@@ -153,6 +156,7 @@ const Card = ({
       description: t("Card.hoverHomeDelivery"),
     },
     {
+      name: "ICATT",
       condition:
         selectedIllness?.toLowerCase() === "covid" &&
         isTrue(serviceProvider?.is_icatt_site),
@@ -160,6 +164,7 @@ const Card = ({
       description: t("Card.hoverICATT"),
     },
     {
+      name: "Oseltamivir Tamiflu Only",
       condition:
         selectedIllness?.toLowerCase() === "flu" &&
         isTrue(serviceProvider?.has_oseltamivir_tamiflu) &&
@@ -168,6 +173,7 @@ const Card = ({
       description: t("Card.hoverTamifluOnly"),
     },
     {
+      name: "Oseltamivir Suspension",
       condition:
         selectedIllness?.toLowerCase() === "flu" &&
         isTrue(serviceProvider?.has_oseltamivir_suspension),
@@ -175,6 +181,7 @@ const Card = ({
       description: t("Card.hoverOseltamivirSuspension"),
     },
     {
+      name: "Prescribing Services",
       condition:
         (selectedIllness?.toLowerCase() === "covid" ||
           selectedIllness?.toLowerCase() === "flu") &&
@@ -246,7 +253,7 @@ const Card = ({
         {toolTipIcons.map((icon, index) => {
           return (
             icon.condition && (
-              <Tooltip icon={icon.icon} key={index}>
+              <Tooltip name={icon.name} icon={icon.icon} key={index}>
                 <p>
                   {icon.extraElement}
                   {icon.description}
