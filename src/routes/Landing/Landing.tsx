@@ -78,8 +78,8 @@ const Landing = () => {
         </StyledRow>
         <StyledLink
           to="/locations"
-          aria-label="Continue to find locations near you"
-          title="Continue to find locations near you"
+          aria-label="View Locations based on entered location and selected treatment choice"
+          title="View Locations based on entered location and selected treatment choice"
         >
           {t("Landing.View Locations Button Label")}
         </StyledLink>

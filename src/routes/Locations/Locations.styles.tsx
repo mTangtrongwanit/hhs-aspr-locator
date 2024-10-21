@@ -100,6 +100,7 @@ export const StyledListContainer = styled.section`
   display: flex;
   flex-direction: column;
   gap: var(--unit);
+  background-color: var(--light);
   // --- Decorative ---
   // --- States ---
 
@@ -220,6 +221,10 @@ export const StyledLocationsContent = styled.main`
     display: flex;
     background: var(--light);
   }
+
+  #alert {
+    position: absolute;
+  }
 `;
 
 export const StyledSearchHere = styled.div<{ ismobilelistview: string }>`
@@ -228,8 +233,8 @@ export const StyledSearchHere = styled.div<{ ismobilelistview: string }>`
   @media ${Breakpoints.sm} {
   right: none;
   position: relative;
-  display: ${({ ismobilelistview }) => (ismobilelistview === 'true' ? 'none' : 'flex')
-}
+  display: ${({ ismobilelistview }) => (ismobilelistview === 'true' ? 'none' : 'flex')}
+  }
 `;
 
 // #endregion ------------ Parent Component + Variants -------------------------
