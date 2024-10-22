@@ -111,7 +111,7 @@ const HeaderComponent = () => {
         <StyledHeaderContentContainer>
         { location.pathname === "/locations"
           ? <StyledLink
-          to="/"
+          to="/#faq"
           aria-label="View FAQ section"
           title="View FAQ section"
         >

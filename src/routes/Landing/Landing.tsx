@@ -4,10 +4,15 @@
 
 // #region ========================= IMPORTS ===================================
 
+// #region --------------------------- React -----------------------------------
+import { useEffect } from "react";
+// #endregion ------------------------ React -----------------------------------
+
 // #region ------------ 3rd-Party Components / Libraries -----------------------
 import { useTranslation } from "react-i18next";
 import * as Accordion from "@radix-ui/react-accordion";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
+import { useLocation } from "react-router-dom";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -38,9 +43,16 @@ import "@/utils/i18n";
 const Landing = () => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const { t } = useTranslation();
+  const location = useLocation();
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region -------------------- Hooks (State) --------------------------------
+  useEffect(() => {
+    if (location.hash === "#faq") {
+      document.getElementById("faq")?.scrollIntoView();
+    }
+  }, [location.hash]);
+
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
@@ -90,7 +102,7 @@ const Landing = () => {
         //#endregion First Row
       }
 
-      <StyledContextRow>
+      <StyledContextRow id="faq">
         <h2 className="visually-hidden">
           {t("Landing.Context Container Screenreader Heading")}
         </h2>
