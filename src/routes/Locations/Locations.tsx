@@ -233,10 +233,14 @@ const Locations = () => {
           <StyledListTitleContainer>
             <h3 aria-live="polite">
               <span className="visually-hidden">Results have been filtered to: </span>
-              <Trans
-                i18nKey="Locations.List Heading"
-                count={sortedSites?.length}
-              ></Trans>
+                {sortedSites?.length > 1 ? (
+                <Trans
+                  i18nKey="Locations.List Heading"
+                  count={sortedSites?.length}
+                ></Trans>
+                ) : (
+                <Trans i18nKey="Locations.List Heading Share" count={sortedSites?.length}></Trans>
+                )}
             </h3>
             {sharedSiteFacilityID === null && (
               <StyledListOptionsContainer>
