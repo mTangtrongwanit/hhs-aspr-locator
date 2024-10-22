@@ -42,6 +42,7 @@
     "Search Container Screenreader Heading": "Search for Locations",
     "Results Screenreader Heading": "Results",
     "List Heading": "{{count}} Sites",
+    "List Heading Share": "{{count}} Site",
     "Map Screenreader Heading": "Map of Sites",
     "Empty List": "If you still have no results, try searching a different location to view sites."
   },
