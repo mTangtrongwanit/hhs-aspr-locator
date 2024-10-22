@@ -131,7 +131,8 @@ const Card = ({
         <a
           href="https://paxlovid.iassist.com/"
           target="_blank"
-          style={{ color: "inherit" }}
+          rel="noopener noreferrer"
+          className="inherit-color"
         >
           {t("Card.hoverPapLink")}
         </a>
