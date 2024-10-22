@@ -107,6 +107,7 @@ const Footer = () => {
                 aria-label="Link to ASPR Archive"
                 title="Link to ASPR Archive"  
                 target="_blank"
+                rel="noopener"
               >
                 ASPR Archive
               </a>
@@ -148,6 +149,7 @@ const Footer = () => {
                 aria-label="Link to plugins page on HHS site"
                 title="Link to plugins page on ASPR site" 
                 target="_blank"
+                rel="noopener"
               >
                 HHS Viewers &amp; Players
               </a>
@@ -159,6 +161,7 @@ const Footer = () => {
                 aria-label="Link to plain writing page on HHS site"
                 title="Link to plain writing page on ASPR site" 
                 target="_blank"
+                rel="noopener"
               >
                 HHS Plain Language
               </a>
@@ -166,7 +169,7 @@ const Footer = () => {
             <StyledFooterLink>|</StyledFooterLink>
             <StyledFooterLink>
               <a 
-                href="https://www.hhs.gov/foia/index.html" target="_blank"
+                href="https://www.hhs.gov/foia/index.html" target="_blank" rel="noopener"
                 aria-label="Link to FOIA page on HHS site"
                 title="Link to FOIA page on ASPR site" 
               >
@@ -180,6 +183,7 @@ const Footer = () => {
                 aria-label="Link to vulnerability disclosure policy page on HHS site"
                 title="Link to vulnerability disclosure policy page on HHS site" 
                 target="_blank"
+                rel="noopener"
               >
                 Vulnerability Disclosure Policy
               </a>
@@ -219,7 +223,7 @@ const Footer = () => {
             <StyledFooterMediaLink>
               <a 
                 href="https://x.com/ASPRgov"
-                target="_blank"
+                target="_blank" rel="noopener"
                 aria-label="Link to ASPRgov X account"
                 title="Link to ASPRgov X account"
               >
@@ -231,7 +235,7 @@ const Footer = () => {
                 href="https://x.com/HHS_ASPR"
                 aria-label="Link to HHS_ASPR X account"
                 title="Link to HHS_ASPR X account"
-                target="_blank">
+                target="_blank" rel="noopener">
                 <img src={xPath} alt="X Icon" />
               </a>
             </StyledFooterMediaLink>
@@ -240,7 +244,7 @@ const Footer = () => {
                 href="https://www.linkedin.com/company/aspr/"
                 aria-label="Link to ASPR LinkedIn account"
                 title="Link to ASPR LinkedIn account"
-                target="_blank">
+                target="_blank" rel="noopener">
                 <img src={linkedinPath} alt="LinkedIn Icon" />
               </a>
             </StyledFooterMediaLink>
@@ -249,7 +253,7 @@ const Footer = () => {
                 href="https://www.facebook.com/ASPRgov/"
                 aria-label="Link to ASPRgov Facebook account"
                 title="Link to ASPRgov Facebook account"
-                target="_blank">
+                target="_blank" rel="noopener">
                 <img src={fbPath} alt="Facebook Icon" />
               </a>
             </StyledFooterMediaLink>
@@ -258,7 +262,7 @@ const Footer = () => {
                 href="https://www.instagram.com/asprgov"
                 aria-label="Link to ASPRgov Instagram account"
                 title="Link to ASPRgov Instagram account"
-                target="_blank"
+                target="_blank" rel="noopener"
               >
                 <img src={igPath} alt="Instagram Icon" />
               </a>
@@ -268,7 +272,7 @@ const Footer = () => {
                 href="https://www.threads.net/@asprgov"
                 aria-label="Link to ASPRgov Threads account"
                 title="Link to ASPRgov Threads account"
-                target="_blank"
+                target="_blank" rel="noopener"
               >
                 <img src={threadsPath} alt="Threads Icon" />
               </a>
@@ -278,7 +282,7 @@ const Footer = () => {
                 href="https://www.flickr.com/photos/asprgov"
                 aria-label="Link to ASPRgov Flickr account"
                 title="Link to ASPRgov Flickr account"
-                target="_blank"
+                target="_blank" rel="noopener"
               >
                 <img src={flickrPath} alt="Flickr Icon" />
               </a>
@@ -288,7 +292,7 @@ const Footer = () => {
                 href="https://www.youtube.com/c/ASPRgov"
                 aria-label="Link to ASPRgov YouTube account"
                 title="Link to ASPRgov YouTube account"
-                target="_blank"
+                target="_blank" rel="noopener"
               >
                 <img src={ytPath} alt="YouTube Icon" />
               </a>
@@ -298,7 +302,7 @@ const Footer = () => {
                 href="https://cloud.connect.hhs.gov/PHE"
                 aria-label="Link to ASPR latest news sign-up page"
                 title="Link to ASPR latest news sign-up page"
-                target="_blank"
+                target="_blank" rel="noopener"
               >
                 <img src={emailPath} alt="Email Icon" />
               </a>
