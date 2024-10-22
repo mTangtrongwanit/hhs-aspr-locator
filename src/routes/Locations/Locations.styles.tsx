@@ -49,10 +49,19 @@ export const StyledSearchContainer = styled.section`
   gap: var(--unit);
   flex-wrap: wrap;
   z-index: 1;
+  justify-content: space-between;
   // --- Decorative ---
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.04);
   // --- States ---
   // --- Children ---
+
+  #search-organizer {
+    display: inherit;
+    gap: inherit;
+    flex-wrap: inherit;
+    z-index: inherit;
+  }
+
   #listViewToggle {
     display: none;
     border: var(--border) solid var(--brand);
