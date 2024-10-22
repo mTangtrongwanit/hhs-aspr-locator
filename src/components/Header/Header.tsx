@@ -26,6 +26,7 @@ import {
   StyledHeaderLink,
   StyledHeaderLogo,
   StyledAppTitle,
+  StyledLink,
   StyledHeaderContentContainer,
 } from "./Header.styles";
 // #endregion ----------- Custom Components / Utilities ------------------------
@@ -108,6 +109,15 @@ const HeaderComponent = () => {
           <StyledAppTitle>{t("Header.Title")}</StyledAppTitle>
         </StyledHeaderContentContainer>
         <StyledHeaderContentContainer>
+        { location.pathname.includes("locations")
+          ? <StyledLink
+          to="/#faq"
+          aria-label="View FAQ section"
+          title="View FAQ section"
+        >
+          FAQ
+        </StyledLink>
+          : ""  }
           <DropdownSingleSelect type="language" />
         </StyledHeaderContentContainer>
       </StyledHeader>

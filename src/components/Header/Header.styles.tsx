@@ -41,6 +41,7 @@ import { Breakpoints } from "@/utils/style-utils";
 export const StyledHeaderContentContainer = styled.div`
   flex: 2;
   display: flex;
+  gap: var(--unit);
   justify-content: center;
   align-items: center;
   &:first-child {
@@ -76,6 +77,27 @@ export const StyledAppTitle = styled.h1`
   font-size: var(--text-3);
   font-weight: 700;
   color: var(--brand);
+`;
+
+export const StyledLink = styled(Link)`
+  border: var(--border) solid var(--brand);
+  width: fit-content;
+  align-items: center;
+  padding: calc(var(--unit) * 0.75) calc(var(--unit) * 0.75);
+  gap: calc(var(--unit) * 0.25);
+  font-size: var(--text-0);
+  font-weight: 600 !important;
+  line-height: 125%;
+  color: var(--brand);
+  border-radius: var(--radius);
+  background: white;
+  text-decoration: none;
+
+  &:hover {
+    color: white;
+    background: var(--accent);
+    cursor: pointer;
+  }
 `;
 
 export const StyledHeader = styled.header`
