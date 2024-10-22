@@ -198,7 +198,7 @@ const Footer = () => {
               >
                 <StyledFooterAddressImage
                   src={HHSLogoPath}
-                  alt="Department of Health and Human Services Logo"
+                  alt="Department of Health & Human Services Logo • USA"
                 />
               </StyledFooterImageLink>
             </StyledFooterAddressImageContainer>
