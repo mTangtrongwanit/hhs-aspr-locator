@@ -95,6 +95,7 @@ const Footer = () => {
               <a
                 href="https://public4.pagefreezer.com/browse/ASPR%20HHS/23-08-2024T07:29/https://aspr.hhs.gov/Pages/Home.aspx"
                 target="_blank"
+                rel="noopener"
               >
                 ASPR Archive
               </a>
@@ -122,6 +123,7 @@ const Footer = () => {
               <a
                 href="https://www.hhs.gov/web/policies-and-standards/hhs-web-policies/plugins/index.html"
                 target="_blank"
+                rel="noopener"
               >
                 HHS Viewers &amp; Players
               </a>
@@ -131,13 +133,14 @@ const Footer = () => {
               <a
                 href="https://www.hhs.gov/open/plain-writing/index.html"
                 target="_blank"
+                rel="noopener"
               >
                 HHS Plain Language
               </a>
             </StyledFooterLink>
             <StyledFooterLink>|</StyledFooterLink>
             <StyledFooterLink>
-              <a href="https://www.hhs.gov/foia/index.html" target="_blank">
+              <a href="https://www.hhs.gov/foia/index.html" target="_blank" rel="noopener">
                 FOIA
               </a>
             </StyledFooterLink>
@@ -146,6 +149,7 @@ const Footer = () => {
               <a
                 href="https://www.hhs.gov/vulnerability-disclosure-policy/index.html"
                 target="_blank"
+                rel="noopener"
               >
                 Vulnerability Disclosure Policy
               </a>
@@ -175,47 +179,47 @@ const Footer = () => {
           </StyledFooterImageContainer>
           <StyledFooterMediaLinksContainer>
             <StyledFooterMediaLink>
-              <a href="https://x.com/ASPRgov" target="_blank">
+              <a href="https://x.com/ASPRgov" target="_blank" rel="noopener">
                 <img src={xAltPath} alt="X AltIcon" />
               </a>
             </StyledFooterMediaLink>
             <StyledFooterMediaLink>
-              <a href="https://x.com/HHS_ASPR" target="_blank">
+              <a href="https://x.com/HHS_ASPR" target="_blank" rel="noopener">
                 <img src={xPath} alt="X Icon" />
               </a>
             </StyledFooterMediaLink>
             <StyledFooterMediaLink>
-              <a href="https://www.linkedin.com/company/aspr/" target="_blank">
+              <a href="https://www.linkedin.com/company/aspr/" target="_blank" rel="noopener">
                 <img src={linkedinPath} alt="LinkedIn Icon" />
               </a>
             </StyledFooterMediaLink>
             <StyledFooterMediaLink>
-              <a href="https://www.facebook.com/ASPRgov/" target="_blank">
+              <a href="https://www.facebook.com/ASPRgov/" target="_blank" rel="noopener">
                 <img src={fbPath} alt="Facebook Icon" />
               </a>
             </StyledFooterMediaLink>
             <StyledFooterMediaLink>
-              <a href="https://www.instagram.com/asprgov" target="_blank">
+              <a href="https://www.instagram.com/asprgov" target="_blank" rel="noopener">
                 <img src={igPath} alt="Instagram Icon" />
               </a>
             </StyledFooterMediaLink>
             <StyledFooterMediaLink>
-              <a href="https://www.threads.net/@asprgov" target="_blank">
+              <a href="https://www.threads.net/@asprgov" target="_blank" rel="noopener">
                 <img src={threadsPath} alt="Threads Icon" />
               </a>
             </StyledFooterMediaLink>
             <StyledFooterMediaLink>
-              <a href="https://www.flickr.com/photos/asprgov" target="_blank">
+              <a href="https://www.flickr.com/photos/asprgov" target="_blank" rel="noopener">
                 <img src={flickrPath} alt="Flickr Icon" />
               </a>
             </StyledFooterMediaLink>
             <StyledFooterMediaLink>
-              <a href="https://www.youtube.com/c/ASPRgov" target="_blank">
+              <a href="https://www.youtube.com/c/ASPRgov" target="_blank" rel="noopener">
                 <img src={ytPath} alt="YouTube Icon" />
               </a>
             </StyledFooterMediaLink>
             <StyledFooterMediaLink>
-              <a href="https://cloud.connect.hhs.gov/PHE" target="_blank">
+              <a href="https://cloud.connect.hhs.gov/PHE" target="_blank" rel="noopener">
                 <img src={emailPath} alt="Email Icon" />
               </a>
             </StyledFooterMediaLink>
