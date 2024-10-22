@@ -101,7 +101,7 @@ const HeaderComponent = () => {
               srcSet={`${mobileLogoPath} 274w, ${webLogoPath} 639w`}
               sizes="(max-width: 1100px) 117px,
               296px"
-              alt="Administration for Strategic Preparedness and Response Logo"
+              alt="ASPR Administration for Strategic Preparedness & Response Logo"
             />
           </StyledHeaderLink>
         </StyledHeaderContentContainer>
