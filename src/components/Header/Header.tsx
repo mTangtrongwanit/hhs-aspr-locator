@@ -107,7 +107,7 @@ const HeaderComponent = () => {
           <StyledAppTitle>{t("Header.Title")}</StyledAppTitle>
         </StyledHeaderContentContainer>
         <StyledHeaderContentContainer>
-        { location.pathname === "/locations"
+        {location.pathname.includes('locations')
           ? <StyledLink
           to="/"
           aria-label="View FAQ section"
