@@ -205,6 +205,8 @@ const Locations = () => {
               <button
                 className="hhs-primary-button zoom-to-button"
                 onClick={onSearchHereClick}
+                aria-label="Search for sites in the current map extent"
+                title="Search for sites in the current map extent"
               >
                 Search this location
               </button>

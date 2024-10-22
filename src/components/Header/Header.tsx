@@ -92,7 +92,9 @@ const HeaderComponent = () => {
       </aside>
       <StyledHeader ref={headerRef}>
         <StyledHeaderContentContainer>
-          <StyledHeaderLink to="/">
+          <StyledHeaderLink to="/"
+            aria-label="Link to COVID-19 and Flu Treatments Locator homepage"
+            title="Link to COVID-19 and Flu Treatments Locator homepage">
             <StyledHeaderLogo
               src={webLogoPath}
               srcSet={`${mobileLogoPath} 274w, ${webLogoPath} 639w`}
