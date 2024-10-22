@@ -246,7 +246,6 @@ const Card = ({
             icon.condition && (
               <Tooltip name={icon.name} icon={icon.icon} key={index}>
                 <p>
-                  {icon.extraElement}
                   {icon.description}
                 </p>
               </Tooltip>
