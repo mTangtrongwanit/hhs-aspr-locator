@@ -97,21 +97,48 @@ const Landing = () => {
         <p>
           This content is not fully Section 508 conformant. If you need
           assistance, please contact&nbsp;
-          <a href="mailto:gis@hhs.gov">gis@hhs.gov</a>.{" "}
-          <a href="https://healthdata.gov/ASPR/COVID-19-Treatments/xkzp-zhs7/data_preview">
+          <a 
+            href="mailto:gis@hhs.gov"
+            aria-label="Email link: gis@hhs.gov"
+            title="Email link: gis@hhs.gov"    
+          >
+              gis@hhs.gov
+          </a>.{" "}
+          <a 
+            href="https://healthdata.gov/ASPR/COVID-19-Treatments/xkzp-zhs7/data_preview"
+            aria-label="Link to tabular access to the data"
+            title="Link to tabular access to the data"    
+          >
             Tabular access to the data is also available.
           </a>
         </p>
         <p>
           This website includes locations participating in the U.S.
           Government&nbsp;
-          <a href="https://paxlovid.iassist.com/">Patient Assistance Program</a>
+          <a 
+            href="https://paxlovid.iassist.com/"
+            aria-label="Link to patient assistance program"
+            title="Link to patient assistance program"   
+          >
+            Patient Assistance Program
+          </a>
           &nbsp; operated by Pfizer, offering free Paxlovid for eligible
           patients. Other assistance programs are available for&nbsp;
-          <a href="https://aspr.hhs.gov/COVID-19/Treatments/Pages/Possible-Treatment-Options-for-COVID19.aspx#oral-antivirals">
+          <a 
+            href="https://aspr.hhs.gov/COVID-19/Treatments/Pages/Possible-Treatment-Options-for-COVID19.aspx#oral-antivirals"
+            aria-label="Link to COVID-19 assistance program"
+            title="Link to COVID-19 assistance program"
+          >
             COVID-19
           </a>{" "}
-          and <a href="#faq-flu">flu.</a>
+          and
+          <a 
+            href="#faq-flu"
+            aria-label="Link to flu assistance program"
+            title="Link to flu assistance program"
+          >
+              flu.
+          </a>
         </p>
         <StyledFAQTitle>Frequently Asked Questions</StyledFAQTitle>
         {
