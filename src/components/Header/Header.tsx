@@ -26,6 +26,7 @@ import {
   StyledHeaderLink,
   StyledHeaderLogo,
   StyledAppTitle,
+  StyledLink,
   StyledHeaderContentContainer,
 } from "./Header.styles";
 // #endregion ----------- Custom Components / Utilities ------------------------
@@ -92,13 +93,15 @@ const HeaderComponent = () => {
       </aside>
       <StyledHeader ref={headerRef}>
         <StyledHeaderContentContainer>
-          <StyledHeaderLink to="/">
+          <StyledHeaderLink to="/"
+            aria-label="Link to COVID-19 and Flu Treatments Locator homepage"
+            title="Link to COVID-19 and Flu Treatments Locator homepage">
             <StyledHeaderLogo
               src={webLogoPath}
               srcSet={`${mobileLogoPath} 274w, ${webLogoPath} 639w`}
               sizes="(max-width: 1100px) 117px,
               296px"
-              alt="Administration for Strategic Preparedness and Response Logo"
+              alt="ASPR Administration for Strategic Preparedness & Response Logo"
             />
           </StyledHeaderLink>
         </StyledHeaderContentContainer>
@@ -106,6 +109,15 @@ const HeaderComponent = () => {
           <StyledAppTitle>{t("Header.Title")}</StyledAppTitle>
         </StyledHeaderContentContainer>
         <StyledHeaderContentContainer>
+        { location.pathname.includes("locations")
+          ? <StyledLink
+          to="/#faq"
+          aria-label="View FAQ section"
+          title="View FAQ section"
+        >
+          FAQ
+        </StyledLink>
+          : ""  }
           <DropdownSingleSelect type="language" />
         </StyledHeaderContentContainer>
       </StyledHeader>

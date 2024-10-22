@@ -26,15 +26,55 @@
   "Landing": {
     "Search Container Heading": "Find COVID-19 and Flu Medications",
     "Search Container Description": "The locator displays pharmacies, clinics, and other locations with safe and effective COVID-19 and flu medications. These medications require a prescription from a healthcare provider. COVID-19 and flu medications may be available at additional locations not shown on this locator.",
-    "Illness Placeholder": "What do you need treatment for",
+    "Illness Placeholder": "What do you need treatment for?",
     "View Locations Button Label": "View Locations",
     "Context Container Screenreader Heading": "Contextual Information",
     "Assistance Program Description": "i18n Todo - not sure how to effectively break this up into paragraph text vs links",
+    "Accessible FAQ Intro": "Read Frequently Asked Question: ",
     "Accordion Item 1": {
-      "Heading": "Frequently Asked Questions"
+      "Heading": "Which outpatient medications available to treat COVID-19 and flu appear on this locator?"
     },
     "Accordion Item 2": {
-      "Heading": "Disclaimer"
+      "Heading": "What are antivirals?"
+    },
+    "Accordion Item 3": {
+      "Heading": "Who can take the outpatient COVID-19 medications listed on this website?"
+    },
+    "Accordion Item 4": {
+      "Heading": "Who can take the outpatient flu medications listed on this website?"
+    },
+    "Accordion Item 5": {
+      "Heading": "Can children take the antiviral medications listed on this website?"
+    },
+    "Accordion Item 6": {
+      "Heading": "Can pregnant people take flu and COVID-19 antiviral medications?"
+    },
+    "Accordion Item 7": {
+      "Heading": "Can I get COVID-19 or flu medications over the counter (without a prescription)?"
+    },
+    "Accordion Item 8": {
+      "Heading": "Are the treatments listed on this website safe and effective?"
+    },
+    "Accordion Item 9": {
+      "Heading": "What programs exist to provide continued affordable access to these treatments outside of usual prescription drug coverage?"
+    },
+    "Accordion Item 10": {
+      "Heading": "What are monoclonal antibodies and why are they not listed on this map?"
+    },
+    "Accordion Item 11": {
+      "Heading": "Are all sites that offer COVID-19 or influenza treatments listed on the locator?"
+    },
+    "Accordion Item 12": {
+      "Heading": "What services may the locations listed on the locator provide?"
+    },
+    "Accordion Item 13": {
+      "Heading": "How can my site be added to locator?"
+    },
+    "Accordion Item 14": {
+      "Heading": "How can my site participate in the Paxlovid Patient Assistance Program?"
+    },
+    "Accordion Item 15": {
+      "Heading": "Data Information and Disclaimers"
     }
   },
   "Locations": {
@@ -42,6 +82,7 @@
     "Search Container Screenreader Heading": "Search for Locations",
     "Results Screenreader Heading": "Results",
     "List Heading": "{{count}} Sites",
+    "List Heading Share": "{{count}} Site",
     "Map Screenreader Heading": "Map of Sites",
     "Empty List": "If you still have no results, try searching a different location to view sites."
   },
@@ -63,7 +104,7 @@
     "oseltamivirGeneric": "Oseltamivir Generic",
     "prescribingServices": "Prescribing Services",
     "hoverPapLink": "Paxlovid Patient Assistance Program site",
-    "hoverPapDescription": ": no-cost Paxlovid for eligible patients",
+    "hoverPapDescription": "No-cost Paxlovid for eligible patients",
     "hoverUSGProduct": "No-cost medications distributed by the U.S. government may be available",
     "hoverHomeDelivery": "Home delivery of medication may be available",
     "hoverICATT": "Increasing Community Access to Testing site: no-cost COVID-19 testing for eligible people",

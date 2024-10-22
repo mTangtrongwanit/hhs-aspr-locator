@@ -4,10 +4,15 @@
 
 // #region ========================= IMPORTS ===================================
 
+// #region --------------------------- React -----------------------------------
+import { useEffect } from "react";
+// #endregion ------------------------ React -----------------------------------
+
 // #region ------------ 3rd-Party Components / Libraries -----------------------
 import { useTranslation } from "react-i18next";
 import * as Accordion from "@radix-ui/react-accordion";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
+import { useLocation } from "react-router-dom";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -38,9 +43,16 @@ import "@/utils/i18n";
 const Landing = () => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const { t } = useTranslation();
+  const location = useLocation();
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region -------------------- Hooks (State) --------------------------------
+  useEffect(() => {
+    if (location.hash === "#faq") {
+      document.getElementById("faq")?.scrollIntoView();
+    }
+  }, [location.hash]);
+
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
@@ -90,28 +102,56 @@ const Landing = () => {
         //#endregion First Row
       }
 
-      <StyledContextRow>
+      <StyledContextRow id="faq">
         <h2 className="visually-hidden">
           {t("Landing.Context Container Screenreader Heading")}
         </h2>
         <p>
           This content is not fully Section 508 conformant. If you need
           assistance, please contact&nbsp;
-          <a href="mailto:gis@hhs.gov">gis@hhs.gov</a>.{" "}
-          <a href="https://healthdata.gov/ASPR/COVID-19-Treatments/xkzp-zhs7/data_preview">
+          <a
+            href="mailto:gis@hhs.gov"
+            aria-label="Email link: gis@hhs.gov"
+            title="Email link: gis@hhs.gov"
+          >
+            gis@hhs.gov
+          </a>
+          .{" "}
+          <a
+            href="https://healthdata.gov/ASPR/COVID-19-Treatments/xkzp-zhs7/data_preview"
+            aria-label="Link to tabular access to the data"
+            title="Link to tabular access to the data"
+          >
             Tabular access to the data is also available.
           </a>
         </p>
         <p>
           This website includes locations participating in the U.S.
           Government&nbsp;
-          <a href="https://paxlovid.iassist.com/">Patient Assistance Program</a>
+          <a
+            href="https://paxlovid.iassist.com/"
+            aria-label="Link to patient assistance program"
+            title="Link to patient assistance program"
+          >
+            Patient Assistance Program
+          </a>
           &nbsp; operated by Pfizer, offering free Paxlovid for eligible
           patients. Other assistance programs are available for&nbsp;
-          <a href="https://aspr.hhs.gov/COVID-19/Treatments/Pages/Possible-Treatment-Options-for-COVID19.aspx#oral-antivirals">
+          <a
+            href="https://aspr.hhs.gov/COVID-19/Treatments/Pages/Possible-Treatment-Options-for-COVID19.aspx#oral-antivirals"
+            aria-label="Link to COVID-19 assistance program"
+            title="Link to COVID-19 assistance program"
+          >
             COVID-19
           </a>{" "}
-          and <a href="#faq-flu">flu.</a>
+          and
+          <a
+            href="#faq-flu"
+            aria-label="Link to flu assistance program"
+            title="Link to flu assistance program"
+          >
+            flu.
+          </a>
         </p>
         <StyledFAQTitle>Frequently Asked Questions</StyledFAQTitle>
         {
@@ -125,11 +165,16 @@ const Landing = () => {
             <Accordion.Header className="AccordionHeader">
               <Accordion.Trigger
                 className={"AccordionTrigger"}
-                aria-label="Read Frequently Asked Questions"
-                title="Read Frequently Asked Questions"
+                aria-label={
+                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Accordion Item 1.Heading")
+                }
+                title={
+                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Accordion Item 1.Heading")
+                }
               >
-                Which outpatient medications available to treat COVID-19 and flu
-                appear on this locator?
+                {t("Landing.Accordion Item 1.Heading")}
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.Trigger>
             </Accordion.Header>
@@ -213,10 +258,16 @@ const Landing = () => {
             <Accordion.Header className="AccordionHeader">
               <Accordion.Trigger
                 className={"AccordionTrigger"}
-                aria-label="Read Frequently Asked Questions"
-                title="Read Frequently Asked Questions"
+                aria-label={
+                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Accordion Item 2.Heading")
+                }
+                title={
+                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Accordion Item 2.Heading")
+                }
               >
-                What are antivirals?
+                {t("Landing.Accordion Item 2.Heading")}
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.Trigger>
             </Accordion.Header>
@@ -259,11 +310,17 @@ const Landing = () => {
             <Accordion.Header className="AccordionHeader">
               <Accordion.Trigger
                 className={"AccordionTrigger"}
-                aria-label="Read Frequently Asked Questions"
-                title="Read Frequently Asked Questions"
+                aria-label={
+                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Accordion Item 3.Heading")
+                }
+                title={
+                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Accordion Item 3.Heading")
+                }
               >
-                Who can take the outpatient COVID-19 medications listed on this
-                website?
+                {t("Landing.Accordion Item 3.Heading")}
+
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.Trigger>
             </Accordion.Header>
@@ -330,11 +387,16 @@ const Landing = () => {
             <Accordion.Header className="AccordionHeader">
               <Accordion.Trigger
                 className={"AccordionTrigger"}
-                aria-label="Read Frequently Asked Questions"
-                title="Read Frequently Asked Questions"
+                aria-label={
+                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Accordion Item 4")
+                }
+                title={
+                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Accordion Item 4")
+                }
               >
-                Who can take the outpatient flu medications listed on this
-                website?
+                {t("Landing.Accordion Item 4.Heading")}
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.Trigger>
             </Accordion.Header>
@@ -424,11 +486,17 @@ const Landing = () => {
             <Accordion.Header className="AccordionHeader">
               <Accordion.Trigger
                 className={"AccordionTrigger"}
-                aria-label="Read Frequently Asked Questions"
-                title="Read Frequently Asked Questions"
+                aria-label={
+                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Accordion Item 5.Heading")
+                }
+                title={
+                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Accordion Item 5.Heading")
+                }
               >
-                Can children take the antiviral medications listed on this
-                website?
+                {t("Landing.Accordion Item 5.Heading")}
+
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.Trigger>
             </Accordion.Header>
@@ -512,10 +580,16 @@ const Landing = () => {
             <Accordion.Header className="AccordionHeader">
               <Accordion.Trigger
                 className={"AccordionTrigger"}
-                aria-label="Read Frequently Asked Questions"
-                title="Read Frequently Asked Questions"
+                aria-label={
+                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Accordion Item 6.Heading")
+                }
+                title={
+                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Accordion Item 6.Heading")
+                }
               >
-                Can pregnant people take flu and COVID-19 antiviral medications?
+                {t("Landing.Accordion Item 6.Heading")}
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.Trigger>
             </Accordion.Header>
@@ -592,11 +666,17 @@ const Landing = () => {
             <Accordion.Header className="AccordionHeader">
               <Accordion.Trigger
                 className={"AccordionTrigger"}
-                aria-label="Read Frequently Asked Questions"
-                title="Read Frequently Asked Questions"
+                aria-label={
+                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Accordion Item 7.Heading")
+                }
+                title={
+                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Accordion Item 7.Heading")
+                }
               >
-                Can I get COVID-19 or flu medications over the counter (without
-                a prescription)?
+                {t("Landing.Accordion Item 7.Heading")}
+
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.Trigger>
             </Accordion.Header>
@@ -633,10 +713,16 @@ const Landing = () => {
             <Accordion.Header className="AccordionHeader">
               <Accordion.Trigger
                 className={"AccordionTrigger"}
-                aria-label="Read Frequently Asked Questions"
-                title="Read Frequently Asked Questions"
+                aria-label={
+                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Accordion Item 8.Heading")
+                }
+                title={
+                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Accordion Item 8.Heading")
+                }
               >
-                Are the treatments listed on this website safe and effective?
+                {t("Landing.Accordion Item 8.Heading")}
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.Trigger>
             </Accordion.Header>
@@ -678,11 +764,17 @@ const Landing = () => {
             <Accordion.Header className="AccordionHeader">
               <Accordion.Trigger
                 className={"AccordionTrigger"}
-                aria-label="Read Frequently Asked Questions"
-                title="Read Frequently Asked Questions"
+                aria-label={
+                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Accordion Item 9.Heading")
+                }
+                title={
+                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Accordion Item 9.Heading")
+                }
               >
-                What programs exist to provide continued affordable access to
-                these treatments outside of usual prescription drug coverage?
+                {t("Landing.Accordion Item 9.Heading")}
+
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.Trigger>
             </Accordion.Header>
@@ -813,11 +905,17 @@ const Landing = () => {
             <Accordion.Header className="AccordionHeader">
               <Accordion.Trigger
                 className={"AccordionTrigger"}
-                aria-label="Read Frequently Asked Questions"
-                title="Read Frequently Asked Questions"
+                aria-label={
+                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Accordion Item 10.Heading")
+                }
+                title={
+                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Accordion Item 10.Heading")
+                }
               >
-                What are monoclonal antibodies and why are they not listed on
-                this map?
+                {t("Landing.Accordion Item 10.Heading")}
+
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.Trigger>
             </Accordion.Header>
@@ -856,11 +954,17 @@ const Landing = () => {
             <Accordion.Header className="AccordionHeader">
               <Accordion.Trigger
                 className={"AccordionTrigger"}
-                aria-label="Read Frequently Asked Questions"
-                title="Read Frequently Asked Questions"
+                aria-label={
+                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Accordion Item 11.Heading")
+                }
+                title={
+                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Accordion Item 11.Heading")
+                }
               >
-                Are all sites that offer COVID-19 or influenza treatments listed
-                on the locator?
+                {t("Landing.Accordion Item 11.Heading")}
+
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.Trigger>
             </Accordion.Header>
@@ -888,10 +992,16 @@ const Landing = () => {
             <Accordion.Header className="AccordionHeader">
               <Accordion.Trigger
                 className={"AccordionTrigger"}
-                aria-label="Read Frequently Asked Questions"
-                title="Read Frequently Asked Questions"
+                aria-label={
+                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Accordion Item 12.Heading")
+                }
+                title={
+                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Accordion Item 12.Heading")
+                }
               >
-                What services may the locations listed on the locator provide?
+                {t("Landing.Accordion Item 12.Heading")}
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.Trigger>
             </Accordion.Header>
@@ -933,10 +1043,16 @@ const Landing = () => {
             <Accordion.Header className="AccordionHeader">
               <Accordion.Trigger
                 className={"AccordionTrigger"}
-                aria-label="Read Frequently Asked Questions"
-                title="Read Frequently Asked Questions"
+                aria-label={
+                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Accordion Item 13.Heading")
+                }
+                title={
+                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Accordion Item 13.Heading")
+                }
               >
-                How can my site be added to locator?
+                {t("Landing.Accordion Item 13.Heading")}
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.Trigger>
             </Accordion.Header>
@@ -963,11 +1079,17 @@ const Landing = () => {
             <Accordion.Header className="AccordionHeader">
               <Accordion.Trigger
                 className={"AccordionTrigger"}
-                aria-label="Read Frequently Asked Questions"
-                title="Read Frequently Asked Questions"
+                aria-label={
+                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Accordion Item 14.Heading")
+                }
+                title={
+                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Accordion Item 14.Heading")
+                }
               >
-                How can my site participate in the Paxlovid Patient Assistance
-                Program?
+                {t("Landing.Accordion Item 14.Heading")}
+
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.Trigger>
             </Accordion.Header>
@@ -993,10 +1115,17 @@ const Landing = () => {
             <Accordion.Header className="AccordionHeader">
               <Accordion.Trigger
                 className={"AccordionTrigger"}
-                aria-label="Read Frequently Asked Questions"
-                title="Read Frequently Asked Questions"
+                aria-label={
+                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Accordion Item 15.Heading")
+                }
+                title={
+                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Accordion Item 15.Heading")
+                }
               >
-                Data Information and Disclaimers
+                {t("Landing.Accordion Item 15.Heading")}
+
                 <ChevronDownIcon className="AccordionChevron" aria-hidden />
               </Accordion.Trigger>
             </Accordion.Header>

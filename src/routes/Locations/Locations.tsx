@@ -32,7 +32,7 @@ import LocationsMap from "@/components/LocationsMap";
 import DropdownSingleSelect from "@/components/DropdownSingleSelect";
 import Search from "@/components/Search";
 import { useAppContext } from "@/contexts/AppContext";
-import {SiteAttributesType, SiteType } from "@/utils";
+import { SiteAttributesType, SiteType } from "@/utils";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
@@ -63,7 +63,7 @@ const Locations = () => {
     setSearchPoint,
     setSelectedTreatmentSite,
     sharedSiteFacilityID,
-    filteredSites
+    filteredSites,
   } = useAppContext();
 
   const searchContRef = useRef<HTMLDivElement>(null);
@@ -124,8 +124,8 @@ const Locations = () => {
   }, [selectedTreatmentSite]);
 
   useEffect(() => {
-    setTimeout(function(){
-      setPageLoadAlertTxt(`Page has loaded with ${locations.length} results`)
+    setTimeout(function () {
+      setPageLoadAlertTxt(`Page has loaded with ${locations.length} results`);
     }, 2000);
   });
   // #endregion ----------------- Hooks (Other) --------------------------------
@@ -198,13 +198,21 @@ const Locations = () => {
           </>
         ) : (
           <>
+          <div id="search-organizer">
             <Search placeholder={t("Locations.Search Placeholder")} />
             <DropdownSingleSelect type={"illness"} />
             <PopoverMultiSelect type={"medications"} />
-            <StyledSearchHere ismobilelistview={`${isMobileListView}`}>
+            <button id="listViewToggle" onClick={onToggleMobileView}>
+          {isMobileListView ? <MapIcon></MapIcon> : <ListIcon></ListIcon>}
+          <span>{isMobileListView ? "Map" : "List"}</span>
+        </button>
+          </div>
+          <StyledSearchHere ismobilelistview={`${isMobileListView}`}>
               <button
                 className="hhs-primary-button zoom-to-button"
                 onClick={onSearchHereClick}
+                aria-label="Search for sites in the current map extent"
+                title="Search for sites in the current map extent"
               >
                 Search this location
               </button>
@@ -212,10 +220,7 @@ const Locations = () => {
           </>
         )}
 
-        <button id="listViewToggle" onClick={onToggleMobileView}>
-          {isMobileListView ? <MapIcon></MapIcon> : <ListIcon></ListIcon>}
-          <span>{isMobileListView ? "Map" : "List"}</span>
-        </button>
+
       </StyledSearchContainer>
 
       {
@@ -225,16 +230,27 @@ const Locations = () => {
         <h2 className="visually-hidden">
           {t("Locations.Results Screenreader Heading")}
         </h2>
-        <span id="alert" aria-live="assertive">{pageLoadAlertTxt ? pageLoadAlertTxt : ""}</span>
+        <span id="alert" aria-live="assertive">
+          {pageLoadAlertTxt ? pageLoadAlertTxt : ""}
+        </span>
 
         <StyledListContainer>
           <StyledListTitleContainer>
             <h3 aria-live="polite">
-              <span className="visually-hidden">Results have been filtered to: </span>
-              <Trans
-                i18nKey="Locations.List Heading"
-                count={sortedSites?.length}
-              ></Trans>
+              <span className="visually-hidden">
+                Results have been filtered to:{" "}
+              </span>
+              {sortedSites?.length > 1 ? (
+                <Trans
+                  i18nKey="Locations.List Heading"
+                  count={sortedSites?.length}
+                ></Trans>
+              ) : (
+                <Trans
+                  i18nKey="Locations.List Heading Share"
+                  count={sortedSites?.length}
+                ></Trans>
+              )}
             </h3>
             {sharedSiteFacilityID === null && (
               <StyledListOptionsContainer>

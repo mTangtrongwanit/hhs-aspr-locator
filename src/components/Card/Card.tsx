@@ -127,15 +127,6 @@ const Card = ({
         (isTrue(serviceProvider?.is_pap) ||
           isTrue(serviceProvider?.has_USG_product)),
       icon: <PapIcon />,
-      extraElement: (
-        <a
-          href="https://paxlovid.iassist.com/"
-          target="_blank"
-          style={{ color: "inherit" }}
-        >
-          {t("Card.hoverPapLink")}
-        </a>
-      ),
       description: t("Card.hoverPapDescription"),
     },
     {
@@ -255,7 +246,6 @@ const Card = ({
             icon.condition && (
               <Tooltip name={icon.name} icon={icon.icon} key={index}>
                 <p>
-                  {icon.extraElement}
                   {icon.description}
                 </p>
               </Tooltip>
@@ -317,6 +307,8 @@ const Card = ({
       <StyledRow>
         <button
           className="hhs-primary-button zoom-to-button"
+          aria-label="Zoom to current site on the map"
+          title="Zoom to current site on the map"
           onClick={
             onZoomToClick
               ? () => serviceProvider && onZoomToClick(serviceProvider)
@@ -325,7 +317,12 @@ const Card = ({
         >
           {t("Card.Zoom")}
         </button>
-        <button onClick={handleCopyToClipboard} className="hhs-outline-button">
+        <button 
+          onClick={handleCopyToClipboard}
+          className="hhs-outline-button"
+          aria-label="Copy link to current site"
+          title="Copy link to current site"
+        >
           {t("Card.shareLocation")}
         </button>
         {serviceProvider?.address1 && (
