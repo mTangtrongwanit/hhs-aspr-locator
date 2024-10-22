@@ -4,10 +4,15 @@
 
 // #region ========================= IMPORTS ===================================
 
+// #region --------------------------- React -----------------------------------
+import { useEffect } from "react";
+// #endregion ------------------------ React -----------------------------------
+
 // #region ------------ 3rd-Party Components / Libraries -----------------------
 import { useTranslation } from "react-i18next";
 import * as Accordion from "@radix-ui/react-accordion";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
+import { useLocation } from "react-router-dom";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -38,9 +43,16 @@ import "@/utils/i18n";
 const Landing = () => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const { t } = useTranslation();
+  const location = useLocation();
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region -------------------- Hooks (State) --------------------------------
+  useEffect(() => {
+    if (location.hash === "#faq") {
+      document.getElementById("faq")?.scrollIntoView();
+    }
+  }, [location.hash]);
+
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
@@ -90,28 +102,55 @@ const Landing = () => {
         //#endregion First Row
       }
 
-      <StyledContextRow>
+      <StyledContextRow id="faq">
         <h2 className="visually-hidden">
           {t("Landing.Context Container Screenreader Heading")}
         </h2>
         <p>
           This content is not fully Section 508 conformant. If you need
           assistance, please contact&nbsp;
-          <a href="mailto:gis@hhs.gov">gis@hhs.gov</a>.{" "}
-          <a href="https://healthdata.gov/ASPR/COVID-19-Treatments/xkzp-zhs7/data_preview">
+          <a 
+            href="mailto:gis@hhs.gov"
+            aria-label="Email link: gis@hhs.gov"
+            title="Email link: gis@hhs.gov"    
+          >
+              gis@hhs.gov
+          </a>.{" "}
+          <a 
+            href="https://healthdata.gov/ASPR/COVID-19-Treatments/xkzp-zhs7/data_preview"
+            aria-label="Link to tabular access to the data"
+            title="Link to tabular access to the data"    
+          >
             Tabular access to the data is also available.
           </a>
         </p>
         <p>
           This website includes locations participating in the U.S.
           Government&nbsp;
-          <a href="https://paxlovid.iassist.com/">Patient Assistance Program</a>
+          <a 
+            href="https://paxlovid.iassist.com/"
+            aria-label="Link to patient assistance program"
+            title="Link to patient assistance program"   
+          >
+            Patient Assistance Program
+          </a>
           &nbsp; operated by Pfizer, offering free Paxlovid for eligible
           patients. Other assistance programs are available for&nbsp;
-          <a href="https://aspr.hhs.gov/COVID-19/Treatments/Pages/Possible-Treatment-Options-for-COVID19.aspx#oral-antivirals">
+          <a 
+            href="https://aspr.hhs.gov/COVID-19/Treatments/Pages/Possible-Treatment-Options-for-COVID19.aspx#oral-antivirals"
+            aria-label="Link to COVID-19 assistance program"
+            title="Link to COVID-19 assistance program"
+          >
             COVID-19
           </a>{" "}
-          and <a href="#faq-flu">flu.</a>
+          and
+          <a 
+            href="#faq-flu"
+            aria-label="Link to flu assistance program"
+            title="Link to flu assistance program"
+          >
+              flu.
+          </a>
         </p>
         <StyledFAQTitle>Frequently Asked Questions</StyledFAQTitle>
         {
