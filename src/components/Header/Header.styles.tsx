@@ -59,7 +59,7 @@ export const StyledHeaderLink = styled(Link)`
   text-decoration: none;
   & :hover {
     opacity: 0.8;
-}
+  }
 `;
 
 export const StyledHeaderLogo = styled.img`

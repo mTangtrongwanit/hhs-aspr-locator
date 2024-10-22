@@ -62,7 +62,7 @@ export const StyledSearch = styled.div`
   max-height: 48px;
 
   input {
-    font-family: 'Open Sans', Sans-Serif;
+    font-family: "Open Sans", Sans-Serif;
     font-size: var(--text-0);
     font-weight: 600 !important;
     line-height: 125%;

@@ -45,9 +45,14 @@
   font-style: normal;
 }
 
+
+
+
 html,
 body,
 #root {
+
+  
   /* --- Sizing / Box-Model --- 
     Need to define width, height in units (not %) on highest-level elements 
     so that all other elements can inherit sizes & use percentages
@@ -127,6 +132,104 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
 
 .esri-search__submit-button {
   display: none;
+}
+
+.esri-popup__main-container {
+  display: none;
+}
+
+
+@media screen and (max-width: 42rem) {
+  .esri-popup__main-container {
+    display: flex;
+  width: 100%;
+  }
+
+  .esri-popup * {
+    margin: 0rem !important;
+  }
+  
+  /*  JSAPI 4.28 switches to use calcite components for the popup, this alters the default display to show a large margin around
+    the popup content. To fix this, we are resetting the popup component to display content only.
+    see https://developers.arcgis.com/javascript/latest/release-notes/#popup-design-updates for change logs
+  */
+  .esri-features__container {
+    display: contents;
+  }
+  
+  .esri-popup__pointer {
+    border-radius: unset;
+  }
+  
+  .esri-feature__content-element {
+    padding: 0;
+  }
+  
+  .esri-popup__header {
+    display: none;
+  }
+  
+  .esri-popup__content {
+    overflow: visible;
+  
+  }
+  
+  .esri-popup, .esri-widget {
+    font-family: "Open Sans", sans-serif !important;
+  
+  }
+  
+  .esri-popup__content * {
+    font-family: "Open Sans", sans-serif !important;
+  }
+  
+  .esri-popup__main-container {
+    width: var(--min-card-width);
+    height: fit-content;
+    max-height:none !important;
+  }
+  
+  div[slot="footer"] {
+    display: none;
+  }
+
+  .esri-popup__header {
+    display: none;
+  }
+  
+  
+  .action-bar-container {
+    display: none;
+  }
+  
+  [slot="action-bar"] {
+    display: none;
+  }
+  
+  .header-container .header-container--border-end {
+    display: none;
+  }
+  
+  .header {
+   display: none;
+  }
+  
+  .header-container--border-end {
+    display: none;
+  }
+  
+  .esri-popup__content {
+    overflow: visible;
+  }
+  
+  .esri-popup__main-container {
+    width: var(--min-card-width);
+    height: fit-content;
+    max-height:none !important;
+
+  }
+  
+  
 }
 
 /* radix-ui style and overrides */
@@ -340,7 +443,9 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
   cursor: pointer;
 }
 /* TODO: Lillie - this is a temporary fix */
-ul { list-style-type: none; }
+ul {
+  list-style-type: none;
+}
 /* #endregion ------------------- Utility Classes ------------------------------*/
 
 /* #endregion =================== EXPORTED RULES ===============================*/

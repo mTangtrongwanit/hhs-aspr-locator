@@ -29,7 +29,12 @@ import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 // #region =================== EXPORTED COMPONENT ==============================
 const SearchComponent = ({ placeholder }: { placeholder?: string } = {}) => {
   // #region ------------------ Hooks (Resources) ------------------------------
-  const { searchPoint, setSearchPoint,setSelectedMedications, setSelectedFilters } = useAppContext();
+  const {
+    searchPoint,
+    setSearchPoint,
+    setSelectedMedications,
+    setSelectedFilters,
+  } = useAppContext();
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region -------------------- Hooks (State) --------------------------------
@@ -60,13 +65,29 @@ const SearchComponent = ({ placeholder }: { placeholder?: string } = {}) => {
           placeholder: placeholder ?? "Enter a location to view services",
         },
       ] as __esri.LocatorSearchSourceProperties[],
-      includeDefaultSources: false
+      includeDefaultSources: false,
     });
     //add to DOM
     searchRef.current.appendChild(search.container as Node);
 
     //add to component state
     setSearchWidget(search);
+
+  /**
+   * Handle Enter key press to select the first suggestion
+   */
+  search.on("search-complete", async (e) => {
+    const suggestions = await search.viewModel.suggest(e.searchTerm);
+    if (!suggestions) {
+      return;
+    }
+    const suggestion = suggestions.results?.at(0)?.results?.at(0);
+    if (suggestion) {
+      search.search(suggestion);
+      return;
+    }
+  });
+
     /**
      * Watch for result selection to set AOI
      */
@@ -77,9 +98,11 @@ const SearchComponent = ({ placeholder }: { placeholder?: string } = {}) => {
 
       // if the user triggers the search by hitting the enter key, use the first suggestion
       if ((result as unknown as { key: string }).key === "null") {
-        const suggestion = (await search.suggest()).results
-          ?.at(0)
-          ?.results?.at(0);
+        const suggestions = await search.viewModel.suggest();
+        if (!suggestions) {
+          return;
+        }
+        const suggestion = suggestions.results?.at(0)?.results?.at(0);
         if (suggestion) {
           search.search(suggestion);
           return;
@@ -93,7 +116,13 @@ const SearchComponent = ({ placeholder }: { placeholder?: string } = {}) => {
 
     // Note: We need to create a fresh element for the widget everytime it is built, can't just assign it to ref.current or it won't re-render.
     return () => search.destroy();
-  }, [setSelectedMedications, setSelectedFilters, setSearchPoint, searchPoint]);
+  }, [
+    placeholder,
+    setSelectedMedications,
+    setSelectedFilters,
+    setSearchPoint,
+    searchPoint,
+  ]);
 
   /**
    * Effect to update widget with SelectionMap results
@@ -119,7 +148,13 @@ const SearchComponent = ({ placeholder }: { placeholder?: string } = {}) => {
   // #region ----------------------- Render ------------------------------------
   return (
     <StyledSearch ref={searchRef}>
-      <MagnifyingGlassIcon width='18' height='18' role="presentation" aria-hidden aria-label="Magnifying glass next to search bar" />
+      <MagnifyingGlassIcon
+        width="18"
+        height="18"
+        role="presentation"
+        aria-hidden
+        aria-label="Magnifying glass next to search bar"
+      />
     </StyledSearch>
   );
   // #endregion -------------------- Render ------------------------------------

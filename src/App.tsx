@@ -73,7 +73,7 @@ const router = createBrowserRouter(
   ],
   {
     basename: import.meta.env.BASE_URL,
-  }
+  },
 );
 // #endregion ===================== CONSTANTS ==================================
 // #region =================== EXPORTED COMPONENT ==============================
@@ -112,7 +112,7 @@ function App() {
         } catch {
           // Cannot load the web map
           const error = new Error(
-            `Invalid account, please log in to an account with access to treatment location data`
+            `Invalid account, please log in to an account with access to treatment location data`,
           );
           alert(error.message);
           esriId.destroyCredentials();
@@ -120,7 +120,7 @@ function App() {
 
         if (!account.urlKey) {
           const error = new Error(
-            `Invalid account, please log in to an account associated with the lahsa.maps.arcgis.com organization`
+            `Invalid account, please log in to an account associated with the lahsa.maps.arcgis.com organization`,
           );
           alert(error.message);
           esriId.destroyCredentials();
@@ -128,7 +128,7 @@ function App() {
         }
       } catch (error) {
         const message = new Error(
-          `Invalid organization, please log in to an account associated with the https://dhhs.maps.arcgis.com/ organization`
+          `Invalid organization, please log in to an account associated with the https://dhhs.maps.arcgis.com/ organization`,
         );
         alert(message.message);
         esriId.destroyCredentials();
@@ -137,7 +137,7 @@ function App() {
     };
 
     login();
-  }, [config]);
+  }, []);
   // #endregion ----------------- Hooks (Other) --------------------------------
   // #region ---------------- Supporting Functions -----------------------------
   // Styles

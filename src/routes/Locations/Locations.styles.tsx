@@ -91,7 +91,7 @@ export const StyledListContainer = styled.section`
   min-width: calc(var(--min-card-width) + (var(--unit) * 4));
   max-width: var(--max-card-width);
   width: 30vw;
-  padding: calc(var(--unit) * 1.5) calc(var(--unit) * 2) ;
+  padding: calc(var(--unit) * 1.5) calc(var(--unit) * 2);
   height: fit-content;
   // --- Position ---
   position: relative;
@@ -100,6 +100,7 @@ export const StyledListContainer = styled.section`
   display: flex;
   flex-direction: column;
   gap: var(--unit);
+  background-color: var(--light);
   // --- Decorative ---
   // --- States ---
 
@@ -149,13 +150,12 @@ export const StyledListNoResultsContainer = styled.div`
   }
 `;
 
-
 export const StyledListTitleContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: calc(var(--unit)/2);
+  gap: calc(var(--unit) / 2);
 `;
 
 export const StyledListOptionsContainer = styled.div`
@@ -170,6 +170,10 @@ export const StyledMapContainer = styled.section`
   flex: 1;
   /* height: calc((var(--vh) * 100) - var(--remainder, 0px)); */
   height: calc((var(--vh) * 100));
+
+  @media ${Breakpoints.sm} {
+    height: calc((var(--vh) * 70));
+  }
 
   // --- Position ---
   position: sticky;
@@ -206,7 +210,6 @@ export const StyledLocationsContent = styled.main`
     ${StyledMapContainer} {
       position: relative;
       width: 100vw;
-      height: calc((var(--vh) * 100) - var(--remainder, 0px));
     }
 
     ${StyledListContainer} {
@@ -218,6 +221,21 @@ export const StyledLocationsContent = styled.main`
     display: flex;
     background: var(--light);
   }
+
+  #alert {
+    position: absolute;
+  }
 `;
+
+export const StyledSearchHere = styled.div<{ ismobilelistview: string }>`
+  position: fixed;
+  right:  var(--unit);
+  @media ${Breakpoints.sm} {
+  right: none;
+  position: relative;
+  display: ${({ ismobilelistview }) => (ismobilelistview === 'true' ? 'none' : 'flex')}
+  }
+`;
+
 // #endregion ------------ Parent Component + Variants -------------------------
 // #endregion ================ EXPORTED COMPONENTS =============================

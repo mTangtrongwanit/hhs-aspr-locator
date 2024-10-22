@@ -6,7 +6,6 @@
 
 // #region ========================= IMPORTS ===================================
 
-
 // #region --------------------------- React -----------------------------------
 import { Link } from "react-router-dom";
 
@@ -249,7 +248,6 @@ export const StyledLandingContent = styled.main`
     &:hover {
       background-color: var(--light);
     }
-
   }
 
   .AccordionContent {
