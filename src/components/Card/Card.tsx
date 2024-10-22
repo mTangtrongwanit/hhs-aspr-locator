@@ -127,16 +127,6 @@ const Card = ({
         (isTrue(serviceProvider?.is_pap) ||
           isTrue(serviceProvider?.has_USG_product)),
       icon: <PapIcon />,
-      extraElement: (
-        <a
-          href="https://paxlovid.iassist.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inherit-color"
-        >
-          {t("Card.hoverPapLink")}
-        </a>
-      ),
       description: t("Card.hoverPapDescription"),
     },
     {
