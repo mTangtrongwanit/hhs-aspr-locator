@@ -171,7 +171,7 @@ const Landing = () => {
                 }
                 title={
                   t("Landing.Accessible FAQ Intro") +
-                  t("Landing.Accordion Item 1")
+                  t("Landing.Accordion Item 1.Heading")
                 }
               >
                 {t("Landing.Accordion Item 1.Heading")}
@@ -260,11 +260,11 @@ const Landing = () => {
                 className={"AccordionTrigger"}
                 aria-label={
                   t("Landing.Accessible FAQ Intro") +
-                  t("Landing.Accordion Item 2")
+                  t("Landing.Accordion Item 2.Heading")
                 }
                 title={
                   t("Landing.Accessible FAQ Intro") +
-                  t("Landing.Accordion Item 2")
+                  t("Landing.Accordion Item 2.Heading")
                 }
               >
                 {t("Landing.Accordion Item 2.Heading")}
@@ -312,11 +312,11 @@ const Landing = () => {
                 className={"AccordionTrigger"}
                 aria-label={
                   t("Landing.Accessible FAQ Intro") +
-                  t("Landing.Accordion Item 3")
+                  t("Landing.Accordion Item 3.Heading")
                 }
                 title={
                   t("Landing.Accessible FAQ Intro") +
-                  t("Landing.Accordion Item 3")
+                  t("Landing.Accordion Item 3.Heading")
                 }
               >
                 {t("Landing.Accordion Item 3.Heading")}
@@ -488,11 +488,11 @@ const Landing = () => {
                 className={"AccordionTrigger"}
                 aria-label={
                   t("Landing.Accessible FAQ Intro") +
-                  t("Landing.Accordion Item 5")
+                  t("Landing.Accordion Item 5.Heading")
                 }
                 title={
                   t("Landing.Accessible FAQ Intro") +
-                  t("Landing.Accordion Item 5")
+                  t("Landing.Accordion Item 5.Heading")
                 }
               >
                 {t("Landing.Accordion Item 5.Heading")}
@@ -582,11 +582,11 @@ const Landing = () => {
                 className={"AccordionTrigger"}
                 aria-label={
                   t("Landing.Accessible FAQ Intro") +
-                  t("Landing.Accordion Item 6")
+                  t("Landing.Accordion Item 6.Heading")
                 }
                 title={
                   t("Landing.Accessible FAQ Intro") +
-                  t("Landing.Accordion Item 6")
+                  t("Landing.Accordion Item 6.Heading")
                 }
               >
                 {t("Landing.Accordion Item 6.Heading")}
@@ -668,11 +668,11 @@ const Landing = () => {
                 className={"AccordionTrigger"}
                 aria-label={
                   t("Landing.Accessible FAQ Intro") +
-                  t("Landing.Accordion Item 7")
+                  t("Landing.Accordion Item 7.Heading")
                 }
                 title={
                   t("Landing.Accessible FAQ Intro") +
-                  t("Landing.Accordion Item 7")
+                  t("Landing.Accordion Item 7.Heading")
                 }
               >
                 {t("Landing.Accordion Item 7.Heading")}
@@ -715,11 +715,11 @@ const Landing = () => {
                 className={"AccordionTrigger"}
                 aria-label={
                   t("Landing.Accessible FAQ Intro") +
-                  t("Landing.Accordion Item 8")
+                  t("Landing.Accordion Item 8.Heading")
                 }
                 title={
                   t("Landing.Accessible FAQ Intro") +
-                  t("Landing.Accordion Item 8")
+                  t("Landing.Accordion Item 8.Heading")
                 }
               >
                 {t("Landing.Accordion Item 8.Heading")}
@@ -766,11 +766,11 @@ const Landing = () => {
                 className={"AccordionTrigger"}
                 aria-label={
                   t("Landing.Accessible FAQ Intro") +
-                  t("Landing.Accordion Item 9")
+                  t("Landing.Accordion Item 9.Heading")
                 }
                 title={
                   t("Landing.Accessible FAQ Intro") +
-                  t("Landing.Accordion Item 9")
+                  t("Landing.Accordion Item 9.Heading")
                 }
               >
                 {t("Landing.Accordion Item 9.Heading")}
@@ -907,11 +907,11 @@ const Landing = () => {
                 className={"AccordionTrigger"}
                 aria-label={
                   t("Landing.Accessible FAQ Intro") +
-                  t("Landing.Accordion Item 10")
+                  t("Landing.Accordion Item 10.Heading")
                 }
                 title={
                   t("Landing.Accessible FAQ Intro") +
-                  t("Landing.Accordion Item 10")
+                  t("Landing.Accordion Item 10.Heading")
                 }
               >
                 {t("Landing.Accordion Item 10.Heading")}
@@ -956,11 +956,11 @@ const Landing = () => {
                 className={"AccordionTrigger"}
                 aria-label={
                   t("Landing.Accessible FAQ Intro") +
-                  t("Landing.Accordion Item 11")
+                  t("Landing.Accordion Item 11.Heading")
                 }
                 title={
                   t("Landing.Accessible FAQ Intro") +
-                  t("Landing.Accordion Item 11")
+                  t("Landing.Accordion Item 11.Heading")
                 }
               >
                 {t("Landing.Accordion Item 11.Heading")}
@@ -994,11 +994,11 @@ const Landing = () => {
                 className={"AccordionTrigger"}
                 aria-label={
                   t("Landing.Accessible FAQ Intro") +
-                  t("Landing.Accordion Item 12")
+                  t("Landing.Accordion Item 12.Heading")
                 }
                 title={
                   t("Landing.Accessible FAQ Intro") +
-                  t("Landing.Accordion Item 12")
+                  t("Landing.Accordion Item 12.Heading")
                 }
               >
                 {t("Landing.Accordion Item 12.Heading")}
@@ -1045,11 +1045,11 @@ const Landing = () => {
                 className={"AccordionTrigger"}
                 aria-label={
                   t("Landing.Accessible FAQ Intro") +
-                  t("Landing.Accordion Item 13")
+                  t("Landing.Accordion Item 13.Heading")
                 }
                 title={
                   t("Landing.Accessible FAQ Intro") +
-                  t("Landing.Accordion Item 13")
+                  t("Landing.Accordion Item 13.Heading")
                 }
               >
                 {t("Landing.Accordion Item 13.Heading")}
@@ -1081,11 +1081,11 @@ const Landing = () => {
                 className={"AccordionTrigger"}
                 aria-label={
                   t("Landing.Accessible FAQ Intro") +
-                  t("Landing.Accordion Item 14")
+                  t("Landing.Accordion Item 14.Heading")
                 }
                 title={
                   t("Landing.Accessible FAQ Intro") +
-                  t("Landing.Accordion Item 14")
+                  t("Landing.Accordion Item 14.Heading")
                 }
               >
                 {t("Landing.Accordion Item 14.Heading")}
@@ -1117,11 +1117,11 @@ const Landing = () => {
                 className={"AccordionTrigger"}
                 aria-label={
                   t("Landing.Accessible FAQ Intro") +
-                  t("Landing.Accordion Item 15")
+                  t("Landing.Accordion Item 15.Heading")
                 }
                 title={
                   t("Landing.Accessible FAQ Intro") +
-                  t("Landing.Accordion Item 15")
+                  t("Landing.Accordion Item 15.Heading")
                 }
               >
                 {t("Landing.Accordion Item 15.Heading")}
