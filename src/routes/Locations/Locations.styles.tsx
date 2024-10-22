@@ -49,10 +49,19 @@ export const StyledSearchContainer = styled.section`
   gap: var(--unit);
   flex-wrap: wrap;
   z-index: 1;
+  justify-content: space-between;
   // --- Decorative ---
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.04);
   // --- States ---
   // --- Children ---
+
+  #search-organizer {
+    display: inherit;
+    gap: inherit;
+    flex-wrap: inherit;
+    z-index: inherit;
+  }
+
   #listViewToggle {
     display: none;
     border: var(--border) solid var(--brand);
@@ -82,6 +91,11 @@ export const StyledSearchContainer = styled.section`
     @media ${Breakpoints.sm} {
       display: flex;
     }
+  }
+
+  &:last-child {
+    gap: 0;
+    justify-content: flex-end;
   }
 `;
 
@@ -228,11 +242,7 @@ export const StyledLocationsContent = styled.main`
 `;
 
 export const StyledSearchHere = styled.div<{ ismobilelistview: string }>`
-  position: fixed;
-  right:  var(--unit);
   @media ${Breakpoints.sm} {
-  right: none;
-  position: relative;
   display: ${({ ismobilelistview }) => (ismobilelistview === 'true' ? 'none' : 'flex')}
   }
 `;
