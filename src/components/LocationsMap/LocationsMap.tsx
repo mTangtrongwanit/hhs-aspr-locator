@@ -6,7 +6,7 @@
 
 // #region ========================= IMPORTS ===================================
 // #region --------------------------- React -----------------------------------
-import React, { useRef, useEffect, useMemo } from "react";
+import React, { useRef, useEffect, useMemo, useCallback } from "react";
 
 // #endregion ------------------------ React -----------------------------------
 
@@ -70,18 +70,34 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
   // #region -------------------- Hooks (State) --------------------------------
   // #endregion ----------------- Hooks (State) --------------------------------
 
+  // #region ----------------- Hooks (Memoization) -----------------------------
+  const map = useMemo<WebMap>(
+    () =>
+      new WebMap({
+        portalItem: {
+          id: config.treatmentData.locationsWebMapId,
+          portal: {
+            url: config.portal.url,
+          },
+        },
+      }),
+    [],
+  );
+
   // define a method to create custom content for a popup
   // taking in a jsx element and returning a custom content object
-  const createPopupValue = (Popup: JSX.Element) => {
+  const createPopupValue = useCallback((Popup: JSX.Element) => {
     return new CustomContent({
       outFields: ["*"],
-      creator: async (event: any) => {
+      creator: async (event: __esri.PopupTemplateCreatorEvent | undefined) => {
+        if (!event) {
+          return document.createElement("div");
+        }
         // create an html element that will serve as the dom node
         const popup = document.createElement("popup");
-        // use createRoot to create a domnode to which you can attach the html element
+        const feature: Graphic = event.graphic as Graphic;
         // see https://react.dev/reference/react-dom/client/createRoot#createroot
         const root = createRoot(popup);
-        const feature: Graphic = event.graphic;
         // @ts-expect-error - We know that the layer is a FeatureLayer
         const layer = map.findLayerById(feature.sourceLayer.id) as FeatureLayer;
         // query the point on the map with the objectID of the feature
@@ -91,7 +107,7 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
           returnGeometry: true,
         });
         const distance = await calculateDistanceBetweenTwoPoints(
-          item.features[0].geometry as any,
+          item.features[0].geometry as __esri.Point,
           searchPoint,
         );
         // render valid React jsx within that dom node
@@ -106,21 +122,7 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
         return popup;
       },
     });
-  };
-
-  // #region ----------------- Hooks (Memoization) -----------------------------
-  const map = useMemo<WebMap>(
-    () =>
-      new WebMap({
-        portalItem: {
-          id: config.treatmentData.locationsWebMapId,
-          portal: {
-            url: config.portal.url,
-          },
-        },
-      }),
-    [],
-  );
+  }, [map, searchPoint]);
   // #endregion -------------- Hooks (Memoization) -----------------------------
 
   // #region -------------------- Hooks (Other) --------------------------------

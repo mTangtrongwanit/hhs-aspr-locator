@@ -5,6 +5,7 @@
  */
 
 import { SiteAttributesType } from "@/utils";
+import { TFunction } from "i18next";
 
 // #region ========================= IMPORTS ===================================
 // #region ------------ 3rd-Party Components / Libraries -----------------------
@@ -20,7 +21,7 @@ export interface Props {
   serviceProvider?: SiteAttributesType;
   distance?: number | undefined;
   searchPoint?: { name: string; point: __esri.Point } | null;
-  t: any;
+  t: TFunction<"translation", undefined>;
   onZoomToClick?: (x: SiteAttributesType) => void;
 }
 // #endregion ================== EXPORTED TYPES ================================

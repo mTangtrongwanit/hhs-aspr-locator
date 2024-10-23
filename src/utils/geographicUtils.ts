@@ -111,7 +111,7 @@ export const getTreatmentsIllnessesData = async () => {
  * @param {ServiceProvider} serviceProvider The service provider for which to calculate the distance.
  */
 export const calculateDistanceBetweenTwoPoints = (
-  serviceProvider: SiteAttributesType,
+  serviceProvider: SiteAttributesType | __esri.Point,
   searchPoint: AppContextType["searchPoint"],
 ) => {
   try {

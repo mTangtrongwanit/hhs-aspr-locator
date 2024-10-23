@@ -281,7 +281,7 @@ const Locations = () => {
                   const serviceSiteAttributes: SiteAttributesType =
                     serviceSite.attributes;
 
-                  const onZoomToClick = (serviceSiteAttributes: any) => {
+                  const onZoomToClick = (serviceSiteAttributes: SiteAttributesType) => {
                     const graphic = locations?.find(
                       (loc) =>
                         loc.attributes["facility_id"] ===
