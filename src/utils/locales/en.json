@@ -11,6 +11,14 @@
     "Title": "COVID-19 and Flu Treatments Locator",
     "Title Alt Text": "COVID-19 and Flu Treatments Locator"
   },
+  "Reusable": {
+    "Patient Assistance Program": "Patient Assistance Program",
+    "COVID-19": "COVID-19",
+    "Flu": "Flu",
+    "Visit": "Visit",
+    "Treatment Options For": "Treatment Options for",
+    "Influenza": "Influenza"
+  },
   "Footer": {
     "Home Link": "Home",
     "Contact Us Link": "Contact Us",
@@ -28,17 +36,114 @@
     "Search Container Description": "The locator displays pharmacies, clinics, and other locations with safe and effective COVID-19 and flu medications. These medications require a prescription from a healthcare provider. COVID-19 and flu medications may be available at additional locations not shown on this locator.",
     "Illness Placeholder": "What do you need treatment for?",
     "View Locations Button Label": "View Locations",
+    "View Locations Link Text": "View Locations based on entered location and selected treatment choice",
     "Context Container Screenreader Heading": "Contextual Information",
+    "Context Container Text": "This content is not fully Section 508 conformant. If you need assistance, please contact",
     "Assistance Program Description": "i18n Todo - not sure how to effectively break this up into paragraph text vs links",
+    "Email Link": "Email link",
+    "Link to Tabular Access": "Link to tabular access to the data",
+    "Tabular Access Available": "Tabular access to the data is also available.",
+    "Website U.S. Government": "This website includes locations participating in the U.S. Government",
     "Accessible FAQ Intro": "Read Frequently Asked Question: ",
+    "Link to PAP": "Link to patient assistance program",
+    "PAP Text": "operated by Pfizer, offering free Paxlovid for eligible patients. Other assistance programs are available for",
+    "COVID-19 Assistance Program Link Text": "Link to COVID-19 assistance program",
+    "Flu Assistance Program Link Text": "Link to flu assistance program",
+    "FAQ Title": "Frequently Asked Questions",
     "Accordion Item 1": {
-      "Heading": "Which outpatient medications available to treat COVID-19 and flu appear on this locator?"
+      "Heading": "Which outpatient medications available to treat COVID-19 and flu appear on this locator?",
+      "Content": {
+        "Description 1": "The COVID-19 and flu treatment locator can be used to help you find FDA approved or authorized treatments for these diseases.",
+        "Unordered List 1": {
+          "List Item 1": {
+            "Text 1": "Three outpatient treatments are currently authorized or approved by the U.S. Food and Drug Administration (FDA) to help reduce the risk of hospitalization or death for patients with mild to moderate COVID-19",
+          "Unordered List 1": {
+            "List Item 1": "Oral Paxlovid (nirmatrelvir with ritonavir)",
+            "List Item 2": "Oral Lagevrio (molnupiravir)",
+            "List Item 3": "Intravenous outpatient Veklury (remdesivir)"
+          }
+        },
+        "List Item 2": {
+          "Anchor 1": {
+            "Text 1": "Treatment Options for",
+            "Text 2": "to learn more about these medications."
+          },
+          "Description 1": "to learn more about these medications."
+        },
+        "List Item 3": {
+          "Text 1": "All COVID treatments listed on this site require a prescription from a health care provider and are most effective if you take them as soon as you get sick, and ideally within 5 days of developing symptoms."
+        }
+      },
+      "Unordered List 2": {
+        "List Item 1": {
+          "Text 1": "The following outpatient treatments are currently approved by FDA and recommended by CDC to treat flu:",
+          "Unordered List 1": {
+            "List Item 1": "Oral oseltamivir (available as a generic version or under the trade name Tamiflu)",
+            "List Item 2": "Oral baloxavir (Xofluza)",
+            "List Item 3": "Inhaled zanamivir (Relenza)",
+            "List Item 4": "Intravenous peramivir (Rapivab)"
+          }
+        },
+        "List Item 2": {
+          "Text 1": "Please visit",
+          "Anchor 1": {
+            "Text 1": "What are Flu Antiviral Drugs | CDC"
+          },
+          "Text 2": "to learn more about treatments for flu. Healthcare providers can visit CDC’s",
+          "Anchor 2": {
+            "Text 1": "Influenza Antiviral Medications: Summary for Clinicians"
+          }
+        },
+        "List Item 3": {
+          "Text 1": "All flu treatments listed on this site require a prescription from a health care provider and are most effective if you take them as soon as you get sick, and ideally within 48 hours of developing symptoms."
+        }
+      }
+      }
     },
     "Accordion Item 2": {
-      "Heading": "What are antivirals?"
+      "Heading": "What are antivirals?",
+      "Content": {
+        "List Item 1": {
+          "Text 1": "Antiviral drugs are prescription medicines that fight against the specific virus they are prescribed for – COVID-19 antivirals work to treat COVID-19, and flu antivirals work to treat influenza. Antiviral drugs are different from antibiotics, which fight against bacterial infections, and come in different forms:",
+          "Unordered List 1": {
+            "List Item 1": "Oral antiviral drugs, are taken by mouth (in a pill or liquid suspension form)",
+            "List Item 2": "Inhaled antiviral drugs are breathed in by mouth as directed (e.g., can be administered by an inhaler)",
+            "List Item 3": "Intravenous antiviral drugs are given directly into a vein with a needle or a tube."
+          }
+        }
+      }
     },
     "Accordion Item 3": {
-      "Heading": "Who can take the outpatient COVID-19 medications listed on this website?"
+      "Heading": "Who can take the outpatient COVID-19 medications listed on this website?",
+      "Content": {
+        "List Item 1": {
+          "Text 1": "Paxlovid: Adults and children (12 years of age and older,  weighing at least 88 pounds [40 kg]), who are at high risk for getting very sick from COVID-19 and who have mild to moderate symptoms."
+        },
+        "List Item 2": {
+          "Text 1": "Lagevrio: Adults 18 years and older, who are at high risk for getting very sick from COVID-19, have mild to moderate symptoms, and do not have access to other COVID-19 outpatient treatment options or other treatment options are not appropriate for them"
+        },
+        "List Item 3": {
+          "Text 1": "Veklury: In the outpatient setting, adults and children (28",
+          "Text 2": "days",
+          "Text 3": "of age or older and weighing at least 7 pounds [3 kg]), who have mild to moderate symptoms of COVID-19 and are at high risk for getting very sick from COVID-19",
+          "Unordered List 1": {
+            "List Item 1": "This medication is given through an intravenous infusion and may be given in the outpatient (not staying in the hospital) setting over three consecutive visits or in the inpatient (staying in the hospital) setting. This website lists only outpatient locations where Veklury is available"
+          }
+        },
+        "List Item 4": {
+          "Text 1": "Paxlovid and Lagevrio must be taken within 5 days of symptom  onset to be effective. Veklury outpatient administration is within 7 days of symptom onset."
+        },
+        "List Item 5": {
+          "Text 1": "To learn more about indications for these products, see",
+          "Anchor 1": {
+            "Text 1": "Treatment Options for COVID-19"
+        },
+          "Text 2": "Healthcare providers can refer to the",
+          "Anchor 2": {
+            "Text 1": "Side-by-Side Overview of Therapeutics Authorized or Approved for the Treatment of Mild to Moderate COVID-19"
+          }
+      }
+      }
     },
     "Accordion Item 4": {
       "Heading": "Who can take the outpatient flu medications listed on this website?"
