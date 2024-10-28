@@ -189,8 +189,8 @@ const Locations = () => {
             <button
               className="hhs-primary-button"
               onClick={onToggleSelectedLoc}
-              aria-label="Continue to find locations near you"
-              title="Continue to find locations near you"
+              aria-label={t("Locations.Search for Other Button Screenreader Label")}
+              title={t("Locations.Search for Other Button Screenreader Label")}
             >
               <ArrowLeftIcon />
               Search for Other Locations
@@ -211,8 +211,8 @@ const Locations = () => {
               <button
                 className="hhs-primary-button zoom-to-button"
                 onClick={onSearchHereClick}
-                aria-label="Search for sites in the current map extent"
-                title="Search for sites in the current map extent"
+                aria-label={t("Locations.Search Here Button Screenreader Label")}
+                title={t("Locations.Search Here Button Screenreader Label")}
               >
                 Search this location
               </button>
@@ -238,7 +238,7 @@ const Locations = () => {
           <StyledListTitleContainer>
             <h3 aria-live="polite">
               <span className="visually-hidden">
-                Results have been filtered to:{" "}
+              {t("Locations.List Title Screenreader Label")}{" "}
               </span>
               {sortedSites?.length > 1 ? (
                 <Trans

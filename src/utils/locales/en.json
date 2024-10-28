@@ -339,11 +339,15 @@
   "Locations": {
     "Search Placeholder": "Find address or place",
     "Search Container Screenreader Heading": "Search for Locations",
+    "Search for Other Button Screenreader Label": "Continue to find locations near you",
     "Results Screenreader Heading": "Results",
     "List Heading": "{{count}} Sites",
     "List Heading Share": "{{count}} Site",
     "Map Screenreader Heading": "Map of Sites",
-    "Empty List": "If you still have no results, try searching a different location to view sites."
+    "Empty List": "If you still have no results, try searching a different location to view sites.",
+    "Search Here Button Screenreader Label": "Search for sites in the current map extent",
+    "Page Load Screenreader Alert": "Page has loaded with {{count}} results",
+    "List Title Screenreader Label": "Results have been filtered to:"
   },
   "Illness": {
     "COVID": "COVID-19",
