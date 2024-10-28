@@ -147,7 +147,7 @@ const Footer = () => {
               <a
                 href="https://www.hhs.gov/web/policies-and-standards/hhs-web-policies/plugins/index.html"
                 aria-label="Link to plugins page on HHS site"
-                title="Link to plugins page on ASPR site" 
+                title="Link to plugins page on HHS site" 
                 target="_blank"
                 rel="noopener"
               >
@@ -159,7 +159,7 @@ const Footer = () => {
               <a
                 href="https://www.hhs.gov/open/plain-writing/index.html"
                 aria-label="Link to plain writing page on HHS site"
-                title="Link to plain writing page on ASPR site" 
+                title="Link to plain writing page on HHS site" 
                 target="_blank"
                 rel="noopener"
               >
@@ -171,7 +171,7 @@ const Footer = () => {
               <a 
                 href="https://www.hhs.gov/foia/index.html" target="_blank" rel="noopener"
                 aria-label="Link to FOIA page on HHS site"
-                title="Link to FOIA page on ASPR site" 
+                title="Link to FOIA page on HHS site" 
               >
                 FOIA
               </a>
