@@ -9,7 +9,10 @@
   "Header": {
     "Logo Alt Text": "Administration for Strategic Preparedness and Response",
     "Title": "COVID-19 and Flu Treatments Locator",
-    "Title Alt Text": "COVID-19 and Flu Treatments Locator"
+    "Title Alt Text": "COVID-19 and Flu Treatments Locator",
+    "Homepage Link Screenreader Label": "Link to COVID-19 and Flu Treatments Locator homepage",
+    "ASPR Logo Screenreader Label": "ASPR Administration for Strategic Preparedness & Response Logo",
+    "FAQs Link Screenreader Label": "View FAQ section"
   },
   "Reusable": {
     "Patient Assistance Program": "Patient Assistance Program",
@@ -443,5 +446,9 @@
       "flu_obp-": "Site offers oseltamivir, baloxavir, and peramivir.",
       "flu_obpz": "Site offers oseltamivir, baloxavir, peramivir, and zanamivir."
     }
+  },
+  "PopoverMultiSelect": {
+    "Medications Button Screenreader Label": "This button filters results to only include specific medications!",
+    "Other Filters Button Screenreader Label": "This button filters results to only include specific site information"
   }
 }
