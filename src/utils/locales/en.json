@@ -354,7 +354,13 @@
     "Flu": "Flu",
     "Prompt": "Looking for Specific Medications?"
   },
+  "Search": {
+    "Magnifying Icon Screenreader Label": "Magnifying glass next to search bar"
+  },
   "Card": {
+    "Zoom To Site Button Screenreader Label": "Zoom to current site on the map",
+    "Copy Link Button Screenreader Label": "Copy link to current site",
+    "Open in Maps Button Screenreader Label": "Open location in Google Maps",
     "Zoom": "Zoom to Location",
     "pap": "Free/reduced cost",
     "usgProduct": "USG product",
