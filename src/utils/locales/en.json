@@ -57,47 +57,47 @@
         "Unordered List 1": {
           "List Item 1": {
             "Text 1": "Three outpatient treatments are currently authorized or approved by the U.S. Food and Drug Administration (FDA) to help reduce the risk of hospitalization or death for patients with mild to moderate COVID-19",
-          "Unordered List 1": {
-            "List Item 1": "Oral Paxlovid (nirmatrelvir with ritonavir)",
-            "List Item 2": "Oral Lagevrio (molnupiravir)",
-            "List Item 3": "Intravenous outpatient Veklury (remdesivir)"
-          }
-        },
-        "List Item 2": {
-          "Anchor 1": {
-            "Text 1": "Treatment Options for",
-            "Text 2": "to learn more about these medications."
+            "Unordered List 1": {
+              "List Item 1": "Oral Paxlovid (nirmatrelvir with ritonavir)",
+              "List Item 2": "Oral Lagevrio (molnupiravir)",
+              "List Item 3": "Intravenous outpatient Veklury (remdesivir)"
+            }
           },
-          "Description 1": "to learn more about these medications."
-        },
-        "List Item 3": {
-          "Text 1": "All COVID treatments listed on this site require a prescription from a health care provider and are most effective if you take them as soon as you get sick, and ideally within 5 days of developing symptoms."
-        }
-      },
-      "Unordered List 2": {
-        "List Item 1": {
-          "Text 1": "The following outpatient treatments are currently approved by FDA and recommended by CDC to treat flu:",
-          "Unordered List 1": {
-            "List Item 1": "Oral oseltamivir (available as a generic version or under the trade name Tamiflu)",
-            "List Item 2": "Oral baloxavir (Xofluza)",
-            "List Item 3": "Inhaled zanamivir (Relenza)",
-            "List Item 4": "Intravenous peramivir (Rapivab)"
-          }
-        },
-        "List Item 2": {
-          "Text 1": "Please visit",
-          "Anchor 1": {
-            "Text 1": "What are Flu Antiviral Drugs | CDC"
+          "List Item 2": {
+            "Anchor 1": {
+              "Text 1": "Treatment Options for",
+              "Text 2": "to learn more about these medications."
+            },
+            "Description 1": "to learn more about these medications."
           },
-          "Text 2": "to learn more about treatments for flu. Healthcare providers can visit CDC’s",
-          "Anchor 2": {
-            "Text 1": "Influenza Antiviral Medications: Summary for Clinicians"
+          "List Item 3": {
+            "Text 1": "All COVID treatments listed on this site require a prescription from a health care provider and are most effective if you take them as soon as you get sick, and ideally within 5 days of developing symptoms."
           }
         },
-        "List Item 3": {
-          "Text 1": "All flu treatments listed on this site require a prescription from a health care provider and are most effective if you take them as soon as you get sick, and ideally within 48 hours of developing symptoms."
+        "Unordered List 2": {
+          "List Item 1": {
+            "Text 1": "The following outpatient treatments are currently approved by FDA and recommended by CDC to treat flu:",
+            "Unordered List 1": {
+              "List Item 1": "Oral oseltamivir (available as a generic version or under the trade name Tamiflu)",
+              "List Item 2": "Oral baloxavir (Xofluza)",
+              "List Item 3": "Inhaled zanamivir (Relenza)",
+              "List Item 4": "Intravenous peramivir (Rapivab)"
+            }
+          },
+          "List Item 2": {
+            "Text 1": "Please visit",
+            "Anchor 1": {
+              "Text 1": "What are Flu Antiviral Drugs | CDC"
+            },
+            "Text 2": "to learn more about treatments for flu. Healthcare providers can visit CDC’s",
+            "Anchor 2": {
+              "Text 1": "Influenza Antiviral Medications: Summary for Clinicians"
+            }
+          },
+          "List Item 3": {
+            "Text 1": "All flu treatments listed on this site require a prescription from a health care provider and are most effective if you take them as soon as you get sick, and ideally within 48 hours of developing symptoms."
+          }
         }
-      }
       }
     },
     "Accordion Item 2": {
@@ -137,28 +137,182 @@
           "Text 1": "To learn more about indications for these products, see",
           "Anchor 1": {
             "Text 1": "Treatment Options for COVID-19"
-        },
+          },
           "Text 2": "Healthcare providers can refer to the",
           "Anchor 2": {
             "Text 1": "Side-by-Side Overview of Therapeutics Authorized or Approved for the Treatment of Mild to Moderate COVID-19"
           }
-      }
+        }
       }
     },
     "Accordion Item 4": {
-      "Heading": "Who can take the outpatient flu medications listed on this website?"
+      "Heading": "Who can take the outpatient flu medications listed on this website?",
+      "Content": {
+        "List Item 1": {
+          "Text 1": "Oseltamivir (including brand name Tamiflu): Recommended for adults and children of all ages.",
+          "Unordered List 1": {
+            "List Item 1": {
+              "Text 1": "It is the preferred treatment for treatment of influenza in pregnant women, hospitalized patients, and outpatients with severe, complicated, or progressive illness."
+            },
+            "List Item 2": {
+              "Text 1": "Oseltamivir is taken twice daily by mouth for 5 days."
+            }
+          }
+        },
+        "List Item 2": {
+          "Text 1": "Peramivir (Rapivab): Otherwise healthy adults and children 6 months and older.",
+          "Unordered List 1": {
+            "List Item 1": {
+              "Text 1": "This medication is given by a healthcare provider as a single dose through an intravenous infusion"
+            }
+          }
+        },
+        "List Item 3": {
+          "Text 1": "Zanamivir (Relenza): Adults and children 7 years and older.",
+          "Unordered List 1": {
+            "List Item 1": {
+              "Text 1": "Zanamivir is administered using an inhaler device and is not recommended for people with breathing problems like asthma or COPD or those with a history of allergy to lactose or milk protein."
+            },
+            "List Item 2": {
+              "Text 1": "Zanamivir is taken twice daily using an inhaler device for 5 days."
+            }
+          }
+        },
+        "List Item 4": {
+          "Text 1": "Baloxavir (Xofluza): Otherwise healthy children 5 years and older for acute uncomplicated influenza, and adults and children 12 years and older who are at high risk of developing influenza-related complications.",
+          "Unordered List 1": {
+            "List Item 1": {
+              "Text 1": "Baloxavir is taken by mouth as a single dose"
+            },
+            "List Item 2": {
+              "Text 1": "Baloxavir is not recommended for treatment of flu in pregnant or breastfeeding people, severely immunosuppressed persons, or in outpatients with complicated or progressive illness because there is no information about use of baloxavir in these patients."
+            }
+          }
+        },
+        "List Item 5": {
+          "Text 1": "Please see",
+          "Anchor 1": {
+            "Text 1": "What are Flu Antiviral Drugs | CDC"
+          },
+          "Text 2": "for more information on treatment of flu. Healthcare providers can visit CDC’s",
+          "Anchor 2": {
+            "Text 1": "Influenza Antiviral Medications: Summary for Clinicians."
+          }
+        }
+      }
     },
     "Accordion Item 5": {
-      "Heading": "Can children take the antiviral medications listed on this website?"
+      "Heading": "Can children take the antiviral medications listed on this website?",
+      "Content": {
+        "Unordered List 1": {
+          "List Item 1": {
+            "Text 1": "Paxlovid is authorized by the FDA for emergency use in children 12 years or older weighing at least 88 pounds [40 kg], who are at high risk for getting very sick from COVID-19 and who have mild to moderate symptoms."
+          },
+          "List Item 2": {
+            "Text 1": "Veklury is FDA-approved for children 28 days of age or older and weighing at least 7 pounds [3 kg], who have mild to moderate symptoms of COVID-19 and are at high risk for getting very sick from COVID-19.",
+            "Unordered List 1": {
+              "List Item 1": "This medication is given through an intravenous infusion and may be given in the outpatient (not staying in the hospital) or inpatient (staying in the hospital) setting. This website lists only outpatient locations where Veklury is available."
+            }
+          }
+        },
+        "Unordered List 2": {
+          "List Item 1": {
+            "Text 1": "Oral oseltamivir is approved by the FDA for treatment of acute uncomplicated influenza within 2 days of illness onset in people 14 days of age and older. Although not part of the FDA-approved indications, use of oral oseltamivir for treatment of influenza in infants less than 14 days old is recommended by the CDC. Oseltamivir is available as an oral suspension for children.",
+            "Unordered List 1": {
+              "List Item 1": {
+                "Text 1": "If your health care provider prescribes oseltamivir capsules for your child and your child cannot swallow capsules, please refer to",
+                "Anchor 1": {
+                  "Text 1": "CDC guidance"
+                },
+                "Text 2": "on opening and mixing oseltamivir capsules with liquids."
+              }
+            }
+          },
+          "List Item 2": {
+            "Text 1": "Zanamivir is approved for early treatment of flu in people 7 years and older, though it is not recommended for use in children with underlying respiratory disease, including asthma and other chronic lung diseases, and in patients with milk protein allergy."
+          },
+          "List Item 3": {
+            "Text 1": "Peramivir is approved for early treatment of flu in otherwise healthy patients 6 months and older."
+          },
+          "List Item 4": {
+            "Text 1": "Baloxavir is available in a single dose tablet for early treatment of flu in otherwise healthy children aged 5 years and older, and in children 12 years and older who are at higher risk of developing flu-related complications."
+          }
+        }
+      }
     },
     "Accordion Item 6": {
-      "Heading": "Can pregnant people take flu and COVID-19 antiviral medications?"
+      "Heading": "Can pregnant people take flu and COVID-19 antiviral medications?",
+      "Content": {
+        "Unordered List 1": {
+          "List Item 1": {
+            "Text 1": "Pregnant and recently pregnant people (at least 6 weeks following the end of pregnancy) are at increased risk of severe illness from COVID-19."
+          },
+          "List Item 2": {
+            "Text 1": "Paxlovid (ritonavir with nirmatrelvir) is the preferred treatment option for pregnant and recently pregnant patients with COVID-19."
+          },
+          "List Item 3": {
+            "Text 1": "Lagevrio (molnupiravir) is not recommended for use during pregnancy because of risk it may cause fetal harm. Prior to initiating treatment with Lagevrio, health care providers should assess whether an individual of childbearing potential is pregnant, if clinically indicated. Breastfeeding is not recommended during treatment with Lagevrio and for 4 days after final dose."
+          },
+          "List Item 4": {
+            "Text 1": "Healthcare providers can refer to the",
+            "Anchor 1": {
+              "Text 1": "Side-by-Side Overview of Therapeutics Authorized or Approved for the Treatment of Mild to Moderate COVID-19."
+            }
+          }
+        },
+        "Unordered List 2": {
+          "List Item 1": {
+            "Text 1": "Treatment with antiviral medications for flu is recommended for pregnant people or people who are up to 2 weeks postpartum (including following pregnancy loss) with suspected or confirmed influenza of any severity and can be taken during any trimester of pregnancy."
+          },
+          "List Item 2": {
+            "Text 1": "Oral oseltamivir is the preferred treatment options for pregnant people with flu because it has the most studies available to suggest that it is safe and beneficial."
+          },
+          "List Item 3": {
+            "Text 1": "Baloxavir is not recommended for pregnant or post-partum people or while breastfeeding, as there are no available efficacy or safety data."
+          },
+          "List Item 4": {
+            "Text 1": "For more information on the treatment of flu during pregnancy, healthcare providers can visit",
+            "Anchor 1": {
+              "Text 1": "Recommendations for Obstetric Health Care Providers Related to Use of Antiviral Medications in the Treatment and Prevention of Influenza."
+            }
+          }
+        }
+      }
     },
     "Accordion Item 7": {
-      "Heading": "Can I get COVID-19 or flu medications over the counter (without a prescription)?"
+      "Heading": "Can I get COVID-19 or flu medications over the counter (without a prescription)?",
+      "Content": {
+        "Unordered List 1": {
+          "List Item 1": {
+            "Text 1": "Medications to treat COVID-19 (Paxlovid, Lagevrio, Veklury) and flu (oseltamivir, zanamivir, peramivir, baloxavir) must be prescribed by a health care provider and should be started as soon as possible after diagnosis to be effective."
+          },
+          "List Item 2": {
+            "Text 1": "Talk to your health care professional about available treatment options if you have symptoms consistent with COVID-19 or flu."
+          },
+          "List Item 3": {
+            "Text 1": "Certain locations listed on this locator may provide prescribing services to patients who do not already have a prescription."
+          }
+        }
+      }
     },
     "Accordion Item 8": {
-      "Heading": "Are the treatments listed on this website safe and effective?"
+      "Heading": "Are the treatments listed on this website safe and effective?",
+      "Content": {
+        "Unordered List 1": {
+          "List Item 1": {
+            "Text 1": "All medications listed on this website are approved or authorized by FDA as safe and effective when used appropriately."
+          },
+          "List Item 2": {
+            "Text 1": "If you have COVID-19 and are more likely to get very sick, treatments are available that can reduce your chances of being hospitalized or dying from the disease."
+          },
+          "List Item 3": {
+            "Text 1": "Early flu antiviral treatment can shorten the duration of fever and illness and may reduce the risk of some complications from influenza."
+          },
+          "List Item 4": {
+            "Text 1": "Some treatments might have side effects or interact with other medications you are taking. Ask a health care provider if medications to treat COVID-19 or influenza are right for you."
+          }
+        }
+      }
     },
     "Accordion Item 9": {
       "Heading": "What programs exist to provide continued affordable access to these treatments outside of usual prescription drug coverage?"
@@ -195,7 +349,6 @@
     "COVID": "COVID-19",
     "Flu": "Flu",
     "Prompt": "Looking for Specific Medications?"
-
   },
   "Card": {
     "Zoom": "Zoom to Location",
