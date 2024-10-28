@@ -90,8 +90,8 @@ const Landing = () => {
         </StyledRow>
         <StyledLink
           to="/locations"
-          aria-label="View Locations based on entered location and selected treatment choice"
-          title="View Locations based on entered location and selected treatment choice"
+          aria-label={t("Landing.View Locations Button Screenreader Label")}
+          title={t("Landing.View Locations Button Screenreader Label")}
         >
           {t("Landing.View Locations Button Label")}
         </StyledLink>
@@ -111,44 +111,42 @@ const Landing = () => {
           assistance, please contact&nbsp;
           <a
             href="mailto:gis@hhs.gov"
-            aria-label="Email link: gis@hhs.gov"
-            title="Email link: gis@hhs.gov"
+            aria-label={t("Landing.Email Link Screenreader Label") + " gis@hhs.gov"}
+            title={t("Landing.Email Link Screenreader Label") + " gis@hhs.gov"}
           >
             gis@hhs.gov
           </a>
           .{" "}
           <a
             href="https://healthdata.gov/ASPR/COVID-19-Treatments/xkzp-zhs7/data_preview"
-            aria-label="Link to tabular access to the data"
-            title="Link to tabular access to the data"
+            aria-label={t("Landing.Link to Tabular Access Screenreader Label")}
+            title={t("Landing.Link to Tabular Access Screenreader Label")}
           >
-            Tabular access to the data is also available.
+            {t("Landing.Tabular Access Available")}
           </a>
         </p>
         <p>
-          This website includes locations participating in the U.S.
-          Government&nbsp;
+        {t("Landing.Website U.S. Government")}&nbsp;
           <a
             href="https://paxlovid.iassist.com/"
-            aria-label="Link to patient assistance program"
-            title="Link to patient assistance program"
+            aria-label={t("Landing.Link to PAP Screenreader Label")}
+            title={t("Landing.Link to PAP Screenreader Label")}
           >
-            Patient Assistance Program
+            {t("Reusable.Patient Assistance Program")}
           </a>
-          &nbsp; operated by Pfizer, offering free Paxlovid for eligible
-          patients. Other assistance programs are available for&nbsp;
+          &nbsp;{t("Landing.PAP Text")}&nbsp;
           <a
             href="https://aspr.hhs.gov/COVID-19/Treatments/Pages/Possible-Treatment-Options-for-COVID19.aspx#oral-antivirals"
-            aria-label="Link to COVID-19 assistance program"
-            title="Link to COVID-19 assistance program"
+            aria-label={t("Landing.COVID-19 Assistance Program Link Screenreader Label")}
+            title={t("Landing.COVID-19 Assistance Program Link Screenreader Label")}
           >
             COVID-19
           </a>{" "}
           and
           <a
             href="#faq-flu"
-            aria-label="Link to flu assistance program"
-            title="Link to flu assistance program"
+            aria-label={t("Landing.Flu Assistance Program Link Screenreader Label")}
+            title={t("Landing.Flu Assistance Program Link Screenreader Label")}
           >
             flu.
           </a>
@@ -166,11 +164,11 @@ const Landing = () => {
               <Accordion.Trigger
                 className={"AccordionTrigger"}
                 aria-label={
-                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Screenreader FAQ Intro") +
                   t("Landing.Accordion Item 1.Heading")
                 }
                 title={
-                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Screenreader FAQ Intro") +
                   t("Landing.Accordion Item 1.Heading")
                 }
               >
@@ -259,11 +257,11 @@ const Landing = () => {
               <Accordion.Trigger
                 className={"AccordionTrigger"}
                 aria-label={
-                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Screenreader FAQ Intro") +
                   t("Landing.Accordion Item 2.Heading")
                 }
                 title={
-                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Screenreader FAQ Intro") +
                   t("Landing.Accordion Item 2.Heading")
                 }
               >
@@ -311,11 +309,11 @@ const Landing = () => {
               <Accordion.Trigger
                 className={"AccordionTrigger"}
                 aria-label={
-                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Screenreader FAQ Intro") +
                   t("Landing.Accordion Item 3.Heading")
                 }
                 title={
-                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Screenreader FAQ Intro") +
                   t("Landing.Accordion Item 3.Heading")
                 }
               >
@@ -388,11 +386,11 @@ const Landing = () => {
               <Accordion.Trigger
                 className={"AccordionTrigger"}
                 aria-label={
-                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Screenreader FAQ Intro") +
                   t("Landing.Accordion Item 4")
                 }
                 title={
-                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Screenreader FAQ Intro") +
                   t("Landing.Accordion Item 4")
                 }
               >
@@ -487,11 +485,11 @@ const Landing = () => {
               <Accordion.Trigger
                 className={"AccordionTrigger"}
                 aria-label={
-                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Screenreader FAQ Intro") +
                   t("Landing.Accordion Item 5.Heading")
                 }
                 title={
-                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Screenreader FAQ Intro") +
                   t("Landing.Accordion Item 5.Heading")
                 }
               >
@@ -581,11 +579,11 @@ const Landing = () => {
               <Accordion.Trigger
                 className={"AccordionTrigger"}
                 aria-label={
-                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Screenreader FAQ Intro") +
                   t("Landing.Accordion Item 6.Heading")
                 }
                 title={
-                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Screenreader FAQ Intro") +
                   t("Landing.Accordion Item 6.Heading")
                 }
               >
@@ -667,11 +665,11 @@ const Landing = () => {
               <Accordion.Trigger
                 className={"AccordionTrigger"}
                 aria-label={
-                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Screenreader FAQ Intro") +
                   t("Landing.Accordion Item 7.Heading")
                 }
                 title={
-                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Screenreader FAQ Intro") +
                   t("Landing.Accordion Item 7.Heading")
                 }
               >
@@ -714,11 +712,11 @@ const Landing = () => {
               <Accordion.Trigger
                 className={"AccordionTrigger"}
                 aria-label={
-                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Screenreader FAQ Intro") +
                   t("Landing.Accordion Item 8.Heading")
                 }
                 title={
-                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Screenreader FAQ Intro") +
                   t("Landing.Accordion Item 8.Heading")
                 }
               >
@@ -765,11 +763,11 @@ const Landing = () => {
               <Accordion.Trigger
                 className={"AccordionTrigger"}
                 aria-label={
-                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Screenreader FAQ Intro") +
                   t("Landing.Accordion Item 9.Heading")
                 }
                 title={
-                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Screenreader FAQ Intro") +
                   t("Landing.Accordion Item 9.Heading")
                 }
               >
@@ -906,11 +904,11 @@ const Landing = () => {
               <Accordion.Trigger
                 className={"AccordionTrigger"}
                 aria-label={
-                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Screenreader FAQ Intro") +
                   t("Landing.Accordion Item 10.Heading")
                 }
                 title={
-                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Screenreader FAQ Intro") +
                   t("Landing.Accordion Item 10.Heading")
                 }
               >
@@ -955,11 +953,11 @@ const Landing = () => {
               <Accordion.Trigger
                 className={"AccordionTrigger"}
                 aria-label={
-                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Screenreader FAQ Intro") +
                   t("Landing.Accordion Item 11.Heading")
                 }
                 title={
-                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Screenreader FAQ Intro") +
                   t("Landing.Accordion Item 11.Heading")
                 }
               >
@@ -993,11 +991,11 @@ const Landing = () => {
               <Accordion.Trigger
                 className={"AccordionTrigger"}
                 aria-label={
-                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Screenreader FAQ Intro") +
                   t("Landing.Accordion Item 12.Heading")
                 }
                 title={
-                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Screenreader FAQ Intro") +
                   t("Landing.Accordion Item 12.Heading")
                 }
               >
@@ -1044,11 +1042,11 @@ const Landing = () => {
               <Accordion.Trigger
                 className={"AccordionTrigger"}
                 aria-label={
-                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Screenreader FAQ Intro") +
                   t("Landing.Accordion Item 13.Heading")
                 }
                 title={
-                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Screenreader FAQ Intro") +
                   t("Landing.Accordion Item 13.Heading")
                 }
               >
@@ -1080,11 +1078,11 @@ const Landing = () => {
               <Accordion.Trigger
                 className={"AccordionTrigger"}
                 aria-label={
-                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Screenreader FAQ Intro") +
                   t("Landing.Accordion Item 14.Heading")
                 }
                 title={
-                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Screenreader FAQ Intro") +
                   t("Landing.Accordion Item 14.Heading")
                 }
               >
@@ -1116,11 +1114,11 @@ const Landing = () => {
               <Accordion.Trigger
                 className={"AccordionTrigger"}
                 aria-label={
-                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Screenreader FAQ Intro") +
                   t("Landing.Accordion Item 15.Heading")
                 }
                 title={
-                  t("Landing.Accessible FAQ Intro") +
+                  t("Landing.Screenreader FAQ Intro") +
                   t("Landing.Accordion Item 15.Heading")
                 }
               >
