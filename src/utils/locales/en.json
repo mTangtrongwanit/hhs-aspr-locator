@@ -74,9 +74,9 @@
     "Email Link Screenreader Label": "Email link",
     "Link to Tabular Access Screenreader Label": "Link to tabular access to the data",
     "Tabular Access Available": "Tabular access to the data is also available.",
-    "Website U.S. Government": "This website includes locations participating in the U.S. Government",
+    "Website US Government": "This website includes locations participating in the U.S. Government",
     "Screenreader FAQ Intro": "Read Frequently Asked Question: ",
-    "Link to PAP": "Link to patient assistance program",
+    "Link to PAP Screenreader Label": "Link to patient assistance program",
     "PAP Text": "operated by Pfizer, offering free Paxlovid for eligible patients. Other assistance programs are available for",
     "COVID-19 Assistance Program Link Screenreader Label": "Link to COVID-19 assistance program",
     "Flu Assistance Program Link Screenreader Label": "Link to flu assistance program",
@@ -84,22 +84,27 @@
     "Accordion Item 1": {
       "Heading": "Which outpatient medications available to treat COVID-19 and flu appear on this locator?",
       "Content": {
-        "Description 1": "The COVID-19 and flu treatment locator can be used to help you find FDA approved or authorized treatments for these diseases.",
+        "Text 1": "The COVID-19 and flu treatment locator can be used to help you find FDA approved or authorized treatments for these diseases.",
         "Unordered List 1": {
           "List Item 1": {
-            "Text 1": "Three outpatient treatments are currently authorized or approved by the U.S. Food and Drug Administration (FDA) to help reduce the risk of hospitalization or death for patients with mild to moderate COVID-19",
+            "Text 1": "Three outpatient treatments are currently authorized or approved by the U.S. Food and Drug Administration (FDA) to help reduce the risk of hospitalization or death for patients with mild to moderate COVID-19:",
             "Unordered List 1": {
-              "List Item 1": "Oral Paxlovid (nirmatrelvir with ritonavir)",
-              "List Item 2": "Oral Lagevrio (molnupiravir)",
-              "List Item 3": "Intravenous outpatient Veklury (remdesivir)"
+              "List Item 1": {
+                "Text 1": "Oral Paxlovid (nirmatrelvir with ritonavir)"
+              },
+              "List Item 2": {
+                "Text 1": "Oral Lagevrio (molnupiravir)"
+              },
+              "List Item 3": {
+                "Text 1": "Intravenous outpatient Veklury (remdesivir)"
+              }
             }
           },
           "List Item 2": {
             "Anchor 1": {
-              "Text 1": "Treatment Options for",
-              "Text 2": "to learn more about these medications."
+              "Text 1": "Treatment Options for"
             },
-            "Description 1": "to learn more about these medications."
+            "Text 1": "to learn more about these medications."
           },
           "List Item 3": {
             "Text 1": "All COVID treatments listed on this site require a prescription from a health care provider and are most effective if you take them as soon as you get sick, and ideally within 5 days of developing symptoms."
@@ -109,10 +114,18 @@
           "List Item 1": {
             "Text 1": "The following outpatient treatments are currently approved by FDA and recommended by CDC to treat flu:",
             "Unordered List 1": {
-              "List Item 1": "Oral oseltamivir (available as a generic version or under the trade name Tamiflu)",
-              "List Item 2": "Oral baloxavir (Xofluza)",
-              "List Item 3": "Inhaled zanamivir (Relenza)",
-              "List Item 4": "Intravenous peramivir (Rapivab)"
+              "List Item 1": {
+                "Text 1": "Oral oseltamivir (available as a generic version or under the trade name Tamiflu)"
+              },
+              "List Item 2": {
+                "Text 1": "Oral baloxavir (Xofluza)"
+              },
+              "List Item 3": {
+                "Text 1": "Inhaled zanamivir (Relenza)"
+              },
+              "List Item 4": {
+                "Text 1": "Intravenous peramivir (Rapivab)"
+              }
             }
           },
           "List Item 2": {
@@ -346,25 +359,172 @@
       }
     },
     "Accordion Item 9": {
-      "Heading": "What programs exist to provide continued affordable access to these treatments outside of usual prescription drug coverage?"
+      "Heading": "What programs exist to provide continued affordable access to these treatments outside of usual prescription drug coverage?",
+      "Content": {
+        "Unordered List 1": {
+          "List Item 1": {
+            "Text 1": "For Paxlovid",
+            "Unordered List 1": {
+              "List Item 1": {
+                "Text 1": "Medicare, Medicaid, and uninsured patients can receive Paxlovid at no charge through December 2024 through the U.S. Government (USG) Patient Assistance Program (PAP) operated by Pfizer. This includes all patients who are publicly insured through Medicare (with or without Part D, Part B, or Part C and inclusive of Medicare Advantage), Medicaid/Children’s Health Insurance Program, TRICARE, and patients insured through the Department of Veterans Affairs Community Care Network. More information can be found on the",
+                "Anchor 1": {
+                  "Text 1": "COVID-19 therapeutics website."
+                },
+                "Anchor 2": {
+                  "Text 1": "Learn more about this program"
+                },
+                "Text 2": "or",
+                "Text 3": "enroll."
+              },
+              "List Item 2": {
+                "Text 1": " You can search for locations participating in this Paxlovid PAP using this locator tool by filtering for PAP sites."
+              },
+              "List Item 3": {
+                "Text 1": "Concurrently, Pfizer is operating a Paxlovid Co-Pay Savings Program for eligible privately (commercially)insured patients.",
+              "Anchor 1": {
+                "Text 1": "Patients",
+                "Text 2": "and"
+              },
+              "Anchor 2": {
+                "Text 1": "healthcare providers"
+              },
+              "Text 2": "cand download a co-pay savings card."
+            }
+            }
+          },
+          "List Item 2": {
+            "Text 1": "For Lagevrio",
+            "Unordered List 1": {
+              "List Item 1": {
+                "Text 1": "The",
+                "Anchor 1": {
+                  "Text 1": "Merck Patient Assistance Program"
+                },
+                "Text 2": "(a 501c3 non-profit organization) will provide Lagevrio free of charge to patients who meet eligibility criteria and who, without assistance, could not otherwise afford the product."
+              }
+            }
+          },
+          "List Item 3": {
+            "Text 1": "For Veklury",
+            "Unordered List 1": {
+              "List Item 1": {
+                "Text 1": "Please contact Gilead's Advancing Access program to learn more about access to Veklury in the outpatient setting and",
+                "Anchor 1": {
+                  "Text 1": "financial support."
+                },
+                "Text 2": "for Veklury."
+              }
+            }
+          },
+          "List Item 4": {
+            "Text 1": "Note: This response does not address whether these COVID-19 treatments are covered by Medicare and Medicaid generally. More information is available for",
+            "Anchor 1": {
+              "Text 1": "Medicare"
+            },
+            "Text 2": "and",
+            "Anchor 2": {
+              "Text 1": "Medicaid"
+            },
+            "Text 3": "coverage."
+          }
+        },
+        "Unordered List 2": {
+          "List Item 1": {
+            "Text 1": "For Zanamivir (Relenza):",
+            "Unordered List 1": {
+              "List Item 1": {
+                "Anchor 1": {
+                  "Text 1": "GSK for You"
+                },
+                "Text 1": "is a program committed to assisting eligible patients access to medications. They offer programs for patients who meet income and other eligibility requirements."
+              }
+            }
+          },
+          "List Item 2": {
+            "Text 1": "For Tamiflu and Baloxavir (Xofluza):",
+            "Unordered List 1": {
+              "List Item 1": {
+                "Anchor 1": {
+                  "Text 1": "The Genentech Patient Foundation"
+                },
+                "Text 1": "gives free Genentech medicine to people who do not have insurance coverage or who have financial concerns and meet eligibility criteria."
+              }
+            }
+          }
+        }
+      }
     },
     "Accordion Item 10": {
-      "Heading": "What are monoclonal antibodies and why are they not listed on this map?"
+      "Heading": "What are monoclonal antibodies and why are they not listed on this map?",
+      "Content": {
+        "Text 1": "Throughout the COVID-19 pandemic, the federal government granted Emergency Use Authorization (EUA) for therapeutics to help combat COVID-19, including certain monoclonal antibodies. Because the U.S. Food and Drug Administration (FDA) does not currently authorize any monoclonal antibody therapeutics to treat COVID-19 in the United States, no monoclonal antibody products are listed on this locator. Pemivibart (PEMGARDA), a monoclonal antibody to prevent COVID-19 in certain patients, is currently",
+        "Anchor 1": {
+          "Text 1": "authorized by the FDA"
+        },
+        "Text 2": "for emergency use. Infusion sites offering this medication can be found using the",
+        "Anchor 2": {
+          "Text 1": "PEMGARDA infusion center locator tool."
+        },
+        "Text 3": "There are no monoclonal antibodies available to treat flu."
+      }
     },
     "Accordion Item 11": {
-      "Heading": "Are all sites that offer COVID-19 or influenza treatments listed on the locator?"
+      "Heading": "Are all sites that offer COVID-19 or influenza treatments listed on the locator?",
+      "Content": {
+        "Text 1": "There may be locations that offer outpatient COVID-19 or influenza medications and are not listed on this website. The locations displayed on this website have either self-attested they have inventory of COVID-19 or influenza antiviral medications within at least the last two months and/or reported participation in the US Government Paxlovid Patient Assistance Program operated by Pfizer."
+      }
     },
     "Accordion Item 12": {
-      "Heading": "What services may the locations listed on the locator provide?"
+      "Heading": "What services may the locations listed on the locator provide?",
+      "Content": {
+        "Text 1": "Where indicated, the locations listed on this website may:",
+        "Unordered List 1": {
+          "List Item 1": {
+            "Text 1": "Have remaining free Paxlovid and/or Lagevrio distributed by the U.S. Department of Health and Human Services"
+          },
+          "List Item 2": {
+            "Text 1": "Participate in the Paxlovid Patient Assistance Program, providing free Paxlovid to publicly insured (Medicare, Medicaid, etc.) and uninsured patients"
+          },
+          "List Item 3": {
+            "Text 1": "Offer prescribing services (including telehealth) or home delivery of medicines"
+          },
+          "List Item 4": {
+            "Text 1": "Offer no-cost COVID-19 testing for eligible uninsured people (Increasing Community Access to Testing [ICATT] participating site)"
+          }
+        }
+      }
     },
     "Accordion Item 13": {
-      "Heading": "How can my site be added to locator?"
+      "Heading": "How can my site be added to locator?",
+      "Content": {
+        "Text 1": "If you would like more information about being added to the Treatments Locator, please email"
+      }
     },
     "Accordion Item 14": {
-      "Heading": "How can my site participate in the Paxlovid Patient Assistance Program?"
+      "Heading": "How can my site participate in the Paxlovid Patient Assistance Program?",
+      "Content": {
+        "Text 1": "Retail pharmacies can learn more about participating in the Paxlovid Patient Assistance Program by",
+        "Anchor 1": {
+          "Text 1": "contacting the program vendor"
+        }
+      }
     },
     "Accordion Item 15": {
-      "Heading": "Data Information and Disclaimers"
+      "Heading": "Data Information and Disclaimers",
+      "Content": {
+        "Text 1": "Outpatient COVID-19 and influenza (flu) medications may be available at additional locations not listed on this website. The locations displayed have either self-attested they have inventory of COVID-19 or influenza antiviral medications within at least the last two months and/or reported participation in the Paxlovid Patient Assistance Program.",
+        "Text 2": "All therapeutics identified in the locator not approved by the FDA must be used in alignment with the terms of the respective product’s Emergency Use Authorization. Visit the",
+        "Anchor 1": {
+          "Text 1": "ASPR COVID-19 Treatments page"
+        },
+        "Text 3": "for more information on all COVID-19 treatment options and",
+        "Anchor 2": {
+          "Text 1": "CDC’s Flu Treatment page"
+        },
+        "Text 4": "for more information on influenza treatment options.",
+        "Text 5": "This website identifies sites that have commercially purchased inventory of COVID-19 and influenza treatments and, in some cases, may identify sites that have remaining, no-cost U.S. government distributed supply. Some sites may charge for services which may or may not be covered by insurance. Some sites may offer prescribing services for patients, including telehealth services. This website is intended for informational purposes only and does not serve as an endorsement or recommendation for use of any of the locations listed on the sites.",
+        "Text 6": "For questions regarding this site, contact"
+      }
     }
   },
   "Locations": {

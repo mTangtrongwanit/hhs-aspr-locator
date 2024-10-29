@@ -126,7 +126,7 @@ const Landing = () => {
           </a>
         </p>
         <p>
-        {t("Landing.Website U.S. Government")}&nbsp;
+        {t("Landing.Website US Government")}&nbsp;
           <a
             href="https://paxlovid.iassist.com/"
             aria-label={t("Landing.Link to PAP Screenreader Label")}
@@ -141,8 +141,8 @@ const Landing = () => {
             title={t("Landing.COVID-19 Assistance Program Link Screenreader Label")}
           >
             COVID-19
-          </a>{" "}
-          and
+          </a>
+          {" "}and{" "}
           <a
             href="#faq-flu"
             aria-label={t("Landing.Flu Assistance Program Link Screenreader Label")}
@@ -178,70 +178,49 @@ const Landing = () => {
             </Accordion.Header>
             <Accordion.Content className="AccordionContent">
               <div className="AccordionContentText">
-                <p>
-                  The COVID-19 and flu treatment locator can be used to help you
-                  find FDA approved or authorized treatments for these diseases.{" "}
-                </p>
-                <strong>COVID-19</strong>
+                <p>{t("Landing.Accordion Item 1.Content.Text 1")}</p>
+                <strong>{t("Reusable.COVID-19")}</strong>
                 <ul>
                   <li>
-                    Three outpatient treatments are currently authorized or
-                    approved by the U.S. Food and Drug Administration (FDA) to
-                    help reduce the risk of hospitalization or death for
-                    patients with mild to moderate COVID-19:
+                    {t("Landing.Accordion Item 1.Content.Unordered List 1.List Item 1.Text 1")}
                     <ul>
-                      <li>Oral Paxlovid (nirmatrelvir with ritonavir)</li>
-                      <li>Oral Lagevrio (molnupiravir)</li>
-                      <li>Intravenous outpatient Veklury (remdesivir)</li>
+                      <li>{t("Landing.Accordion Item 1.Content.Unordered List 1.List Item 1.Unordered List 1.List Item 1.Text 1")}</li>
+                      <li>{t("Landing.Accordion Item 1.Content.Unordered List 1.List Item 1.Unordered List 1.List Item 2.Text 1")}</li>
+                      <li>{t("Landing.Accordion Item 1.Content.Unordered List 1.List Item 1.Unordered List 1.List Item 3.Text 1")}</li>
                     </ul>
                   </li>
                   <li>
-                    Visit{" "}
+                  {t("Reusable.Visit")}{" "}
                     <a href="https://aspr.hhs.gov/COVID-19/Treatments/Pages/Possible-Treatment-Options-for-COVID19.aspx">
-                      Treatment Options for COVID-19
+                    {t("Landing.Accordion Item 1.Content.Unordered List 1.List Item 2.Anchor 1.Text 1")}{" "}{t("Reusable.COVID-19")}
                     </a>{" "}
-                    to learn more about these medications.
+                   {t("Landing.Accordion Item 1.Content.Unordered List 1.List Item 2.Text 1")}
                   </li>
-                  <li>
-                    All COVID treatments listed on this site require a
-                    prescription from a health care provider and are most
-                    effective if you take them as soon as you get sick, and
-                    ideally within 5 days of developing symptoms.
-                  </li>
+                  <li>{t("Landing.Accordion Item 1.Content.Unordered List 1.List Item 3.Text 1")}</li>
                 </ul>
 
-                <strong>Influenza (Flu)</strong>
+                <strong>{t("Reusable.Influenza")}{" "} ({t("Reusable.Flu")})</strong>
                 <ul>
                   <li>
-                    The following outpatient treatments are currently approved
-                    by FDA and recommended by CDC to treat flu:
+                    {t("Landing.Accordion Item 1.Content.Unordered List 2.List Item 1.Text 1")}
                     <ul>
-                      <li>
-                        Oral oseltamivir (available as a generic version or
-                        under the trade name Tamiflu),
-                      </li>
-                      <li>Oral baloxavir (Xofluza) </li>
-                      <li>Inhaled zanamivir (Relenza) </li>
-                      <li>Intravenous peramivir (Rapivab)</li>
+                      <li>{t("Landing.Accordion Item 1.Content.Unordered List 2.List Item 1.Unordered List 1.List Item 1.Text 1")}</li>
+                      <li>{t("Landing.Accordion Item 1.Content.Unordered List 2.List Item 1.Unordered List 1.List Item 2.Text 1")}</li>
+                      <li>{t("Landing.Accordion Item 1.Content.Unordered List 2.List Item 1.Unordered List 1.List Item 3.Text 1")}</li>
+                      <li>{t("Landing.Accordion Item 1.Content.Unordered List 2.List Item 1.Unordered List 1.List Item 4.Text 1")}</li>
                     </ul>
                   </li>
                   <li>
-                    Please visit{" "}
+                    {t("Landing.Accordion Item 1.Content.Unordered List 2.List Item 2.Text 1")}{" "}
                     <a href="https://www.cdc.gov/flu/treatment/whatyoushould.htm">
-                      What are Flu Antiviral Drugs | CDC
+                      {t("Landing.Accordion Item 1.Content.Unordered List 2.List Item 2.Anchor 1.Text 1")}
                     </a>{" "}
-                    to learn more about treatments for flu. Healthcare providers
-                    can visit CDC’s{" "}
+                    {t("Landing.Accordion Item 1.Content.Unordered List 2.List Item 2.Text 2")}{" "}
                     <a href="https://www.cdc.gov/flu/professionals/antivirals/summary-clinicians.htm">
-                      Influenza Antiviral Medications: Summary for Clinicians.{" "}
+                    {t("Landing.Accordion Item 1.Content.Unordered List 2.List Item 2.Anchor 2.Text 1")}{" "}
                     </a>
                   </li>
-                  <li>
-                    All flu treatments listed on this site require a
-                    prescription from a health care provider and are most
-                    effective if you take them as soon as you get sick, and
-                    ideally within 48 hours of developing symptoms.
-                  </li>
+                  <li>{t("Landing.Accordion Item 1.Content.Unordered List 2.List Item 3.Text 1")}</li>
                 </ul>
               </div>
             </Accordion.Content>
