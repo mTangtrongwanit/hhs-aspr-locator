@@ -150,8 +150,8 @@
         "List Item 1": {
           "Text 1": "Antiviral drugs are prescription medicines that fight against the specific virus they are prescribed for – COVID-19 antivirals work to treat COVID-19, and flu antivirals work to treat influenza. Antiviral drugs are different from antibiotics, which fight against bacterial infections, and come in different forms:",
           "Unordered List 1": {
-            "List Item 1": "Oral antiviral drugs, are taken by mouth (in a pill or liquid suspension form)",
-            "List Item 2": "Inhaled antiviral drugs are breathed in by mouth as directed (e.g., can be administered by an inhaler)",
+            "List Item 1": "Oral antiviral drugs, are taken by mouth (in a pill or liquid suspension form).",
+            "List Item 2": "Inhaled antiviral drugs are breathed in by mouth as directed (e.g., can be administered by an inhaler).",
             "List Item 3": "Intravenous antiviral drugs are given directly into a vein with a needle or a tube."
           }
         }
@@ -160,18 +160,21 @@
     "Accordion Item 3": {
       "Heading": "Who can take the outpatient COVID-19 medications listed on this website?",
       "Content": {
+        "Unordered List 1": {
         "List Item 1": {
           "Text 1": "Paxlovid: Adults and children (12 years of age and older,  weighing at least 88 pounds [40 kg]), who are at high risk for getting very sick from COVID-19 and who have mild to moderate symptoms."
         },
         "List Item 2": {
-          "Text 1": "Lagevrio: Adults 18 years and older, who are at high risk for getting very sick from COVID-19, have mild to moderate symptoms, and do not have access to other COVID-19 outpatient treatment options or other treatment options are not appropriate for them"
+          "Text 1": "Lagevrio: Adults 18 years and older, who are at high risk for getting very sick from COVID-19, have mild to moderate symptoms, and do not have access to other COVID-19 outpatient treatment options or other treatment options are not appropriate for them."
         },
         "List Item 3": {
           "Text 1": "Veklury: In the outpatient setting, adults and children (28",
           "Text 2": "days",
-          "Text 3": "of age or older and weighing at least 7 pounds [3 kg]), who have mild to moderate symptoms of COVID-19 and are at high risk for getting very sick from COVID-19",
+          "Text 3": "of age or older and weighing at least 7 pounds [3 kg]), who have mild to moderate symptoms of COVID-19 and are at high risk for getting very sick from COVID-19.",
           "Unordered List 1": {
-            "List Item 1": "This medication is given through an intravenous infusion and may be given in the outpatient (not staying in the hospital) setting over three consecutive visits or in the inpatient (staying in the hospital) setting. This website lists only outpatient locations where Veklury is available"
+            "List Item 1": {
+              "Text 1": "This medication is given through an intravenous infusion and may be given in the outpatient (not staying in the hospital) setting over three consecutive visits or in the inpatient (staying in the hospital) setting. This website lists only outpatient locations where Veklury is available."
+            }
           }
         },
         "List Item 4": {
@@ -180,18 +183,20 @@
         "List Item 5": {
           "Text 1": "To learn more about indications for these products, see",
           "Anchor 1": {
-            "Text 1": "Treatment Options for COVID-19"
+            "Text 1": "Treatment Options for COVID-19."
           },
           "Text 2": "Healthcare providers can refer to the",
           "Anchor 2": {
-            "Text 1": "Side-by-Side Overview of Therapeutics Authorized or Approved for the Treatment of Mild to Moderate COVID-19"
+            "Text 1": "Side-by-Side Overview of Therapeutics Authorized or Approved for the Treatment of Mild to Moderate COVID-19."
           }
         }
+      }
       }
     },
     "Accordion Item 4": {
       "Heading": "Who can take the outpatient flu medications listed on this website?",
       "Content": {
+        "Unordered List 1": {
         "List Item 1": {
           "Text 1": "Oseltamivir (including brand name Tamiflu): Recommended for adults and children of all ages.",
           "Unordered List 1": {
@@ -244,6 +249,7 @@
           }
         }
       }
+      }
     },
     "Accordion Item 5": {
       "Heading": "Can children take the antiviral medications listed on this website?",
@@ -255,7 +261,9 @@
           "List Item 2": {
             "Text 1": "Veklury is FDA-approved for children 28 days of age or older and weighing at least 7 pounds [3 kg], who have mild to moderate symptoms of COVID-19 and are at high risk for getting very sick from COVID-19.",
             "Unordered List 1": {
-              "List Item 1": "This medication is given through an intravenous infusion and may be given in the outpatient (not staying in the hospital) or inpatient (staying in the hospital) setting. This website lists only outpatient locations where Veklury is available."
+              "List Item 1": {
+                "Text 1": "This medication is given through an intravenous infusion and may be given in the outpatient (not staying in the hospital) or inpatient (staying in the hospital) setting. This website lists only outpatient locations where Veklury is available."
+              }
             }
           }
         },
@@ -430,7 +438,7 @@
         },
         "Unordered List 2": {
           "List Item 1": {
-            "Text 1": "For Zanamivir (Relenza):",
+            "Text 1": "For Zanamivir (Relenza)",
             "Unordered List 1": {
               "List Item 1": {
                 "Anchor 1": {
@@ -477,7 +485,7 @@
     "Accordion Item 12": {
       "Heading": "What services may the locations listed on the locator provide?",
       "Content": {
-        "Text 1": "Where indicated, the locations listed on this website may:",
+        "Text 1": "Where indicated, the locations listed on this website may",
         "Unordered List 1": {
           "List Item 1": {
             "Text 1": "Have remaining free Paxlovid and/or Lagevrio distributed by the U.S. Department of Health and Human Services"
