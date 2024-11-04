@@ -6,6 +6,11 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
+import Circle from "@arcgis/core/geometry/Circle";
+import Point from "@arcgis/core/geometry/Point";
+import Graphic from "@arcgis/core/Graphic";
+import GraphicLayer from "@arcgis/core/layers/GraphicsLayer";
+import SimpleFillSymbol from "@arcgis/core/symbols/SimpleFillSymbol.js";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region ------------------------ Resources ----------------------------------
@@ -70,6 +75,8 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   /** Selected treatment site */
   const [selectedTreatmentSite, setSelectedTreatmentSite] =
     useState<__esri.Graphic | null>(null);
+  // Search radius state
+  const [radius, setRadius] = useState<number>(50);
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
@@ -141,16 +148,14 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
       // to treatmentIllnesses
       const filterTreatmentIllnesses =
         treatmentIllnesses &&
-        [oseltamivirParent, ...treatmentIllnesses]?.filter(
-          (treatment) => {
-            return (
-              treatment.attributes.display_name !== "Oseltamivir Generic" &&
-              treatment.attributes.display_name !== "Oseltamivir Suspension" &&
-              treatment.attributes.display_name !== "Oseltamivir Tamiflu" &&
-              treatment.attributes.display_name !== "Veklury"
-            );
-          },
-        );
+        [oseltamivirParent, ...treatmentIllnesses]?.filter((treatment) => {
+          return (
+            treatment.attributes.display_name !== "Oseltamivir Generic" &&
+            treatment.attributes.display_name !== "Oseltamivir Suspension" &&
+            treatment.attributes.display_name !== "Oseltamivir Tamiflu" &&
+            treatment.attributes.display_name !== "Veklury"
+          );
+        });
 
       filterTreatmentIllnesses?.sort((a, b) => {
         return (
@@ -189,10 +194,11 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
 
     // build the medications clause
     const medicationClause = selectedMedications
-      .map((medication) =>
-        treatmentIllnessLookup[selectedIllness.value]?.find(
-          (treatment) => treatment.name === medication,
-        ),
+      .map(
+        (medication) =>
+          treatmentIllnessLookup[selectedIllness.value]?.find(
+            (treatment) => treatment.name === medication,
+          ),
       )
       .filter((treatment) => treatment)
       .map((treatment) =>
@@ -206,8 +212,8 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     const where = sharedSiteFacilityID
       ? `facility_id = '${sharedSiteFacilityID}'`
       : medicationClause.length
-        ? `(${illnessClause}) AND (${medicationClause})`
-        : illnessClause;
+      ? `(${illnessClause}) AND (${medicationClause})`
+      : illnessClause;
 
     // find the appropriate search radius
     const MAX_SEARCH_RADIUS = 50; // starting full search radius
@@ -237,6 +243,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
             );
             return narrowSearchRadius(new_radius);
           }
+          setRadius(radius);
           return radius;
         })
         .catch(() => radius);
@@ -287,6 +294,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     sharedSiteFacilityID,
   ]);
 
+  // useEffect to watch for changes in the filteredSites and update the feature layer definition expression
   useEffect(() => {
     if (!featureLayer || !locations || !locationsMapView) return;
 
@@ -296,13 +304,48 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
       featureLayer.definitionExpression = "OBJECTID = -1";
       return;
     }
-    const objectIds = filteredSites.map((location) => location.attributes.OBJECTID);
+    const objectIds = filteredSites.map(
+      (location) => location.attributes.OBJECTID,
+    );
     if (objectIds.length === 0) {
       return;
     }
     where = `OBJECTID IN (${objectIds.join(",")})`;
     featureLayer.definitionExpression = where;
-  }, [featureLayer, locations, locationsMapView, filteredSites]);
+  }, [featureLayer, locations, locationsMapView, filteredSites, radius]);
+
+  // useEffect to watch for changes in the selected Illness and search radius and update the map view
+  // with a circle around the search area
+  useEffect(() => {
+    if (!searchPoint || !locationsMapView || !selectedIllness?.value) return;
+    // add a circle to the map at the search point
+    const circle = new Circle({
+      center: new Point({
+        latitude: searchPoint?.point.latitude,
+        longitude: searchPoint?.point.longitude,
+        spatialReference: locationsMapView.spatialReference,
+      }),
+      radius: radius,
+      radiusUnit: "miles",
+      spatialReference: locationsMapView.spatialReference,
+    });
+    const circleLayer = new GraphicLayer({
+      graphics: [
+        new Graphic({
+          geometry: circle,
+          symbol: new SimpleFillSymbol({
+            color: [0, 0, 0, 0.25], // grey color with 25% opacity
+          }),
+        }),
+      ],
+    });
+    locationsMapView.map.addMany([circleLayer]);
+    // cleanup by destroying the circle layer
+    return () => {
+      locationsMapView.map.remove(circleLayer);
+      circleLayer.destroy();
+    }; 
+  }, [selectedIllness, locationsMapView, radius, searchPoint]);
   // #endregion ----------------- Hooks (Other) --------------------------------
 
   // #region ---------------- Supporting Functions -----------------------------
@@ -317,19 +360,15 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
           setBannerHeight,
           headerHeight,
           setHeaderHeight,
-
           featureLayer,
           setFeatureLayer,
           locationsMapView,
           setLocationsMapView,
-
           treatmentIllnessData,
           treatmentIllnessLookup,
           locations,
-
           sharedSiteFacilityID,
           setSFID,
-
           searchPoint,
           setSearchPoint,
           selectedIllness,
@@ -342,7 +381,6 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
           setSelectedSort,
           selectedTreatmentSite,
           setSelectedTreatmentSite,
-
           filteredSites,
         } as AppContextType
       }
