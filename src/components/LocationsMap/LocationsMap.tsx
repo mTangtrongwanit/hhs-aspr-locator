@@ -22,6 +22,7 @@ import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import PopupTemplate from "@arcgis/core/PopupTemplate.js";
 import CustomContent from "@arcgis/core/popup/content/CustomContent.js";
 import Graphic from "@arcgis/core/Graphic";
+import Color from "@arcgis/core/Color.js";
 
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
@@ -46,6 +47,7 @@ interface LocationsMapProps {
 }
 
 // #region ======================== CONSTANTS ==================================
+const highlightColor = new Color("#0274FA");
 // #endregion ===================== CONSTANTS ==================================
 
 // #region =================== EXPORTED COMPONENT ==============================
@@ -138,6 +140,11 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
         map,
         container: mapRef.current,
         popupEnabled: true,
+        highlightOptions: {
+          color: highlightColor,
+          haloOpacity: 0,
+          shadowOpacity: 0,
+        },
       });
 
       // remove the all the dock options so they don't show in the popup
@@ -317,7 +324,7 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
         .whenOnce(() => !locationsMapView.updating && locationsMapView.ready)
         .then(() => {
           highlight.symbol = new SimpleMarkerSymbol({
-            color: "#0274FA",
+            color: highlightColor,
             size: "20",
           });
           locationsMapView.graphics.add(highlight);
