@@ -323,7 +323,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
       center: new Point({
         latitude: searchPoint?.point.latitude,
         longitude: searchPoint?.point.longitude,
-        spatialReference: locationsMapView.spatialReference,
+        spatialReference: searchPoint?.point?.spatialReference,
       }),
       radius: radius,
       radiusUnit: "miles",

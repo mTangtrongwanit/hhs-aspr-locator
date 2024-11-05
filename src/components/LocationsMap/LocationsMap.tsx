@@ -343,7 +343,7 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
       reactiveUtils
         .whenOnce(() => locationsMapView.ready)
         .then(() => {
-          const target = locations.length ? locations : searchPoint?.point;
+          const target = searchPoint?.point;
 
           const options =
             !searchPoint || searchPoint?.name === "US"
