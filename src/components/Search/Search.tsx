@@ -93,8 +93,6 @@ const SearchComponent = ({ placeholder }: { placeholder?: string } = {}) => {
      * Watch for result selection to set AOI
      */
     search.on("select-result", async (event) => {
-      setSelectedMedications([]);
-      setSelectedFilters([]);
       const result = (event as __esri.SearchSelectResultEvent).result;
 
       // if the user triggers the search by hitting the enter key, use the first suggestion
@@ -119,6 +117,8 @@ const SearchComponent = ({ placeholder }: { placeholder?: string } = {}) => {
         spatialReference: { wkid: 102100 },
       });
       setSearchPoint({ name, point: webMercatorPoint });
+      setSelectedMedications([]);
+      setSelectedFilters([]);
     });
 
     // Note: We need to create a fresh element for the widget everytime it is built, can't just assign it to ref.current or it won't re-render.
