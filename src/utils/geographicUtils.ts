@@ -7,6 +7,7 @@
 // #region ------------ 3rd-Party Components / Libraries -----------------------
 import Point from "@arcgis/core/geometry/Point";
 import Polyline from "@arcgis/core/geometry/Polyline";
+import Circle from "@arcgis/core/geometry/Circle";
 import * as geometryEngine from "@arcgis/core/geometry/geometryEngine";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
@@ -39,10 +40,14 @@ const buildLocationsQuery = (
   query.outFields = ["*"];
   query.returnGeometry = true;
   if (location) {
-    query.geometry = location;
-    query.units = "miles";
-    query.spatialRelationship = "intersects";
-    query.distance = distance;
+    // query by exact circle geometry to match the search radius circle displayed on the map
+    query.geometry = new Circle({
+      center: location,
+      radius: distance,
+      radiusUnit: "miles",
+      spatialReference: location.spatialReference,
+    });
+    query.spatialRelationship = "contains";
   }
   return query;
 };
