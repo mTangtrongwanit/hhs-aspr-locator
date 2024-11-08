@@ -77,6 +77,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     useState<__esri.Graphic | null>(null);
   // Search radius state
   const [radius, setRadius] = useState<number>(50);
+  const [circle, setCircle] = useState<Circle | null>(null);
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
@@ -329,6 +330,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
       radiusUnit: "miles",
       spatialReference: locationsMapView.spatialReference,
     });
+    setCircle(circle)
     const circleLayer = new GraphicLayer({
       graphics: [
         new Graphic({
@@ -382,6 +384,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
           selectedTreatmentSite,
           setSelectedTreatmentSite,
           filteredSites,
+          circle
         } as AppContextType
       }
     >
