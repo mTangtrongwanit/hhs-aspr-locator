@@ -342,7 +342,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     locationsMapView.map.addMany([circleLayer]);
     // cleanup by destroying the circle layer
     return () => {
-      locationsMapView.map.remove(circleLayer);
+      locationsMapView?.map?.remove(circleLayer);
       circleLayer.destroy();
     }; 
   }, [selectedIllness, locationsMapView, radius, searchPoint]);
