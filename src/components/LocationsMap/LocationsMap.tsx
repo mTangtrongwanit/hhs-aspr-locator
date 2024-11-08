@@ -61,6 +61,7 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
     setLocationsMapView,
     setSearchPoint,
     setSelectedTreatmentSite,
+    circle
   } = useAppContext();
   const [searchParams] = useSearchParams();
 
@@ -183,12 +184,8 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
               latitude: lat,
             });
             setSearchPoint({ name: geopoint, point: p });
-
             mapView
-              .goTo({
-                center: p,
-                zoom: 11,
-              })
+              .goTo(circle?.extent)
               .catch((error) => {
                 console.error("MapView goTo error: ", error);
               });
@@ -307,6 +304,7 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
     searchPoint,
     selectedIllness.value,
     t,
+    circle?.radius
   ]);
 
   /** Highlight selected feature */
@@ -322,7 +320,7 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
           });
           locationsMapView.graphics.add(highlight);
           locationsMapView
-            .goTo({ target: highlight.geometry, zoom: 15 })
+            .goTo(circle?.extent)
             .catch((error) => {
               console.error("MapView goTo error: ", error);
             });
@@ -332,7 +330,7 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
         locationsMapView.graphics.remove(highlight);
       };
     }
-  }, [locationsMapView, selectedTreatmentSite]);
+  }, [locationsMapView, selectedTreatmentSite, circle?.radius]);
 
   /** Zoom to locations center and extent. */
   useEffect(() => {
@@ -343,8 +341,6 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
       reactiveUtils
         .whenOnce(() => locationsMapView.ready)
         .then(() => {
-          const target = searchPoint?.point;
-
           const options =
             !searchPoint || searchPoint?.name === "US"
               ? new Extent({
@@ -356,13 +352,14 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
                     wkid: 102100,
                   },
                 })
-              : { target: target, zoom: 11 };
+              : circle?.extent;
+
           locationsMapView.goTo(options).catch((error) => {
             console.error("MapView goTo error: ", error);
           });
         });
     }
-  }, [locations, locationsMapView, searchPoint, searchParams, selectedIllness]);
+  }, [locations, locationsMapView, searchPoint, searchParams, selectedIllness, circle?.radius]);
 
   // #endregion ----------------- Hooks (Other) --------------------------------
 
