@@ -336,7 +336,13 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
         new Graphic({
           geometry: circle,
           symbol: new SimpleFillSymbol({
-            color: [0, 0, 0, 0.25], // grey color with 25% opacity
+            // Fill color #CCCCCC and .7 point border with color #000000. Transparency 35%
+            color: [204, 204, 204, 0.35],
+            outline: {
+              color: [0, 0, 0],
+              width: 0.7,
+            },
+
           }),
         }),
       ],
