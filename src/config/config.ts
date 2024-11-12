@@ -17,7 +17,7 @@ const config: StaticConfiguration = {
     appId: "2MAyeDcDhNcYTqwX",
   },
   treatmentData: {
-    locationsWebMapId: "b5346d4c624f4c1f991928d6fc392fda",
+    locationsWebMapId: "a49dc4d6cd6c4b70a715774644d95c65",
     treatment_sites: {
       name: "Treatment Sites",
       locationsLayer: new FeatureLayer({
