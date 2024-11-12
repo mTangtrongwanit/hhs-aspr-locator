@@ -47,7 +47,7 @@ interface LocationsMapProps {
 }
 
 // #region ======================== CONSTANTS ==================================
-const highlightColor = new Color("#0274FA");
+const highlightColor = new Color("#00FFFF");
 // #endregion ===================== CONSTANTS ==================================
 
 // #region =================== EXPORTED COMPONENT ==============================
@@ -325,7 +325,10 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
         .then(() => {
           highlight.symbol = new SimpleMarkerSymbol({
             color: highlightColor,
-            size: "20",
+            size: "14",
+            outline: {
+              width: "0px",
+            },
           });
           locationsMapView.graphics.add(highlight);
           locationsMapView
