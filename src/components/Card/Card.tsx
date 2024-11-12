@@ -307,8 +307,8 @@ const Card = ({
       <StyledRow>
         <button
           className="hhs-primary-button zoom-to-button"
-          aria-label="Zoom to current site on the map"
-          title="Zoom to current site on the map"
+          aria-label={t("Card.Zoom To Site Button Screenreader Label")}
+          title={t("Card.Zoom To Site Button Screenreader Label")}
           onClick={
             onZoomToClick
               ? () => serviceProvider && onZoomToClick(serviceProvider)
@@ -320,8 +320,8 @@ const Card = ({
         <button 
           onClick={handleCopyToClipboard}
           className="hhs-outline-button"
-          aria-label="Copy link to current site"
-          title="Copy link to current site"
+          aria-label={t("Card.Copy Link Button Screenreader Label")}
+          title={t("Card.Copy Link Button Screenreader Label")}
         >
           {t("Card.shareLocation")}
         </button>
@@ -341,8 +341,8 @@ const Card = ({
             )}`}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Open location in Google Maps"
-            title="Open location in Google Maps"
+            aria-label={t("Card.Open in Maps Button Screenreader Label")}
+            title={t("Card.Open in Maps Button Screenreader Label")}
           >
             <span style={{ fontWeight: "600" }}>{t("Card.openInMaps")}</span>
           </a>

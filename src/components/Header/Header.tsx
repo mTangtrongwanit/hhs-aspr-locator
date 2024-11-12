@@ -94,14 +94,14 @@ const HeaderComponent = () => {
       <StyledHeader ref={headerRef}>
         <StyledHeaderContentContainer>
           <StyledHeaderLink to="/"
-            aria-label="Link to COVID-19 and Flu Treatments Locator homepage"
-            title="Link to COVID-19 and Flu Treatments Locator homepage">
+            aria-label={t("Header.Homepage Link Screenreader Label")}
+            title={t("Header.Homepage Link Screenreader Label")}>
             <StyledHeaderLogo
               src={webLogoPath}
               srcSet={`${mobileLogoPath} 274w, ${webLogoPath} 639w`}
               sizes="(max-width: 1100px) 117px,
               296px"
-              alt="ASPR Administration for Strategic Preparedness & Response Logo"
+              alt={t("Header.ASPR Logo Screenreader Label")}
             />
           </StyledHeaderLink>
         </StyledHeaderContentContainer>
@@ -112,10 +112,10 @@ const HeaderComponent = () => {
         { location.pathname.includes("locations")
           ? <StyledLink
           to="/#faq"
-          aria-label="View FAQ section"
-          title="View FAQ section"
+          aria-label={t("Header.FAQs Link Screenreader Label")}
+          title={t("Header.FAQs Link Screenreader Label")}
         >
-          FAQ
+          {t("Header.FAQ")}
         </StyledLink>
           : ""  }
           <DropdownSingleSelect type="language" />

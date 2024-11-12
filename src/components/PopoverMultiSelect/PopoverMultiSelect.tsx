@@ -278,20 +278,20 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
             <StyledFilterButtonContainer>
               <PopoverClose
                 asChild
-                aria-label="Clear Filters and Close Dropdown"
+                aria-label={t("Misc.Clear Filters and Close Dropdown")}
               >
                 <StyledOutlineButton onClick={handleClearFilters}>
-                  Clear All
+                  {t("Misc.Clear All")}
                 </StyledOutlineButton>
               </PopoverClose>
 
               {/* TODO: disable if nothing selected ("if nothing, do the same thing as clear all") */}
               <PopoverClose
                 asChild
-                aria-label="Apply Changes and Close Dropdown"
+                aria-label={t("Misc.Apply Changes and Close Dropdown")}
               >
                 <StyledPrimaryButton onClick={handleApplyClick}>
-                  Apply
+                {t("Misc.Apply")}
                 </StyledPrimaryButton>
               </PopoverClose>
             </StyledFilterButtonContainer>

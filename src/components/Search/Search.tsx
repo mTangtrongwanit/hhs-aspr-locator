@@ -10,6 +10,7 @@ import { useRef, useEffect, useState } from "react";
 // #endregion ------------------------ React -----------------------------------
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
+import { useTranslation } from "react-i18next";
 import Search from "@arcgis/core/widgets/Search";
 import Point from "@arcgis/core/geometry/Point";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
@@ -17,6 +18,8 @@ import Point from "@arcgis/core/geometry/Point";
 // #region -------------- Custom Components / Utilities ------------------------
 import { useAppContext } from "@/contexts/AppContext";
 import { StyledSearch } from "./Search.styles";
+
+import "@/utils/i18n";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
@@ -30,6 +33,7 @@ import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 // #region =================== EXPORTED COMPONENT ==============================
 const SearchComponent = ({ placeholder }: { placeholder?: string } = {}) => {
   // #region ------------------ Hooks (Resources) ------------------------------
+  const { t } = useTranslation();
   const {
     searchPoint,
     setSearchPoint,
@@ -160,7 +164,7 @@ const SearchComponent = ({ placeholder }: { placeholder?: string } = {}) => {
         height="18"
         role="presentation"
         aria-hidden
-        aria-label="Magnifying glass next to search bar"
+        aria-label={t("Search.Magnifying Icon Screenreader Label")}
       />
     </StyledSearch>
   );

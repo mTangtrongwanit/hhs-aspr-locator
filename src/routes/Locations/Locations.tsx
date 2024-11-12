@@ -189,11 +189,11 @@ const Locations = () => {
             <button
               className="hhs-primary-button"
               onClick={onToggleSelectedLoc}
-              aria-label="Continue to find locations near you"
-              title="Continue to find locations near you"
+              aria-label={t("Locations.Search for Other Button Screenreader Label")}
+              title={t("Locations.Search for Other Button Screenreader Label")}
             >
               <ArrowLeftIcon />
-              Search for Other Locations
+              {t("Locations.Search for Other Locations")}
             </button>
           </>
         ) : (
@@ -214,7 +214,7 @@ const Locations = () => {
                 aria-label="Search for sites in the current map extent"
                 title="Search for sites in the current map extent"
               >
-                Search this location
+                {t("Locations.Search this location")}
               </button>
             </StyledSearchHere>
           </>
@@ -238,7 +238,7 @@ const Locations = () => {
           <StyledListTitleContainer>
             <h3 aria-live="polite">
               <span className="visually-hidden">
-                Results have been filtered to:{" "}
+                {t("Locations.List Title Screenreader Label")}{" "}
               </span>
               {sortedSites?.length > 1 ? (
                 <Trans
@@ -269,7 +269,7 @@ const Locations = () => {
           sharedSiteFacilityID == null ? (
             <StyledListNoResultsContainer>
               <MagnifyingGlass aria-hidden></MagnifyingGlass>
-              <h3>Please ensure an illness and location are selected.</h3>
+              <h3>{t("Locations.Please ensure an illness and location are selected")}</h3>
               <p>{t("Locations.Empty List")}</p>
             </StyledListNoResultsContainer>
           ) : (

@@ -90,8 +90,8 @@ const Landing = () => {
         </StyledRow>
         <StyledLink
           to="/locations"
-          aria-label="View Locations based on entered location and selected treatment choice"
-          title="View Locations based on entered location and selected treatment choice"
+          aria-label={t("Landing.View Locations Button Screenreader Label")}
+          title={t("Landing.View Locations Button Screenreader Label")}
         >
           {t("Landing.View Locations Button Label")}
         </StyledLink>
@@ -111,16 +111,16 @@ const Landing = () => {
           assistance, please contact&nbsp;
           <a
             href="mailto:gis@hhs.gov"
-            aria-label="Email link: gis@hhs.gov"
-            title="Email link: gis@hhs.gov"
+            aria-label={t("Landing.Email Link Screenreader Label") + ": gis@hhs.gov"}
+            title={t("Landing.Email Link Screenreader Label") + ": gis@hhs.gov"}
           >
             gis@hhs.gov
           </a>
           .{" "}
           <a
             href="https://healthdata.gov/ASPR/COVID-19-Treatments/xkzp-zhs7/data_preview"
-            aria-label="Link to tabular access to the data"
-            title="Link to tabular access to the data"
+            aria-label={t("Landing.Link to Tabular Access Screenreader Label")}
+            title={t("Landing.Link to Tabular Access Screenreader Label")}
           >
             Tabular access to the data is also available.
           </a>
@@ -130,30 +130,30 @@ const Landing = () => {
           Government&nbsp;
           <a
             href="https://paxlovid.iassist.com/"
-            aria-label="Link to patient assistance program"
-            title="Link to patient assistance program"
+            aria-label={t("Landing.Link to Patient Assistance Program Screenreader Label")}
+            title={t("Landing.Link to Patient Assistance Program Screenreader Label")}
           >
-            Patient Assistance Program
+            {t("Landing.Patient Assistance Program")}
           </a>
           &nbsp; operated by Pfizer, offering free Paxlovid for eligible
           patients. Other assistance programs are available for&nbsp;
           <a
             href="https://aspr.hhs.gov/COVID-19/Treatments/Pages/Possible-Treatment-Options-for-COVID19.aspx#oral-antivirals"
-            aria-label="Link to COVID-19 assistance program"
-            title="Link to COVID-19 assistance program"
+            aria-label={t("Landing.COVID-19 Assistance Program Link Screenreader Label")}
+            title={t("Landing.COVID-19 Assistance Program Link Screenreader Label")}
           >
             COVID-19
           </a>{" "}
-          and
+          and {" "}
           <a
             href="#faq-flu"
-            aria-label="Link to flu assistance program"
-            title="Link to flu assistance program"
+            aria-label={t("Landing.Flu Assistance Program Link Screenreader Label")}
+            title={t("Landing.Flu Assistance Program Link Screenreader Label")}
           >
             flu.
           </a>
         </p>
-        <StyledFAQTitle>Frequently Asked Questions</StyledFAQTitle>
+        <StyledFAQTitle>{t("Landing.Frequently Asked Questions")}</StyledFAQTitle>
         {
           //#region Accordion
         }

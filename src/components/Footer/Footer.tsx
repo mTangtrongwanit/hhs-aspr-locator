@@ -9,6 +9,7 @@
 // #endregion ------------------------ React -----------------------------------
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
+import { useTranslation } from "react-i18next";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -29,6 +30,8 @@ import {
   StyledFooterMediaLinksContainer,
   StyledFooterMediaLink,
 } from "./Footer.styles";
+
+import "@/utils/i18n";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
 // #region ------------------------ Resources ----------------------------------
@@ -54,7 +57,7 @@ import ytPath from "@/assets/images/Youtube-W.png";
 // #region =================== EXPORTED COMPONENT ==============================
 const Footer = () => {
   // #region ------------------ Hooks (Resources) ------------------------------
-
+  const { t } = useTranslation();
   // #endregion --------------- Hooks (Resources) ------------------------------
 
   // #region -------------------- Hooks (State) --------------------------------
@@ -84,108 +87,109 @@ const Footer = () => {
             <StyledFooterLink>
               <a 
                 href="https://aspr.hhs.gov/Pages/Home.aspx"
-                aria-label="Link to ASPR homepage"
-                title="Link to ASPR homepage"
+                aria-label={t("Footer.Link to ASPR homepage")}
+                title={t("Footer.Link to ASPR homepage")}
               >
-                 Home
+                 {t("Footer.Home Link")}
               </a>
             </StyledFooterLink>
             <StyledFooterLink>|</StyledFooterLink>
             <StyledFooterLink>
               <a 
                 href="https://aspr.hhs.gov/Pages/Contact-Us---Footer.aspx"
-                aria-label="Link to ASPR contact section"
-                title="Link to ASPR contact section"              
+                aria-label={t("Footer.ASPR Contact Section Link Screenreader Label")}
+                title={t("Footer.ASPR Contact Section Link Screenreader Label")}
               >
-                Contact Us
+                {t("Footer.Contact Us Link")}
               </a>
             </StyledFooterLink>
             <StyledFooterLink>|</StyledFooterLink>
             <StyledFooterLink>
               <a
                 href="https://public4.pagefreezer.com/browse/ASPR%20HHS/23-08-2024T07:29/https://aspr.hhs.gov/Pages/Home.aspx"
-                aria-label="Link to ASPR Archive"
-                title="Link to ASPR Archive"  
+                aria-label={t("Footer.ASPR Archive Link Screenreader Label")}
+                title={t("Footer.ASPR Archive Link Screenreader Label")}
                 target="_blank"
                 rel="noopener"
               >
-                ASPR Archive
+                {t("Footer.ASPR Archive Link")}
               </a>
             </StyledFooterLink>
             <StyledFooterLink>|</StyledFooterLink>
             <StyledFooterLink>
               <a 
                 href="https://aspr.hhs.gov/Pages/accessibility.aspx"
-                aria-label="Link to accessibility page on ASPR site"
-                title="Link to accessibility page on ASPR site"  
+                aria-label={t("Footer.ASPR Accessibility Link Screenreader Label")}
+                title={t("Footer.ASPR Accessibility Link Screenreader Label")} 
               >
-                Accessibility
+                {t("Footer.Accessibility Link")}
               </a>
             </StyledFooterLink>
             <StyledFooterLink>|</StyledFooterLink>
             <StyledFooterLink>
               <a 
                 href="https://aspr.hhs.gov/Pages/privacy.aspx"
-                aria-label="Link to privacy page on ASPR site"
-                title="Link to privacy page on ASPR site"                 
+                aria-label={t("Footer.ASPR Privacy Link Screenreader Label")}
+                title={t("Footer.ASPR Privacy Link Screenreader Label")}
               >
-                Privacy Policies
+                {t("Footer.Privacy Policies Link")}
               </a>
             </StyledFooterLink>
             <StyledFooterLink>|</StyledFooterLink>
             <StyledFooterLink>
               <a 
                 href="https://aspr.hhs.gov/Pages/disclaimer.aspx"
-                aria-label="Link to disclaimer page on ASPR site"
-                title="Link to disclaimer page on ASPR site"   
+                aria-label={t("Footer.ASPR Disclaimer Link Screenreader Label")}
+                title={t("Footer.ASPR Disclaimer Link Screenreader Label")}   
               >
-                Disclaimer
+                {t("Footer.Disclaimer Link")}
               </a>
             </StyledFooterLink>
             <StyledFooterLink>|</StyledFooterLink>
             <StyledFooterLink>
               <a
                 href="https://www.hhs.gov/web/policies-and-standards/hhs-web-policies/plugins/index.html"
-                aria-label="Link to plugins page on HHS site"
-                title="Link to plugins page on ASPR site" 
+                aria-label={t("Footer.HHS Plugins Link Screenreader Label")}
+                title={t("Footer.HHS Plugins Link Screenreader Label")}
                 target="_blank"
                 rel="noopener"
               >
-                HHS Viewers &amp; Players
+                {t("Footer.HHS Viewers & Players Link")}
               </a>
             </StyledFooterLink>
             <StyledFooterLink>|</StyledFooterLink>
             <StyledFooterLink>
               <a
                 href="https://www.hhs.gov/open/plain-writing/index.html"
-                aria-label="Link to plain writing page on HHS site"
-                title="Link to plain writing page on ASPR site" 
+                aria-label={t("Footer.HHS Plain Language Link Screenreader Label")}
+                title={t("Footer.HHS Plain Language Link Screenreader Label")}
                 target="_blank"
                 rel="noopener"
               >
-                HHS Plain Language
+                {t("Footer.HHS Plain Language Link")}
               </a>
             </StyledFooterLink>
             <StyledFooterLink>|</StyledFooterLink>
             <StyledFooterLink>
               <a 
                 href="https://www.hhs.gov/foia/index.html" target="_blank" rel="noopener"
-                aria-label="Link to FOIA page on HHS site"
-                title="Link to FOIA page on ASPR site" 
+                aria-label={t("Footer.HHS FOIA Link Screenreader Label")}
+                title={t("Footer.HHS FOIA Link Screenreader Label")} 
               >
-                FOIA
+                {t("Footer.FOIA Link")}
               </a>
             </StyledFooterLink>
             <StyledFooterLink>|</StyledFooterLink>
             <StyledFooterLink>
               <a
                 href="https://www.hhs.gov/vulnerability-disclosure-policy/index.html"
-                aria-label="Link to vulnerability disclosure policy page on HHS site"
-                title="Link to vulnerability disclosure policy page on HHS site" 
+                aria-label={t("Footer.HHS Vulnerability Link Screenreader Label")}
+                title={t("Footer.HHS Vulnerability Link Screenreader Label")}
                 target="_blank"
                 rel="noopener"
               >
-                Vulnerability Disclosure Policy
+                
+                {t("Footer.Vulnerability Disclosure Policy Link")}
               </a>
             </StyledFooterLink>
           </StyledFooterLinksContainer>
@@ -193,19 +197,19 @@ const Footer = () => {
             <StyledFooterAddressImageContainer>
               <StyledFooterImageLink 
                 href="https://www.hhs.gov/"
-                aria-label="Link to HHS homepage"
-                title="Link to HHS homepage"
+                aria-label={t("Footer.HHS Homepage Link Screenreader Label")}
+                title={t("Footer.HHS Homepage Link Screenreader Label")}
               >
                 <StyledFooterAddressImage
                   src={HHSLogoPath}
-                  alt="Department of Health & Human Services Logo • USA"
+                  alt={t("Footer.HHS Logo Screenreader Label")}
                 />
               </StyledFooterImageLink>
             </StyledFooterAddressImageContainer>
             <StyledFooterAddress>
-              HHS, Administration for Strategic Preparedness and Response (ASPR)
+              {t("Footer.HHS, Administration for Strategic Preparedness and Response (ASPR)")}
               <br />
-              200 Independence Ave., Washington, DC 20201
+              {t("Footer.200_Independence_Ave.,_Washington,_DC_20201")}
             </StyledFooterAddress>
           </StyledFooterAddressContainer>
         </StyledFooterFirstColumn>
@@ -213,10 +217,10 @@ const Footer = () => {
           <StyledFooterImageContainer>
             <StyledFooterImageLink 
               href="https://aspr.hhs.gov/Pages/Home.aspx"
-              aria-label="Link to ASPR homepage"
-              title="Link to ASPR homepage"
+              aria-label={t("Footer.ASPR Homepage Link Screenreader Label")}
+              title={t("Footer.ASPR Homepage Link Screenreader Label")}
             >
-              <StyledFooterImage src={whiteLogoPath} alt="ASPR logo" />
+              <StyledFooterImage src={whiteLogoPath} alt={t("Footer.ASPR logo")} />
             </StyledFooterImageLink>
           </StyledFooterImageContainer>
           <StyledFooterMediaLinksContainer>
@@ -224,87 +228,87 @@ const Footer = () => {
               <a 
                 href="https://x.com/ASPRgov"
                 target="_blank" rel="noopener"
-                aria-label="Link to ASPRgov X account"
-                title="Link to ASPRgov X account"
+                aria-label={t("Footer.ASPRgov X Link Screenreader Label")}
+                title={t("Footer.ASPRgov X Link Screenreader Label")}
               >
-                <img src={xAltPath} alt="X AltIcon" />
+                <img src={xAltPath} alt={t("Footer.X Alt Icon Screenreader Label")} />
               </a>
             </StyledFooterMediaLink>
             <StyledFooterMediaLink>
               <a
                 href="https://x.com/HHS_ASPR"
-                aria-label="Link to HHS_ASPR X account"
-                title="Link to HHS_ASPR X account"
+                aria-label={t("Footer.HHS_ASPR X Link Screenreader Label")}
+                title={t("Footer.HHS_ASPR X Link Screenreader Label")}
                 target="_blank" rel="noopener">
-                <img src={xPath} alt="X Icon" />
+                <img src={xPath} alt={t("Footer.X Icon Screenreader Label")} />
               </a>
             </StyledFooterMediaLink>
             <StyledFooterMediaLink>
               <a
                 href="https://www.linkedin.com/company/aspr/"
-                aria-label="Link to ASPR LinkedIn account"
-                title="Link to ASPR LinkedIn account"
+                aria-label={t("Footer.ASPR LinkedIn Link Screenreader Label")}
+                title={t("Footer.ASPR LinkedIn Link Screenreader Label")}
                 target="_blank" rel="noopener">
-                <img src={linkedinPath} alt="LinkedIn Icon" />
+                <img src={linkedinPath} alt={t("Footer.LinkedIn Icon Screenreader Label")} />
               </a>
             </StyledFooterMediaLink>
             <StyledFooterMediaLink>
               <a
                 href="https://www.facebook.com/ASPRgov/"
-                aria-label="Link to ASPRgov Facebook account"
-                title="Link to ASPRgov Facebook account"
+                aria-label={t("Footer.Link to ASPRgov Facebook account")}
+                title={t("Footer.Link to ASPRgov Facebook account")}
                 target="_blank" rel="noopener">
-                <img src={fbPath} alt="Facebook Icon" />
+                <img src={fbPath} alt={t("Footer.Facebook Icon")} />
               </a>
             </StyledFooterMediaLink>
             <StyledFooterMediaLink>
               <a 
                 href="https://www.instagram.com/asprgov"
-                aria-label="Link to ASPRgov Instagram account"
-                title="Link to ASPRgov Instagram account"
+                aria-label={t("Footer.ASPRgov Instagram Link Screenreader Label")}
+                title={t("Footer.ASPRgov Instagram Link Screenreader Label")}
                 target="_blank" rel="noopener"
               >
-                <img src={igPath} alt="Instagram Icon" />
+                <img src={igPath} alt={t("Footer.Instagram Icon Screenreader Label")} />
               </a>
             </StyledFooterMediaLink>
             <StyledFooterMediaLink>
               <a
                 href="https://www.threads.net/@asprgov"
-                aria-label="Link to ASPRgov Threads account"
-                title="Link to ASPRgov Threads account"
+                aria-label={t("Footer.ASPRgov Threads Link Screenreader Label")}
+                title={t("Footer.ASPRgov Threads Link Screenreader Label")}
                 target="_blank" rel="noopener"
               >
-                <img src={threadsPath} alt="Threads Icon" />
+                <img src={threadsPath} alt={t("Footer.Threads Icon Screenreader Label")} />
               </a>
             </StyledFooterMediaLink>
             <StyledFooterMediaLink>
               <a
                 href="https://www.flickr.com/photos/asprgov"
-                aria-label="Link to ASPRgov Flickr account"
-                title="Link to ASPRgov Flickr account"
+                aria-label={t("Footer.ASPRgov Flickr Link Screenreader Label")}
+                title={t("Footer.ASPRgov Flickr Link Screenreader Label")}
                 target="_blank" rel="noopener"
               >
-                <img src={flickrPath} alt="Flickr Icon" />
+                <img src={flickrPath} alt={t("Footer.Flickr Icon Screenreader Label")} />
               </a>
             </StyledFooterMediaLink>
             <StyledFooterMediaLink>
               <a
                 href="https://www.youtube.com/c/ASPRgov"
-                aria-label="Link to ASPRgov YouTube account"
-                title="Link to ASPRgov YouTube account"
+                aria-label={t("Footer.ASPRgov YouTube Link Screenreader Label")}
+                title={t("Footer.ASPRgov YouTube Link Screenreader Label")}
                 target="_blank" rel="noopener"
               >
-                <img src={ytPath} alt="YouTube Icon" />
+                <img src={ytPath} alt={t("Footer.YouTube Icon Screenreader Label")} />
               </a>
             </StyledFooterMediaLink>
             <StyledFooterMediaLink>
               <a
                 href="https://cloud.connect.hhs.gov/PHE"
-                aria-label="Link to ASPR latest news sign-up page"
-                title="Link to ASPR latest news sign-up page"
+                aria-label={t("Footer.ASPR Newsletter Screenreader Label")}
+                title={t("Footer.ASPR Newsletter Screenreader Label")}
                 target="_blank" rel="noopener"
               >
-                <img src={emailPath} alt="Email Icon" />
+                <img src={emailPath} alt={t("Footer.Email Icon Screenreader Label")} />
               </a>
             </StyledFooterMediaLink>
           </StyledFooterMediaLinksContainer>
