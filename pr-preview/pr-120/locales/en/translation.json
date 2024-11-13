@@ -1,0 +1,215 @@
+{
+  "title": "Welcome {{name}}",
+  "description": {
+    "part1": "This is a simple example.",
+    "part2": "something"
+  },
+  "userMessagesUnread_one": "You have {{count}} unread message.",
+  "userMessagesUnread_other": "You have {{count}} unread messages.",
+  "Header": {
+    "ASPR Logo Screenreader Label": "ASPR Administration for Strategic Preparedness & Response Logo",
+    "Logo Alt Text": "Administration for Strategic Preparedness and Response",
+    "FAQ":"FAQ",
+    "FAQs Link Screenreader Label": "View FAQ section",
+    "Homepage Link Screenreader Label": "Link to COVID-19 and Flu Treatments Locator homepage",
+    "Title": "COVID-19 and Flu Treatments Locator",
+    "Title Alt Text": "COVID-19 and Flu Treatments Locator"
+  },
+  "Footer": {
+    "200_Independence_Ave.,_Washington,_DC_20201": "200 Independence Ave., Washington, DC 20201", 
+    "HHS, Administration for Strategic Preparedness and Response (ASPR)": "HHS, Administration for Strategic Preparedness and Response (ASPR)",
+    "HHS Logo Screenreader Label": "Department of Health & Human Services Logo • USA",
+    "Home Link": "Home",
+    "Link to ASPR homepage":"Link to ASPR homepage",
+    "LinkedIn Icon Screenreader Label": "LinkedIn Icon",
+    "ASPR LinkedIn Link Screenreader Label": "Link to ASPR LinkedIn account",
+    "Contact Us Link": "Contact Us",
+    "ASPR Contact Section Link Screenreader Label": "Link to ASPR contact section",
+    "ASPR Archive Link": "ASPR Archive",
+    "ASPR Archive Link Screenreader Label": "Link to ASPR Archive",
+    "ASPR logo":"ASPR logo",
+    "ASPRgov X Link Screenreader Label": "Link to ASPRgov X account",
+    "ASPR Homepage Link Screenreader Label": "Link to ASPR homepage",
+    "HHS Homepage Link Screenreader Label": "Link to HHS homepage",
+    "Accessibility Link": "Accessibility",
+    "ASPR Accessibility Link Screenreader Label": "Link to accessibility page on ASPR site",
+    "Privacy Policies Link": "Privacy Policies",
+    "ASPR Privacy Link Screenreader Label": "Link to privacy page on ASPR site",
+    "Disclaimer Link": "Disclaimer",
+    "ASPR Disclaimer Link Screenreader Label": "Link to disclaimer page on ASPR site",
+    "Facebook Icon":"Facebook Icon",
+    "Link to ASPRgov Facebook account":"Link to ASPRgov Facebook account",
+    "Instagram Icon Screenreader Label": "Instagram Icon",
+    "ASPRgov Instagram Link Screenreader Label": "Link to ASPRgov Instagram account",
+    "Threads Icon Screenreader Label": "Threads Icon",
+    "ASPRgov Threads Link Screenreader Label": "Link to ASPRgov Threads account",
+    "Flickr Icon Screenreader Label": "Flickr Icon",
+    "ASPRgov Flickr Link Screenreader Label": "Link to ASPRgov Flickr account",
+    "YouTube Icon Screenreader Label": "YouTube Icon",
+    "ASPRgov YouTube Link Screenreader Label": "Link to ASPRgov YouTube account",
+    "Email Icon Screenreader Label": "Email Icon",
+    "ASPR Newsletter Screenreader Label": "Link to ASPR latest news sign-up page", 
+    "HHS FOIA Link Screenreader Label": "Link to FOIA page on HHS site",
+    "HHS_ASPR X Link Screenreader Label": "Link to HHS_ASPR X account",
+    "HHS Viewers & Players Link": "HHS Viewers & Players",
+    "HHS Vulnerability Link Screenreader Label": "Link to vulnerability disclosure policy page on HHS site",
+    "HHS Plain Language Link": "HHS Plain Language",
+    "HHS Plain Language Link Screenreader Label": "Link to plain writing page on HHS site",
+    "HHS Plugins Link Screenreader Label": "Link to plugins page on HHS site",
+    "FOIA Link": "FOIA",
+    "Vulnerability Disclosure Policy Link": "Vulnerability Disclosure Policy",
+    "X Alt Icon Screenreader Label": "X AltIcon",
+    "X Icon Screenreader Label": "X Icon"
+  },
+  "Landing": {
+    "Search Container Heading": "Find COVID-19 and Flu Medications",
+    "Search Container Description": "The locator displays pharmacies, clinics, and other locations with safe and effective COVID-19 and flu medications. These medications require a prescription from a healthcare provider. COVID-19 and flu medications may be available at additional locations not shown on this locator.",
+    "Illness Placeholder": "What do you need treatment for?",
+    "View Locations Button Label": "View Locations",
+    "View Locations Button Screenreader Label": "View Locations based on entered location and selected treatment choice",
+    "Context Container Screenreader Heading": "Contextual Information",
+    "Assistance Program Description": "i18n Todo - not sure how to effectively break this up into paragraph text vs links",
+    "Email Link Screenreader Label": "Email link",
+    "Link to Tabular Access Screenreader Label": "Link to tabular access to the data",
+    "Patient Assistance Program":"Patient Assistance Program",
+    "Link to Patient Assistance Program Screenreader Label": "Link to patient assistance program",
+    "COVID-19 Assistance Program Link Screenreader Label": "Link to COVID-19 assistance program",
+    "Flu Assistance Program Link Screenreader Label": "Link to flu assistance program",
+    "Frequently Asked Questions": "Frequently Asked Questions",
+    "Accessible FAQ Intro": "Read Frequently Asked Question: ",
+    "Accordion Item 1": {
+      "Heading": "Which outpatient medications available to treat COVID-19 and flu appear on this locator?"
+    },
+    "Accordion Item 2": {
+      "Heading": "What are antivirals?"
+    },
+    "Accordion Item 3": {
+      "Heading": "Who can take the outpatient COVID-19 medications listed on this website?"
+    },
+    "Accordion Item 4": {
+      "Heading": "Who can take the outpatient flu medications listed on this website?"
+    },
+    "Accordion Item 5": {
+      "Heading": "Can children take the antiviral medications listed on this website?"
+    },
+    "Accordion Item 6": {
+      "Heading": "Can pregnant people take flu and COVID-19 antiviral medications?"
+    },
+    "Accordion Item 7": {
+      "Heading": "Can I get COVID-19 or flu medications over the counter (without a prescription)?"
+    },
+    "Accordion Item 8": {
+      "Heading": "Are the treatments listed on this website safe and effective?"
+    },
+    "Accordion Item 9": {
+      "Heading": "What programs exist to provide continued affordable access to these treatments outside of usual prescription drug coverage?"
+    },
+    "Accordion Item 10": {
+      "Heading": "What are monoclonal antibodies and why are they not listed on this map?"
+    },
+    "Accordion Item 11": {
+      "Heading": "Are all sites that offer COVID-19 or influenza treatments listed on the locator?"
+    },
+    "Accordion Item 12": {
+      "Heading": "What services may the locations listed on the locator provide?"
+    },
+    "Accordion Item 13": {
+      "Heading": "How can my site be added to locator?"
+    },
+    "Accordion Item 14": {
+      "Heading": "How can my site participate in the Paxlovid Patient Assistance Program?"
+    },
+    "Accordion Item 15": {
+      "Heading": "Data Information and Disclaimers"
+    }
+  },
+  "Locations": {
+    "Search Placeholder": "Find address or place",
+    "Search Container Screenreader Heading": "Search for Locations",
+    "Search this location":"Search this location",
+    "Search for Other Locations": "Search for Other Locations",
+    "Results Screenreader Heading": "Results",
+    "List Heading": "{{count}} Sites",
+    "List Heading Share": "{{count}} Site",
+    "List Title Screenreader Label": "Results have been filtered to:",
+    "Please ensure an illness and location are selected": "Please ensure an illness and location are selected.",
+    "Map Screenreader Heading": "Map of Sites",
+    "Search for Other Button Screenreader Label": "Continue to find locations near you", 
+    "Empty List": "If you still have no results, try searching a different location to view sites."
+  },
+  "Illness": {
+    "COVID": "COVID-19",
+    "Flu": "Flu",
+    "Prompt": "Looking for Specific Medications?",
+    "Medications Button Screenreader Label": "This button filters results to only include specific medications!",
+    "Other Filters Button Screenreader Label": "This button filters results to only include specific site information"
+  },
+  "Misc": {
+    "Apply":"Apply",
+    "Apply Changes and Close Dropdown":"Apply Changes and Close Dropdown",
+    "Clear All": "Clear All",
+    "Clear Filters and Close Dropdown": "Clear Filters and Close Dropdown"
+  },
+  "Search": {
+    "Magnifying Icon Screenreader Label": "Magnifying glass next to search bar"
+  },
+  "Card": {
+    "Zoom": "Zoom to Location",
+    "Zoom To Site Button Screenreader Label": "Zoom to current site on the map",
+    "Copy Link Button Screenreader Label": "Copy link to current site",
+    "Open in Maps Button Screenreader Label": "Open location in Google Maps",
+    "pap": "Free/reduced cost",
+    "usgProduct": "USG product",
+    "homeDelivery": "Home Delivery",
+    "icatt": "Free Testing",
+    "tamifluOnly": "Tamiflu Only",
+    "oseltamivirSuspension": "Oseltamivir Suspension",
+    "oseltamivirTamiflu": "Oseltamivir Tamiflu",
+    "oseltamivirGeneric": "Oseltamivir Generic",
+    "prescribingServices": "Prescribing Services",
+    "hoverPapLink": "Paxlovid Patient Assistance Program site",
+    "hoverPapDescription": "No-cost Paxlovid for eligible patients",
+    "hoverUSGProduct": "No-cost medications distributed by the U.S. government may be available",
+    "hoverHomeDelivery": "Home delivery of medication may be available",
+    "hoverICATT": "Increasing Community Access to Testing site: no-cost COVID-19 testing for eligible people",
+    "hoverTamifluOnly": "Generic oseltamivir may not be available",
+    "hoverOseltamivirSuspension": "Oseltamivir suspension (liquid form) may be available",
+    "hoverPrescribingServices": "Prescribing services may be available (including telehealth)",
+    "additionalInformation": "Additional Information for",
+    "rXorTelehealth": "prescribing services",
+    "shareLocation": "Copy Location Link",
+    "directionsToLocation": "Directions to Location",
+    "openInMaps": "Open in Maps",
+    "distance": "Distance",
+    "miles": "miles",
+    "hrsa": "Health Resources and Services Administration (HRSA) supported Health Center",
+    "dod": "Department of Defense Facility\n\nOnly individuals who are specifically eligible for care at a military Medical Treatment Facility (MTF) are eligible to receive treatment at an MTF. MTF care is otherwise not available to members of the civilian population.",
+    "ihs": "Indian Health Service Facility\n\nIndian Health Service (federal, tribal, and urban) sites will provide access to services in accordance with established eligibility requirements.",
+    "products": {
+      "covid_---": "Product availability for this site is unknown.",
+      "covid_--v": "Site offers outpatient Veklury.",
+      "covid_-l-": "Site offers Lagevrio.",
+      "covid_-lv": "Site offers Lagevrio and outpatient Veklury.",
+      "covid_p--": "Site offers Paxlovid.",
+      "covid_p-v": "Site offers Paxlovid and outpatient Veklury.",
+      "covid_pl-": "Site offers Paxlovid and Lagevrio.",
+      "covid_plv": "Site offers Paxlovid, Lagevrio, and outpatient Veklury.",
+      "flu_----": "Product availability for this site is unknown.",
+      "flu_---z": "Site offers zanamivir.",
+      "flu_--p-": "Site offers peramivir.",
+      "flu_--pz": "Site offers peramivir and zanamivir.",
+      "flu_-b--": "Site offers baloxavir.",
+      "flu_-b-z": "Site offers baloxavir and zanamivir.",
+      "flu_-bp-": "Site offers baloxavir and peramivir.",
+      "flu_-bpz": "Site offers baloxavir, peramivir, and zanamivir.",
+      "flu_o---": "Site offers oseltamivir.",
+      "flu_o--z": "Site offers oseltamivir and zanamivir.",
+      "flu_o-p-": "Site offers oseltamivir and peramivir.",
+      "flu_o-pz": "Site offers oseltamivir, peramivir, and zanamivir.",
+      "flu_ob--": "Site offers oseltamivir and baloxavir.",
+      "flu_ob-z": "Site offers oseltamivir, baloxavir, and zanamivir.",
+      "flu_obp-": "Site offers oseltamivir, baloxavir, and peramivir.",
+      "flu_obpz": "Site offers oseltamivir, baloxavir, peramivir, and zanamivir."
+    }
+  }
+}
