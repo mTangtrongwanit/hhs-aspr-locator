@@ -347,7 +347,8 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
         }),
       ],
     });
-    locationsMapView.map.addMany([circleLayer]);
+    locationsMapView.map.layers.add(circleLayer);
+    locationsMapView.map.layers.reorder(circleLayer, 0);
     // cleanup by destroying the circle layer
     return () => {
       locationsMapView?.map?.remove(circleLayer);
