@@ -14,6 +14,7 @@ export default defineConfig({
     }),
   ],
   base: process.env.BASE_PATH ? `/${process.env.BASE_PATH}/ ` : "/",
+  publicDir: "public",
   resolve: {
     alias: {
       // Resolve the ~ alias to the src/ directory
