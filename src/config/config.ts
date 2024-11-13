@@ -6,11 +6,19 @@
 // #region ------------------------ Resources ----------------------------------
 import { type StaticConfiguration } from "./config.types";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
-import * as en from "../utils/locales/en.json";
+//import * as en from "../utils/locales/en.json";
+
 // #endregion ------------------------- Resources ---------------------------------
 // #endregion ========================== IMPORTS ==================================
 
+
+
 // #region ========================= EXPORTED CONSTANTS ==============================
+// Fetch the environment configuration file from the public directory
+const response = await fetch('./locales/en/translation.json');
+const en = await response.json();
+
+
 const config: StaticConfiguration = {
   portal: {
     url: "https://dhhs.maps.arcgis.com/",
