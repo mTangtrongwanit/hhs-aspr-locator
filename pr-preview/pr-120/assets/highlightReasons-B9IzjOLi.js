@@ -1,0 +1,1 @@
+import{bn as l,bo as n}from"./index-DbEORVKA.js";const t={selection:o=>new l({color:new n([o.color.r/2,o.color.g/2,o.color.b/2,o.color.a])}),highlight:o=>o,popup:o=>new l({color:new n([o.color.g,o.color.b,o.color.r,o.color.a])})};function i(o){if(!o)return 0;let r=1;for(const e in t){if(e===o)break;r<<=1}return r}const s=Object.keys(t);export{t as c,s as l,i as t};
