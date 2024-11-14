@@ -13,7 +13,10 @@ import Backend from 'i18next-http-backend';
 i18next.use(initReactI18next).use(Backend).init({
   lng: "en", // define default language here
   fallbackLng: 'en',
-  preload: ['en', 'es', 'zh'], // array of lng folders to target for preload from "public/locales"
   defaultNS: 'translation', //  specify grabbing "translation" json files from inside the "lng" folders
   debug: true, // provides console debug messages if true
+  backend: {
+    loadPath: 'https://esrips.github.io/hhs-aspr-locator/pr-preview/pr-120/locales/{{lng}}/{{ns}}.json', // Will target the ghpages preview used by the PR
+    // loadPath: '/locales/{{lng}}/{{ns}}.json', // should pull from the "locales" folder in the public folder (while developing) or at root of app when deployed.
+  },
 });
