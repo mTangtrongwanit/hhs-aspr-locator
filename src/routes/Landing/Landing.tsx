@@ -107,8 +107,8 @@ const Landing = () => {
           {t("Landing.Context Container Screenreader Heading")}
         </h2>
         <p>
-          This content is not fully Section 508 conformant. If you need
-          assistance, please contact&nbsp;
+          {t("Landing.Context Container Text")}&nbsp;
+          
           <a
             href="mailto:gis@hhs.gov"
             aria-label={t("Landing.Email Link Screenreader Label") + ": gis@hhs.gov"}
@@ -122,27 +122,25 @@ const Landing = () => {
             aria-label={t("Landing.Link to Tabular Access Screenreader Label")}
             title={t("Landing.Link to Tabular Access Screenreader Label")}
           >
-            Tabular access to the data is also available.
+            {t("Landing.Link to Tabular Access Screenreader Label")}
           </a>
         </p>
         <p>
-          This website includes locations participating in the U.S.
-          Government&nbsp;
+          {t("Landing.Website US Government")}&nbsp;
           <a
             href="https://paxlovid.iassist.com/"
             aria-label={t("Landing.Link to Patient Assistance Program Screenreader Label")}
             title={t("Landing.Link to Patient Assistance Program Screenreader Label")}
           >
-            {t("Landing.Patient Assistance Program")}
+            {t("Reusable.Patient Assistance Program")}
           </a>
-          &nbsp; operated by Pfizer, offering free Paxlovid for eligible
-          patients. Other assistance programs are available for&nbsp;
+          &nbsp;{t("Landing.PAP Text")}&nbsp;
           <a
             href="https://aspr.hhs.gov/COVID-19/Treatments/Pages/Possible-Treatment-Options-for-COVID19.aspx#oral-antivirals"
             aria-label={t("Landing.COVID-19 Assistance Program Link Screenreader Label")}
             title={t("Landing.COVID-19 Assistance Program Link Screenreader Label")}
           >
-            COVID-19
+            {t("Reusable.COVID-19")}
           </a>{" "}
           and {" "}
           <a
@@ -150,7 +148,7 @@ const Landing = () => {
             aria-label={t("Landing.Flu Assistance Program Link Screenreader Label")}
             title={t("Landing.Flu Assistance Program Link Screenreader Label")}
           >
-            flu.
+            {t("Reusable.Flu")}.
           </a>
         </p>
         <StyledFAQTitle>{t("Landing.Frequently Asked Questions")}</StyledFAQTitle>
@@ -181,68 +179,56 @@ const Landing = () => {
             <Accordion.Content className="AccordionContent">
               <div className="AccordionContentText">
                 <p>
-                  The COVID-19 and flu treatment locator can be used to help you
-                  find FDA approved or authorized treatments for these diseases.{" "}
+                  {t("Landing.Accordion Item 1.Content.Text 1")}{" "}
                 </p>
-                <strong>COVID-19</strong>
+                <strong>{t("Reusable.COVID-19")}</strong>
                 <ul>
                   <li>
-                    Three outpatient treatments are currently authorized or
-                    approved by the U.S. Food and Drug Administration (FDA) to
-                    help reduce the risk of hospitalization or death for
-                    patients with mild to moderate COVID-19:
+                    {t("Landing.Accordion Item 1.Content.Unordered List 1.List Item 1.Text 1")}
                     <ul>
-                      <li>Oral Paxlovid (nirmatrelvir with ritonavir)</li>
-                      <li>Oral Lagevrio (molnupiravir)</li>
-                      <li>Intravenous outpatient Veklury (remdesivir)</li>
+                      <li>{t("Landing.Accordion Item 1.Content.Unordered List 1.List Item 1.Unordered List 1.List Item 1.Text 1")}</li>
+                      <li>{t("Landing.Accordion Item 1.Content.Unordered List 1.List Item 1.Unordered List 1.List Item 2.Text 1")}</li>
+                      <li>{t("Landing.Accordion Item 1.Content.Unordered List 1.List Item 1.Unordered List 1.List Item 3.Text 1")}</li>
                     </ul>
                   </li>
                   <li>
-                    Visit{" "}
+                    {t("Reusable.Visit")}{" "}
                     <a href="https://aspr.hhs.gov/COVID-19/Treatments/Pages/Possible-Treatment-Options-for-COVID19.aspx">
-                      Treatment Options for COVID-19
+                      {t("Landing.Accordion Item 1.Content.Unordered List 1.List Item 2.Anchor 1.Text 1")}{" "}{t("Reusable.COVID-19")}
                     </a>{" "}
-                    to learn more about these medications.
+                    {t("Landing.Accordion Item 1.Content.Unordered List 1.List Item 2.Text 1")}
                   </li>
                   <li>
-                    All COVID treatments listed on this site require a
-                    prescription from a health care provider and are most
-                    effective if you take them as soon as you get sick, and
-                    ideally within 5 days of developing symptoms.
+                  {t("Landing.Accordion Item 1.Content.Unordered List 1.List Item 3.Text 1")}
                   </li>
                 </ul>
 
-                <strong>Influenza (Flu)</strong>
+                <strong>{t("Reusable.Influenza")} ({t("Reusable.Flu")})</strong>
                 <ul>
                   <li>
-                    The following outpatient treatments are currently approved
-                    by FDA and recommended by CDC to treat flu:
+                    {t("Landing.Accordion Item 1.Content.Unordered List 2.List Item 1.Text 1")}
                     <ul>
-                      <li>
-                        Oral oseltamivir (available as a generic version or
-                        under the trade name Tamiflu),
+                      <li>                        
+                        {t("Landing.Accordion Item 1.Content.Unordered List 2.List Item 1.Unordered List 1.List Item 1.Text 1")}
                       </li>
-                      <li>Oral baloxavir (Xofluza) </li>
-                      <li>Inhaled zanamivir (Relenza) </li>
-                      <li>Intravenous peramivir (Rapivab)</li>
+                      <li>{t("Landing.Accordion Item 1.Content.Unordered List 2.List Item 1.Unordered List 1.List Item 2.Text 1")} </li>
+                      <li>{t("Landing.Accordion Item 1.Content.Unordered List 2.List Item 1.Unordered List 1.List Item 3.Text 1")} </li>
+                      <li>{t("Landing.Accordion Item 1.Content.Unordered List 2.List Item 1.Unordered List 1.List Item 4.Text 1")}</li>
                     </ul>
                   </li>
                   <li>
-                    Please visit{" "}
+                    {t("Landing.Accordion Item 1.Content.Unordered List 2.List Item 2.Text 1")}{" "}
                     <a href="https://www.cdc.gov/flu/treatment/whatyoushould.htm">
-                      What are Flu Antiviral Drugs | CDC
+                      {t("Landing.Accordion Item 1.Content.Unordered List 2.List Item 2.Anchor 1.Text 1")}
                     </a>{" "}
-                    to learn more about treatments for flu. Healthcare providers
-                    can visit CDC’s{" "}
+                    {t("Landing.Accordion Item 1.Content.Unordered List 2.List Item 2.Text 2")}
+                    {" "}
                     <a href="https://www.cdc.gov/flu/professionals/antivirals/summary-clinicians.htm">
-                      Influenza Antiviral Medications: Summary for Clinicians.{" "}
+                    {t("Landing.Accordion Item 1.Content.Unordered List 2.List Item 2.Anchor 2.Text 1")}{" "} 
                     </a>
                   </li>
                   <li>
-                    All flu treatments listed on this site require a
-                    prescription from a health care provider and are most
-                    effective if you take them as soon as you get sick, and
-                    ideally within 48 hours of developing symptoms.
+                  {t("Landing.Accordion Item 1.Content.Unordered List 2.List Item 3.Text 1")}
                   </li>
                 </ul>
               </div>
@@ -275,24 +261,16 @@ const Landing = () => {
               <div className="AccordionContentText">
                 <ul>
                   <li>
-                    Antiviral drugs are prescription medicines that fight
-                    against the specific virus they are prescribed for –
-                    COVID-19 antivirals work to treat COVID-19, and flu
-                    antivirals work to treat influenza. Antiviral drugs are
-                    different from antibiotics, which fight against bacterial
-                    infections, and come in different forms:
+                    {t("Landing.Accordion Item 2.Content.List Item 1.Text 1")}
                     <ul>
                       <li>
-                        Oral antiviral drugs, are taken by mouth (in a pill or
-                        liquid suspension form)
+                        {t("Landing.Accordion Item 2.Content.List Item 1.Unordered List 1.List Item 1")}
                       </li>
                       <li>
-                        Inhaled antiviral drugs are breathed in by mouth as
-                        directed (e.g., can be administered by an inhaler).
+                        {t("Landing.Accordion Item 2.Content.List Item 1.Unordered List 1.List Item 2")}
                       </li>
                       <li>
-                        Intravenous antiviral drugs are given directly into a
-                        vein with a needle or a tube.
+                        {t("Landing.Accordion Item 2.Content.List Item 1.Unordered List 1.List Item 3")}
                       </li>
                     </ul>
                   </li>
@@ -328,49 +306,35 @@ const Landing = () => {
               <div className="AccordionContentText">
                 <ul>
                   <li>
-                    Paxlovid: Adults and children (12 years of age and older,
-                    weighing at least 88 pounds [40 kg]), who are at high risk
-                    for getting very sick from COVID-19 and who have mild to
-                    moderate symptoms.
+                  {t("Landing.Accordion Item 3.Content.Unordered List 1.List Item 1.Text 1")}
                   </li>
                   <li>
-                    Lagevrio: Adults 18 years and older, who are at high risk
-                    for getting very sick from COVID-19, have mild to moderate
-                    symptoms, and do not have access to other COVID-19
-                    outpatient treatment options or other treatment options are
-                    not appropriate for them.
+                  {t("Landing.Accordion Item 3.Content.Unordered List 1.List Item 2.Text 1")}
                   </li>
                   <li>
-                    Veklury: In the outpatient setting, adults and children (28{" "}
-                    <strong>days</strong> of age or older and weighing at least
-                    7 pounds [3 kg]), who have mild to moderate symptoms of
-                    COVID-19 and are at high risk for getting very sick from
-                    COVID-19.
+                  {t("Landing.Accordion Item 3.Content.Unordered List 1.List Item 3.Text 1")}{" "}
+                    <strong>{t("Landing.Accordion Item 3.Content.Unordered List 1.List Item 3.Text 2")}</strong>{" "} 
+                    {t("Landing.Accordion Item 3.Content.Unordered List 1.List Item 3.Text 3")}
                     <ul>
                       <li>
-                        This medication is given through an intravenous infusion
-                        and may be given in the outpatient (not staying in the
-                        hospital) setting over three consecutive visits or in
-                        the inpatient (staying in the hospital) setting. This
-                        website lists only outpatient locations where Veklury is
-                        available.{" "}
+                        {t("Landing.Accordion Item 3.Content.Unordered List 1.List Item 3.Unordered List 1.List Item 1.Text 1")}
+                        {" "}
                       </li>
                     </ul>
                   </li>
                   <li>
-                    Paxlovid and Lagevrio must be taken within 5 days of symptom
-                    onset to be effective. Veklury outpatient administration is
-                    within 7 days of symptom onset.
+                    {t("Landing.Accordion Item 3.Content.Unordered List 1.List Item 4.Text 1")}
                   </li>
                   <li>
-                    To learn more about indications for these products, see{" "}
+                    {t("Landing.Accordion Item 3.Content.Unordered List 1.List Item 5.Text 1")}
+                    {" "}
                     <a href="https://aspr.hhs.gov/COVID-19/Treatments/Pages/Possible-Treatment-Options-for-COVID19.aspx">
-                      Treatment Options for COVID-19.
+                      {t("Landing.Accordion Item 3.Content.Unordered List 1.List Item 5.Anchor 1.Text 1")}
                     </a>{" "}
-                    Healthcare providers can refer to the{" "}
+                    {t("Landing.Accordion Item 3.Content.Unordered List 1.List Item 5.Text 2")}{" "}
                     <a href="https://aspr.hhs.gov/COVID-19-Therapeutics/Side-by-Side-Overview/Pages/default.aspx">
-                      Side-by-Side Overview of Therapeutics Authorized or
-                      Approved for the Treatment of Mild to Moderate COVID-19.
+                      {" "}
+                      {t("Landing.Accordion Item 3.Content.Unordered List 1.List Item 5.Anchor 2.Text 1")}
                     </a>
                   </li>
                 </ul>
@@ -404,72 +368,61 @@ const Landing = () => {
               <div className="AccordionContentText">
                 <ul>
                   <li>
-                    Oseltamivir (including brand name Tamiflu): Recommended for
-                    adults and children of all ages.
+                    {t("Landing.Accordion Item 4.Content.Unordered List 1.List Item 1.Text 1")}
                     <ul>
                       <li>
                         {" "}
-                        It is the preferred treatment for treatment of influenza
-                        in pregnant women, hospitalized patients, and
-                        outpatients with severe, complicated, or progressive
-                        illness.{" "}
+                        {t("Landing.Accordion Item 4.Content.Unordered List 1.List Item 1.Unordered List 1.List Item 1.Text 1")}
+                        {" "}
                       </li>
                       <li>
                         {" "}
-                        Oseltamivir is taken twice daily by mouth for 5 days.{" "}
+                        {t("Landing.Accordion Item 4.Content.Unordered List 1.List Item 1.Unordered List 1.List Item 2.Text 1")}
+                        {" "}
                       </li>
                     </ul>
                   </li>
                   <li>
-                    Peramivir (Rapivab): Otherwise healthy adults and children 6
-                    months and older.
+                    {t("Landing.Accordion Item 4.Content.Unordered List 1.List Item 2.Text 1")}
                     <ul>
                       <li>
-                        This medication is given by a healthcare provider as a
-                        single dose through an intravenous infusion{" "}
+                        {t("Landing.Accordion Item 4.Content.Unordered List 1.List Item 2.Unordered List 1.List Item 1.Text 1")}
+                        {" "}
                       </li>
                     </ul>
                   </li>
                   <li>
-                    Zanamivir (Relenza): Adults and children 7 years and older.
+                    {t("Landing.Accordion Item 4.Content.Unordered List 1.List Item 3.Text 1")}
                     <ul>
                       <li>
-                        Zanamivir is administered using an inhaler device and is
-                        not recommended for people with breathing problems like
-                        asthma or COPD or those with a history of allergy to
-                        lactose or milk protein.{" "}
+                        {t("Landing.Accordion Item 4.Content.Unordered List 1.List Item 3.Unordered List 1.List Item 1.Text 1")}
+                        {" "}
                       </li>
                       <li>
-                        Zanamivir is taken twice daily using an inhaler device
-                        for 5 days.{" "}
+                        {t("Landing.Accordion Item 4.Content.Unordered List 1.List Item 3.Unordered List 1.List Item 2.Text 1")}
+                        {" "}
                       </li>
                     </ul>
                   </li>
                   <li>
-                    Baloxavir (Xofluza): Otherwise healthy children 5 years and
-                    older for acute uncomplicated influenza, and adults and
-                    children 12 years and older who are at high risk of
-                    developing influenza-related complications.
+                    {t("Landing.Accordion Item 4.Content.Unordered List 1.List Item 4.Text 1")}
                     <ul>
-                      <li>Baloxavir is taken by mouth as a single dose</li>
+                      <li>{t("Landing.Accordion Item 4.Content.Unordered List 1.List Item 4.Unordered List 1.List Item 1.Text 1")}</li>
                       <li>
-                        Baloxavir is not recommended for treatment of flu in
-                        pregnant or breastfeeding people, severely
-                        immunosuppressed persons, or in outpatients with
-                        complicated or progressive illness because there is no
-                        information about use of baloxavir in these patients.{" "}
+                        {t("Landing.Accordion Item 4.Content.Unordered List 1.List Item 4.Unordered List 1.List Item 2.Text 1")}
+                        {" "}
                       </li>
                     </ul>
                   </li>
                   <li>
-                    Please see{" "}
+                    {t("Landing.Accordion Item 4.Content.Unordered List 1.List Item 5.Text 1")}{" "}
                     <a href="https://www.cdc.gov/flu/treatment/whatyoushould.htm">
-                      What are Flu Antiviral Drugs | CDC
+                      {t("Landing.Accordion Item 4.Content.Unordered List 1.List Item 5.Anchor 1.Text 1")}
                     </a>{" "}
-                    for more information on treatment of flu. Healthcare
-                    providers can visit CDC’s{" "}
+                    {t("Landing.Accordion Item 4.Content.Unordered List 1.List Item 5.Text 2")}
+                    {" "}
                     <a href="https://www.cdc.gov/flu/professionals/antivirals/summary-clinicians.htm">
-                      Influenza Antiviral Medications: Summary for Clinicians.
+                      {t("Landing.Accordion Item 4.Content.Unordered List 1.List Item 5.Anchor 2.Text 1")}
                     </a>
                   </li>
                 </ul>
@@ -502,69 +455,45 @@ const Landing = () => {
             </Accordion.Header>
             <Accordion.Content className="AccordionContent">
               <div className="AccordionContentText">
-                <strong>COVID-19</strong>
+                <strong>{t("Reusable.COVID-19")}</strong>
                 <ul>
                   <li>
-                    Paxlovid is authorized by the FDA for emergency use in
-                    children 12 years or older weighing at least 88 pounds [40
-                    kg], who are at high risk for getting very sick from
-                    COVID-19 and who have mild to moderate symptoms.
+                    {t("Landing.Accordion Item 5.Content.Unordered List 1.List Item 1.Text 1")}
                   </li>
                   <li>
-                    Veklury is FDA-approved for children 28 days of age or older
-                    and weighing at least 7 pounds [3 kg], who have mild to
-                    moderate symptoms of COVID-19 and are at high risk for
-                    getting very sick from COVID-19.
+                    {t("Landing.Accordion Item 5.Content.Unordered List 1.List Item 2.Text 1")}
                     <ul>
                       <li>
-                        This medication is given through an intravenous infusion
-                        and may be given in the outpatient (not staying in the
-                        hospital) or inpatient (staying in the hospital)
-                        setting. This website lists only outpatient locations
-                        where Veklury is available.
+                       {t("Landing.Accordion Item 5.Content.Unordered List 1.List Item 2.Unordered List 1.List Item 1.Text 1")}
                       </li>
                     </ul>
                   </li>
                 </ul>
 
-                <strong>Influenza (Flu)</strong>
+                <strong>{t("Reusable.Influenza")} ({t("Reusable.Flu")})</strong>
                 <ul>
                   <li>
-                    Oral oseltamivir is approved by the FDA for treatment of
-                    acute uncomplicated influenza within 2 days of illness onset
-                    in people 14 days of age and older. Although not part of the
-                    FDA-approved indications, use of oral oseltamivir for
-                    treatment of influenza in infants less than 14 days old is
-                    recommended by the CDC. Oseltamivir is available as an oral
-                    suspension for children.
+                    {t("Landing.Accordion Item 5.Content.Unordered List 2.List Item 1.Text 1")}
                     <ul>
                       <li>
-                        If your health care provider prescribes oseltamivir
-                        capsules for your child and your child cannot swallow
-                        capsules, please refer to{" "}
+                        {t("Landing.Accordion Item 5.Content.Unordered List 2.List Item 1.Unordered List 1.List Item 1.Text 1")}
+                        {" "}
                         <a href="https://www.cdc.gov/flu/highrisk/mixing-oseltamivir-qa.htm">
-                          CDC guidance
+                          {t("Landing.Accordion Item 5.Content.Unordered List 2.List Item 1.Unordered List 1.List Item 1.Anchor 1.Text 1")}
                         </a>{" "}
-                        on opening and mixing oseltamivir capsules with liquids.
+                        {t("Landing.Accordion Item 5.Content.Unordered List 2.List Item 1.Unordered List 1.List Item 1.Text 2")}
                       </li>
                     </ul>
                   </li>
                   <li>
-                    Zanamivir is approved for early treatment of flu in people 7
-                    years and older, though it is not recommended for use in
-                    children with underlying respiratory disease, including
-                    asthma and other chronic lung diseases, and in patients with
-                    milk protein allergy.
+                    {t("Landing.Accordion Item 5.Content.Unordered List 2.List Item 2.Text 1")}
                   </li>
                   <li>
-                    Peramivir is approved for early treatment of flu in
-                    otherwise healthy patients 6 months and older.
+                    {t("Landing.Accordion Item 5.Content.Unordered List 2.List Item 3.Text 1")}
                   </li>
                   <li>
-                    Baloxavir is available in a single dose tablet for early
-                    treatment of flu in otherwise healthy children aged 5 years
-                    and older, and in children 12 years and older who are at
-                    higher risk of developing flu-related complications.{" "}
+                    {t("Landing.Accordion Item 5.Content.Unordered List 2.List Item 4.Text 1")}
+                    {" "}
                   </li>
                 </ul>
               </div>
@@ -595,61 +524,42 @@ const Landing = () => {
             </Accordion.Header>
             <Accordion.Content className="AccordionContent">
               <div className="AccordionContentText">
-                <strong>COVID-19:</strong>
+                <strong>{t("Reusable.COVID-19")}:</strong>
                 <ul>
                   <li>
-                    Pregnant and recently pregnant people (at least 6 weeks
-                    following the end of pregnancy) are at increased risk of
-                    severe illness from COVID-19.
+                    {t("Landing.Accordion Item 6.Content.Unordered List 1.List Item 1.Text 1")}
                   </li>
                   <li>
-                    Paxlovid (ritonavir with nirmatrelvir) is the preferred
-                    treatment option for pregnant and recently pregnant patients
-                    with COVID-19.{" "}
+                    {t("Landing.Accordion Item 6.Content.Unordered List 1.List Item 2.Text 1")}
+                    {" "}
                   </li>
                   <li>
-                    Lagevrio (molnupiravir) is not recommended for use during
-                    pregnancy because of risk it may cause fetal harm. Prior to
-                    initiating treatment with Lagevrio, health care providers
-                    should assess whether an individual of childbearing
-                    potential is pregnant, if clinically indicated.
-                    Breastfeeding is not recommended during treatment with
-                    Lagevrio and for 4 days after final dose.
+                    {t("Landing.Accordion Item 6.Content.Unordered List 1.List Item 3.Text 1")}
                   </li>
                   <li>
-                    Healthcare providers can refer to the{" "}
+                    {t("Landing.Accordion Item 6.Content.Unordered List 1.List Item 4.Text 1")}
+                    {" "}
                     <a href="https://aspr.hhs.gov/COVID-19-Therapeutics/Side-by-Side-Overview/Pages/default.aspx">
-                      Side-by-Side Overview of Therapeutics Authorized or
-                      Approved for the Treatment of Mild to Moderate COVID-19.
+                      {t("Landing.Accordion Item 6.Content.Unordered List 1.List Item 4.Anchor 1.Text 1")}
                     </a>
                   </li>
                 </ul>
-                <strong>Influenza (Flu):</strong>
+                <strong>{t("Reusable.Influenza")} ({t("Reusable.Flu")}):</strong>
                 <ul>
                   <li>
-                    Treatment with antiviral medications for flu is recommended
-                    for pregnant people or people who are up to 2 weeks
-                    postpartum (including following pregnancy loss) with
-                    suspected or confirmed influenza of any severity and can be
-                    taken during any trimester of pregnancy.
+                   {t("Landing.Accordion Item 6.Content.Unordered List 2.List Item 1.Text 1")}
                   </li>
                   <li>
-                    Oral oseltamivir is the preferred treatment options for
-                    pregnant people with flu because it has the most studies
-                    available to suggest that it is safe and beneficial.
+                    {t("Landing.Accordion Item 6.Content.Unordered List 2.List Item 2.Text 1")}
                   </li>
                   <li>
-                    Baloxavir is not recommended for pregnant or post-partum
-                    people or while breastfeeding, as there are no available
-                    efficacy or safety data.
+                    {t("Landing.Accordion Item 6.Content.Unordered List 2.List Item 3.Text 1")}
                   </li>
                   <li>
-                    For more information on the treatment of flu during
-                    pregnancy, healthcare providers can visit{" "}
+                    {t("Landing.Accordion Item 6.Content.Unordered List 2.List Item 4.Text 1")}
+                    {" "}
                     <a href="https://www.cdc.gov/flu/professionals/antivirals/avrec_ob.htm#:~:text=For%20treatment%20of%20pregnant%20people,with%20oseltamivir%20is%205%20days.">
-                      Recommendations for Obstetric Health Care Providers
-                      Related to Use of Antiviral Medications in the Treatment
-                      and Prevention of Influenza.
+                    {t("Landing.Accordion Item 6.Content.Unordered List 2.List Item 4.Anchor 1.Text 1")}
                     </a>
                   </li>
                 </ul>
@@ -684,20 +594,15 @@ const Landing = () => {
               <div className="AccordionContentText">
                 <ul>
                   <li>
-                    Medications to treat COVID-19 (Paxlovid, Lagevrio, Veklury)
-                    and flu (oseltamivir, zanamivir, peramivir, baloxavir) must
-                    be prescribed by a health care provider and should be
-                    started as soon as possible after diagnosis to be effective.
+                    {t("Landing.Accordion Item 7.Content.Unordered List 1.List Item 1.Text 1")}
                   </li>
                   <li>
-                    Talk to your health care professional about available
-                    treatment options if you have symptoms consistent with
-                    COVID-19 or flu.{" "}
+                    {t("Landing.Accordion Item 7.Content.Unordered List 1.List Item 2.Text 1")}
+                    {" "}
                   </li>
                   <li>
-                    Certain locations listed on this locator may provide
-                    prescribing services to patients who do not already have a
-                    prescription.{" "}
+                    {t("Landing.Accordion Item 7.Content.Unordered List 1.List Item 3.Text 1")}
+                    {" "}
                   </li>
                 </ul>
               </div>
@@ -730,25 +635,18 @@ const Landing = () => {
               <div className="AccordionContentText">
                 <ul>
                   <li>
-                    All medications listed on this website are approved or
-                    authorized by FDA as safe and effective when used
-                    appropriately.
+                    {t("Landing.Accordion Item 8.Content.Unordered List 1.List Item 1.Text 1")}
                   </li>
                   <li>
-                    If you have COVID-19 and are more likely to get very sick,
-                    treatments are available that can reduce your chances of
-                    being hospitalized or dying from the disease.{" "}
+                    {t("Landing.Accordion Item 8.Content.Unordered List 1.List Item 2.Text 1")}
+                    {" "}
                   </li>
                   <li>
-                    Early flu antiviral treatment can shorten the duration of
-                    fever and illness and may reduce the risk of some
-                    complications from influenza.{" "}
+                    {t("Landing.Accordion Item 8.Content.Unordered List 1.List Item 3.Text 1")}
+                    {" "}
                   </li>
                   <li>
-                    Some treatments might have side effects or interact with
-                    other medications you are taking. Ask a health care provider
-                    if medications to treat COVID-19 or influenza are right for
-                    you.
+                    {t("Landing.Accordion Item 8.Content.Unordered List 1.List Item 4.Text 1")}
                   </li>
                 </ul>
               </div>
@@ -780,114 +678,101 @@ const Landing = () => {
             </Accordion.Header>
             <Accordion.Content className="AccordionContent">
               <div className="AccordionContentText">
-                <strong>COVID-19:</strong>
+                <strong>{t("Reusable.COVID-19")}:</strong>
                 <ul>
                   <li>
-                    For Paxlovid:
+                    {t("Landing.Accordion Item 9.Content.Unordered List 1.List Item 1.Text 1")}:
                     <ul>
                       <li>
-                        Medicare, Medicaid, and uninsured patients can receive
-                        Paxlovid at no charge through December 2024 through the
-                        U.S. Government (USG) Patient Assistance Program (PAP)
-                        operated by Pfizer. This includes all patients who are
-                        publicly insured through Medicare (with or without Part
-                        D, Part B, or Part C and inclusive of Medicare
-                        Advantage), Medicaid/Children’s Health Insurance
-                        Program, TRICARE, and patients insured through the
-                        Department of Veterans Affairs Community Care Network.
-                        More information can be found on the{" "}
+                        {t("Landing.Accordion Item 9.Content.Unordered List 1.List Item 1.Unordered List 1.List Item 1.Text 1")}
+                        {" "}
                         <a href="https://aspr.hhs.gov/COVID-19/Therapeutics/updates/Pages/Commercialization-FAQ-Nov2023.aspx#collapse001">
-                          COVID-19 therapeutics website.
+                          {t("Landing.Accordion Item 9.Content.Unordered List 1.List Item 1.Unordered List 1.List Item 1.Anchor 1.Text 1")}
                         </a>{" "}
                         <a href="https://www.paxlovid.com/paxcess">
-                          Learn more about this program
+                          {t("Landing.Accordion Item 9.Content.Unordered List 1.List Item 1.Unordered List 1.List Item 1.Anchor 2.Text 1")}
                         </a>{" "}
-                        or <a href="https://paxlovid.iassist.com/">enroll.</a>
+                          {t("Landing.Accordion Item 9.Content.Unordered List 1.List Item 1.Unordered List 1.List Item 1.Text 2")}
+                          {" "} 
+                          <a href="https://paxlovid.iassist.com/">
+                            {t("Landing.Accordion Item 9.Content.Unordered List 1.List Item 1.Unordered List 1.List Item 1.Anchor 3.Text 1")}
+                          </a>
                       </li>
                       <li>
-                        You can search for locations participating in this
-                        Paxlovid PAP using this locator tool by filtering for
-                        PAP sites.
+                        {t("Landing.Accordion Item 9.Content.Unordered List 1.List Item 1.Unordered List 1.List Item 2.Text 1")}                 
                       </li>
                       <li>
-                        Concurrently, Pfizer is operating a Paxlovid Co-Pay
-                        Savings Program for eligible privately (commercially)
-                        insured patients.{" "}
-                        <a href="https://www.paxlovid.com/paxcess">Patients</a>{" "}
-                        and{" "}
+                        {t("Landing.Accordion Item 9.Content.Unordered List 1.List Item 1.Unordered List 1.List Item 3.Text 1")}
+                        {" "}
+                        <a href="https://www.paxlovid.com/paxcess">{t("Landing.Accordion Item 9.Content.Unordered List 1.List Item 1.Unordered List 1.List Item 3.Anchor 1.Text 1")}</a>{" "}
+                        {t("Landing.Accordion Item 9.Content.Unordered List 1.List Item 1.Unordered List 1.List Item 3.Text 2")}{" "}
                         <a href="https://paxlovid.pfizerpro.com/">
-                          healthcare providers
+                        {t("Landing.Accordion Item 9.Content.Unordered List 1.List Item 1.Unordered List 1.List Item 3.Anchor 2.Text 1")}
                         </a>{" "}
-                        can download a co-pay savings card.
+                        {t("Landing.Accordion Item 9.Content.Unordered List 1.List Item 1.Unordered List 1.List Item 3.Text 3")}
                       </li>
                     </ul>
                   </li>
                   <li>
                     {" "}
-                    For Lagevrio:
+                    {t("Landing.Accordion Item 9.Content.Unordered List 1.List Item 2.Text 1")}:
                     <ul>
                       <li>
-                        The{" "}
+                        {t("Landing.Accordion Item 9.Content.Unordered List 1.List Item 2.Unordered List 1.List Item 1.Text 1")}
+                        {" "}
                         <a href="https://www.merckhelps.com/LAGEVRIO">
-                          Merck Patient Assistance Program
+                        {t("Landing.Accordion Item 9.Content.Unordered List 1.List Item 2.Unordered List 1.List Item 1.Anchor 1.Text 1")}
                         </a>{" "}
-                        (a 501c3 non-profit organization) will provide Lagevrio
-                        free of charge to patients who meet eligibility criteria
-                        and who, without assistance, could not otherwise afford
-                        the product.{" "}
+                         {t("Landing.Accordion Item 9.Content.Unordered List 1.List Item 2.Unordered List 1.List Item 1.Text 2")}
+                        {" "}
                       </li>
                     </ul>
                   </li>
                   <li>
-                    For Veklury:
+                    {t("Landing.Accordion Item 9.Content.Unordered List 1.List Item 3.Text 1")}:
                     <ul>
                       <li>
-                        Please contact Gilead's Advancing Access program to
-                        learn more about access to Veklury in the outpatient
-                        setting and{" "}
+                        {t("Landing.Accordion Item 9.Content.Unordered List 1.List Item 3.Unordered List 1.List Item 1.Text 1")}
+                        {" "}
                         <a href="https://www.veklury.com/patient-support/">
-                          financial support.
+                          {t("Landing.Accordion Item 9.Content.Unordered List 1.List Item 3.Unordered List 1.List Item 1.Anchor 1.Text 1")}
                         </a>
                       </li>
                     </ul>
                   </li>
                   <li>
-                    Note: This response does not address whether these COVID-19
-                    treatments are covered by Medicare and Medicaid generally.
-                    More information is available for{" "}
+                    {t("Landing.Accordion Item 9.Content.Unordered List 1.List Item 4.Text 1")}
+                    {" "}
                     <a href="https://www.cms.gov/files/document/commercialcovid19oralantiviralsmemofinal.pdf">
-                      Medicare
+                      {t("Landing.Accordion Item 9.Content.Unordered List 1.List Item 4.Anchor 1.Text 1")}
                     </a>{" "}
-                    and{" "}
+                    {t("Landing.Accordion Item 9.Content.Unordered List 1.List Item 4.Text 2")}{" "}
                     <a href="https://www.medicaid.gov/state-overviews/index.html">
-                      Medicaid
+                      {t("Landing.Accordion Item 9.Content.Unordered List 1.List Item 4.Anchor 2.Text 1")}
                     </a>{" "}
-                    coverage.
+                    {t("Landing.Accordion Item 9.Content.Unordered List 1.List Item 4.Text 3")}
                   </li>
                 </ul>
-                <strong>Influenza (Flu):</strong>
+                <strong>{t("Reusable.Influenza")} ({t("Reusable.Flu")}):</strong>
                 <ul>
                   <li>
-                    For Zanamivir (Relenza):
+                    {t("Landing.Accordion Item 9.Content.Unordered List 2.List Item 1.Text 1")}:
                     <ul>
                       <li>
-                        <a href="https://www.gskforyou.com/">GSK for You</a> is
-                        a program committed to assisting eligible patients
-                        access to medications. They offer programs for patients
-                        who meet income and other eligibility requirements.
+                        <a href="https://www.gskforyou.com/">{t("Landing.Accordion Item 9.Content.Unordered List 2.List Item 1.Unordered List 1.List Item 1.Anchor 1.Text 1")}</a>
+                        {" "}
+                        {t("Landing.Accordion Item 9.Content.Unordered List 2.List Item 1.Unordered List 1.List Item 1.Text 1")}
                       </li>
                     </ul>
                   </li>
                   <li>
-                    For Tamiflu and Baloxavir (Xofluza):
+                    {t("Landing.Accordion Item 9.Content.Unordered List 2.List Item 2.Text 1")}:
                     <ul>
                       <li>
                         <a href="https://www.gene.com/patients/patient-foundation/patient-foundation-faqs">
-                          The Genentech Patient Foundation
+                          {t("Landing.Accordion Item 9.Content.Unordered List 2.List Item 2.Unordered List 1.List Item 1.Anchor 1.Text 1")}
                         </a>{" "}
-                        gives free Genentech medicine to people who do not have
-                        insurance coverage or who have financial concerns and
-                        meet eligibility criteria.
+                        {t("Landing.Accordion Item 9.Content.Unordered List 2.List Item 2.Unordered List 1.List Item 1.Text 1")}
                       </li>
                     </ul>
                   </li>
@@ -922,24 +807,16 @@ const Landing = () => {
             <Accordion.Content className="AccordionContent">
               <div className="AccordionContentText">
                 <p>
-                  Throughout the COVID-19 pandemic, the federal government
-                  granted Emergency Use Authorization (EUA) for therapeutics to
-                  help combat COVID-19, including certain monoclonal antibodies.
-                  Because the U.S. Food and Drug Administration (FDA) does not
-                  currently authorize any monoclonal antibody therapeutics to
-                  treat COVID-19 in the United States, no monoclonal antibody
-                  products are listed on this locator. Pemivibart (PEMGARDA), a
-                  monoclonal antibody to prevent COVID-19 in certain patients,
-                  is currently{" "}
+                  {t("Landing.Accordion Item 10.Content.Text 1")}
+                  {" "}
                   <a href="https://www.fda.gov/media/177069/download">
-                    authorized by the FDA
+                    {t("Landing.Accordion Item 10.Content.Anchor 1.Text 1")}
                   </a>{" "}
-                  for emergency use. Infusion sites offering this medication can
-                  be found using the{" "}
+                  {t("Landing.Accordion Item 10.Content.Text 2")}{" "}
                   <a href="https://www.pemgarda.com/patient/infusion-center-locator/">
-                    PEMGARDA infusion center locator tool.
+                    {t("Landing.Accordion Item 10.Content.Anchor 2.Text 1")}
                   </a>{" "}
-                  There are no monoclonal antibodies available to treat flu.
+                  {t("Landing.Accordion Item 10.Content.Text 3")}{" "}
                 </p>
               </div>
             </Accordion.Content>
@@ -971,13 +848,7 @@ const Landing = () => {
             <Accordion.Content className="AccordionContent">
               <div className="AccordionContentText">
                 <p>
-                  There may be locations that offer outpatient COVID-19 or
-                  influenza medications and are not listed on this website. The
-                  locations displayed on this website have either self-attested
-                  they have inventory of COVID-19 or influenza antiviral
-                  medications within at least the last two months and/or
-                  reported participation in the US Government Paxlovid Patient
-                  Assistance Program operated by Pfizer.
+                  {t("Landing.Accordion Item 11.Content.Text 1")}
                 </p>
               </div>
             </Accordion.Content>
@@ -1008,26 +879,22 @@ const Landing = () => {
             <Accordion.Content className="AccordionContent">
               <div className="AccordionContentText">
                 <p>
-                  Where indicated, the locations listed on this website may:
+                {t("Landing.Accordion Item 12.Content.Text 1")}:
                 </p>
                 <ul>
                   <li>
-                    Have remaining free Paxlovid and/or Lagevrio distributed by
-                    the U.S. Department of Health and Human Services{" "}
+                  {t("Landing.Accordion Item 12.Content.Unordered List 1.List Item 1.Text 1")}
+                  {" "}
                   </li>
                   <li>
-                    Participate in the Paxlovid Patient Assistance Program,
-                    providing free Paxlovid to publicly insured (Medicare,
-                    Medicaid, etc.) and uninsured patients
+                    {t("Landing.Accordion Item 12.Content.Unordered List 1.List Item 2.Text 1")}
                   </li>
                   <li>
-                    Offer prescribing services (including telehealth) or home
-                    delivery of medicines
+                    {t("Landing.Accordion Item 12.Content.Unordered List 1.List Item 3.Text 1")}
                   </li>
                   <li>
-                    Offer no-cost COVID-19 testing for eligible uninsured people
-                    (Increasing Community Access to Testing [ICATT]
-                    participating site){" "}
+                    {t("Landing.Accordion Item 12.Content.Unordered List 1.List Item 4.Text 1")}
+                    {" "}
                   </li>
                 </ul>
               </div>
@@ -1060,8 +927,8 @@ const Landing = () => {
               <div className="AccordionContentText">
                 <p>
                   {" "}
-                  If you would like more information about being added to the
-                  Treatments Locator, please email{" "}
+                  {t("Landing.Accordion Item 13.Content.Text 1")}
+                  {" "}
                   <a href="mailto:COVID19.therapeutics@hhs.gov">
                     COVID19.therapeutics@hhs.gov.
                   </a>{" "}
@@ -1096,10 +963,10 @@ const Landing = () => {
             <Accordion.Content className="AccordionContent">
               <div className="AccordionContentText">
                 <p>
-                  Retail pharmacies can learn more about participating in the
-                  Paxlovid Patient Assistance Program by{" "}
+                  {t("Landing.Accordion Item 14.Content.Text 1")}
+                  {" "}
                   <a href="mailto:PharmacyNetworkContract102101@assistrx.com">
-                    contacting the program vendor
+                    {t("Landing.Accordion Item 14.Content.Anchor 1.Text 1")}
                   </a>{" "}
                 </p>
               </div>
@@ -1132,40 +999,25 @@ const Landing = () => {
             <Accordion.Content className="AccordionContent">
               <div className="AccordionContentText">
                 <p>
-                  Outpatient COVID-19 and influenza (flu) medications may be
-                  available at additional locations not listed on this website.
-                  The locations displayed have either self-attested they have
-                  inventory of COVID-19 or influenza antiviral medications
-                  within at least the last two months and/or reported
-                  participation in the Paxlovid Patient Assistance Program.
+                  {t("Landing.Accordion Item 15.Content.Text 1")}
                 </p>
                 <p>
-                  All therapeutics identified in the locator not approved by the
-                  FDA must be used in alignment with the terms of the respective
-                  product’s Emergency Use Authorization. Visit the{" "}
+                  {t("Landing.Accordion Item 15.Content.Text 2")}{" "}
                   <a href="https://aspr.hhs.gov/COVID-19/treatments/Pages/default.aspx">
-                    ASPR COVID-19 Treatments page
-                  </a>
-                  for more information on all COVID-19 treatment options and{" "}
-                  <a href="https://www.cdc.gov/flu/treatment/index.html">
-                    CDC’s Flu Treatment page
+                    {t("Landing.Accordion Item 15.Content.Anchor 1.Text 1")}
                   </a>{" "}
-                  for more information on influenza treatment options.
+                  {t("Landing.Accordion Item 15.Content.Text 3")}
+                  {" "}
+                  <a href="https://www.cdc.gov/flu/treatment/index.html">
+                    {t("Landing.Accordion Item 15.Content.Anchor 2.Text 1")}
+                  </a>{" "}
+                  {t("Landing.Accordion Item 15.Content.Text 4")}
                 </p>
                 <p>
-                  This website identifies sites that have commercially purchased
-                  inventory of COVID-19 and influenza treatments and, in some
-                  cases, may identify sites that have remaining, no-cost U.S.
-                  government distributed supply. Some sites may charge for
-                  services which may or may not be covered by insurance. Some
-                  sites may offer prescribing services for patients, including
-                  telehealth services. This website is intended for
-                  informational purposes only and does not serve as an
-                  endorsement or recommendation for use of any of the locations
-                  listed on the sites.
+                  {t("Landing.Accordion Item 15.Content.Text 5")}
                 </p>
                 <p>
-                  For questions regarding this site, contact{" "}
+                  {t("Landing.Accordion Item 15.Content.Text 6")}{" "}
                   <strong>1-800-232-0233 (TTY 888-720-7489).</strong>
                 </p>
               </div>
