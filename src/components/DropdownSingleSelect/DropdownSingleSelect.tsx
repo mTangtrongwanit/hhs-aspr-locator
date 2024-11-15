@@ -129,7 +129,6 @@ const DropdownSingleSelect = ({
       }
     >
       <DropdownMenu.Root>
-        {/* <DropdownMenu.Trigger className="hhs-primary-button"> */}
         <DropdownMenu.Trigger
           className={
             location.pathname === "/" && type !== "language"
@@ -153,8 +152,14 @@ const DropdownSingleSelect = ({
           <ChevronDownIcon />
         </DropdownMenu.Trigger>
         <DropdownMenu.Content className="DropdownMenuContent" sideOffset={5}>
-          {options.map((item) => (
+        <fieldset>
+          <legend className="visually-hidden">{placeholder}</legend>
+        {options.map((item) => (
             <DropdownMenu.Item
+            role="menuitemradio"
+            aria-checked={selectedOption.value === item.value ? true : false}
+            data-state={selectedOption.value === item.value ? "checked": "unchecked"
+            }
               style={
                 {
                   "--selected": `${
@@ -174,6 +179,8 @@ const DropdownSingleSelect = ({
               {item.label}
             </DropdownMenu.Item>
           ))}
+        </fieldset>
+
           <DropdownMenu.Arrow className="DropdownMenuArrow" />
         </DropdownMenu.Content>
       </DropdownMenu.Root>
