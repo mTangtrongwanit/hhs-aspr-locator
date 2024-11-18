@@ -194,8 +194,9 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
       return (
         <>
           {/* button to log locations */}
-          <PopoverMenuTitle>Medications</PopoverMenuTitle>
+          <PopoverMenuTitle id="meds-popover-title">Medications</PopoverMenuTitle>
           <PopoverCheckBoxContainer>
+            <legend className="visually-hidden" aria-labelledby="meds-popover-title"></legend>
             {treatments !== undefined &&
               treatments.map((medication) => (
                 <PopoverCheckBoxRow key={medication}>
