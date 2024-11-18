@@ -194,11 +194,12 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
       return (
         <>
           {/* button to log locations */}
-          <PopoverMenuTitle>Medications</PopoverMenuTitle>
+          <PopoverMenuTitle id="meds-popover-title">Medications</PopoverMenuTitle>
           <PopoverCheckBoxContainer>
+            <legend className="visually-hidden" aria-labelledby="meds-popover-title"></legend>
             {treatments !== undefined &&
               treatments.map((medication) => (
-                <PopoverCheckBoxRow key={medication}>
+                <PopoverCheckBoxRow role="menuitemcheckbox" aria-checked={medications.includes(medication)} aria-label={medication} >
                   <Checkbox.Root
                     className="CheckboxRoot"
                     checked={medications.includes(medication)}
@@ -220,12 +221,14 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
     } else if (type === "filter") {
       return (
         <>
-          <PopoverMenuTitle>Filters</PopoverMenuTitle>
+          <PopoverMenuTitle id="filters-popover-title">Filters</PopoverMenuTitle>
           <PopoverCheckBoxContainer>
+          <legend className="visually-hidden" aria-labelledby="filters-popover-title"></legend>
+
             {services?.map((filter: FilterType | undefined) => {
               if (!filter) return;
               return (
-                <PopoverCheckBoxRow key={filter.name}>
+                <PopoverCheckBoxRow key={filter.name} role="menuitemcheckbox" aria-checked={filters.includes(filter)} aria-label={filter.label}>
                   <Checkbox.Root
                     className="CheckboxRoot"
                     checked={filters.includes(filter)}
