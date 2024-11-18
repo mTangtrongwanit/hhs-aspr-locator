@@ -142,7 +142,11 @@
     "Flu": "Flu",
     "Prompt": "Looking for Specific Medications?",
     "Medications Button Screenreader Label": "This button filters results to only include specific medications!",
-    "Other Filters Button Screenreader Label": "This button filters results to only include specific site information"
+    "Other Filters Button Screenreader Label": "This button filters results to only include specific site information",
+    "Name": "Illness"
+  },
+  "Sorting": {
+    "Name": "Sorting"
   },
   "Misc": {
     "Apply":"Apply",
