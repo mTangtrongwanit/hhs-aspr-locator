@@ -199,7 +199,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
             <legend className="visually-hidden" aria-labelledby="meds-popover-title"></legend>
             {treatments !== undefined &&
               treatments.map((medication) => (
-                <PopoverCheckBoxRow key={medication}>
+                <PopoverCheckBoxRow role="menuitemcheckbox" aria-checked={medications.includes(medication)} aria-label={medication} >
                   <Checkbox.Root
                     className="CheckboxRoot"
                     checked={medications.includes(medication)}
