@@ -70,8 +70,8 @@ export interface StaticConfiguration {
     illnessOptions: { label: string; value: string }[];
   };
   fieldsets: {
-    fluTreatmentFields: string[];
-    covidTreatmentFields: string[];
+    fluLookupFields: string[];
+    covidLookupFields: string[];
   };
   medicationOrder: string[];
 }

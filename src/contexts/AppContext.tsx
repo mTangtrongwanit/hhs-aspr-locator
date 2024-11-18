@@ -185,14 +185,15 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     }
 
     // build the illness clause
-    const illnessTreatmentFields =
+    const illnessLookupFields =
       config.fieldsets[
-        `${selectedIllness.value.toLowerCase()}TreatmentFields` as keyof typeof config.fieldsets
+        `${selectedIllness.value.toLowerCase()}LookupFields` as keyof typeof config.fieldsets
       ] ?? [];
-    const illnessClause = illnessTreatmentFields
+    const illnessClause = illnessLookupFields
       .map((field) => `LOWER(${field}) = 'true'`)
       .join(" OR ");
 
+    // todo: will have to pull these meds from the lookup table
     // build the medications clause
     const medicationClause = selectedMedications
       .map(
@@ -266,11 +267,11 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
               searchPoint,
             ) ?? 0;
           location.attributes.has_covid_treatments =
-            config.fieldsets.covidTreatmentFields.some((field) =>
+            config.fieldsets.covidLookupFields.some((field) =>
               isTrue(location.attributes[field]),
             );
           location.attributes.has_flu_treatments =
-            config.fieldsets.fluTreatmentFields.some((field) =>
+            config.fieldsets.fluLookupFields.some((field) =>
               isTrue(location.attributes[field]),
             );
 
@@ -330,7 +331,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
       radiusUnit: "miles",
       spatialReference: locationsMapView.spatialReference,
     });
-    setCircle(circle)
+    setCircle(circle);
     const circleLayer = new GraphicLayer({
       graphics: [
         new Graphic({
@@ -342,7 +343,6 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
               color: [0, 0, 0],
               width: 0.7,
             },
-
           }),
         }),
       ],
@@ -353,7 +353,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     return () => {
       locationsMapView?.map?.remove(circleLayer);
       circleLayer.destroy();
-    }; 
+    };
   }, [selectedIllness, locationsMapView, radius, searchPoint]);
   // #endregion ----------------- Hooks (Other) --------------------------------
 
@@ -391,7 +391,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
           selectedTreatmentSite,
           setSelectedTreatmentSite,
           filteredSites,
-          circle
+          circle,
         } as AppContextType
       }
     >
