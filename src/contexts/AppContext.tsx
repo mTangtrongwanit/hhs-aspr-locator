@@ -266,15 +266,6 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
               location.attributes,
               searchPoint,
             ) ?? 0;
-          location.attributes.has_covid_treatments =
-            config.fieldsets.covidLookupFields.some((field) =>
-              isTrue(location.attributes[field]),
-            );
-          location.attributes.has_flu_treatments =
-            config.fieldsets.fluLookupFields.some((field) =>
-              isTrue(location.attributes[field]),
-            );
-
           return location;
         });
 
