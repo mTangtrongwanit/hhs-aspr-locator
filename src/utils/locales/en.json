@@ -89,8 +89,11 @@
   "Illness": {
     "COVID": "COVID-19",
     "Flu": "Flu",
-    "Prompt": "Looking for Specific Medications?"
-
+    "Prompt": "Looking for Specific Medications?",
+    "Name": "Illness"
+  },
+  "Sorting": {
+    "Name": "Sorting"
   },
   "Card": {
     "Zoom": "Zoom to Location",
