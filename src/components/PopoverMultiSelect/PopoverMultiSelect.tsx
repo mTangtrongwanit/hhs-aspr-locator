@@ -194,58 +194,75 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
       return (
         <>
           {/* button to log locations */}
-          <PopoverMenuTitle id="meds-popover-title">Medications</PopoverMenuTitle>
-          <PopoverCheckBoxContainer>
-            <legend className="visually-hidden">Medications</legend>
-            {treatments !== undefined &&
-              treatments.map((medication) => (
-                <PopoverCheckBoxRow role="menuitemcheckbox" aria-checked={medications.includes(medication)} aria-label={medication} >
-                  <Checkbox.Root
-                    className="CheckboxRoot"
-                    checked={medications.includes(medication)}
-                    onCheckedChange={() => handleMedicationChange(medication)}
-                    id={medication}
+          <PopoverMenuTitle id="meds-popover-title">
+            Medications
+          </PopoverMenuTitle>
+          <div role="menu">
+            <PopoverCheckBoxContainer>
+              <legend className="visually-hidden">Medications</legend>
+              {treatments !== undefined &&
+                treatments.map((medication) => (
+                  <PopoverCheckBoxRow
+                    role="menuitemcheckbox"
+                    aria-checked={medications.includes(medication)}
+                    aria-label={medication}
                   >
-                    <Checkbox.Indicator className="CheckboxIndicator">
-                      <CheckIcon />
-                    </Checkbox.Indicator>
-                  </Checkbox.Root>
-                  <StyledCheckboxLabel htmlFor={medication}>
-                    {medication}
-                  </StyledCheckboxLabel>
-                </PopoverCheckBoxRow>
-              ))}
-          </PopoverCheckBoxContainer>
+                    <Checkbox.Root
+                      className="CheckboxRoot"
+                      checked={medications.includes(medication)}
+                      onCheckedChange={() => handleMedicationChange(medication)}
+                      id={medication}
+                    >
+                      <Checkbox.Indicator className="CheckboxIndicator">
+                        <CheckIcon />
+                      </Checkbox.Indicator>
+                    </Checkbox.Root>
+                    <StyledCheckboxLabel htmlFor={medication}>
+                      {medication}
+                    </StyledCheckboxLabel>
+                  </PopoverCheckBoxRow>
+                ))}
+            </PopoverCheckBoxContainer>
+          </div>
         </>
       );
     } else if (type === "filter") {
       return (
         <>
-          <PopoverMenuTitle id="filters-popover-title">Filters</PopoverMenuTitle>
-          <PopoverCheckBoxContainer>
-          <legend className="visually-hidden">Filters</legend>
+          <PopoverMenuTitle id="filters-popover-title">
+            Filters
+          </PopoverMenuTitle>
+          <div role="menu">
+            <PopoverCheckBoxContainer>
+              <legend className="visually-hidden">Filters</legend>
 
-            {services?.map((filter: FilterType | undefined) => {
-              if (!filter) return;
-              return (
-                <PopoverCheckBoxRow key={filter.name} role="menuitemcheckbox" aria-checked={filters.includes(filter)} aria-label={filter.label}>
-                  <Checkbox.Root
-                    className="CheckboxRoot"
-                    checked={filters.includes(filter)}
-                    onCheckedChange={() => handleFilterChange(filter)}
-                    id={filter.name}
+              {services?.map((filter: FilterType | undefined) => {
+                if (!filter) return;
+                return (
+                  <PopoverCheckBoxRow
+                    key={filter.name}
+                    role="menuitemcheckbox"
+                    aria-checked={filters.includes(filter)}
+                    aria-label={filter.label}
                   >
-                    <Checkbox.Indicator className="CheckboxIndicator">
-                      <CheckIcon />
-                    </Checkbox.Indicator>
-                  </Checkbox.Root>
-                  <StyledCheckboxLabel htmlFor={filter.label}>
-                    {filter.label}
-                  </StyledCheckboxLabel>
-                </PopoverCheckBoxRow>
-              );
-            })}
-          </PopoverCheckBoxContainer>
+                    <Checkbox.Root
+                      className="CheckboxRoot"
+                      checked={filters.includes(filter)}
+                      onCheckedChange={() => handleFilterChange(filter)}
+                      id={filter.name}
+                    >
+                      <Checkbox.Indicator className="CheckboxIndicator">
+                        <CheckIcon />
+                      </Checkbox.Indicator>
+                    </Checkbox.Root>
+                    <StyledCheckboxLabel htmlFor={filter.label}>
+                      {filter.label}
+                    </StyledCheckboxLabel>
+                  </PopoverCheckBoxRow>
+                );
+              })}
+            </PopoverCheckBoxContainer>
+          </div>
         </>
       );
     }
