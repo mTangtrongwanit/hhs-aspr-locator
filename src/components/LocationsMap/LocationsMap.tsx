@@ -201,7 +201,10 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
             });
             setSearchPoint({ name: geopoint, point: p });
             mapView
-              .goTo(circle?.extent)
+              .goTo(circle?.extent || {
+                center: p,
+                zoom: 11,
+              })
               .catch((error) => {
                 console.error("MapView goTo error: ", error);
               });
@@ -339,7 +342,7 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
           });
           locationsMapView.graphics.add(highlight);
           locationsMapView
-            .goTo(circle?.extent)
+            .goTo(circle?.extent || { target: highlight.geometry, zoom: 15 })
             .catch((error) => {
               console.error("MapView goTo error: ", error);
             });
