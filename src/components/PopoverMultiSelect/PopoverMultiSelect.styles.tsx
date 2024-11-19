@@ -109,13 +109,14 @@ export const PopoverMenuTitle = styled.h3`
   flex-grow: 1;
 `;
 
-export const PopoverCheckBoxContainer = styled.div`
+export const PopoverCheckBoxContainer = styled.fieldset`
   display: flex;
   flex-direction: column;
   gap: 2px;
   overflow: hidden;
   border-radius: 4px;
   border: 1px solid var(--light);
+  padding: 0;
 `;
 
 export const PopoverCheckBoxRow = styled.div`

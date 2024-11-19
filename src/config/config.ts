@@ -92,15 +92,8 @@ const config: StaticConfiguration = {
     ],
   },
   fieldsets: {
-    fluTreatmentFields: [
-      "has_baloxavir",
-      "has_zanamivir",
-      "has_peramivir",
-      "has_oseltamivir_generic",
-      "has_oseltamivir_suspension",
-      "has_oseltamivir_tamiflu",
-    ],
-    covidTreatmentFields: ["has_paxlovid", "has_lagevrio", "has_veklury"],
+    fluLookupFields: ["is_FLU"],
+    covidLookupFields: ["is_COVID"],
   },
   medicationOrder: [
     "Oseltamivir Generic",

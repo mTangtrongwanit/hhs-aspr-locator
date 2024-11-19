@@ -312,8 +312,11 @@ const Locations = () => {
         }
         <StyledMapContainer
           style={{ "--remainder": `${totalHeight}px` } as React.CSSProperties}
+          aria-labelledby="map-screenreader-heading"
+          aria-hidden="false"
+          data-aria-hidden="false"
         >
-          <h3 className="visually-hidden">
+          <h3 className="visually-hidden" id="map-screenreader-heading">
             {t("Locations.Map Screenreader Heading")}
           </h3>
           <LocationsMap isMobileListView={isMobileListView} />

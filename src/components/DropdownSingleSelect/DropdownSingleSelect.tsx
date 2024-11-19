@@ -121,7 +121,7 @@ const DropdownSingleSelect = ({
         : handleIllnessChange;
 
   return (
-    <StyledDropdownSelect
+    <StyledDropdownSelect 
       className={
         location.pathname === "/" && type !== "language"
           ? "hhs-outline-button-landing-container"
@@ -129,8 +129,7 @@ const DropdownSingleSelect = ({
       }
     >
       <DropdownMenu.Root>
-        {/* <DropdownMenu.Trigger className="hhs-primary-button"> */}
-        <DropdownMenu.Trigger
+        <DropdownMenu.Trigger aria-hidden="false" data-aria-hidden="false"
           className={
             location.pathname === "/" && type !== "language"
               ? "hhs-outline-button hhs-outline-button-landing"
@@ -153,27 +152,44 @@ const DropdownSingleSelect = ({
           <ChevronDownIcon />
         </DropdownMenu.Trigger>
         <DropdownMenu.Content className="DropdownMenuContent" sideOffset={5}>
-          {options.map((item) => (
-            <DropdownMenu.Item
-              style={
-                {
-                  "--selected": `${
-                    selectedOption.value === item.value ? "var(--brand)" : ""
-                  }`,
-                } as React.CSSProperties
-              }
-              className="DropDownItem"
-              key={item.value}
-              onClick={() => handleChange(item)}
-            >
-              {selectedOption.value === item.value ? (
-                <CheckIcon fontSize={"var(--text-2)"} />
-              ) : (
-                <span className="placeholder">&nbsp;</span>
-              )}
-              {item.label}
-            </DropdownMenu.Item>
-          ))}
+          <fieldset>
+            <legend className="visually-hidden">
+              {type == "illness"
+                ? t("Illness.Name")
+                : type == "sort"
+                  ? t("Sorting.Name")
+                  : selectedLabel}
+            </legend>
+            {options.map((item) => (
+              <DropdownMenu.Item
+                role="menuitemradio"
+                aria-checked={
+                  selectedOption.value === item.value ? true : false
+                }
+                data-state={
+                  selectedOption.value === item.value ? "checked" : "unchecked"
+                }
+                style={
+                  {
+                    "--selected": `${
+                      selectedOption.value === item.value ? "var(--brand)" : ""
+                    }`,
+                  } as React.CSSProperties
+                }
+                className="DropDownItem"
+                key={item.value}
+                onClick={() => handleChange(item)}
+              >
+                {selectedOption.value === item.value ? (
+                  <CheckIcon fontSize={"var(--text-2)"} />
+                ) : (
+                  <span className="placeholder">&nbsp;</span>
+                )}
+                {item.label}
+              </DropdownMenu.Item>
+            ))}
+          </fieldset>
+
           <DropdownMenu.Arrow className="DropdownMenuArrow" />
         </DropdownMenu.Content>
       </DropdownMenu.Root>

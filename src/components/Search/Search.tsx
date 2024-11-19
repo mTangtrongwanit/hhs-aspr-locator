@@ -154,7 +154,7 @@ const SearchComponent = ({ placeholder }: { placeholder?: string } = {}) => {
 
   // #region ----------------------- Render ------------------------------------
   return (
-    <StyledSearch ref={searchRef}>
+    <StyledSearch aria-hidden="false" data-aria-hidden="false" ref={searchRef}>
       <MagnifyingGlassIcon
         width="18"
         height="18"
