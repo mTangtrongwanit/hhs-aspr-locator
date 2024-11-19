@@ -354,7 +354,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
       locationsMapView?.map?.remove(circleLayer);
       circleLayer.destroy();
     }; 
-  }, [locationsMapView, radius, searchPoint]);
+  }, [selectedIllness, locationsMapView, radius, searchPoint]);
   // #endregion ----------------- Hooks (Other) --------------------------------
 
   // #region ---------------- Supporting Functions -----------------------------
