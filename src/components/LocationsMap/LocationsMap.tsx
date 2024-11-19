@@ -146,6 +146,15 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
           haloOpacity: 0,
           shadowOpacity: 0,
         },
+        extent: new Extent({
+          xmin: -13888529.05448729,
+          ymin: 2816952.5443763654,
+          xmax: -7452716.4203439662,
+          ymax: 6340150.9062428866,
+          spatialReference: {
+            wkid: 102100,
+          },
+        })
       });
 
       // remove the all the dock options so they don't show in the popup
