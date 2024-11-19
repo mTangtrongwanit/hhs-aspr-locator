@@ -362,7 +362,10 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
                     wkid: 102100,
                   },
                 })
-              : circle?.extent;
+              : circle?.extent || {
+                target: searchPoint.point,
+                zoom: 12,
+            };
 
           locationsMapView.goTo(options).catch((error) => {
             console.error("MapView goTo error: ", error);
