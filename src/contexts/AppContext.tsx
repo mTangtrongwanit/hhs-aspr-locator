@@ -318,7 +318,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   // useEffect to watch for changes in the selected Illness and search radius and update the map view
   // with a circle around the search area
   useEffect(() => {
-    if (!searchPoint || !locationsMapView || !selectedIllness?.value) return;
+    if (!searchPoint || !locationsMapView) return;
     // add a circle to the map at the search point
     const circle = new Circle({
       center: new Point({
@@ -354,7 +354,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
       locationsMapView?.map?.remove(circleLayer);
       circleLayer.destroy();
     }; 
-  }, [selectedIllness, locationsMapView, radius, searchPoint]);
+  }, [locationsMapView, radius, searchPoint]);
   // #endregion ----------------- Hooks (Other) --------------------------------
 
   // #region ---------------- Supporting Functions -----------------------------
