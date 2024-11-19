@@ -145,14 +145,7 @@ const Landing = () => {
           >
             COVID-19
           </a>{" "}
-          and
-          <a
-            href="#faq-flu"
-            aria-label="Link to flu assistance program"
-            title="Link to flu assistance program"
-          >
-            flu.
-          </a>
+          and flu.
         </p>
         <StyledFAQTitle>Frequently Asked Questions</StyledFAQTitle>
         {
