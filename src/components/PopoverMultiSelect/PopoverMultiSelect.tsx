@@ -203,15 +203,16 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
               {treatments !== undefined &&
                 treatments.map((medication) => (
                   <PopoverCheckBoxRow
-                    role="menuitemcheckbox"
-                    aria-checked={medications.includes(medication)}
-                    aria-label={medication}
+
                   >
                     <Checkbox.Root
                       className="CheckboxRoot"
                       checked={medications.includes(medication)}
                       onCheckedChange={() => handleMedicationChange(medication)}
                       id={medication}
+                      role="menuitemcheckbox"
+                      aria-checked={medications.includes(medication)}
+                      aria-label={medication}
                     >
                       <Checkbox.Indicator className="CheckboxIndicator">
                         <CheckIcon />
@@ -241,15 +242,16 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
                 return (
                   <PopoverCheckBoxRow
                     key={filter.name}
-                    role="menuitemcheckbox"
-                    aria-checked={filters.includes(filter)}
-                    aria-label={filter.label}
+
                   >
                     <Checkbox.Root
                       className="CheckboxRoot"
                       checked={filters.includes(filter)}
                       onCheckedChange={() => handleFilterChange(filter)}
                       id={filter.name}
+                      role="menuitemcheckbox"
+                      aria-checked={filters.includes(filter)}
+                      aria-label={filter.label}
                     >
                       <Checkbox.Indicator className="CheckboxIndicator">
                         <CheckIcon />
