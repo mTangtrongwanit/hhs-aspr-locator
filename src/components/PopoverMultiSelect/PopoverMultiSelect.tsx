@@ -196,7 +196,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
           {/* button to log locations */}
           <PopoverMenuTitle id="meds-popover-title">Medications</PopoverMenuTitle>
           <PopoverCheckBoxContainer>
-            <legend className="visually-hidden" aria-labelledby="meds-popover-title"></legend>
+            <legend className="visually-hidden">Medications</legend>
             {treatments !== undefined &&
               treatments.map((medication) => (
                 <PopoverCheckBoxRow role="menuitemcheckbox" aria-checked={medications.includes(medication)} aria-label={medication} >
@@ -223,7 +223,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
         <>
           <PopoverMenuTitle id="filters-popover-title">Filters</PopoverMenuTitle>
           <PopoverCheckBoxContainer>
-          <legend className="visually-hidden" aria-labelledby="filters-popover-title"></legend>
+          <legend className="visually-hidden">Filters</legend>
 
             {services?.map((filter: FilterType | undefined) => {
               if (!filter) return;
