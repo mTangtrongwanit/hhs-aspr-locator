@@ -193,8 +193,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
     if (type === "medications") {
       return (
         <>
-          {/* button to log locations */}
-          <PopoverMenuTitle id="meds-popover-title">
+          <PopoverMenuTitle id="popover-title">
             Medications
           </PopoverMenuTitle>
           <div role="menu">
@@ -230,7 +229,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
     } else if (type === "filter") {
       return (
         <>
-          <PopoverMenuTitle id="filters-popover-title">
+          <PopoverMenuTitle id="popover-title">
             Filters
           </PopoverMenuTitle>
           <div role="menu">
@@ -295,7 +294,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
           </span>
         </PopoverMenu.Trigger>
         <PopoverMenu.Portal>
-          <PopoverMenu.Content className="PopoverMenuContent" sideOffset={5}>
+          <PopoverMenu.Content aria-labelledby="popover-title" className="PopoverMenuContent" sideOffset={5}>
             {renderContent()}
             <StyledFilterButtonContainer>
               <PopoverClose
