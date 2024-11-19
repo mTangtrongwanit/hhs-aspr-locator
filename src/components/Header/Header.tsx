@@ -102,6 +102,7 @@ const HeaderComponent = () => {
               sizes="(max-width: 1100px) 117px,
               296px"
               alt="ASPR Administration for Strategic Preparedness & Response Logo"
+              aria-label="ASPR Administration for Strategic Preparedness & Response Logo"
             />
           </StyledHeaderLink>
         </StyledHeaderContentContainer>
