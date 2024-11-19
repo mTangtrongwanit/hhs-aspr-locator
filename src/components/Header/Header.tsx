@@ -86,12 +86,12 @@ const HeaderComponent = () => {
   // #region ----------------------- Render ------------------------------------
   return (
     <>
-      <aside ref={bannerRef}>
+      <aside aria-hidden="false" data-aria-hidden="false" ref={bannerRef}>
         <GovBanner
           language={i18n.resolvedLanguage === "es" ? "spanish" : undefined}
         />
       </aside>
-      <StyledHeader ref={headerRef}>
+      <StyledHeader aria-hidden="false" data-aria-hidden="false" ref={headerRef}>
         <StyledHeaderContentContainer>
           <StyledHeaderLink to="/"
             aria-label="Link to COVID-19 and Flu Treatments Locator homepage"

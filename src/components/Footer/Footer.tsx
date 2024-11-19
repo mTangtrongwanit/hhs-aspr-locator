@@ -77,7 +77,7 @@ const Footer = () => {
 
   // #region ----------------------- Render ------------------------------------
   return (
-    <StyledFooterContainer>
+    <StyledFooterContainer aria-hidden="false" data-aria-hidden="false">
       <StyledFooter>
         <StyledFooterFirstColumn>
           <StyledFooterLinksContainer>

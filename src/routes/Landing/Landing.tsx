@@ -92,6 +92,7 @@ const Landing = () => {
           to="/locations"
           aria-label="View Locations based on entered location and selected treatment choice"
           title="View Locations based on entered location and selected treatment choice"
+          aria-hidden="false" data-aria-hidden="false"
         >
           {t("Landing.View Locations Button Label")}
         </StyledLink>
@@ -102,7 +103,7 @@ const Landing = () => {
         //#endregion First Row
       }
 
-      <StyledContextRow id="faq">
+      <StyledContextRow id="faq" aria-hidden="false" data-aria-hidden="false">
         <h2 className="visually-hidden">
           {t("Landing.Context Container Screenreader Heading")}
         </h2>

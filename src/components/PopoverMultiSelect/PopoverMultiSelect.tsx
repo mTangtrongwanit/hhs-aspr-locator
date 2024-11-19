@@ -270,7 +270,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
   };
 
   return (
-    <StyledPopoverMultiSelect>
+    <StyledPopoverMultiSelect >
       <PopoverMenu.Root>
         <PopoverMenu.Trigger
           className="hhs-primary-button"

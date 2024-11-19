@@ -121,7 +121,7 @@ const DropdownSingleSelect = ({
         : handleIllnessChange;
 
   return (
-    <StyledDropdownSelect
+    <StyledDropdownSelect 
       className={
         location.pathname === "/" && type !== "language"
           ? "hhs-outline-button-landing-container"
@@ -129,7 +129,7 @@ const DropdownSingleSelect = ({
       }
     >
       <DropdownMenu.Root>
-        <DropdownMenu.Trigger
+        <DropdownMenu.Trigger aria-hidden="false" data-aria-hidden="false"
           className={
             location.pathname === "/" && type !== "language"
               ? "hhs-outline-button hhs-outline-button-landing"
