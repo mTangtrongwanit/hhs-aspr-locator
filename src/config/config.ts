@@ -17,7 +17,7 @@ const config: StaticConfiguration = {
     appId: "2MAyeDcDhNcYTqwX",
   },
   treatmentData: {
-    locationsWebMapId: "b5346d4c624f4c1f991928d6fc392fda",
+    locationsWebMapId: "159676ebd40b46eea39381bb79506d07",
     treatment_sites: {
       name: "Treatment Sites",
       locationsLayer: new FeatureLayer({
@@ -92,15 +92,8 @@ const config: StaticConfiguration = {
     ],
   },
   fieldsets: {
-    fluTreatmentFields: [
-      "has_baloxavir",
-      "has_zanamivir",
-      "has_peramivir",
-      "has_oseltamivir_generic",
-      "has_oseltamivir_suspension",
-      "has_oseltamivir_tamiflu",
-    ],
-    covidTreatmentFields: ["has_paxlovid", "has_lagevrio", "has_veklury"],
+    fluLookupFields: ["is_FLU"],
+    covidLookupFields: ["is_COVID"],
   },
   medicationOrder: [
     "Oseltamivir Generic",

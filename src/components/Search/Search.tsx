@@ -11,6 +11,7 @@ import { useRef, useEffect, useState } from "react";
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
 import Search from "@arcgis/core/widgets/Search";
+import Point from "@arcgis/core/geometry/Point";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -73,27 +74,25 @@ const SearchComponent = ({ placeholder }: { placeholder?: string } = {}) => {
     //add to component state
     setSearchWidget(search);
 
-  /**
-   * Handle Enter key press to select the first suggestion
-   */
-  search.on("search-complete", async (e) => {
-    const suggestions = await search.viewModel.suggest(e.searchTerm);
-    if (!suggestions) {
-      return;
-    }
-    const suggestion = suggestions.results?.at(0)?.results?.at(0);
-    if (suggestion) {
-      search.search(suggestion);
-      return;
-    }
-  });
+    /**
+     * Handle Enter key press to select the first suggestion
+     */
+    search.on("search-complete", async (e) => {
+      const suggestions = await search.viewModel.suggest(e.searchTerm);
+      if (!suggestions) {
+        return;
+      }
+      const suggestion = suggestions.results?.at(0)?.results?.at(0);
+      if (suggestion) {
+        search.search(suggestion);
+        return;
+      }
+    });
 
     /**
      * Watch for result selection to set AOI
      */
     search.on("select-result", async (event) => {
-      setSelectedMedications([]);
-      setSelectedFilters([]);
       const result = (event as __esri.SearchSelectResultEvent).result;
 
       // if the user triggers the search by hitting the enter key, use the first suggestion
@@ -111,7 +110,15 @@ const SearchComponent = ({ placeholder }: { placeholder?: string } = {}) => {
 
       const name = result.name;
       const geometry = result.feature.geometry as __esri.Point;
-      setSearchPoint({ name, point: geometry });
+      // Convert the geometry to a WebMercator point to match the map
+      const webMercatorPoint = new Point({
+        longitude: geometry.longitude,
+        latitude: geometry.latitude,
+        spatialReference: { wkid: 102100 },
+      });
+      setSearchPoint({ name, point: webMercatorPoint });
+      setSelectedMedications([]);
+      setSelectedFilters([]);
     });
 
     // Note: We need to create a fresh element for the widget everytime it is built, can't just assign it to ref.current or it won't re-render.
@@ -147,7 +154,7 @@ const SearchComponent = ({ placeholder }: { placeholder?: string } = {}) => {
 
   // #region ----------------------- Render ------------------------------------
   return (
-    <StyledSearch ref={searchRef}>
+    <StyledSearch aria-hidden="false" data-aria-hidden="false" ref={searchRef}>
       <MagnifyingGlassIcon
         width="18"
         height="18"

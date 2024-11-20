@@ -22,6 +22,7 @@ import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import PopupTemplate from "@arcgis/core/PopupTemplate.js";
 import CustomContent from "@arcgis/core/popup/content/CustomContent.js";
 import Graphic from "@arcgis/core/Graphic";
+import Color from "@arcgis/core/Color.js";
 
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
@@ -46,6 +47,7 @@ interface LocationsMapProps {
 }
 
 // #region ======================== CONSTANTS ==================================
+const highlightColor = new Color("#00FFFF");
 // #endregion ===================== CONSTANTS ==================================
 
 // #region =================== EXPORTED COMPONENT ==============================
@@ -61,6 +63,7 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
     setLocationsMapView,
     setSearchPoint,
     setSelectedTreatmentSite,
+    circle
   } = useAppContext();
   const [searchParams] = useSearchParams();
 
@@ -138,6 +141,20 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
         map,
         container: mapRef.current,
         popupEnabled: true,
+        highlightOptions: {
+          color: highlightColor,
+          haloOpacity: 0,
+          shadowOpacity: 0,
+        },
+        extent: new Extent({
+          xmin: -13888529.05448729,
+          ymin: 2816952.5443763654,
+          xmax: -7452716.4203439662,
+          ymax: 6340150.9062428866,
+          spatialReference: {
+            wkid: 102100,
+          },
+        })
       });
 
       // remove the all the dock options so they don't show in the popup
@@ -183,9 +200,8 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
               latitude: lat,
             });
             setSearchPoint({ name: geopoint, point: p });
-
             mapView
-              .goTo({
+              .goTo(circle?.extent || {
                 center: p,
                 zoom: 11,
               })
@@ -307,6 +323,7 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
     searchPoint,
     selectedIllness.value,
     t,
+    circle?.radius
   ]);
 
   /** Highlight selected feature */
@@ -317,12 +334,15 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
         .whenOnce(() => !locationsMapView.updating && locationsMapView.ready)
         .then(() => {
           highlight.symbol = new SimpleMarkerSymbol({
-            color: "#0274FA",
-            size: "20",
+            color: highlightColor,
+            size: "14",
+            outline: {
+              width: "0px",
+            },
           });
           locationsMapView.graphics.add(highlight);
           locationsMapView
-            .goTo({ target: highlight.geometry, zoom: 15 })
+            .goTo(circle?.extent || { target: highlight.geometry, zoom: 15 })
             .catch((error) => {
               console.error("MapView goTo error: ", error);
             });
@@ -332,7 +352,7 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
         locationsMapView.graphics.remove(highlight);
       };
     }
-  }, [locationsMapView, selectedTreatmentSite]);
+  }, [locationsMapView, selectedTreatmentSite, circle?.radius]);
 
   /** Zoom to locations center and extent. */
   useEffect(() => {
@@ -343,8 +363,6 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
       reactiveUtils
         .whenOnce(() => locationsMapView.ready)
         .then(() => {
-          const target = locations.length ? locations : searchPoint?.point;
-
           const options =
             !searchPoint || searchPoint?.name === "US"
               ? new Extent({
@@ -356,13 +374,17 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
                     wkid: 102100,
                   },
                 })
-              : { target: target, zoom: 11 };
+              : circle?.extent || {
+                target: searchPoint.point,
+                zoom: 12,
+            };
+
           locationsMapView.goTo(options).catch((error) => {
             console.error("MapView goTo error: ", error);
           });
         });
     }
-  }, [locations, locationsMapView, searchPoint, searchParams, selectedIllness]);
+  }, [locations, locationsMapView, searchPoint, searchParams, selectedIllness, circle?.radius]);
 
   // #endregion ----------------- Hooks (Other) --------------------------------
 
