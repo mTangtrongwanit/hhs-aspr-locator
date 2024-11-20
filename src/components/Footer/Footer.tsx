@@ -207,6 +207,9 @@ const Footer = () => {
               <br />
               200 Independence Ave., Washington, DC 20201
             </StyledFooterAddress>
+            
+            {APP_MODE === 'development' && <StyledFooterAddress>Development Version: {APP_VERSION}</StyledFooterAddress>}
+            
           </StyledFooterAddressContainer>
         </StyledFooterFirstColumn>
         <StyledFooterSecondColumn>
@@ -309,6 +312,7 @@ const Footer = () => {
             </StyledFooterMediaLink>
           </StyledFooterMediaLinksContainer>
         </StyledFooterSecondColumn>
+        
       </StyledFooter>
     </StyledFooterContainer>
   );
