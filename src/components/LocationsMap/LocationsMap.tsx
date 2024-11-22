@@ -359,7 +359,7 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
     if (searchParams.has("geopoint")) {
       return;
     }
-    if (locationsMapView && searchPoint) {      
+    if (locationsMapView && searchPoint) {
       reactiveUtils
         .whenOnce(() => locationsMapView.ready)
         .then(() => {
