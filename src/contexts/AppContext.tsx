@@ -291,20 +291,33 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   useEffect(() => {
     if (!featureLayer || !locations || !locationsMapView) return;
 
+    // A. if no selectedIllness show no points
+    // B. if selectedIllness but no (selectedMedications or filters){turn on all points}
+    // C. if filters, turn on filtered points
     let where = "";
-    if (filteredSites.length === 0) {
+    // A. if no selectedIllness show no points
+    if (!selectedIllness.value) {
       // Set the definition expression to return no features
       featureLayer.definitionExpression = "OBJECTID = -1";
       return;
     }
-    const objectIds = filteredSites.map(
-      (location) => location.attributes.OBJECTID,
-    );
-    if (objectIds.length === 0) {
+    // C. if filters, turn on filtered points to match the list points
+    else if (selectedMedications.length || selectedFilters.length) {
+      const objectIds = filteredSites.map(
+        (location) => location.attributes.OBJECTID,
+      );
+      where = objectIds.length
+        ? `OBJECTID IN (${objectIds.join(",")})`
+        : "OBJECTID = -1";
+      featureLayer.definitionExpression = where;
       return;
     }
-    where = `OBJECTID IN (${objectIds.join(",")})`;
-    featureLayer.definitionExpression = where;
+    // B. if selectedIllness but no (selectedMedications or filters){turn on all points}
+    else {
+      // Set the definition expression to return all features
+      featureLayer.definitionExpression = "";
+      return;
+    }
   }, [featureLayer, locations, locationsMapView, filteredSites, radius]);
 
   // useEffect to watch for changes in the selected Illness and search radius and update the map view
