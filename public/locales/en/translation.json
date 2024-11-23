@@ -1,11 +1,4 @@
 {
-  "title": "Welcome {{name}}",
-  "description": {
-    "part1": "This is a simple example.",
-    "part2": "something"
-  },
-  "userMessagesUnread_one": "You have {{count}} unread message.",
-  "userMessagesUnread_other": "You have {{count}} unread messages.",
   "Header": {
     "ASPR Logo Screenreader Label": "ASPR Administration for Strategic Preparedness & Response Logo",
     "Logo Alt Text": "Administration for Strategic Preparedness and Response",
@@ -64,6 +57,7 @@
   "Landing": {
     "Search Container Heading": "Find COVID-19 and Flu Medications",
     "Search Container Description": "The locator displays pharmacies, clinics, and other locations with safe and effective COVID-19 and flu medications. These medications require a prescription from a healthcare provider. COVID-19 and flu medications may be available at additional locations not shown on this locator.",
+    "Search Container Placeholder": "Enter a location to view services",
     "Illness Placeholder": "What do you need treatment for?",
     "View Locations Button Label": "View Locations",
     "View Locations Button Screenreader Label": "View Locations based on entered location and selected treatment choice",
@@ -547,7 +541,9 @@
     "Please ensure an illness and location are selected": "Please ensure an illness and location are selected.",
     "Map Screenreader Heading": "Map of Sites",
     "Search for Other Button Screenreader Label": "Continue to find locations near you", 
-    "Empty List": "If you still have no results, try searching a different location to view sites."
+    "Empty List": "If you still have no results, try searching a different location to view sites.",
+    "Search Here Button Screenreader Label": "Search for sites in the current map extent",
+    "Page Load Screenreader Alert": "Page has loaded with {{count}} results"
   },
   "Illness": {
     "COVID": "COVID-19",
@@ -572,7 +568,9 @@
     "Apply":"Apply",
     "Apply Changes and Close Dropdown":"Apply Changes and Close Dropdown",
     "Clear All": "Clear All",
-    "Clear Filters and Close Dropdown": "Clear Filters and Close Dropdown"
+    "Clear Filters and Close Dropdown": "Clear Filters and Close Dropdown",
+    "Languages": "Languages",
+    "Filters": "Filters"
   },
   "Search": {
     "Magnifying Icon Screenreader Label": "Magnifying glass next to search bar"

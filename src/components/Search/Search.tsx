@@ -67,7 +67,7 @@ const SearchComponent = ({ placeholder }: { placeholder?: string } = {}) => {
         {
           url: "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer",
           countryCode: "US",
-          placeholder: placeholder ?? "Enter a location to view services",
+          placeholder: placeholder ?? t("Landing.Search Container Placeholder"),
         },
       ] as __esri.LocatorSearchSourceProperties[],
       includeDefaultSources: false,

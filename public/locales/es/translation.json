@@ -1,99 +1,637 @@
 {
   "Header": {
+    "ASPR Logo Screenreader Label": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
     "Logo Alt Text": "Administración para la preparación y respuesta estratégica",
+    "FAQ":"Lorem ipsum",
+    "FAQs Link Screenreader Label": "Lorem ipsum dolor",
+    "Homepage Link Screenreader Label": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
     "Title": "Localizador de tratamientos para el COVID-19 y la gripe",
     "Title Alt Text": "Localizador de tratamientos para el COVID-19 y la gripe"
   },
   "Footer": {
-    "Home Link": "Home",
-    "Contact Us Link": "Contact Us",
-    "ASPR Archive Link": "ASPR Archive",
-    "Accessibility Link": "Accessibility",
-    "Privacy Policies Link": "Privacy Policies",
-    "Disclaimer Link": "Disclaimer",
-    "HHS Viewers & Players Link": "HHS Viewers & Players",
-    "HHS Plain Language Link": "HHS Plain Language",
-    "FOIA Link": "FOIA",
-    "Vulnerability Disclosure Policy Link": "Vulnerability Disclosure Policy"
+    "200_Independence_Ave.,_Washington,_DC_20201": "Lorem ipsum dolor sit amet", 
+    "HHS, Administration for Strategic Preparedness and Response (ASPR)": "Lorem ipsum dolor sit amet",
+    "HHS Logo Screenreader Label": "Lorem ipsum dolor sit amet",
+    "Home Link": "Lorem",
+    "Link to ASPR homepage":"Lorem ipsum dolor sit amet",
+    "LinkedIn Icon Screenreader Label": "Lorem ipsum",
+    "ASPR LinkedIn Link Screenreader Label": "Lorem ipsum dolor sit amet",
+    "Contact Us Link": "Lorem ipsum",
+    "ASPR Contact Section Link Screenreader Label": "Lorem ipsum dolor sit amet",
+    "ASPR Archive Link": "Lorem ipsum",
+    "ASPR Archive Link Screenreader Label": "Lorem ipsum dolor sit amet",
+    "ASPR logo":"Lorem ipsum",
+    "ASPRgov X Link Screenreader Label": "Lorem ipsum dolor sit amet",
+    "ASPR Homepage Link Screenreader Label": "Lorem ipsum dolor sit amet",
+    "HHS Homepage Link Screenreader Label": "Lorem ipsum dolor sit amet",
+    "Accessibility Link": "Lorem",
+    "ASPR Accessibility Link Screenreader Label": "Lorem ipsum dolor sit amet",
+    "Privacy Policies Link": "Lorem ipsum",
+    "ASPR Privacy Link Screenreader Label": "Lorem ipsum dolor sit amet",
+    "Disclaimer Link": "Lorem",
+    "ASPR Disclaimer Link Screenreader Label": "Lorem ipsum dolor sit amet",
+    "Facebook Icon":"Lorem ipsum",
+    "Link to ASPRgov Facebook account":"Lorem ipsum dolor sit amet",
+    "Instagram Icon Screenreader Label": "Lorem ipsum",
+    "ASPRgov Instagram Link Screenreader Label": "Lorem ipsum dolor sit amet",
+    "Threads Icon Screenreader Label": "Lorem ipsum",
+    "ASPRgov Threads Link Screenreader Label": "Lorem ipsum dolor sit amet",
+    "Flickr Icon Screenreader Label": "Lorem ipsum",
+    "ASPRgov Flickr Link Screenreader Label": "Lorem ipsum dolor sit amet",
+    "YouTube Icon Screenreader Label": "Lorem ipsum",
+    "ASPRgov YouTube Link Screenreader Label": "Lorem ipsum dolor sit amet",
+    "Email Icon Screenreader Label": "Lorem ipsum",
+    "ASPR Newsletter Screenreader Label": "Lorem ipsum dolor sit amet", 
+    "HHS FOIA Link Screenreader Label": "Lorem ipsum dolor sit amet",
+    "HHS_ASPR X Link Screenreader Label": "Lorem ipsum dolor sit amet",
+    "HHS Viewers & Players Link": "Lorem ipsum dolor sit amet",
+    "HHS Vulnerability Link Screenreader Label": "Lorem ipsum dolor sit amet",
+    "HHS Plain Language Link": "Lorem ipsum dolor sit amet",
+    "HHS Plain Language Link Screenreader Label": "Lorem ipsum dolor sit amet",
+    "HHS Plugins Link Screenreader Label": "Lorem ipsum dolor sit amet",
+    "FOIA Link": "Lorem",
+    "Vulnerability Disclosure Policy Link": "Lorem ipsum dolor sit amet",
+    "X Alt Icon Screenreader Label": "Lorem ipsum",
+    "X Icon Screenreader Label": "Lorem ipsum"
   },
   "Landing": {
-    "Search Container Heading": "Find COVID-19 and Flu Medications",
-    "Search Container Description": "This locator displays pharmacies, clinics, and other locations with  safe and effective COVID-19 and Flu medications. These medications require a  prescription from a healthcare provider.",
-    "Illness Placeholder": "What do you need treatment for?",
-    "View Locations Button Label": "View Locations",
-    "Context Container Screenreader Heading": "Contextual Information",
-    "Assistance Program Description": "i18n Todo - not sure how to effectively break this up into paragraph text vs links",
+    "Search Container Heading": "Lorem ipsum dolor sit amet",
+    "Search Container Description": "Lorem ipsum dolor sit amet",
+    "Search Container Placeholder": "Lorem ipsum dolor sit amet",
+    "Illness Placeholder": "Lorem ipsum dolor sit amet",
+    "View Locations Button Label": "Lorem ipsum",
+    "View Locations Button Screenreader Label": "Lorem ipsum dolor sit amet",
+    "Context Container Screenreader Heading": "Lorem ipsum",
+    "Context Container Text": "Lorem ipsum dolor sit amet",
+    "Assistance Program Description": "Lorem ipsum dolor sit amet",
+    "Email Link Screenreader Label": "Lorem ipsum dolor sit amet",
+    "Link to Tabular Access Screenreader Label": "Lorem ipsum dolor sit amet",
+    "Website US Government": "Lorem ipsum dolor sit amet",
+    "PAP Text": "Lorem ipsum dolor sit amet",
+    "Link to Patient Assistance Program Screenreader Label": "Lorem ipsum dolor sit amet",
+    "COVID-19 Assistance Program Link Screenreader Label": "Lorem ipsum dolor sit amet",
+    "Flu Assistance Program Link Screenreader Label": "Lorem ipsum dolor sit amet",
+    "Frequently Asked Questions": "Lorem ipsum",
+    "Accessible FAQ Intro": "Lorem ipsum dolor sit amet",
     "Accordion Item 1": {
-      "Heading": "Frequently Asked Questions"
+      "Heading": "Lorem ipsum dolor sit amet",
+      "Content": {
+        "Text 1": "Lorem ipsum dolor sit amet",
+        "Unordered List 1": {
+          "List Item 1": {
+            "Text 1": "Lorem ipsum dolor sit amet",
+            "Unordered List 1": {
+              "List Item 1": {
+                "Text 1": "Lorem ipsum dolor sit amet"
+              },
+              "List Item 2": {
+                "Text 1": "Lorem ipsum dolor sit amet"
+              },
+              "List Item 3": {
+                "Text 1": "Lorem ipsum dolor sit amet"
+              }
+            }
+          },
+          "List Item 2": {
+            "Anchor 1": {
+              "Text 1": "Lorem ipsum dolor sit amet"
+            },
+            "Text 1": "Lorem ipsum dolor sit amet"
+          },
+          "List Item 3": {
+            "Text 1": "Lorem ipsum dolor sit amet"
+          }
+        },
+        "Unordered List 2": {
+          "List Item 1": {
+            "Text 1": "Lorem ipsum dolor sit amet",
+            "Unordered List 1": {
+              "List Item 1": {
+                "Text 1": "Lorem ipsum dolor sit amet"
+              },
+              "List Item 2": {
+                "Text 1": "Lorem ipsum dolor sit amet"
+              },
+              "List Item 3": {
+                "Text 1": "Lorem ipsum dolor sit amet"
+              },
+              "List Item 4": {
+                "Text 1": "Lorem ipsum dolor sit amet"
+              }
+            }
+          },
+          "List Item 2": {
+            "Text 1": "Lorem ipsum dolor sit amet",
+            "Anchor 1": {
+              "Text 1": "Lorem ipsum dolor sit amet"
+            },
+            "Text 2": "Lorem ipsum dolor sit amet",
+            "Anchor 2": {
+              "Text 1": "Lorem ipsum dolor sit amet"
+            }
+          },
+          "List Item 3": {
+            "Text 1": "Lorem ipsum dolor sit amet"
+          }
+        }
+      }
     },
     "Accordion Item 2": {
-      "Heading": "Disclaimer"
+      "Heading": "Lorem ipsum dolor sit amet",
+      "Content": {
+        "List Item 1": {
+          "Text 1": "Lorem ipsum dolor sit amet",
+          "Unordered List 1": {
+            "List Item 1": "Lorem ipsum dolor sit amet",
+            "List Item 2": "Lorem ipsum dolor sit amet",
+            "List Item 3": "Lorem ipsum dolor sit amet"
+          }
+        }
+      }
+    },
+    "Accordion Item 3": {
+      "Heading": "Lorem ipsum dolor sit amet",
+      "Content": {
+        "Unordered List 1": {
+        "List Item 1": {
+          "Text 1": "Lorem ipsum dolor sit amet"
+        },
+        "List Item 2": {
+          "Text 1": "Lorem ipsum dolor sit amet"
+        },
+        "List Item 3": {
+          "Text 1": "Lorem ipsum dolor sit amet",
+          "Text 2": "Lorem ipsum dolor sit amet",
+          "Text 3": "Lorem ipsum dolor sit amet",
+          "Unordered List 1": {
+            "List Item 1": {
+              "Text 1": "Lorem ipsum dolor sit amet"
+            }
+          }
+        },
+        "List Item 4": {
+          "Text 1": "Lorem ipsum dolor sit amet"
+        },
+        "List Item 5": {
+          "Text 1": "Lorem ipsum dolor sit amet",
+          "Anchor 1": {
+            "Text 1": "Lorem ipsum dolor sit amet"
+          },
+          "Text 2": "Lorem ipsum dolor sit amet",
+          "Anchor 2": {
+            "Text 1": "Lorem ipsum dolor sit amet"
+          }
+        }
+      }
+      }
+    },
+    "Accordion Item 4": {
+      "Heading": "Lorem ipsum dolor sit amet",
+      "Content": {
+        "Unordered List 1": {
+        "List Item 1": {
+          "Text 1": "Lorem ipsum dolor sit amet",
+          "Unordered List 1": {
+            "List Item 1": {
+              "Text 1": "Lorem ipsum dolor sit amet"
+            },
+            "List Item 2": {
+              "Text 1": "Lorem ipsum dolor sit amet"
+            }
+          }
+        },
+        "List Item 2": {
+          "Text 1": "Lorem ipsum dolor sit amet",
+          "Unordered List 1": {
+            "List Item 1": {
+              "Text 1": "Lorem ipsum dolor sit amet"
+            }
+          }
+        },
+        "List Item 3": {
+          "Text 1": "Lorem ipsum dolor sit amet",
+          "Unordered List 1": {
+            "List Item 1": {
+              "Text 1": "Lorem ipsum dolor sit amet"
+            },
+            "List Item 2": {
+              "Text 1": "Lorem ipsum dolor sit amet"
+            }
+          }
+        },
+        "List Item 4": {
+          "Text 1": "Lorem ipsum dolor sit amet",
+          "Unordered List 1": {
+            "List Item 1": {
+              "Text 1": "Lorem ipsum dolor sit amet"
+            },
+            "List Item 2": {
+              "Text 1": "Lorem ipsum dolor sit amet"
+            }
+          }
+        },
+        "List Item 5": {
+          "Text 1": "Lorem ipsum dolor sit amet",
+          "Anchor 1": {
+            "Text 1": "Lorem ipsum dolor sit amet"
+          },
+          "Text 2": "Lorem ipsum dolor sit amet",
+          "Anchor 2": {
+            "Text 1": "Lorem ipsum dolor sit amet"
+          }
+        }
+      }
+      }
+    },
+    "Accordion Item 5": {
+      "Heading": "Lorem ipsum dolor sit amet",
+      "Content": {
+        "Unordered List 1": {
+          "List Item 1": {
+            "Text 1": "Lorem ipsum dolor sit amet"
+          },
+          "List Item 2": {
+            "Text 1": "Lorem ipsum dolor sit amet",
+            "Unordered List 1": {
+              "List Item 1": {
+                "Text 1": "Lorem ipsum dolor sit amet"
+              }
+            }
+          }
+        },
+        "Unordered List 2": {
+          "List Item 1": {
+            "Text 1": "Lorem ipsum dolor sit amet",
+            "Unordered List 1": {
+              "List Item 1": {
+                "Text 1": "Lorem ipsum dolor sit amet",
+                "Anchor 1": {
+                  "Text 1": "Lorem ipsum dolor sit amet"
+                },
+                "Text 2": "Lorem ipsum dolor sit amet"
+              }
+            }
+          },
+          "List Item 2": {
+            "Text 1": "Lorem ipsum dolor sit amet"
+          },
+          "List Item 3": {
+            "Text 1": "Lorem ipsum dolor sit amet"
+          },
+          "List Item 4": {
+            "Text 1": "Lorem ipsum dolor sit amet"
+          }
+        }
+      }
+    },
+    "Accordion Item 6": {
+      "Heading": "Lorem ipsum dolor sit amet",
+      "Content": {
+        "Unordered List 1": {
+          "List Item 1": {
+            "Text 1": "Lorem ipsum dolor sit amet"
+          },
+          "List Item 2": {
+            "Text 1": "Lorem ipsum dolor sit amet"
+          },
+          "List Item 3": {
+            "Text 1": "Lorem ipsum dolor sit amet"
+          },
+          "List Item 4": {
+            "Text 1": "Lorem ipsum dolor sit amet",
+            "Anchor 1": {
+              "Text 1": "Lorem ipsum dolor sit amet"
+            }
+          }
+        },
+        "Unordered List 2": {
+          "List Item 1": {
+            "Text 1": "Lorem ipsum dolor sit amet"
+          },
+          "List Item 2": {
+            "Text 1": "Lorem ipsum dolor sit amet"
+          },
+          "List Item 3": {
+            "Text 1": "Lorem ipsum dolor sit amet"
+          },
+          "List Item 4": {
+            "Text 1": "Lorem ipsum dolor sit amet",
+            "Anchor 1": {
+              "Text 1": "Lorem ipsum dolor sit amet"
+            }
+          }
+        }
+      }
+    },
+    "Accordion Item 7": {
+      "Heading": "Lorem ipsum dolor sit amet",
+      "Content": {
+        "Unordered List 1": {
+          "List Item 1": {
+            "Text 1": "Lorem ipsum dolor sit amet"
+          },
+          "List Item 2": {
+            "Text 1": "Lorem ipsum dolor sit amet"
+          },
+          "List Item 3": {
+            "Text 1": "Lorem ipsum dolor sit amet"
+          }
+        }
+      }
+    },
+    "Accordion Item 8": {
+      "Heading": "Lorem ipsum dolor sit amet",
+      "Content": {
+        "Unordered List 1": {
+          "List Item 1": {
+            "Text 1": "Lorem ipsum dolor sit amet"
+          },
+          "List Item 2": {
+            "Text 1": "Lorem ipsum dolor sit amet"
+          },
+          "List Item 3": {
+            "Text 1": "Lorem ipsum dolor sit amet"
+          },
+          "List Item 4": {
+            "Text 1": "Lorem ipsum dolor sit amet"
+          }
+        }
+      }
+    },
+    "Accordion Item 9": {
+      "Heading": "Lorem ipsum dolor sit amet",
+      "Content": {
+        "Unordered List 1": {
+          "List Item 1": {
+            "Text 1": "Lorem ipsum dolor sit amet",
+            "Unordered List 1": {
+              "List Item 1": {
+                "Text 1": "Lorem ipsum dolor sit amet",
+                "Anchor 1": {
+                  "Text 1": "Lorem ipsum dolor sit amet"
+                },
+                "Anchor 2": {
+                  "Text 1": "Lorem ipsum dolor sit amet"
+                },
+                "Text 2": "Lorem",
+                "Anchor 3": {
+                  "Text 1": "Lorem"
+                }
+              },
+              "List Item 2": {
+                "Text 1": "Lorem ipsum dolor sit amet"
+              },
+              "List Item 3": {
+                "Text 1": "Lorem ipsum dolor sit amet",
+              "Anchor 1": {
+                "Text 1": "Lorem"
+              },
+              "Text 2": "Lorem",
+              "Anchor 2": {
+                "Text 1": "Lorem ipsum dolor sit amet"
+              },
+              "Text 3": "Lorem ipsum dolor sit amet"
+            }
+            }
+          },
+          "List Item 2": {
+            "Text 1": "Lorem ipsum dolor sit amet",
+            "Unordered List 1": {
+              "List Item 1": {
+                "Text 1": "Lorem",
+                "Anchor 1": {
+                  "Text 1": "Lorem ipsum dolor sit amet"
+                },
+                "Text 2": "Lorem ipsum dolor sit amet"
+              }
+            }
+          },
+          "List Item 3": {
+            "Text 1": "Lorem ipsum dolor sit amet",
+            "Unordered List 1": {
+              "List Item 1": {
+                "Text 1": "Lorem ipsum dolor sit amet",
+                "Anchor 1": {
+                  "Text 1": "Lorem ipsum dolor sit amet"
+                },
+                "Text 2": "Lorem ipsum dolor sit amet"
+              }
+            }
+          },
+          "List Item 4": {
+            "Text 1": "Lorem ipsum dolor sit amet",
+            "Anchor 1": {
+              "Text 1": "Lorem"
+            },
+            "Text 2": "Lorem",
+            "Anchor 2": {
+              "Text 1": "Lorem"
+            },
+            "Text 3": "Lorem"
+          }
+        },
+        "Unordered List 2": {
+          "List Item 1": {
+            "Text 1": "Lorem ipsum dolor sit amet",
+            "Unordered List 1": {
+              "List Item 1": {
+                "Anchor 1": {
+                  "Text 1": "Lorem ipsum dolor sit amet"
+                },
+                "Text 1": "Lorem ipsum dolor sit amet"
+              }
+            }
+          },
+          "List Item 2": {
+            "Text 1": "Lorem ipsum dolor sit amet",
+            "Unordered List 1": {
+              "List Item 1": {
+                "Anchor 1": {
+                  "Text 1": "Lorem ipsum dolor sit amet"
+                },
+                "Text 1": "Lorem ipsum dolor sit amet"
+              }
+            }
+          }
+        }
+      }
+    },
+    "Accordion Item 10": {
+      "Heading": "Lorem ipsum dolor sit amet",
+      "Content": {
+        "Text 1": "Lorem ipsum dolor sit amet",
+        "Anchor 1": {
+          "Text 1": "Lorem ipsum dolor sit amet"
+        },
+        "Text 2": "Lorem ipsum dolor sit amet",
+        "Anchor 2": {
+          "Text 1": "Lorem ipsum dolor sit amet"
+        },
+        "Text 3": "Lorem ipsum dolor sit amet"
+      }
+    },
+    "Accordion Item 11": {
+      "Heading": "Lorem ipsum dolor sit amet",
+      "Content": {
+        "Text 1": "Lorem ipsum dolor sit amet"
+      }
+    },
+    "Accordion Item 12": {
+      "Heading": "Lorem ipsum dolor sit amet",
+      "Content": {
+        "Text 1": "Lorem ipsum dolor sit amet",
+        "Unordered List 1": {
+          "List Item 1": {
+            "Text 1": "Lorem ipsum dolor sit amet"
+          },
+          "List Item 2": {
+            "Text 1": "Lorem ipsum dolor sit amet"
+          },
+          "List Item 3": {
+            "Text 1": "Lorem ipsum dolor sit amet"
+          },
+          "List Item 4": {
+            "Text 1": "Lorem ipsum dolor sit amet"
+          }
+        }
+      }
+    },
+    "Accordion Item 13": {
+      "Heading": "Lorem ipsum dolor sit amet",
+      "Content": {
+        "Text 1": "Lorem ipsum dolor sit amet"
+      }
+    },
+    "Accordion Item 14": {
+      "Heading": "Lorem ipsum dolor sit amet",
+      "Content": {
+        "Text 1": "Lorem ipsum dolor sit amet",
+        "Anchor 1": {
+          "Text 1": "Lorem ipsum dolor sit amet"
+        }
+      }
+    },
+    "Accordion Item 15": {
+      "Heading": "Lorem ipsum dolor sit amet",
+      "Content": {
+        "Text 1": "Lorem ipsum dolor sit amet",
+        "Text 2": "Lorem ipsum dolor sit amet",
+        "Anchor 1": {
+          "Text 1": "Lorem ipsum dolor sit amet"
+        },
+        "Text 3": "Lorem ipsum dolor sit amet",
+        "Anchor 2": {
+          "Text 1": "Lorem ipsum dolor sit amet"
+        },
+        "Text 4": "Lorem ipsum dolor sit amet",
+        "Text 5": "Lorem ipsum dolor sit amet",
+        "Text 6": "Lorem ipsum dolor sit amet"
+      }
     }
   },
   "Locations": {
-    "Search Placeholder": "Find address or place",
-    "Search Container Screenreader Heading": "Search for Locations",
-    "Results Screenreader Heading": "Results",
-    "List Heading": "{{count}} Sites",
-    "Map Screenreader Heading": "Map of Sites"
+    "Search Placeholder": "Lorem ipsum dolor sit amet",
+    "Search Container Screenreader Heading": "Lorem ipsum dolor sit amet",
+    "Search this location":"Lorem ipsum dolor",
+    "Search for Other Locations": "Lorem ipsum dolor",
+    "Results Screenreader Heading": "Lorem",
+    "List Heading": "{{count}} Lorem ipsum dolor sit amet",
+    "List Heading Share": "{{count}} Lorem ipsum dolor sit amet",
+    "List Title Screenreader Label": "Lorem ipsum dolor sit amet",
+    "Please ensure an illness and location are selected": "Lorem ipsum dolor sit amet",
+    "Map Screenreader Heading": "Lorem ipsum dolor sit amet",
+    "Search for Other Button Screenreader Label": "Lorem ipsum dolor sit amet", 
+    "Empty List": "Lorem ipsum dolor sit amet",
+    "Search Here Button Screenreader Label": "Lorem ipsum dolor sit amet",
+    "Page Load Screenreader Alert": "Lorem ipsum dolor sit amet"
   },
   "Illness": {
-    "COVID": "COVID-19",
-    "Flu": "Flu"
+    "COVID": "Lorem",
+    "Flu": "Lorem",
+    "Prompt": "Lorem ipsum dolor sit amet",
+    "Medications Button Screenreader Label": "Lorem ipsum dolor sit amet",
+    "Other Filters Button Screenreader Label": "Lorem ipsum dolor sit amet",
+    "Name": "Lorem"
+  },
+  "Sorting": {
+    "Name": "Lorem"
+  },
+  "Reusable": {
+    "Patient Assistance Program": "Lorem ipsum dolor sit amet",
+    "COVID-19": "Lorem",
+    "Flu": "Lorem",
+    "Visit": "Lorem",
+    "Treatment Options For": "Lorem ipsum dolor",
+    "Influenza": "Lorem"
+  },
+  "Misc": {
+    "Apply":"Lorem",
+    "Apply Changes and Close Dropdown":"Lorem ipsum dolor sit amet",
+    "Clear All": "Lorem",
+    "Clear Filters and Close Dropdown": "Lorem ipsum dolor sit amet",
+    "Languages": "Lorem",
+    "Filters": "Lorem"
+  },
+  "Search": {
+    "Magnifying Icon Screenreader Label": "Lorem ipsum dolor sit amet"
   },
   "Card": {
-    "pap": "Free/reduced cost",
-    "usgProduct": "USG product",
-    "homeDelivery": "Home Delivery",
-    "icatt": "Free Testing",
-    "tamifluOnly": "Tamiflu Only",
-    "oseltamivirSuspension": "Oseltamivir Suspension",
-    "oseltamivirTamiflu": "Oseltamivir Tamiflu",
-    "oseltamivirGeneric": "Oseltamivir Generic",
-    "prescribingServices": "Prescribing Services",
-    "hoverPapLink": "Paxlovid Patient Assistance Program site",
-    "hoverPapDescription": ": no-cost Paxlovid for eligible patients",
-    "hoverUSGProduct": "No-cost medications distributed by the U.S. government may be available",
-    "hoverHomeDelivery": "Home delivery of medication may be available",
-    "hoverICATT": "Increasing Community Access to Testing site: no-cost COVID-19 testing for eligible people",
-    "hoverTamifluOnly": "Generic oseltamivir may not be available",
-    "hoverOseltamivirSuspension": "Oseltamivir suspension (liquid form) may be available",
-    "hoverPrescribingServices": "Prescribing services may be available (including telehealth)",
-    "additionalInformation": "Additional Information for",
-    "rXorTelehealth": "prescribing services",
-    "shareLocation": "Copy Location Link",
-    "directionsToLocation": "Directions to Location",
-    "openInMaps": "Open in Maps",
-    "distance": "Distance",
-    "miles": "miles",
-    "hrsa": "Health Resources and Services Administration (HRSA) supported Health Center",
-    "dod": "Department of Defense Facility\n\nOnly individuals who are specifically eligible for care at a military Medical Treatment Facility (MTF) are eligible to receive treatment at an MTF. MTF care is otherwise not available to members of the civilian population.",
-    "ihs": "Indian Health Service Facility\n\nIndian Health Service (federal, tribal, and urban) sites will provide access to services in accordance with established eligibility requirements.",
+    "Zoom": "Lorem ipsum dolor",
+    "Zoom To Site Button Screenreader Label": "Lorem ipsum dolor sit amet",
+    "Copy Link Button Screenreader Label": "Lorem ipsum dolor sit amet",
+    "Open in Maps Button Screenreader Label": "Lorem ipsum dolor sit amet",
+    "pap": "Lorem ipsum dolor",
+    "usgProduct": "Lorem ipsum dolor",
+    "homeDelivery": "Lorem ipsum dolor",
+    "icatt": "Lorem ipsum",
+    "tamifluOnly": "Lorem ipsum",
+    "oseltamivirSuspension": "Lorem ipsum",
+    "oseltamivirTamiflu": "Lorem ipsum",
+    "oseltamivirGeneric": "Lorem ipsum",
+    "prescribingServices": "Lorem ipsum",
+    "hoverPapLink": "Lorem ipsum dolor sit amet",
+    "hoverPapDescription": "Lorem ipsum dolor sit amet",
+    "hoverUSGProduct": "Lorem ipsum dolor sit amet",
+    "hoverHomeDelivery": "Lorem ipsum dolor sit amet",
+    "hoverICATT": "Lorem ipsum dolor sit amet",
+    "hoverTamifluOnly": "Lorem ipsum dolor sit amet",
+    "hoverOseltamivirSuspension": "Lorem ipsum dolor sit amet",
+    "hoverPrescribingServices": "Lorem ipsum dolor sit amet",
+    "additionalInformation": "Lorem ipsum dolor sit amet",
+    "rXorTelehealth": "Lorem ipsum dolor sit amet",
+    "shareLocation": "Lorem ipsum dolor",
+    "directionsToLocation": "Lorem ipsum dolor",
+    "openInMaps": "Lorem ipsum dolor",
+    "distance": "Lorem",
+    "miles": "Lorem",
+    "hrsa": "Lorem ipsum dolor sit amet",
+    "dod": "Lorem ipsum dolor sit amet",
+    "ihs": "Lorem ipsum dolor sit amet",
     "products": {
-      "covid_---": "Product availability for this site is unknown.",
-      "covid_--v": "Site offers outpatient Veklury.",
-      "covid_-l-": "Site offers Lagevrio.",
-      "covid_-lv": "Site offers Lagevrio and outpatient Veklury.",
-      "covid_p--": "Site offers Paxlovid.",
-      "covid_p-v": "Site offers Paxlovid and outpatient Veklury.",
-      "covid_pl-": "Site offers Paxlovid and Lagevrio.",
-      "covid_plv": "Site offers Paxlovid, Lagevrio, and outpatient Veklury.",
-      "flu_----": "Product availability for this site is unknown.",
-      "flu_---z": "Site offers zanamivir.",
-      "flu_--p-": "Site offers peramivir.",
-      "flu_--pz": "Site offers peramivir and zanamivir.",
-      "flu_-b--": "Site offers baloxavir.",
-      "flu_-b-z": "Site offers baloxavir and zanamivir.",
-      "flu_-bp-": "Site offers baloxavir and peramivir.",
-      "flu_-bpz": "Site offers baloxavir, peramivir, and zanamivir.",
-      "flu_o---": "Site offers oseltamivir.",
-      "flu_o--z": "Site offers oseltamivir and zanamivir.",
-      "flu_o-p-": "Site offers oseltamivir and peramivir.",
-      "flu_o-pz": "Site offers oseltamivir, peramivir, and zanamivir.",
-      "flu_ob--": "Site offers oseltamivir and baloxavir.",
-      "flu_ob-z": "Site offers oseltamivir, baloxavir, and zanamivir.",
-      "flu_obp-": "Site offers oseltamivir, baloxavir, and peramivir.",
-      "flu_obpz": "Site offers oseltamivir, baloxavir, peramivir, and zanamivir."
+      "covid_---": "Lorem ipsum dolor sit amet",
+      "covid_--v": "Lorem ipsum dolor sit amet",
+      "covid_-l-": "Lorem ipsum dolor sit amet",
+      "covid_-lv": "Lorem ipsum dolor sit amet",
+      "covid_p--": "Lorem ipsum dolor sit amet",
+      "covid_p-v": "Lorem ipsum dolor sit amet",
+      "covid_pl-": "Lorem ipsum dolor sit amet",
+      "covid_plv": "Lorem ipsum dolor sit amet",
+      "flu_----": "Lorem ipsum dolor sit amet",
+      "flu_---z": "Lorem ipsum dolor sit amet",
+      "flu_--p-": "Lorem ipsum dolor sit amet",
+      "flu_--pz": "Lorem ipsum dolor sit amet",
+      "flu_-b--": "Lorem ipsum dolor sit amet",
+      "flu_-b-z": "Lorem ipsum dolor sit amet",
+      "flu_-bp-": "Lorem ipsum dolor sit amet",
+      "flu_-bpz": "Lorem ipsum dolor sit amet",
+      "flu_o---": "Lorem ipsum dolor sit amet",
+      "flu_o--z": "Lorem ipsum dolor sit amet",
+      "flu_o-p-": "Lorem ipsum dolor sit amet",
+      "flu_o-pz": "Lorem ipsum dolor sit amet",
+      "flu_ob--": "Lorem ipsum dolor sit amet",
+      "flu_ob-z": "Lorem ipsum dolor sit amet",
+      "flu_obp-": "Lorem ipsum dolor sit amet",
+      "flu_obpz": "Lorem ipsum dolor sit amet"
     }
   }
 }

@@ -264,7 +264,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
               : "This buttons filters results to only include specific site information"
           }
         >
-          {type === "medications" ? t("Illness.Prompt") : "Filters"}{" "}
+          {type === "medications" ? t("Illness.Prompt") : t("Misc.Filters")}{" "}
           <ChevronDownIcon />
           <span className="PopOverFilterCount">
             &#40;
