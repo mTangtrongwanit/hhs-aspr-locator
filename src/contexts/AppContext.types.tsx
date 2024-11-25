@@ -35,7 +35,7 @@ export interface AppContextType {
   selectedSort: { label: string; value: string };
   setSelectedSort: (x: { label: string; value: string }) => void;
   selectedTreatmentSite: __esri.Graphic | null;
-  setSelectedTreatmentSite: (x: __esri.Graphic) => void;
+  setSelectedTreatmentSite: (x: __esri.Graphic | null) => void;
   circle: __esri.Circle | null;
   filteredSites: __esri.Graphic[];
 }
