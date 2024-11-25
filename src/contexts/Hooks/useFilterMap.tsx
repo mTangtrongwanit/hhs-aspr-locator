@@ -24,6 +24,7 @@ export const useFilterMap = ({
   selectedMedications,
   selectedFilters,
   treatmentIllnessLookup,
+  sharedSiteFacilityID,
 }: {
   featureLayer: __esri.FeatureLayer | null;
   locations: __esri.Graphic[] | null;
@@ -44,6 +45,7 @@ export const useFilterMap = ({
       field: string;
     }[];
   };
+  sharedSiteFacilityID: string | null;
 }) => {
   // #region -------------------- Hooks (State) --------------------------------
   // #endregion ----------------- Hooks (State) --------------------------------
@@ -55,7 +57,7 @@ export const useFilterMap = ({
   // useEffect to watch for changes in the filteredSites and update the feature layer definition expression
   useEffect(() => {
     if (!featureLayer || !locations || !locationsMapView) return;
-    let where = "";
+    let where = "OBJECTID = -1";
 
     // build the illness clause
     const illnessLookupFields =
@@ -105,7 +107,9 @@ export const useFilterMap = ({
 
     // if no selectedIllness show no points
     if (!illnessClause) {
-      where = "OBJECTID = -1";
+      where = sharedSiteFacilityID
+        ? `facility_id = '${sharedSiteFacilityID}'`
+        : "OBJECTID = -1";
     } else {
       // join illness, meds and filters if they are present
       const clauses = [illnessClause, medicationClause, filterClause]
@@ -113,7 +117,6 @@ export const useFilterMap = ({
         .map((clause) => `(${clause})`);
       where = clauses.join(" AND ");
     }
-    console.log("where", where);
     featureLayer.definitionExpression = where;
   }, [
     featureLayer,

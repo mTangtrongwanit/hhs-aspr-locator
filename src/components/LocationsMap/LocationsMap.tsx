@@ -186,7 +186,6 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
                 layer.title.includes("Treatments")
               ) {
                 (layer as __esri.FeatureLayer).outFields = ["*"];
-                (layer as __esri.FeatureLayer).definitionExpression = "1 = 1";
                 layer.load().then(() => {
                   setFeatureLayer(layer as FeatureLayer);
                 });

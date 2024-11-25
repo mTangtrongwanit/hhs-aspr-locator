@@ -112,6 +112,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     selectedMedications,
     selectedFilters,
     treatmentIllnessLookup,
+    sharedSiteFacilityID,
   });
 
   // useEffect to watch for changes in the selected Illness and search radius and update the map view
