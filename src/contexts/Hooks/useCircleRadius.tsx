@@ -57,7 +57,7 @@ export const useCircleRadius = ({
       }),
       radius: radius,
       radiusUnit: "miles",
-      spatialReference: locationsMapView.spatialReference,
+      spatialReference: searchPoint?.point?.spatialReference,
     });
     setCircle(circle);
     const circleLayer = new GraphicsLayer({

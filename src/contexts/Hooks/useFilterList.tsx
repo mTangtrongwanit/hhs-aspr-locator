@@ -57,7 +57,6 @@ export const useFilterList = ({
   // #region -------------------- Hooks (Other) --------------------------------
   /** Update the locations by searchPoint/illness/medication */
   useEffect(() => {
-    debugger;
     setLocations([]);
     if (!sharedSiteFacilityID && (!searchPoint || !selectedIllness.value)) {
       return;
@@ -154,6 +153,11 @@ export const useFilterList = ({
           .slice(0, DISPLAY_COUNT);
 
         setLocations(displayLocations);
+        // get the distance of the last location and set it to the circle radius so the radius shows the exact search distance
+        const newDist =
+          displayLocations[displayLocations.length - 1].attributes;
+        console.log("newDist", displayLocations[displayLocations.length - 1]);
+        setRadius(newDist.distance);
       })
       .catch((error) => {
         console.error("Error getting locations data: ", error);

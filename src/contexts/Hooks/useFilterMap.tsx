@@ -90,7 +90,17 @@ export const useFilterMap = ({
     const filterClause =
       selectedFilters.length &&
       selectedFilters
-        .map((filter) => `LOWER(${filter.name}) = 'true'`)
+        .map((filter) => {
+          const filterName =
+            config.treatmentData.fields[
+              filter.name as keyof typeof config.treatmentData.fields
+            ].name;
+          if (filterName === "is_pap") {
+            return `LOWER(${config.treatmentData.fields.has_USG_product.name}) = 'true'`;
+          } else {
+            return `LOWER(${filterName}) = 'true'`;
+          }
+        })
         .join(" AND ");
 
     // if no selectedIllness show no points
@@ -103,7 +113,7 @@ export const useFilterMap = ({
         .map((clause) => `(${clause})`);
       where = clauses.join(" AND ");
     }
-
+    console.log("where", where);
     featureLayer.definitionExpression = where;
   }, [
     featureLayer,
