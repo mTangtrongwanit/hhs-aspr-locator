@@ -68,6 +68,7 @@ export const useFilterMap = ({
         .map((field) => `LOWER(${field}) = 'true'`)
         .join(" OR ");
 
+    // build the medication clause
     const medicationClause =
       selectedMedications.length &&
       selectedMedications
@@ -85,13 +86,14 @@ export const useFilterMap = ({
         )
         .join(" AND ");
 
+    // build the filter clause
     const filterClause =
       selectedFilters.length &&
       selectedFilters
         .map((filter) => `LOWER(${filter.name}) = 'true'`)
         .join(" AND ");
 
-    // A. if no selectedIllness show no points
+    // if no selectedIllness show no points
     if (!illnessClause) {
       where = "OBJECTID = -1";
     } else {
@@ -102,7 +104,6 @@ export const useFilterMap = ({
       where = clauses.join(" AND ");
     }
 
-    console.log("where", where);
     featureLayer.definitionExpression = where;
   }, [
     featureLayer,
