@@ -1,28 +1,23 @@
 // #region ========================= IMPORTS ===================================
 // #region ---------------------- React ---------------------------------
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 // #endregion ------------------- React ---------------------------------
 
 // #region ------------ 3rd-Party Components / Libraries -----------------------
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import Circle from "@arcgis/core/geometry/Circle";
-import Point from "@arcgis/core/geometry/Point";
-import Graphic from "@arcgis/core/Graphic";
-import GraphicLayer from "@arcgis/core/layers/GraphicsLayer";
-import SimpleFillSymbol from "@arcgis/core/symbols/SimpleFillSymbol.js";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region ------------------------ Resources ----------------------------------
 import { AppContextType, AppContextProps } from "./AppContext.types.tsx";
-import {
-  calculateDistanceBetweenTwoPoints,
-  getLocationsCount,
-  getLocationsData,
-  getTreatmentsIllnessesData,
-} from "@/utils/geographicUtils.ts";
-import { isTrue, type FilterType } from "@/utils";
-import config from "@/config";
+import { useTreatmentIllnessData } from "./Hooks/useTreatmentIllnessData.tsx";
+import { useFilterList } from "./Hooks/useFilterList.tsx";
+import { useFilterMap } from "./Hooks/useFilterMap.tsx";
+import { useCircleRadius } from "./Hooks/useCircleRadius.tsx";
+import { useTreatmentIllnessLookup } from "./Hooks/useTreatmentIllnessLookup.tsx";
+import { useFilteredSites } from "./Hooks/useFilteredSites.tsx";
+import { FilterType } from "@/utils/sharedTypes.ts";
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
 
@@ -81,265 +76,33 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   // #endregion ----------------- Hooks (State) --------------------------------
 
   // #region ----------------- Hooks (Memoization) -----------------------------
-  const treatmentIllnessLookup = useMemo(
-    () =>
-      (treatmentIllnessData ?? []).reduce(
-        (acc, feature) => {
-          const illness = feature.attributes.illness;
-          const treatment = {
-            name: feature.attributes.display_name,
-            field: feature.attributes.field_name,
-          };
-          if (acc[illness]) {
-            acc[illness].push(treatment);
-          } else {
-            acc[illness] = [treatment];
-          }
-          return acc;
-        },
-        {} as { [key: string]: { name: string; field: string }[] },
-      ),
-    [treatmentIllnessData],
-  );
+  const treatmentIllnessLookup = useTreatmentIllnessLookup({
+    treatmentIllnessData,
+  });
 
-  const filteredSites = useMemo(
-    () =>
-      locations.filter((location) =>
-        selectedFilters.every(
-          (filter) =>
-            isTrue(
-              location.attributes[
-                config.treatmentData.fields[
-                  filter.name as keyof typeof config.treatmentData.fields
-                ].name
-              ],
-            ) ||
-            (filter.name === "is_pap" &&
-              isTrue(
-                location.attributes[
-                  config.treatmentData.fields.has_USG_product.name
-                ],
-              )),
-        ),
-      ),
-    [locations, selectedFilters],
-  );
+  const filteredSites = useFilteredSites({
+    locations,
+    selectedFilters,
+  });
   // #endregion -------------- Hooks (Memoization) -----------------------------
 
   // #region -------------------- Hooks (Other) --------------------------------
   /** Get the treatement illness data and set it to state */
-  useEffect(() => {
-    const fetchTreatmentsIllnesses = async () => {
-      const treatmentIllnesses = await getTreatmentsIllnessesData();
-      // custom oseltamivir parent object to use in generic filtering
-      const oseltamivirParent = {
-        attributes: {
-          OBJECTID: 1,
-          display_name: "Oseltamivir",
-          field_name: "has_Oseltamivir",
-          illness: "Flu",
-        },
-      } as __esri.Graphic;
-
-      // remove 'Oseltamivir Generic',
-      // 'Oseltamivir Suspension',
-      // 'Oseltamivir Tamiflu',
-      // 'Veklury'
-      // and add oseltamivirParent and vekluryParent
-      // to treatmentIllnesses
-      const filterTreatmentIllnesses =
-        treatmentIllnesses &&
-        [oseltamivirParent, ...treatmentIllnesses]?.filter((treatment) => {
-          return (
-            treatment.attributes.display_name !== "Oseltamivir Generic" &&
-            treatment.attributes.display_name !== "Oseltamivir Suspension" &&
-            treatment.attributes.display_name !== "Oseltamivir Tamiflu" &&
-            treatment.attributes.display_name !== "Veklury"
-          );
-        });
-
-      filterTreatmentIllnesses?.sort((a, b) => {
-        return (
-          config.medicationOrder.findIndex(
-            // Order by the index of the medicationOrder array
-            (order) =>
-              order.toLowerCase() === a.attributes.display_name.toLowerCase(),
-          ) -
-          config.medicationOrder.findIndex(
-            (order) =>
-              order.toLowerCase() === b.attributes.display_name.toLowerCase(),
-          )
-        );
-      });
-
-      setTIData(filterTreatmentIllnesses ?? []);
-    };
-    fetchTreatmentsIllnesses();
-  }, []);
+  useTreatmentIllnessData({ setTIData });
 
   /** Update the locations by searchPoint/illness/medication */
-  useEffect(() => {
-    setLocations([]);
-    if (!sharedSiteFacilityID && (!searchPoint || !selectedIllness.value)) {
-      return;
-    }
-
-    // build the illness clause
-    const illnessLookupFields =
-      config.fieldsets[
-        `${selectedIllness.value.toLowerCase()}LookupFields` as keyof typeof config.fieldsets
-      ] ?? [];
-    const illnessClause = illnessLookupFields
-      .map((field) => `LOWER(${field}) = 'true'`)
-      .join(" OR ");
-
-    // todo: will have to pull these meds from the lookup table
-    // build the medications clause
-    const medicationClause = selectedMedications
-      .map(
-        (medication) =>
-          treatmentIllnessLookup[selectedIllness.value]?.find(
-            (treatment) => treatment.name === medication,
-          ),
-      )
-      .filter((treatment) => treatment)
-      .map((treatment) =>
-        treatment?.field === "has_Oseltamivir"
-          ? `LOWER(has_oseltamivir_generic) = 'true' OR LOWER(has_oseltamivir_suspension) = 'true' OR LOWER(has_oseltamivir_tamiflu) = 'true'`
-          : `LOWER(${treatment?.field}) = 'true'`,
-      )
-      .join(" AND ");
-
-    // build the where clause from illness/medication clauses
-    const where = sharedSiteFacilityID
-      ? `facility_id = '${sharedSiteFacilityID}'`
-      : medicationClause.length
-      ? `(${illnessClause}) AND (${medicationClause})`
-      : illnessClause;
-
-    // find the appropriate search radius
-    const MAX_SEARCH_RADIUS = 50; // starting full search radius
-    const MIN_SEARCH_RADIUS_INCREMENT = 2; // minimum increment to reduce the search radius
-    const DISPLAY_COUNT = 100; // number of results to display
-    const COUNT_BUFFER_FACTOR = 2; // conservative buffer to ensure we don't miss any points
-    const DENSITY_ADJUSTMENT_FACTOR = 0.75; // density adjustment factor to account for clustering of points near cities (also assuming the search point is near a city, otherwise why would we have too many results?)
-    const narrowSearchRadius = (radius: number): Promise<number> =>
-      // @ts-expect-error - TS doesn't detect that we won't reach here if searchPoint is null
-      getLocationsCount(searchPoint.point, radius, where)
-        .then((count) => {
-          const target = DISPLAY_COUNT * COUNT_BUFFER_FACTOR;
-          // if the count is greater than the target count, calculate a new radius
-          if (count > target) {
-            // calculate a new radius (w/minimum increment) using the density of points (accounting for clustering near city center)
-            // area = π * radius^2
-            // density = count / area * density adjustment factor
-            // new_area = target / density
-            // new_radius = sqrt(new_area / π) = radius * sqrt(target / (count * density adjustment factor))
-            const new_radius = Math.min(
-              radius *
-                Math.sqrt(
-                  target /
-                    (count * (DENSITY_ADJUSTMENT_FACTOR * COUNT_BUFFER_FACTOR)),
-                ),
-              radius - MIN_SEARCH_RADIUS_INCREMENT,
-            );
-            return narrowSearchRadius(new_radius);
-          }
-          setRadius(radius);
-          return radius;
-        })
-        .catch(() => radius);
-
-    (sharedSiteFacilityID
-      ? Promise.resolve(MAX_SEARCH_RADIUS)
-      : narrowSearchRadius(MAX_SEARCH_RADIUS)
-    )
-      .then((distance) =>
-        // get the locations using the narrowed search radius
-        getLocationsData(searchPoint?.point, distance, where),
-      )
-      .then((allLocations) => {
-        // enrich the locations
-        const allLocationsEnriched = allLocations.map((location) => {
-          location.attributes.distance =
-            calculateDistanceBetweenTwoPoints(
-              location.attributes,
-              searchPoint,
-            ) ?? 0;
-          return location;
-        });
-
-        // sort the locations by distance and clip to display count
-        const displayLocations = allLocationsEnriched
-          .sort((a, b) => a.attributes.distance - b.attributes.distance)
-          .slice(0, DISPLAY_COUNT);
-
-        setLocations(displayLocations);
-      })
-      .catch((error) => {
-        console.error("Error getting locations data: ", error);
-      });
-  }, [
+  useFilterList({
     treatmentIllnessLookup,
     searchPoint,
     selectedIllness,
     selectedMedications,
     sharedSiteFacilityID,
-  ]);
+    setLocations,
+    setRadius,
+  });
 
   // useEffect to watch for changes in the filteredSites and update the feature layer definition expression
-  useEffect(() => {
-    if (!featureLayer || !locations || !locationsMapView) return;
-    let where = "";
-
-    // build the illness clause
-    const illnessLookupFields =
-      config.fieldsets[
-        `${selectedIllness.value.toLowerCase()}LookupFields` as keyof typeof config.fieldsets
-      ] ?? [];
-    const illnessClause =
-      illnessLookupFields?.length &&
-      illnessLookupFields
-        .map((field) => `LOWER(${field}) = 'true'`)
-        .join(" OR ");
-
-    const medicationClause =
-      selectedMedications.length &&
-      selectedMedications
-        .map(
-          (medication) =>
-            treatmentIllnessLookup[selectedIllness.value]?.find(
-              (treatment) => treatment.name === medication,
-            ),
-        )
-        .filter((treatment) => treatment)
-        .map((treatment) =>
-          treatment?.field === "has_Oseltamivir"
-            ? `(LOWER(has_oseltamivir_generic) = 'true' OR LOWER(has_oseltamivir_suspension) = 'true' OR LOWER(has_oseltamivir_tamiflu) = 'true')`
-            : `LOWER(${treatment?.field}) = 'true'`,
-        )
-        .join(" AND ");
-
-    const filterClause =
-      selectedFilters.length &&
-      selectedFilters
-        .map((filter) => `LOWER(${filter.name}) = 'true'`)
-        .join(" AND ");
-
-    // A. if no selectedIllness show no points
-    if (!illnessClause) {
-      where = "OBJECTID = -1";
-    } else {
-      // join illness, meds and filters if they are present
-      const clauses = [illnessClause, medicationClause, filterClause].filter(
-        (clause) => clause,
-      ).map((clause) => `(${clause})`); 
-      where = clauses.join(" AND ");
-    }
-
-    console.log("where", where);
-    featureLayer.definitionExpression = where;
-  }, [
+  useFilterMap({
     featureLayer,
     locations,
     locationsMapView,
@@ -347,47 +110,19 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     radius,
     selectedIllness,
     selectedMedications,
-  ]);
+    selectedFilters,
+    treatmentIllnessLookup,
+  });
 
   // useEffect to watch for changes in the selected Illness and search radius and update the map view
   // with a circle around the search area
-  useEffect(() => {
-    if (!searchPoint || !locationsMapView || !selectedIllness?.value) return;
-    // add a circle to the map at the search point
-    const circle = new Circle({
-      center: new Point({
-        latitude: searchPoint?.point.latitude,
-        longitude: searchPoint?.point.longitude,
-        spatialReference: searchPoint?.point?.spatialReference,
-      }),
-      radius: radius,
-      radiusUnit: "miles",
-      spatialReference: locationsMapView.spatialReference,
-    });
-    setCircle(circle);
-    const circleLayer = new GraphicLayer({
-      graphics: [
-        new Graphic({
-          geometry: circle,
-          symbol: new SimpleFillSymbol({
-            // Fill color #CCCCCC and .7 point border with color #000000. Transparency 35%
-            color: [204, 204, 204, 0.35],
-            outline: {
-              color: [0, 0, 0],
-              width: 0.7,
-            },
-          }),
-        }),
-      ],
-    });
-    locationsMapView.map.layers.add(circleLayer);
-    locationsMapView.map.layers.reorder(circleLayer, 0);
-    // cleanup by destroying the circle layer
-    return () => {
-      locationsMapView?.map?.remove(circleLayer);
-      circleLayer.destroy();
-    };
-  }, [selectedIllness, locationsMapView, radius, searchPoint]);
+  useCircleRadius({
+    searchPoint,
+    locationsMapView,
+    selectedIllness,
+    radius,
+    setCircle,
+  });
   // #endregion ----------------- Hooks (Other) --------------------------------
 
   // #region ---------------- Supporting Functions -----------------------------
