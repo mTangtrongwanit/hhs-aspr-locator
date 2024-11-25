@@ -290,59 +290,55 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   // useEffect to watch for changes in the filteredSites and update the feature layer definition expression
   useEffect(() => {
     if (!featureLayer || !locations || !locationsMapView) return;
-
-    // A. if no selectedIllness show no points
-    // B. if selectedIllness but no (selectedMedications or filters){turn on all points}
-    // C. if filters, turn on filtered points
     let where = "";
-    // A. if no selectedIllness show no points
-    if (!selectedIllness.value) {
-      // Set the definition expression to return no features
-      featureLayer.definitionExpression = "OBJECTID = -1";
-      return;
-    }
-    // C. if filters, turn on filtered points to match the list points
-    else {
-      // build the illness clause
-      const illnessLookupFields =
-        config.fieldsets[
-          `${selectedIllness.value.toLowerCase()}LookupFields` as keyof typeof config.fieldsets
-        ] ?? [];
-      const illnessClause = illnessLookupFields
+
+    // build the illness clause
+    const illnessLookupFields =
+      config.fieldsets[
+        `${selectedIllness.value.toLowerCase()}LookupFields` as keyof typeof config.fieldsets
+      ] ?? [];
+    const illnessClause =
+      illnessLookupFields?.length &&
+      illnessLookupFields
         .map((field) => `LOWER(${field}) = 'true'`)
         .join(" OR ");
 
-      if (selectedMedications.length || selectedFilters.length) {
-        console.log("selectedMedications", selectedMedications);
-        const medicationClause = selectedMedications
-          .map(
-            (medication) =>
-              treatmentIllnessLookup[selectedIllness.value]?.find(
-                (treatment) => treatment.name === medication,
-              ),
-          )
-          .filter((treatment) => treatment)
-          .map((treatment) =>
-            treatment?.field === "has_Oseltamivir"
-              ? `LOWER(has_oseltamivir_generic) = 'true' OR LOWER(has_oseltamivir_suspension) = 'true' OR LOWER(has_oseltamivir_tamiflu) = 'true'`
-              : `LOWER(${treatment?.field}) = 'true'`,
-          )
-          .join(" AND ");
+    const medicationClause =
+      selectedMedications.length &&
+      selectedMedications
+        .map(
+          (medication) =>
+            treatmentIllnessLookup[selectedIllness.value]?.find(
+              (treatment) => treatment.name === medication,
+            ),
+        )
+        .filter((treatment) => treatment)
+        .map((treatment) =>
+          treatment?.field === "has_Oseltamivir"
+            ? `(LOWER(has_oseltamivir_generic) = 'true' OR LOWER(has_oseltamivir_suspension) = 'true' OR LOWER(has_oseltamivir_tamiflu) = 'true')`
+            : `LOWER(${treatment?.field}) = 'true'`,
+        )
+        .join(" AND ");
 
-        // build the where clause from illness/medication clauses
-        where = medicationClause.length
-          ? `(${illnessClause}) AND ((${medicationClause}))`
-          : illnessClause;
-        featureLayer.definitionExpression = where;
-        return;
-      }
-      // B. if selectedIllness but no (selectedMedications or filters){turn on all points}
-      else {
-        // Set the definition expression to return all features
-        featureLayer.definitionExpression = illnessClause;
-        return;
-      }
+    const filterClause =
+      selectedFilters.length &&
+      selectedFilters
+        .map((filter) => `LOWER(${filter.name}) = 'true'`)
+        .join(" AND ");
+
+    // A. if no selectedIllness show no points
+    if (!illnessClause) {
+      where = "OBJECTID = -1";
+    } else {
+      // join illness, meds and filters if they are present
+      const clauses = [illnessClause, medicationClause, filterClause].filter(
+        (clause) => clause,
+      ).map((clause) => `(${clause})`); 
+      where = clauses.join(" AND ");
     }
+
+    console.log("where", where);
+    featureLayer.definitionExpression = where;
   }, [
     featureLayer,
     locations,
