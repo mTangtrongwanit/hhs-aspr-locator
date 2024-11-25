@@ -379,6 +379,12 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
                 zoom: 12,
             };
 
+          // If there is a selected treatment site and selected graphic
+          // then reset the selectedTreatmentSite to null again
+          if (selectedTreatmentSite && locationsMapView.graphics.length === 1) {
+            setSelectedTreatmentSite(null)
+          }
+
           locationsMapView.goTo(options).catch((error) => {
             console.error("MapView goTo error: ", error);
           });

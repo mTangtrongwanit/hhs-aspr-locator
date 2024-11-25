@@ -118,6 +118,8 @@ const Locations = () => {
 
   useEffect(() => {
     if (!selectedTreatmentSite) {
+      // clean up selected card when selectedTreatmentSite is null
+      setCardSelected(null);
       return;
     }
     setCardSelected(selectedTreatmentSite.attributes.OBJECTID);
