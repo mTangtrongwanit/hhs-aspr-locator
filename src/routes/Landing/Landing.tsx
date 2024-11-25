@@ -223,12 +223,12 @@ const Landing = () => {
                   </li>
                   <li>
                     Please visit{" "}
-                    <a href="https://www.cdc.gov/flu/treatment/whatyoushould.htm">
+                    <a href="https://www.cdc.gov/flu/treatment/antiviral-drugs.html?CDC_AAref_Val=https://www.cdc.gov/flu/treatment/whatyoushould.htm">
                       What are Flu Antiviral Drugs | CDC
                     </a>{" "}
                     to learn more about treatments for flu. Healthcare providers
                     can visit CDC’s{" "}
-                    <a href="https://www.cdc.gov/flu/professionals/antivirals/summary-clinicians.htm">
+                    <a href="https://www.cdc.gov/flu/hcp/antivirals/summary-clinicians.html?CDC_AAref_Val=https://www.cdc.gov/flu/professionals/antivirals/summary-clinicians.htm">
                       Influenza Antiviral Medications: Summary for Clinicians.{" "}
                     </a>
                   </li>
@@ -457,12 +457,12 @@ const Landing = () => {
                   </li>
                   <li>
                     Please see{" "}
-                    <a href="https://www.cdc.gov/flu/treatment/whatyoushould.htm">
+                    <a href="https://www.cdc.gov/flu/treatment/antiviral-drugs.html?CDC_AAref_Val=https://www.cdc.gov/flu/treatment/whatyoushould.htm">
                       What are Flu Antiviral Drugs | CDC
                     </a>{" "}
                     for more information on treatment of flu. Healthcare
                     providers can visit CDC’s{" "}
-                    <a href="https://www.cdc.gov/flu/professionals/antivirals/summary-clinicians.htm">
+                    <a href="https://www.cdc.gov/flu/hcp/antivirals/summary-clinicians.html?CDC_AAref_Val=https://www.cdc.gov/flu/professionals/antivirals/summary-clinicians.htm">
                       Influenza Antiviral Medications: Summary for Clinicians.
                     </a>
                   </li>
@@ -640,7 +640,7 @@ const Landing = () => {
                   <li>
                     For more information on the treatment of flu during
                     pregnancy, healthcare providers can visit{" "}
-                    <a href="https://www.cdc.gov/flu/professionals/antivirals/avrec_ob.htm#:~:text=For%20treatment%20of%20pregnant%20people,with%20oseltamivir%20is%205%20days.">
+                    <a href="https://www.cdc.gov/flu/hcp/antivirals/treatment_obstetric.html?CDC_AAref_Val=https://www.cdc.gov/flu/professionals/antivirals/avrec_ob.htm">
                       Recommendations for Obstetric Health Care Providers
                       Related to Use of Antiviral Medications in the Treatment
                       and Prevention of Influenza.
