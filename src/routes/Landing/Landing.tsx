@@ -135,8 +135,8 @@ const Landing = () => {
             title="Link to patient assistance program"
           >
             Patient Assistance Program
-          </a>
-          &nbsp; operated by Pfizer, offering free Paxlovid for eligible
+          </a>{" "}
+          operated by Pfizer, offering free Paxlovid for eligible
           patients. Other assistance programs are available for&nbsp;
           <a
             href="https://aspr.hhs.gov/COVID-19/Treatments/Pages/Possible-Treatment-Options-for-COVID19.aspx#oral-antivirals"
@@ -1139,7 +1139,7 @@ const Landing = () => {
                   product’s Emergency Use Authorization. Visit the{" "}
                   <a href="https://aspr.hhs.gov/COVID-19/treatments/Pages/default.aspx">
                     ASPR COVID-19 Treatments page
-                  </a>
+                  </a>{" "}
                   for more information on all COVID-19 treatment options and{" "}
                   <a href="https://www.cdc.gov/flu/treatment/index.html">
                     CDC’s Flu Treatment page
