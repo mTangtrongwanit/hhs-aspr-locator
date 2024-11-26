@@ -63,7 +63,7 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
     setLocationsMapView,
     setSearchPoint,
     setSelectedTreatmentSite,
-    circle
+    circle,
   } = useAppContext();
   const [searchParams] = useSearchParams();
 
@@ -154,7 +154,7 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
           spatialReference: {
             wkid: 102100,
           },
-        })
+        }),
       });
 
       // remove the all the dock options so they don't show in the popup
@@ -186,8 +186,6 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
                 layer.title.includes("Treatments")
               ) {
                 (layer as __esri.FeatureLayer).outFields = ["*"];
-                (layer as __esri.FeatureLayer).definitionExpression =
-                  "OBJECTID = -1";
                 layer.load().then(() => {
                   setFeatureLayer(layer as FeatureLayer);
                 });
@@ -201,10 +199,12 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
             });
             setSearchPoint({ name: geopoint, point: p });
             mapView
-              .goTo(circle?.extent || {
-                center: p,
-                zoom: 11,
-              })
+              .goTo(
+                circle?.extent || {
+                  center: p,
+                  zoom: 11,
+                },
+              )
               .catch((error) => {
                 console.error("MapView goTo error: ", error);
               });
@@ -323,7 +323,7 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
     searchPoint,
     selectedIllness.value,
     t,
-    circle?.radius
+    circle?.radius,
   ]);
 
   /** Highlight selected feature */
@@ -375,9 +375,9 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
                   },
                 })
               : circle?.extent || {
-                target: searchPoint.point,
-                zoom: 12,
-            };
+                  target: searchPoint.point,
+                  zoom: 12,
+                };
 
           // If there is a selected treatment site and selected graphic
           // then reset the selectedTreatmentSite to null again
@@ -390,7 +390,14 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
           });
         });
     }
-  }, [locations, locationsMapView, searchPoint, searchParams, selectedIllness, circle?.radius]);
+  }, [
+    locations,
+    locationsMapView,
+    searchPoint,
+    searchParams,
+    selectedIllness,
+    circle?.radius,
+  ]);
 
   // #endregion ----------------- Hooks (Other) --------------------------------
 
