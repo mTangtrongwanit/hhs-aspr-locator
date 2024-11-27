@@ -98,7 +98,7 @@ export const useFilterMap = ({
               filter.name as keyof typeof config.treatmentData.fields
             ].name;
           if (filterName === "is_pap") {
-            return `LOWER(${config.treatmentData.fields.has_USG_product.name}) = 'true'`;
+            return `(LOWER(${config.treatmentData.fields.has_USG_product.name}) = 'true' OR LOWER(${filterName}) = 'true')`;
           } else {
             return `LOWER(${filterName}) = 'true'`;
           }
