@@ -83,7 +83,7 @@ export const useFilterList = ({
       .filter((treatment) => treatment)
       .map((treatment) =>
         treatment?.field === "has_Oseltamivir"
-          ? `LOWER(has_oseltamivir_generic) = 'true' OR LOWER(has_oseltamivir_suspension) = 'true' OR LOWER(has_oseltamivir_tamiflu) = 'true'`
+          ? `(LOWER(has_oseltamivir_generic) = 'true' OR LOWER(has_oseltamivir_suspension) = 'true' OR LOWER(has_oseltamivir_tamiflu) = 'true')`
           : `LOWER(${treatment?.field}) = 'true'`,
       )
       .join(" AND ");
