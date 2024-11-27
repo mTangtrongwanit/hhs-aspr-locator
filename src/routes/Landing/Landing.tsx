@@ -1158,10 +1158,6 @@ const Landing = () => {
                   endorsement or recommendation for use of any of the locations
                   listed on the sites.
                 </p>
-                <p>
-                  For questions regarding this site, contact{" "}
-                  <strong>1-800-232-0233 (TTY 888-720-7489).</strong>
-                </p>
               </div>
             </Accordion.Content>
           </Accordion.Item>
