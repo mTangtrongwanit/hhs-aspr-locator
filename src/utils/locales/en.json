@@ -1,7 +1,7 @@
 {
   "Header": {
     "ASPR Logo Screenreader Label": "Link to Locator homepage",
-    "Logo Alt Text": "Administration for Strategic Preparedness and Response",
+    "Logo Alt Text": "ASPR Administration for Strategic Preparedness & Response",
     "FAQ":"FAQ",
     "FAQs Link Screenreader Label": "View FAQ section",
     "Homepage Link Screenreader Label": "Link to ASPR homepage",
@@ -42,7 +42,7 @@
     "ASPRgov YouTube Link Screenreader Label": "Link to ASPRgov YouTube account",
     "Email Icon Screenreader Label": "Email Icon",
     "ASPR Newsletter Screenreader Label": "Link to ASPR latest news sign-up page", 
-    "HHS FOIA Link Screenreader Label": "Link to Freedom of Information Act page on HHS site",
+    "HHS FOIA Link Screenreader Label": "Link to Freedom of Information Act page on ASPR site ",
     "HHS_ASPR X Link Screenreader Label": "Link to HHS_ASPR X account",
     "HHS Viewers & Players Link": "HHS Viewers & Players",
     "HHS Vulnerability Link Screenreader Label": "Link to vulnerability disclosure policy page on HHS site",
@@ -147,7 +147,7 @@
         "List Item 1": {
           "Text 1": "Antiviral drugs are prescription medicines that fight against the specific virus they are prescribed for – COVID-19 antivirals work to treat COVID-19, and flu antivirals work to treat influenza. Antiviral drugs are different from antibiotics, which fight against bacterial infections, and come in different forms:",
           "Unordered List 1": {
-            "List Item 1": "Oral antiviral drugs, are taken by mouth (in a pill or liquid suspension form).",
+            "List Item 1": "Oral antiviral drugs are taken by mouth (in a pill or liquid suspension form).",
             "List Item 2": "Inhaled antiviral drugs are breathed in by mouth as directed (e.g., can be administered by an inhaler).",
             "List Item 3": "Intravenous antiviral drugs are given directly into a vein with a needle or a tube."
           }
@@ -493,7 +493,7 @@
             "Text 1": "Participate in the Paxlovid Patient Assistance Program, providing free Paxlovid to publicly insured (Medicare, Medicaid, etc.) and uninsured patients."
           },
           "List Item 3": {
-            "Text 1": "Offer prescribing services (including telehealth) or home delivery of medicines"
+            "Text 1": "Offer prescribing services (including telehealth) or home delivery of medicines."
           },
           "List Item 4": {
             "Text 1": "Offer no-cost COVID-19 testing for eligible uninsured people (Increasing Community Access to Testing [ICATT] participating site)."

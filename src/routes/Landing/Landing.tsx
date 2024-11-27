@@ -536,7 +536,7 @@ const Landing = () => {
                         If your health care provider prescribes oseltamivir
                         capsules for your child and your child cannot swallow
                         capsules, please refer to{" "}
-                        <a href="https://www.cdc.gov/flu/highrisk/mixing-oseltamivir-qa.htm">
+                        <a href="https://www.cdc.gov/flu/treatment/mixing-oseltamivir-qa.html?CDC_AAref_Val=https://www.cdc.gov/flu/highrisk/mixing-oseltamivir-qa.htm">
                           CDC guidance
                         </a>{" "}
                         on opening and mixing oseltamivir capsules with liquids.
