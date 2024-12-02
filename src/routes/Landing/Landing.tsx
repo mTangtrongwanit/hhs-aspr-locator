@@ -135,8 +135,8 @@ const Landing = () => {
             title="Link to patient assistance program"
           >
             Patient Assistance Program
-          </a>
-          &nbsp; operated by Pfizer, offering free Paxlovid for eligible
+          </a>{" "}
+          operated by Pfizer, offering free Paxlovid for eligible
           patients. Other assistance programs are available for&nbsp;
           <a
             href="https://aspr.hhs.gov/COVID-19/Treatments/Pages/Possible-Treatment-Options-for-COVID19.aspx#oral-antivirals"
@@ -536,7 +536,7 @@ const Landing = () => {
                         If your health care provider prescribes oseltamivir
                         capsules for your child and your child cannot swallow
                         capsules, please refer to{" "}
-                        <a href="https://www.cdc.gov/flu/highrisk/mixing-oseltamivir-qa.htm">
+                        <a href="https://www.cdc.gov/flu/treatment/mixing-oseltamivir-qa.html?CDC_AAref_Val=https://www.cdc.gov/flu/highrisk/mixing-oseltamivir-qa.htm">
                           CDC guidance
                         </a>{" "}
                         on opening and mixing oseltamivir capsules with liquids.
@@ -1139,7 +1139,7 @@ const Landing = () => {
                   product’s Emergency Use Authorization. Visit the{" "}
                   <a href="https://aspr.hhs.gov/COVID-19/treatments/Pages/default.aspx">
                     ASPR COVID-19 Treatments page
-                  </a>
+                  </a>{" "}
                   for more information on all COVID-19 treatment options and{" "}
                   <a href="https://www.cdc.gov/flu/treatment/index.html">
                     CDC’s Flu Treatment page
@@ -1157,10 +1157,6 @@ const Landing = () => {
                   informational purposes only and does not serve as an
                   endorsement or recommendation for use of any of the locations
                   listed on the sites.
-                </p>
-                <p>
-                  For questions regarding this site, contact{" "}
-                  <strong>1-800-232-0233 (TTY 888-720-7489).</strong>
                 </p>
               </div>
             </Accordion.Content>
