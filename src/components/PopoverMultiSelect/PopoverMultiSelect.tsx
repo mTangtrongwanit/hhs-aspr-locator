@@ -136,7 +136,7 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
   /* note: this logic from https://dev.azure.com/Esri-Professional-Services/HHS-ASPR%20Treatment%20Locator%202.0/_workitems/edit/58802/
     posted by Carlee, John (OS ASPR SIIM) (CTR)
       COVID
-    Free/reduced cost
+    Free/Reduced Cost
     is_pap: true OR has_USG_product: true
     Free Testing
     is_icatt_site: true
@@ -276,12 +276,12 @@ const PopoverMultiSelect = ({ type }: PopoverMultiSelectProps) => {
           className="hhs-primary-button"
           title={
             type === "medications"
-              ? "This button filters results to only include specific medications!"
-              : "This buttons filters results to only include specific site information"
+              ? "These filters limit results to sites offering the selected medication criteria"
+              : "These filters limit results to sites matching the selected criteria"
           }
           aria-label={
             type === "medications"
-              ? "This button filters results to only include specific medications!"
+              ? "These filters limit results to sites offering the selected medication criteria"
               : "This buttons filters results to only include specific site information"
           }
         >

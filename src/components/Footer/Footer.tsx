@@ -170,8 +170,8 @@ const Footer = () => {
             <StyledFooterLink>
               <a 
                 href="https://www.hhs.gov/foia/index.html" target="_blank" rel="noopener"
-                aria-label="Link to FOIA page on HHS site"
-                title="Link to FOIA page on ASPR site" 
+                aria-label="Link to Freedom of Information Act page on ASPR site"
+                title="Link to Freedom of Information Act page on ASPR site" 
               >
                 FOIA
               </a>
@@ -216,10 +216,10 @@ const Footer = () => {
           <StyledFooterImageContainer>
             <StyledFooterImageLink 
               href="https://aspr.hhs.gov/Pages/Home.aspx"
-              aria-label="Link to ASPR homepage"
-              title="Link to ASPR homepage"
+              aria-label="Link to ASPR Administration for Strategic Preparedness & Response homepage"
+              title="Link to ASPR Administration for Strategic Preparedness & Response homepage"
             >
-              <StyledFooterImage src={whiteLogoPath} alt="ASPR logo" />
+              <StyledFooterImage src={whiteLogoPath} alt="ASPR Administration for Strategic Preparedness & Response logo" />
             </StyledFooterImageLink>
           </StyledFooterImageContainer>
           <StyledFooterMediaLinksContainer>

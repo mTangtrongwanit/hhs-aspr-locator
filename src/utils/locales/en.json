@@ -62,7 +62,8 @@
     "View Locations Button Label": "View Locations",
     "View Locations Button Screenreader Label": "View locations based on entered location and selected treatment choice",
     "Context Container Screenreader Heading": "Contextual Information",
-    "Context Container Text": "This content is not fully Section 508 conformant. If you need assistance, please contact",
+    "Context Container Text": "This content is not fully Section 508 conformant. If you need assistance, please",
+    "Context Container Anchor Text": "contact us",
     "Assistance Program Description": "i18n Todo - not sure how to effectively break this up into paragraph text vs links",
     "Email Link Screenreader Label": "Email link",
     
@@ -504,7 +505,10 @@
     "Accordion Item 13": {
       "Heading": "How can my site be added to the locator?",
       "Content": {
-        "Text 1": "If you would like more information about being added to the Treatments Locator, please email"
+        "Text 1": "If you would like more information about being added to the Treatments Locator, please",
+        "Anchor 1": {
+          "Text 1": "contact us"
+        }
       }
     },
     "Accordion Item 14": {
@@ -587,7 +591,7 @@
     "Zoom To Site Button Screenreader Label": "Zoom to this site on the map",
     "Copy Link Button Screenreader Label": "Copy link to this site",
     "Open in Maps Button Screenreader Label": "Open location in Google Maps",
-    "pap": "Free/Reduced cost",
+    "pap": "Free/Reduced Cost",
     "usgProduct": "USG product",
     "homeDelivery": "Home Delivery",
     "icatt": "Free Testing",
@@ -604,7 +608,7 @@
     "hoverTamifluOnly": "Generic oseltamivir may not be available",
     "hoverOseltamivirSuspension": "Oseltamivir suspension (liquid form) may be available",
     "hoverPrescribingServices": "Prescribing services may be available (including telehealth)",
-    "additionalInformation": "Additional information for",
+    "additionalInformation": "Additional Information for",
     "rXorTelehealth": "prescribing services",
     "shareLocation": "Copy Location Link",
     "directionsToLocation": "Directions to Location",
