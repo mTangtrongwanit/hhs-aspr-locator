@@ -94,15 +94,15 @@ const HeaderComponent = () => {
       <StyledHeader aria-hidden="false" data-aria-hidden="false" ref={headerRef}>
         <StyledHeaderContentContainer>
           <StyledHeaderLink to="/"
-            aria-label="Return to Locator homepage"
-            title="Return to Locator homepage">
+            aria-label="Link to COVID-19 and Flu Treatments Locator homepage"
+            title="Link to COVID-19 and Flu Treatments Locator homepage">
             <StyledHeaderLogo
               src={webLogoPath}
               srcSet={`${mobileLogoPath} 274w, ${webLogoPath} 639w`}
               sizes="(max-width: 1100px) 117px,
               296px"
-              alt="ASPR Administration for Strategic Preparedness & Response Logo"
-              aria-label="ASPR Administration for Strategic Preparedness & Response Logo"
+              alt="ASPR logo"
+              aria-label="ASPR logo"
             />
           </StyledHeaderLink>
         </StyledHeaderContentContainer>
