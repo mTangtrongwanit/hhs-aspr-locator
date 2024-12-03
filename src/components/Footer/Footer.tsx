@@ -216,10 +216,10 @@ const Footer = () => {
           <StyledFooterImageContainer>
             <StyledFooterImageLink 
               href="https://aspr.hhs.gov/Pages/Home.aspx"
-              aria-label="Link to ASPR Administration for Strategic Preparedness & Response homepage"
-              title="Link to ASPR Administration for Strategic Preparedness & Response homepage"
+              aria-label="Link to ASPR homepage"
+              title="Link to ASPR homepage"
             >
-              <StyledFooterImage src={whiteLogoPath} alt="ASPR Administration for Strategic Preparedness & Response logo" />
+              <StyledFooterImage src={whiteLogoPath} alt="ASPR logo" />
             </StyledFooterImageLink>
           </StyledFooterImageContainer>
           <StyledFooterMediaLinksContainer>
