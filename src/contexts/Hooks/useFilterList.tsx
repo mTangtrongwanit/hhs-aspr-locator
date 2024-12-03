@@ -155,9 +155,10 @@ export const useFilterList = ({
         setLocations(displayLocations);
         // get the distance of the last location and set it to the circle radius so the radius shows the exact search distance
         const newDist =
-          displayLocations[displayLocations.length - 1].attributes;
-        console.log("newDist", displayLocations[displayLocations.length - 1]);
-        setRadius(newDist.distance);
+          displayLocations.length > 99
+            ? displayLocations[displayLocations.length - 1].attributes?.distance
+            : 50;
+        setRadius(newDist);
       })
       .catch((error) => {
         console.error("Error getting locations data: ", error);
