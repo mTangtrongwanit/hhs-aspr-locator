@@ -75,8 +75,8 @@ export const useCircleRadius = ({
         }),
       ],
     });
-    locationsMapView.map.layers.add(circleLayer);
-    locationsMapView.map.layers.reorder(circleLayer, 0);
+    locationsMapView?.map?.layers?.add(circleLayer);
+    locationsMapView?.map?.layers?.reorder(circleLayer, 0);
     // cleanup by destroying the circle layer
     return () => {
       locationsMapView?.map?.remove(circleLayer);
