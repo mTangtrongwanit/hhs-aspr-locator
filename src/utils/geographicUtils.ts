@@ -9,6 +9,7 @@ import Point from "@arcgis/core/geometry/Point";
 import Polyline from "@arcgis/core/geometry/Polyline";
 import Circle from "@arcgis/core/geometry/Circle";
 import * as geometryEngine from "@arcgis/core/geometry/geometryEngine";
+import * as projection from "@arcgis/core/geometry/projection";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region ------------------------ Resources ----------------------------------
@@ -135,8 +136,13 @@ export const calculateDistanceBetweenTwoPoints = (
         ],
       ],
     });
+    // reproject polyline into search point's spatial reference
+    const reprojectedPolyline = projection.project(polyline, {
+      wkid: searchPoint.point.spatialReference.wkid,
+    }) as Polyline;
 
-    return geometryEngine.geodesicLength(polyline, "miles");
+    // get the planar distance between the two points
+    return geometryEngine.planarLength(reprojectedPolyline, "miles");
   } catch (error) {
     console.error("Error calculating distance: ", error);
     return null;

@@ -170,8 +170,8 @@ const Footer = () => {
             <StyledFooterLink>
               <a 
                 href="https://www.hhs.gov/foia/index.html" target="_blank" rel="noopener"
-                aria-label="Link to FOIA page on HHS site"
-                title="Link to FOIA page on ASPR site" 
+                aria-label="Link to Freedom of Information Act page on ASPR site"
+                title="Link to Freedom of Information Act page on ASPR site" 
               >
                 FOIA
               </a>
@@ -207,6 +207,9 @@ const Footer = () => {
               <br />
               200 Independence Ave., Washington, DC 20201
             </StyledFooterAddress>
+            
+            {APP_MODE === 'development' && <StyledFooterAddress>Development Version: {APP_VERSION}</StyledFooterAddress>}
+            
           </StyledFooterAddressContainer>
         </StyledFooterFirstColumn>
         <StyledFooterSecondColumn>
@@ -309,6 +312,7 @@ const Footer = () => {
             </StyledFooterMediaLink>
           </StyledFooterMediaLinksContainer>
         </StyledFooterSecondColumn>
+        
       </StyledFooter>
     </StyledFooterContainer>
   );

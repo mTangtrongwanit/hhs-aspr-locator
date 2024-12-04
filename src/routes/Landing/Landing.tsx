@@ -90,8 +90,8 @@ const Landing = () => {
         </StyledRow>
         <StyledLink
           to="/locations"
-          aria-label="View Locations based on entered location and selected treatment choice"
-          title="View Locations based on entered location and selected treatment choice"
+          aria-label="View locations based on entered location and selected treatment choice"
+          title="View locations based on entered location and selected treatment choice"
           aria-hidden="false" data-aria-hidden="false"
         >
           {t("Landing.View Locations Button Label")}
@@ -109,13 +109,14 @@ const Landing = () => {
         </h2>
         <p>
           This content is not fully Section 508 conformant. If you need
-          assistance, please contact&nbsp;
+          assistance, please
+          {" "}
           <a
-            href="mailto:gis@hhs.gov"
-            aria-label="Email link: gis@hhs.gov"
-            title="Email link: gis@hhs.gov"
+            href="https://asprready.hhs.gov/#/public-submission"
+            aria-label="https://asprready.hhs.gov/#/public-submission"
+            title="https://asprready.hhs.gov/#/public-submission"
           >
-            gis@hhs.gov
+            contact us
           </a>
           .{" "}
           <a
@@ -135,8 +136,8 @@ const Landing = () => {
             title="Link to patient assistance program"
           >
             Patient Assistance Program
-          </a>
-          &nbsp; operated by Pfizer, offering free Paxlovid for eligible
+          </a>{" "}
+          operated by Pfizer, offering free Paxlovid for eligible
           patients. Other assistance programs are available for&nbsp;
           <a
             href="https://aspr.hhs.gov/COVID-19/Treatments/Pages/Possible-Treatment-Options-for-COVID19.aspx#oral-antivirals"
@@ -214,7 +215,7 @@ const Landing = () => {
                     <ul>
                       <li>
                         Oral oseltamivir (available as a generic version or
-                        under the trade name Tamiflu),
+                        under the trade name Tamiflu)
                       </li>
                       <li>Oral baloxavir (Xofluza) </li>
                       <li>Inhaled zanamivir (Relenza) </li>
@@ -223,12 +224,12 @@ const Landing = () => {
                   </li>
                   <li>
                     Please visit{" "}
-                    <a href="https://www.cdc.gov/flu/treatment/whatyoushould.htm">
+                    <a href="https://www.cdc.gov/flu/treatment/antiviral-drugs.html?CDC_AAref_Val=https://www.cdc.gov/flu/treatment/whatyoushould.htm">
                       What are Flu Antiviral Drugs | CDC
                     </a>{" "}
                     to learn more about treatments for flu. Healthcare providers
                     can visit CDC’s{" "}
-                    <a href="https://www.cdc.gov/flu/professionals/antivirals/summary-clinicians.htm">
+                    <a href="https://www.cdc.gov/flu/hcp/antivirals/summary-clinicians.html?CDC_AAref_Val=https://www.cdc.gov/flu/professionals/antivirals/summary-clinicians.htm">
                       Influenza Antiviral Medications: Summary for Clinicians.{" "}
                     </a>
                   </li>
@@ -277,8 +278,8 @@ const Landing = () => {
                     infections, and come in different forms:
                     <ul>
                       <li>
-                        Oral antiviral drugs, are taken by mouth (in a pill or
-                        liquid suspension form)
+                        Oral antiviral drugs are taken by mouth (in a pill or
+                        liquid suspension form). 
                       </li>
                       <li>
                         Inhaled antiviral drugs are breathed in by mouth as
@@ -420,7 +421,7 @@ const Landing = () => {
                     <ul>
                       <li>
                         This medication is given by a healthcare provider as a
-                        single dose through an intravenous infusion{" "}
+                        single dose through an intravenous infusion.{" "}
                       </li>
                     </ul>
                   </li>
@@ -445,7 +446,7 @@ const Landing = () => {
                     children 12 years and older who are at high risk of
                     developing influenza-related complications.
                     <ul>
-                      <li>Baloxavir is taken by mouth as a single dose</li>
+                      <li>Baloxavir is taken by mouth as a single dose.</li>
                       <li>
                         Baloxavir is not recommended for treatment of flu in
                         pregnant or breastfeeding people, severely
@@ -457,12 +458,12 @@ const Landing = () => {
                   </li>
                   <li>
                     Please see{" "}
-                    <a href="https://www.cdc.gov/flu/treatment/whatyoushould.htm">
+                    <a href="https://www.cdc.gov/flu/treatment/antiviral-drugs.html?CDC_AAref_Val=https://www.cdc.gov/flu/treatment/whatyoushould.htm">
                       What are Flu Antiviral Drugs | CDC
                     </a>{" "}
                     for more information on treatment of flu. Healthcare
                     providers can visit CDC’s{" "}
-                    <a href="https://www.cdc.gov/flu/professionals/antivirals/summary-clinicians.htm">
+                    <a href="https://www.cdc.gov/flu/hcp/antivirals/summary-clinicians.html?CDC_AAref_Val=https://www.cdc.gov/flu/professionals/antivirals/summary-clinicians.htm">
                       Influenza Antiviral Medications: Summary for Clinicians.
                     </a>
                   </li>
@@ -536,7 +537,7 @@ const Landing = () => {
                         If your health care provider prescribes oseltamivir
                         capsules for your child and your child cannot swallow
                         capsules, please refer to{" "}
-                        <a href="https://www.cdc.gov/flu/highrisk/mixing-oseltamivir-qa.htm">
+                        <a href="https://www.cdc.gov/flu/treatment/mixing-oseltamivir-qa.html?CDC_AAref_Val=https://www.cdc.gov/flu/highrisk/mixing-oseltamivir-qa.htm">
                           CDC guidance
                         </a>{" "}
                         on opening and mixing oseltamivir capsules with liquids.
@@ -628,7 +629,7 @@ const Landing = () => {
                     taken during any trimester of pregnancy.
                   </li>
                   <li>
-                    Oral oseltamivir is the preferred treatment options for
+                    Oral oseltamivir is the preferred treatment option for
                     pregnant people with flu because it has the most studies
                     available to suggest that it is safe and beneficial.
                   </li>
@@ -640,7 +641,7 @@ const Landing = () => {
                   <li>
                     For more information on the treatment of flu during
                     pregnancy, healthcare providers can visit{" "}
-                    <a href="https://www.cdc.gov/flu/professionals/antivirals/avrec_ob.htm#:~:text=For%20treatment%20of%20pregnant%20people,with%20oseltamivir%20is%205%20days.">
+                    <a href="https://www.cdc.gov/flu/hcp/antivirals/treatment_obstetric.html?CDC_AAref_Val=https://www.cdc.gov/flu/professionals/antivirals/avrec_ob.htm">
                       Recommendations for Obstetric Health Care Providers
                       Related to Use of Antiviral Medications in the Treatment
                       and Prevention of Influenza.
@@ -970,7 +971,7 @@ const Landing = () => {
                   locations displayed on this website have either self-attested
                   they have inventory of COVID-19 or influenza antiviral
                   medications within at least the last two months and/or
-                  reported participation in the US Government Paxlovid Patient
+                  reported participation in the U.S. Government Paxlovid Patient
                   Assistance Program operated by Pfizer.
                 </p>
               </div>
@@ -1007,21 +1008,21 @@ const Landing = () => {
                 <ul>
                   <li>
                     Have remaining free Paxlovid and/or Lagevrio distributed by
-                    the U.S. Department of Health and Human Services{" "}
+                    the U.S. Department of Health and Human Services.{" "}
                   </li>
                   <li>
                     Participate in the Paxlovid Patient Assistance Program,
                     providing free Paxlovid to publicly insured (Medicare,
-                    Medicaid, etc.) and uninsured patients
+                    Medicaid, etc.) and uninsured patients.
                   </li>
                   <li>
                     Offer prescribing services (including telehealth) or home
-                    delivery of medicines
+                    delivery of medicines.
                   </li>
                   <li>
                     Offer no-cost COVID-19 testing for eligible uninsured people
                     (Increasing Community Access to Testing [ICATT]
-                    participating site){" "}
+                    participating site).{" "}
                   </li>
                 </ul>
               </div>
@@ -1055,10 +1056,15 @@ const Landing = () => {
                 <p>
                   {" "}
                   If you would like more information about being added to the
-                  Treatments Locator, please email{" "}
-                  <a href="mailto:COVID19.therapeutics@hhs.gov">
-                    COVID19.therapeutics@hhs.gov.
-                  </a>{" "}
+                  Treatments Locator, please{" "}
+                  <a 
+                    href="https://asprready.hhs.gov/#/public-submission"
+                    aria-label="https://asprready.hhs.gov/#/public-submission"
+                    title="https://asprready.hhs.gov/#/public-submission"
+                  >
+                    contact us
+                  </a>
+                  .
                 </p>
               </div>
             </Accordion.Content>
@@ -1094,7 +1100,7 @@ const Landing = () => {
                   Paxlovid Patient Assistance Program by{" "}
                   <a href="mailto:PharmacyNetworkContract102101@assistrx.com">
                     contacting the program vendor
-                  </a>{" "}
+                  </a>.{" "}
                 </p>
               </div>
             </Accordion.Content>
@@ -1139,7 +1145,7 @@ const Landing = () => {
                   product’s Emergency Use Authorization. Visit the{" "}
                   <a href="https://aspr.hhs.gov/COVID-19/treatments/Pages/default.aspx">
                     ASPR COVID-19 Treatments page
-                  </a>
+                  </a>{" "}
                   for more information on all COVID-19 treatment options and{" "}
                   <a href="https://www.cdc.gov/flu/treatment/index.html">
                     CDC’s Flu Treatment page
@@ -1157,10 +1163,6 @@ const Landing = () => {
                   informational purposes only and does not serve as an
                   endorsement or recommendation for use of any of the locations
                   listed on the sites.
-                </p>
-                <p>
-                  For questions regarding this site, contact{" "}
-                  <strong>1-800-232-0233 (TTY 888-720-7489).</strong>
                 </p>
               </div>
             </Accordion.Content>

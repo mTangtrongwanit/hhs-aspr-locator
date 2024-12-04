@@ -1,103 +1,597 @@
 {
-  "title": "Welcome {{name}}",
-  "description": {
-    "part1": "This is a simple example.",
-    "part2": "something"
-  },
-  "userMessagesUnread_one": "You have {{count}} unread message.",
-  "userMessagesUnread_other": "You have {{count}} unread messages.",
   "Header": {
-    "Logo Alt Text": "Administration for Strategic Preparedness and Response",
+    "ASPR Logo Screenreader Label": "Link to Locator homepage",
+    "Logo Alt Text": "ASPR logo",
+    "FAQ":"FAQ",
+    "FAQs Link Screenreader Label": "View FAQ section",
+    "Homepage Link Screenreader Label": "Link to ASPR homepage",
     "Title": "COVID-19 and Flu Treatments Locator",
     "Title Alt Text": "COVID-19 and Flu Treatments Locator"
   },
   "Footer": {
+    "200_Independence_Ave.,_Washington,_DC_20201": "200 Independence Ave., Washington, DC 20201", 
+    "HHS, Administration for Strategic Preparedness and Response (ASPR)": "HHS, Administration for Strategic Preparedness and Response (ASPR)",
+    "HHS Logo Screenreader Label": "Department of Health & Human Services Logo • USA",
     "Home Link": "Home",
+    "Link to ASPR homepage":"Link to ASPR homepage",
+    "LinkedIn Icon Screenreader Label": "LinkedIn Icon",
+    "ASPR LinkedIn Link Screenreader Label": "Link to ASPR LinkedIn account",
     "Contact Us Link": "Contact Us",
+    "ASPR Contact Section Link Screenreader Label": "Link to ASPR contact section",
     "ASPR Archive Link": "ASPR Archive",
+    "ASPR Archive Link Screenreader Label": "Link to ASPR Archive",
+    "ASPR logo":"ASPR logo",
+    "ASPRgov X Link Screenreader Label": "Link to ASPRgov X account",
+    "ASPR Homepage Link Screenreader Label": "Link to ASPR homepage",
+    "HHS Homepage Link Screenreader Label": "Link to HHS homepage",
     "Accessibility Link": "Accessibility",
+    "ASPR Accessibility Link Screenreader Label": "Link to accessibility page on ASPR site",
     "Privacy Policies Link": "Privacy Policies",
+    "ASPR Privacy Link Screenreader Label": "Link to privacy page on ASPR site",
     "Disclaimer Link": "Disclaimer",
+    "ASPR Disclaimer Link Screenreader Label": "Link to disclaimer page on ASPR site",
+    "Facebook Icon":"Facebook Icon",
+    "Link to ASPRgov Facebook account":"Link to ASPRgov Facebook account",
+    "Instagram Icon Screenreader Label": "Instagram Icon",
+    "ASPRgov Instagram Link Screenreader Label": "Link to ASPRgov Instagram account",
+    "Threads Icon Screenreader Label": "Threads Icon",
+    "ASPRgov Threads Link Screenreader Label": "Link to ASPRgov Threads account",
+    "Flickr Icon Screenreader Label": "Flickr Icon",
+    "ASPRgov Flickr Link Screenreader Label": "Link to ASPRgov Flickr account",
+    "YouTube Icon Screenreader Label": "YouTube Icon",
+    "ASPRgov YouTube Link Screenreader Label": "Link to ASPRgov YouTube account",
+    "Email Icon Screenreader Label": "Email Icon",
+    "ASPR Newsletter Screenreader Label": "Link to ASPR latest news sign-up page", 
+    "HHS FOIA Link Screenreader Label": "Link to Freedom of Information Act page on ASPR site ",
+    "HHS_ASPR X Link Screenreader Label": "Link to HHS_ASPR X account",
     "HHS Viewers & Players Link": "HHS Viewers & Players",
+    "HHS Vulnerability Link Screenreader Label": "Link to vulnerability disclosure policy page on HHS site",
     "HHS Plain Language Link": "HHS Plain Language",
+    "HHS Plain Language Link Screenreader Label": "Link to plain writing page on HHS site",
+    "HHS Plugins Link Screenreader Label": "Link to plugins page on HHS site",
     "FOIA Link": "FOIA",
-    "Vulnerability Disclosure Policy Link": "Vulnerability Disclosure Policy"
+    "Vulnerability Disclosure Policy Link": "Vulnerability Disclosure Policy",
+    "X Alt Icon Screenreader Label": "X AltIcon",
+    "X Icon Screenreader Label": "X Icon"
   },
   "Landing": {
     "Search Container Heading": "Find COVID-19 and Flu Medications",
     "Search Container Description": "The locator displays pharmacies, clinics, and other locations with safe and effective COVID-19 and flu medications. These medications require a prescription from a healthcare provider. COVID-19 and flu medications may be available at additional locations not shown on this locator.",
+    "Search Container Placeholder": "Enter a location to view services",
     "Illness Placeholder": "What do you need treatment for?",
     "View Locations Button Label": "View Locations",
+    "View Locations Button Screenreader Label": "View locations based on entered location and selected treatment choice",
     "Context Container Screenreader Heading": "Contextual Information",
+    "Context Container Text": "This content is not fully Section 508 conformant. If you need assistance, please",
+    "Context Container Anchor Text": "contact us",
     "Assistance Program Description": "i18n Todo - not sure how to effectively break this up into paragraph text vs links",
+    "Email Link Screenreader Label": "Email link",
+    
+    "Link to Tabular Access Screenreader Label": "Link to tabular access to the data",
+    "Tabular Access Available": "Tabular access to the data is also available.",
+    "Website US Government": "This website includes locations participating in the U.S. Government",
+    "PAP Text": "operated by Pfizer, offering free Paxlovid for eligible patients. Other assistance programs are available for",
+    "Link to Patient Assistance Program Screenreader Label": "Link to patient assistance program",
+    "Link to PAP Screenreader Label": "Link to patient assistance program",
+    "COVID-19 Assistance Program Link Screenreader Label": "Link to COVID-19 assistance program",
+    "Flu Assistance Program Link Screenreader Label": "Link to flu assistance program",
+    "Frequently Asked Questions": "Frequently Asked Questions",
+    "FAQ Title": "Frequently Asked Questions",
+    "Screenreader FAQ Intro": "Read Frequently Asked Question: ",
     "Accessible FAQ Intro": "Read Frequently Asked Question: ",
     "Accordion Item 1": {
-      "Heading": "Which outpatient medications available to treat COVID-19 and flu appear on this locator?"
+      "Heading": "Which outpatient medications available to treat COVID-19 and flu appear on this locator?",
+      "Content": {
+        "Text 1": "The COVID-19 and flu treatment locator can be used to help you find FDA approved or authorized treatments for these diseases.",
+        "Unordered List 1": {
+          "List Item 1": {
+            "Text 1": "Three outpatient treatments are currently authorized or approved by the U.S. Food and Drug Administration (FDA) to help reduce the risk of hospitalization or death for patients with mild to moderate COVID-19:",
+            "Unordered List 1": {
+              "List Item 1": {
+                "Text 1": "Oral Paxlovid (nirmatrelvir with ritonavir)"
+              },
+              "List Item 2": {
+                "Text 1": "Oral Lagevrio (molnupiravir)"
+              },
+              "List Item 3": {
+                "Text 1": "Intravenous outpatient Veklury (remdesivir)"
+              }
+            }
+          },
+          "List Item 2": {
+            "Anchor 1": {
+              "Text 1": "Treatment Options for"
+            },
+            "Text 1": "to learn more about these medications."
+          },
+          "List Item 3": {
+            "Text 1": "All COVID treatments listed on this site require a prescription from a health care provider and are most effective if you take them as soon as you get sick, and ideally within 5 days of developing symptoms."
+          }
+        },
+        "Unordered List 2": {
+          "List Item 1": {
+            "Text 1": "The following outpatient treatments are currently approved by FDA and recommended by CDC to treat flu:",
+            "Unordered List 1": {
+              "List Item 1": {
+                "Text 1": "Oral oseltamivir (available as a generic version or under the trade name Tamiflu)"
+              },
+              "List Item 2": {
+                "Text 1": "Oral baloxavir (Xofluza)"
+              },
+              "List Item 3": {
+                "Text 1": "Inhaled zanamivir (Relenza)"
+              },
+              "List Item 4": {
+                "Text 1": "Intravenous peramivir (Rapivab)"
+              }
+            }
+          },
+          "List Item 2": {
+            "Text 1": "Please visit",
+            "Anchor 1": {
+              "Text 1": "What are Flu Antiviral Drugs | CDC"
+            },
+            "Text 2": "to learn more about treatments for flu. Healthcare providers can visit CDC’s",
+            "Anchor 2": {
+              "Text 1": "Influenza Antiviral Medications: Summary for Clinicians"
+            }
+          },
+          "List Item 3": {
+            "Text 1": "All flu treatments listed on this site require a prescription from a health care provider and are most effective if you take them as soon as you get sick, and ideally within 48 hours of developing symptoms."
+          }
+        }
+      }
     },
     "Accordion Item 2": {
-      "Heading": "What are antivirals?"
+      "Heading": "What are antivirals?",
+      "Content": {
+        "List Item 1": {
+          "Text 1": "Antiviral drugs are prescription medicines that fight against the specific virus they are prescribed for – COVID-19 antivirals work to treat COVID-19, and flu antivirals work to treat influenza. Antiviral drugs are different from antibiotics, which fight against bacterial infections, and come in different forms:",
+          "Unordered List 1": {
+            "List Item 1": "Oral antiviral drugs are taken by mouth (in a pill or liquid suspension form).",
+            "List Item 2": "Inhaled antiviral drugs are breathed in by mouth as directed (e.g., can be administered by an inhaler).",
+            "List Item 3": "Intravenous antiviral drugs are given directly into a vein with a needle or a tube."
+          }
+        }
+      }
     },
     "Accordion Item 3": {
-      "Heading": "Who can take the outpatient COVID-19 medications listed on this website?"
+      "Heading": "Who can take the outpatient COVID-19 medications listed on this website?",
+      "Content": {
+        "Unordered List 1": {
+        "List Item 1": {
+          "Text 1": "Paxlovid: Adults and children (12 years of age and older,  weighing at least 88 pounds [40 kg]), who are at high risk for getting very sick from COVID-19 and who have mild to moderate symptoms."
+        },
+        "List Item 2": {
+          "Text 1": "Lagevrio: Adults 18 years and older, who are at high risk for getting very sick from COVID-19, have mild to moderate symptoms, and do not have access to other COVID-19 outpatient treatment options or other treatment options are not appropriate for them."
+        },
+        "List Item 3": {
+          "Text 1": "Veklury: In the outpatient setting, adults and children (28",
+          "Text 2": "days",
+          "Text 3": "of age or older and weighing at least 7 pounds [3 kg]), who have mild to moderate symptoms of COVID-19 and are at high risk for getting very sick from COVID-19.",
+          "Unordered List 1": {
+            "List Item 1": {
+              "Text 1": "This medication is given through an intravenous infusion and may be given in the outpatient (not staying in the hospital) setting over three consecutive visits or in the inpatient (staying in the hospital) setting. This website lists only outpatient locations where Veklury is available."
+            }
+          }
+        },
+        "List Item 4": {
+          "Text 1": "Paxlovid and Lagevrio must be taken within 5 days of symptom  onset to be effective. Veklury outpatient administration is within 7 days of symptom onset."
+        },
+        "List Item 5": {
+          "Text 1": "To learn more about indications for these products, see",
+          "Anchor 1": {
+            "Text 1": "Treatment Options for COVID-19."
+          },
+          "Text 2": "Healthcare providers can refer to the",
+          "Anchor 2": {
+            "Text 1": "Side-by-Side Overview of Therapeutics Authorized or Approved for the Treatment of Mild to Moderate COVID-19."
+          }
+        }
+      }
+      }
     },
     "Accordion Item 4": {
-      "Heading": "Who can take the outpatient flu medications listed on this website?"
+      "Heading": "Who can take the outpatient flu medications listed on this website?",
+      "Content": {
+        "Unordered List 1": {
+        "List Item 1": {
+          "Text 1": "Oseltamivir (including brand name Tamiflu): Recommended for adults and children of all ages.",
+          "Unordered List 1": {
+            "List Item 1": {
+              "Text 1": "It is the preferred treatment for treatment of influenza in pregnant women, hospitalized patients, and outpatients with severe, complicated, or progressive illness."
+            },
+            "List Item 2": {
+              "Text 1": "Oseltamivir is taken twice daily by mouth for 5 days."
+            }
+          }
+        },
+        "List Item 2": {
+          "Text 1": "Peramivir (Rapivab): Otherwise healthy adults and children 6 months and older.",
+          "Unordered List 1": {
+            "List Item 1": {
+              "Text 1": "This medication is given by a healthcare provider as a single dose through an intravenous infusion."
+            }
+          }
+        },
+        "List Item 3": {
+          "Text 1": "Zanamivir (Relenza): Adults and children 7 years and older.",
+          "Unordered List 1": {
+            "List Item 1": {
+              "Text 1": "Zanamivir is administered using an inhaler device and is not recommended for people with breathing problems like asthma or COPD or those with a history of allergy to lactose or milk protein."
+            },
+            "List Item 2": {
+              "Text 1": "Zanamivir is taken twice daily using an inhaler device for 5 days."
+            }
+          }
+        },
+        "List Item 4": {
+          "Text 1": "Baloxavir (Xofluza): Otherwise healthy children 5 years and older for acute uncomplicated influenza, and adults and children 12 years and older who are at high risk of developing influenza-related complications.",
+          "Unordered List 1": {
+            "List Item 1": {
+              "Text 1": "Baloxavir is taken by mouth as a single dose."
+            },
+            "List Item 2": {
+              "Text 1": "Baloxavir is not recommended for treatment of flu in pregnant or breastfeeding people, severely immunosuppressed persons, or in outpatients with complicated or progressive illness because there is no information about use of baloxavir in these patients."
+            }
+          }
+        },
+        "List Item 5": {
+          "Text 1": "Please see",
+          "Anchor 1": {
+            "Text 1": "What are Flu Antiviral Drugs | CDC"
+          },
+          "Text 2": "for more information on treatment of flu. Healthcare providers can visit CDC’s",
+          "Anchor 2": {
+            "Text 1": "Influenza Antiviral Medications: Summary for Clinicians."
+          }
+        }
+      }
+      }
     },
     "Accordion Item 5": {
-      "Heading": "Can children take the antiviral medications listed on this website?"
+      "Heading": "Can children take the antiviral medications listed on this website?",
+      "Content": {
+        "Unordered List 1": {
+          "List Item 1": {
+            "Text 1": "Paxlovid is authorized by the FDA for emergency use in children 12 years or older weighing at least 88 pounds [40 kg], who are at high risk for getting very sick from COVID-19 and who have mild to moderate symptoms."
+          },
+          "List Item 2": {
+            "Text 1": "Veklury is FDA-approved for children 28 days of age or older and weighing at least 7 pounds [3 kg], who have mild to moderate symptoms of COVID-19 and are at high risk for getting very sick from COVID-19.",
+            "Unordered List 1": {
+              "List Item 1": {
+                "Text 1": "This medication is given through an intravenous infusion and may be given in the outpatient (not staying in the hospital) or inpatient (staying in the hospital) setting. This website lists only outpatient locations where Veklury is available."
+              }
+            }
+          }
+        },
+        "Unordered List 2": {
+          "List Item 1": {
+            "Text 1": "Oral oseltamivir is approved by the FDA for treatment of acute uncomplicated influenza within 2 days of illness onset in people 14 days of age and older. Although not part of the FDA-approved indications, use of oral oseltamivir for treatment of influenza in infants less than 14 days old is recommended by the CDC. Oseltamivir is available as an oral suspension for children.",
+            "Unordered List 1": {
+              "List Item 1": {
+                "Text 1": "If your health care provider prescribes oseltamivir capsules for your child and your child cannot swallow capsules, please refer to",
+                "Anchor 1": {
+                  "Text 1": "CDC guidance"
+                },
+                "Text 2": "on opening and mixing oseltamivir capsules with liquids."
+              }
+            }
+          },
+          "List Item 2": {
+            "Text 1": "Zanamivir is approved for early treatment of flu in people 7 years and older, though it is not recommended for use in children with underlying respiratory disease, including asthma and other chronic lung diseases, and in patients with milk protein allergy."
+          },
+          "List Item 3": {
+            "Text 1": "Peramivir is approved for early treatment of flu in otherwise healthy patients 6 months and older."
+          },
+          "List Item 4": {
+            "Text 1": "Baloxavir is available in a single dose tablet for early treatment of flu in otherwise healthy children aged 5 years and older, and in children 12 years and older who are at higher risk of developing flu-related complications."
+          }
+        }
+      }
     },
     "Accordion Item 6": {
-      "Heading": "Can pregnant people take flu and COVID-19 antiviral medications?"
+      "Heading": "Can pregnant people take flu and COVID-19 antiviral medications?",
+      "Content": {
+        "Unordered List 1": {
+          "List Item 1": {
+            "Text 1": "Pregnant and recently pregnant people (at least 6 weeks following the end of pregnancy) are at increased risk of severe illness from COVID-19."
+          },
+          "List Item 2": {
+            "Text 1": "Paxlovid (ritonavir with nirmatrelvir) is the preferred treatment option for pregnant and recently pregnant patients with COVID-19."
+          },
+          "List Item 3": {
+            "Text 1": "Lagevrio (molnupiravir) is not recommended for use during pregnancy because of risk it may cause fetal harm. Prior to initiating treatment with Lagevrio, health care providers should assess whether an individual of childbearing potential is pregnant, if clinically indicated. Breastfeeding is not recommended during treatment with Lagevrio and for 4 days after final dose."
+          },
+          "List Item 4": {
+            "Text 1": "Healthcare providers can refer to the",
+            "Anchor 1": {
+              "Text 1": "Side-by-Side Overview of Therapeutics Authorized or Approved for the Treatment of Mild to Moderate COVID-19."
+            }
+          }
+        },
+        "Unordered List 2": {
+          "List Item 1": {
+            "Text 1": "Treatment with antiviral medications for flu is recommended for pregnant people or people who are up to 2 weeks postpartum (including following pregnancy loss) with suspected or confirmed influenza of any severity and can be taken during any trimester of pregnancy."
+          },
+          "List Item 2": {
+            "Text 1": "Oral oseltamivir is the preferred treatment option for pregnant people with flu because it has the most studies available to suggest that it is safe and beneficial."
+          },
+          "List Item 3": {
+            "Text 1": "Baloxavir is not recommended for pregnant or post-partum people or while breastfeeding, as there are no available efficacy or safety data."
+          },
+          "List Item 4": {
+            "Text 1": "For more information on the treatment of flu during pregnancy, healthcare providers can visit",
+            "Anchor 1": {
+              "Text 1": "Recommendations for Obstetric Health Care Providers Related to Use of Antiviral Medications in the Treatment and Prevention of Influenza."
+            }
+          }
+        }
+      }
     },
     "Accordion Item 7": {
-      "Heading": "Can I get COVID-19 or flu medications over the counter (without a prescription)?"
+      "Heading": "Can I get COVID-19 or flu medications over the counter (without a prescription)?",
+      "Content": {
+        "Unordered List 1": {
+          "List Item 1": {
+            "Text 1": "Medications to treat COVID-19 (Paxlovid, Lagevrio, Veklury) and flu (oseltamivir, zanamivir, peramivir, baloxavir) must be prescribed by a health care provider and should be started as soon as possible after diagnosis to be effective."
+          },
+          "List Item 2": {
+            "Text 1": "Talk to your health care professional about available treatment options if you have symptoms consistent with COVID-19 or flu."
+          },
+          "List Item 3": {
+            "Text 1": "Certain locations listed on this locator may provide prescribing services to patients who do not already have a prescription."
+          }
+        }
+      }
     },
     "Accordion Item 8": {
-      "Heading": "Are the treatments listed on this website safe and effective?"
+      "Heading": "Are the treatments listed on this website safe and effective?",
+      "Content": {
+        "Unordered List 1": {
+          "List Item 1": {
+            "Text 1": "All medications listed on this website are approved or authorized by FDA as safe and effective when used appropriately."
+          },
+          "List Item 2": {
+            "Text 1": "If you have COVID-19 and are more likely to get very sick, treatments are available that can reduce your chances of being hospitalized or dying from the disease."
+          },
+          "List Item 3": {
+            "Text 1": "Early flu antiviral treatment can shorten the duration of fever and illness and may reduce the risk of some complications from influenza."
+          },
+          "List Item 4": {
+            "Text 1": "Some treatments might have side effects or interact with other medications you are taking. Ask a health care provider if medications to treat COVID-19 or influenza are right for you."
+          }
+        }
+      }
     },
     "Accordion Item 9": {
-      "Heading": "What programs exist to provide continued affordable access to these treatments outside of usual prescription drug coverage?"
+      "Heading": "What programs exist to provide continued affordable access to these treatments outside of usual prescription drug coverage?",
+      "Content": {
+        "Unordered List 1": {
+          "List Item 1": {
+            "Text 1": "For Paxlovid",
+            "Unordered List 1": {
+              "List Item 1": {
+                "Text 1": "Medicare, Medicaid, and uninsured patients can receive Paxlovid at no charge through December 2024 through the U.S. Government (USG) Patient Assistance Program (PAP) operated by Pfizer. This includes all patients who are publicly insured through Medicare (with or without Part D, Part B, or Part C and inclusive of Medicare Advantage), Medicaid/Children’s Health Insurance Program, TRICARE, and patients insured through the Department of Veterans Affairs Community Care Network. More information can be found on the",
+                "Anchor 1": {
+                  "Text 1": "COVID-19 therapeutics website."
+                },
+                "Anchor 2": {
+                  "Text 1": "Learn more about this program"
+                },
+                "Text 2": "or",
+                "Anchor 3": {
+                  "Text 1": "enroll."
+                }
+              },
+              "List Item 2": {
+                "Text 1": " You can search for locations participating in this Paxlovid PAP using this locator tool by filtering for PAP sites."
+              },
+              "List Item 3": {
+                "Text 1": "Concurrently, Pfizer is operating a Paxlovid Co-Pay Savings Program for eligible privately (commercially)insured patients.",
+              "Anchor 1": {
+                "Text 1": "Patients"
+              },
+              "Text 2": "and",
+              "Anchor 2": {
+                "Text 1": "healthcare providers"
+              },
+              "Text 3": "can download a co-pay savings card."
+            }
+            }
+          },
+          "List Item 2": {
+            "Text 1": "For Lagevrio",
+            "Unordered List 1": {
+              "List Item 1": {
+                "Text 1": "The",
+                "Anchor 1": {
+                  "Text 1": "Merck Patient Assistance Program"
+                },
+                "Text 2": "(a 501c3 non-profit organization) will provide Lagevrio free of charge to patients who meet eligibility criteria and who, without assistance, could not otherwise afford the product."
+              }
+            }
+          },
+          "List Item 3": {
+            "Text 1": "For Veklury",
+            "Unordered List 1": {
+              "List Item 1": {
+                "Text 1": "Please contact Gilead's Advancing Access program to learn more about access to Veklury in the outpatient setting and",
+                "Anchor 1": {
+                  "Text 1": "financial support."
+                },
+                "Text 2": "for Veklury."
+              }
+            }
+          },
+          "List Item 4": {
+            "Text 1": "Note: This response does not address whether these COVID-19 treatments are covered by Medicare and Medicaid generally. More information is available for",
+            "Anchor 1": {
+              "Text 1": "Medicare"
+            },
+            "Text 2": "and",
+            "Anchor 2": {
+              "Text 1": "Medicaid"
+            },
+            "Text 3": "coverage."
+          }
+        },
+        "Unordered List 2": {
+          "List Item 1": {
+            "Text 1": "For Zanamivir (Relenza)",
+            "Unordered List 1": {
+              "List Item 1": {
+                "Anchor 1": {
+                  "Text 1": "GSK for You"
+                },
+                "Text 1": "is a program committed to assisting eligible patients access to medications. They offer programs for patients who meet income and other eligibility requirements."
+              }
+            }
+          },
+          "List Item 2": {
+            "Text 1": "For Tamiflu and Baloxavir (Xofluza):",
+            "Unordered List 1": {
+              "List Item 1": {
+                "Anchor 1": {
+                  "Text 1": "The Genentech Patient Foundation"
+                },
+                "Text 1": "gives free Genentech medicine to people who do not have insurance coverage or who have financial concerns and meet eligibility criteria."
+              }
+            }
+          }
+        }
+      }
     },
     "Accordion Item 10": {
-      "Heading": "What are monoclonal antibodies and why are they not listed on this map?"
+      "Heading": "What are monoclonal antibodies and why are they not listed on this map?",
+      "Content": {
+        "Text 1": "Throughout the COVID-19 pandemic, the federal government granted Emergency Use Authorization (EUA) for therapeutics to help combat COVID-19, including certain monoclonal antibodies. Because the U.S. Food and Drug Administration (FDA) does not currently authorize any monoclonal antibody therapeutics to treat COVID-19 in the United States, no monoclonal antibody products are listed on this locator. Pemivibart (PEMGARDA), a monoclonal antibody to prevent COVID-19 in certain patients, is currently",
+        "Anchor 1": {
+          "Text 1": "authorized by the FDA"
+        },
+        "Text 2": "for emergency use. Infusion sites offering this medication can be found using the",
+        "Anchor 2": {
+          "Text 1": "PEMGARDA infusion center locator tool."
+        },
+        "Text 3": "There are no monoclonal antibodies available to treat flu."
+      }
     },
     "Accordion Item 11": {
-      "Heading": "Are all sites that offer COVID-19 or influenza treatments listed on the locator?"
+      "Heading": "Are all sites that offer COVID-19 or influenza treatments listed on the locator?",
+      "Content": {
+        "Text 1": "There may be locations that offer outpatient COVID-19 or influenza medications and are not listed on this website. The locations displayed on this website have either self-attested they have inventory of COVID-19 or influenza antiviral medications within at least the last two months and/or reported participation in the U.S. Government Paxlovid Patient Assistance Program operated by Pfizer."
+      }
     },
     "Accordion Item 12": {
-      "Heading": "What services may the locations listed on the locator provide?"
+      "Heading": "What services may the locations listed on the locator provide?",
+      "Content": {
+        "Text 1": "Where indicated, the locations listed on this website may",
+        "Unordered List 1": {
+          "List Item 1": {
+            "Text 1": "Have remaining free Paxlovid and/or Lagevrio distributed by the U.S. Department of Health and Human Services."
+          },
+          "List Item 2": {
+            "Text 1": "Participate in the Paxlovid Patient Assistance Program, providing free Paxlovid to publicly insured (Medicare, Medicaid, etc.) and uninsured patients."
+          },
+          "List Item 3": {
+            "Text 1": "Offer prescribing services (including telehealth) or home delivery of medicines."
+          },
+          "List Item 4": {
+            "Text 1": "Offer no-cost COVID-19 testing for eligible uninsured people (Increasing Community Access to Testing [ICATT] participating site)."
+          }
+        }
+      }
     },
     "Accordion Item 13": {
-      "Heading": "How can my site be added to locator?"
+      "Heading": "How can my site be added to the locator?",
+      "Content": {
+        "Text 1": "If you would like more information about being added to the Treatments Locator, please",
+        "Anchor 1": {
+          "Text 1": "contact us"
+        }
+      }
     },
     "Accordion Item 14": {
-      "Heading": "How can my site participate in the Paxlovid Patient Assistance Program?"
+      "Heading": "How can my site participate in the Paxlovid Patient Assistance Program?",
+      "Content": {
+        "Text 1": "Retail pharmacies can learn more about participating in the Paxlovid Patient Assistance Program by",
+        "Anchor 1": {
+          "Text 1": "contacting the program vendor."
+        }
+      }
     },
     "Accordion Item 15": {
-      "Heading": "Data Information and Disclaimers"
+      "Heading": "Data Information and Disclaimers",
+      "Content": {
+        "Text 1": "Outpatient COVID-19 and influenza (flu) medications may be available at additional locations not listed on this website. The locations displayed have either self-attested they have inventory of COVID-19 or influenza antiviral medications within at least the last two months and/or reported participation in the Paxlovid Patient Assistance Program.",
+        "Text 2": "All therapeutics identified in the locator not approved by the FDA must be used in alignment with the terms of the respective product’s Emergency Use Authorization. Visit the",
+        "Anchor 1": {
+          "Text 1": "ASPR COVID-19 Treatments page"
+        },
+        "Text 3": "for more information on all COVID-19 treatment options and",
+        "Anchor 2": {
+          "Text 1": "CDC’s Flu Treatment page"
+        },
+        "Text 4": "for more information on influenza treatment options.",
+        "Text 5": "This website identifies sites that have commercially purchased inventory of COVID-19 and influenza treatments and, in some cases, may identify sites that have remaining, no-cost U.S. government distributed supply. Some sites may charge for services which may or may not be covered by insurance. Some sites may offer prescribing services for patients, including telehealth services. This website is intended for informational purposes only and does not serve as an endorsement or recommendation for use of any of the locations listed on the sites.",
+        "Text 6": "For questions regarding this site, contact"
+      }
     }
   },
   "Locations": {
     "Search Placeholder": "Find address or place",
     "Search Container Screenreader Heading": "Search for Locations",
+    "Search this location":"Search this location",
+    "Search for Other Locations": "Search for Other Locations",
     "Results Screenreader Heading": "Results",
     "List Heading": "{{count}} Sites",
-    "List Heading Share": "{{count}} Site",
+    "List Heading Share": "{{count}} Sites",
+    "List Title Screenreader Label": "Results have been filtered to:",
+    "Please ensure an illness and location are selected": "Please ensure an illness and location are selected.",
     "Map Screenreader Heading": "Map of Sites",
-    "Empty List": "If you still have no results, try searching a different location to view sites."
+    "Search for Other Button Screenreader Label": "Continue to find locations near you", 
+    "Empty List": "If you still have no results, try searching a different location to view sites.",
+    "Search Here Button Screenreader Label": "Search for sites in the current map extent",
+    "Page Load Screenreader Alert": "Page has loaded with {{count}} results"
   },
   "Illness": {
     "COVID": "COVID-19",
     "Flu": "Flu",
     "Prompt": "Looking for Specific Medications?",
+    "Medications Button Screenreader Label": "These filters limit results to sites offering the selected medication criteria",
+    "Other Filters Button Screenreader Label": "These filters limit results to sites matching the selected criteria",
     "Name": "Illness"
   },
   "Sorting": {
     "Name": "Sorting"
   },
+  "Reusable": {
+    "Patient Assistance Program": "Patient Assistance Program",
+    "COVID-19": "COVID-19",
+    "Flu": "Flu",
+    "Visit": "Visit",
+    "Treatment Options For": "Treatment Options for",
+    "Influenza": "Influenza"
+  },
+  "Misc": {
+    "Apply":"Apply",
+    "Apply Changes and Close Dropdown":"Apply Changes and Close Dropdown",
+    "Clear All": "Clear All",
+    "Clear Filters and Close Dropdown": "Clear Filters and Close Dropdown",
+    "Languages": "Languages",
+    "Filters": "Filters",
+    "This button filters results to only include specific medications!":"These filters limit results to sites offering the selected medication criteria",
+    "This buttons filters results to only include specific site information":"These filters limit results to sites matching the selected criteria"
+  },
+  "Search": {
+    "Magnifying Icon Screenreader Label": "Magnifying glass next to search bar"
+  },
   "Card": {
     "Zoom": "Zoom to Location",
-    "pap": "Free/reduced cost",
+    "Zoom To Site Button Screenreader Label": "Zoom to this site on the map",
+    "Copy Link Button Screenreader Label": "Copy link to this site",
+    "Open in Maps Button Screenreader Label": "Open location in Google Maps",
+    "pap": "Free/Reduced Cost",
     "usgProduct": "USG product",
     "homeDelivery": "Home Delivery",
     "icatt": "Free Testing",
@@ -107,7 +601,7 @@
     "oseltamivirGeneric": "Oseltamivir Generic",
     "prescribingServices": "Prescribing Services",
     "hoverPapLink": "Paxlovid Patient Assistance Program site",
-    "hoverPapDescription": "No-cost Paxlovid for eligible patients",
+    "hoverPapDescription": "U.S. Government Paxlovid Patient Assistance Program site: no-cost Paxlovid for eligible patients",
     "hoverUSGProduct": "No-cost medications distributed by the U.S. government may be available",
     "hoverHomeDelivery": "Home delivery of medication may be available",
     "hoverICATT": "Increasing Community Access to Testing site: no-cost COVID-19 testing for eligible people",

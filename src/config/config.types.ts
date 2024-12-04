@@ -75,4 +75,11 @@ export interface StaticConfiguration {
   };
   medicationOrder: string[];
 }
+
+// APP_VERSION is defined in vite.config.ts
+declare global {
+  const APP_MODE: string;
+  const APP_VERSION: string;
+}
+
 // #endregion ================== EXPORTED TYPES ================================
