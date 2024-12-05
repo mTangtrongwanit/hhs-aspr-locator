@@ -120,7 +120,7 @@ const Landing = () => {
           </a>
           .{" "}
           <a
-            href="https://healthdata.gov/ASPR/COVID-19-Treatments/xkzp-zhs7/data_preview"
+            href="https://healthdata.gov/ASPR/ASPR-Treatments-Locator/879u-23sm/about_data"
             aria-label="Link to tabular access to the data"
             title="Link to tabular access to the data"
           >
