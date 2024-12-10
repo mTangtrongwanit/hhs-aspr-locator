@@ -103,7 +103,7 @@ const Footer = () => {
             <StyledFooterLink>|</StyledFooterLink>
             <StyledFooterLink>
               <a
-                href="https://public4.pagefreezer.com/browse/ASPR%20HHS/23-08-2024T07:29/https://aspr.hhs.gov/Pages/Home.aspx"
+                href="https://healthdata.gov/ASPR/ASPR-Treatments-Locator/879u-23sm/about_data"
                 aria-label="Link to ASPR Archive"
                 title="Link to ASPR Archive"  
                 target="_blank"
