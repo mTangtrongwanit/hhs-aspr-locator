@@ -97,9 +97,9 @@ export const useFilterList = ({
 
     // find the appropriate search radius
     const MAX_SEARCH_RADIUS = 50; // starting full search radius
-    const MIN_SEARCH_RADIUS_INCREMENT = 2; // minimum increment to reduce the search radius
+    const MIN_SEARCH_RADIUS_INCREMENT = 1; // minimum increment to reduce the search radius
     const DISPLAY_COUNT = 100; // number of results to display
-    const COUNT_BUFFER_FACTOR = 2; // conservative buffer to ensure we don't miss any points
+    const COUNT_BUFFER_FACTOR = 10; // conservative buffer to ensure we don't miss any points
     const DENSITY_ADJUSTMENT_FACTOR = 0.75; // density adjustment factor to account for clustering of points near cities (also assuming the search point is near a city, otherwise why would we have too many results?)
     const narrowSearchRadius = (radius: number): Promise<number> =>
       // @ts-expect-error - TS doesn't detect that we won't reach here if searchPoint is null
