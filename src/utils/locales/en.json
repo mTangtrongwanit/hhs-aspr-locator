@@ -547,12 +547,14 @@
     "List Heading": "{{count}} Sites",
     "List Heading Share": "{{count}} Sites",
     "List Title Screenreader Label": "Results have been filtered to:",
-    "Please ensure an illness and location are selected": "Please ensure an illness and location are selected.",
+    "Ensure Selection": "Please ensure an illness and location are selected.",
     "Map Screenreader Heading": "Map of Sites",
     "Search for Other Button Screenreader Label": "Continue to find locations near you", 
     "Empty List": "If you still have no results, try searching a different location to view sites.",
     "Search Here Button Screenreader Label": "Search for sites in the current map extent",
-    "Page Load Screenreader Alert": "Page has loaded with {{count}} results"
+    "Page Load Screenreader Alert": "Page has loaded with {{count}} results",
+    "No Results": "No results found.",
+    "No Results Suggestion": "Try adjusting your filters or searching a different location."
   },
   "Illness": {
     "COVID": "COVID-19",
