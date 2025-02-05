@@ -170,7 +170,7 @@ const Locations = () => {
     // get the center of the mapview
     locationsMapView &&
       setSearchPoint({
-        name: "Current Location",
+        name: `${locationsMapView.center.latitude.toFixed(6)}, ${locationsMapView.center.longitude.toFixed(6)}`,
         point: locationsMapView.center,
       });
   };
