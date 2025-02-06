@@ -134,8 +134,23 @@ Accessibility - Use to hide headings, descriptive text, etc. for SR users
   display: none;
 }
 
+/*
 .esri-popup__main-container {
   display: none;
+}
+*/
+
+
+/*This targets the map popup and forcibly removes border from the popup element among other styling rules*/
+popup div{
+ border: none !important;
+ padding: 0px !important;
+ gap: 2% !important;
+}
+
+/*This targets the "Zoom to Location" button inside the map popup for the treatment location points*/
+popup div .hhs-primary-button.zoom-to-button{
+  display:none;
 }
 
 
