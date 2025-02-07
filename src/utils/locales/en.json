@@ -55,7 +55,7 @@
     "X Icon Screenreader Label": "X Icon"
   },
   "Landing": {
-    "Search Container Heading": "Find COVID-19 and Flu Medications",
+    "Search Container Heading": "Find Medications Near You",
     "Search Container Description": "The locator displays pharmacies, clinics, and other locations with safe and effective COVID-19 and flu medications. These medications require a prescription from a healthcare provider. COVID-19 and flu medications may be available at additional locations not shown on this locator.",
     "Search Container Placeholder": "Enter a location to view services",
     "Illness Placeholder": "What do you need treatment for?",
@@ -291,7 +291,7 @@
       }
     },
     "Accordion Item 6": {
-      "Heading": "Can pregnant people take flu and COVID-19 antiviral medications?",
+      "Heading": "Can pregnant women take flu and COVID-19 antiviral medications?",
       "Content": {
         "Unordered List 1": {
           "List Item 1": {
