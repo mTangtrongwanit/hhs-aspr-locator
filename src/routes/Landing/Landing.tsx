@@ -593,21 +593,20 @@ const Landing = () => {
                 <strong>COVID-19:</strong>
                 <ul>
                   <li>
-                    Pregnant and recently pregnant people (at least 6 weeks
+                    Pregnant and recently pregnant women (at least 6 weeks
                     following the end of pregnancy) are at increased risk of
                     severe illness from COVID-19.
                   </li>
                   <li>
                     Paxlovid (ritonavir with nirmatrelvir) is the preferred
-                    treatment option for pregnant and recently pregnant patients
+                    treatment option for pregnant and recently pregnant women
                     with COVID-19.{" "}
                   </li>
                   <li>
                     Lagevrio (molnupiravir) is not recommended for use during
                     pregnancy because of risk it may cause fetal harm. Prior to
                     initiating treatment with Lagevrio, health care providers
-                    should assess whether an individual of childbearing
-                    potential is pregnant, if clinically indicated.
+                    should assess chance for pregnancy, if clinically indicated.
                     Breastfeeding is not recommended during treatment with
                     Lagevrio and for 4 days after final dose.
                   </li>
@@ -623,19 +622,19 @@ const Landing = () => {
                 <ul>
                   <li>
                     Treatment with antiviral medications for flu is recommended
-                    for pregnant people or people who are up to 2 weeks
+                    for pregnant women or women who are up to 2 weeks
                     postpartum (including following pregnancy loss) with
                     suspected or confirmed influenza of any severity and can be
                     taken during any trimester of pregnancy.
                   </li>
                   <li>
                     Oral oseltamivir is the preferred treatment option for
-                    pregnant people with flu because it has the most studies
+                    pregnant women with flu because it has the most studies
                     available to suggest that it is safe and beneficial.
                   </li>
                   <li>
                     Baloxavir is not recommended for pregnant or post-partum
-                    people or while breastfeeding, as there are no available
+                    women or while breastfeeding, as there are no available
                     efficacy or safety data.
                   </li>
                   <li>
