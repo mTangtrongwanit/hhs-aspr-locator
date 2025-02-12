@@ -258,7 +258,6 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
               // Get the country name when a user clicks on the map
               // If the boundary layer is undefined return
               // If the user clicks on a country boundary, log the country name\
-
               const treatmentsLayer = mapView.map.allLayers.find((layer) => {
                 return (
                   layer.type == "feature" && layer.title?.includes("Treatments")
@@ -351,6 +350,7 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
 
   /** Highlight selected feature */
   useEffect(() => {
+    // the "selectedTreatmentSite" is tied to both the "Zoom to Location" and when a user clicks (and highlights) a treatment point on the map
     if (locationsMapView && selectedTreatmentSite) {
       const highlight = selectedTreatmentSite.clone();
       reactiveUtils
@@ -364,11 +364,6 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
             },
           });
           locationsMapView.graphics.add(highlight);
-          locationsMapView
-            .goTo(circle?.extent || { target: highlight.geometry, zoom: 15 })
-            .catch((error) => {
-              console.error("MapView goTo error: ", error);
-            });
         });
 
       return () => {

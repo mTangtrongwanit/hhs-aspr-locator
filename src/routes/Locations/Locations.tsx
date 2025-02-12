@@ -294,6 +294,15 @@ const Locations = () => {
                         loc.attributes["facility_id"] ===
                         serviceSiteAttributes?.facility_id,
                     );
+                    
+                    // We have the graphic here so we can more directly trigger the "goTo" function without extra steps
+                    locationsMapView?.goTo({target:graphic, zoom: 15}).catch((error) => {
+                      console.error("MapView goTo error: ", error);
+                    });
+
+                    // Clear out any open popups
+                    locationsMapView?.closePopup();
+
                     graphic && setSelectedTreatmentSite(graphic);
                   };
 
