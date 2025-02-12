@@ -265,16 +265,21 @@ const Locations = () => {
           {
             //#region List Container (left column, results displayed as cards)
           }
-
-          {sortedSites?.length === 0 &&
-          (!searchPoint?.name || !selectedIllness?.value) &&
-          sharedSiteFacilityID == null ? (
-            <StyledListNoResultsContainer>
-              <MagnifyingGlass aria-hidden></MagnifyingGlass>
-              <h3>Please ensure an illness and location are selected.</h3>
-              <p>{t("Locations.Empty List")}</p>
-            </StyledListNoResultsContainer>
-          ) : (
+          
+          {sortedSites?.length === 0 ?
+            (!searchPoint?.name || !selectedIllness?.value) && sharedSiteFacilityID == null ?
+                <StyledListNoResultsContainer>
+                  <MagnifyingGlass aria-hidden></MagnifyingGlass>
+                  <h3>{t("Locations.Ensure Selection")}</h3>
+                  <p>{t("Locations.Empty List")}</p>
+                </StyledListNoResultsContainer>
+              :
+                <StyledListNoResultsContainer>
+                  <MagnifyingGlass aria-hidden></MagnifyingGlass> 
+                  <h3>{t("Locations.No Results")}</h3>
+                  <p>{t("Locations.No Results Suggestion")}</p>
+                </StyledListNoResultsContainer>
+            :
             <>
               {/* tabindex for keyboard-scrollable list */}
               <ul tabIndex={0}>
@@ -307,7 +312,7 @@ const Locations = () => {
                 })}
               </ul>
             </>
-          )}
+          }
         </StyledListContainer>
         {
           //#endregion List Container (left column, results displayed as cards)
