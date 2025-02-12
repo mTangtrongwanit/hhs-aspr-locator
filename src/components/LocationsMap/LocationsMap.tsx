@@ -16,6 +16,7 @@ import WebMap from "@arcgis/core/WebMap";
 import MapView from "@arcgis/core/views/MapView";
 import * as reactiveUtils from "@arcgis/core/core/reactiveUtils.js";
 import SimpleMarkerSymbol from "@arcgis/core/symbols/SimpleMarkerSymbol";
+import SimpleRenderer from "@arcgis/core/renderers/SimpleRenderer";
 import Extent from "@arcgis/core/geometry/Extent";
 import Point from "@arcgis/core/geometry/Point";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
@@ -48,6 +49,8 @@ interface LocationsMapProps {
 
 // #region ======================== CONSTANTS ==================================
 const highlightColor = new Color("#00FFFF");
+const brand = new Color("#155197");
+const white = new Color("#FFFFFF");
 // #endregion ===================== CONSTANTS ==================================
 
 // #region =================== EXPORTED COMPONENT ==============================
@@ -185,6 +188,16 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
                 layer.title &&
                 layer.title.includes("Treatments")
               ) {
+                (layer as __esri.FeatureLayer).renderer = new SimpleRenderer({
+                  symbol: new SimpleMarkerSymbol({
+                    size: 5,
+                    color: brand,
+                    outline: {
+                      color: white,
+                      width: '0.5px'
+                    }
+                  })
+                });
                 (layer as __esri.FeatureLayer).outFields = ["*"];
                 layer.load().then(() => {
                   setFeatureLayer(layer as FeatureLayer);
@@ -225,6 +238,16 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
                 layer.title &&
                 layer.title.includes("Treatments")
               ) {
+                (layer as __esri.FeatureLayer).renderer = new SimpleRenderer({
+                  symbol: new SimpleMarkerSymbol({
+                    size: 5,
+                    color: brand,
+                    outline: {
+                      color: white,
+                      width: '0.5px'
+                    }
+                  })
+                });
                 (layer as __esri.FeatureLayer).outFields = ["*"];
                 layer.load().then(() => {
                   setFeatureLayer(layer as FeatureLayer);
