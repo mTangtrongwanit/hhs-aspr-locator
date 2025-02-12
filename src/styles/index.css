@@ -45,6 +45,9 @@
   font-style: normal;
 }
 
+[tabindex]:focus {
+  outline: none;
+}
 
 
 
