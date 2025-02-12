@@ -194,6 +194,11 @@ const Card = ({
       as={asDiv === true ? "div" : "li"}
       $selected={selected}
       key={serviceProvider?.OBJECTID}
+      onClick={
+        onZoomToClick
+          ? () => serviceProvider && onZoomToClick(serviceProvider)
+          : undefined
+      }
     >
       <StyledTitleRow>
         <StyledCardTitle className="bold">
