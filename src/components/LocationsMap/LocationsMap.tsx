@@ -216,7 +216,7 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
                 circle?.extent || {
                   center: p,
                   zoom: 11,
-                },
+                }, {animate: false}
               )
               .catch((error) => {
                 console.error("MapView goTo error: ", error);
@@ -403,7 +403,7 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
             setSelectedTreatmentSite(null)
           }
 
-          locationsMapView.goTo(options).catch((error) => {
+          locationsMapView.goTo(options, {animate: false}).catch((error) => {
             console.error("MapView goTo error: ", error);
           });
         });

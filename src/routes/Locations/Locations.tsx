@@ -296,7 +296,7 @@ const Locations = () => {
                     );
                     
                     // We have the graphic here so we can more directly trigger the "goTo" function without extra steps
-                    locationsMapView?.goTo({target:graphic, zoom: 15}).catch((error) => {
+                    locationsMapView?.goTo({target:graphic, zoom: 15}, {animate: false}).catch((error) => {
                       console.error("MapView goTo error: ", error);
                     });
 
