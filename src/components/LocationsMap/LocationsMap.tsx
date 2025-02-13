@@ -62,10 +62,12 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
     searchPoint,
     selectedIllness,
     selectedTreatmentSite,
+    selectedTreatmentHighlight,
     setFeatureLayer,
     setLocationsMapView,
     setSearchPoint,
     setSelectedTreatmentSite,
+    setSelectedTreatmentHighlight,
     circle,
   } = useAppContext();
   const [searchParams] = useSearchParams();
@@ -169,6 +171,7 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
       };
       setLocationsMapView(mapView);
 
+      // The geopoint flow here is to handle the "Copy Location Link" url and create a focused view of a treatment site
       if (geopoint && geopoint !== "" && geopoint.includes(",")) {
         const [lat, lon] = geopoint.split(",").map(Number);
         const p = new Point({
@@ -211,6 +214,49 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
               latitude: lat,
             });
             setSearchPoint({ name: geopoint, point: p });
+            // Wait for the mapView to finish loading and be ready before attempting to work with properties (otherwise they'll all be undefined)
+            reactiveUtils
+              .whenOnce(() => !mapView.updating && mapView.ready)
+              .then(() => {
+                // Get reference to "treatment" layer
+                const treatmentsLayer = mapView.map.allLayers.find((layer) => {
+                  return (
+                    layer.type == "feature" && layer.title?.includes("Treatments")
+                  );
+                }) as __esri.FeatureLayer;
+                
+                // get target layer view
+                mapView.whenLayerView(treatmentsLayer).then((layerView) => {
+
+                  layerView.highlightOptions = {
+                    color: highlightColor,
+                    haloOpacity: 1,
+                    shadowOpacity: 1,
+                  };
+
+                  const query = treatmentsLayer.createQuery();
+                  query.where = "facility_id = '"+ searchParams.get("facility_id") +"'";
+
+                  // if a feature is already highlighted, then remove the highlight
+                  if (selectedTreatmentHighlight) {
+                    selectedTreatmentHighlight.remove()
+                  }
+
+                  treatmentsLayer.queryFeatures(query).then(function(result){
+                    const tempFeature = result.features[0];
+                    const trackHighlightedFeature: __esri.Handle = layerView.highlight(tempFeature.attributes.OBJECTID);
+
+                    // Update the selected treatment site so that the popup template update will be triggered
+                    setSelectedTreatmentSite(tempFeature);
+
+                    // update state with new tracked highlight handle for later highlight removal
+                    setSelectedTreatmentHighlight(trackHighlightedFeature)
+                  });
+                  
+                });
+
+              });            
+
             mapView
               .goTo(
                 circle?.extent || {
@@ -352,22 +398,49 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
   useEffect(() => {
     // the "selectedTreatmentSite" is tied to both the "Zoom to Location" and when a user clicks (and highlights) a treatment point on the map
     if (locationsMapView && selectedTreatmentSite) {
-      const highlight = selectedTreatmentSite.clone();
+      // const highlight = selectedTreatmentSite.clone();
       reactiveUtils
         .whenOnce(() => !locationsMapView.updating && locationsMapView.ready)
         .then(() => {
-          highlight.symbol = new SimpleMarkerSymbol({
-            color: highlightColor,
-            size: "14",
-            outline: {
-              width: "0px",
-            },
+          
+          // locationsMapView.graphics.add(highlight);
+
+          // Get reference to "treatment" layer
+          const treatmentsLayer = locationsMapView.map.allLayers.find((layer) => {
+            return (
+              layer.type == "feature" && layer.title?.includes("Treatments")
+            );
+          }) as __esri.FeatureLayer;
+
+          // get target layer view
+          locationsMapView.whenLayerView(treatmentsLayer).then((layerView) => {
+
+            layerView.highlightOptions = {
+              color: highlightColor,
+              haloOpacity: 1,
+              shadowOpacity: 1,
+            };
+
+            // if a feature is already highlighted, then remove the highlight
+            if (selectedTreatmentHighlight) {
+              selectedTreatmentHighlight.remove()
+            }
+
+            // use the objectID to highlight the feature
+            const trackHighlightedFeature: __esri.Handle = layerView.highlight(selectedTreatmentSite.attributes.OBJECTID);
+
+            // update state with new tracked highlight feature
+            setSelectedTreatmentHighlight(trackHighlightedFeature)
           });
-          locationsMapView.graphics.add(highlight);
+
         });
 
       return () => {
-        locationsMapView.graphics.remove(highlight);
+        // locationsMapView.graphics.remove(highlight);
+        // if a feature is already highlighted, then remove the highlight
+        if (selectedTreatmentHighlight) {
+          selectedTreatmentHighlight.remove()
+        }
       };
     }
   }, [locationsMapView, selectedTreatmentSite, circle?.radius]);
