@@ -99,6 +99,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     searchPoint,
     selectedIllness,
     selectedMedications,
+    selectedFilters,
     sharedSiteFacilityID,
     setLocations,
     setRadius,

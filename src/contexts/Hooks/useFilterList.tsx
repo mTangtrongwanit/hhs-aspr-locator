@@ -25,6 +25,7 @@ export const useFilterList = ({
   searchPoint,
   selectedIllness,
   selectedMedications,
+  selectedFilters,
   sharedSiteFacilityID,
   setLocations,
   setRadius,
@@ -44,6 +45,7 @@ export const useFilterList = ({
     value: string;
   };
   selectedMedications: string[];
+  selectedFilters: any[];
   sharedSiteFacilityID: string | null;
   setLocations: Dispatch<SetStateAction<Graphic[]>>;
   setRadius: Dispatch<SetStateAction<number>>;
@@ -88,17 +90,49 @@ export const useFilterList = ({
       )
       .join(" AND ");
 
+      // Include services filter elements
+      // Free/Reduced Cost
+      /*
+      is_pap: true OR has_USG_product: true
+      Free Testing
+      is_icatt_site: true
+      Prescribing Services
+      is_prescribing_svcs_available: true
+      Home Delivery
+      home_delivery: true
+      Flu
+      Prescribing Services
+      is_prescribing_svcs_available: true
+      Home Delivery
+      home_delivery: true
+      Oseltamivir suspension
+      has_oseltamivir_suspension: true
+      */
+    const filtersClause = selectedFilters
+    .map(
+      (filterElement) =>
+        filterElement?.name === "is_pap"
+        ? `(LOWER(is_pap) = 'true' OR LOWER(has_USG_product) = 'true')`
+        : `LOWER(${filterElement?.name}) = 'true'`,
+    )
+    .join(" AND ");
+
     // build the where clause from illness/medication clauses
-    const where = sharedSiteFacilityID
+    let where = sharedSiteFacilityID
       ? `facility_id = '${sharedSiteFacilityID}'`
       : medicationClause.length
       ? `(${illnessClause}) AND (${medicationClause})`
       : illnessClause;
 
+      // Adding in clause for additional filters
+      if (selectedFilters.length > 0){
+        where += " AND " + filtersClause;
+      }
+
     // find the appropriate search radius
     const MAX_SEARCH_RADIUS = 50; // starting full search radius
     const MIN_SEARCH_RADIUS_INCREMENT = 1; // minimum increment to reduce the search radius
-    const DISPLAY_COUNT = 300; // number of results to display
+    const DISPLAY_COUNT = 100; // number of results to display
     const COUNT_BUFFER_FACTOR = 10; // conservative buffer to ensure we don't miss any points
     const DENSITY_ADJUSTMENT_FACTOR = 0.75; // density adjustment factor to account for clustering of points near cities (also assuming the search point is near a city, otherwise why would we have too many results?)
     const narrowSearchRadius = (radius: number): Promise<number> =>
