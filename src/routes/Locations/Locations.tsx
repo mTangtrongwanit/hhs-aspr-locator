@@ -185,8 +185,8 @@ const Locations = () => {
         // Listen for changes to the updating property
         layerView.watch("updating", (value) => {
           if (value) {
-            console.log("Layer is updating...: treatmentLayerUpdating: ", treatmentLayerUpdating);
             setTreatmentLayerUpdating(true);
+            console.log("Layer is updating...: treatmentLayerUpdating: ", treatmentLayerUpdating);
           } else {
             console.log("Layer is finished updating.");
             setTimeout(() => {
