@@ -38,6 +38,8 @@ export interface AppContextType {
   setSelectedTreatmentSite: (x: __esri.Graphic | null) => void;
   selectedTreatmentHighlight: __esri.Handle | null;
   setSelectedTreatmentHighlight:(x: __esri.Handle | null) => void;
+  treatmentLayerUpdating: boolean;
+  setTreatmentLayerUpdating:(x: boolean | null) => void;
   circle: __esri.Circle | null;
   filteredSites: __esri.Graphic[];
 }

@@ -59,9 +59,11 @@ const Locations = () => {
     selectedIllness,
     selectedSort,
     selectedTreatmentSite,
+    treatmentLayerUpdating,
     setSFID,
     setSearchPoint,
     setSelectedTreatmentSite,
+    setTreatmentLayerUpdating,
     sharedSiteFacilityID,
     filteredSites,
   } = useAppContext();
@@ -166,6 +168,37 @@ const Locations = () => {
     }
   }, [selectedTreatmentSite]);
 
+  // Use this to update state to slot in a delay so app will fully wait for
+  // layer to finish updating before making the card list (for slower computers)
+  useEffect(() => {
+    // view is loaded and a search point has been defined.
+    if (locationsMapView  && searchPoint) {
+
+      // Get reference to "treatment" layer
+      const treatmentsLayer = locationsMapView.map.allLayers.find((layer) => {
+        return (
+          layer.type == "feature" && layer.title?.includes("Treatments")
+        );
+      }) as __esri.FeatureLayer;
+
+      locationsMapView.whenLayerView(treatmentsLayer).then((layerView) => {
+        // Listen for changes to the updating property
+        layerView.watch("updating", (value) => {
+          if (value) {
+            console.log("Layer is updating...: treatmentLayerUpdating: ", treatmentLayerUpdating);
+            setTreatmentLayerUpdating(true);
+          } else {
+            console.log("Layer is finished updating.");
+            setTimeout(() => {
+              setTreatmentLayerUpdating(false)
+              console.log('treatment layer is actually ready now? treatmentLayerUpdating should be false: ', treatmentLayerUpdating);
+            }, 2000)            
+          }
+        });
+      });
+      }
+  }, [locationsMapView, searchPoint, setTreatmentLayerUpdating]);
+
   const onSearchHereClick = () => {
     // get the center of the mapview
     locationsMapView &&
@@ -266,7 +299,8 @@ const Locations = () => {
             //#region List Container (left column, results displayed as cards)
           }
           
-          {sortedSites?.length === 0 ?
+          {!treatmentLayerUpdating && sortedSites?.length === 0 ?
+            // Adding a check to ensure that layer has finished updating
             (!searchPoint?.name || !selectedIllness?.value) && sharedSiteFacilityID == null ?
                 <StyledListNoResultsContainer>
                   <MagnifyingGlass aria-hidden></MagnifyingGlass>
