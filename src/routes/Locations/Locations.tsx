@@ -186,13 +186,11 @@ const Locations = () => {
         layerView.watch("updating", (value) => {
           if (value) {
             setTreatmentLayerUpdating(true);
-            console.log("Layer is updating...: treatmentLayerUpdating: ", treatmentLayerUpdating);
+            console.log("Layer is updating...");
           } else {
-            console.log("Layer is finished updating.");
-            setTimeout(() => {
-              setTreatmentLayerUpdating(false)
-              console.log('treatment layer is actually ready now? treatmentLayerUpdating should be false: ', treatmentLayerUpdating);
-            }, 2000)            
+            // if false, that means the layer is done updating
+            setTreatmentLayerUpdating(false)
+            console.log("Layer is finished updating.");     
           }
         });
       });
@@ -300,7 +298,7 @@ const Locations = () => {
           }
           
           {!treatmentLayerUpdating && sortedSites?.length === 0 ?
-            // Adding a check to ensure that layer has finished updating
+            // treatmentLayerUpdating has to be "false" (done updating to update the card list)
             (!searchPoint?.name || !selectedIllness?.value) && sharedSiteFacilityID == null ?
                 <StyledListNoResultsContainer>
                   <MagnifyingGlass aria-hidden></MagnifyingGlass>
