@@ -73,6 +73,9 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
   /** Selected treatment site */
     const [selectedTreatmentHighlight, setSelectedTreatmentHighlight] =
     useState<__esri.Handle | null>(null);
+
+  // Boolean for layer update
+  const [treatmentLayerUpdating, setTreatmentLayerUpdating] = useState<boolean>(false);
   // Search radius state
   const [radius, setRadius] = useState<number>(50);
   const [circle, setCircle] = useState<Circle | null>(null);
@@ -99,6 +102,7 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
     searchPoint,
     selectedIllness,
     selectedMedications,
+    selectedFilters,
     sharedSiteFacilityID,
     setLocations,
     setRadius,
@@ -164,6 +168,8 @@ export const AppContextProvider = ({ children }: AppContextProps) => {
           setSelectedTreatmentSite,
           selectedTreatmentHighlight,
           setSelectedTreatmentHighlight,
+          treatmentLayerUpdating, 
+          setTreatmentLayerUpdating,
           filteredSites,
           circle,
         } as AppContextType

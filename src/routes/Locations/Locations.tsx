@@ -59,9 +59,11 @@ const Locations = () => {
     selectedIllness,
     selectedSort,
     selectedTreatmentSite,
+    treatmentLayerUpdating,
     setSFID,
     setSearchPoint,
     setSelectedTreatmentSite,
+    setTreatmentLayerUpdating,
     sharedSiteFacilityID,
     filteredSites,
   } = useAppContext();
@@ -126,9 +128,11 @@ const Locations = () => {
   }, [selectedTreatmentSite]);
 
   useEffect(() => {
-    setTimeout(function () {
-      setPageLoadAlertTxt(`Page has loaded with ${locations.length} results`);
-    }, 2000);
+    if (locations && !treatmentLayerUpdating) {
+      setTimeout(function () {
+        setPageLoadAlertTxt(`Page has loaded with ${locations.length} results`);
+      }, 2000);
+    }
   });
   // #endregion ----------------- Hooks (Other) --------------------------------
 
@@ -165,6 +169,38 @@ const Locations = () => {
       activeCardItem?.scrollIntoView({ behavior: "smooth" });
     }
   }, [selectedTreatmentSite]);
+
+  // Use this to update state to slot in a delay so app will fully wait for
+  // layer to finish updating before making the card list (for slower computers)
+  useEffect(() => {
+    // view is loaded and a search point has been defined.
+    if (locationsMapView  && searchPoint) {
+
+      if (locationsMapView.ready) {
+        // Get reference to "treatment" layer
+        const treatmentsLayer = locationsMapView.map.allLayers.find((layer) => {
+          return (
+            layer.type == "feature" && layer.title?.includes("Treatments")
+          );
+        }) as __esri.FeatureLayer;
+
+        locationsMapView.whenLayerView(treatmentsLayer).then((layerView) => {
+          // Listen for changes to the updating property
+          layerView.watch("updating", (value) => {
+            if (value) {
+              setTreatmentLayerUpdating(true);
+              console.log("Layer is updating...");
+            } else {
+              // if false, that means the layer is done updating
+              setTreatmentLayerUpdating(false)
+              console.log("Layer is finished updating.");     
+            }
+          });
+        });
+      }
+      
+    }
+  }, [locationsMapView, searchPoint, setTreatmentLayerUpdating]);
 
   const onSearchHereClick = () => {
     // get the center of the mapview
@@ -266,7 +302,8 @@ const Locations = () => {
             //#region List Container (left column, results displayed as cards)
           }
           
-          {sortedSites?.length === 0 ?
+          {!treatmentLayerUpdating && sortedSites?.length === 0 ?
+            // treatmentLayerUpdating has to be "false" (done updating to update the card list)
             (!searchPoint?.name || !selectedIllness?.value) && sharedSiteFacilityID == null ?
                 <StyledListNoResultsContainer>
                   <MagnifyingGlass aria-hidden></MagnifyingGlass>
