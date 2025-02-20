@@ -17,7 +17,8 @@ const config: StaticConfiguration = {
     appId: "2MAyeDcDhNcYTqwX",
   },
   treatmentData: {
-    locationsWebMapId: "159676ebd40b46eea39381bb79506d07",
+    //locationsWebMapId: "159676ebd40b46eea39381bb79506d07", // TODO: Use this webmap id instead once the basemap for it has been updated.
+    locationsWebMapId: "01e986fdcbd14b66aa4f5d6641935ea2",
     treatment_sites: {
       name: "Treatment Sites",
       locationsLayer: new FeatureLayer({
