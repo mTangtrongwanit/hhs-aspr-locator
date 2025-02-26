@@ -1,16 +1,18 @@
 import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
+import { fetchEnTranslation } from './general';
 
 // defining path to translation files
 /* import en_translation from "./locales/en.json";
 import es_translation from "./locales/es.json";
 import zh_translation from "./locales/zh.json"; */
 
+// Need to put this in an async function that import
 // await the files via fetch
-const enFetch = await fetch(`/locales/en.json`);
+//const enFetch = await fetch(`/locales/en.json`);
 // process the retrieved files as JSON.
 // The await is used as a promise to wait upon before intializing i18next 
-const enResult = await enFetch.json();
+//const enResult = await enFetch.json();
 
 /* const esFetch = await fetch(`/locales/es.json`);
 
@@ -20,9 +22,11 @@ const zhFetch = await fetch(`/locales/zh.json`);
 
 const zhResult = await zhFetch.json(); */
 
+const resultTest = await fetchEnTranslation();
+
 // Using a Promise.all to wait for potentially multiple language json files
 //Promise.all([enResult, esResult, zhResult]).then((values) => {
-Promise.all([enResult]).then((values) => {
+Promise.all([resultTest]).then((values) => {
 
   const en_translation = values[0];
 

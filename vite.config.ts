@@ -14,14 +14,6 @@ export default defineConfig( ({mode}) => {
         include: "**/*.svg",
       }),
     ],
-    optimizeDeps: {
-      esbuildOptions: {
-        target: 'esnext'
-      }
-    },
-    build: {
-      target: 'esnext'
-    },
     base: process.env.BASE_PATH ? `/${process.env.BASE_PATH}/ ` : "/",
     publicDir: "public",
     define: {
