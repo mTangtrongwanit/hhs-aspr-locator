@@ -70,10 +70,19 @@ const config: StaticConfiguration = {
     },
   },
   options: {
+    // Can add more language options below:
     languageOptions: [
       {
         label: "English",
         value: "en",
+      },
+      {
+        label: "Spanish",
+        value: "es",
+      },
+      {
+        label: "Chinese",
+        value: "zh",
       },
     ],
     sortOptions: [
