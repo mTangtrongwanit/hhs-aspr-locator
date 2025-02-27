@@ -76,14 +76,14 @@ const config: StaticConfiguration = {
         label: "English",
         value: "en",
       },
-      /* {
+      {
         label: "Spanish",
         value: "es",
       },
       {
         label: "Chinese",
         value: "zh",
-      }, */
+      },
     ],
     sortOptions: [
       { label: "Distance", value: "distance" },
