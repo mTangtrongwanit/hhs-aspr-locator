@@ -34,6 +34,7 @@ import UsgProcuredIcon from "@/assets/icons/usg-procured.svg";
 import PapIcon from "@/assets/icons/pap.svg";
 import OseltamivirIcon from "@/assets/icons/oseltamivir.svg";
 import PrescribingServicesIcon from "@/assets/icons/prescribing-services.svg";
+import { useAppContext } from "@/contexts/AppContext";
 
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
@@ -50,6 +51,11 @@ const Card = ({
   onZoomToClick,
 }: Props) => {
   // #region ------------------ Hooks (Resources) ------------------------------
+  const {
+    locations,
+    locationsMapView,
+    setSelectedTreatmentSite
+   } = useAppContext();
   // #endregion --------------- Hooks (Resources) ------------------------------
   // #region ----------------------- Hooks (State) -------------------------------------
   // #endregion -------------------- Hooks (State) -------------------------------------
@@ -103,6 +109,22 @@ const Card = ({
         geopoint: serviceProvider?.geopoint,
       });
   };
+
+  // select site without changing circle radius extent
+  const onCardClick = () => {
+    const graphic = locations?.find(
+      (loc) =>
+        loc.attributes["facility_id"] ===
+        serviceProvider?.facility_id,
+    );
+    
+    if (locationsMapView) locationsMapView.zoom = 8;
+
+    // Clear out any open popups
+    locationsMapView?.closePopup();
+
+    graphic && setSelectedTreatmentSite(graphic);
+  }
 
   {
     /*  this tooltip icons lookup object includes a check for selected illness, the icon to show, description to show on hover and an extra element if needed
@@ -194,11 +216,7 @@ const Card = ({
       as={asDiv === true ? "div" : "li"}
       $selected={selected}
       key={serviceProvider?.OBJECTID}
-      onClick={
-        onZoomToClick
-          ? () => serviceProvider && onZoomToClick(serviceProvider)
-          : undefined
-      }
+      onClick={onCardClick}
     >
       <StyledTitleRow>
         <StyledCardTitle className="bold">
@@ -316,7 +334,10 @@ const Card = ({
           title="Zoom to this site on the map"
           onClick={
             onZoomToClick
-              ? () => serviceProvider && onZoomToClick(serviceProvider)
+              ? (e) => {
+                serviceProvider && onZoomToClick(serviceProvider);
+                e.stopPropagation();
+              }
               : undefined
           }
         >
