@@ -8,6 +8,7 @@
 // #region --------------------------- React -----------------------------------
 // #endregion ------------------------ React -----------------------------------
 // #region ------------ 3rd-Party Components / Libraries -----------------------
+import Point from "@arcgis/core/geometry/Point";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -110,13 +111,20 @@ const Card = ({
       });
   };
 
-  // select site without changing circle radius extent
+  // select site without zooming
   const onCardClick = () => {
     const graphic = locations?.find(
       (loc) =>
         loc.attributes["facility_id"] ===
         serviceProvider?.facility_id,
     );
+    
+    // if point not in extent, go to point on map
+    if (!(locationsMapView?.extent.contains(graphic?.geometry as Point))) {
+      locationsMapView?.goTo({target:graphic}, {animate: false}).catch((error) => {
+        console.error("MapView goTo error: ", error);
+      });
+    }
     
     if (locationsMapView) locationsMapView.zoom = 8;
 
