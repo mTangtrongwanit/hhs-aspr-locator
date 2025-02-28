@@ -6,7 +6,8 @@
 // #region ------------------------ Resources ----------------------------------
 import { type StaticConfiguration } from "./config.types";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
-import * as en from "../utils/locales/en.json";
+// import * as en from "../utils/locales/en.json";
+import * as en from "../../public/locales/en.json";
 // #endregion ------------------------- Resources ---------------------------------
 // #endregion ========================== IMPORTS ==================================
 
@@ -69,11 +70,20 @@ const config: StaticConfiguration = {
     },
   },
   options: {
+    // Can add more language options below:
     languageOptions: [
       {
         label: "English",
         value: "en",
       },
+      /* {
+        label: "Spanish",
+        value: "es",
+      },
+      {
+        label: "Chinese",
+        value: "zh",
+      }, */
     ],
     sortOptions: [
       { label: "Distance", value: "distance" },

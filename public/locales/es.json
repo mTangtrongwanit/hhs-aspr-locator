@@ -1,0 +1,99 @@
+{
+  "Header": {
+    "Logo Alt Text": "Administración para la preparación y respuesta estratégica",
+    "Title": "Localizador de tratamientos para el COVID-19 y la gripe",
+    "Title Alt Text": "Localizador de tratamientos para el COVID-19 y la gripe"
+  },
+  "Footer": {
+    "Home Link": "Home",
+    "Contact Us Link": "Contact Us",
+    "ASPR Archive Link": "ASPR Archive",
+    "Accessibility Link": "Accessibility",
+    "Privacy Policies Link": "Privacy Policies",
+    "Disclaimer Link": "Disclaimer",
+    "HHS Viewers & Players Link": "HHS Viewers & Players",
+    "HHS Plain Language Link": "HHS Plain Language",
+    "FOIA Link": "FOIA",
+    "Vulnerability Disclosure Policy Link": "Vulnerability Disclosure Policy"
+  },
+  "Landing": {
+    "Search Container Heading": "Find Medications Near You",
+    "Search Container Description": "This locator displays pharmacies, clinics, and other locations with  safe and effective COVID-19 and Flu medications. These medications require a  prescription from a healthcare provider.",
+    "Illness Placeholder": "What do you need treatment for?",
+    "View Locations Button Label": "View Locations",
+    "Context Container Screenreader Heading": "Contextual Information",
+    "Assistance Program Description": "i18n Todo - not sure how to effectively break this up into paragraph text vs links",
+    "Accordion Item 1": {
+      "Heading": "Frequently Asked Questions"
+    },
+    "Accordion Item 2": {
+      "Heading": "Disclaimer"
+    }
+  },
+  "Locations": {
+    "Search Placeholder": "Find address or place",
+    "Search Container Screenreader Heading": "Search for Locations",
+    "Results Screenreader Heading": "Results",
+    "List Heading": "{{count}} Sites",
+    "Map Screenreader Heading": "Map of Sites"
+  },
+  "Illness": {
+    "COVID": "COVID-19",
+    "Flu": "Flu"
+  },
+  "Card": {
+    "pap": "Free/reduced cost",
+    "usgProduct": "USG product",
+    "homeDelivery": "Home Delivery",
+    "icatt": "Free Testing",
+    "tamifluOnly": "Tamiflu Only",
+    "oseltamivirSuspension": "Oseltamivir Suspension",
+    "oseltamivirTamiflu": "Oseltamivir Tamiflu",
+    "oseltamivirGeneric": "Oseltamivir Generic",
+    "prescribingServices": "Prescribing Services",
+    "hoverPapLink": "Paxlovid Patient Assistance Program site",
+    "hoverPapDescription": ": no-cost Paxlovid for eligible patients",
+    "hoverUSGProduct": "No-cost medications distributed by the U.S. government may be available",
+    "hoverHomeDelivery": "Home delivery of medication may be available",
+    "hoverICATT": "Increasing Community Access to Testing site: no-cost COVID-19 testing for eligible people",
+    "hoverTamifluOnly": "Generic oseltamivir may not be available",
+    "hoverOseltamivirSuspension": "Oseltamivir suspension (liquid form) may be available",
+    "hoverPrescribingServices": "Prescribing services may be available (including telehealth)",
+    "additionalInformation": "Additional Information for",
+    "rXorTelehealth": "prescribing services",
+    "shareLocation": "Copy Location Link",
+    "directionsToLocation": "Directions to Location",
+    "openInMaps": "Open in Maps",
+    "distance": "Distance",
+    "miles": "miles",
+    "hrsa": "Health Resources and Services Administration (HRSA) supported Health Center",
+    "dod": "Department of Defense Facility\n\nOnly individuals who are specifically eligible for care at a military Medical Treatment Facility (MTF) are eligible to receive treatment at an MTF. MTF care is otherwise not available to members of the civilian population.",
+    "ihs": "Indian Health Service Facility\n\nIndian Health Service (federal, tribal, and urban) sites will provide access to services in accordance with established eligibility requirements.",
+    "products": {
+      "covid_---": "Product availability for this site is unknown.",
+      "covid_--v": "Site offers outpatient Veklury.",
+      "covid_-l-": "Site offers Lagevrio.",
+      "covid_-lv": "Site offers Lagevrio and outpatient Veklury.",
+      "covid_p--": "Site offers Paxlovid.",
+      "covid_p-v": "Site offers Paxlovid and outpatient Veklury.",
+      "covid_pl-": "Site offers Paxlovid and Lagevrio.",
+      "covid_plv": "Site offers Paxlovid, Lagevrio, and outpatient Veklury.",
+      "flu_----": "Product availability for this site is unknown.",
+      "flu_---z": "Site offers zanamivir.",
+      "flu_--p-": "Site offers peramivir.",
+      "flu_--pz": "Site offers peramivir and zanamivir.",
+      "flu_-b--": "Site offers baloxavir.",
+      "flu_-b-z": "Site offers baloxavir and zanamivir.",
+      "flu_-bp-": "Site offers baloxavir and peramivir.",
+      "flu_-bpz": "Site offers baloxavir, peramivir, and zanamivir.",
+      "flu_o---": "Site offers oseltamivir.",
+      "flu_o--z": "Site offers oseltamivir and zanamivir.",
+      "flu_o-p-": "Site offers oseltamivir and peramivir.",
+      "flu_o-pz": "Site offers oseltamivir, peramivir, and zanamivir.",
+      "flu_ob--": "Site offers oseltamivir and baloxavir.",
+      "flu_ob-z": "Site offers oseltamivir, baloxavir, and zanamivir.",
+      "flu_obp-": "Site offers oseltamivir, baloxavir, and peramivir.",
+      "flu_obpz": "Site offers oseltamivir, baloxavir, peramivir, and zanamivir."
+    }
+  }
+}

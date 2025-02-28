@@ -1,23 +1,16 @@
 import i18next from "i18next";
 import { initReactI18next } from "react-i18next";
+import Backend from 'i18next-http-backend';
 
-// defining path to translation files
-import en_translation from "./locales/en.json";
-import es_translation from "./locales/es.json";
-import zh_translation from "./locales/zh.json";
-
-i18next.use(initReactI18next).init({
+// The "Backend" library can be given a "loadPath" to grab the translation files
+// if structured as "public/locales/{lng}.json"
+i18next.use(initReactI18next).use(Backend).init({
   lng: "en", // define default language here
+  fallbackLng: 'en',
   debug: false, // provides console debug messages if true
-  resources: {
-    en: {
-      translation: en_translation,
-    },
-    es: {
-      translation: es_translation,
-    },
-    zh: {
-      translation: zh_translation,
-    },
-  },
+  backend: {
+    // NOTE: This "loadPath" must be updated to target the location where locale files are located 
+    loadPath: 'https://esrips.github.io/hhs-aspr-locator/pr-preview/pr-115/locales/{{lng}}.json', // Will target the ghpages preview (develop branch) used by the PR
+    //loadPath: '/locales/{{lng}}.json', // For local testing, targets locale files in the "public" folder. Will need to run the "npm run dev" for text changes to be reflected
+  }
 });
