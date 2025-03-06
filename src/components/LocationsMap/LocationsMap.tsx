@@ -45,6 +45,7 @@ import { calculateDistanceBetweenTwoPoints } from "@/utils/geographicUtils";
 
 interface LocationsMapProps {
   isMobileListView: boolean;
+  setAutoZoom: (x: number | null) => void;
 }
 
 // #region ======================== CONSTANTS ==================================
@@ -54,7 +55,7 @@ const white = new Color("#FFFFFF");
 // #endregion ===================== CONSTANTS ==================================
 
 // #region =================== EXPORTED COMPONENT ==============================
-const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
+const LocationsMap = ({ isMobileListView, setAutoZoom }: LocationsMapProps) => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const {
     locations,
@@ -255,18 +256,18 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
                   
                 });
 
-              });            
+              });  
 
-            mapView
-              .goTo(
-                circle?.extent || {
-                  center: p,
-                  zoom: 11,
-                }, {animate: false}
-              )
-              .catch((error) => {
-                console.error("MapView goTo error: ", error);
-              });
+              // mapView
+              // .goTo(
+              //   circle?.extent || {
+              //     center: p,
+              //     zoom: 11,
+              //   }, {animate: false}
+              // )
+              // .catch((error) => {
+              //   console.error("MapView goTo error: ", error);
+              // });
           })
           .catch((error) => {
             console.error("MapView updating reactiveUtils error: ", error);
@@ -476,9 +477,11 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
             setSelectedTreatmentSite(null)
           }
 
-          locationsMapView.goTo(options, {animate: false}).catch((error) => {
+          locationsMapView.goTo(options, {animate: false}).then(() => {
+            setAutoZoom(locationsMapView.zoom);
+          }).catch((error) => {
             console.error("MapView goTo error: ", error);
-          });
+          })
         });
     }
   }, [

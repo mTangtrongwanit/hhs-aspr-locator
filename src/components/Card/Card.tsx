@@ -49,6 +49,7 @@ const Card = ({
   distance,
   searchPoint,
   t,
+  autoZoom,
   onZoomToClick,
 }: Props) => {
   // #region ------------------ Hooks (Resources) ------------------------------
@@ -125,8 +126,7 @@ const Card = ({
         console.error("MapView goTo error: ", error);
       });
     }
-    
-    if (locationsMapView) locationsMapView.zoom = 8;
+    if (locationsMapView) locationsMapView.zoom = autoZoom ?? 12;
 
     // Clear out any open popups
     locationsMapView?.closePopup();
