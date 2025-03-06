@@ -21,6 +21,7 @@ export interface Props {
   distance?: number | undefined;
   searchPoint?: { name: string; point: __esri.Point } | null;
   t: any;
+  autoZoom?: number | null;
   onZoomToClick?: (x: SiteAttributesType) => void;
 }
 // #endregion ================== EXPORTED TYPES ================================

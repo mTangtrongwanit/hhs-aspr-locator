@@ -80,6 +80,7 @@ const Locations = () => {
   const [isMobileListView, setIsMobileListView] = useState<boolean>(true);
   const [cardSelected, setCardSelected] = useState<number | null>(null);
   const [pageLoadAlertTxt, setPageLoadAlertTxt] = useState<string | null>(null);
+  const [autoZoom, setAutoZoom] = useState<number | null>(null);
 
   // #endregion ----------------- Hooks (State) --------------------------------
 
@@ -358,6 +359,7 @@ const Locations = () => {
                       selected={serviceSiteAttributes.OBJECTID === cardSelected}
                       distance={serviceSiteAttributes.distance}
                       onZoomToClick={() => onZoomToClick(serviceSiteAttributes)}
+                      autoZoom={autoZoom}
                     ></Card>
                   );
                 })}
@@ -377,7 +379,7 @@ const Locations = () => {
           <h3 className="visually-hidden" id="map-screenreader-heading">
             {t("Locations.Map Screenreader Heading")}
           </h3>
-          <LocationsMap isMobileListView={isMobileListView} />
+          <LocationsMap isMobileListView={isMobileListView} setAutoZoom={setAutoZoom} />
         </StyledMapContainer>
       </div>
     </StyledLocationsContent>
