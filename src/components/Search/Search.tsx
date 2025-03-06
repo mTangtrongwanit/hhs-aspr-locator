@@ -32,9 +32,11 @@ const SearchComponent = ({ placeholder }: { placeholder?: string } = {}) => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const {
     searchPoint,
+    selectedTreatmentHighlight,
     setSearchPoint,
     setSelectedMedications,
     setSelectedFilters,
+    setSelectedTreatmentSite
   } = useAppContext();
   // #endregion --------------- Hooks (Resources) ------------------------------
 
@@ -116,6 +118,11 @@ const SearchComponent = ({ placeholder }: { placeholder?: string } = {}) => {
         latitude: geometry.latitude,
         spatialReference: { wkid: 102100 },
       });
+
+      // Clear previous selection
+      if (selectedTreatmentHighlight) selectedTreatmentHighlight.remove();
+      setSelectedTreatmentSite(null);
+
       setSearchPoint({ name, point: webMercatorPoint });
       setSelectedMedications([]);
       setSelectedFilters([]);
@@ -128,7 +135,9 @@ const SearchComponent = ({ placeholder }: { placeholder?: string } = {}) => {
     setSelectedMedications,
     setSelectedFilters,
     setSearchPoint,
+    setSelectedTreatmentSite,
     searchPoint,
+    selectedTreatmentHighlight
   ]);
 
   /**

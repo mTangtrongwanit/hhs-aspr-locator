@@ -59,6 +59,7 @@ const Locations = () => {
     selectedIllness,
     selectedSort,
     selectedTreatmentSite,
+    selectedTreatmentHighlight,
     treatmentLayerUpdating,
     setSFID,
     setSearchPoint,
@@ -203,6 +204,10 @@ const Locations = () => {
   }, [locationsMapView, searchPoint, setTreatmentLayerUpdating]);
 
   const onSearchHereClick = () => {
+    // Clear previous selection
+    if (selectedTreatmentHighlight) selectedTreatmentHighlight.remove();
+    setSelectedTreatmentSite(null);
+
     // get the center of the mapview
     locationsMapView &&
       setSearchPoint({
