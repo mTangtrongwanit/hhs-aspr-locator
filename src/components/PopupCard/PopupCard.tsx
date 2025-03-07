@@ -18,7 +18,7 @@ import {
   // StyledOutlinedLink,
   StyledRow,
   StyledTitleRow,
-} from "./PopupCard.styles";
+} from "../Card/Card.styles";
 import Tooltip from "../Tooltip";
 import { isTrue } from "@/utils";
 // #endregion ----------- Custom Components / Utilities ------------------------
@@ -239,7 +239,7 @@ const PopupCard = ({
       </address>
 
       <StyledRow>
-        iterate over toolTipIcons and return a tooltip for each
+        {/* iterate over toolTipIcons and return a tooltip for each */}
         {toolTipIcons.map((icon, index) => {
           return (
             icon.condition && (
