@@ -35,7 +35,7 @@ import { useAppContext } from "@/contexts/AppContext";
 // #region ------------------------ Resources ----------------------------------
 import config from "@/config/config";
 import { useSearchParams } from "react-router-dom";
-import Card from "../Card";
+import PopupCard from "../PopupCard";
 import { createRoot } from "react-dom/client";
 import { useTranslation } from "react-i18next";
 import { calculateDistanceBetweenTwoPoints } from "@/utils/geographicUtils";
@@ -362,12 +362,12 @@ const LocationsMap = ({ isMobileListView, setAutoZoom }: LocationsMapProps) => {
   useEffect(() => {
     if (!map || !selectedTreatmentSite) return;
     const content = createPopupValue(
-      <Card
+      <PopupCard
         asDiv={true}
         searchPoint={searchPoint}
         t={t}
         selectedIllness={selectedIllness.value}
-      ></Card>,
+      ></PopupCard>,
     );
     const allLayers = map.allLayers.filter(
       (layer) =>
