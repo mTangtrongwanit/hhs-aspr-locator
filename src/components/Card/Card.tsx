@@ -20,7 +20,7 @@ import {
   StyledRow,
   StyledTitleRow,
 } from "./Card.styles";
-import Tooltip from "./Tooltip";
+import Tooltip from "../Tooltip";
 import { isTrue } from "@/utils";
 // #endregion ----------- Custom Components / Utilities ------------------------
 

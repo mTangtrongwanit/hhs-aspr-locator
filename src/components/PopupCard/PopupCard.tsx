@@ -8,7 +8,6 @@
 // #region --------------------------- React -----------------------------------
 // #endregion ------------------------ React -----------------------------------
 // #region ------------ 3rd-Party Components / Libraries -----------------------
-import Point from "@arcgis/core/geometry/Point";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -20,7 +19,7 @@ import {
   StyledRow,
   StyledTitleRow,
 } from "./PopupCard.styles";
-// import Tooltip from "./Tooltip";
+import Tooltip from "../Tooltip";
 import { isTrue } from "@/utils";
 // #endregion ----------- Custom Components / Utilities ------------------------
 
@@ -35,7 +34,6 @@ import UsgProcuredIcon from "@/assets/icons/usg-procured.svg";
 import PapIcon from "@/assets/icons/pap.svg";
 import OseltamivirIcon from "@/assets/icons/oseltamivir.svg";
 import PrescribingServicesIcon from "@/assets/icons/prescribing-services.svg";
-import { useAppContext } from "@/contexts/AppContext";
 
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
@@ -49,8 +47,6 @@ const PopupCard = ({
   distance,
   searchPoint,
   t,
-  autoZoom,
-  onZoomToClick,
 }: Props) => {
   // #region ------------------ Hooks (Resources) ------------------------------
   // #endregion --------------- Hooks (Resources) ------------------------------
@@ -241,7 +237,7 @@ const PopupCard = ({
           )}
         </StyledIconField>
       </address>
-{/* 
+
       <StyledRow>
         iterate over toolTipIcons and return a tooltip for each
         {toolTipIcons.map((icon, index) => {
@@ -255,7 +251,7 @@ const PopupCard = ({
             )
           );
         })}
-      </StyledRow> */}
+      </StyledRow>
       <StyledRow>
         {selectedIllness?.toLowerCase() == "covid" &&
           t(
@@ -308,21 +304,6 @@ const PopupCard = ({
         </p>
       )}
       <StyledRow>
-        <button
-          className="hhs-primary-button zoom-to-button"
-          aria-label="Zoom to this site on the map"
-          title="Zoom to this site on the map"
-          onClick={
-            onZoomToClick
-              ? (e) => {
-                serviceProvider && onZoomToClick(serviceProvider);
-                e.stopPropagation();
-              }
-              : undefined
-          }
-        >
-          {t("Card.Zoom")}
-        </button>
         <button 
           onClick={handleCopyToClipboard}
           className="hhs-outline-button"
