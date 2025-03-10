@@ -23,5 +23,8 @@ export interface Props {
   t: any;
   autoZoom?: number | null;
   onZoomToClick?: (x: SiteAttributesType) => void;
+  locations?:  __esri.Graphic[];
+  locationsMapView?: __esri.MapView | null;
+  setSelectedTreatmentSite?: (x: __esri.Graphic | null) => void;
 }
 // #endregion ================== EXPORTED TYPES ================================

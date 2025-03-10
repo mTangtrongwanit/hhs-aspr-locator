@@ -35,7 +35,6 @@ import UsgProcuredIcon from "@/assets/icons/usg-procured.svg";
 import PapIcon from "@/assets/icons/pap.svg";
 import OseltamivirIcon from "@/assets/icons/oseltamivir.svg";
 import PrescribingServicesIcon from "@/assets/icons/prescribing-services.svg";
-import { useAppContext } from "@/contexts/AppContext";
 
 // #endregion --------------------- Resources ----------------------------------
 // #endregion ====================== IMPORTS ===================================
@@ -51,13 +50,11 @@ const Card = ({
   t,
   autoZoom,
   onZoomToClick,
+  locations,
+  locationsMapView,
+  setSelectedTreatmentSite
 }: Props) => {
   // #region ------------------ Hooks (Resources) ------------------------------
-  const {
-    locations,
-    locationsMapView,
-    setSelectedTreatmentSite
-   } = useAppContext();
   // #endregion --------------- Hooks (Resources) ------------------------------
   // #region ----------------------- Hooks (State) -------------------------------------
   // #endregion -------------------- Hooks (State) -------------------------------------
@@ -131,7 +128,7 @@ const Card = ({
     // Clear out any open popups
     locationsMapView?.closePopup();
 
-    graphic && setSelectedTreatmentSite(graphic);
+    if (graphic && setSelectedTreatmentSite) setSelectedTreatmentSite(graphic);
   }
 
   {
