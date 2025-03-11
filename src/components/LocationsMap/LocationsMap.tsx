@@ -338,6 +338,8 @@ const LocationsMap = ({ isMobileListView, setAutoZoom }: LocationsMapProps) => {
           .catch((error) => {
             console.error("MapView updating reactiveUtils error: ", error);
           });
+          // clears out previous selection
+          setSelectedTreatmentSite(null);
       }
 
       // Cleanup map view on unmount
@@ -356,6 +358,7 @@ const LocationsMap = ({ isMobileListView, setAutoZoom }: LocationsMapProps) => {
     setSearchPoint,
     setFeatureLayer,
     isMobileListView,
+    selectedIllness
   ]);
 
   // new useEffect that watches for selectedTreatmentSite and resets the map's popupTemplate
