@@ -360,6 +360,9 @@ const Locations = () => {
                       distance={serviceSiteAttributes.distance}
                       onZoomToClick={() => onZoomToClick(serviceSiteAttributes)}
                       autoZoom={autoZoom}
+                      locations={locations}
+                      locationsMapView={locationsMapView}
+                      setSelectedTreatmentSite={setSelectedTreatmentSite}
                     ></Card>
                   );
                 })}
