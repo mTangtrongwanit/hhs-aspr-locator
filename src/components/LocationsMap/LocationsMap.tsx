@@ -356,6 +356,7 @@ const LocationsMap = ({ isMobileListView, setAutoZoom }: LocationsMapProps) => {
     setSearchPoint,
     setFeatureLayer,
     isMobileListView,
+    selectedIllness
   ]);
 
   // new useEffect that watches for selectedTreatmentSite and resets the map's popupTemplate
