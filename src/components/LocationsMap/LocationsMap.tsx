@@ -360,7 +360,10 @@ const LocationsMap = ({ isMobileListView, setAutoZoom }: LocationsMapProps) => {
 
   // new useEffect that watches for selectedTreatmentSite and resets the map's popupTemplate
   useEffect(() => {
-    if (!map || !selectedTreatmentSite) return;
+    if (!map || !selectedTreatmentSite) {
+      if (locationsMapView) locationsMapView.popup.close();
+      return;
+    }
     const content = createPopupValue(
       <Card
         asDiv={true}
