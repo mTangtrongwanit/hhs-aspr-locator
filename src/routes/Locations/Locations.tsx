@@ -59,9 +59,12 @@ const Locations = () => {
     selectedIllness,
     selectedSort,
     selectedTreatmentSite,
+    selectedTreatmentHighlight,
+    treatmentLayerUpdating,
     setSFID,
     setSearchPoint,
     setSelectedTreatmentSite,
+    setTreatmentLayerUpdating,
     sharedSiteFacilityID,
     filteredSites,
   } = useAppContext();
@@ -77,6 +80,7 @@ const Locations = () => {
   const [isMobileListView, setIsMobileListView] = useState<boolean>(true);
   const [cardSelected, setCardSelected] = useState<number | null>(null);
   const [pageLoadAlertTxt, setPageLoadAlertTxt] = useState<string | null>(null);
+  const [autoZoom, setAutoZoom] = useState<number | null>(null);
 
   // #endregion ----------------- Hooks (State) --------------------------------
 
@@ -126,9 +130,11 @@ const Locations = () => {
   }, [selectedTreatmentSite]);
 
   useEffect(() => {
-    setTimeout(function () {
-      setPageLoadAlertTxt(`Page has loaded with ${locations.length} results`);
-    }, 2000);
+    if (locations && !treatmentLayerUpdating) {
+      setTimeout(function () {
+        setPageLoadAlertTxt(`Page has loaded with ${locations.length} results`);
+      }, 2000);
+    }
   });
   // #endregion ----------------- Hooks (Other) --------------------------------
 
@@ -166,11 +172,47 @@ const Locations = () => {
     }
   }, [selectedTreatmentSite]);
 
+  // Use this to update state to slot in a delay so app will fully wait for
+  // layer to finish updating before making the card list (for slower computers)
+  useEffect(() => {
+    // view is loaded and a search point has been defined.
+    if (locationsMapView  && searchPoint) {
+
+      if (locationsMapView.ready) {
+        // Get reference to "treatment" layer
+        const treatmentsLayer = locationsMapView.map.allLayers.find((layer) => {
+          return (
+            layer.type == "feature" && layer.title?.includes("Treatments")
+          );
+        }) as __esri.FeatureLayer;
+
+        locationsMapView.whenLayerView(treatmentsLayer).then((layerView) => {
+          // Listen for changes to the updating property
+          layerView.watch("updating", (value) => {
+            if (value) {
+              setTreatmentLayerUpdating(true);
+              console.log("Layer is updating...");
+            } else {
+              // if false, that means the layer is done updating
+              setTreatmentLayerUpdating(false)
+              console.log("Layer is finished updating.");     
+            }
+          });
+        });
+      }
+      
+    }
+  }, [locationsMapView, searchPoint, setTreatmentLayerUpdating]);
+
   const onSearchHereClick = () => {
+    // Clear previous selection
+    if (selectedTreatmentHighlight) selectedTreatmentHighlight.remove();
+    setSelectedTreatmentSite(null);
+
     // get the center of the mapview
     locationsMapView &&
       setSearchPoint({
-        name: "Current Location",
+        name: `${locationsMapView.center.latitude.toFixed(6)}, ${locationsMapView.center.longitude.toFixed(6)}`,
         point: locationsMapView.center,
       });
   };
@@ -265,16 +307,22 @@ const Locations = () => {
           {
             //#region List Container (left column, results displayed as cards)
           }
-
-          {sortedSites?.length === 0 &&
-          (!searchPoint?.name || !selectedIllness?.value) &&
-          sharedSiteFacilityID == null ? (
-            <StyledListNoResultsContainer>
-              <MagnifyingGlass aria-hidden></MagnifyingGlass>
-              <h3>Please ensure an illness and location are selected.</h3>
-              <p>{t("Locations.Empty List")}</p>
-            </StyledListNoResultsContainer>
-          ) : (
+          
+          {!treatmentLayerUpdating && sortedSites?.length === 0 ?
+            // treatmentLayerUpdating has to be "false" (done updating to update the card list)
+            (!searchPoint?.name || !selectedIllness?.value) && sharedSiteFacilityID == null ?
+                <StyledListNoResultsContainer>
+                  <MagnifyingGlass aria-hidden></MagnifyingGlass>
+                  <h3>{t("Locations.Ensure Selection")}</h3>
+                  <p>{t("Locations.Empty List")}</p>
+                </StyledListNoResultsContainer>
+              :
+                <StyledListNoResultsContainer>
+                  <MagnifyingGlass aria-hidden></MagnifyingGlass> 
+                  <h3>{t("Locations.No Results")}</h3>
+                  <p>{t("Locations.No Results Suggestion")}</p>
+                </StyledListNoResultsContainer>
+            :
             <>
               {/* tabindex for keyboard-scrollable list */}
               <ul tabIndex={0}>
@@ -289,6 +337,15 @@ const Locations = () => {
                         loc.attributes["facility_id"] ===
                         serviceSiteAttributes?.facility_id,
                     );
+                    
+                    // We have the graphic here so we can more directly trigger the "goTo" function without extra steps
+                    locationsMapView?.goTo({target:graphic, zoom: 15}, {animate: false}).catch((error) => {
+                      console.error("MapView goTo error: ", error);
+                    });
+
+                    // Clear out any open popups
+                    locationsMapView?.closePopup();
+
                     graphic && setSelectedTreatmentSite(graphic);
                   };
 
@@ -302,12 +359,16 @@ const Locations = () => {
                       selected={serviceSiteAttributes.OBJECTID === cardSelected}
                       distance={serviceSiteAttributes.distance}
                       onZoomToClick={() => onZoomToClick(serviceSiteAttributes)}
+                      autoZoom={autoZoom}
+                      locations={locations}
+                      locationsMapView={locationsMapView}
+                      setSelectedTreatmentSite={setSelectedTreatmentSite}
                     ></Card>
                   );
                 })}
               </ul>
             </>
-          )}
+          }
         </StyledListContainer>
         {
           //#endregion List Container (left column, results displayed as cards)
@@ -321,7 +382,7 @@ const Locations = () => {
           <h3 className="visually-hidden" id="map-screenreader-heading">
             {t("Locations.Map Screenreader Heading")}
           </h3>
-          <LocationsMap isMobileListView={isMobileListView} />
+          <LocationsMap isMobileListView={isMobileListView} setAutoZoom={setAutoZoom} />
         </StyledMapContainer>
       </div>
     </StyledLocationsContent>

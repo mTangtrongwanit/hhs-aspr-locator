@@ -21,6 +21,10 @@ export interface Props {
   distance?: number | undefined;
   searchPoint?: { name: string; point: __esri.Point } | null;
   t: any;
+  autoZoom?: number | null;
   onZoomToClick?: (x: SiteAttributesType) => void;
+  locations?:  __esri.Graphic[];
+  locationsMapView?: __esri.MapView | null;
+  setSelectedTreatmentSite?: (x: __esri.Graphic | null) => void;
 }
 // #endregion ================== EXPORTED TYPES ================================

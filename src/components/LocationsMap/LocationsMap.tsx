@@ -16,6 +16,7 @@ import WebMap from "@arcgis/core/WebMap";
 import MapView from "@arcgis/core/views/MapView";
 import * as reactiveUtils from "@arcgis/core/core/reactiveUtils.js";
 import SimpleMarkerSymbol from "@arcgis/core/symbols/SimpleMarkerSymbol";
+import SimpleRenderer from "@arcgis/core/renderers/SimpleRenderer";
 import Extent from "@arcgis/core/geometry/Extent";
 import Point from "@arcgis/core/geometry/Point";
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
@@ -44,14 +45,17 @@ import { calculateDistanceBetweenTwoPoints } from "@/utils/geographicUtils";
 
 interface LocationsMapProps {
   isMobileListView: boolean;
+  setAutoZoom: (x: number | null) => void;
 }
 
 // #region ======================== CONSTANTS ==================================
 const highlightColor = new Color("#00FFFF");
+const brand = new Color("#155197");
+const white = new Color("#FFFFFF");
 // #endregion ===================== CONSTANTS ==================================
 
 // #region =================== EXPORTED COMPONENT ==============================
-const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
+const LocationsMap = ({ isMobileListView, setAutoZoom }: LocationsMapProps) => {
   // #region ------------------ Hooks (Resources) ------------------------------
   const {
     locations,
@@ -59,10 +63,12 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
     searchPoint,
     selectedIllness,
     selectedTreatmentSite,
+    selectedTreatmentHighlight,
     setFeatureLayer,
     setLocationsMapView,
     setSearchPoint,
     setSelectedTreatmentSite,
+    setSelectedTreatmentHighlight,
     circle,
   } = useAppContext();
   const [searchParams] = useSearchParams();
@@ -166,6 +172,7 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
       };
       setLocationsMapView(mapView);
 
+      // The geopoint flow here is to handle the "Copy Location Link" url and create a focused view of a treatment site
       if (geopoint && geopoint !== "" && geopoint.includes(",")) {
         const [lat, lon] = geopoint.split(",").map(Number);
         const p = new Point({
@@ -185,6 +192,16 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
                 layer.title &&
                 layer.title.includes("Treatments")
               ) {
+                (layer as __esri.FeatureLayer).renderer = new SimpleRenderer({
+                  symbol: new SimpleMarkerSymbol({
+                    size: 5,
+                    color: brand,
+                    outline: {
+                      color: white,
+                      width: '0.5px'
+                    }
+                  })
+                });
                 (layer as __esri.FeatureLayer).outFields = ["*"];
                 layer.load().then(() => {
                   setFeatureLayer(layer as FeatureLayer);
@@ -198,16 +215,59 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
               latitude: lat,
             });
             setSearchPoint({ name: geopoint, point: p });
-            mapView
-              .goTo(
-                circle?.extent || {
-                  center: p,
-                  zoom: 11,
-                },
-              )
-              .catch((error) => {
-                console.error("MapView goTo error: ", error);
-              });
+            // Wait for the mapView to finish loading and be ready before attempting to work with properties (otherwise they'll all be undefined)
+            reactiveUtils
+              .whenOnce(() => !mapView.updating && mapView.ready)
+              .then(() => {
+                // Get reference to "treatment" layer
+                const treatmentsLayer = mapView.map.allLayers.find((layer) => {
+                  return (
+                    layer.type == "feature" && layer.title?.includes("Treatments")
+                  );
+                }) as __esri.FeatureLayer;
+                
+                // get target layer view
+                mapView.whenLayerView(treatmentsLayer).then((layerView) => {
+
+                  layerView.highlightOptions = {
+                    color: highlightColor,
+                    haloOpacity: 1,
+                    shadowOpacity: 1,
+                  };
+
+                  const query = treatmentsLayer.createQuery();
+                  query.where = "facility_id = '"+ searchParams.get("facility_id") +"'";
+
+                  // if a feature is already highlighted, then remove the highlight
+                  if (selectedTreatmentHighlight) {
+                    selectedTreatmentHighlight.remove()
+                  }
+
+                  treatmentsLayer.queryFeatures(query).then(function(result){
+                    const tempFeature = result.features[0];
+                    const trackHighlightedFeature: __esri.Handle = layerView.highlight(tempFeature.attributes.OBJECTID);
+
+                    // Update the selected treatment site so that the popup template update will be triggered
+                    setSelectedTreatmentSite(tempFeature);
+
+                    // update state with new tracked highlight handle for later highlight removal
+                    setSelectedTreatmentHighlight(trackHighlightedFeature)
+                  });
+                  
+                });
+
+              });  
+
+              // mapView
+              // .goTo(
+              //   circle?.extent || {
+              //     center: p,
+              //     zoom: 11,
+              //   }, {animate: false}
+              // )
+              // .catch((error) => {
+              //   console.error("MapView goTo error: ", error);
+              // });
           })
           .catch((error) => {
             console.error("MapView updating reactiveUtils error: ", error);
@@ -225,6 +285,16 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
                 layer.title &&
                 layer.title.includes("Treatments")
               ) {
+                (layer as __esri.FeatureLayer).renderer = new SimpleRenderer({
+                  symbol: new SimpleMarkerSymbol({
+                    size: 5,
+                    color: brand,
+                    outline: {
+                      color: white,
+                      width: '0.5px'
+                    }
+                  })
+                });
                 (layer as __esri.FeatureLayer).outFields = ["*"];
                 layer.load().then(() => {
                   setFeatureLayer(layer as FeatureLayer);
@@ -235,7 +305,6 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
               // Get the country name when a user clicks on the map
               // If the boundary layer is undefined return
               // If the user clicks on a country boundary, log the country name\
-
               const treatmentsLayer = mapView.map.allLayers.find((layer) => {
                 return (
                   layer.type == "feature" && layer.title?.includes("Treatments")
@@ -269,6 +338,8 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
           .catch((error) => {
             console.error("MapView updating reactiveUtils error: ", error);
           });
+          // clears out previous selection
+          setSelectedTreatmentSite(null);
       }
 
       // Cleanup map view on unmount
@@ -287,11 +358,15 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
     setSearchPoint,
     setFeatureLayer,
     isMobileListView,
+    selectedIllness
   ]);
 
   // new useEffect that watches for selectedTreatmentSite and resets the map's popupTemplate
   useEffect(() => {
-    if (!map || !selectedTreatmentSite) return;
+    if (!map || !selectedTreatmentSite) {
+      if (locationsMapView) locationsMapView.popup.close();
+      return;
+    }
     const content = createPopupValue(
       <Card
         asDiv={true}
@@ -328,28 +403,51 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
 
   /** Highlight selected feature */
   useEffect(() => {
+    // the "selectedTreatmentSite" is tied to both the "Zoom to Location" and when a user clicks (and highlights) a treatment point on the map
     if (locationsMapView && selectedTreatmentSite) {
-      const highlight = selectedTreatmentSite.clone();
+      // const highlight = selectedTreatmentSite.clone();
       reactiveUtils
         .whenOnce(() => !locationsMapView.updating && locationsMapView.ready)
         .then(() => {
-          highlight.symbol = new SimpleMarkerSymbol({
-            color: highlightColor,
-            size: "14",
-            outline: {
-              width: "0px",
-            },
+          
+          // locationsMapView.graphics.add(highlight);
+
+          // Get reference to "treatment" layer
+          const treatmentsLayer = locationsMapView.map.allLayers.find((layer) => {
+            return (
+              layer.type == "feature" && layer.title?.includes("Treatments")
+            );
+          }) as __esri.FeatureLayer;
+
+          // get target layer view
+          locationsMapView.whenLayerView(treatmentsLayer).then((layerView) => {
+
+            layerView.highlightOptions = {
+              color: highlightColor,
+              haloOpacity: 1,
+              shadowOpacity: 1,
+            };
+
+            // if a feature is already highlighted, then remove the highlight
+            if (selectedTreatmentHighlight) {
+              selectedTreatmentHighlight.remove()
+            }
+
+            // use the objectID to highlight the feature
+            const trackHighlightedFeature: __esri.Handle = layerView.highlight(selectedTreatmentSite.attributes.OBJECTID);
+
+            // update state with new tracked highlight feature
+            setSelectedTreatmentHighlight(trackHighlightedFeature)
           });
-          locationsMapView.graphics.add(highlight);
-          locationsMapView
-            .goTo(circle?.extent || { target: highlight.geometry, zoom: 15 })
-            .catch((error) => {
-              console.error("MapView goTo error: ", error);
-            });
+
         });
 
       return () => {
-        locationsMapView.graphics.remove(highlight);
+        // locationsMapView.graphics.remove(highlight);
+        // if a feature is already highlighted, then remove the highlight
+        if (selectedTreatmentHighlight) {
+          selectedTreatmentHighlight.remove()
+        }
       };
     }
   }, [locationsMapView, selectedTreatmentSite, circle?.radius]);
@@ -385,9 +483,11 @@ const LocationsMap = ({ isMobileListView }: LocationsMapProps) => {
             setSelectedTreatmentSite(null)
           }
 
-          locationsMapView.goTo(options).catch((error) => {
+          locationsMapView.goTo(options, {animate: false}).then(() => {
+            setAutoZoom(locationsMapView.zoom);
+          }).catch((error) => {
             console.error("MapView goTo error: ", error);
-          });
+          })
         });
     }
   }, [

@@ -15,6 +15,7 @@ export default defineConfig( ({mode}) => {
       }),
     ],
     base: process.env.BASE_PATH ? `/${process.env.BASE_PATH}/ ` : "/",
+    publicDir: "public",
     define: {
       // mode value when running 'dev' or building with 'build-dev' is 'development' 
       // mode value running 'npm run build' is 'production'

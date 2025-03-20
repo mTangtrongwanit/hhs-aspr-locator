@@ -8,6 +8,7 @@
 // #region --------------------------- React -----------------------------------
 // #endregion ------------------------ React -----------------------------------
 // #region ------------ 3rd-Party Components / Libraries -----------------------
+import Point from "@arcgis/core/geometry/Point";
 // #endregion --------- 3rd-Party Components / Libraries -----------------------
 
 // #region -------------- Custom Components / Utilities ------------------------
@@ -47,7 +48,11 @@ const Card = ({
   distance,
   searchPoint,
   t,
+  autoZoom,
   onZoomToClick,
+  locations,
+  locationsMapView,
+  setSelectedTreatmentSite
 }: Props) => {
   // #region ------------------ Hooks (Resources) ------------------------------
   // #endregion --------------- Hooks (Resources) ------------------------------
@@ -103,6 +108,28 @@ const Card = ({
         geopoint: serviceProvider?.geopoint,
       });
   };
+
+  // select site without zooming
+  const onCardClick = () => {
+    const graphic = locations?.find(
+      (loc) =>
+        loc.attributes["facility_id"] ===
+        serviceProvider?.facility_id,
+    );
+    
+    // if point not in extent, go to point on map
+    if (!(locationsMapView?.extent.contains(graphic?.geometry as Point))) {
+      locationsMapView?.goTo({target:graphic}, {animate: false}).catch((error) => {
+        console.error("MapView goTo error: ", error);
+      });
+    }
+    if (locationsMapView) locationsMapView.zoom = autoZoom ?? 12;
+
+    // Clear out any open popups
+    locationsMapView?.closePopup();
+
+    if (graphic && setSelectedTreatmentSite) setSelectedTreatmentSite(graphic);
+  }
 
   {
     /*  this tooltip icons lookup object includes a check for selected illness, the icon to show, description to show on hover and an extra element if needed
@@ -194,6 +221,7 @@ const Card = ({
       as={asDiv === true ? "div" : "li"}
       $selected={selected}
       key={serviceProvider?.OBJECTID}
+      onClick={onCardClick}
     >
       <StyledTitleRow>
         <StyledCardTitle className="bold">
@@ -311,7 +339,10 @@ const Card = ({
           title="Zoom to this site on the map"
           onClick={
             onZoomToClick
-              ? () => serviceProvider && onZoomToClick(serviceProvider)
+              ? (e) => {
+                serviceProvider && onZoomToClick(serviceProvider);
+                e.stopPropagation();
+              }
               : undefined
           }
         >
